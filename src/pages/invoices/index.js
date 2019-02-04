@@ -1,0 +1,80 @@
+import { Component } from 'react';
+import { connect } from 'dva';
+import Link from 'umi/link';
+import { Button, Input, Table, Tag } from 'antd';
+
+class Invoices extends Component {
+  render() {
+    const data = [{
+      number: '1',
+      client: 'John Brown',
+      state: 'paid',
+      date: '2019-01-20',
+      due_date: '2019-01-30',
+      sum: 100
+    }, {
+      number: '2',
+      client: 'Jim Green',
+      state: 'paid',
+      date: '2019-01-20',
+      due_date: '2019-01-30',
+      sum: 200
+    }, {
+      number: '3',
+      client: 'Joe Black',
+      state: 'paid',
+      date: '2019-01-20',
+      due_date: '2019-01-30',
+      sum: 300
+    }];
+
+    return (
+      <div>
+        <Link to="/invoices/new">
+          <Button type="primary" style={{ marginBottom: 10 }}>New invoice</Button>
+        </Link>
+        <Input.Search
+          placeholder="input search text"
+          onSearch={value => console.log(value)}
+          style={{ width: 200, float: 'right' }}
+        />
+
+        <Table dataSource={data} pagination={false}>
+          <Table.Column
+            title="Number"
+            dataIndex="number"
+            key="number"
+          />
+          <Table.Column
+            title="State"
+            dataIndex="state"
+            key="state"
+            render={state => (<Tag color="green">{state}</Tag>)}
+          />
+          <Table.Column
+            title="Client"
+            dataIndex="client"
+            key="client"
+          />
+          <Table.Column
+            title="Date"
+            dataIndex="date"
+            key="date"
+          />
+          <Table.Column
+            title="Due date"
+            dataIndex="due_date"
+            key="due_date"
+          />
+          <Table.Column
+            title="Sum"
+            dataIndex="sum"
+            key="sum"
+          />
+        </Table>
+      </div>
+    )
+  }
+}
+
+export default connect((state) => { return { invoices: state.invoices }; })(Invoices);
