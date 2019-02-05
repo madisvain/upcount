@@ -1,8 +1,7 @@
 import { Component } from 'react';
 import { compose } from 'redux';
-import { connect } from 'dva';
 import { Field, FieldArray, reduxForm } from 'redux-form';
-import { Col, Form, Row, Select } from 'antd';
+import { Button, Col, Form, Row, Select } from 'antd';
 import { map } from 'lodash';
 
 import currencyToSymbolMap from 'currency-symbol-map/map';
@@ -12,6 +11,8 @@ import { ADatePicker, AInput, ASelect, ATextarea } from '../../components/fields
 
 class InvoiceForm extends Component {
   render() {
+    const { handleSubmit, pristine, submitting } = this.props;
+
     return (
       <div>
         <Form>
@@ -73,6 +74,15 @@ class InvoiceForm extends Component {
               />
             </Col>
           </Row>
+          <Button
+            type="primary"
+            htmlType="submit"
+            disabled={pristine || submitting}
+            loading={submitting}
+            style={{ marginTop: '10px' }}
+          >
+            Save invoice
+          </Button>
         </Form>
       </div>
     )

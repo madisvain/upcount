@@ -2,10 +2,11 @@ import { Component } from 'react';
 import { compose } from 'redux';
 import { connect } from 'dva';
 import { Field, reduxForm } from 'redux-form';
-import { Col, Form, Row, Select } from 'antd';
-import { map } from 'lodash';
+import { Button, Drawer, Form, Select } from 'antd';
+import { has, map } from 'lodash';
 
-import currencyToSymbolMap from 'currency-symbol-map/map';
+import router from 'umi/router';
+
 import { AInput, APhoneInput, ASelect, ATextarea } from '../../components/fields';
 
 class ClientForm extends Component {
@@ -13,12 +14,39 @@ class ClientForm extends Component {
     emails: [],
   };
 
+  closeDrawer = () => {
+    router.push({
+      pathname: '/clients',
+    })
+  };
+
+  isNew = () => {
+    const {
+      match: { params },
+    } = this.props;
+
+    return has(params, 'id') && params['id'] === 'new';
+  };
+
   render() {
     const { emails } = this.state;
+    const { handleSubmit, pristine, submitting } = this.props;
 
     return (
-      <div>
-        <Form>
+      <Drawer
+        title={this.isNew() ? 'Add client' : 'Edit client'}
+        width={450}
+        placement="right"
+        onClose={this.closeDrawer}
+        maskClosable={true}
+        visible={true}
+        style={{
+          height: 'calc(100% - 55px)',
+          overflow: 'auto',
+          paddingBottom: 53,
+        }}
+      >
+        <Form onSubmit={handleSubmit} layout="vertical">
           <Field
             name="name"
             component={AInput}
@@ -58,8 +86,17 @@ class ClientForm extends Component {
             component={AInput}
             label="Website"
           />
+          <Button
+            type="primary"
+            htmlType="submit"
+            disabled={pristine || submitting}
+            loading={submitting}
+            style={{ marginTop: '10px' }}
+          >
+            Save account role
+          </Button>
         </Form>
-      </div>
+      </Drawer>
     )
   }
 }
