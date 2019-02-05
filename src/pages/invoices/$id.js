@@ -1,28 +1,49 @@
 import { Component } from 'react';
 import { compose } from 'redux';
 import { Field, FieldArray, reduxForm } from 'redux-form';
-import { Button, Col, Form, Row, Select } from 'antd';
+import { Button, Col, Form, Icon, Row, Select, Statistic, Table } from 'antd';
 import { map } from 'lodash';
 
 import currencyToSymbolMap from 'currency-symbol-map/map';
 
 import LineItems from './components/lines';
 import { ADatePicker, AInput, ASelect, ATextarea } from '../../components/fields';
+import FooterToolbar from '../../components/footer-toolbar';
 
 class InvoiceForm extends Component {
   render() {
     const { handleSubmit, pristine, submitting } = this.props;
+    const totals = [{
+      'title': 'Subtotal',
+      'value': 100
+    },{
+      'title': 'Tax',
+      'value': 20
+    },{
+      'title': 'Discount',
+      'value': 0
+    },{
+      'title': 'Total',
+      'value': 120
+    }]
 
     return (
-      <div>
+      <div style={{ paddingBottom: 60 }}>
         <Form>
           <Row gutter={16}>
             <Col span={12}>
               <Field
-                name="number"
+                showSearch
+                name="client"
+                placeholder="Select or create a client"
                 component={ASelect}
                 label="Client"
-              />
+              >
+                <Select.Option value="new" key="new">
+                  <Icon type="user-add" />
+                  {` Create new client`}
+                </Select.Option>
+              </Field>
             </Col>
             <Col span={6}>
               <Field
@@ -33,6 +54,7 @@ class InvoiceForm extends Component {
             </Col>
             <Col span={6}>
               <Field
+                showSearch
                 name="currency"
                 component={ASelect}
                 label="Currency"
@@ -47,13 +69,14 @@ class InvoiceForm extends Component {
           </Row>
           <Row gutter={16}>
             <Col span={6} offset={12}>
-              <Field name="date" component={ADatePicker} label="Date" />
+              <Field name="date" component={ADatePicker} label="Date" style={{ width: '100%' }} />
             </Col>
             <Col span={6}>
               <Field
                 name="due_date"
                 component={ADatePicker}
                 label="Due date"
+                style={{ width: '100%' }}
               />
             </Col>
           </Row>
@@ -65,7 +88,7 @@ class InvoiceForm extends Component {
           </Row>
 
           <Row gutter={16}>
-            <Col span={7} style={{ marginTop: '20px' }}>
+            <Col span={8} style={{ marginTop: '20px' }}>
               <Field
                 name="customer_note"
                 component={ATextarea}
@@ -73,16 +96,37 @@ class InvoiceForm extends Component {
                 rows={4}
               />
             </Col>
+            <Col span={12} offset={4} style={{ marginTop: '20px' }}>
+              <Table dataSource={totals} showHeader={false} pagination={false} size="small" bordered={false}>
+                <Table.Column
+                  dataIndex="title"
+                  key="title"
+                />
+                <Table.Column
+                  dataIndex="value"
+                  key="value"
+                  render={value => (<Statistic value={value} precision={2} />)}
+                />
+              </Table>
+            </Col>
           </Row>
-          <Button
-            type="primary"
-            htmlType="submit"
-            disabled={pristine || submitting}
-            loading={submitting}
-            style={{ marginTop: '10px' }}
-          >
-            Save invoice
-          </Button>
+
+          <FooterToolbar>
+            <Button style={{ marginTop: '10px' }}>
+              <Icon type="file-pdf" />
+              Download PDF
+            </Button>
+            <Button
+              type="primary"
+              htmlType="submit"
+              disabled={pristine || submitting}
+              loading={submitting}
+              style={{ marginTop: '10px' }}
+            >
+              <Icon type="save" />
+              Save invoice
+            </Button>
+          </FooterToolbar>
         </Form>
       </div>
     )

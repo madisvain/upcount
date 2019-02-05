@@ -32,7 +32,7 @@ class LineItems extends Component {
 
     return (
       <div>
-        <Table dataSource={data} pagination={false} size="middle">
+        <Table dataSource={data} pagination={false} size="middle" className="line-items">
           <Table.Column
             title="Description"
             dataIndex="description"
@@ -84,12 +84,12 @@ class LineItems extends Component {
             render={row => (
               <Icon
                 type="delete"
-                style={{ fontSize: '18px' }}
                 onClick={() => fields.remove(row.key)}
               />
             )}
           />
         </Table>
+        
         <Button
           type="default"
           onClick={() => fields.push({})}
