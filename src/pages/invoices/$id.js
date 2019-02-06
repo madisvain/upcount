@@ -97,7 +97,7 @@ class InvoiceForm extends Component {
               />
             </Col>
             <Col span={12} offset={4} style={{ marginTop: '20px' }}>
-              <Table dataSource={totals} showHeader={false} pagination={false} size="small" bordered={false}>
+              <Table dataSource={totals} showHeader={false} pagination={false} className="totals">
                 <Table.Column
                   dataIndex="title"
                   key="title"
@@ -105,7 +105,6 @@ class InvoiceForm extends Component {
                 <Table.Column
                   dataIndex="value"
                   key="value"
-                  render={value => (<Statistic value={value} precision={2} />)}
                 />
               </Table>
             </Col>
