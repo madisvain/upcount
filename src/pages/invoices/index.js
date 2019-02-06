@@ -25,12 +25,6 @@ class Invoices extends Component {
             key="number"
           />
           <Table.Column
-            title="State"
-            dataIndex="state"
-            key="state"
-            render={state => (<Tag color="green">{state}</Tag>)}
-          />
-          <Table.Column
             title="Client"
             dataIndex="client"
             key="client"
@@ -49,6 +43,12 @@ class Invoices extends Component {
             title="Sum"
             dataIndex="sum"
             key="sum"
+          />
+          <Table.Column
+            title="State"
+            dataIndex="state"
+            key="state"
+            render={state => (<Tag color="green">{state}</Tag>)}
           />
         </Table>
       </div>
