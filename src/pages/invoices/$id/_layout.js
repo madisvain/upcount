@@ -1,31 +1,40 @@
 import { Component } from 'react';
 import { compose } from 'redux';
-import { Field, FieldArray, reduxForm } from 'redux-form';
-import { Button, Col, Form, Icon, Row, Select, Statistic, Table } from 'antd';
-import { map } from 'lodash';
+import { connect } from 'dva';
+import { Field, FieldArray, formValueSelector, reduxForm } from 'redux-form';
+import { Button, Col, Form, Icon, Row, Select } from 'antd';
+import { forEach, map } from 'lodash';
 
+import router from 'umi/router';
 import currencyToSymbolMap from 'currency-symbol-map/map';
 
-import LineItems from './components/lines';
-import { ADatePicker, AInput, ASelect, ATextarea } from '../../components/fields';
-import FooterToolbar from '../../components/footer-toolbar';
+import LineItems from './_lines';
+import { ADatePicker, AInput, ASelect, ATextarea } from '../../../components/fields';
+import FooterToolbar from '../../../components/footer-toolbar';
 
 class InvoiceForm extends Component {
+  state = {
+    subtotal: 0,
+    tax: 0,
+    discount: 0,
+    total: 0
+  }
+
+  clientSelect = (value) => {
+    if (value === 'new') {
+      router.push({
+        pathname: '/invoices/new/client'
+      })
+    }
+  }
+
+  componentDidUpdate(prevProps) {
+    console.log(this.props.lineItems, prevProps.lineItems)
+  }
+
   render() {
-    const { handleSubmit, pristine, submitting } = this.props;
-    const totals = [{
-      'title': 'Subtotal',
-      'value': 100
-    },{
-      'title': 'Tax',
-      'value': 20
-    },{
-      'title': 'Discount',
-      'value': 0
-    },{
-      'title': 'Total',
-      'value': 120
-    }]
+    const { children, lineItems, pristine, submitting } = this.props;
+    const { subtotal, tax, discount, total } = this.state;
 
     return (
       <div style={{ paddingBottom: 60 }}>
@@ -38,6 +47,7 @@ class InvoiceForm extends Component {
                 placeholder="Select or create a client"
                 component={ASelect}
                 label="Client"
+                onSelect={this.clientSelect}
               >
                 <Select.Option value="new" key="new">
                   <Icon type="user-add" />
@@ -97,16 +107,26 @@ class InvoiceForm extends Component {
               />
             </Col>
             <Col span={12} offset={4} style={{ marginTop: '20px' }}>
-              <Table dataSource={totals} showHeader={false} pagination={false} className="totals">
-                <Table.Column
-                  dataIndex="title"
-                  key="title"
-                />
-                <Table.Column
-                  dataIndex="value"
-                  key="value"
-                />
-              </Table>
+              <table style={{ width: '100%' }}>
+                <tbody>
+                  <tr>
+                    <th>Subtotal</th>
+                    <td>{subtotal}</td>
+                  </tr>
+                  <tr>
+                    <th>Tax</th>
+                    <td>{tax}</td>
+                  </tr>
+                  <tr>
+                    <th>Discount</th>
+                    <td>{discount}</td>
+                  </tr>
+                  <tr>
+                    <th>Total</th>
+                    <td>{total}</td>
+                  </tr>
+                </tbody>
+              </table>
             </Col>
           </Row>
 
@@ -127,12 +147,21 @@ class InvoiceForm extends Component {
             </Button>
           </FooterToolbar>
         </Form>
+
+        {children}
       </div>
     )
   }
 }
 
+const selector = formValueSelector('invoice');
+
 export default compose(
+  connect(state => ({
+    clients: state.clients,
+    taxRates: state.taxRates,
+    lineItems: selector(state, 'line_items'),
+  })),
   reduxForm({
     form: 'invoice',
     onSubmit: (data, dispatch) => {
