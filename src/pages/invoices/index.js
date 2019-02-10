@@ -1,7 +1,8 @@
 import { Component } from 'react';
 import { connect } from 'dva';
-import Link from 'umi/link';
 import { Button, Input, Table, Tag } from 'antd';
+
+import Link from 'umi/link';
 
 class Invoices extends Component {
   render() {

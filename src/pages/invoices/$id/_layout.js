@@ -3,7 +3,7 @@ import { compose } from 'redux';
 import { connect } from 'dva';
 import { Field, FieldArray, formValueSelector, reduxForm } from 'redux-form';
 import { Button, Col, Form, Icon, Row, Select } from 'antd';
-import { forEach, map } from 'lodash';
+import { map } from 'lodash';
 
 import router from 'umi/router';
 import currencyToSymbolMap from 'currency-symbol-map/map';

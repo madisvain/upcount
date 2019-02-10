@@ -1,10 +1,15 @@
 import { Component } from 'react';
 import { connect } from 'dva';
-import { Button, Input, Table, Tag } from 'antd';
+import { Button, Icon, Input, Table, Tag } from 'antd';
+import { isEmpty, values } from 'lodash';
 
 import Link from 'umi/link';
 
 class Clients extends Component {
+  componentDidMount() {
+    this.props.dispatch({ type: 'clients/list' });
+  }
+
   render() {
     const { children, clients } = this.props;
 
@@ -18,11 +23,11 @@ class Clients extends Component {
           onSearch={value => console.log(value)}
           style={{ width: 200, float: 'right' }}
         />
-        <Table dataSource={clients.items} pagination={false} rowKey="id">
+        <Table dataSource={values(clients.items)} pagination={false} rowKey="_id">
           <Table.Column
             title="Name"
             key="name"
-            render={client => <Link to={`/clients/${client.id}`}>{client.name}</Link>}
+            render={client => <Link to={`/clients/${client._id}`}>{client.name}</Link>}
           />
           <Table.Column
             title="Address"
@@ -41,6 +46,15 @@ class Clients extends Component {
             title="Phone"
             dataIndex="phone"
             key="phone"
+            render={phone => {
+              if (!isEmpty(phone)) {
+                return (
+                  <a href={`tel:${phone}`}>
+                    <Icon type="phone" />{` ${phone}`}
+                  </a>
+                )
+              }
+            }}
           />
           <Table.Column
             title="VATIN"
@@ -51,6 +65,11 @@ class Clients extends Component {
             title="Website"
             dataIndex="website"
             key="website"
+            render={website => (
+              <a href={website} target="_blank" rel='noreferrer noopener'>
+                {website}
+              </a>
+            )}
           />
         </Table>
         {children}

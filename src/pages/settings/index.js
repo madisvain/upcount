@@ -2,9 +2,12 @@ import { Component } from 'react';
 import { compose } from 'redux';
 import { connect } from 'dva';
 import { Field, Form, reduxForm } from 'redux-form';
-import { Button, Col, Icon, Row, Table } from 'antd';
+import { Button, Col, Icon, Row, Select, Table } from 'antd';
+import { map } from 'lodash';
 
-import { AInput, APhoneInput, ATextarea } from '../../components/fields';
+import currencyToSymbolMap from 'currency-symbol-map/map';
+
+import { AInput, APhoneInput, ASelect, ATextarea } from '../../components/fields';
 
 class Settings extends Component {
   render() {
@@ -61,7 +64,7 @@ class Settings extends Component {
           <Col span={12}>
             <h2>
               <Icon type="picture" />
-              {` Logo`}
+              {` Company logo`}
             </h2>
             <Field
               name="notes"
@@ -72,6 +75,19 @@ class Settings extends Component {
               <Icon type="file-text" />
               {` Invoice details`}
             </h2>
+            <Field
+                showSearch
+                name="currency"
+                component={ASelect}
+                label="Default currency"
+                style={{ width:  '100%' }}
+              >
+                {map(currencyToSymbolMap, (symbol, currency) => (
+                  <Select.Option value={currency} key={currency}>
+                    {`${currency} ${symbol}`}
+                  </Select.Option>
+                ))}
+              </Field>
             <Field
               name="notes"
               component={ATextarea}

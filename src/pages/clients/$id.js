@@ -20,6 +20,21 @@ class ClientForm extends Component {
     })
   };
 
+  componentWillMount() {
+    const {
+      match: { params },
+    } = this.props;
+
+    if (!this.isNew()) {
+      this.props.dispatch({
+        type: 'clients/initialize',
+        payload: {
+          id: params['id'],
+        },
+      });
+    }
+  };
+
   isNew = () => {
     const {
       match: { params },
