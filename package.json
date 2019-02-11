@@ -11,6 +11,7 @@
     "antd": "^3.13.2",
     "countries-list": "^2.4.2",
     "currency-symbol-map": "^4.0.4",
+    "currency.js": "^1.2.1",
     "dva": "^2.5.0-beta.2",
     "libphonenumber-js": "^1.7.8",
     "pouchdb": "^7.0.0",

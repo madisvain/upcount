@@ -3,8 +3,9 @@ import { compose } from 'redux';
 import { connect } from 'dva';
 import { Field, FieldArray, formValueSelector, reduxForm } from 'redux-form';
 import { Button, Col, Form, Icon, Row, Select } from 'antd';
-import { map } from 'lodash';
+import { map, sumBy } from 'lodash';
 
+import currency from 'currency.js';
 import router from 'umi/router';
 import currencyToSymbolMap from 'currency-symbol-map/map';
 
@@ -13,13 +14,6 @@ import { ADatePicker, AInput, ASelect, ATextarea } from '../../../components/fie
 import FooterToolbar from '../../../components/footer-toolbar';
 
 class InvoiceForm extends Component {
-  state = {
-    subtotal: 0,
-    tax: 0,
-    discount: 0,
-    total: 0
-  }
-
   clientSelect = (value) => {
     if (value === 'new') {
       router.push({
@@ -28,13 +22,8 @@ class InvoiceForm extends Component {
     }
   }
 
-  componentDidUpdate(prevProps) {
-    console.log(this.props.lineItems, prevProps.lineItems)
-  }
-
   render() {
     const { children, lineItems, pristine, submitting } = this.props;
-    const { subtotal, tax, discount, total } = this.state;
 
     return (
       <div style={{ paddingBottom: 60 }}>
@@ -93,7 +82,7 @@ class InvoiceForm extends Component {
 
           <Row gutter={16} style={{ marginTop: '20px' }}>
             <Col>
-              <FieldArray name="line_items" component={LineItems} />
+              <FieldArray name="lineItems" component={LineItems} />
             </Col>
           </Row>
 
@@ -111,19 +100,19 @@ class InvoiceForm extends Component {
                 <tbody>
                   <tr>
                     <th>Subtotal</th>
-                    <td>{subtotal}</td>
+                    <td>{sumBy(lineItems, 'subtotal') || 0}</td>
                   </tr>
                   <tr>
                     <th>Tax</th>
-                    <td>{tax}</td>
+                    <td>{sumBy(lineItems, 'tax') || 0}</td>
                   </tr>
                   <tr>
                     <th>Discount</th>
-                    <td>{discount}</td>
+                    <td>{/*discount*/}</td>
                   </tr>
                   <tr>
                     <th>Total</th>
-                    <td>{total}</td>
+                    <td>{sumBy(lineItems, 'total') || 0}</td>
                   </tr>
                 </tbody>
               </table>
@@ -160,7 +149,7 @@ export default compose(
   connect(state => ({
     clients: state.clients,
     taxRates: state.taxRates,
-    lineItems: selector(state, 'line_items'),
+    lineItems: selector(state, 'lineItems'),
   })),
   reduxForm({
     form: 'invoice',

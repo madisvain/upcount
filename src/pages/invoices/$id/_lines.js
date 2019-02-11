@@ -1,8 +1,8 @@
 import { Component } from 'react';
 import { connect } from 'react-redux';
-import { Field } from 'redux-form';
+import { Field, formValueSelector, change } from 'redux-form';
 import { Button, Icon, Select, Table } from 'antd';
-import { map } from 'lodash';
+import { get, map } from 'lodash';
 
 import { AInput, ASelect, ATextarea } from '../../../components/fields';
 
@@ -14,6 +14,54 @@ class LineItems extends Component {
     }
   }
 
+  onQuantityChange = (newValue, previousValue, index) => {
+    const lineItem = get(this.props.lineItems, index);
+
+    const unitPrice = get(lineItem, 'unitPrice');
+    const subtotal = get(lineItem, 'subtotal');
+
+    if (unitPrice) {
+      this.props.dispatch(change('invoice', `lineItems[${index}].subtotal`, newValue * unitPrice));
+    } else if (subtotal) {
+      this.props.dispatch(change('invoice', `lineItems[${index}].unitPrice`, subtotal / newValue));
+    }
+  }
+
+  onUnitPriceChange = (newValue, previousValue, index) => {
+    const lineItem = get(this.props.lineItems, index);
+
+    const quantity = get(lineItem, 'quantity');
+    const subtotal = get(lineItem, 'subtotal');
+
+    if (quantity) {
+      this.props.dispatch(change('invoice', `lineItems[${index}].subtotal`, newValue * quantity));
+    } else if (subtotal) {
+      this.props.dispatch(change('invoice', `lineItems[${index}].quantity`, subtotal / newValue));
+    }
+  }
+
+  onSubtotalChange = (newValue, previousValue, index) => {
+    const lineItem = get(this.props.lineItems, index);
+
+    const quantity = get(lineItem, 'quantity');
+    const unitPrice = get(lineItem, 'unitPrice');
+
+    if (quantity) {
+      this.props.dispatch(change('invoice', `lineItems[${index}].unitPrice`, newValue / quantity));
+    } else if (unitPrice) {
+      this.props.dispatch(change('invoice', `lineItems[${index}].quantity`, newValue / unitPrice));
+    }
+  }
+
+  onTaxChange = (newValue, previousValue, index) => {
+    const lineItem = get(this.props.lineItems, index);
+
+    const quantity = get(lineItem, 'quantity');
+    const unitPrice = get(lineItem, 'unitPrice');
+
+    this.props.dispatch(change('invoice', `lineItems[${index}].total`, quantity * unitPrice));
+  }
+
   render() {
     const { fields, taxRates } = this.props;
 
@@ -23,10 +71,10 @@ class LineItems extends Component {
         key: index,
         description: `${member}.description`,
         quantity: `${member}.quantity`,
-        unit_price: `${member}.unit_price`,
+        unitPrice: `${member}.unitPrice`,
         subtotal: `${member}.subtotal`,
+        taxRate: `${member}.taxRate`,
         total: `${member}.total`,
-        tax_rate: `${member}.tax_rate`,
       });
     });
 
@@ -46,31 +94,39 @@ class LineItems extends Component {
             dataIndex="quantity"
             key="quantity"
             width={120}
-            render={field => <Field name={field} component={AInput} />}
+            render={(field, row, index) => <Field name={field} component={AInput} onChange={
+              (event, newValue, previousValue) => this.onQuantityChange(newValue, previousValue, index)
+            } />}
           />
           <Table.Column
             title="Price"
-            dataIndex="unit_price"
+            dataIndex="unitPrice"
             key="price"
             width={120}
-            render={field => <Field name={field} component={AInput} />}
+            render={(field, row, index) => <Field name={field} component={AInput} onChange={
+              (event, newValue, previousValue) => this.onUnitPriceChange(newValue, previousValue, index)
+            } />}
           />
           <Table.Column
             title="Subtotal"
             dataIndex="subtotal"
             key="subtotal"
             width={120}
-            render={field => <Field name={field} component={AInput} />}
+            render={(field, row, index) => <Field name={field} component={AInput} onChange={
+              (event, newValue, previousValue) => this.onSubtotalChange(newValue, previousValue, index)
+            } />}
           />
           <Table.Column
             title="Tax rate"
-            dataIndex="tax_rate"
+            dataIndex="taxRate"
             key="tax_rate"
-            render={field => (
-              <Field name={field} component={ASelect} options={[]}>
+            render={(field, row, index) => (
+              <Field name={field} component={ASelect} options={[]} onChange={
+                (event, newValue, previousValue) => this.onTaxChange(newValue, previousValue, index)
+              }>
                 {map(taxRates.items, rate => {
                   return (
-                    <Select.Option value={rate.url} key={rate.id}>
+                    <Select.Option value={rate.id} key={rate.id}>
                       {rate.name}
                     </Select.Option>
                   );
@@ -89,7 +145,7 @@ class LineItems extends Component {
             )}
           />
         </Table>
-        
+
         <Button
           type="default"
           onClick={() => fields.push({})}
@@ -102,6 +158,9 @@ class LineItems extends Component {
   }
 }
 
+const selector = formValueSelector('invoice');
+
 export default connect(state => ({
   taxRates: state.taxRates,
+  lineItems: selector(state, 'lineItems'),
 }))(LineItems);
