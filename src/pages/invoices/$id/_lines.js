@@ -4,6 +4,8 @@ import { Field, formValueSelector, change } from 'redux-form';
 import { Button, Icon, Select, Table } from 'antd';
 import { get, map } from 'lodash';
 
+import currency from 'currency.js';
+
 import { AInput, ASelect, ATextarea } from '../../../components/fields';
 
 class LineItems extends Component {
@@ -21,9 +23,9 @@ class LineItems extends Component {
     const subtotal = get(lineItem, 'subtotal');
 
     if (unitPrice) {
-      this.props.dispatch(change('invoice', `lineItems[${index}].subtotal`, newValue * unitPrice));
+      this.props.dispatch(change('invoice', `lineItems[${index}].subtotal`, currency(newValue).multiply(unitPrice).format()));
     } else if (subtotal) {
-      this.props.dispatch(change('invoice', `lineItems[${index}].unitPrice`, subtotal / newValue));
+      this.props.dispatch(change('invoice', `lineItems[${index}].unitPrice`, currency(subtotal).divide(newValue).format()));
     }
   }
 
@@ -34,9 +36,9 @@ class LineItems extends Component {
     const subtotal = get(lineItem, 'subtotal');
 
     if (quantity) {
-      this.props.dispatch(change('invoice', `lineItems[${index}].subtotal`, newValue * quantity));
+      this.props.dispatch(change('invoice', `lineItems[${index}].subtotal`, currency(newValue).multiply(quantity).format()));
     } else if (subtotal) {
-      this.props.dispatch(change('invoice', `lineItems[${index}].quantity`, subtotal / newValue));
+      this.props.dispatch(change('invoice', `lineItems[${index}].quantity`, currency(subtotal).divide(newValue).format()));
     }
   }
 
@@ -47,19 +49,10 @@ class LineItems extends Component {
     const unitPrice = get(lineItem, 'unitPrice');
 
     if (quantity) {
-      this.props.dispatch(change('invoice', `lineItems[${index}].unitPrice`, newValue / quantity));
+      this.props.dispatch(change('invoice', `lineItems[${index}].unitPrice`, currency(newValue).divide(quantity).format()));
     } else if (unitPrice) {
-      this.props.dispatch(change('invoice', `lineItems[${index}].quantity`, newValue / unitPrice));
+      this.props.dispatch(change('invoice', `lineItems[${index}].quantity`, currency(newValue).divide(unitPrice).format()));
     }
-  }
-
-  onTaxChange = (newValue, previousValue, index) => {
-    const lineItem = get(this.props.lineItems, index);
-
-    const quantity = get(lineItem, 'quantity');
-    const unitPrice = get(lineItem, 'unitPrice');
-
-    this.props.dispatch(change('invoice', `lineItems[${index}].total`, quantity * unitPrice));
   }
 
   render() {
@@ -73,8 +66,7 @@ class LineItems extends Component {
         quantity: `${member}.quantity`,
         unitPrice: `${member}.unitPrice`,
         subtotal: `${member}.subtotal`,
-        taxRate: `${member}.taxRate`,
-        total: `${member}.total`,
+        taxRate: `${member}.taxRate`
       });
     });
 
@@ -121,9 +113,7 @@ class LineItems extends Component {
             dataIndex="taxRate"
             key="tax_rate"
             render={(field, row, index) => (
-              <Field name={field} component={ASelect} options={[]} onChange={
-                (event, newValue, previousValue) => this.onTaxChange(newValue, previousValue, index)
-              }>
+              <Field name={field} component={ASelect} options={[]}>
                 {map(taxRates.items, rate => {
                   return (
                     <Select.Option value={rate.id} key={rate.id}>
