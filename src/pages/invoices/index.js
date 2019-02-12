@@ -1,17 +1,52 @@
 import { Component } from 'react';
 import { connect } from 'dva';
-import { Button, Input, Table, Tag } from 'antd';
+import { Button, Dropdown, Icon, Input, Menu, Table, Tag } from 'antd';
+import { isUndefined, values } from 'lodash';
 
 import Link from 'umi/link';
 
 class Invoices extends Component {
+  componentDidMount() {
+    this.props.dispatch({ type: 'invoices/list' });
+  }
+
+  onStateSelect = (item) => {
+    const { key } = item;
+    this.props.dispatch({
+      type: 'invoices/state',
+      payload: {
+        state: key
+      }
+    });
+  }
+
   render() {
     const { invoices } = this.props;
+
+    const stateMenu = (
+      <Menu onClick={this.onStateSelect}>
+        <Menu.Item key="draft">
+          Draft
+        </Menu.Item>
+        <Menu.Item key="confirmed">
+          Confirmed
+        </Menu.Item>
+        <Menu.Item key="payed">
+          Payed
+        </Menu.Item>
+        <Menu.Divider />
+        <Menu.Item key="cancelled">
+          Cancelled
+        </Menu.Item>
+      </Menu>
+    );
 
     return (
       <div>
         <Link to="/invoices/new">
-          <Button type="primary" style={{ marginBottom: 10 }}>New invoice</Button>
+          <Button type="primary" style={{ marginBottom: 10 }}>
+            New invoice
+          </Button>
         </Link>
         <Input.Search
           placeholder="input search text"
@@ -19,11 +54,16 @@ class Invoices extends Component {
           style={{ width: 200, float: 'right' }}
         />
 
-        <Table dataSource={invoices.items} pagination={false} rowKey="id">
+        <Table dataSource={values(invoices.items)} pagination={false} rowKey="_id">
           <Table.Column
             title="Number"
-            dataIndex="number"
             key="number"
+            render={invoice => (
+              <Link to={`/invoices/${invoice._id}`}>
+                <Icon type="file-text" />
+                {isUndefined(invoice.number) ? ` #${invoice._id}` : ` #${invoice.number}`}
+              </Link>
+            )}
           />
           <Table.Column
             title="Client"
@@ -49,7 +89,11 @@ class Invoices extends Component {
             title="State"
             dataIndex="state"
             key="state"
-            render={state => (<Tag color="green">{state}</Tag>)}
+            render={state => (
+              <Dropdown overlay={stateMenu} trigger={['click']}>
+                <Tag color="green">{state}</Tag>
+              </Dropdown>
+            )}
           />
         </Table>
       </div>

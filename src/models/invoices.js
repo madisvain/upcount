@@ -1,37 +1,103 @@
+import { routerRedux } from 'dva/router';
+import { initialize, stopSubmit } from 'redux-form';
+import { message } from 'antd';
+import { keyBy } from 'lodash';
+
+import * as invoicesService from '../services/invoices';
+
+
 export default {
   namespace: 'invoices',
 
   state: {
-    items: [{
-      id: 1,
-      number: '1',
-      client: 'John Brown',
-      state: 'paid',
-      date: '2019-01-20',
-      due_date: '2019-01-30',
-      sum: 100
-    }, {
-      id: 2,
-      number: '2',
-      client: 'Jim Green',
-      state: 'paid',
-      date: '2019-01-20',
-      due_date: '2019-01-30',
-      sum: 200
-    }, {
-      id: 3,
-      number: '3',
-      client: 'Joe Black',
-      state: 'paid',
-      date: '2019-01-20',
-      due_date: '2019-01-30',
-      sum: 300
-    }]
+    items: {}
   },
 
   effects: {
+    *list(action, { put, call }) {
+      try {
+        const response = yield call(invoicesService.list);
+        yield put({ type: 'listSuccess', data: response.docs });
+      } catch (e) {
+        message.error('Error loading invoices list!', 5);
+      }
+    },
+
+    *details(
+      {
+        payload: { id },
+      },
+      { put, call }
+    ) {
+      try {
+        const response = yield call(invoicesService.details, id);
+        yield put({ type: 'detailsSuccess', data: response });
+      } catch (e) {
+        message.error('Error loading invoice details!', 5);
+      }
+    },
+
+    *initialize(
+      {
+        payload: { id },
+      },
+      { put, call }
+    ) {
+      try {
+        const response = yield call(invoicesService.details, id);
+        yield put(initialize('invoice', response, false));
+      } catch (e) {
+        message.error('Error initializing invoice form!', 5);
+      }
+    },
+
+    *state({
+      payload: { id, state },
+    }, { put, call }) {
+      try {
+        /*const response = yield call(invoicesService.save, data);
+        yield put({ type: 'detailsSuccess', data: response });
+        message.success('Invoice saved!', 5);
+        yield put(stopSubmit('client'));
+        yield put(routerRedux.push('/invoices/'));*/
+      } catch (e) {
+        message.error('Error saving invoice!', 5);
+      }
+    },
+
+    *save({ data, resolve, reject }, { put, call }) {
+      try {
+        const response = yield call(invoicesService.save, data);
+        yield put({ type: 'detailsSuccess', data: response });
+        message.success('Invoice saved!', 5);
+        yield put(stopSubmit('client'));
+        yield put(routerRedux.push('/invoices/'));
+      } catch (e) {
+        message.error('Error saving invoice!', 5);
+      }
+    },
   },
 
   reducers: {
+    listSuccess(state, payload) {
+      const { data } = payload;
+
+      return {
+        ...state,
+        items: keyBy(data, '_id'),
+      };
+    },
+
+    detailsSuccess(state, payload) {
+      const { data } = payload;
+
+      return {
+        ...state,
+        items: {
+          ...state.items,
+          [data._id]: data,
+        },
+      };
+    }
   }
 };

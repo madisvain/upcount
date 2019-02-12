@@ -3,7 +3,7 @@ import { compose } from 'redux';
 import { connect } from 'dva';
 import { Field, FieldArray, formValueSelector, reduxForm } from 'redux-form';
 import { Button, Col, Form, Icon, Row, Select } from 'antd';
-import { map, sumBy } from 'lodash';
+import { has, map, sumBy } from 'lodash';
 
 import currency from 'currency.js';
 import router from 'umi/router';
@@ -14,6 +14,29 @@ import { ADatePicker, AInput, ASelect, ATextarea } from '../../../components/fie
 import FooterToolbar from '../../../components/footer-toolbar';
 
 class InvoiceForm extends Component {
+  componentWillMount() {
+    const {
+      match: { params },
+    } = this.props;
+
+    if (!this.isNew()) {
+      this.props.dispatch({
+        type: 'invoices/initialize',
+        payload: {
+          id: params['id'],
+        },
+      });
+    }
+  };
+
+  isNew = () => {
+    const {
+      match: { params },
+    } = this.props;
+
+    return has(params, 'id') && params['id'] === 'new';
+  };
+
   clientSelect = (value) => {
     if (value === 'new') {
       router.push({
@@ -23,11 +46,11 @@ class InvoiceForm extends Component {
   }
 
   render() {
-    const { children, lineItems, pristine, submitting } = this.props;
+    const { children, clients, handleSubmit, lineItems, pristine, submitting } = this.props;
 
     return (
       <div style={{ paddingBottom: 60 }}>
-        <Form>
+        <Form onSubmit={handleSubmit}>
           <Row gutter={16}>
             <Col span={12}>
               <Field
@@ -38,6 +61,11 @@ class InvoiceForm extends Component {
                 label="Client"
                 onSelect={this.clientSelect}
               >
+                {map(clients.items, (client, id) => (
+                  <Select.Option value={id} key={id}>
+                    {`${client.name}`}
+                  </Select.Option>
+                ))}
                 <Select.Option value="new" key="new">
                   <Icon type="user-add" />
                   {` Create new client`}
