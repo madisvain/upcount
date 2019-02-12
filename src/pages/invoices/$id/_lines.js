@@ -23,9 +23,9 @@ class LineItems extends Component {
     const subtotal = get(lineItem, 'subtotal');
 
     if (unitPrice) {
-      this.props.dispatch(change('invoice', `lineItems[${index}].subtotal`, currency(newValue).multiply(unitPrice).format()));
+      this.props.dispatch(change('invoice', `lineItems[${index}].subtotal`, currency(newValue, { separator: '' }).multiply(unitPrice).format()));
     } else if (subtotal) {
-      this.props.dispatch(change('invoice', `lineItems[${index}].unitPrice`, currency(subtotal).divide(newValue).format()));
+      this.props.dispatch(change('invoice', `lineItems[${index}].unitPrice`, currency(subtotal, { separator: '' }).divide(newValue).format()));
     }
   }
 
@@ -36,9 +36,9 @@ class LineItems extends Component {
     const subtotal = get(lineItem, 'subtotal');
 
     if (quantity) {
-      this.props.dispatch(change('invoice', `lineItems[${index}].subtotal`, currency(newValue).multiply(quantity).format()));
+      this.props.dispatch(change('invoice', `lineItems[${index}].subtotal`, currency(newValue, { separator: '' }).multiply(quantity).format()));
     } else if (subtotal) {
-      this.props.dispatch(change('invoice', `lineItems[${index}].quantity`, currency(subtotal).divide(newValue).format()));
+      this.props.dispatch(change('invoice', `lineItems[${index}].quantity`, currency(subtotal, { separator: '' }).divide(newValue).format()));
     }
   }
 
@@ -49,9 +49,9 @@ class LineItems extends Component {
     const unitPrice = get(lineItem, 'unitPrice');
 
     if (quantity) {
-      this.props.dispatch(change('invoice', `lineItems[${index}].unitPrice`, currency(newValue).divide(quantity).format()));
+      this.props.dispatch(change('invoice', `lineItems[${index}].unitPrice`, currency(newValue, { separator: '' }).divide(quantity).format()));
     } else if (unitPrice) {
-      this.props.dispatch(change('invoice', `lineItems[${index}].quantity`, currency(newValue).divide(unitPrice).format()));
+      this.props.dispatch(change('invoice', `lineItems[${index}].quantity`, currency(newValue, { separator: '' }).divide(unitPrice).format()));
     }
   }
 
