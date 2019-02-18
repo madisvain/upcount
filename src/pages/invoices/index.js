@@ -1,6 +1,6 @@
 import { Component } from 'react';
 import { connect } from 'dva';
-import { Button, Dropdown, Icon, Input, Menu, Table, Tag } from 'antd';
+import { Button, Dropdown, Icon, Input, Layout, Menu, Table, Tag } from 'antd';
 import { isUndefined, values } from 'lodash';
 
 import Link from 'umi/link';
@@ -42,7 +42,7 @@ class Invoices extends Component {
     );
 
     return (
-      <div>
+      <Layout.Content style={{ margin: 16, padding: 24, background: '#fff' }}>
         <Link to="/invoices/new">
           <Button type="primary" style={{ marginBottom: 10 }}>
             New invoice
@@ -96,7 +96,7 @@ class Invoices extends Component {
             )}
           />
         </Table>
-      </div>
+      </Layout.Content>
     )
   }
 }

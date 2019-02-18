@@ -1,6 +1,6 @@
 import { Component } from 'react';
 import { connect } from 'dva';
-import { Button, Icon, Input, Table, Tag } from 'antd';
+import { Button, Icon, Input, Layout, Table, Tag } from 'antd';
 import { isEmpty, values } from 'lodash';
 
 import Link from 'umi/link';
@@ -14,7 +14,7 @@ class Clients extends Component {
     const { children, clients } = this.props;
 
     return (
-      <div>
+      <Layout.Content style={{ margin: 16, padding: 24, background: '#fff' }}>
         <Link to="/clients/new">
           <Button type="primary" style={{ marginBottom: 10 }}>New client</Button>
         </Link>
@@ -73,7 +73,7 @@ class Clients extends Component {
           />
         </Table>
         {children}
-      </div>
+      </Layout.Content>
     )
   }
 }

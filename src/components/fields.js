@@ -1,5 +1,5 @@
 import React from 'react';
-import { Form, Input, Radio, Select, Checkbox, DatePicker } from 'antd';
+import { Checkbox, DatePicker, Form, Input, Radio, Select } from 'antd';
 import { withProps } from 'recompose';
 import { isString } from 'lodash';
 import moment from 'moment';

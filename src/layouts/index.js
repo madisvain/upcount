@@ -32,7 +32,7 @@ class BaseLayout extends Component {
     const { selectedMenuKeys } = this.state;
 
     return (
-      <Layout style={{ height: '100vh' }}>
+      <Layout style={{ minHeight: '100vh' }}>
         <Layout.Sider trigger={null} collapsible collapsed={true}>
           <div className="logo" />
           <Menu theme="dark" mode="inline" selectedKeys={selectedMenuKeys} onClick={this.handleMenuClick}>
@@ -63,14 +63,9 @@ class BaseLayout extends Component {
           </Menu>
         </Layout.Sider>
         <Layout>
-          <Layout.Content style={{
-            margin: 16, padding: 24, background: '#fff', minHeight: 280,
-          }}
-          >
 
-            {children}
+          {children}
 
-          </Layout.Content>
         </Layout>
       </Layout>
     );

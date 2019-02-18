@@ -2,7 +2,7 @@ import { Component } from 'react';
 import { compose } from 'redux';
 import { connect } from 'dva';
 import { Field, FieldArray, formValueSelector, reduxForm } from 'redux-form';
-import { Button, Col, Form, Icon, Row, Select } from 'antd';
+import { Button, Col, Form, Icon, Layout, Row, Select } from 'antd';
 import { has, map, sumBy } from 'lodash';
 
 import currency from 'currency.js';
@@ -49,7 +49,7 @@ class InvoiceForm extends Component {
     const { children, clients, handleSubmit, lineItems, pristine, submitting } = this.props;
 
     return (
-      <div style={{ paddingBottom: 60 }}>
+      <Layout.Content style={{ margin: '16px 16px 72px 16px', padding: 24, background: '#fff' }}>
         <Form onSubmit={handleSubmit}>
           <Row gutter={16}>
             <Col span={12}>
@@ -166,7 +166,7 @@ class InvoiceForm extends Component {
         </Form>
 
         {children}
-      </div>
+      </Layout.Content>
     )
   }
 }
