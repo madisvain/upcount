@@ -51,17 +51,18 @@ export default {
       }
     },
 
-    *state({
-      payload: { id, state },
-    }, { put, call }) {
+    *state(
+      {
+        payload: { _id, _rev, state }
+      },
+      { put, call }
+    ) {
       try {
-        /*const response = yield call(invoicesService.save, data);
+        const response = yield call(invoicesService.save, { _id, _rev, state });
         yield put({ type: 'detailsSuccess', data: response });
-        message.success('Invoice saved!', 5);
-        yield put(stopSubmit('client'));
-        yield put(routerRedux.push('/invoices/'));*/
+        message.success('Invoice state changed!', 5);
       } catch (e) {
-        message.error('Error saving invoice!', 5);
+        message.error('Error changing invoice state!', 5);
       }
     },
 
@@ -70,7 +71,7 @@ export default {
         const response = yield call(invoicesService.save, data);
         yield put({ type: 'detailsSuccess', data: response });
         message.success('Invoice saved!', 5);
-        yield put(stopSubmit('client'));
+        yield put(stopSubmit('invoice'));
         yield put(routerRedux.push('/invoices/'));
       } catch (e) {
         message.error('Error saving invoice!', 5);

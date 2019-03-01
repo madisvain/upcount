@@ -10,11 +10,12 @@ class Invoices extends Component {
     this.props.dispatch({ type: 'invoices/list' });
   }
 
-  onStateSelect = (item) => {
-    const { key } = item;
+  onStateSelect = (_id, _rev, key) => {
     this.props.dispatch({
       type: 'invoices/state',
       payload: {
+        _id,
+        _rev,
         state: key
       }
     });
@@ -23,8 +24,8 @@ class Invoices extends Component {
   render() {
     const { invoices } = this.props;
 
-    const stateMenu = (
-      <Menu onClick={this.onStateSelect}>
+    const stateMenu = (_id, _rev) => (
+      <Menu onClick={({ item, key }) => this.onStateSelect(_id, _rev, key)}>
         <Menu.Item key="draft">
           Draft
         </Menu.Item>
@@ -87,11 +88,10 @@ class Invoices extends Component {
           />
           <Table.Column
             title="State"
-            dataIndex="state"
             key="state"
-            render={state => (
-              <Dropdown overlay={stateMenu} trigger={['click']}>
-                <Tag color="green">{state}</Tag>
+            render={invoice => (
+              <Dropdown overlay={stateMenu(invoice._id, invoice._rev)} trigger={['click']}>
+                <Tag color="green">{invoice.state}</Tag>
               </Dropdown>
             )}
           />
