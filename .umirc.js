@@ -7,7 +7,7 @@ export default {
     ['umi-plugin-react', {
       antd: true,
       dva: true,
-      dynamicImport: { webpackChunkName: true },
+      dynamicImport: true,
       title: 'invoicer',
       dll: true,
       routes: {
@@ -21,4 +21,5 @@ export default {
       },
     }],
   ],
+  hash: true,
 }
