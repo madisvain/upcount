@@ -9,25 +9,25 @@
   ],
   "routes": [
     {
-      "src": "/(.*).css",
+      "src": "(.*).css",
       "headers": {
         "cache-control": "s-maxage=0"
       },
-      "dest": "/$1.css"
+      "dest": "$1.css"
     },
     {
-      "src": "/(.*).js",
+      "src": "(.*).js",
       "headers": {
         "cache-control": "s-maxage=0"
       },
-      "dest": "/$1.js"
+      "dest": "$1.js"
     },
     {
-      "src": "/(.*)",
+      "src": "(.*)",
       "headers": {
         "cache-control": "s-maxage=0"
       },
-      "dest": "/index.html"
+      "dest": "index.html"
     }
   ]
 }
