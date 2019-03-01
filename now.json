@@ -9,13 +9,6 @@
   ],
   "routes": [
     {
-      "src": "/(.*)",
-      "headers": {
-        "cache-control": "s-maxage=0"
-      },
-      "dest": "/index.html"
-    },
-    {
       "src": "/(.*).css",
       "headers": {
         "cache-control": "s-maxage=0"
@@ -28,6 +21,13 @@
         "cache-control": "s-maxage=0"
       },
       "dest": "/$1"
+    },
+    {
+      "src": "/(.*)",
+      "headers": {
+        "cache-control": "s-maxage=0"
+      },
+      "dest": "/index.html"
     }
   ]
 }
