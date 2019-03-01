@@ -13,14 +13,14 @@
       "headers": {
         "cache-control": "s-maxage=0"
       },
-      "dest": "/$1"
+      "dest": "/$1.css"
     },
     {
       "src": "/(.*).js",
       "headers": {
         "cache-control": "s-maxage=0"
       },
-      "dest": "/$1"
+      "dest": "/$1.js"
     },
     {
       "src": "/(.*)",
