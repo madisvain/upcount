@@ -1,13 +1,16 @@
 import { Component } from 'react';
 import { connect } from 'dva';
-import { Button, Dropdown, Icon, Input, Layout, Menu, Table, Tag } from 'antd';
-import { isUndefined, values } from 'lodash';
+import { Button, Dropdown, Icon, Input, Layout, Menu, Table } from 'antd';
+import { get, isUndefined, values } from 'lodash';
 
 import Link from 'umi/link';
+
+import StateTag from '../../components/state-tag';
 
 class Invoices extends Component {
   componentDidMount() {
     this.props.dispatch({ type: 'invoices/list' });
+    this.props.dispatch({ type: 'clients/list' });
   }
 
   onStateSelect = (_id, _rev, key) => {
@@ -22,7 +25,7 @@ class Invoices extends Component {
   }
 
   render() {
-    const { invoices } = this.props;
+    const { clients, invoices } = this.props;
 
     const stateMenu = (_id, _rev) => (
       <Menu onClick={({ item, key }) => this.onStateSelect(_id, _rev, key)}>
@@ -36,8 +39,8 @@ class Invoices extends Component {
           Payed
         </Menu.Item>
         <Menu.Divider />
-        <Menu.Item key="cancelled">
-          Cancelled
+        <Menu.Item key="void">
+          Void
         </Menu.Item>
       </Menu>
     );
@@ -70,6 +73,7 @@ class Invoices extends Component {
             title="Client"
             dataIndex="client"
             key="client"
+            render={client => get(clients.items, `${client}.name`, '-')}
           />
           <Table.Column
             title="Date"
@@ -83,15 +87,15 @@ class Invoices extends Component {
           />
           <Table.Column
             title="Sum"
-            dataIndex="sum"
-            key="sum"
+            dataIndex="total"
+            key="total"
           />
           <Table.Column
             title="State"
             key="state"
             render={invoice => (
               <Dropdown overlay={stateMenu(invoice._id, invoice._rev)} trigger={['click']}>
-                <Tag color="green">{invoice.state}</Tag>
+                <StateTag state={invoice.state} />
               </Dropdown>
             )}
           />
@@ -101,4 +105,9 @@ class Invoices extends Component {
   }
 }
 
-export default connect((state) => { return { invoices: state.invoices }; })(Invoices);
+export default connect((state) => {
+  return {
+    clients: state.clients,
+    invoices: state.invoices
+  };
+})(Invoices);

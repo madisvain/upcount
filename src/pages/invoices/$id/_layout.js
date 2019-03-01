@@ -5,7 +5,6 @@ import { Field, FieldArray, formValueSelector, reduxForm } from 'redux-form';
 import { Button, Col, Form, Icon, Layout, Row, Select } from 'antd';
 import { has, map, sumBy } from 'lodash';
 
-import currency from 'currency.js';
 import router from 'umi/router';
 import currencyToSymbolMap from 'currency-symbol-map/map';
 
@@ -27,6 +26,8 @@ class InvoiceForm extends Component {
         },
       });
     }
+
+    this.props.dispatch({ type: 'clients/list' });
   };
 
   isNew = () => {

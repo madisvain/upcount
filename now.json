@@ -1,0 +1,33 @@
+{
+  "version": 2,
+  "name": "invoicer",
+  "builds": [
+    {
+      "src": "package.json",
+      "use": "@now/static-build"
+    }
+  ],
+  "routes": [
+    {
+      "src": "/(.*)",
+      "headers": {
+        "cache-control": "s-maxage=0"
+      },
+      "dest": "/index.html"
+    },
+    {
+      "src": "/(.*).css",
+      "headers": {
+        "cache-control": "s-maxage=0"
+      },
+      "dest": "/$1"
+    },
+    {
+      "src": "/(.*).js",
+      "headers": {
+        "cache-control": "s-maxage=0"
+      },
+      "dest": "/$1"
+    }
+  ]
+}

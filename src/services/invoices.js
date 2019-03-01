@@ -36,8 +36,8 @@ export async function details(id) {
 export async function save(data) {
   try {
     if (has(data, '_id')) {
-      const response = await db.put(assign(data, {
-        type: 'invoice',
+      const original = await db.get(data._id);
+      const response = await db.put(assign(original, data, {
         updatedAt: new Date()
       }));
       return await db.get(response.id);
