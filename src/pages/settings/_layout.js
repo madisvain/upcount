@@ -3,7 +3,7 @@ import { compose } from 'redux';
 import { connect } from 'dva';
 import { Field, Form, reduxForm } from 'redux-form';
 import { Button, Col, Icon, Layout, Row, Select, Table, Upload } from 'antd';
-import { map } from 'lodash';
+import { map, values } from 'lodash';
 
 import Link from 'umi/link';
 import currencyToSymbolMap from 'currency-symbol-map/map';
@@ -11,8 +11,12 @@ import currencyToSymbolMap from 'currency-symbol-map/map';
 import { AInput, APhoneInput, ASelect, ATextarea } from '../../components/fields';
 
 class Settings extends Component {
+  componentDidMount() {
+    this.props.dispatch({ type: 'taxRates/list' });
+  }
+
   render() {
-    const { handleSubmit, taxRates } = this.props;
+    const { children, handleSubmit, taxRates } = this.props;
 
     return (
       <div>
@@ -76,18 +80,18 @@ class Settings extends Component {
                 {` Invoice details`}
               </h2>
               <Field
-                  showSearch
-                  name="currency"
-                  component={ASelect}
-                  label="Default currency"
-                  style={{ width:  '100%' }}
-                >
-                  {map(currencyToSymbolMap, (symbol, currency) => (
-                    <Select.Option value={currency} key={currency}>
-                      {`${currency} ${symbol}`}
-                    </Select.Option>
-                  ))}
-                </Field>
+                showSearch
+                name="currency"
+                component={ASelect}
+                label="Default currency"
+                style={{ width: '100%' }}
+              >
+                {map(currencyToSymbolMap, (symbol, currency) => (
+                  <Select.Option value={currency} key={currency}>
+                    {`${currency} ${symbol}`}
+                  </Select.Option>
+                ))}
+              </Field>
               <Field
                 name="notes"
                 component={ATextarea}
@@ -120,21 +124,25 @@ class Settings extends Component {
               <h2>
                 <Icon type="calculator" />
                 {` Tax rates`}
-                <Link to="/settings/taxes/new">
+                <Link to="/settings/tax-rates/new">
                   <Button type="primary" style={{ float: 'right' }}>
                     New tax
                   </Button>
                 </Link>
               </h2>
               <Table
-                dataSource={taxRates.items}
+                dataSource={values(taxRates.items)}
                 pagination={false}
                 loading={taxRates.loading}
-                rowKey="id"
+                rowKey="_id"
                 size="middle"
                 bordered
               >
-                <Table.Column title="Name" dataIndex="name" key="name" />
+                <Table.Column
+                  title="Name"
+                  key="name"
+                  render={taxRate => <Link to={`/settings/tax-rates/${taxRate._id}`}>{taxRate.name}</Link>}
+                />
                 <Table.Column
                   title="Description"
                   dataIndex="description"
@@ -151,6 +159,7 @@ class Settings extends Component {
             </Col>
           </Row>
         </Layout.Content>
+        {children}
       </div>
     )
   }

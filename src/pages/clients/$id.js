@@ -108,7 +108,7 @@ class ClientForm extends Component {
             loading={submitting}
             style={{ marginTop: '10px' }}
           >
-            Save account role
+            Save client
           </Button>
         </Form>
       </Drawer>

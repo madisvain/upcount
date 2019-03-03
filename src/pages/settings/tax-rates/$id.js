@@ -1,13 +1,12 @@
 import { Component } from 'react';
 import { compose } from 'redux';
-import { connect } from 'dva';
 import { Field, reduxForm } from 'redux-form';
-import { Button, Drawer, Form, Select } from 'antd';
-import { has, map } from 'lodash';
+import { Button, Drawer, Form } from 'antd';
+import { has } from 'lodash';
 
 import router from 'umi/router';
 
-import { AInput, APhoneInput, ASelect, ATextarea } from '../../../components/fields';
+import { AInput, ATextarea } from '../../../components/fields';
 
 class TaxForm extends Component {
   state = {
@@ -16,7 +15,7 @@ class TaxForm extends Component {
 
   closeDrawer = () => {
     router.push({
-      pathname: '/clients',
+      pathname: '/settings',
     })
   };
 
@@ -27,7 +26,7 @@ class TaxForm extends Component {
 
     if (!this.isNew()) {
       this.props.dispatch({
-        type: 'clients/initialize',
+        type: 'taxRates/initialize',
         payload: {
           id: params['id'],
         },
@@ -44,12 +43,11 @@ class TaxForm extends Component {
   };
 
   render() {
-    const { emails } = this.state;
     const { handleSubmit, pristine, submitting } = this.props;
 
     return (
       <Drawer
-        title={this.isNew() ? 'Add client' : 'Edit client'}
+        title={this.isNew() ? 'Add tax' : 'Edit tax'}
         width={450}
         placement="right"
         onClose={this.closeDrawer}
@@ -68,38 +66,15 @@ class TaxForm extends Component {
             label="Name"
           />
           <Field
-            name="address"
+            name="description"
             component={ATextarea}
-            label="Address"
+            label="Description"
             rows={4}
           />
           <Field
-            name="emails"
-            component={ASelect}
-            mode="tags"
-            tokenSeparators={[',', ';']}
-            label="Emails"
-          >
-            {map(emails.items, email => (
-              <Select.Option value={email} key={email}>
-                {email}
-              </Select.Option>
-            ))}
-          </Field>
-          <Field
-            name="phone"
-            component={APhoneInput}
-            label="Phone"
-          />
-          <Field
-            name="vatin"
+            name="percentage"
             component={AInput}
-            label="VATIN"
-          />
-          <Field
-            name="website"
-            component={AInput}
-            label="Website"
+            label="Percentage"
           />
           <Button
             type="primary"
@@ -108,7 +83,7 @@ class TaxForm extends Component {
             loading={submitting}
             style={{ marginTop: '10px' }}
           >
-            Save account role
+            Save percentage
           </Button>
         </Form>
       </Drawer>
@@ -117,13 +92,8 @@ class TaxForm extends Component {
 }
 
 export default compose(
-  connect(state => ({
-    initialValues: {
-      emails: [],
-    },
-  })),
   reduxForm({
-    form: 'tax-rate',
+    form: 'taxRate',
     onSubmit: (data, dispatch) => {
       return new Promise((resolve, reject) => {
         dispatch({ type: 'taxRates/save', data: data, resolve, reject });

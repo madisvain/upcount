@@ -37,7 +37,6 @@ export async function save(data) {
   try {
     if (has(data, '_id')) {
       const response = await db.put(assign(data, {
-        type: 'client',
         updatedAt: new Date()
       }));
       return await db.get(response.id);

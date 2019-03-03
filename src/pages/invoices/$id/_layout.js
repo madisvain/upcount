@@ -28,6 +28,7 @@ class InvoiceForm extends Component {
     }
 
     this.props.dispatch({ type: 'clients/list' });
+    this.props.dispatch({ type: 'taxRates/list' });
   };
 
   isNew = () => {
