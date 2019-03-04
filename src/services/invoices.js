@@ -1,16 +1,6 @@
 import { assign, has } from 'lodash';
 
-import PouchDB from 'pouchdb';
-import PouchDBFind from 'pouchdb-find';
-
-PouchDB.plugin(PouchDBFind);
-
-const db = new PouchDB('invoicer');
-
-// Create Document Type index
-db.createIndex({
-  index: { fields: ['type'] }
-});
+import db from '../db';
 
 
 export async function list() {
