@@ -13,10 +13,11 @@ import { AInput, APhoneInput, ASelect, ATextarea } from '../../components/fields
 class Settings extends Component {
   componentDidMount() {
     this.props.dispatch({ type: 'taxRates/list' });
+    this.props.dispatch({ type: 'settings/initialize' });
   }
 
   render() {
-    const { children, handleSubmit, taxRates } = this.props;
+    const { children, handleSubmit, pristine, submitting, taxRates } = this.props;
 
     return (
       <div>
@@ -64,10 +65,20 @@ class Settings extends Component {
                     />
                   </Col>
                 </Row>
+                <Row>
+                  <Col>
+                    <Button
+                      type="primary"
+                      htmlType="submit"
+                      disabled={pristine || submitting}
+                      loading={submitting}
+                      style={{ marginTop: '10px' }}
+                    >
+                      Save
+                    </Button>
+                  </Col>
+                </Row>
               </Form>
-              <Button type="primary">
-                Save
-              </Button>
             </Col>
           </Row>
         </Layout.Content>

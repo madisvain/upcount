@@ -9,10 +9,6 @@ import router from 'umi/router';
 import { AInput, ATextarea } from '../../../components/fields';
 
 class TaxForm extends Component {
-  state = {
-    emails: [],
-  };
-
   closeDrawer = () => {
     router.push({
       pathname: '/settings',

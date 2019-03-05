@@ -39,7 +39,7 @@ class Clients extends Component {
             dataIndex="emails"
             key="emails"
             render={emails => (
-              emails.map((email) => <Tag key={email}>{email}</Tag>)
+              emails ? emails.map((email) => <Tag key={email}>{email}</Tag>) : ''
             )}
           />
           <Table.Column
