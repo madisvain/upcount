@@ -7,7 +7,7 @@ export async function list() {
   try {
     return await db.find({
       selector: {
-        type: 'client'
+        type: 'organization'
       }
     });
   } catch (error) {
@@ -32,7 +32,7 @@ export async function save(data) {
       return await db.get(response.id);
     } else {
       const response = await db.post(assign(data, {
-        type: 'client',
+        type: 'organization',
         createdAt: new Date()
       }));
       return await db.get(response.id);

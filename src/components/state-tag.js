@@ -1,26 +1,30 @@
 import { Tag } from 'antd';
 
-const StateTag = (props) => {
+const StateTag = props => {
   const { state } = props;
 
   let color;
   switch (state) {
-    case "draft":
+    case 'draft':
       color = 'gold';
       break;
-    case "confirmed":
+    case 'confirmed':
       color = 'blue';
       break;
-    case "payed":
+    case 'payed':
       color = 'green';
       break;
-    case "void":
+    case 'void':
       color = 'red';
       break;
     default:
       color = null;
   }
-  return <Tag color={color} onClick={props.onClick}>{state}</Tag>
-}
+  return (
+    <Tag color={color} onClick={props.onClick}>
+      {state}
+    </Tag>
+  );
+};
 
 export default StateTag;

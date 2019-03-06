@@ -5,12 +5,11 @@ import { keyBy } from 'lodash';
 
 import * as taxRatesService from '../services/tax-rates';
 
-
 export default {
   namespace: 'taxRates',
 
   state: {
-    items: {}
+    items: {},
   },
 
   effects: {
@@ -61,7 +60,7 @@ export default {
       } catch (e) {
         message.error('Error saving tax rate!', 5);
       }
-    }
+    },
   },
 
   reducers: {
@@ -84,6 +83,6 @@ export default {
           [data._id]: data,
         },
       };
-    }
-  }
+    },
+  },
 };

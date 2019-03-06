@@ -69,7 +69,11 @@ class PhoneInput extends Component {
             </Select.Option>
           ))}
         </Select>
-        <Input value={parsedValue.nationalNumber} style={{ width: '75%' }} onChange={this.handleNumberChange} />
+        <Input
+          value={parsedValue.nationalNumber}
+          style={{ width: '75%' }}
+          onChange={this.handleNumberChange}
+        />
       </Input.Group>
     );
   }

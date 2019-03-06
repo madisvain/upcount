@@ -9,7 +9,7 @@ export default {
   namespace: 'clients',
 
   state: {
-    items: {}
+    items: {},
   },
 
   effects: {
@@ -83,6 +83,6 @@ export default {
           [data._id]: data,
         },
       };
-    }
-  }
+    },
+  },
 };

@@ -33,11 +33,16 @@ class BaseLayout extends Component {
 
     return (
       <Layout style={{ minHeight: '100vh' }}>
-        <Layout.Sider trigger={null} collapsible collapsed={true}>
+        <Layout.Sider collapsible>
           <div className="logo" />
-          <Menu theme="dark" mode="inline" selectedKeys={selectedMenuKeys} onClick={this.handleMenuClick}>
+          <Menu
+            theme="dark"
+            mode="inline"
+            selectedKeys={selectedMenuKeys}
+            onClick={this.handleMenuClick}
+          >
             <Menu.Item key="invoices">
-              <Link to='/invoices/'>
+              <Link to="/invoices/">
                 <div>
                   <Icon type="file-text" />
                   <span>Invoices</span>
@@ -45,28 +50,54 @@ class BaseLayout extends Component {
               </Link>
             </Menu.Item>
             <Menu.Item key="clients">
-              <Link to='/clients/'>
+              <Link to="/clients/">
                 <div>
                   <Icon type="team" />
                   <span>Clients</span>
                 </div>
               </Link>
             </Menu.Item>
-            <Menu.Item key="settings">
-              <Link to='/settings/'>
-                <div>
+
+            <Menu.SubMenu
+              key="settings"
+              title={
+                <span>
                   <Icon type="setting" />
                   <span>Settings</span>
-                </div>
-              </Link>
-            </Menu.Item>
+                </span>
+              }
+            >
+              <Menu.Item>
+                <Link to="/settings/organization">
+                  <Icon type="contacts" /> Organization
+                </Link>
+              </Menu.Item>
+              <Menu.Item>
+                <Link to="/settings/invoice">
+                  <Icon type="contacts" /> Invoice
+                </Link>
+              </Menu.Item>
+              <Menu.Item>
+                <Link to="/settings/tax-rates">
+                  <Icon type="calculator" /> Tax rates
+                </Link>
+              </Menu.Item>
+            </Menu.SubMenu>
+            
+            <Menu.SubMenu
+              key="organizations"
+              title={
+                <span>
+                  <Icon type="idcard" />
+                  <span>User</span>
+                </span>
+              }
+            >
+              <Menu.Item>XX</Menu.Item>
+            </Menu.SubMenu>
           </Menu>
         </Layout.Sider>
-        <Layout>
-
-          {children}
-
-        </Layout>
+        <Layout>{children}</Layout>
       </Layout>
     );
   }

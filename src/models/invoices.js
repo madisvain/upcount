@@ -5,12 +5,11 @@ import { keyBy } from 'lodash';
 
 import * as invoicesService from '../services/invoices';
 
-
 export default {
   namespace: 'invoices',
 
   state: {
-    items: {}
+    items: {},
   },
 
   effects: {
@@ -53,7 +52,7 @@ export default {
 
     *state(
       {
-        payload: { _id, _rev, state }
+        payload: { _id, _rev, state },
       },
       { put, call }
     ) {
@@ -99,6 +98,6 @@ export default {
           [data._id]: data,
         },
       };
-    }
-  }
+    },
+  },
 };
