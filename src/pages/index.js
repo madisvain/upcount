@@ -3,7 +3,7 @@ import { compose } from 'redux';
 import { connect } from 'dva';
 import { Field, reduxForm } from 'redux-form';
 import { Button, Card, Form, List, Row, Col } from 'antd';
-import { values } from 'lodash';
+import { sortBy, values } from 'lodash';
 
 import { AInput } from '../components/fields';
 
@@ -29,7 +29,7 @@ class Index extends Component {
                 xl: 6,
                 xxl: 3,
               }}
-              dataSource={values(organizations.items)}
+              dataSource={sortBy(values(organizations.items), ['name'])}
               renderItem={organization => (
                 <List.Item>
                   <Card title={organization.name}>{organization.name}</Card>
