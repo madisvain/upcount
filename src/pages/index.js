@@ -1,45 +1,81 @@
 import { Component } from 'react';
+import { compose } from 'redux';
 import { connect } from 'dva';
-import { Card, List } from 'antd';
+import { Field, reduxForm } from 'redux-form';
+import { Button, Card, Form, List, Row, Col } from 'antd';
 import { values } from 'lodash';
 
+import { AInput } from '../components/fields';
+
 class Index extends Component {
+  componentDidMount() {
+    this.props.dispatch({ type: 'organizations/list' });
+  }
+
   render() {
-    const { organizations } = this.props;
+    const { handleSubmit, organizations, pristine, submitting } = this.props;
 
     return (
-      <div>
-        <ul>
-          <li>
-            To get started, edit <code>src/pages/index.js</code> and save to reload.
-          </li>
-          <li>
-            <a href="https://umijs.org/guide/getting-started.html">Getting Started</a>
-          </li>
-        </ul>
-
-        <List
-          grid={{
-            gutter: 16,
-            xs: 1,
-            sm: 2,
-            md: 4,
-            lg: 4,
-            xl: 6,
-            xxl: 3,
-          }}
-          dataSource={values(organizations.items)}
-          renderItem={item => (
-            <List.Item>
-              <Card title={item.title}>Card content</Card>
-            </List.Item>
+      <Row>
+        <Col offset={2} span={20} style={{ marginTop: 40, textAlign: 'center' }}>
+          {organizations.items && (
+            <List
+              grid={{
+                gutter: 16,
+                xs: 1,
+                sm: 2,
+                md: 4,
+                lg: 4,
+                xl: 6,
+                xxl: 3,
+              }}
+              dataSource={values(organizations.items)}
+              renderItem={organization => (
+                <List.Item>
+                  <Card title={organization.name}>{organization.name}</Card>
+                </List.Item>
+              )}
+            />
           )}
-        />
-      </div>
+          <h2 style={{ marginTop: 80 }}>To get started</h2>
+          <Form onSubmit={handleSubmit} layout="vertical">
+            <Row>
+              <Col offset={8} span={8}>
+                <Field
+                  name="name"
+                  component={AInput}
+                  size="large"
+                  placeholder="Organization name"
+                  style={{ textAlign: 'center', margin: '10px 0' }}
+                />
+              </Col>
+            </Row>
+            <Button
+              type="primary"
+              htmlType="submit"
+              size="large"
+              disabled={pristine || submitting}
+              loading={submitting}
+            >
+              Create an organization
+            </Button>
+          </Form>
+        </Col>
+      </Row>
     );
   }
 }
 
-export default connect(state => {
-  return { organizations: state.organizations };
-})(Index);
+export default compose(
+  connect(state => ({
+    organizations: state.organizations,
+  })),
+  reduxForm({
+    form: 'organization',
+    onSubmit: (data, dispatch) => {
+      return new Promise((resolve, reject) => {
+        dispatch({ type: 'organizations/save', data: data, resolve, reject });
+      });
+    },
+  })
+)(Index);

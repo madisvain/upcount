@@ -1,7 +1,5 @@
 import { Component } from 'react';
-import { Icon, Menu, Layout } from 'antd';
-import { get, last } from 'lodash';
-import pathToRegexp from 'path-to-regexp';
+import { Layout } from 'antd';
 
 import Header from '../components/header';
 import Navigation from '../components/navigation';
@@ -18,13 +16,15 @@ class BaseLayout extends Component {
   };
 
   render() {
-    const { children } = this.props;
+    const { children, location } = this.props;
 
     return (
       <Layout style={{ minHeight: '100vh' }}>
-        <Navigation collapsed={this.state.collapsed} />
+        {location.pathname !== '/' && <Navigation collapsed={this.state.collapsed} />}
         <Layout>
-          <Header collapsed={this.state.collapsed} onToggl={this.toggleSider} />
+          {location.pathname !== '/' && (
+            <Header collapsed={this.state.collapsed} onToggl={this.toggleSider} />
+          )}
           {children}
         </Layout>
       </Layout>

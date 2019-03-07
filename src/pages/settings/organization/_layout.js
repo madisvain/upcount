@@ -2,22 +2,26 @@ import { Component } from 'react';
 import { compose } from 'redux';
 import { connect } from 'dva';
 import { Field, Form, reduxForm } from 'redux-form';
-import { Button, Col, Icon, Layout, Row, Select, Table, Upload } from 'antd';
-import { map, values } from 'lodash';
+import { Button, Col, Icon, Layout, Row } from 'antd';
 
-import Link from 'umi/link';
-import currencyToSymbolMap from 'currency-symbol-map/map';
+import { AInput, APhoneInput, ATextarea } from '../../../components/fields';
 
-import { AInput, APhoneInput, ASelect, ATextarea } from '../../../components/fields';
-
-class Settings extends Component {
+class Organization extends Component {
   componentDidMount() {
-    this.props.dispatch({ type: 'taxRates/list' });
-    this.props.dispatch({ type: 'settings/initialize' });
+    const {
+      match: { params },
+    } = this.props;
+
+    this.props.dispatch({
+      type: 'organizations/initialize',
+      payload: {
+        id: params['id'],
+      },
+    });
   }
 
   render() {
-    const { children, handleSubmit, pristine, submitting, taxRates } = this.props;
+    const { children, handleSubmit, pristine, submitting } = this.props;
 
     return (
       <div>
@@ -26,7 +30,7 @@ class Settings extends Component {
             <Col span={12}>
               <h2>
                 <Icon type="home" />
-                {` Company details`}
+                {` Organization details`}
               </h2>
               <Form layout="vertical" onSubmit={handleSubmit}>
                 <Field name="name" component={AInput} label="Company name" />
@@ -68,11 +72,11 @@ class Settings extends Component {
 export default compose(
   connect(state => ({})),
   reduxForm({
-    form: 'settings',
+    form: 'organization',
     onSubmit: (data, dispatch) => {
       return new Promise((resolve, reject) => {
-        dispatch({ type: 'settings/save', data: data, resolve, reject });
+        dispatch({ type: 'organizations/save', data: data, resolve, reject });
       });
     },
   })
-)(Settings);
+)(Organization);

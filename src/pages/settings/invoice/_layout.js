@@ -1,14 +1,13 @@
 import { Component } from 'react';
 import { compose } from 'redux';
 import { connect } from 'dva';
-import { Field, Form, reduxForm } from 'redux-form';
-import { Button, Col, Icon, Layout, Row, Select, Table, Upload } from 'antd';
-import { map, values } from 'lodash';
+import { Field, reduxForm } from 'redux-form';
+import { Button, Col, Icon, Layout, Row, Select, Upload } from 'antd';
+import { map } from 'lodash';
 
-import Link from 'umi/link';
 import currencyToSymbolMap from 'currency-symbol-map/map';
 
-import { AInput, APhoneInput, ASelect, ATextarea } from '../../../components/fields';
+import { ASelect, ATextarea } from '../../../components/fields';
 
 class Settings extends Component {
   componentDidMount() {
@@ -17,7 +16,7 @@ class Settings extends Component {
   }
 
   render() {
-    const { children, handleSubmit, pristine, submitting, taxRates } = this.props;
+    const { children } = this.props;
 
     return (
       <div>

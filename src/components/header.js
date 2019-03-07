@@ -1,5 +1,5 @@
 import { Component } from 'react';
-import { Icon, Menu, Layout } from 'antd';
+import { Icon, Layout } from 'antd';
 
 import Link from 'umi/link';
 
