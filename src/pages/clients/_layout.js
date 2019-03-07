@@ -1,6 +1,6 @@
 import { Component } from 'react';
 import { connect } from 'dva';
-import { Button, Icon, Input, Layout, Table, Tag } from 'antd';
+import { Button, Icon, Input, Layout, Table, Tag, Row, Col } from 'antd';
 import { isEmpty, values } from 'lodash';
 
 import Link from 'umi/link';
@@ -15,6 +15,14 @@ class Clients extends Component {
 
     return (
       <Layout.Content style={{ margin: 16, padding: 24, background: '#fff' }}>
+        <Row>
+          <Col>
+            <h2>
+              <Icon type="team" style={{ marginRight: 8 }} />
+              Clients
+            </h2>
+          </Col>
+        </Row>
         <Link to="/clients/new">
           <Button type="primary" style={{ marginBottom: 10 }}>
             New client

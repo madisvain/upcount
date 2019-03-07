@@ -11,7 +11,7 @@ import { AInput, ATextarea } from '../../../components/fields';
 class TaxForm extends Component {
   closeDrawer = () => {
     router.push({
-      pathname: '/settings',
+      pathname: '/settings/tax-rates',
     });
   };
 

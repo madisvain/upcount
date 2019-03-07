@@ -1,15 +1,25 @@
 import { routerRedux } from 'dva/router';
 import { initialize, stopSubmit } from 'redux-form';
 import { message } from 'antd';
+import { keyBy } from 'lodash';
 
 import * as organizationsService from '../services/organizations';
 
 export default {
-  namespace: 'settings',
+  namespace: 'organizations',
 
   state: {},
 
   effects: {
+    *list(action, { put, call }) {
+      try {
+        const response = yield call(organizationsService.list);
+        yield put({ type: 'listSuccess', data: response.docs });
+      } catch (e) {
+        message.error('Error loading organizations list!', 5);
+      }
+    },
+
     *details({ payload }, { put, call }) {
       try {
         const response = yield call(organizationsService.details);
@@ -22,7 +32,7 @@ export default {
     *initialize({ payload }, { put, call }) {
       try {
         const response = yield call(organizationsService.details);
-        yield put(initialize('settings', response, false));
+        yield put(initialize('organization', response, false));
       } catch (e) {
         message.error('Error initializing organization!', 5);
       }
@@ -32,9 +42,9 @@ export default {
       try {
         const response = yield call(organizationsService.save, data);
         yield put({ type: 'detailsSuccess', data: response });
-        message.success('Settings saved!', 5);
-        yield put(stopSubmit('settings'));
-        yield put(routerRedux.push('/settings/'));
+        message.success('Organization saved!', 5);
+        yield put(stopSubmit('organization'));
+        yield put(routerRedux.push('/settings/organization'));
       } catch (e) {
         message.error('Error saving organization!', 5);
       }
@@ -42,6 +52,15 @@ export default {
   },
 
   reducers: {
+    listSuccess(state, payload) {
+      const { data } = payload;
+
+      return {
+        ...state,
+        items: keyBy(data, '_id'),
+      };
+    },
+
     detailsSuccess(state, payload) {
       const { data } = payload;
       return data;

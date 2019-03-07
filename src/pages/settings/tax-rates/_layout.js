@@ -23,12 +23,20 @@ class TaxRates extends Component {
               <h2>
                 <Icon type="calculator" />
                 {` Tax rates`}
-                <Link to="/settings/tax-rates/new">
-                  <Button type="primary" style={{ float: 'right' }}>
-                    New tax
-                  </Button>
-                </Link>
               </h2>
+            </Col>
+          </Row>
+          <Row>
+            <Col>
+              <Link to="/settings/tax-rates/new">
+                <Button type="primary" style={{ marginBottom: 10 }}>
+                  New tax
+                </Button>
+              </Link>
+            </Col>
+          </Row>
+          <Row>
+            <Col>
               <Table
                 dataSource={values(taxRates.items)}
                 pagination={false}
