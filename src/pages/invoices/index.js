@@ -19,29 +19,21 @@ class Invoices extends Component {
       payload: {
         _id,
         _rev,
-        state: key
-      }
+        state: key,
+      },
     });
-  }
+  };
 
   render() {
     const { clients, invoices } = this.props;
 
     const stateMenu = (_id, _rev) => (
       <Menu onClick={({ item, key }) => this.onStateSelect(_id, _rev, key)}>
-        <Menu.Item key="draft">
-          Draft
-        </Menu.Item>
-        <Menu.Item key="confirmed">
-          Confirmed
-        </Menu.Item>
-        <Menu.Item key="payed">
-          Payed
-        </Menu.Item>
+        <Menu.Item key="draft">Draft</Menu.Item>
+        <Menu.Item key="confirmed">Confirmed</Menu.Item>
+        <Menu.Item key="payed">Payed</Menu.Item>
         <Menu.Divider />
-        <Menu.Item key="void">
-          Void
-        </Menu.Item>
+        <Menu.Item key="void">Void</Menu.Item>
       </Menu>
     );
 
@@ -75,21 +67,9 @@ class Invoices extends Component {
             key="client"
             render={client => get(clients.items, `${client}.name`, '-')}
           />
-          <Table.Column
-            title="Date"
-            dataIndex="date"
-            key="date"
-          />
-          <Table.Column
-            title="Due date"
-            dataIndex="due_date"
-            key="due_date"
-          />
-          <Table.Column
-            title="Sum"
-            dataIndex="total"
-            key="total"
-          />
+          <Table.Column title="Date" dataIndex="date" key="date" />
+          <Table.Column title="Due date" dataIndex="due_date" key="due_date" />
+          <Table.Column title="Sum" dataIndex="total" key="total" />
           <Table.Column
             title="State"
             key="state"
@@ -101,13 +81,13 @@ class Invoices extends Component {
           />
         </Table>
       </Layout.Content>
-    )
+    );
   }
 }
 
-export default connect((state) => {
+export default connect(state => {
   return {
     clients: state.clients,
-    invoices: state.invoices
+    invoices: state.invoices,
   };
 })(Invoices);

@@ -23,11 +23,27 @@ class LineItems extends Component {
     const subtotal = get(lineItem, 'subtotal');
 
     if (unitPrice) {
-      this.props.dispatch(change('invoice', `lineItems[${index}].subtotal`, currency(newValue, { separator: '' }).multiply(unitPrice).format()));
+      this.props.dispatch(
+        change(
+          'invoice',
+          `lineItems[${index}].subtotal`,
+          currency(newValue, { separator: '' })
+            .multiply(unitPrice)
+            .format()
+        )
+      );
     } else if (subtotal) {
-      this.props.dispatch(change('invoice', `lineItems[${index}].unitPrice`, currency(subtotal, { separator: '' }).divide(newValue).format()));
+      this.props.dispatch(
+        change(
+          'invoice',
+          `lineItems[${index}].unitPrice`,
+          currency(subtotal, { separator: '' })
+            .divide(newValue)
+            .format()
+        )
+      );
     }
-  }
+  };
 
   onUnitPriceChange = (newValue, previousValue, index) => {
     const lineItem = get(this.props.lineItems, index);
@@ -36,11 +52,27 @@ class LineItems extends Component {
     const subtotal = get(lineItem, 'subtotal');
 
     if (quantity) {
-      this.props.dispatch(change('invoice', `lineItems[${index}].subtotal`, currency(newValue, { separator: '' }).multiply(quantity).format()));
+      this.props.dispatch(
+        change(
+          'invoice',
+          `lineItems[${index}].subtotal`,
+          currency(newValue, { separator: '' })
+            .multiply(quantity)
+            .format()
+        )
+      );
     } else if (subtotal) {
-      this.props.dispatch(change('invoice', `lineItems[${index}].quantity`, currency(subtotal, { separator: '' }).divide(newValue).format()));
+      this.props.dispatch(
+        change(
+          'invoice',
+          `lineItems[${index}].quantity`,
+          currency(subtotal, { separator: '' })
+            .divide(newValue)
+            .format()
+        )
+      );
     }
-  }
+  };
 
   onSubtotalChange = (newValue, previousValue, index) => {
     const lineItem = get(this.props.lineItems, index);
@@ -49,11 +81,27 @@ class LineItems extends Component {
     const unitPrice = get(lineItem, 'unitPrice');
 
     if (quantity) {
-      this.props.dispatch(change('invoice', `lineItems[${index}].unitPrice`, currency(newValue, { separator: '' }).divide(quantity).format()));
+      this.props.dispatch(
+        change(
+          'invoice',
+          `lineItems[${index}].unitPrice`,
+          currency(newValue, { separator: '' })
+            .divide(quantity)
+            .format()
+        )
+      );
     } else if (unitPrice) {
-      this.props.dispatch(change('invoice', `lineItems[${index}].quantity`, currency(newValue, { separator: '' }).divide(unitPrice).format()));
+      this.props.dispatch(
+        change(
+          'invoice',
+          `lineItems[${index}].quantity`,
+          currency(newValue, { separator: '' })
+            .divide(unitPrice)
+            .format()
+        )
+      );
     }
-  }
+  };
 
   render() {
     const { fields, taxRates } = this.props;
@@ -66,7 +114,7 @@ class LineItems extends Component {
         quantity: `${member}.quantity`,
         unitPrice: `${member}.unitPrice`,
         subtotal: `${member}.subtotal`,
-        taxRate: `${member}.taxRate`
+        taxRate: `${member}.taxRate`,
       });
     });
 
@@ -77,36 +125,52 @@ class LineItems extends Component {
             title="Description"
             dataIndex="description"
             key="description"
-            render={field => (
-              <Field name={field} component={ATextarea} autosize />
-            )}
+            render={field => <Field name={field} component={ATextarea} autosize />}
           />
           <Table.Column
             title="Quantity"
             dataIndex="quantity"
             key="quantity"
             width={120}
-            render={(field, row, index) => <Field name={field} component={AInput} onChange={
-              (event, newValue, previousValue) => this.onQuantityChange(newValue, previousValue, index)
-            } />}
+            render={(field, row, index) => (
+              <Field
+                name={field}
+                component={AInput}
+                onChange={(event, newValue, previousValue) =>
+                  this.onQuantityChange(newValue, previousValue, index)
+                }
+              />
+            )}
           />
           <Table.Column
             title="Price"
             dataIndex="unitPrice"
             key="price"
             width={120}
-            render={(field, row, index) => <Field name={field} component={AInput} onChange={
-              (event, newValue, previousValue) => this.onUnitPriceChange(newValue, previousValue, index)
-            } />}
+            render={(field, row, index) => (
+              <Field
+                name={field}
+                component={AInput}
+                onChange={(event, newValue, previousValue) =>
+                  this.onUnitPriceChange(newValue, previousValue, index)
+                }
+              />
+            )}
           />
           <Table.Column
             title="Subtotal"
             dataIndex="subtotal"
             key="subtotal"
             width={120}
-            render={(field, row, index) => <Field name={field} component={AInput} onChange={
-              (event, newValue, previousValue) => this.onSubtotalChange(newValue, previousValue, index)
-            } />}
+            render={(field, row, index) => (
+              <Field
+                name={field}
+                component={AInput}
+                onChange={(event, newValue, previousValue) =>
+                  this.onSubtotalChange(newValue, previousValue, index)
+                }
+              />
+            )}
           />
           <Table.Column
             title="Tax rate"
@@ -127,20 +191,11 @@ class LineItems extends Component {
           <Table.Column
             title=""
             key="delete"
-            render={row => (
-              <Icon
-                type="delete"
-                onClick={() => fields.remove(row.key)}
-              />
-            )}
+            render={row => <Icon type="delete" onClick={() => fields.remove(row.key)} />}
           />
         </Table>
 
-        <Button
-          type="default"
-          onClick={() => fields.push({})}
-          style={{ marginTop: '10px' }}
-        >
+        <Button type="default" onClick={() => fields.push({})} style={{ marginTop: '10px' }}>
           Add row
         </Button>
       </div>

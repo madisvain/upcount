@@ -12,7 +12,7 @@ class TaxForm extends Component {
   closeDrawer = () => {
     router.push({
       pathname: '/settings',
-    })
+    });
   };
 
   componentWillMount() {
@@ -28,7 +28,7 @@ class TaxForm extends Component {
         },
       });
     }
-  };
+  }
 
   isNew = () => {
     const {
@@ -56,22 +56,9 @@ class TaxForm extends Component {
         }}
       >
         <Form onSubmit={handleSubmit} layout="vertical">
-          <Field
-            name="name"
-            component={AInput}
-            label="Name"
-          />
-          <Field
-            name="description"
-            component={ATextarea}
-            label="Description"
-            rows={4}
-          />
-          <Field
-            name="percentage"
-            component={AInput}
-            label="Percentage"
-          />
+          <Field name="name" component={AInput} label="Name" />
+          <Field name="description" component={ATextarea} label="Description" rows={4} />
+          <Field name="percentage" component={AInput} label="Percentage" />
           <Button
             type="primary"
             htmlType="submit"
@@ -83,7 +70,7 @@ class TaxForm extends Component {
           </Button>
         </Form>
       </Drawer>
-    )
+    );
   }
 }
 

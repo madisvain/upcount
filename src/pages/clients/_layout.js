@@ -16,7 +16,9 @@ class Clients extends Component {
     return (
       <Layout.Content style={{ margin: 16, padding: 24, background: '#fff' }}>
         <Link to="/clients/new">
-          <Button type="primary" style={{ marginBottom: 10 }}>New client</Button>
+          <Button type="primary" style={{ marginBottom: 10 }}>
+            New client
+          </Button>
         </Link>
         <Input.Search
           placeholder="input search text"
@@ -29,18 +31,12 @@ class Clients extends Component {
             key="name"
             render={client => <Link to={`/clients/${client._id}`}>{client.name}</Link>}
           />
-          <Table.Column
-            title="Address"
-            dataIndex="address"
-            key="address"
-          />
+          <Table.Column title="Address" dataIndex="address" key="address" />
           <Table.Column
             title="Emails"
             dataIndex="emails"
             key="emails"
-            render={emails => (
-              emails ? emails.map((email) => <Tag key={email}>{email}</Tag>) : ''
-            )}
+            render={emails => (emails ? emails.map(email => <Tag key={email}>{email}</Tag>) : '')}
           />
           <Table.Column
             title="Phone"
@@ -50,23 +46,20 @@ class Clients extends Component {
               if (!isEmpty(phone)) {
                 return (
                   <a href={`tel:${phone}`}>
-                    <Icon type="phone" />{` ${phone}`}
+                    <Icon type="phone" />
+                    {` ${phone}`}
                   </a>
-                )
+                );
               }
             }}
           />
-          <Table.Column
-            title="VATIN"
-            dataIndex="vatin"
-            key="vatin"
-          />
+          <Table.Column title="VATIN" dataIndex="vatin" key="vatin" />
           <Table.Column
             title="Website"
             dataIndex="website"
             key="website"
             render={website => (
-              <a href={website} target="_blank" rel='noreferrer noopener'>
+              <a href={website} target="_blank" rel="noreferrer noopener">
                 {website}
               </a>
             )}
@@ -74,8 +67,10 @@ class Clients extends Component {
         </Table>
         {children}
       </Layout.Content>
-    )
+    );
   }
 }
 
-export default connect((state) => { return { clients: state.clients }; })(Clients);
+export default connect(state => {
+  return { clients: state.clients };
+})(Clients);

@@ -29,40 +29,16 @@ class Settings extends Component {
                 {` Company details`}
               </h2>
               <Form layout="vertical" onSubmit={handleSubmit}>
-                <Field
-                  name="name"
-                  component={AInput}
-                  label="Company name"
-                />
-                <Field
-                  name="address"
-                  component={ATextarea}
-                  label="Address"
-                />
-                <Field
-                  name="email"
-                  component={AInput}
-                  label="Email"
-                />
-                <Field
-                  name="phone"
-                  component={APhoneInput}
-                  label="Phone"
-                />
+                <Field name="name" component={AInput} label="Company name" />
+                <Field name="address" component={ATextarea} label="Address" />
+                <Field name="email" component={AInput} label="Email" />
+                <Field name="phone" component={APhoneInput} label="Phone" />
                 <Row gutter={16}>
                   <Col span={12}>
-                    <Field
-                      name="vatin"
-                      component={AInput}
-                      label="VATIN"
-                    />
+                    <Field name="vatin" component={AInput} label="VATIN" />
                   </Col>
                   <Col span={12}>
-                    <Field
-                      name="website"
-                      component={AInput}
-                      label="Website"
-                    />
+                    <Field name="website" component={AInput} label="Website" />
                   </Col>
                 </Row>
                 <Row>
@@ -85,13 +61,12 @@ class Settings extends Component {
 
         {children}
       </div>
-    )
+    );
   }
 }
 
 export default compose(
-  connect(state => ({
-  })),
+  connect(state => ({})),
   reduxForm({
     form: 'settings',
     onSubmit: (data, dispatch) => {

@@ -17,7 +17,7 @@ class ClientForm extends Component {
   closeDrawer = () => {
     router.push({
       pathname: '/clients',
-    })
+    });
   };
 
   componentWillMount() {
@@ -33,7 +33,7 @@ class ClientForm extends Component {
         },
       });
     }
-  };
+  }
 
   isNew = () => {
     const {
@@ -62,17 +62,8 @@ class ClientForm extends Component {
         }}
       >
         <Form onSubmit={handleSubmit} layout="vertical">
-          <Field
-            name="name"
-            component={AInput}
-            label="Name"
-          />
-          <Field
-            name="address"
-            component={ATextarea}
-            label="Address"
-            rows={4}
-          />
+          <Field name="name" component={AInput} label="Name" />
+          <Field name="address" component={ATextarea} label="Address" rows={4} />
           <Field
             name="emails"
             component={ASelect}
@@ -86,21 +77,9 @@ class ClientForm extends Component {
               </Select.Option>
             ))}
           </Field>
-          <Field
-            name="phone"
-            component={APhoneInput}
-            label="Phone"
-          />
-          <Field
-            name="vatin"
-            component={AInput}
-            label="VATIN"
-          />
-          <Field
-            name="website"
-            component={AInput}
-            label="Website"
-          />
+          <Field name="phone" component={APhoneInput} label="Phone" />
+          <Field name="vatin" component={AInput} label="VATIN" />
+          <Field name="website" component={AInput} label="Website" />
           <Button
             type="primary"
             htmlType="submit"
@@ -112,7 +91,7 @@ class ClientForm extends Component {
           </Button>
         </Form>
       </Drawer>
-    )
+    );
   }
 }
 

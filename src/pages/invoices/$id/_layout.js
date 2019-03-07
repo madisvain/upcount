@@ -29,7 +29,7 @@ class InvoiceForm extends Component {
 
     this.props.dispatch({ type: 'clients/list' });
     this.props.dispatch({ type: 'taxRates/list' });
-  };
+  }
 
   isNew = () => {
     const {
@@ -39,13 +39,13 @@ class InvoiceForm extends Component {
     return has(params, 'id') && params['id'] === 'new';
   };
 
-  clientSelect = (value) => {
+  clientSelect = value => {
     if (value === 'new') {
       router.push({
-        pathname: '/invoices/new/client'
-      })
+        pathname: '/invoices/new/client',
+      });
     }
-  }
+  };
 
   render() {
     const { children, clients, handleSubmit, lineItems, pristine, submitting } = this.props;
@@ -75,19 +75,10 @@ class InvoiceForm extends Component {
               </Field>
             </Col>
             <Col span={6}>
-              <Field
-                name="number"
-                component={AInput}
-                label="Invoice number"
-              />
+              <Field name="number" component={AInput} label="Invoice number" />
             </Col>
             <Col span={6}>
-              <Field
-                showSearch
-                name="currency"
-                component={ASelect}
-                label="Currency"
-              >
+              <Field showSearch name="currency" component={ASelect} label="Currency">
                 {map(currencyToSymbolMap, (symbol, currency) => (
                   <Select.Option value={currency} key={currency}>
                     {`${currency} ${symbol}`}
@@ -118,12 +109,7 @@ class InvoiceForm extends Component {
 
           <Row gutter={16}>
             <Col span={8} style={{ marginTop: '20px' }}>
-              <Field
-                name="customer_note"
-                component={ATextarea}
-                label="Customer note"
-                rows={4}
-              />
+              <Field name="customer_note" component={ATextarea} label="Customer note" rows={4} />
             </Col>
             <Col span={12} offset={4} style={{ marginTop: '20px' }}>
               <table style={{ width: '100%' }}>
@@ -169,7 +155,7 @@ class InvoiceForm extends Component {
 
         {children}
       </Layout.Content>
-    )
+    );
   }
 }
 

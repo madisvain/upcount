@@ -7,7 +7,7 @@ const db = new PouchDB('invoicer');
 
 // Create Document Type index
 db.createIndex({
-  index: { fields: ['type'] }
+  index: { fields: ['type'] },
 });
 
 export default db;

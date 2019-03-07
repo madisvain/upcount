@@ -83,7 +83,7 @@ class BaseLayout extends Component {
                 </Link>
               </Menu.Item>
             </Menu.SubMenu>
-            
+
             <Menu.SubMenu
               key="organizations"
               title={
