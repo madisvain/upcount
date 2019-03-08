@@ -1,10 +1,20 @@
 import { Component } from 'react';
+import { compose } from 'redux';
+import { connect } from 'dva';
 import { Icon, Layout } from 'antd';
+import { get } from 'lodash';
 
 import Link from 'umi/link';
 
 class Header extends Component {
+  componentDidMount() {
+    this.props.dispatch({ type: 'organizations/list' });
+  }
+
   render() {
+    const { organizations } = this.props;
+    const organization = get(organizations.items, localStorage['organization']);
+
     return (
       <Layout.Header style={{ background: '#fff', padding: 0 }}>
         <Icon
@@ -30,11 +40,15 @@ class Header extends Component {
           }}
         >
           <Icon type="swap" style={{ marginRight: 8 }} />
-          Konstruktor OÜ
+          {get(organization, 'name')}
         </Link>
       </Layout.Header>
     );
   }
 }
 
-export default Header;
+export default compose(
+  connect(state => ({
+    organizations: state.organizations,
+  }))
+)(Header);

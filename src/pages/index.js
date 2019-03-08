@@ -2,8 +2,10 @@ import { Component } from 'react';
 import { compose } from 'redux';
 import { connect } from 'dva';
 import { Field, reduxForm } from 'redux-form';
-import { Button, Card, Form, List, Row, Col } from 'antd';
+import { Button, Card, Form, List, Row, Col, Icon } from 'antd';
 import { sortBy, values } from 'lodash';
+
+import router from 'umi/router';
 
 import { AInput } from '../components/fields';
 
@@ -12,12 +14,20 @@ class Index extends Component {
     this.props.dispatch({ type: 'organizations/list' });
   }
 
+  setOrganization = id => {
+    localStorage.setItem('organization', id);
+    router.push({
+      pathname: '/invoices',
+    });
+  };
+
   render() {
     const { handleSubmit, organizations, pristine, submitting } = this.props;
 
     return (
       <Row>
         <Col offset={2} span={20} style={{ marginTop: 40, textAlign: 'center' }}>
+          <h2 style={{ marginBottom: 20 }}>Organizations</h2>
           {organizations.items && (
             <List
               grid={{
@@ -32,7 +42,17 @@ class Index extends Component {
               dataSource={sortBy(values(organizations.items), ['name'])}
               renderItem={organization => (
                 <List.Item>
-                  <Card title={organization.name}>{organization.name}</Card>
+                  <Card
+                    title={organization.name}
+                    extra={
+                      <a href="#">
+                        <Icon type="edit" />
+                      </a>
+                    }
+                    onClick={() => this.setOrganization(organization._id)}
+                  >
+                    {organization.name}
+                  </Card>
                 </List.Item>
               )}
             />
