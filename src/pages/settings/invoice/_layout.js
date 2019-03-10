@@ -46,7 +46,7 @@ class Settings extends Component {
             <Col span={12}>
               <h2>
                 <Icon type="picture" />
-                {` Company logo`}
+                {` Logo`}
               </h2>
               <Upload.Dragger>
                 <p>

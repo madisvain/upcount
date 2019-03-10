@@ -8,14 +8,10 @@ import { AInput, APhoneInput, ATextarea } from '../../../components/fields';
 
 class Organization extends Component {
   componentDidMount() {
-    const {
-      match: { params },
-    } = this.props;
-
     this.props.dispatch({
       type: 'organizations/initialize',
       payload: {
-        id: params['id'],
+        id: localStorage.getItem('organization'),
       },
     });
   }
@@ -33,7 +29,7 @@ class Organization extends Component {
                 {` Organization details`}
               </h2>
               <Form layout="vertical" onSubmit={handleSubmit}>
-                <Field name="name" component={AInput} label="Company name" />
+                <Field name="name" component={AInput} label="Name" />
                 <Field name="address" component={ATextarea} label="Address" />
                 <Field name="email" component={AInput} label="Email" />
                 <Field name="phone" component={APhoneInput} label="Phone" />

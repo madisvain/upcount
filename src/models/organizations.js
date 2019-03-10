@@ -29,12 +29,17 @@ export default {
       }
     },
 
-    *initialize({ payload }, { put, call }) {
+    *initialize(
+      {
+        payload: { id },
+      },
+      { put, call }
+    ) {
       try {
-        const response = yield call(organizationsService.details);
+        const response = yield call(organizationsService.details, id);
         yield put(initialize('organization', response, false));
       } catch (e) {
-        message.error('Error initializing organization!', 5);
+        message.error('Error initializing organization form!', 5);
       }
     },
 

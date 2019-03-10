@@ -13,7 +13,7 @@ class Header extends Component {
 
   render() {
     const { organizations } = this.props;
-    const organization = get(organizations.items, localStorage['organization']);
+    const organization = get(organizations.items, localStorage.getItem('organization'));
 
     return (
       <Layout.Header style={{ background: '#fff', padding: 0 }}>
