@@ -2,7 +2,7 @@ import { Component } from 'react';
 import { compose } from 'redux';
 import { connect } from 'dva';
 import { Field, reduxForm } from 'redux-form';
-import { Button, Col, Icon, Layout, Row, Select, Upload } from 'antd';
+import { Button, Col, Form, Icon, Layout, Row, Select, Upload } from 'antd';
 import { map } from 'lodash';
 
 import currencyToSymbolMap from 'currency-symbol-map/map';
@@ -12,11 +12,16 @@ import { ASelect, ATextarea } from '../../../components/fields';
 class Settings extends Component {
   componentDidMount() {
     this.props.dispatch({ type: 'taxRates/list' });
-    this.props.dispatch({ type: 'settings/initialize' });
+    this.props.dispatch({
+      type: 'organizations/initialize',
+      payload: {
+        id: localStorage.getItem('organization'),
+      },
+    });
   }
 
   render() {
-    const { children } = this.props;
+    const { handleSubmit, pristine, submitting } = this.props;
 
     return (
       <div>
@@ -27,21 +32,31 @@ class Settings extends Component {
                 <Icon type="file-text" />
                 {` Invoice details`}
               </h2>
-              <Field
-                showSearch
-                name="currency"
-                component={ASelect}
-                label="Default currency"
-                style={{ width: '100%' }}
-              >
-                {map(currencyToSymbolMap, (symbol, currency) => (
-                  <Select.Option value={currency} key={currency}>
-                    {`${currency} ${symbol}`}
-                  </Select.Option>
-                ))}
-              </Field>
-              <Field name="notes" component={ATextarea} label="Invoice notes" />
-              <Button type="primary">Save</Button>
+              <Form layout="vertical" onSubmit={handleSubmit}>
+                <Field
+                  showSearch
+                  name="currency"
+                  component={ASelect}
+                  label="Default currency"
+                  style={{ width: '100%' }}
+                >
+                  {map(currencyToSymbolMap, (symbol, currency) => (
+                    <Select.Option value={currency} key={currency}>
+                      {`${currency} ${symbol}`}
+                    </Select.Option>
+                  ))}
+                </Field>
+                <Field name="notes" component={ATextarea} label="Notes" rows={4} />
+                <Button
+                  type="primary"
+                  htmlType="submit"
+                  disabled={pristine || submitting}
+                  loading={submitting}
+                  style={{ marginTop: '10px' }}
+                >
+                  Save
+                </Button>
+              </Form>
             </Col>
             <Col span={12}>
               <h2>
@@ -57,8 +72,6 @@ class Settings extends Component {
             </Col>
           </Row>
         </Layout.Content>
-
-        {children}
       </div>
     );
   }
@@ -67,10 +80,10 @@ class Settings extends Component {
 export default compose(
   connect(state => ({})),
   reduxForm({
-    form: 'settings',
+    form: 'organization',
     onSubmit: (data, dispatch) => {
       return new Promise((resolve, reject) => {
-        dispatch({ type: 'settings/save', data: data, resolve, reject });
+        dispatch({ type: 'organizations/save', data: data, resolve, reject });
       });
     },
   })

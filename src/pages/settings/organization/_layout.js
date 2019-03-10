@@ -17,7 +17,7 @@ class Organization extends Component {
   }
 
   render() {
-    const { children, handleSubmit, pristine, submitting } = this.props;
+    const { handleSubmit, pristine, submitting } = this.props;
 
     return (
       <div>
@@ -58,8 +58,6 @@ class Organization extends Component {
             </Col>
           </Row>
         </Layout.Content>
-
-        {children}
       </div>
     );
   }

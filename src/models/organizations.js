@@ -68,7 +68,14 @@ export default {
 
     detailsSuccess(state, payload) {
       const { data } = payload;
-      return data;
+
+      return {
+        ...state,
+        items: {
+          ...state.items,
+          [data._id]: data,
+        },
+      };
     },
   },
 };
