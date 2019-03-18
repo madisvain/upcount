@@ -47,17 +47,10 @@ class Settings extends Component {
                   ))}
                 </Field>
                 <Field name="notes" component={ATextarea} label="Notes" rows={4} />
-                <Button
-                  type="primary"
-                  htmlType="submit"
-                  disabled={pristine || submitting}
-                  loading={submitting}
-                  style={{ marginTop: '10px' }}
-                >
-                  Save
-                </Button>
               </Form>
             </Col>
+          </Row>
+          <Row>
             <Col span={12}>
               <h2>
                 <Icon type="picture" />
@@ -69,6 +62,19 @@ class Settings extends Component {
                 </p>
                 <p>Click or drag logo to this area to upload</p>
               </Upload.Dragger>
+            </Col>
+          </Row>
+          <Row>
+            <Col>
+              <Button
+                type="primary"
+                htmlType="submit"
+                disabled={pristine || submitting}
+                loading={submitting}
+                style={{ marginTop: '10px' }}
+              >
+                Save
+              </Button>
             </Col>
           </Row>
         </Layout.Content>
