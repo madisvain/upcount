@@ -3,7 +3,7 @@ import { compose } from 'redux';
 import { connect } from 'dva';
 import { Field, reduxForm } from 'redux-form';
 import { Button, Col, Form, Icon, Layout, Row, Select, Upload } from 'antd';
-import { map } from 'lodash';
+import { get, map } from 'lodash';
 
 import currencyToSymbolMap from 'currency-symbol-map/map';
 
@@ -20,10 +20,15 @@ class Settings extends Component {
     });
   }
 
-  handleLogoUpload(upload) {
-    const { file } = upload;
-    console.log(file);
-  }
+  handleLogoUpload = upload => {
+    this.props.dispatch({
+      type: 'organization/logo',
+      payload: {
+        organization: localStorage.getItem('organization'),
+        file: get(upload, 'file'),
+      },
+    });
+  };
 
   render() {
     const { handleSubmit, pristine, submitting } = this.props;
@@ -61,7 +66,7 @@ class Settings extends Component {
                 <Icon type="picture" />
                 {` Logo`}
               </h2>
-              <Upload.Dragger customRequest={this.handleLogoUpload}>
+              <Upload.Dragger customRequest={() => this.handleLogoUpload()}>
                 <p>
                   <Icon type="cloud-upload" style={{ fontSize: 32 }} />
                 </p>

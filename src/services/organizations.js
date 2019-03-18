@@ -22,6 +22,20 @@ export async function details(id) {
   }
 }
 
+export async function logo(data) {
+  try {
+    console.log(data);
+    const response = await db.put(
+      assign(data, {
+        updatedAt: new Date(),
+      })
+    );
+    return await db.get(response.id);
+  } catch (error) {
+    console.log(error);
+  }
+}
+
 export async function save(data) {
   try {
     if (has(data, '_id')) {
