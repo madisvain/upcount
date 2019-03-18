@@ -20,6 +20,11 @@ class Settings extends Component {
     });
   }
 
+  handleLogoUpload(upload) {
+    const { file } = upload;
+    console.log(file);
+  }
+
   render() {
     const { handleSubmit, pristine, submitting } = this.props;
 
@@ -56,7 +61,7 @@ class Settings extends Component {
                 <Icon type="picture" />
                 {` Logo`}
               </h2>
-              <Upload.Dragger>
+              <Upload.Dragger customRequest={this.handleLogoUpload}>
                 <p>
                   <Icon type="cloud-upload" style={{ fontSize: 32 }} />
                 </p>

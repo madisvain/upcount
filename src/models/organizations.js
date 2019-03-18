@@ -43,6 +43,21 @@ export default {
       }
     },
 
+    *logo(
+      {
+        payload: { _id, _rev, file },
+      },
+      { put, call }
+    ) {
+      try {
+        const response = yield call(organizationsService.logo, { _id, _rev, file });
+        yield put({ type: 'detailsSuccess', data: response });
+        message.success('Organization logo changed!', 5);
+      } catch (e) {
+        message.error('Error changing organization logo!', 5);
+      }
+    },
+
     *save({ data }, { put, call }) {
       try {
         const response = yield call(organizationsService.save, data);

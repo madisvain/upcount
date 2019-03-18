@@ -9,12 +9,12 @@
     "precommit": "lint-staged"
   },
   "dependencies": {
-    "antd": "^3.15.0",
+    "antd": "^3.15.1",
     "countries-list": "^2.4.2",
     "currency-symbol-map": "^4.0.4",
     "currency.js": "^1.2.1",
     "dva": "^2.5.0-beta.2",
-    "libphonenumber-js": "^1.7.11",
+    "libphonenumber-js": "^1.7.12",
     "pouchdb": "^7.0.0",
     "pouchdb-find": "^7.0.0",
     "react": "^16.8.4",
@@ -25,7 +25,7 @@
   },
   "devDependencies": {
     "babel-eslint": "^10.0.1",
-    "eslint": "^5.15.1",
+    "eslint": "^5.15.3",
     "eslint-config-umi": "^1.4.0",
     "eslint-plugin-flowtype": "^3.4.2",
     "eslint-plugin-import": "^2.14.0",
