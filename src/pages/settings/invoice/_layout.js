@@ -20,12 +20,16 @@ class Settings extends Component {
     });
   }
 
-  handleLogoUpload = upload => {
+  handleLogoUpload = data => {
+    const { organizations } = this.props;
+    const organization = get(organizations.items, localStorage.getItem('organization'));
+
     this.props.dispatch({
       type: 'organizations/logo',
       payload: {
-        organization: localStorage.getItem('organization'),
-        file: get(upload, 'file'),
+        _id: get(organization, '_id'),
+        _rev: get(organization, '_rev'),
+        file: get(data, 'file'),
       },
     });
   };
@@ -66,7 +70,7 @@ class Settings extends Component {
                 <Icon type="picture" />
                 {` Logo`}
               </h2>
-              <Upload.Dragger customRequest={() => this.handleLogoUpload()}>
+              <Upload.Dragger customRequest={data => this.handleLogoUpload(data)}>
                 <p>
                   <Icon type="cloud-upload" style={{ fontSize: 32 }} />
                 </p>
@@ -94,7 +98,9 @@ class Settings extends Component {
 }
 
 export default compose(
-  connect(state => ({})),
+  connect(state => ({
+    organizations: state.organizations,
+  })),
   reduxForm({
     form: 'organization',
     onSubmit: (data, dispatch) => {

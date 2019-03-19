@@ -45,13 +45,12 @@ export default {
 
     *logo(
       {
-        payload: { organization, file },
+        payload: { _id, _rev, file },
       },
       { put, call }
     ) {
       try {
-        console.log(organization, file);
-        const response = yield call(organizationsService.logo, { organization, file });
+        const response = yield call(organizationsService.logo, { _id, _rev, file });
         yield put({ type: 'detailsSuccess', data: response });
         message.success('Organization logo changed!', 5);
       } catch (e) {

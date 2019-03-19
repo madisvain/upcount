@@ -24,13 +24,13 @@ export async function details(id) {
 
 export async function logo(data) {
   try {
-    console.log(data);
-    const response = await db.put(
+    // console.log(data);
+    /* const response = await db.put(
       assign(data, {
         updatedAt: new Date(),
       })
     );
-    return await db.get(response.id);
+    return await db.get(response.id); */
   } catch (error) {
     console.log(error);
   }
