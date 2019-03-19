@@ -22,7 +22,7 @@ class Settings extends Component {
 
   handleLogoUpload = upload => {
     this.props.dispatch({
-      type: 'organization/logo',
+      type: 'organizations/logo',
       payload: {
         organization: localStorage.getItem('organization'),
         file: get(upload, 'file'),
