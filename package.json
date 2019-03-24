@@ -9,16 +9,16 @@
     "precommit": "lint-staged"
   },
   "dependencies": {
-    "antd": "^3.15.1",
+    "antd": "^3.15.2",
     "countries-list": "^2.4.2",
     "currency-symbol-map": "^4.0.4",
     "currency.js": "^1.2.1",
     "dva": "^2.5.0-beta.2",
-    "libphonenumber-js": "^1.7.12",
+    "libphonenumber-js": "^1.7.13",
     "pouchdb": "^7.0.0",
     "pouchdb-find": "^7.0.0",
-    "react": "^16.8.4",
-    "react-dom": "^16.8.4",
+    "react": "^16.8.5",
+    "react-dom": "^16.8.5",
     "recompose": "^0.30.0",
     "redux-form": "^8.1.0",
     "uuid": "^3.3.2"
@@ -26,16 +26,16 @@
   "devDependencies": {
     "babel-eslint": "^10.0.1",
     "eslint": "^5.15.3",
-    "eslint-config-umi": "^1.4.0",
+    "eslint-config-umi": "^1.4.1",
     "eslint-plugin-flowtype": "^3.4.2",
     "eslint-plugin-import": "^2.14.0",
     "eslint-plugin-jsx-a11y": "^6.2.1",
     "eslint-plugin-react": "^7.11.1",
     "husky": "^1.3.1",
     "lint-staged": "^8.1.5",
-    "react-test-renderer": "^16.8.4",
-    "umi": "^2.6.2",
-    "umi-plugin-react": "^1.7.0"
+    "react-test-renderer": "^16.8.5",
+    "umi": "^2.6.8",
+    "umi-plugin-react": "^1.7.2"
   },
   "lint-staged": {
     "*.{js,jsx}": [

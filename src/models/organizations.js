@@ -20,9 +20,14 @@ export default {
       }
     },
 
-    *details({ payload }, { put, call }) {
+    *details(
+      {
+        payload: { id },
+      },
+      { put, call }
+    ) {
       try {
-        const response = yield call(organizationsService.details);
+        const response = yield call(organizationsService.details, id);
         yield put({ type: 'detailsSuccess', data: response });
       } catch (e) {
         message.error('Error loading organization details!', 5);
@@ -37,6 +42,7 @@ export default {
     ) {
       try {
         const response = yield call(organizationsService.details, id);
+        yield put({ type: 'detailsSuccess', data: response });
         yield put(initialize('organization', response, false));
       } catch (e) {
         message.error('Error initializing organization form!', 5);

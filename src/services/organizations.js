@@ -16,21 +16,17 @@ export async function list() {
 
 export async function details(id) {
   try {
-    return await db.get(id);
+    return await db.get(id, { attachments: true });
   } catch (error) {
     console.log(error);
   }
 }
 
 export async function logo(data) {
+  const { _id, _rev, file } = data;
   try {
-    // console.log(data);
-    /* const response = await db.put(
-      assign(data, {
-        updatedAt: new Date(),
-      })
-    );
-    return await db.get(response.id); */
+    const response = await db.putAttachment(_id, 'logo', _rev, file, file.type);
+    return await db.get(response.id);
   } catch (error) {
     console.log(error);
   }
