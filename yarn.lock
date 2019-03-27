@@ -12825,10 +12825,10 @@ uglifyjs-webpack-plugin@1.3.0:
     webpack-sources "^1.1.0"
     worker-farm "^1.5.2"
 
-umi-build-dev@1.7.5:
-  version "1.7.5"
-  resolved "https://registry.yarnpkg.com/umi-build-dev/-/umi-build-dev-1.7.5.tgz#b7eba1649fd76bfeca25b6ddf15f52d3f5f6eb7e"
-  integrity sha512-nJGX5DUMzAPAq/1v20UXoM/jEBkg/awPZhNNwy5Eb9elXxOYN2Bjtld6/Cx77BHfxRNKvafPexUdvCV7c+b5WQ==
+umi-build-dev@1.7.6:
+  version "1.7.6"
+  resolved "https://registry.yarnpkg.com/umi-build-dev/-/umi-build-dev-1.7.6.tgz#d8942d05eb54d8b8f640648750305819ce26ccbf"
+  integrity sha512-/Ta83Y4RDL5egIcleyM3EpJZlYt+zJbHOJstnQwTzd8DtJ700H8LIuBnMP9peaHllAwCd1ypPdkEk2YAAukoxA==
   dependencies:
     "@babel/code-frame" "7.0.0"
     "@babel/generator" "7.3.0"
@@ -13069,10 +13069,10 @@ umi-utils@1.4.0:
     is-url "1.2.4"
     slash2 "2.0.0"
 
-umi@^2.6.8:
-  version "2.6.8"
-  resolved "https://registry.yarnpkg.com/umi/-/umi-2.6.8.tgz#1d88b4348ef377a14c2abad56a4c4534b3690774"
-  integrity sha512-3NzzeDKqEjGqmJC+Z2tfnI9HxIYM4iYXQdb9ziCrlA0kjPGV5Tn+TwLbyxAvXwYiIaS7m+RwS7XEzzr8fE2vsA==
+umi@^2.6.9:
+  version "2.6.9"
+  resolved "https://registry.yarnpkg.com/umi/-/umi-2.6.9.tgz#4d3e636d03520549a56c5ead733868b3250594e0"
+  integrity sha512-Nezsu3oUEVIGnDjyYHYS8ovW+BBIrLBr8XgCeTLEF8WR5PL+6dVBOi3M6WYqEcQKlbWnX2qJqEXVdmkQ2xYWPg==
   dependencies:
     "@babel/core" "7.2.2"
     "@babel/runtime" "7.3.0"
@@ -13087,7 +13087,7 @@ umi@^2.6.8:
     resolve-cwd "2.0.0"
     semver "5.6.0"
     signale "1.3.0"
-    umi-build-dev "1.7.5"
+    umi-build-dev "1.7.6"
     umi-utils "1.4.0"
     update-notifier "2.5.0"
     yargs-parser "13.0.0"
