@@ -1,7 +1,7 @@
 import { routerRedux } from 'dva/router';
 import { initialize, stopSubmit } from 'redux-form';
 import { message } from 'antd';
-import { keyBy } from 'lodash';
+import { get, keyBy, omit } from 'lodash';
 
 import * as organizationsService from '../services/organizations';
 
@@ -94,7 +94,11 @@ export default {
         ...state,
         items: {
           ...state.items,
-          [data._id]: data,
+          [data._id]: omit(data, '_attachments'),
+        },
+        attachments: {
+          ...state.attachments,
+          [data._id]: get(data, '_attachments'),
         },
       };
     },

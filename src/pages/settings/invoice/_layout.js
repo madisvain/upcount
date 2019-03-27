@@ -38,6 +38,7 @@ class Settings extends Component {
     const { handleSubmit, pristine, submitting } = this.props;
     const { organizations } = this.props;
     const organization = get(organizations.items, localStorage.getItem('organization'));
+    const attachments = get(organizations.attachments, localStorage.getItem('organization'));
 
     return (
       <Layout.Content style={{ margin: 16, padding: 24, background: '#fff' }}>
@@ -84,8 +85,15 @@ class Settings extends Component {
               <Icon type="picture" />
               {` Logo`}
             </h2>
-            {has(organization, ['_attachments', 'logo']) ? (
-              <h2>{get(organization, ['_attachments', 'logo', 'data'])}</h2>
+            {has(attachments, 'logo') ? (
+              <img
+                src={URL.createObjectURL(
+                  new Blob([get(attachments, ['logo', 'data'])], {
+                    type: get(attachments, ['logo', 'content_type']),
+                  })
+                )}
+                alt="logo"
+              />
             ) : (
               <Upload.Dragger customRequest={data => this.handleLogoUpload(data)}>
                 <p>
