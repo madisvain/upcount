@@ -1,7 +1,7 @@
 import { routerRedux } from 'dva/router';
 import { initialize, stopSubmit } from 'redux-form';
 import { message } from 'antd';
-import { get, keyBy, omit } from 'lodash';
+import { assign, keyBy } from 'lodash';
 
 import * as organizationsService from '../services/organizations';
 
@@ -49,18 +49,32 @@ export default {
       }
     },
 
-    *logo(
+    *getLogo(
+      {
+        payload: { id },
+      },
+      { put, call }
+    ) {
+      try {
+        const response = yield call(organizationsService.getLogo, { id });
+        yield put({ type: 'logoSuccess', data: assign(response, { id }) });
+      } catch (e) {
+        message.error('Error getting organization logo!', 5);
+      }
+    },
+
+    *setLogo(
       {
         payload: { _id, _rev, file },
       },
       { put, call }
     ) {
       try {
-        const response = yield call(organizationsService.logo, { _id, _rev, file });
-        yield put({ type: 'detailsSuccess', data: response });
-        message.success('Organization logo changed!', 5);
+        const response = yield call(organizationsService.setLogo, { _id, _rev, file });
+        yield put({ type: 'logoSuccess', data: assign(response, { id: _id }) });
+        message.success('Organization logo set!', 5);
       } catch (e) {
-        message.error('Error changing organization logo!', 5);
+        message.error('Error setting organization logo!', 5);
       }
     },
 
@@ -94,11 +108,19 @@ export default {
         ...state,
         items: {
           ...state.items,
-          [data._id]: omit(data, '_attachments'),
+          [data._id]: data,
         },
-        attachments: {
-          ...state.attachments,
-          [data._id]: get(data, '_attachments'),
+      };
+    },
+
+    logoSuccess(state, payload) {
+      const { data } = payload;
+
+      return {
+        ...state,
+        logos: {
+          ...state.logos,
+          [data.id]: URL.createObjectURL(data),
         },
       };
     },

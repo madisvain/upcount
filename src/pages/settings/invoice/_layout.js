@@ -11,9 +11,16 @@ import { ASelect, ATextarea } from '../../../components/fields';
 
 class Settings extends Component {
   componentDidMount() {
+    console.log();
     this.props.dispatch({ type: 'taxRates/list' });
     this.props.dispatch({
       type: 'organizations/initialize',
+      payload: {
+        id: localStorage.getItem('organization'),
+      },
+    });
+    this.props.dispatch({
+      type: 'organizations/getLogo',
       payload: {
         id: localStorage.getItem('organization'),
       },
@@ -25,7 +32,7 @@ class Settings extends Component {
     const organization = get(organizations.items, localStorage.getItem('organization'));
 
     this.props.dispatch({
-      type: 'organizations/logo',
+      type: 'organizations/setLogo',
       payload: {
         _id: get(organization, '_id'),
         _rev: get(organization, '_rev'),
@@ -35,10 +42,9 @@ class Settings extends Component {
   };
 
   render() {
-    const { handleSubmit, pristine, submitting } = this.props;
-    const { organizations } = this.props;
-    const organization = get(organizations.items, localStorage.getItem('organization'));
-    const attachments = get(organizations.attachments, localStorage.getItem('organization'));
+    const { handleSubmit, pristine, submitting, organizations } = this.props;
+    const logo = get(organizations.logos, localStorage.getItem('organization'));
+    console.log(logo);
 
     return (
       <Layout.Content style={{ margin: 16, padding: 24, background: '#fff' }}>
@@ -85,15 +91,8 @@ class Settings extends Component {
               <Icon type="picture" />
               {` Logo`}
             </h2>
-            {has(attachments, 'logo') ? (
-              <img
-                src={URL.createObjectURL(
-                  new Blob([get(attachments, ['logo', 'data'])], {
-                    type: get(attachments, ['logo', 'content_type']),
-                  })
-                )}
-                alt="logo"
-              />
+            {logo ? (
+              <img src={logo} alt="logo" />
             ) : (
               <Upload.Dragger customRequest={data => this.handleLogoUpload(data)}>
                 <p>
