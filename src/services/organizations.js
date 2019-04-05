@@ -22,6 +22,25 @@ export async function details(id) {
   }
 }
 
+export async function getLogo(data) {
+  const { id } = data;
+  try {
+    return await await db.getAttachment(id, 'logo');
+  } catch (error) {
+    console.log(error);
+  }
+}
+
+export async function setLogo(data) {
+  const { _id, _rev, file } = data;
+  try {
+    const response = await db.putAttachment(_id, 'logo', _rev, file, file.type);
+    return await db.getAttachment(response.id, 'logo');
+  } catch (error) {
+    console.log(error);
+  }
+}
+
 export async function save(data) {
   try {
     if (has(data, '_id')) {

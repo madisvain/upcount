@@ -44,6 +44,7 @@ export default {
     ) {
       try {
         const response = yield call(clientsService.details, id);
+        yield put({ type: 'detailsSuccess', data: response });
         yield put(initialize('client', response, false));
       } catch (e) {
         message.error('Error initializing client form!', 5);

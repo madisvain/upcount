@@ -3,7 +3,7 @@ import { compose } from 'redux';
 import { connect } from 'dva';
 import { Field, reduxForm } from 'redux-form';
 import { Button, Col, Form, Icon, Layout, Row, Select, Upload } from 'antd';
-import { map } from 'lodash';
+import { get, has, map } from 'lodash';
 
 import currencyToSymbolMap from 'currency-symbol-map/map';
 
@@ -11,6 +11,7 @@ import { ASelect, ATextarea } from '../../../components/fields';
 
 class Settings extends Component {
   componentDidMount() {
+    console.log();
     this.props.dispatch({ type: 'taxRates/list' });
     this.props.dispatch({
       type: 'organizations/initialize',
@@ -18,50 +19,56 @@ class Settings extends Component {
         id: localStorage.getItem('organization'),
       },
     });
+    this.props.dispatch({
+      type: 'organizations/getLogo',
+      payload: {
+        id: localStorage.getItem('organization'),
+      },
+    });
   }
 
+  handleLogoUpload = data => {
+    const { organizations } = this.props;
+    const organization = get(organizations.items, localStorage.getItem('organization'));
+
+    this.props.dispatch({
+      type: 'organizations/setLogo',
+      payload: {
+        _id: get(organization, '_id'),
+        _rev: get(organization, '_rev'),
+        file: get(data, 'file'),
+      },
+    });
+  };
+
   render() {
-    const { handleSubmit, pristine, submitting } = this.props;
+    const { handleSubmit, pristine, submitting, organizations } = this.props;
+    const logo = get(organizations.logos, localStorage.getItem('organization'));
+    console.log(logo);
 
     return (
-      <div>
-        <Layout.Content style={{ margin: 16, padding: 24, background: '#fff' }}>
+      <Layout.Content style={{ margin: 16, padding: 24, background: '#fff' }}>
+        <Form layout="vertical" onSubmit={handleSubmit}>
           <Row gutter={32}>
             <Col span={12}>
               <h2>
                 <Icon type="file-text" />
                 {` Invoice details`}
               </h2>
-              <Form layout="vertical" onSubmit={handleSubmit}>
-                <Field
-                  showSearch
-                  name="currency"
-                  component={ASelect}
-                  label="Default currency"
-                  style={{ width: '100%' }}
-                >
-                  {map(currencyToSymbolMap, (symbol, currency) => (
-                    <Select.Option value={currency} key={currency}>
-                      {`${currency} ${symbol}`}
-                    </Select.Option>
-                  ))}
-                </Field>
-                <Field name="notes" component={ATextarea} label="Notes" rows={4} />
-              </Form>
-            </Col>
-          </Row>
-          <Row>
-            <Col span={12}>
-              <h2>
-                <Icon type="picture" />
-                {` Logo`}
-              </h2>
-              <Upload.Dragger>
-                <p>
-                  <Icon type="cloud-upload" style={{ fontSize: 32 }} />
-                </p>
-                <p>Click or drag logo to this area to upload</p>
-              </Upload.Dragger>
+              <Field
+                showSearch
+                name="currency"
+                component={ASelect}
+                label="Default currency"
+                style={{ width: '100%' }}
+              >
+                {map(currencyToSymbolMap, (symbol, currency) => (
+                  <Select.Option value={currency} key={currency}>
+                    {`${currency} ${symbol}`}
+                  </Select.Option>
+                ))}
+              </Field>
+              <Field name="notes" component={ATextarea} label="Notes" rows={4} />
             </Col>
           </Row>
           <Row>
@@ -71,20 +78,40 @@ class Settings extends Component {
                 htmlType="submit"
                 disabled={pristine || submitting}
                 loading={submitting}
-                style={{ marginTop: '10px' }}
+                style={{ marginBottom: 40 }}
               >
                 Save
               </Button>
             </Col>
           </Row>
-        </Layout.Content>
-      </div>
+        </Form>
+        <Row>
+          <Col span={12}>
+            <h2>
+              <Icon type="picture" />
+              {` Logo`}
+            </h2>
+            {logo ? (
+              <img src={logo} alt="logo" />
+            ) : (
+              <Upload.Dragger customRequest={data => this.handleLogoUpload(data)}>
+                <p>
+                  <Icon type="cloud-upload" style={{ fontSize: 32 }} />
+                </p>
+                <p>Click or drag logo to this area to upload</p>
+              </Upload.Dragger>
+            )}
+          </Col>
+        </Row>
+      </Layout.Content>
     );
   }
 }
 
 export default compose(
-  connect(state => ({})),
+  connect(state => ({
+    organizations: state.organizations,
+  })),
   reduxForm({
     form: 'organization',
     onSubmit: (data, dispatch) => {

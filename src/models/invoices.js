@@ -44,6 +44,7 @@ export default {
     ) {
       try {
         const response = yield call(invoicesService.details, id);
+        yield put({ type: 'detailsSuccess', data: response });
         yield put(initialize('invoice', response, false));
       } catch (e) {
         message.error('Error initializing invoice form!', 5);

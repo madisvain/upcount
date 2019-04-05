@@ -44,6 +44,7 @@ export default {
     ) {
       try {
         const response = yield call(taxRatesService.details, id);
+        yield put({ type: 'detailsSuccess', data: response });
         yield put(initialize('taxRate', response, false));
       } catch (e) {
         message.error('Error initializing tax rate form!', 5);
