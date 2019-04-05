@@ -91,16 +91,17 @@ class Settings extends Component {
               <Icon type="picture" />
               {` Logo`}
             </h2>
-            {logo ? (
-              <img src={logo} alt="logo" />
-            ) : (
-              <Upload.Dragger customRequest={data => this.handleLogoUpload(data)}>
-                <p>
-                  <Icon type="cloud-upload" style={{ fontSize: 32 }} />
-                </p>
-                <p>Click or drag logo to this area to upload</p>
-              </Upload.Dragger>
-            )}
+            {logo ? <img src={logo} alt="logo" style={{ maxWidth: 250, maxHeight: 250 }} /> : ''}
+            <br />
+            <Upload
+              accept="image/*"
+              showUploadList={false}
+              customRequest={data => this.handleLogoUpload(data)}
+            >
+              <Button style={{ marginTop: 20 }}>
+                <Icon type="upload" /> {logo ? 'Change' : 'Upload'}
+              </Button>
+            </Upload>
           </Col>
         </Row>
       </Layout.Content>
