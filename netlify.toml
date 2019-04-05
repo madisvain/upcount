@@ -1,0 +1,9 @@
+[[redirects]]
+    from = "http://upcount-invoicer.netlify.com/*"
+    to = "http://invoicer.upcount.app/:splat"
+    status = 301
+
+[[redirects]]
+    from = "/*"
+    to = "/index.html"
+    status = 200
