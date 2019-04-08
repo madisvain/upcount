@@ -4,7 +4,7 @@ import { connect } from 'dva';
 import { Field, Form, reduxForm } from 'redux-form';
 import { Button, Col, Icon, Layout, Row } from 'antd';
 
-import { AInput, APhoneInput, ATextarea } from '../../../components/fields';
+import { AInput, APhoneInput, ATextarea } from '../../../components/forms/fields';
 
 class Organization extends Component {
   componentDidMount() {

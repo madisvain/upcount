@@ -7,7 +7,7 @@ import { sortBy, values } from 'lodash';
 
 import router from 'umi/router';
 
-import { AInput } from '../components/fields';
+import { AInput } from '../components/forms/fields';
 
 class Index extends Component {
   componentDidMount() {

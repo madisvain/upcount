@@ -5,7 +5,7 @@ import { get, isUndefined, values } from 'lodash';
 
 import Link from 'umi/link';
 
-import StateTag from '../../components/state-tag';
+import StateTag from '../../components/invoices/state-tag';
 
 class Invoices extends Component {
   componentDidMount() {

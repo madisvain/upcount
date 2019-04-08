@@ -8,7 +8,7 @@ import { get, has, map } from 'lodash';
 import pathToRegexp from 'path-to-regexp';
 import router from 'umi/router';
 
-import { AInput, APhoneInput, ASelect, ATextarea } from '../../components/fields';
+import { AInput, APhoneInput, ASelect, ATextarea } from '../../components/forms/fields';
 
 class ClientForm extends Component {
   state = {
@@ -112,7 +112,7 @@ export default compose(
     form: 'client',
     onSubmit: (data, dispatch) => {
       return new Promise((resolve, reject) => {
-        dispatch({ type: 'clients/save', data: data, resolve, reject });
+        dispatch({ type: 'clients/save', data: data, redirect: '/clients', resolve, reject });
       });
     },
   })

@@ -1,8 +1,8 @@
 import { Component } from 'react';
 import { Layout } from 'antd';
 
-import Header from '../components/header';
-import Navigation from '../components/navigation';
+import Header from '../components/layout/header';
+import Navigation from '../components/layout/navigation';
 
 class BaseLayout extends Component {
   state = {

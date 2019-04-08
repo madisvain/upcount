@@ -9,7 +9,7 @@
     "precommit": "lint-staged"
   },
   "dependencies": {
-    "antd": "^3.16.1",
+    "antd": "^3.16.2",
     "countries-list": "^2.4.2",
     "currency-symbol-map": "^4.0.4",
     "currency.js": "^1.2.1",
@@ -27,7 +27,7 @@
     "babel-eslint": "^10.0.1",
     "eslint": "^5.16.0",
     "eslint-config-umi": "^1.4.2",
-    "eslint-plugin-flowtype": "^3.5.1",
+    "eslint-plugin-flowtype": "^3.6.0",
     "eslint-plugin-import": "^2.14.0",
     "eslint-plugin-jsx-a11y": "^6.2.1",
     "eslint-plugin-react": "^7.11.1",

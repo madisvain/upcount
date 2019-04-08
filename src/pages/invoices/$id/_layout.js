@@ -8,9 +8,9 @@ import { get, has, map, sumBy } from 'lodash';
 import router from 'umi/router';
 import currencyToSymbolMap from 'currency-symbol-map/map';
 
-import LineItems from './_lines';
-import { ADatePicker, AInput, ASelect, ATextarea } from '../../../components/fields';
-import FooterToolbar from '../../../components/footer-toolbar';
+import { ADatePicker, AInput, ASelect, ATextarea } from '../../../components/forms/fields';
+import LineItems from '../../../components/invoices/line-items';
+import FooterToolbar from '../../../components/layout/footer-toolbar';
 
 class InvoiceForm extends Component {
   componentWillMount() {

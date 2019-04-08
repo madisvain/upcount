@@ -7,7 +7,7 @@ import { get, has, map } from 'lodash';
 
 import currencyToSymbolMap from 'currency-symbol-map/map';
 
-import { ASelect, ATextarea } from '../../../components/fields';
+import { ASelect, ATextarea } from '../../../components/forms/fields';
 
 class Settings extends Component {
   componentDidMount() {

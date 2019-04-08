@@ -6,7 +6,7 @@ import { get, map } from 'lodash';
 
 import currency from 'currency.js';
 
-import { AInput, ASelect, ATextarea } from '../../../components/fields';
+import { AInput, ASelect, ATextarea } from '../forms/fields';
 
 class LineItems extends Component {
   componentDidMount() {

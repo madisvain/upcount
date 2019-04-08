@@ -6,7 +6,7 @@ import { has } from 'lodash';
 
 import router from 'umi/router';
 
-import { AInput, ATextarea } from '../../../components/fields';
+import { AInput, ATextarea } from '../../../components/forms/fields';
 
 class TaxForm extends Component {
   closeDrawer = () => {
