@@ -3,7 +3,7 @@ import { compose } from 'redux';
 import { connect } from 'dva';
 import { Field, reduxForm } from 'redux-form';
 import { Button, Col, Form, Icon, Layout, Row, Select, Upload } from 'antd';
-import { get, has, map } from 'lodash';
+import { get, map } from 'lodash';
 
 import currencyToSymbolMap from 'currency-symbol-map/map';
 
@@ -11,7 +11,6 @@ import { ASelect, ATextarea } from '../../../components/forms/fields';
 
 class Settings extends Component {
   componentDidMount() {
-    console.log();
     this.props.dispatch({ type: 'taxRates/list' });
     this.props.dispatch({
       type: 'organizations/initialize',
@@ -44,7 +43,6 @@ class Settings extends Component {
   render() {
     const { handleSubmit, pristine, submitting, organizations } = this.props;
     const logo = get(organizations.logos, localStorage.getItem('organization'));
-    console.log(logo);
 
     return (
       <Layout.Content style={{ margin: 16, padding: 24, background: '#fff' }}>
