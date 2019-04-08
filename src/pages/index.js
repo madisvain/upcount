@@ -50,6 +50,7 @@ class Index extends Component {
                       </a>
                     }
                     onClick={() => this.setOrganization(organization._id)}
+                    style={{ cursor: 'pointer' }}
                   >
                     {organization.name}
                   </Card>
