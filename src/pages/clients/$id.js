@@ -3,8 +3,9 @@ import { compose } from 'redux';
 import { connect } from 'dva';
 import { Field, reduxForm } from 'redux-form';
 import { Button, Drawer, Form, Select } from 'antd';
-import { has, map } from 'lodash';
+import { get, has, map } from 'lodash';
 
+import pathToRegexp from 'path-to-regexp';
 import router from 'umi/router';
 
 import { AInput, APhoneInput, ASelect, ATextarea } from '../../components/fields';
@@ -15,8 +16,11 @@ class ClientForm extends Component {
   };
 
   closeDrawer = () => {
+    const pathname = get(this.props, ['location', 'pathname']);
+    const match = pathToRegexp(`/(.*)/:subpath`).exec(pathname);
+
     router.push({
-      pathname: '/clients',
+      pathname: `/${get(match, 1, 'clients')}`,
     });
   };
 
@@ -40,7 +44,10 @@ class ClientForm extends Component {
       match: { params },
     } = this.props;
 
-    return has(params, 'id') && params['id'] === 'new';
+    const pathname = get(this.props, ['location', 'pathname']);
+    const match = pathToRegexp(`/:path/(.*)`).exec(pathname);
+
+    return has(params, 'id') && params['id'] === 'new' || get(match, 1) !== 'clients';
   };
 
   render() {

@@ -175,12 +175,12 @@ class LineItems extends Component {
           <Table.Column
             title="Tax rate"
             dataIndex="taxRate"
-            key="tax_rate"
+            key="taxRate"
             render={(field, row, index) => (
               <Field name={field} component={ASelect} options={[]}>
                 {map(taxRates.items, rate => {
                   return (
-                    <Select.Option value={rate.id} key={rate.id}>
+                    <Select.Option value={rate._id} key={rate._id}>
                       {rate.name}
                     </Select.Option>
                   );

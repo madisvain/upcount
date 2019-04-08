@@ -3,7 +3,7 @@ import { compose } from 'redux';
 import { connect } from 'dva';
 import { Field, FieldArray, formValueSelector, reduxForm } from 'redux-form';
 import { Button, Col, Form, Icon, Layout, Row, Select } from 'antd';
-import { has, map, sumBy } from 'lodash';
+import { get, has, map, sumBy } from 'lodash';
 
 import router from 'umi/router';
 import currencyToSymbolMap from 'currency-symbol-map/map';
@@ -41,8 +41,12 @@ class InvoiceForm extends Component {
 
   clientSelect = value => {
     if (value === 'new') {
+      const {
+        match: { params },
+      } = this.props;
+
       router.push({
-        pathname: '/invoices/new/client',
+        pathname: `/invoices/${get(params, 'id', 'new')}/client`,
       });
     }
   };
@@ -68,7 +72,7 @@ class InvoiceForm extends Component {
                     {`${client.name}`}
                   </Select.Option>
                 ))}
-                <Select.Option value="new" key="new">
+                <Select.Option value="new" key="new" style={{ borderTop: '1px solid #e8e8e8' }}>
                   <Icon type="user-add" />
                   {` Create new client`}
                 </Select.Option>
