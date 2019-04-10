@@ -3,7 +3,7 @@ import { compose } from 'redux';
 import { connect } from 'dva';
 import { Field, FieldArray, formValueSelector, reduxForm } from 'redux-form';
 import { Button, Col, Form, Icon, Layout, Row, Select } from 'antd';
-import { get, has, map, sumBy } from 'lodash';
+import { get, isString, includes, has, lowerCase, map, sumBy } from 'lodash';
 
 import router from 'umi/router';
 import currencyToSymbolMap from 'currency-symbol-map/map';
@@ -66,6 +66,14 @@ class InvoiceForm extends Component {
                 component={ASelect}
                 label="Client"
                 onSelect={this.clientSelect}
+                optionFilterProp="children"
+                filterOption={(input, option) => {
+                  const clientName = get(option, ['props', 'children']);
+                  if (isString(clientName)) {
+                    return includes(lowerCase(clientName), lowerCase(input));
+                  }
+                  return true;
+                }}
               >
                 {map(clients.items, (client, id) => (
                   <Select.Option value={id} key={id}>

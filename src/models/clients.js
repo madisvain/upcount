@@ -51,13 +51,13 @@ export default {
       }
     },
 
-    *save({ data, redirect, resolve, reject }, { put, call }) {
+    *save({ data, redirect }, { put, call }) {
       try {
         const response = yield call(clientsService.save, data);
         yield put({ type: 'detailsSuccess', data: response });
         message.success('Client saved!', 5);
-        yield put(stopSubmit('client'));
         yield put(routerRedux.push(redirect ? redirect : '/clients'));
+        return response;
       } catch (e) {
         message.error('Error saving client!', 5);
       }

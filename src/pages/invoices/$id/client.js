@@ -8,7 +8,7 @@ import { get } from 'lodash';
 import pathToRegexp from 'path-to-regexp';
 import router from 'umi/router';
 
-import ClientForm from '../../../components/clients/form'
+import ClientForm from '../../../components/clients/form';
 
 class ClientFormDrawer extends Component {
   closeDrawer = () => {
@@ -49,13 +49,18 @@ export default compose(
   })),
   reduxForm({
     form: 'client',
-    onSubmit: (data, dispatch, props) => {
+    onSubmit: async (data, dispatch, props) => {
       const pathname = get(props, ['location', 'pathname']);
       const match = pathToRegexp(`(.*)/:subpath`).exec(pathname);
 
-      return new Promise((resolve, reject) => {
-        dispatch({ type: 'clients/save', data: data, redirect: get(match, 1, 'clients'), resolve, reject });
-      });
+      return await dispatch({
+        type: 'clients/save',
+        data: data,
+        redirect: get(match, 1, 'clients'),
+      }).promise;
+    },
+    onSubmitSuccess: (result, dispatch, props) => {
+      console.log(result, dispatch, props);
     },
   })
 )(ClientFormDrawer);
