@@ -181,10 +181,8 @@ export default compose(
   })),
   reduxForm({
     form: 'invoice',
-    onSubmit: (data, dispatch) => {
-      return new Promise((resolve, reject) => {
-        dispatch({ type: 'invoices/save', data: data, resolve, reject });
-      });
+    onSubmit: async (data, dispatch) => {
+      return await dispatch({ type: 'invoices/save', data: data });
     },
   })
 )(InvoiceForm);

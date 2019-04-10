@@ -77,10 +77,8 @@ class TaxForm extends Component {
 export default compose(
   reduxForm({
     form: 'taxRate',
-    onSubmit: (data, dispatch) => {
-      return new Promise((resolve, reject) => {
-        dispatch({ type: 'taxRates/save', data: data, resolve, reject });
-      });
+    onSubmit: async (data, dispatch) => {
+      return await dispatch({ type: 'taxRates/save', data: data });
     },
   })
 )(TaxForm);

@@ -2,12 +2,14 @@ import { assign, has } from 'lodash';
 
 import db from '../db';
 
-export async function list() {
+export async function list(sort) {
   try {
     return await db.find({
       selector: {
         type: 'taxRate',
+        name: { $gte: null },
       },
+      sort: sort,
     });
   } catch (error) {
     console.log(error);

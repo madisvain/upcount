@@ -1,5 +1,5 @@
 import { routerRedux } from 'dva/router';
-import { initialize, stopSubmit } from 'redux-form';
+import { initialize } from 'redux-form';
 import { message } from 'antd';
 import { assign, keyBy } from 'lodash';
 
@@ -11,9 +11,9 @@ export default {
   state: {},
 
   effects: {
-    *list(action, { put, call }) {
+    *list({ payload: { sort = ['name'] } = {} }, { put, call }) {
       try {
-        const response = yield call(organizationsService.list);
+        const response = yield call(organizationsService.list, sort);
         yield put({ type: 'listSuccess', data: response.docs });
       } catch (e) {
         message.error('Error loading organizations list!', 5);
@@ -83,8 +83,8 @@ export default {
         const response = yield call(organizationsService.save, data);
         yield put({ type: 'detailsSuccess', data: response });
         message.success('Organization saved!', 5);
-        yield put(stopSubmit('organization'));
         yield put(routerRedux.push('/settings/organization'));
+        return response;
       } catch (e) {
         message.error('Error saving organization!', 5);
       }

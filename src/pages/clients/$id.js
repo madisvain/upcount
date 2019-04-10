@@ -69,7 +69,7 @@ export default compose(
   reduxForm({
     form: 'client',
     onSubmit: async (data, dispatch) => {
-      return await dispatch({ type: 'clients/save', data: data }).promise;
+      return await dispatch({ type: 'clients/save', data: data });
     },
   })
 )(ClientFormDrawer);

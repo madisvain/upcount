@@ -57,10 +57,10 @@ export default compose(
         type: 'clients/save',
         data: data,
         redirect: get(match, 1, 'clients'),
-      }).promise;
+      });
     },
     onSubmitSuccess: (result, dispatch, props) => {
-      console.log(result, dispatch, props);
+      console.log(result, props);
     },
   })
 )(ClientFormDrawer);

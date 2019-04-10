@@ -1,5 +1,5 @@
 import { routerRedux } from 'dva/router';
-import { initialize, stopSubmit } from 'redux-form';
+import { initialize } from 'redux-form';
 import { message } from 'antd';
 import { keyBy } from 'lodash';
 
@@ -71,8 +71,8 @@ export default {
         const response = yield call(invoicesService.save, data);
         yield put({ type: 'detailsSuccess', data: response });
         message.success('Invoice saved!', 5);
-        yield put(stopSubmit('invoice'));
         yield put(routerRedux.push('/invoices/'));
+        return response;
       } catch (e) {
         message.error('Error saving invoice!', 5);
       }

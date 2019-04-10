@@ -1,5 +1,5 @@
 import { routerRedux } from 'dva/router';
-import { initialize, stopSubmit } from 'redux-form';
+import { initialize } from 'redux-form';
 import { message } from 'antd';
 import { keyBy } from 'lodash';
 
@@ -13,9 +13,9 @@ export default {
   },
 
   effects: {
-    *list({ payload: { orderBy = 'name' } = {} }, { put, call }) {
+    *list({ payload: { sort = ['name'] } = {} }, { put, call }) {
       try {
-        const response = yield call(clientsService.list);
+        const response = yield call(clientsService.list, sort);
         yield put({ type: 'listSuccess', data: response.docs });
       } catch (e) {
         message.error('Error loading clients list!', 5);

@@ -39,7 +39,7 @@ class Index extends Component {
                 xl: 6,
                 xxl: 3,
               }}
-              dataSource={sortBy(values(organizations.items), ['name'])}
+              dataSource={values(organizations.items)}
               renderItem={organization => (
                 <List.Item>
                   <Card
@@ -93,10 +93,8 @@ export default compose(
   })),
   reduxForm({
     form: 'organization',
-    onSubmit: (data, dispatch) => {
-      return new Promise((resolve, reject) => {
-        dispatch({ type: 'organizations/save', data: data, resolve, reject });
-      });
+    onSubmit: async (data, dispatch) => {
+      return await dispatch({ type: 'organizations/save', data: data });
     },
   })
 )(Index);
