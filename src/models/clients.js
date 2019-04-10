@@ -13,7 +13,7 @@ export default {
   },
 
   effects: {
-    *list(action, { put, call }) {
+    *list({ payload: { orderBy = 'name' } = {} }, { put, call }) {
       try {
         const response = yield call(clientsService.list);
         yield put({ type: 'listSuccess', data: response.docs });
