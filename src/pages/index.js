@@ -2,8 +2,8 @@ import { Component } from 'react';
 import { compose } from 'redux';
 import { connect } from 'dva';
 import { Field, reduxForm } from 'redux-form';
-import { Button, Card, Form, List, Row, Col, Icon } from 'antd';
-import { sortBy, values } from 'lodash';
+import { Button, Card, Form, List, Row, Col } from 'antd';
+import { values } from 'lodash';
 
 import router from 'umi/router';
 
@@ -44,11 +44,6 @@ class Index extends Component {
                 <List.Item>
                   <Card
                     title={organization.name}
-                    extra={
-                      <a href="#">
-                        <Icon type="edit" />
-                      </a>
-                    }
                     onClick={() => this.setOrganization(organization._id)}
                     style={{ cursor: 'pointer' }}
                   >

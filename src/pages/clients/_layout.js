@@ -1,7 +1,7 @@
 import { Component } from 'react';
 import { connect } from 'dva';
 import { Button, Icon, Input, Layout, Table, Tag, Row, Col } from 'antd';
-import { isEmpty, values } from 'lodash';
+import { get, isEmpty, values } from 'lodash';
 
 import Link from 'umi/link';
 
@@ -37,7 +37,7 @@ class Clients extends Component {
           <Table.Column
             title="Name"
             key="name"
-            render={client => <Link to={`/clients/${client._id}`}>{client.name}</Link>}
+            render={client => <Link to={`/clients/${client._id}`}>{get(client, 'name', '-')}</Link>}
           />
           <Table.Column title="Address" dataIndex="address" key="address" />
           <Table.Column

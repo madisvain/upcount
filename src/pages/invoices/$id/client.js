@@ -1,7 +1,7 @@
 import { Component } from 'react';
 import { compose } from 'redux';
 import { connect } from 'dva';
-import { reduxForm } from 'redux-form';
+import { reduxForm, autofill } from 'redux-form';
 import { Drawer } from 'antd';
 import { get } from 'lodash';
 
@@ -59,8 +59,8 @@ export default compose(
         redirect: get(match, 1, 'clients'),
       });
     },
-    onSubmitSuccess: (result, dispatch, props) => {
-      console.log(result, props);
+    onSubmitSuccess: (result, dispatch) => {
+      dispatch(autofill('invoice', 'client', result._id));
     },
   })
 )(ClientFormDrawer);

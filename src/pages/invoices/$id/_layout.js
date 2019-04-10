@@ -9,6 +9,7 @@ import router from 'umi/router';
 import currencyToSymbolMap from 'currency-symbol-map/map';
 
 import { ADatePicker, AInput, ASelect, ATextarea } from '../../../components/forms/fields';
+import { required } from '../../../components/forms/validators';
 import LineItems from '../../../components/invoices/line-items';
 import FooterToolbar from '../../../components/layout/footer-toolbar';
 
@@ -74,10 +75,11 @@ class InvoiceForm extends Component {
                   }
                   return true;
                 }}
+                validate={[required]}
               >
                 {map(clients.items, (client, id) => (
                   <Select.Option value={id} key={id}>
-                    {`${client.name}`}
+                    {get(client, 'name', '-')}
                   </Select.Option>
                 ))}
                 <Select.Option value="new" key="new" style={{ borderTop: '1px solid #e8e8e8' }}>
@@ -87,10 +89,21 @@ class InvoiceForm extends Component {
               </Field>
             </Col>
             <Col span={6}>
-              <Field name="number" component={AInput} label="Invoice number" />
+              <Field
+                name="number"
+                component={AInput}
+                label="Invoice number"
+                validate={[required]}
+              />
             </Col>
             <Col span={6}>
-              <Field showSearch name="currency" component={ASelect} label="Currency">
+              <Field
+                showSearch
+                name="currency"
+                component={ASelect}
+                label="Currency"
+                validate={[required]}
+              >
                 {map(currencyToSymbolMap, (symbol, currency) => (
                   <Select.Option value={currency} key={currency}>
                     {`${currency} ${symbol}`}
@@ -101,7 +114,13 @@ class InvoiceForm extends Component {
           </Row>
           <Row gutter={16}>
             <Col span={6} offset={12}>
-              <Field name="date" component={ADatePicker} label="Date" style={{ width: '100%' }} />
+              <Field
+                name="date"
+                component={ADatePicker}
+                label="Date"
+                style={{ width: '100%' }}
+                validate={[required]}
+              />
             </Col>
             <Col span={6}>
               <Field

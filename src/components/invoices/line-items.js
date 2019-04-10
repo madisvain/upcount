@@ -7,6 +7,7 @@ import { get, map } from 'lodash';
 import currency from 'currency.js';
 
 import { AInput, ASelect, ATextarea } from '../forms/fields';
+import { required } from '../forms/validators';
 
 class LineItems extends Component {
   componentDidMount() {
@@ -139,6 +140,7 @@ class LineItems extends Component {
                 onChange={(event, newValue, previousValue) =>
                   this.onQuantityChange(newValue, previousValue, index)
                 }
+                validate={[required]}
               />
             )}
           />
@@ -154,6 +156,7 @@ class LineItems extends Component {
                 onChange={(event, newValue, previousValue) =>
                   this.onUnitPriceChange(newValue, previousValue, index)
                 }
+                validate={[required]}
               />
             )}
           />
@@ -169,6 +172,7 @@ class LineItems extends Component {
                 onChange={(event, newValue, previousValue) =>
                   this.onSubtotalChange(newValue, previousValue, index)
                 }
+                validate={[required]}
               />
             )}
           />

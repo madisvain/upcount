@@ -3,7 +3,7 @@ import { Field } from 'redux-form';
 import { Button, Form } from 'antd';
 
 import { AInput, APhoneInput, ASelect, ATextarea } from '../../components/forms/fields';
-
+import { emails, required } from '../../components/forms/validators';
 
 class ClientForm extends Component {
   render() {
@@ -11,7 +11,7 @@ class ClientForm extends Component {
 
     return (
       <Form onSubmit={handleSubmit} layout="vertical">
-        <Field name="name" component={AInput} label="Name" />
+        <Field name="name" component={AInput} label="Name" validate={[required]} />
         <Field name="address" component={ATextarea} label="Address" rows={4} />
         <Field
           name="emails"
@@ -19,6 +19,7 @@ class ClientForm extends Component {
           mode="tags"
           tokenSeparators={[',', ';']}
           label="Emails"
+          validate={[emails]}
         />
         <Field name="phone" component={APhoneInput} label="Phone" />
         <Field name="vatin" component={AInput} label="VATIN" />
@@ -33,7 +34,7 @@ class ClientForm extends Component {
           Save client
         </Button>
       </Form>
-    )
+    );
   }
 }
 
