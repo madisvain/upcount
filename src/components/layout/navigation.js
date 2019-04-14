@@ -13,9 +13,8 @@ class Navigation extends Component {
 
   componentDidMount() {
     const pathname = get(this.props, ['location', 'pathname']);
-    const match = pathToRegexp(`/:selectedMenuKey/(.*)`).exec(pathname);
-    const selectedMenuKey = get(match, 1);
-    this.setState({ selectedMenuKeys: [selectedMenuKey] });
+    const match = pathToRegexp(`/(.*)`).exec(pathname);
+    this.setState({ selectedMenuKeys: get(match, 1).split('/') });
   }
 
   handleMenuClick = e => {
@@ -25,12 +24,12 @@ class Navigation extends Component {
         this.props.dispatch({ type: 'auth/logout' });
         break;
       default:
-        this.setState({ selectedMenuKeys: [key] });
+        this.setState({ selectedMenuKeys: e.keyPath });
     }
   };
 
   render() {
-    const { openMenuKeys, selectedMenuKeys } = this.state;
+    const { selectedMenuKeys } = this.state;
 
     return (
       <Layout.Sider trigger={null} collapsible collapsed={this.props.collapsed}>
@@ -72,17 +71,17 @@ class Navigation extends Component {
               </span>
             }
           >
-            <Menu.Item>
+            <Menu.Item key="organization">
               <Link to="/settings/organization">
                 <Icon type="contacts" /> Organization
               </Link>
             </Menu.Item>
-            <Menu.Item>
+            <Menu.Item key="invoice">
               <Link to="/settings/invoice">
                 <Icon type="contacts" /> Invoice
               </Link>
             </Menu.Item>
-            <Menu.Item>
+            <Menu.Item key="tax-rates">
               <Link to="/settings/tax-rates">
                 <Icon type="calculator" /> Tax rates
               </Link>
