@@ -3,9 +3,10 @@ import { compose } from 'redux';
 import { connect } from 'dva';
 import { Field, FieldArray, formValueSelector, reduxForm } from 'redux-form';
 import { Button, Col, Form, Icon, Layout, Row, Select } from 'antd';
-import { get, isString, includes, has, lowerCase, map, sumBy } from 'lodash';
+import { forEach, get, isString, includes, has, lowerCase, map, sumBy } from 'lodash';
 
 import router from 'umi/router';
+import currency from 'currency.js';
 import currencyToSymbolMap from 'currency-symbol-map/map';
 
 import { ADatePicker, AInput, ASelect, ATextarea } from '../../../components/forms/fields';
@@ -14,20 +15,15 @@ import LineItems from '../../../components/invoices/line-items';
 import FooterToolbar from '../../../components/layout/footer-toolbar';
 
 class InvoiceForm extends Component {
-  componentWillMount() {
-    const {
-      match: { params },
-    } = this.props;
-
+  componentDidMount() {
     if (!this.isNew()) {
       this.props.dispatch({
         type: 'invoices/initialize',
         payload: {
-          id: params['id'],
+          id: get(this.props, ['match', 'params', 'id']),
         },
       });
     }
-
     this.props.dispatch({ type: 'clients/list' });
     this.props.dispatch({ type: 'taxRates/list' });
   }
@@ -53,7 +49,26 @@ class InvoiceForm extends Component {
   };
 
   render() {
-    const { children, clients, handleSubmit, lineItems, pristine, submitting } = this.props;
+    const {
+      children,
+      clients,
+      handleSubmit,
+      lineItems,
+      pristine,
+      submitting,
+      taxRates,
+    } = this.props;
+
+    // Calculate totals
+    let subTotal = currency(sumBy(lineItems, 'subtotal') || 0, { separator: '' }).format();
+    let taxTotal = currency(0, { separator: '' }).format();
+    let total = currency(0, { separator: '' }).format();
+    forEach(lineItems, line => {
+      if (has(line, 'taxRate')) {
+        const taxRate = get(taxRates, line.taxRate);
+      }
+      console.log(line.taxRate);
+    });
 
     return (
       <Layout.Content style={{ margin: '16px 16px 72px 16px', padding: 24, background: '#fff' }}>
@@ -146,20 +161,24 @@ class InvoiceForm extends Component {
               <table style={{ width: '100%' }}>
                 <tbody>
                   <tr>
-                    <th>Subtotal</th>
-                    <td>{sumBy(lineItems, 'subtotal') || 0}</td>
+                    <td style={{ textAlign: 'right', width: '50%' }}>
+                      <h4>Subtotal</h4>
+                    </td>
+                    <td style={{ textAlign: 'right' }}>
+                      <h4>{subTotal}</h4>
+                    </td>
                   </tr>
                   <tr>
-                    <th>Tax</th>
-                    <td>{sumBy(lineItems, 'tax') || 0}</td>
+                    <td style={{ textAlign: 'right' }}>Tax</td>
+                    <td style={{ textAlign: 'right' }}>{taxTotal}</td>
                   </tr>
                   <tr>
-                    <th>Discount</th>
-                    <td>{/*discount*/}</td>
-                  </tr>
-                  <tr>
-                    <th>Total</th>
-                    <td>{sumBy(lineItems, 'total') || 0}</td>
+                    <td style={{ textAlign: 'right', paddingTop: 24 }}>
+                      <h2>Total</h2>
+                    </td>
+                    <td style={{ textAlign: 'right', paddingTop: 24 }}>
+                      <h2>{total}</h2>
+                    </td>
                   </tr>
                 </tbody>
               </table>
@@ -202,6 +221,7 @@ export default compose(
     form: 'invoice',
     initialValues: {
       currency: 'EUR',
+      lineItems: [{}],
     },
     onSubmit: async (data, dispatch) => {
       return await dispatch({ type: 'invoices/save', data: data });

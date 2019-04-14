@@ -10,13 +10,6 @@ import { AInput, ASelect, ATextarea } from '../forms/fields';
 import { required } from '../forms/validators';
 
 class LineItems extends Component {
-  componentDidMount() {
-    const { fields } = this.props;
-    if (fields.length === 0) {
-      fields.push({});
-    }
-  }
-
   onQuantityChange = (newValue, previousValue, index) => {
     const lineItem = get(this.props.lineItems, index);
 
