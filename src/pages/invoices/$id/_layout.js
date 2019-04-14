@@ -200,6 +200,9 @@ export default compose(
   })),
   reduxForm({
     form: 'invoice',
+    initialValues: {
+      currency: 'EUR',
+    },
     onSubmit: async (data, dispatch) => {
       return await dispatch({ type: 'invoices/save', data: data });
     },
