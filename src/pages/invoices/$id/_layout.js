@@ -3,7 +3,7 @@ import { compose } from 'redux';
 import { connect } from 'dva';
 import { Field, FieldArray, formValueSelector, reduxForm } from 'redux-form';
 import { Button, Col, Form, Icon, Layout, Row, Select } from 'antd';
-import { forEach, get, isString, includes, has, lowerCase, map, sumBy } from 'lodash';
+import { forEach, get, isString, includes, has, lowerCase, map } from 'lodash';
 
 import router from 'umi/router';
 import currency from 'currency.js';
@@ -62,7 +62,6 @@ class InvoiceForm extends Component {
     // Calculate totals
     let subTotal = currency(0, { separator: '' });
     let taxTotal = currency(0, { separator: '' });
-    let total = currency(0, { separator: '' });
     forEach(lineItems, line => {
       if (has(line, 'subtotal')) {
         subTotal = subTotal.add(line.subtotal);
@@ -191,7 +190,18 @@ class InvoiceForm extends Component {
             </Col>
           </Row>
 
-          <FooterToolbar>
+          <FooterToolbar
+            extra={
+              <Button type="danger" style={{ marginTop: '10px' }}>
+                <Icon type="delete" />
+                Revoke
+              </Button>
+            }
+          >
+            <Button type="dashed" style={{ marginTop: '10px' }}>
+              <Icon type="eye" />
+              Preview
+            </Button>
             <Button style={{ marginTop: '10px' }}>
               <Icon type="file-pdf" />
               Download PDF
