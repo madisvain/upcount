@@ -1,13 +1,28 @@
 import { Component } from 'react';
 import { connect } from 'dva';
 import { Button, Dropdown, Icon, Input, Layout, Menu, Table, Row, Col } from 'antd';
-import { get, isUndefined, values } from 'lodash';
+import {
+  compact,
+  flatten,
+  filter,
+  find,
+  get,
+  has,
+  escapeRegExp,
+  isUndefined,
+  pick,
+  values,
+} from 'lodash';
 
 import Link from 'umi/link';
 
 import StateTag from '../../components/invoices/state-tag';
 
 class Invoices extends Component {
+  state = {
+    search: null,
+  };
+
   componentDidMount() {
     this.props.dispatch({ type: 'invoices/list' });
     this.props.dispatch({ type: 'clients/list' });
@@ -24,8 +39,28 @@ class Invoices extends Component {
     });
   };
 
+  onSearch = value => {
+    this.setState({
+      search: value,
+    });
+  };
+
   render() {
     const { clients, invoices } = this.props;
+    const { search } = this.state;
+
+    let searchedInvoiceItems = [];
+    if (search) {
+      searchedInvoiceItems = filter(values(invoices.items), invoice => {
+        let searchable = flatten(compact(values(pick(invoice, ['number', 'sum']))));
+        if (has(invoice, 'client') && has(clients.items, invoice.client)) {
+          searchable.push(get(clients.items, [invoice.client, 'name']));
+        }
+        return find(searchable, value => {
+          return !!~value.search(new RegExp(escapeRegExp(search), 'i'));
+        });
+      });
+    }
 
     const stateMenu = (_id, _rev) => (
       <Menu onClick={({ item, key }) => this.onStateSelect(_id, _rev, key)}>
@@ -54,11 +89,15 @@ class Invoices extends Component {
         </Link>
         <Input.Search
           placeholder="input search text"
-          onSearch={value => console.log(value)}
+          onChange={e => this.onSearch(e.target.value)}
           style={{ width: 200, float: 'right' }}
         />
 
-        <Table dataSource={values(invoices.items)} pagination={false} rowKey="_id">
+        <Table
+          dataSource={search ? searchedInvoiceItems : values(invoices.items)}
+          pagination={false}
+          rowKey="_id"
+        >
           <Table.Column
             title="Number"
             key="number"

@@ -3,6 +3,7 @@ import { Icon, Menu, Layout } from 'antd';
 import { get, last } from 'lodash';
 
 import Link from 'umi/link';
+import withRouter from 'umi/withRouter';
 import pathToRegexp from 'path-to-regexp';
 
 class Navigation extends Component {
@@ -29,7 +30,7 @@ class Navigation extends Component {
   };
 
   render() {
-    const { selectedMenuKeys } = this.state;
+    const { openMenuKeys, selectedMenuKeys } = this.state;
 
     return (
       <Layout.Sider trigger={null} collapsible collapsed={this.props.collapsed}>
@@ -40,6 +41,7 @@ class Navigation extends Component {
         <Menu
           theme="dark"
           mode="inline"
+          openKeys={selectedMenuKeys}
           selectedKeys={selectedMenuKeys}
           onClick={this.handleMenuClick}
         >
@@ -62,6 +64,7 @@ class Navigation extends Component {
 
           <Menu.SubMenu
             key="settings"
+            onTitleClick={({ key }) => this.handleMenuClick({ keyPath: [key] })}
             title={
               <span>
                 <Icon type="setting" />
@@ -91,4 +94,4 @@ class Navigation extends Component {
   }
 }
 
-export default Navigation;
+export default withRouter(Navigation);

@@ -1,17 +1,41 @@
 import { Component } from 'react';
 import { connect } from 'dva';
 import { Button, Icon, Input, Layout, Table, Tag, Row, Col } from 'antd';
-import { get, isEmpty, values } from 'lodash';
+import { compact, find, filter, flatten, get, escapeRegExp, pick, isEmpty, values } from 'lodash';
 
 import Link from 'umi/link';
 
 class Clients extends Component {
+  state = {
+    search: null,
+  };
+
   componentDidMount() {
     this.props.dispatch({ type: 'clients/list' });
   }
 
+  onSearch = value => {
+    this.setState({
+      search: value,
+    });
+  };
+
   render() {
     const { children, clients } = this.props;
+    const { search } = this.state;
+
+    // Search - to be implemented in DB
+    let searchedClientItems = [];
+    if (search) {
+      searchedClientItems = filter(values(clients.items), client => {
+        const searchable = flatten(
+          compact(values(pick(client, ['name', 'address', 'emails', 'phone', 'vatin', 'website'])))
+        );
+        return find(searchable, value => {
+          return !!~value.search(new RegExp(escapeRegExp(search), 'i'));
+        });
+      });
+    }
 
     return (
       <Layout.Content style={{ margin: 16, padding: 24, background: '#fff' }}>
@@ -29,11 +53,15 @@ class Clients extends Component {
           </Button>
         </Link>
         <Input.Search
-          placeholder="input search text"
-          onSearch={value => console.log(value)}
+          placeholder="Search text"
+          onChange={e => this.onSearch(e.target.value)}
           style={{ width: 200, float: 'right' }}
         />
-        <Table dataSource={values(clients.items)} pagination={false} rowKey="_id">
+        <Table
+          dataSource={search ? searchedClientItems : values(clients.items)}
+          pagination={false}
+          rowKey="_id"
+        >
           <Table.Column
             title="Name"
             key="name"
