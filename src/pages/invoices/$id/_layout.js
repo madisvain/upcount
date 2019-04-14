@@ -60,14 +60,20 @@ class InvoiceForm extends Component {
     } = this.props;
 
     // Calculate totals
-    let subTotal = currency(sumBy(lineItems, 'subtotal') || 0, { separator: '' }).format();
-    let taxTotal = currency(0, { separator: '' }).format();
-    let total = currency(0, { separator: '' }).format();
+    let subTotal = currency(0, { separator: '' });
+    let taxTotal = currency(0, { separator: '' });
+    let total = currency(0, { separator: '' });
     forEach(lineItems, line => {
-      if (has(line, 'taxRate')) {
-        const taxRate = get(taxRates, line.taxRate);
+      if (has(line, 'subtotal')) {
+        subTotal = subTotal.add(line.subtotal);
+        if (has(line, 'taxRate')) {
+          const taxRate = get(taxRates.items, line.taxRate);
+          if (taxRate) {
+            const lineTax = currency(line.subtotal).multiply(taxRate.percentage / 100);
+            taxTotal = taxTotal.add(lineTax);
+          }
+        }
       }
-      console.log(line.taxRate);
     });
 
     return (
@@ -165,19 +171,19 @@ class InvoiceForm extends Component {
                       <h4>Subtotal</h4>
                     </td>
                     <td style={{ textAlign: 'right' }}>
-                      <h4>{subTotal}</h4>
+                      <h4>{subTotal.format()}</h4>
                     </td>
                   </tr>
                   <tr>
                     <td style={{ textAlign: 'right' }}>Tax</td>
-                    <td style={{ textAlign: 'right' }}>{taxTotal}</td>
+                    <td style={{ textAlign: 'right' }}>{taxTotal.format()}</td>
                   </tr>
                   <tr>
                     <td style={{ textAlign: 'right', paddingTop: 24 }}>
                       <h2>Total</h2>
                     </td>
                     <td style={{ textAlign: 'right', paddingTop: 24 }}>
-                      <h2>{total}</h2>
+                      <h2>{subTotal.add(taxTotal).format()}</h2>
                     </td>
                   </tr>
                 </tbody>
