@@ -5,7 +5,9 @@ import { Field, FieldArray, formValueSelector, reduxForm } from 'redux-form';
 import { Button, Col, Form, Icon, Layout, Row, Select } from 'antd';
 import { forEach, get, isString, includes, has, lowerCase, map } from 'lodash';
 
+import Link from 'umi/link';
 import router from 'umi/router';
+import withRouter from 'umi/withRouter';
 import currency from 'currency.js';
 import currencyToSymbolMap from 'currency-symbol-map/map';
 
@@ -50,6 +52,7 @@ class InvoiceForm extends Component {
 
   render() {
     const {
+      location,
       children,
       clients,
       handleSubmit,
@@ -75,6 +78,16 @@ class InvoiceForm extends Component {
       }
     });
 
+    // Invoice preview
+    if (get(location, 'pathname', '').endsWith('preview')) {
+      return (
+        <Layout.Content style={{ margin: '16px 16px 72px 16px', padding: 24, background: '#fff' }}>
+          {children}
+        </Layout.Content>
+      );
+    }
+
+    // Invoice form
     return (
       <Layout.Content style={{ margin: '16px 16px 72px 16px', padding: 24, background: '#fff' }}>
         <Form onSubmit={handleSubmit}>
@@ -192,26 +205,28 @@ class InvoiceForm extends Component {
 
           <FooterToolbar
             extra={
-              <Button type="danger" style={{ marginTop: '10px' }}>
+              <Button type="danger" style={{ marginTop: 10 }}>
                 <Icon type="delete" />
                 Revoke
               </Button>
             }
           >
-            <Button type="dashed" style={{ marginTop: '10px' }}>
-              <Icon type="eye" />
-              Preview
-            </Button>
-            <Button style={{ marginTop: '10px' }}>
-              <Icon type="file-pdf" />
-              Download PDF
+            <Link to={`/invoices/${get(this.props, ['match', 'params', 'id'])}/preview`}>
+              <Button type="dashed" style={{ marginTop: 10, marginRight: 8 }}>
+                <Icon type="eye" />
+                Preview
+              </Button>
+            </Link>
+            <Button style={{ marginTop: 10 }} onClick={() => window.print()}>
+              <Icon type="printer" />
+              Print
             </Button>
             <Button
               type="primary"
               htmlType="submit"
               disabled={pristine || submitting}
               loading={submitting}
-              style={{ marginTop: '10px' }}
+              style={{ marginTop: 10 }}
             >
               <Icon type="save" />
               Save invoice
@@ -228,6 +243,7 @@ class InvoiceForm extends Component {
 const selector = formValueSelector('invoice');
 
 export default compose(
+  withRouter,
   connect(state => ({
     clients: state.clients,
     taxRates: state.taxRates,

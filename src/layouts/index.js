@@ -18,17 +18,19 @@ class BaseLayout extends Component {
   render() {
     const { children, location } = this.props;
 
-    return (
-      <Layout style={{ minHeight: '100vh' }}>
-        {location.pathname !== '/' && <Navigation collapsed={this.state.collapsed} />}
-        <Layout>
-          {location.pathname !== '/' && (
+    if (location.pathname === '/') {
+      return <Layout style={{ minHeight: '100vh' }}>{children}</Layout>;
+    } else {
+      return (
+        <Layout style={{ minHeight: '100vh' }}>
+          <Navigation collapsed={this.state.collapsed} />
+          <Layout>
             <Header collapsed={this.state.collapsed} onToggl={this.toggleSider} />
-          )}
-          {children}
+            {children}
+          </Layout>
         </Layout>
-      </Layout>
-    );
+      );
+    }
   }
 }
 

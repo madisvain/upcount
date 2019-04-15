@@ -1,5 +1,6 @@
 // ref: https://umijs.org/config/
 export default {
+  hash: true,
   treeShaking: true,
   plugins: [
     // ref: https://umijs.org/plugin/umi-plugin-react.html
@@ -23,5 +24,4 @@ export default {
       },
     ],
   ],
-  hash: true,
 };
