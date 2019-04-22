@@ -9,7 +9,7 @@
     "precommit": "lint-staged"
   },
   "dependencies": {
-    "antd": "^3.16.3",
+    "antd": "^3.16.5",
     "countries-list": "^2.4.2",
     "currency-symbol-map": "^4.0.4",
     "currency.js": "^1.2.1",

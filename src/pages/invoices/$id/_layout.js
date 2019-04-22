@@ -16,6 +16,27 @@ import { required } from '../../../components/forms/validators';
 import LineItems from '../../../components/invoices/line-items';
 import FooterToolbar from '../../../components/layout/footer-toolbar';
 
+const totals = (lineItems, taxRates) => {
+  let subTotal = currency(0, { separator: '' });
+  let taxTotal = currency(0, { separator: '' });
+
+  forEach(lineItems, line => {
+    if (has(line, 'subtotal')) {
+      subTotal = subTotal.add(line.subtotal);
+      if (has(line, 'taxRate')) {
+        const taxRate = get(taxRates.items, line.taxRate);
+        if (taxRate) {
+          const lineTax = currency(line.subtotal).multiply(taxRate.percentage / 100);
+          taxTotal = taxTotal.add(lineTax);
+        }
+      }
+    }
+  });
+
+  const total = subTotal.add(taxTotal);
+  return { subTotal, taxTotal, total };
+};
+
 class InvoiceForm extends Component {
   componentDidMount() {
     if (!this.isNew()) {
@@ -61,22 +82,7 @@ class InvoiceForm extends Component {
       submitting,
       taxRates,
     } = this.props;
-
-    // Calculate totals
-    let subTotal = currency(0, { separator: '' });
-    let taxTotal = currency(0, { separator: '' });
-    forEach(lineItems, line => {
-      if (has(line, 'subtotal')) {
-        subTotal = subTotal.add(line.subtotal);
-        if (has(line, 'taxRate')) {
-          const taxRate = get(taxRates.items, line.taxRate);
-          if (taxRate) {
-            const lineTax = currency(line.subtotal).multiply(taxRate.percentage / 100);
-            taxTotal = taxTotal.add(lineTax);
-          }
-        }
-      }
-    });
+    const { subTotal, taxTotal, total } = totals(lineItems, taxRates);
 
     // Invoice preview
     if (get(location, 'pathname', '').endsWith('preview')) {
@@ -195,7 +201,7 @@ class InvoiceForm extends Component {
                       <h2>Total</h2>
                     </td>
                     <td style={{ textAlign: 'right', paddingTop: 24 }}>
-                      <h2>{subTotal.add(taxTotal).format()}</h2>
+                      <h2>{total.format()}</h2>
                     </td>
                   </tr>
                 </tbody>
@@ -255,8 +261,18 @@ export default compose(
       currency: 'EUR',
       lineItems: [{}],
     },
-    onSubmit: async (data, dispatch) => {
-      return await dispatch({ type: 'invoices/save', data: data });
+    onSubmit: async (data, dispatch, props) => {
+      const { lineItems, taxRates } = props;
+      const { subTotal, taxTotal, total } = totals(lineItems, taxRates);
+      return await dispatch({
+        type: 'invoices/save',
+        data: {
+          ...data,
+          subTotal: subTotal.format(),
+          taxTotal: taxTotal.format(),
+          total: total.format(),
+        },
+      });
     },
   })
 )(InvoiceForm);

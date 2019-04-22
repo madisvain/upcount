@@ -114,9 +114,24 @@ class Invoices extends Component {
             key="client"
             render={client => get(clients.items, `${client}.name`, '-')}
           />
-          <Table.Column title="Date" dataIndex="date" key="date" />
-          <Table.Column title="Due date" dataIndex="due_date" key="due_date" />
-          <Table.Column title="Sum" dataIndex="total" key="total" />
+          <Table.Column
+            title="Date"
+            dataIndex="date"
+            key="date"
+            render={date => (date ? date : '-')}
+          />
+          <Table.Column
+            title="Due date"
+            dataIndex="due_date"
+            key="due_date"
+            render={date => (date ? date : '-')}
+          />
+          <Table.Column
+            title="Sum"
+            dataIndex="total"
+            key="total"
+            render={total => (total ? total : '-')}
+          />
           <Table.Column
             title="State"
             key="state"
