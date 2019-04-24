@@ -3,7 +3,7 @@
   "scripts": {
     "start": "electron app/dist/main",
     "start:main": "electron-webpack dev",
-    "start:renderer": "APP_ROOT=src/renderer umi dev",
+    "start:renderer": "umi dev",
     "build:dev": "NODE_ENV=development webpack --config ./webpack/development.config.js",
     "umi:start": "umi dev",
     "umi:build": "umi build",
