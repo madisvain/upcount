@@ -37,6 +37,7 @@ export async function save(data) {
         assign(data, {
           type: 'invoice',
           state: 'draft',
+          organization: localStorage.getItem('organization'),
           createdAt: new Date(),
         })
       );

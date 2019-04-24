@@ -37,6 +37,7 @@ export async function save(data) {
       const response = await db.post(
         assign(data, {
           type: 'taxRate',
+          organization: localStorage.getItem('organization'),
           createdAt: new Date(),
         })
       );

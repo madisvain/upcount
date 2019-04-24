@@ -6,8 +6,8 @@ export async function list(sort) {
   try {
     return await db.find({
       selector: {
+        name: { $gt: null },
         type: 'client',
-        name: { $gte: null },
       },
       sort: sort,
     });
@@ -37,6 +37,7 @@ export async function save(data) {
       const response = await db.post(
         assign(data, {
           type: 'client',
+          organization: localStorage.getItem('organization'),
           createdAt: new Date(),
         })
       );
