@@ -5,9 +5,9 @@ PouchDB.plugin(PouchDBFind);
 
 const db = new PouchDB('invoicer');
 
-// Create Document indexes for type & name
+// Create Document index for name
 db.createIndex({
-  index: { fields: ['type', 'name'] },
+  index: { fields: ['name'] },
 });
 
 export default db;

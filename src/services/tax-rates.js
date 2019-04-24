@@ -7,6 +7,7 @@ export async function list(sort) {
     return await db.find({
       selector: {
         type: 'taxRate',
+        organization: localStorage.getItem('organization'),
         name: { $gte: null },
       },
       sort: sort,

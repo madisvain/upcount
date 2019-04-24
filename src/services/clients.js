@@ -6,8 +6,9 @@ export async function list(sort) {
   try {
     return await db.find({
       selector: {
-        name: { $gt: null },
         type: 'client',
+        organization: localStorage.getItem('organization'),
+        name: { $gt: null },
       },
       sort: sort,
     });

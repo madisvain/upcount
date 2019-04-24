@@ -7,6 +7,7 @@ export async function list() {
     return await db.find({
       selector: {
         type: 'invoice',
+        organization: localStorage.getItem('organization'),
       },
     });
   } catch (error) {
