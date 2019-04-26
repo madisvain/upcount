@@ -4,7 +4,7 @@ const path = require('path');
 
 module.exports = {
   output: {
-    path: path.resolve(__dirname, '../dist/main'),
+    path: path.resolve(__dirname, '../../dist/main'),
     filename: '[name].js',
   },
   node: {

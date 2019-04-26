@@ -1,15 +1,20 @@
 {
+  "name": "Upcount",
+  "version": "0.1.0",
   "private": true,
   "scripts": {
-    "start": "electron app/dist/main",
-    "start:main": "electron-webpack dev",
-    "start:renderer": "umi dev",
-    "build:dev": "NODE_ENV=development webpack --config ./webpack/development.config.js",
+    "electron": "electron app/dist/main",
+    "electron:main": "electron-webpack dev",
+    "electron:renderer": "umi dev",
+    "electron:package": "yarn umi:build && yarn webpack:main:production && electron-builder --dir",
+    "electron:dist": "electron-builder",
     "umi:start": "umi dev",
     "umi:build": "umi build",
     "umi:test": "umi test",
     "lint": "eslint --ext .js src mock tests",
-    "precommit": "lint-staged"
+    "precommit": "lint-staged",
+    "webpack:main:development": "NODE_ENV=development webpack --config ./main/webpack/development.config.js",
+    "webpack:main:production": "NODE_ENV=production webpack --config ./main/webpack/production.config.js"
   },
   "dependencies": {
     "antd": "^3.16.5",
@@ -30,7 +35,7 @@
   },
   "devDependencies": {
     "babel-eslint": "^10.0.1",
-    "electron": "^5.0.0",
+    "electron": "^4.1.5",
     "electron-builder": "^20.39.0",
     "electron-debug": "^2.2.0",
     "electron-webpack": "^2.6.2",
@@ -42,6 +47,7 @@
     "eslint-plugin-react": "^7.11.1",
     "husky": "^2.0.0",
     "lint-staged": "^8.1.5",
+    "node-abi": "^2.8.0",
     "react-test-renderer": "^16.8.6",
     "umi": "^2.6.16",
     "umi-plugin-react": "^1.7.5"
