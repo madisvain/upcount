@@ -5,7 +5,7 @@ const baseConfig = require('./base.config');
 module.exports = merge.smart(baseConfig, {
   target: 'electron-main',
   entry: {
-    main: './main/main.js',
+    main: './src/main/main.js',
   },
   module: {
     rules: [

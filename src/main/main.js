@@ -14,9 +14,10 @@ function createWindow() {
     mainWindow.loadURL('http://localhost:8000/#/');
     mainWindow.webContents.openDevTools();
   } else {
+    mainWindow.webContents.openDevTools();
     mainWindow.loadURL(
       url.format({
-        pathname: path.join(__dirname, './dist/renderer/index.html'),
+        pathname: path.join(__dirname, './index.html'),
         protocol: 'file:',
         slashes: true,
       })

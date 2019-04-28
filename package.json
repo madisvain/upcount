@@ -8,13 +8,13 @@
     "electron:renderer": "umi dev",
     "electron:package": "yarn umi:build && yarn webpack:main:production && electron-builder --dir",
     "electron:dist": "electron-builder",
-    "umi:start": "umi dev",
-    "umi:build": "umi build",
-    "umi:test": "umi test",
+    "umi:start": "APP_ROOT=src/renderer umi dev",
+    "umi:build": "APP_ROOT=src/renderer umi build",
+    "umi:test": "APP_ROOT=src/renderer umi test",
     "lint": "eslint --ext .js src mock tests",
     "precommit": "lint-staged",
-    "webpack:main:development": "NODE_ENV=development webpack --config ./main/webpack/development.config.js",
-    "webpack:main:production": "NODE_ENV=production webpack --config ./main/webpack/production.config.js"
+    "webpack:main:development": "NODE_ENV=development webpack --config ./webpack/development.config.js",
+    "webpack:main:production": "NODE_ENV=production webpack --config ./webpack/production.config.js"
   },
   "dependencies": {
     "antd": "^3.16.5",
@@ -61,12 +61,8 @@
   "engines": {
     "node": ">=8.0.0"
   },
-  "electronWebpack": {
-    "main": {
-      "sourceDirectory": "main"
-    },
-    "renderer": {
-      "sourceDirectory": "src"
-    }
+  "build": {
+    "appId": "com.upcount.app",
+    "productName": "Upcount"
   }
 }
