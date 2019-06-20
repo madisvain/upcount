@@ -8,7 +8,7 @@ export async function list(sort) {
       selector: {
         type: 'client',
         organization: localStorage.getItem('organization'),
-        name: { $gt: null },
+        name: { $gte: null },
       },
       sort: sort,
     });
