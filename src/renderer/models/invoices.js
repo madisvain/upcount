@@ -1,4 +1,3 @@
-import { routerRedux } from 'dva/router';
 import { initialize } from 'redux-form';
 import { message } from 'antd';
 import { keyBy } from 'lodash';
@@ -13,9 +12,9 @@ export default {
   },
 
   effects: {
-    *list(action, { put, call }) {
+    *list({ payload: { sort = ['number'] } = {} }, { put, call }) {
       try {
-        const response = yield call(invoicesService.list);
+        const response = yield call(invoicesService.list, sort);
         yield put({ type: 'listSuccess', data: response.docs });
       } catch (e) {
         message.error('Error loading invoices list!', 5);
@@ -71,7 +70,6 @@ export default {
         const response = yield call(invoicesService.save, data);
         yield put({ type: 'detailsSuccess', data: response });
         message.success('Invoice saved!', 5);
-        yield put(routerRedux.push('/invoices/'));
         return response;
       } catch (e) {
         message.error('Error saving invoice!', 5);

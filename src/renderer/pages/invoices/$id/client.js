@@ -49,18 +49,19 @@ export default compose(
   })),
   reduxForm({
     form: 'client',
-    onSubmit: async (data, dispatch, props) => {
+    onSubmit: async (data, dispatch) => {
+      return await dispatch({ type: 'clients/save', data: data });
+    },
+    onSubmitSuccess: (result, dispatch, props) => {
+      console.log(this, props);
+      dispatch(autofill('invoice', 'client', result._id));
+
       const pathname = get(props, ['location', 'pathname']);
       const match = pathToRegexp(`(.*)/:subpath`).exec(pathname);
 
-      return await dispatch({
-        type: 'clients/save',
-        data: data,
-        redirect: get(match, 1, 'clients'),
+      router.push({
+        pathname: get(match, 1, '/clients'),
       });
-    },
-    onSubmitSuccess: (result, dispatch) => {
-      dispatch(autofill('invoice', 'client', result._id));
     },
   })
 )(ClientFormDrawer);

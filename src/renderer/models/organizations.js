@@ -1,4 +1,3 @@
-import { routerRedux } from 'dva/router';
 import { initialize } from 'redux-form';
 import { message } from 'antd';
 import { assign, keyBy } from 'lodash';
@@ -59,7 +58,9 @@ export default {
         const response = yield call(organizationsService.getLogo, { id });
         yield put({ type: 'logoSuccess', data: assign(response, { id }) });
       } catch (e) {
-        message.error('Error getting organization logo!', 5);
+        if (!(e.status === 404)) {
+          message.error('Error getting organization logo!', 5);
+        }
       }
     },
 
@@ -83,7 +84,6 @@ export default {
         const response = yield call(organizationsService.save, data);
         yield put({ type: 'detailsSuccess', data: response });
         message.success('Organization saved!', 5);
-        yield put(routerRedux.push('/settings/organization'));
         return response;
       } catch (e) {
         message.error('Error saving organization!', 5);

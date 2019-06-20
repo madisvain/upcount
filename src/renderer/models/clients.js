@@ -1,4 +1,3 @@
-import { routerRedux } from 'dva/router';
 import { initialize } from 'redux-form';
 import { message } from 'antd';
 import { keyBy } from 'lodash';
@@ -51,12 +50,11 @@ export default {
       }
     },
 
-    *save({ data, redirect }, { put, call }) {
+    *save({ data }, { put, call }) {
       try {
         const response = yield call(clientsService.save, data);
         yield put({ type: 'detailsSuccess', data: response });
         message.success('Client saved!', 5);
-        yield put(routerRedux.push(redirect ? redirect : '/clients'));
         return response;
       } catch (e) {
         message.error('Error saving client!', 5);

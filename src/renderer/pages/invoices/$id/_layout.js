@@ -274,5 +274,10 @@ export default compose(
         },
       });
     },
+    onSubmitSuccess: (result, dispatch, props) => {
+      router.push({
+        pathname: '/invoices/',
+      });
+    },
   })
 )(InvoiceForm);
