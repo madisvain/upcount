@@ -71,5 +71,10 @@ export default compose(
     onSubmit: async (data, dispatch) => {
       return await dispatch({ type: 'clients/save', data: data });
     },
+    onSubmitSuccess: (result, dispatch) => {
+      router.push({
+        pathname: '/clients',
+      });
+    },
   })
 )(ClientFormDrawer);

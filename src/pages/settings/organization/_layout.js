@@ -30,7 +30,7 @@ class Organization extends Component {
               </h2>
               <Form layout="vertical" onSubmit={handleSubmit}>
                 <Field name="name" component={AInput} label="Name" />
-                <Field name="address" component={ATextarea} label="Address" />
+                <Field name="address" component={ATextarea} rows={4} label="Address" />
                 <Field name="email" component={AInput} label="Email" />
                 <Field name="phone" component={APhoneInput} label="Phone" />
                 <Row gutter={16}>
@@ -69,6 +69,14 @@ export default compose(
     form: 'organization',
     onSubmit: async (data, dispatch) => {
       return await dispatch({ type: 'organizations/save', data: data });
+    },
+    onSubmitSuccess: (result, dispatch) => {
+      dispatch({
+        type: 'organizations/initialize',
+        payload: {
+          id: localStorage.getItem('organization'),
+        },
+      });
     },
   })
 )(Organization);

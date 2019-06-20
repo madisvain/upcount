@@ -1,4 +1,3 @@
-import { routerRedux } from 'dva/router';
 import { initialize } from 'redux-form';
 import { message } from 'antd';
 import { keyBy } from 'lodash';
@@ -56,7 +55,6 @@ export default {
         const response = yield call(taxRatesService.save, data);
         yield put({ type: 'detailsSuccess', data: response });
         message.success('Tax rate saved!', 5);
-        yield put(routerRedux.push('/settings/'));
         return response;
       } catch (e) {
         message.error('Error saving tax rate!', 5);

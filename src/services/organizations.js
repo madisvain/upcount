@@ -26,11 +26,7 @@ export async function details(id) {
 
 export async function getLogo(data) {
   const { id } = data;
-  try {
-    return await await db.getAttachment(id, 'logo');
-  } catch (error) {
-    console.log(error);
-  }
+  return await await db.getAttachment(id, 'logo');
 }
 
 export async function setLogo(data) {

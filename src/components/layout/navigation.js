@@ -33,10 +33,9 @@ class Navigation extends Component {
 
     return (
       <Layout.Sider trigger={null} collapsible collapsed={this.props.collapsed}>
-        <div
-          className="logo"
-          style={{ height: 32, margin: 16, background: 'rgba(255,255,255,.2)' }}
-        />
+        <div className="logo" style={{ height: 22, margin: '21px 16px', textAlign: 'center' }}>
+          <img src={require(`../../assets/logo.svg`)} alt="Upcount" />
+        </div>
         <Menu
           theme="dark"
           mode="inline"

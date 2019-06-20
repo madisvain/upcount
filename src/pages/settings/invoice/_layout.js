@@ -116,5 +116,13 @@ export default compose(
     onSubmit: async (data, dispatch) => {
       return await dispatch({ type: 'organizations/save', data: data });
     },
+    onSubmitSuccess: (result, dispatch) => {
+      dispatch({
+        type: 'organizations/initialize',
+        payload: {
+          id: localStorage.getItem('organization'),
+        },
+      });
+    },
   })
 )(Settings);

@@ -80,5 +80,10 @@ export default compose(
     onSubmit: async (data, dispatch) => {
       return await dispatch({ type: 'taxRates/save', data: data });
     },
+    onSubmitSuccess: (result, dispatch) => {
+      router.push({
+        pathname: '/settings/tax-rates',
+      });
+    },
   })
 )(TaxForm);
