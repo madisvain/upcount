@@ -4845,7 +4845,7 @@ electron-webpack@^2.6.2:
     webpack-merge "^4.2.1"
     yargs "^12.0.5"
 
-electron@^4.1.5:
+electron@^4.2.4:
   version "4.2.4"
   resolved "https://registry.yarnpkg.com/electron/-/electron-4.2.4.tgz#68ca7bd4ff2c16b9205549322f0f1cda4ebc9ff9"
   integrity sha512-d4wEwJluMsRyRgbukLmFVTb6l1J+mc3RLB1ctbpMlSWDFvs+zknPWa+cHBzTWwrdgwINLddr69qsAW1ku6FqYw==
@@ -14641,7 +14641,7 @@ umi-plugin-polyfills@1.4.2:
     umi-utils "1.4.2"
     url-polyfill "1.1.3"
 
-umi-plugin-react@^1.7.5:
+umi-plugin-react@^1.9.1:
   version "1.9.1"
   resolved "https://registry.yarnpkg.com/umi-plugin-react/-/umi-plugin-react-1.9.1.tgz#a3fb3644cb8892bd63aafb5d870827ce4414a9b4"
   integrity sha512-BDd2vd5ps1au00mVrhehfjPW782DR6XIxpHtYzQedqCQ+l+jtOlvx40utKkUePChEWvOUjIJSXj9dBREnqutog==
@@ -14742,7 +14742,7 @@ umi-webpack-bundle-analyzer@^3.3.3:
     opener "^1.5.1"
     ws "^6.0.0"
 
-umi@^2.6.16:
+umi@^2.8.3:
   version "2.8.3"
   resolved "https://registry.yarnpkg.com/umi/-/umi-2.8.3.tgz#b4f2adf72bc7cac83300ff9545f5188b927611b4"
   integrity sha512-ovXV1EuJiMC9leOeduB65MkQgFJ0lT9CtlG0abtyWM5lr/v/5q9Zkz+WE8nQmqGr/ok8cG+D2MWtEDtI8X1QjA==

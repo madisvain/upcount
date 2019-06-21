@@ -5,7 +5,7 @@
   "scripts": {
     "electron": "electron app/dist/main",
     "electron:main": "electron-webpack dev",
-    "electron:renderer": "umi dev",
+    "electron:renderer": "APP_ROOT=src/renderer umi dev",
     "electron:package": "yarn umi:build && yarn webpack:main:production && electron-builder --dir",
     "electron:dist": "electron-builder",
     "umi:start": "APP_ROOT=src/renderer umi dev",
@@ -34,7 +34,7 @@
   },
   "devDependencies": {
     "babel-eslint": "^10.0.1",
-    "electron": "^4.1.5",
+    "electron": "^4.2.4",
     "electron-builder": "^20.39.0",
     "electron-debug": "^2.2.0",
     "electron-webpack": "^2.6.2",
@@ -48,8 +48,8 @@
     "lint-staged": "^8.1.5",
     "node-abi": "^2.8.0",
     "react-test-renderer": "^16.8.6",
-    "umi": "^2.6.16",
-    "umi-plugin-react": "^1.7.5"
+    "umi": "^2.8.3",
+    "umi-plugin-react": "^1.9.1"
   },
   "lint-staged": {
     "*.{js,jsx}": [
