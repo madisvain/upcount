@@ -39,7 +39,7 @@ class Navigation extends Component {
         <Menu
           theme="dark"
           mode="inline"
-          openKeys={selectedMenuKeys}
+          inlineCollapsed={this.props.collapsed}
           selectedKeys={selectedMenuKeys}
           onClick={this.handleMenuClick}
         >

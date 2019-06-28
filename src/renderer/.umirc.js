@@ -26,4 +26,9 @@ export default {
       },
     ],
   ],
+  lessLoaderOptions: {
+    modifyVars: {
+      '@table-row-hover-bg': 'transparent',
+    },
+  },
 };

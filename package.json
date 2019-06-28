@@ -12,12 +12,11 @@
     "umi:build": "APP_ROOT=src/renderer umi build",
     "umi:test": "APP_ROOT=src/renderer umi test",
     "lint": "eslint --ext .js src mock tests",
-    "precommit": "lint-staged",
     "webpack:main:development": "NODE_ENV=development webpack --config ./webpack/development.config.js",
     "webpack:main:production": "NODE_ENV=production webpack --config ./webpack/production.config.js"
   },
   "dependencies": {
-    "antd": "^3.19.6",
+    "antd": "^3.19.8",
     "countries-list": "^2.4.2",
     "currency-symbol-map": "^4.0.4",
     "currency.js": "^1.2.2",
@@ -35,21 +34,21 @@
   "devDependencies": {
     "babel-eslint": "^10.0.1",
     "electron": "^4.2.4",
-    "electron-builder": "^20.39.0",
+    "electron-builder": "^20.44.4",
     "electron-debug": "^2.2.0",
-    "electron-webpack": "^2.6.2",
-    "eslint": "^5.16.0",
-    "eslint-config-umi": "^1.5.0",
-    "eslint-plugin-flowtype": "^3.10.3",
-    "eslint-plugin-import": "^2.17.3",
-    "eslint-plugin-jsx-a11y": "^6.2.1",
+    "electron-webpack": "^2.7.2",
+    "eslint": "^5.4.0",
+    "eslint-config-umi": "^1.4.0",
+    "eslint-plugin-flowtype": "^2.50.0",
+    "eslint-plugin-import": "^2.14.0",
+    "eslint-plugin-jsx-a11y": "^5.1.1",
     "eslint-plugin-react": "^7.11.1",
-    "husky": "^2.0.0",
+    "husky": "^2.7.0",
     "lint-staged": "^8.1.5",
     "node-abi": "^2.8.0",
     "react-test-renderer": "^16.8.6",
-    "umi": "^2.8.3",
-    "umi-plugin-react": "^1.9.1"
+    "umi": "^2.8.7",
+    "umi-plugin-react": "^1.9.6"
   },
   "lint-staged": {
     "*.{js,jsx}": [
@@ -63,5 +62,10 @@
   "build": {
     "appId": "com.upcount.app",
     "productName": "Upcount"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged"
+    }
   }
 }
