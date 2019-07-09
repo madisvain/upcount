@@ -7,7 +7,7 @@ import { get, map } from 'lodash';
 
 import currencyToSymbolMap from 'currency-symbol-map/map';
 
-import { ASelect, ATextarea } from '../../../components/forms/fields';
+import { AInput, ASelect, ATextarea } from '../../../components/forms/fields';
 
 class Settings extends Component {
   componentDidMount() {
@@ -66,6 +66,7 @@ class Settings extends Component {
                   </Select.Option>
                 ))}
               </Field>
+              <Field name="due_days" component={AInput} label="Due days" />
               <Field name="notes" component={ATextarea} label="Notes" rows={4} />
             </Col>
           </Row>

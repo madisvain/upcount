@@ -5,6 +5,7 @@ import { Field, FieldArray, formValueSelector, reduxForm } from 'redux-form';
 import { Button, Col, Form, Icon, Layout, Row, Select } from 'antd';
 import { forEach, get, isString, includes, has, lowerCase, map } from 'lodash';
 
+import moment from 'moment';
 import Link from 'umi/link';
 import router from 'umi/router';
 import withRouter from 'umi/withRouter';
@@ -259,6 +260,8 @@ export default compose(
     form: 'invoice',
     initialValues: {
       currency: 'EUR',
+      // date: moment.now(),
+      // due_date: moment.now(),
       lineItems: [{}],
     },
     onSubmit: async (data, dispatch, props) => {
