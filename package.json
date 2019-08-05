@@ -16,7 +16,7 @@
     "webpack:main:production": "NODE_ENV=production webpack --config ./webpack/production.config.js"
   },
   "dependencies": {
-    "antd": "^3.21.0",
+    "antd": "^3.21.1",
     "countries-list": "^2.4.3",
     "currency-symbol-map": "^4.0.4",
     "currency.js": "^1.2.2",
@@ -40,9 +40,9 @@
     "eslint": "^5.4.0",
     "eslint-config-umi": "^1.4.0",
     "eslint-plugin-flowtype": "^2.50.0",
-    "eslint-plugin-import": "^2.14.0",
+    "eslint-plugin-import": "^2.18.2",
     "eslint-plugin-jsx-a11y": "^5.1.1",
-    "eslint-plugin-react": "^7.11.1",
+    "eslint-plugin-react": "^7.14.3",
     "husky": "^3.0.2",
     "lint-staged": "^8.1.5",
     "react-test-renderer": "^16.8.6",
