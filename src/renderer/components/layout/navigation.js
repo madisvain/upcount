@@ -34,12 +34,14 @@ class Navigation extends Component {
     return (
       <Layout.Sider trigger={null} collapsible collapsed={this.props.collapsed}>
         <div className="logo" style={{ height: 22, margin: '21px 16px', textAlign: 'center' }}>
-          <img src={require(`../../assets/logo.svg`)} alt="Upcount" />
+          <Link to="/invoices/" onClick={() => this.setState({ selectedMenuKeys: ['invoices'] })}>
+            <img src={require(`../../assets/logo.svg`)} alt="Upcount" />
+          </Link>
         </div>
         <Menu
           theme="dark"
           mode="inline"
-          openKeys={selectedMenuKeys}
+          inlineCollapsed={this.props.collapsed}
           selectedKeys={selectedMenuKeys}
           onClick={this.handleMenuClick}
         >

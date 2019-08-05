@@ -1,42 +1,53 @@
 {
+  "name": "Upcount",
+  "version": "0.1.0",
   "private": true,
   "scripts": {
-    "start": "umi dev",
-    "build": "umi build",
-    "now-build": "umi build",
-    "test": "umi test",
+    "electron": "electron app/dist/main",
+    "electron:main": "electron-webpack dev",
+    "electron:renderer": "APP_ROOT=src/renderer umi dev",
+    "electron:package": "yarn umi:build && yarn webpack:main:production && electron-builder --dir",
+    "electron:dist": "electron-builder",
+    "umi:start": "APP_ROOT=src/renderer umi dev",
+    "umi:build": "APP_ROOT=src/renderer umi build",
+    "umi:test": "APP_ROOT=src/renderer umi test",
     "lint": "eslint --ext .js src mock tests",
-    "precommit": "lint-staged"
+    "webpack:main:development": "NODE_ENV=development webpack --config ./webpack/development.config.js",
+    "webpack:main:production": "NODE_ENV=production webpack --config ./webpack/production.config.js"
   },
   "dependencies": {
-    "antd": "^3.19.6",
-    "countries-list": "^2.4.2",
+    "antd": "^3.21.1",
+    "countries-list": "^2.4.3",
     "currency-symbol-map": "^4.0.4",
     "currency.js": "^1.2.2",
-    "libphonenumber-js": "^1.7.19",
+    "libphonenumber-js": "^1.7.22",
     "pouchdb": "^7.1.1",
     "pouchdb-find": "^7.1.1",
     "react": "^16.8.6",
     "react-dom": "^16.8.6",
-    "react-frame-component": "^4.1.0",
+    "react-frame-component": "^4.1.1",
     "recompose": "^0.30.0",
-    "redux-form": "^8.2.4",
+    "redux-form": "^8.2.5",
     "styled-components": "^4.3.2",
     "uuid": "^3.3.2"
   },
   "devDependencies": {
-    "babel-eslint": "^10.0.2",
-    "eslint": "^5.16.0",
-    "eslint-config-umi": "^1.5.0",
-    "eslint-plugin-flowtype": "^3.10.3",
-    "eslint-plugin-import": "^2.17.3",
-    "eslint-plugin-jsx-a11y": "^6.2.1",
-    "eslint-plugin-react": "^7.13.0",
-    "husky": "^1.3.1",
-    "lint-staged": "^8.2.1",
+    "babel-eslint": "^10.0.1",
+    "electron": "^4.2.8",
+    "electron-builder": "^21.2.0",
+    "electron-debug": "^3.0.1",
+    "electron-webpack": "^2.7.4",
+    "eslint": "^5.4.0",
+    "eslint-config-umi": "^1.4.0",
+    "eslint-plugin-flowtype": "^2.50.0",
+    "eslint-plugin-import": "^2.18.2",
+    "eslint-plugin-jsx-a11y": "^5.1.1",
+    "eslint-plugin-react": "^7.14.3",
+    "husky": "^3.0.2",
+    "lint-staged": "^8.1.5",
     "react-test-renderer": "^16.8.6",
-    "umi": "^2.8.3",
-    "umi-plugin-react": "^1.9.1"
+    "umi": "^2.8.16",
+    "umi-plugin-react": "^1.9.14"
   },
   "lint-staged": {
     "*.{js,jsx}": [
@@ -46,5 +57,14 @@
   },
   "engines": {
     "node": ">=8.0.0"
+  },
+  "build": {
+    "appId": "com.upcount.app",
+    "productName": "Upcount"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged"
+    }
   }
 }

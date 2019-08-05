@@ -5,6 +5,7 @@
 /npm-debug.log*
 /yarn-error.log
 /package-lock.json
+/src/renderer/node_modules
 
 # production
 /dist

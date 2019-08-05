@@ -1,7 +1,9 @@
 // ref: https://umijs.org/config/
 export default {
-  hash: true,
+  history: 'hash',
   treeShaking: true,
+  publicPath: './',
+  outputPath: '../../dist/renderer',
   plugins: [
     // ref: https://umijs.org/plugin/umi-plugin-react.html
     [
@@ -9,8 +11,8 @@ export default {
       {
         antd: true,
         dva: true,
-        dynamicImport: true,
-        title: 'invoicer',
+        dynamicImport: false,
+        title: 'Upcount',
         dll: true,
         routes: {
           exclude: [
@@ -24,4 +26,9 @@ export default {
       },
     ],
   ],
+  lessLoaderOptions: {
+    modifyVars: {
+      '@table-row-hover-bg': 'transparent',
+    },
+  },
 };
