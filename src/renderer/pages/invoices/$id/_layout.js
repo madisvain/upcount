@@ -57,6 +57,7 @@ class InvoiceForm extends Component {
       match: { params },
     } = this.props;
 
+    console.log(this.props);
     return has(params, 'id') && params['id'] === 'new';
   };
 
@@ -212,7 +213,7 @@ class InvoiceForm extends Component {
 
           <FooterToolbar
             extra={
-              !this.isNew && (
+              !this.isNew() && (
                 <Button type="danger" style={{ marginTop: 10 }}>
                   <Icon type="delete" />
                   Revoke
@@ -220,7 +221,7 @@ class InvoiceForm extends Component {
               )
             }
           >
-            {!this.isNew && (
+            {!this.isNew() && (
               <Link to={`/invoices/${get(this.props, ['match', 'params', 'id'])}/preview`}>
                 <Button type="dashed" style={{ marginTop: 10, marginRight: 8 }}>
                   <Icon type="eye" />
@@ -228,7 +229,7 @@ class InvoiceForm extends Component {
                 </Button>
               </Link>
             )}
-            {!this.isNew && (
+            {!this.isNew() && (
               <Button style={{ marginTop: 10 }} onClick={() => window.print()}>
                 <Icon type="printer" />
                 Print
@@ -266,8 +267,10 @@ export default compose(
     form: 'invoice',
     initialValues: {
       currency: 'EUR',
-      date: moment.now(),
-      // due_date: moment.now(),
+      date: moment().format('YYYY-MM-DD'),
+      due_date: moment()
+        .add(7, 'days')
+        .format('YYYY-MM-DD'),
       lineItems: [{}],
     },
     onSubmit: async (data, dispatch, props) => {
