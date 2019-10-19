@@ -119,7 +119,7 @@ class LineItems extends Component {
             title="Description"
             dataIndex="description"
             key="description"
-            render={field => <Field name={field} component={ATextarea} autosize />}
+            render={field => <Field name={field} component={ATextarea} autoSize />}
           />
           <Table.Column
             title="Quantity"

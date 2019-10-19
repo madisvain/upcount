@@ -212,22 +212,28 @@ class InvoiceForm extends Component {
 
           <FooterToolbar
             extra={
-              <Button type="danger" style={{ marginTop: 10 }}>
-                <Icon type="delete" />
-                Revoke
-              </Button>
+              !this.isNew && (
+                <Button type="danger" style={{ marginTop: 10 }}>
+                  <Icon type="delete" />
+                  Revoke
+                </Button>
+              )
             }
           >
-            <Link to={`/invoices/${get(this.props, ['match', 'params', 'id'])}/preview`}>
-              <Button type="dashed" style={{ marginTop: 10, marginRight: 8 }}>
-                <Icon type="eye" />
-                Preview
+            {!this.isNew && (
+              <Link to={`/invoices/${get(this.props, ['match', 'params', 'id'])}/preview`}>
+                <Button type="dashed" style={{ marginTop: 10, marginRight: 8 }}>
+                  <Icon type="eye" />
+                  Preview
+                </Button>
+              </Link>
+            )}
+            {!this.isNew && (
+              <Button style={{ marginTop: 10 }} onClick={() => window.print()}>
+                <Icon type="printer" />
+                Print
               </Button>
-            </Link>
-            <Button style={{ marginTop: 10 }} onClick={() => window.print()}>
-              <Icon type="printer" />
-              Print
-            </Button>
+            )}
             <Button
               type="primary"
               htmlType="submit"
@@ -260,7 +266,7 @@ export default compose(
     form: 'invoice',
     initialValues: {
       currency: 'EUR',
-      // date: moment.now(),
+      date: moment.now(),
       // due_date: moment.now(),
       lineItems: [{}],
     },

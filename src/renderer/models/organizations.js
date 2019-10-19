@@ -7,7 +7,9 @@ import * as organizationsService from '../services/organizations';
 export default {
   namespace: 'organizations',
 
-  state: {},
+  state: {
+    items: {},
+  },
 
   effects: {
     *list({ payload: { sort = ['name'] } = {} }, { put, call }) {
