@@ -1,6 +1,6 @@
 [[redirects]]
-    from = "http://upcount-invoicer.netlify.com/*"
-    to = "http://invoicer.upcount.app/:splat"
+    from = "http://upcount.netlify.com/*"
+    to = "http://upcount.app/:splat"
     status = 301
 
 [[redirects]]
