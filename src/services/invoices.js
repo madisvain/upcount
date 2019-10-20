@@ -1,10 +1,10 @@
 import { assign, has } from 'lodash';
 
-import db from '../db';
+import app from '../app';
 
 export async function list(sort) {
   try {
-    return await db.find({
+    return await app.db.find({
       selector: {
         type: 'invoice',
         organization: localStorage.getItem('organization'),
@@ -19,7 +19,7 @@ export async function list(sort) {
 
 export async function details(id) {
   try {
-    return await db.get(id);
+    return await app.db.get(id);
   } catch (error) {
     console.log(error);
   }
@@ -28,15 +28,15 @@ export async function details(id) {
 export async function save(data) {
   try {
     if (has(data, '_id')) {
-      const original = await db.get(data._id);
-      const response = await db.put(
+      const original = await app.db.get(data._id);
+      const response = await app.db.put(
         assign(original, data, {
           updatedAt: new Date(),
         })
       );
-      return await db.get(response.id);
+      return await app.db.get(response.id);
     } else {
-      const response = await db.post(
+      const response = await app.db.post(
         assign(data, {
           type: 'invoice',
           state: 'draft',
@@ -44,7 +44,7 @@ export async function save(data) {
           createdAt: new Date(),
         })
       );
-      return await db.get(response.id);
+      return await app.db.get(response.id);
     }
   } catch (error) {
     console.log(error);
