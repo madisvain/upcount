@@ -12,12 +12,6 @@ Upcount is a painless cross-platform invoicing application, built with [React](h
 * 🍭 Customizable settings
 * ©️ MIT License
 
-## Download
-
-Upcount is available for Mac, Windows, and Linux and can be downloaded from the website.
-
-**[https://upcount.app/download](https://upcount.app/download/)**
-
 ## Bugs and Feature Requests
 
 Have a bug or a feature request? First, read the [issue guidelines](CONTRIBUTING.md#using-the-issue-tracker) and search for existing and closed issues. If your problem or idea is not addressed yet, [please open a new issue](/issues).
