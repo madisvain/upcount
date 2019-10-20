@@ -3,17 +3,14 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "electron": "electron app/dist/main",
-    "electron:main": "electron-webpack dev",
-    "electron:renderer": "APP_ROOT=src/renderer umi dev",
-    "electron:package": "yarn umi:build && yarn webpack:main:production && electron-builder --dir",
-    "electron:dist": "electron-builder",
-    "umi:start": "APP_ROOT=src/renderer umi dev",
-    "umi:build": "APP_ROOT=src/renderer umi build",
-    "umi:test": "APP_ROOT=src/renderer umi test",
+    "dev": "umi dev",
+    "build": "umi build",
+    "test": "umi test",
     "lint": "eslint --ext .js src mock tests",
-    "webpack:main:development": "NODE_ENV=development webpack --config ./webpack/development.config.js",
-    "webpack:main:production": "NODE_ENV=production webpack --config ./webpack/production.config.js"
+    "electron": "electron-webpack",
+    "dist:mac": "electron-builder --mac",
+    "dist:linux": "electron-builder --linux",
+    "dist:win": "electron-builder --win"
   },
   "dependencies": {
     "antd": "^3.24.1",
@@ -28,6 +25,7 @@
     "react-frame-component": "^4.1.1",
     "recompose": "^0.30.0",
     "redux-form": "^8.2.6",
+    "source-map-support": "^0.5.13",
     "styled-components": "^4.4.0",
     "uuid": "^3.3.3"
   },
@@ -58,9 +56,10 @@
   "engines": {
     "node": ">=8.0.0"
   },
-  "build": {
-    "appId": "com.upcount.app",
-    "productName": "Upcount"
+  "electronWebpack": {
+    "renderer": {
+      "sourceDirectory": null
+    }
   },
   "husky": {
     "hooks": {

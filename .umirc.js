@@ -3,7 +3,7 @@ export default {
   history: 'hash',
   treeShaking: true,
   publicPath: './',
-  outputPath: '../../dist/renderer',
+  outputPath: './dist/renderer',
   plugins: [
     // ref: https://umijs.org/plugin/umi-plugin-react.html
     [
