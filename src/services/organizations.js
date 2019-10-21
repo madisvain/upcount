@@ -1,10 +1,18 @@
 import { assign, has } from 'lodash';
 
-import app from '../app';
+import db from '../db';
 
 export async function list(sort) {
   try {
-    return await app.db.find({
+    // Check indexes
+    await db.createIndex({
+      index: { fields: ['type'] },
+    });
+    await db.createIndex({
+      index: { fields: ['name'] },
+    });
+
+    return await db.find({
       selector: {
         type: 'organization',
         name: { $gte: null },
@@ -18,7 +26,7 @@ export async function list(sort) {
 
 export async function details(id) {
   try {
-    return await app.db.get(id);
+    return await db.get(id);
   } catch (error) {
     console.log(error);
   }
@@ -26,14 +34,14 @@ export async function details(id) {
 
 export async function getLogo(data) {
   const { id } = data;
-  return await await app.db.getAttachment(id, 'logo');
+  return await await db.getAttachment(id, 'logo');
 }
 
 export async function setLogo(data) {
   const { _id, _rev, file } = data;
   try {
-    const response = await app.db.putAttachment(_id, 'logo', _rev, file, file.type);
-    return await app.db.getAttachment(response.id, 'logo');
+    const response = await db.putAttachment(_id, 'logo', _rev, file, file.type);
+    return await db.getAttachment(response.id, 'logo');
   } catch (error) {
     console.log(error);
   }
@@ -42,20 +50,20 @@ export async function setLogo(data) {
 export async function save(data) {
   try {
     if (has(data, '_id')) {
-      const response = await app.db.put(
+      const response = await db.put(
         assign(data, {
           updatedAt: new Date(),
         })
       );
-      return await app.db.get(response.id);
+      return await db.get(response.id);
     } else {
-      const response = await app.db.post(
+      const response = await db.post(
         assign(data, {
           type: 'organization',
           createdAt: new Date(),
         })
       );
-      return await app.db.get(response.id);
+      return await db.get(response.id);
     }
   } catch (error) {
     console.log(error);

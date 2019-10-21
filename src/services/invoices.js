@@ -1,10 +1,18 @@
 import { assign, has } from 'lodash';
 
-import app from '../app';
+import db from '../db';
 
 export async function list(sort) {
   try {
-    return await app.db.find({
+    // Check indexes
+    await db.createIndex({
+      index: { fields: ['type'] },
+    });
+    await db.createIndex({
+      index: { fields: ['number'] },
+    });
+
+    return await db.find({
       selector: {
         type: 'invoice',
         organization: localStorage.getItem('organization'),
@@ -19,7 +27,7 @@ export async function list(sort) {
 
 export async function details(id) {
   try {
-    return await app.db.get(id);
+    return await db.get(id);
   } catch (error) {
     console.log(error);
   }
@@ -28,15 +36,15 @@ export async function details(id) {
 export async function save(data) {
   try {
     if (has(data, '_id')) {
-      const original = await app.db.get(data._id);
-      const response = await app.db.put(
+      const original = await db.get(data._id);
+      const response = await db.put(
         assign(original, data, {
           updatedAt: new Date(),
         })
       );
-      return await app.db.get(response.id);
+      return await db.get(response.id);
     } else {
-      const response = await app.db.post(
+      const response = await db.post(
         assign(data, {
           type: 'invoice',
           state: 'draft',
@@ -44,7 +52,7 @@ export async function save(data) {
           createdAt: new Date(),
         })
       );
-      return await app.db.get(response.id);
+      return await db.get(response.id);
     }
   } catch (error) {
     console.log(error);
