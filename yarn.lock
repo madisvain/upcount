@@ -2071,10 +2071,10 @@ address@^1.0.1:
   resolved "https://registry.yarnpkg.com/address/-/address-1.1.2.tgz#bf1116c9c758c51b7a933d296b72c221ed9428b6"
   integrity sha512-aT6camzM4xEA54YVJYSqxz1kv4IHnQZRtThJJHhUMRExaU5spC7jX5ugSwTaTgJliIgs4VhZOk7htClvQ/LmRA==
 
-af-webpack@1.11.6:
-  version "1.11.6"
-  resolved "https://registry.yarnpkg.com/af-webpack/-/af-webpack-1.11.6.tgz#71614d402cc26883bc39ce41bbcf6b8f81f5cb9c"
-  integrity sha512-cTMqiUFxs6+69bQ8/1r2ej3woYVEf4AuGzsZbAyY3O6c/MjRhZBFhUPxjZRjlIzBzbnTj6gVdavMxycjAHVoZw==
+af-webpack@1.11.7:
+  version "1.11.7"
+  resolved "https://registry.yarnpkg.com/af-webpack/-/af-webpack-1.11.7.tgz#54d7e38ba1a15522babc7e78027235277bd5173f"
+  integrity sha512-gYIk7CASnk3v0vOO4EQlFnfrfbzPDSmchZgHlh6YPxUi8h3H1fN+byrI/TtmMv96BgLt6UxncHuebkk53ftM0w==
   dependencies:
     "@babel/core" "7.4.5"
     "@babel/plugin-transform-react-constant-elements" "7.2.0"
@@ -2297,7 +2297,7 @@ antd-mobile@2.x:
     rmc-tabs "~1.2.0"
     rmc-tooltip "~1.0.0"
 
-antd@3.x, antd@^3.24.1:
+antd@3.x:
   version "3.24.1"
   resolved "https://registry.yarnpkg.com/antd/-/antd-3.24.1.tgz#20f2ae5dc6b38de8a60a7843b7b4f2e4ba548fc3"
   integrity sha512-cDjv0dt+8MudiwHeMastZPE+KV+0vo37SKjxMpSvTNKmzEculVDyLYm0eVaZsUh9RZTcl8n3Hk6y2NphnEiwPA==
@@ -2341,6 +2341,65 @@ antd@3.x, antd@^3.24.1:
     rc-steps "~3.5.0"
     rc-switch "~1.9.0"
     rc-table "~6.8.6"
+    rc-tabs "~9.6.4"
+    rc-time-picker "~3.7.1"
+    rc-tooltip "~3.7.3"
+    rc-tree "~2.1.0"
+    rc-tree-select "~2.9.1"
+    rc-trigger "^2.6.2"
+    rc-upload "~2.8.0"
+    rc-util "^4.10.0"
+    react-lazy-load "^3.0.13"
+    react-lifecycles-compat "^3.0.4"
+    react-slick "~0.25.2"
+    resize-observer-polyfill "^1.5.1"
+    shallowequal "^1.1.0"
+    warning "~4.0.3"
+
+antd@^3.24.2:
+  version "3.24.2"
+  resolved "https://registry.yarnpkg.com/antd/-/antd-3.24.2.tgz#c8923eaa28f8c25a91e4a3fee7c64d9f3ec31aaf"
+  integrity sha512-Y6hMwWjp7IhstDXr2QNdsGmR/Bl2ySmmsKSkGm2BMB3LRnL711UT7u0bUczqMvgvXr9rwOlfTRqxdkq525f0yg==
+  dependencies:
+    "@ant-design/create-react-context" "^0.2.4"
+    "@ant-design/icons" "~2.1.1"
+    "@ant-design/icons-react" "~2.0.1"
+    "@types/react-slick" "^0.23.4"
+    array-tree-filter "^2.1.0"
+    babel-runtime "6.x"
+    classnames "~2.2.6"
+    copy-to-clipboard "^3.2.0"
+    css-animation "^1.5.0"
+    dom-closest "^0.2.0"
+    enquire.js "^2.1.6"
+    lodash "^4.17.13"
+    moment "^2.24.0"
+    omit.js "^1.0.2"
+    prop-types "^15.7.2"
+    raf "^3.4.1"
+    rc-animate "^2.8.3"
+    rc-calendar "~9.15.5"
+    rc-cascader "~0.17.4"
+    rc-checkbox "~2.1.6"
+    rc-collapse "~1.11.3"
+    rc-dialog "~7.5.2"
+    rc-drawer "~3.0.0"
+    rc-dropdown "~2.4.1"
+    rc-editor-mention "^1.1.13"
+    rc-form "^2.4.5"
+    rc-input-number "~4.5.0"
+    rc-mentions "~0.4.0"
+    rc-menu "~7.5.1"
+    rc-notification "~3.3.1"
+    rc-pagination "~1.20.5"
+    rc-progress "~2.5.0"
+    rc-rate "~2.5.0"
+    rc-resize-observer "^0.1.0"
+    rc-select "~9.2.0"
+    rc-slider "~8.7.1"
+    rc-steps "~3.5.0"
+    rc-switch "~1.9.0"
+    rc-table "~6.9.4"
     rc-tabs "~9.6.4"
     rc-time-picker "~3.7.1"
     rc-tooltip "~3.7.3"
@@ -5330,7 +5389,7 @@ dotenv@8.0.0:
   resolved "https://registry.yarnpkg.com/dotenv/-/dotenv-8.0.0.tgz#ed310c165b4e8a97bb745b0a9d99c31bda566440"
   integrity sha512-30xVGqjLjiUOArT4+M5q9sYdvuR4riM6yK9wMcas9Vbp6zZa+ocC9dp6QoftuhTPhFAiLK/0C5Ni2nou/Bk8lg==
 
-dotenv@^8.0.0:
+dotenv@^8.0.0, dotenv@^8.2.0:
   version "8.2.0"
   resolved "https://registry.yarnpkg.com/dotenv/-/dotenv-8.2.0.tgz#97e619259ada750eea3e4ea3e26bceea5424b16a"
   integrity sha512-8sJ78ElpbDJBHNeBzUbUVLsqKdccaa/BXF1uPTw3GrvQTBgrQrtObr2mUrE38vzYd8cEv+m/JBfDLioYcfXoaw==
@@ -5475,14 +5534,6 @@ electron-builder@^21.2.0:
     update-notifier "^3.0.1"
     yargs "^13.3.0"
 
-electron-debug@^3.0.1:
-  version "3.0.1"
-  resolved "https://registry.yarnpkg.com/electron-debug/-/electron-debug-3.0.1.tgz#95b43b968ec7dbe96300034143e58b803a1e82dc"
-  integrity sha512-fo3mtDM4Bxxm3DW1I+XcJKfQlUlns4QGWyWGs8OrXK1bBZ2X9HeqYMntYBx78MYRcGY5S/ualuG4GhCnPlaZEA==
-  dependencies:
-    electron-is-dev "^1.1.0"
-    electron-localshortcut "^3.1.0"
-
 electron-devtools-installer@^2.2.4:
   version "2.2.4"
   resolved "https://registry.yarnpkg.com/electron-devtools-installer/-/electron-devtools-installer-2.2.4.tgz#261a50337e37121d338b966f07922eb4939a8763"
@@ -5507,26 +5558,6 @@ electron-download@^4.1.0:
     rc "^1.2.1"
     semver "^5.4.1"
     sumchecker "^2.0.2"
-
-electron-is-accelerator@^0.1.0:
-  version "0.1.2"
-  resolved "https://registry.yarnpkg.com/electron-is-accelerator/-/electron-is-accelerator-0.1.2.tgz#509e510c26a56b55e17f863a4b04e111846ab27b"
-  integrity sha1-UJ5RDCala1Xhf4Y6SwThEYRqsns=
-
-electron-is-dev@^1.1.0:
-  version "1.1.0"
-  resolved "https://registry.yarnpkg.com/electron-is-dev/-/electron-is-dev-1.1.0.tgz#b15a2a600bdc48a51a857d460e05f15b19a2522c"
-  integrity sha512-Z1qA/1oHNowGtSBIcWk0pcLEqYT/j+13xUw/MYOrBUOL4X7VN0i0KCTf5SqyvMPmW5pSPKbo28wkxMxzZ20YnQ==
-
-electron-localshortcut@^3.1.0:
-  version "3.1.0"
-  resolved "https://registry.yarnpkg.com/electron-localshortcut/-/electron-localshortcut-3.1.0.tgz#10c1ffd537b8d39170aaf6e1551341f7780dd2ce"
-  integrity sha512-MgL/j5jdjW7iA0R6cI7S045B0GlKXWM1FjjujVPjlrmyXRa6yH0bGSaIAfxXAF9tpJm3pLEiQzerYHkRh9JG/A==
-  dependencies:
-    debug "^2.6.8"
-    electron-is-accelerator "^0.1.0"
-    keyboardevent-from-electron-accelerator "^1.1.0"
-    keyboardevents-areequal "^0.2.1"
 
 electron-publish@21.2.0:
   version "21.2.0"
@@ -9496,16 +9527,6 @@ jsx-ast-utils@^2.0.1, jsx-ast-utils@^2.1.0, jsx-ast-utils@^2.2.1:
     array-includes "^3.0.3"
     object.assign "^4.1.0"
 
-keyboardevent-from-electron-accelerator@^1.1.0:
-  version "1.1.0"
-  resolved "https://registry.yarnpkg.com/keyboardevent-from-electron-accelerator/-/keyboardevent-from-electron-accelerator-1.1.0.tgz#324614f6e33490c37ffc5be5876b3e85fe223c84"
-  integrity sha512-VDC4vKWGrR3VgIKCE4CsXnvObGgP8C2idnTKEMUkuEuvDGE1GEBX9FtNdJzrD00iQlhI3xFxRaeItsUmlERVng==
-
-keyboardevents-areequal@^0.2.1:
-  version "0.2.2"
-  resolved "https://registry.yarnpkg.com/keyboardevents-areequal/-/keyboardevents-areequal-0.2.2.tgz#88191ec738ce9f7591c25e9056de928b40277194"
-  integrity sha512-Nv+Kr33T0mEjxR500q+I6IWisOQ0lK1GGOncV0kWE6n4KFmpcu7RUX5/2B0EUtX51Cb0HjZ9VJsSY3u4cBa0kw==
-
 keyv@^3.0.0:
   version "3.1.0"
   resolved "https://registry.yarnpkg.com/keyv/-/keyv-3.1.0.tgz#ecc228486f69991e49e9476485a5be1e8fc5c4d9"
@@ -10003,6 +10024,11 @@ lodash.isequal@^4.5.0:
   version "4.5.0"
   resolved "https://registry.yarnpkg.com/lodash.isequal/-/lodash.isequal-4.5.0.tgz#415c4478f2bcc30120c22ce10ed3226f7d3e18e0"
   integrity sha1-QVxEePK8wwEgwizhDtMib30+GOA=
+
+lodash.isplainobject@^4.0.6:
+  version "4.0.6"
+  resolved "https://registry.yarnpkg.com/lodash.isplainobject/-/lodash.isplainobject-4.0.6.tgz#7c526a52d89b45c45cc690b88163be0497f550cb"
+  integrity sha1-fFJqUtibRcRcxpC4gWO+BJf1UMs=
 
 lodash.kebabcase@^4.0.1:
   version "4.1.1"
@@ -13527,6 +13553,20 @@ rc-table@~6.8.6:
     shallowequal "^1.0.2"
     warning "^4.0.3"
 
+rc-table@~6.9.4:
+  version "6.9.5"
+  resolved "https://registry.yarnpkg.com/rc-table/-/rc-table-6.9.5.tgz#b7394c3780d4ad2398d08d2059aba454f195273f"
+  integrity sha512-STL6387A/izVh6r9F1WDiIIZ0QeubCdTgIlzMeGTSl/bXhB0VqjAZEikvoijPoauTjJIkIzVuQEIDjOhAWbpkQ==
+  dependencies:
+    classnames "^2.2.5"
+    component-classes "^1.2.6"
+    lodash "^4.17.5"
+    mini-store "^2.0.0"
+    prop-types "^15.5.8"
+    rc-util "^4.13.0"
+    react-lifecycles-compat "^3.0.2"
+    shallowequal "^1.0.2"
+
 rc-tabs@~9.6.4:
   version "9.6.7"
   resolved "https://registry.yarnpkg.com/rc-tabs/-/rc-tabs-9.6.7.tgz#c546115a351f5ed779ea5524143157f48ee0c015"
@@ -14113,6 +14153,13 @@ redux-form@^8.2.6:
     react-lifecycles-compat "^3.0.4"
   optionalDependencies:
     immutable "3.8.2"
+
+redux-mock-store@^1.5.3:
+  version "1.5.3"
+  resolved "https://registry.yarnpkg.com/redux-mock-store/-/redux-mock-store-1.5.3.tgz#1f10528949b7ce8056c2532624f7cafa98576c6d"
+  integrity sha512-ryhkkb/4D4CUGpAV2ln1GOY/uh51aczjcRz9k2L2bPx/Xja3c5pSGJJPyR25GNVRXtKIExScdAgFdiXp68GmJA==
+  dependencies:
+    lodash.isplainobject "^4.0.6"
 
 redux-saga@^0.16.0:
   version "0.16.2"
@@ -16579,10 +16626,10 @@ uglifyjs-webpack-plugin@1.3.0:
     webpack-sources "^1.1.0"
     worker-farm "^1.5.2"
 
-umi-build-dev@1.13.12:
-  version "1.13.12"
-  resolved "https://registry.yarnpkg.com/umi-build-dev/-/umi-build-dev-1.13.12.tgz#dd4752b06b184b863c693b4d0ec0f6508fb31ae9"
-  integrity sha512-EtwQgl3UgE1PL95xQslH79rjwJIO7haRILT1fPjYRkC+MvImeVMXkX6K0LkF77qdSFW/J5yV+DxDNbiAPIQCLA==
+umi-build-dev@1.13.13:
+  version "1.13.13"
+  resolved "https://registry.yarnpkg.com/umi-build-dev/-/umi-build-dev-1.13.13.tgz#3030194882c74df1cda52346db60724c337a5f46"
+  integrity sha512-JB97jxs479JtTHnrlNmQRfP8G7F5oZxQ8zwqxUU0YH4QwXTYIcjuMeytPUGWaExgNzVxie5mzxgG4Zw81b57/g==
   dependencies:
     "@babel/code-frame" "7.0.0"
     "@babel/generator" "7.4.4"
@@ -16591,7 +16638,7 @@ umi-build-dev@1.13.12:
     "@babel/template" "7.4.4"
     "@babel/traverse" "7.4.5"
     "@babel/types" "7.4.4"
-    af-webpack "1.11.6"
+    af-webpack "1.11.7"
     babel-plugin-module-resolver "3.2.0"
     babel-preset-umi "1.8.1"
     chalk "2.4.2"
@@ -16641,14 +16688,14 @@ umi-build-dev@1.13.12:
     stringify-object "3.3.0"
     sylvanas "^0.4.0"
     terminal-link "1.3.0"
-    umi-core "1.7.4"
+    umi-core "1.7.5"
     umi-history "0.1.2"
-    umi-mock "2.1.1"
+    umi-mock "2.1.2"
     umi-notify "^0.1.1"
-    umi-plugin-ui "1.2.12"
-    umi-test "1.8.1"
+    umi-plugin-ui "1.2.13"
+    umi-test "1.8.2"
     umi-uni18n "^1.1.6"
-    umi-utils "1.7.1"
+    umi-utils "1.7.2"
     uppercamelcase "3.0.0"
     url-polyfill "1.1.5"
     user-home "2.0.0"
@@ -16657,10 +16704,10 @@ umi-build-dev@1.13.12:
     write-file-webpack-plugin "4.5.0"
     yeoman-generator "4.0.1"
 
-umi-core@1.7.4:
-  version "1.7.4"
-  resolved "https://registry.yarnpkg.com/umi-core/-/umi-core-1.7.4.tgz#08acf36671fb3e9fe5a792bd3152c6aaadfa7903"
-  integrity sha512-ihIZ4wyKrGnY2AQ2sB2j5yvCnif5izX+lWQApkEgZTMus7ES8oLBgti17Gq/X8O0EbXjbgh5LWhdk5O36fdxvQ==
+umi-core@1.7.5:
+  version "1.7.5"
+  resolved "https://registry.yarnpkg.com/umi-core/-/umi-core-1.7.5.tgz#693f63b7a5fee9fe9e872ff10f0254fc6ace0b9e"
+  integrity sha512-fpzWu4cPD50zmVXOiMhaXF415DhWaOhGuLG3ons/tGui+/P+YKAQ63i+sRx3WMlB2suK3VtgaWy8krO3ksiMCw==
   dependencies:
     "@babel/preset-typescript" "7.3.3"
     "@babel/register" "7.4.4"
@@ -16673,7 +16720,7 @@ umi-core@1.7.4:
     os-locale "^4.0.0"
     signale "1.4.0"
     slash2 "2.0.0"
-    umi-utils "1.7.1"
+    umi-utils "1.7.2"
 
 umi-hd@5.0.1:
   version "5.0.1"
@@ -16692,10 +16739,10 @@ umi-history@0.1.2:
     value-equal "^0.4.0"
     warning "^3.0.0"
 
-umi-mock@2.1.1:
-  version "2.1.1"
-  resolved "https://registry.yarnpkg.com/umi-mock/-/umi-mock-2.1.1.tgz#d179b6751f15b03ccf830b3b47cb5c129dd38c5e"
-  integrity sha512-9jX42Ro+aMptoqvy9jfkHxyqJd8H0cNul4J2KJFAmQwp3Gkrka549mQl2Zl53HeiXmfm5l+IULbYniD3hTRAQw==
+umi-mock@2.1.2:
+  version "2.1.2"
+  resolved "https://registry.yarnpkg.com/umi-mock/-/umi-mock-2.1.2.tgz#4a0ff99447dd52ee5ff43f1f98faf5e69531df66"
+  integrity sha512-OLaIZtQQcRHdAbdKl55HlSIWRltAE9aMjuuU5TwnmoVSMpNczU9cKN0iXhYkR3wYMlfA8bCGD8rQngtxD0x4Qw==
   dependencies:
     body-parser "1.19.0"
     chokidar "3.0.2"
@@ -16703,7 +16750,7 @@ umi-mock@2.1.1:
     multer "^1.4.1"
     path-to-regexp "1.7.0"
     signale "1.4.0"
-    umi-utils "1.7.1"
+    umi-utils "1.7.2"
 
 umi-notify@^0.1.1:
   version "0.1.5"
@@ -16721,10 +16768,10 @@ umi-plugin-dll@1.6.0-beta.2:
     rimraf "2.6.3"
     serve-static "1.14.1"
 
-umi-plugin-dva@1.9.1:
-  version "1.9.1"
-  resolved "https://registry.yarnpkg.com/umi-plugin-dva/-/umi-plugin-dva-1.9.1.tgz#21068390e73e0f284e0d11737db42e0d44993277"
-  integrity sha512-jQ+3h1ZatvrK+tylZDPuSJdSJpq+d3LEWPECRCngvXntISP1r9nkLS/fnZWZuNLiFFImiA9Ef4fr25Py6jKpSw==
+umi-plugin-dva@1.9.2:
+  version "1.9.2"
+  resolved "https://registry.yarnpkg.com/umi-plugin-dva/-/umi-plugin-dva-1.9.2.tgz#6aea28c561d735887fd2ef7050e5cddb99a54148"
+  integrity sha512-IZRfl4uPAbxewSw/9so75Pm6Lt//XeP/2Rg71dlm0tNFAUsiHxSJZ4xYGAhQUDWdEbLEtI0J9UXsQDH+Xi8qiQ==
   dependencies:
     babel-plugin-dva-hmr "0.4.2"
     dva "2.6.0-beta.6"
@@ -16735,7 +16782,7 @@ umi-plugin-dva@1.9.1:
     object-assign "4.1.1"
     path-is-root "0.1.0"
     path-to-regexp "1.7.0"
-    umi-utils "1.7.1"
+    umi-utils "1.7.2"
 
 umi-plugin-hd@1.7.0-beta.2:
   version "1.7.0-beta.2"
@@ -16745,10 +16792,10 @@ umi-plugin-hd@1.7.0-beta.2:
     postcss-plugin-px2rem "0.8.1"
     umi-hd "5.0.1"
 
-umi-plugin-locale@2.11.1:
-  version "2.11.1"
-  resolved "https://registry.yarnpkg.com/umi-plugin-locale/-/umi-plugin-locale-2.11.1.tgz#0d568bab2b8bac84bf39ace18eb27f650e9c5fe4"
-  integrity sha512-fk3r3AlmiLQwxEFLrlC55livMVbwVkF2OILvIgzU+8VpBA1nUtfpgkyOYoeQfoAGUexgZdoi+EP4aaSamNNTBg==
+umi-plugin-locale@2.11.2:
+  version "2.11.2"
+  resolved "https://registry.yarnpkg.com/umi-plugin-locale/-/umi-plugin-locale-2.11.2.tgz#b32ef0f19de8091cdf391071c3473f45f55520fc"
+  integrity sha512-lwRcg791A3M9eXRIK8LeEgVbLuGIF+Vy3WGnQLy1z3u/pZVvjGHlOmo4CnbiElJ5IUtNg+2wy1NFjCZscj0bUA==
   dependencies:
     "@ant-design/create-react-context" "0.2.4"
     globby "7.1.1"
@@ -16758,7 +16805,7 @@ umi-plugin-locale@2.11.1:
     mustache "3.0.1"
     prop-types "15.6.2"
     react-intl "2.7.2"
-    umi-utils "1.7.1"
+    umi-utils "1.7.2"
 
 umi-plugin-polyfills@1.4.2:
   version "1.4.2"
@@ -16771,10 +16818,10 @@ umi-plugin-polyfills@1.4.2:
     umi-utils "1.4.2"
     url-polyfill "1.1.3"
 
-umi-plugin-react@^1.9.14:
-  version "1.12.7"
-  resolved "https://registry.yarnpkg.com/umi-plugin-react/-/umi-plugin-react-1.12.7.tgz#0191685af5b29ebbeed24542f23e5917c1385cbb"
-  integrity sha512-uzCBGRNLL3rzzvxw7s+RfaJPCgNKheBFoODe3T7joC/ohptQi4TQEkMG51cNgBYTvGgDgLfyIZe9ZRXDjbbwGg==
+umi-plugin-react@^1.12.8:
+  version "1.12.8"
+  resolved "https://registry.yarnpkg.com/umi-plugin-react/-/umi-plugin-react-1.12.8.tgz#5c053672536db4227d0ff294488b581e03b9789a"
+  integrity sha512-8F9M1CYTGmEaHNV6s/2JTQg3YQCR1+QIGYIgEyuQm0Zbr3/0sgpGEwQojJiYXYmeZPs7sJnnTYJgGJQkeE5x0A==
   dependencies:
     antd "3.x"
     antd-mobile "2.x"
@@ -16786,13 +16833,13 @@ umi-plugin-react@^1.9.14:
     preact-compat "3.19.0"
     register-service-worker "1.6.2"
     umi-plugin-dll "1.6.0-beta.2"
-    umi-plugin-dva "1.9.1"
+    umi-plugin-dva "1.9.2"
     umi-plugin-hd "1.7.0-beta.2"
-    umi-plugin-locale "2.11.1"
+    umi-plugin-locale "2.11.2"
     umi-plugin-polyfills "1.4.2"
     umi-plugin-routes "1.6.3"
-    umi-plugin-ui "1.2.12"
-    umi-utils "1.7.1"
+    umi-plugin-ui "1.2.13"
+    umi-utils "1.7.2"
     webpack "4.41.1"
     workbox-webpack-plugin "3.6.3"
 
@@ -16801,21 +16848,21 @@ umi-plugin-routes@1.6.3:
   resolved "https://registry.yarnpkg.com/umi-plugin-routes/-/umi-plugin-routes-1.6.3.tgz#2883b49884bac90152f8d75911029f7009f83258"
   integrity sha512-ipwISEzwJKbdG0NvDwE7By/TD2OlxNB59HIPXm/NxB1OP810suvxUSpdADx4cX5jBrijYA6iHhQbJeHiR7d4fg==
 
-umi-plugin-ui@1.2.12:
-  version "1.2.12"
-  resolved "https://registry.yarnpkg.com/umi-plugin-ui/-/umi-plugin-ui-1.2.12.tgz#84eadd97a4fabdc36b79f85182720604b1f99a82"
-  integrity sha512-ZJjG4y26bOf0NoRkDEcg5KSs1+jtCMdsAaAKKWT9MWiFUS+VwWHTtbRTPqUDbS8XPfluMiOBKXAMO5vi47OPHw==
+umi-plugin-ui@1.2.13:
+  version "1.2.13"
+  resolved "https://registry.yarnpkg.com/umi-plugin-ui/-/umi-plugin-ui-1.2.13.tgz#6bbb63aabdd3eb9f2067692d4ce033eb6fa690aa"
+  integrity sha512-GvvPbN5UDsxuDL4KSjZXDKldwdZe81Xw+Xdp70aISB95fbsknyzEEk6iOa7TIfYrVxxElwfY/9oIjfR7Hm7H1g==
   dependencies:
     is-mobile "2.1.0"
     react-portal "^4.2.0"
     sockjs-client "1.3.0"
     styled-components "^4.4.0"
-    umi-ui-tasks "1.1.12"
+    umi-ui-tasks "1.1.13"
 
-umi-test@1.8.1:
-  version "1.8.1"
-  resolved "https://registry.yarnpkg.com/umi-test/-/umi-test-1.8.1.tgz#38901729b58ae536fc4a1ddbc5baf065ca560c4a"
-  integrity sha512-OuJoLUfcMuQ5OyDg8CK0kVJ7yyvcKfarVt1fzIQtylHVl1TUGQ/70YJ6demIoTCUo2nf2Vk4tkPGThddX2j0kg==
+umi-test@1.8.2:
+  version "1.8.2"
+  resolved "https://registry.yarnpkg.com/umi-test/-/umi-test-1.8.2.tgz#40e5a08f2a144c5851b195b6019a3d5ebbd4c695"
+  integrity sha512-N8p1RFE3LHJzCWmN8AdA+GHcdQO3O7UHZ449XzUBBac0sKMKGSoqDaSTN/d9xxxGD8iknLESx00I+cCZFC+ldQ==
   dependencies:
     "@babel/core" "7.4.5"
     "@babel/preset-typescript" "7.3.3"
@@ -16836,13 +16883,13 @@ umi-test@1.8.1:
     react-dom "^16.8.6"
     regenerator-runtime "0.13.2"
     typescript "^3.5.2"
-    umi-utils "1.7.1"
+    umi-utils "1.7.2"
     yargs-parser "13.1.1"
 
-umi-ui-tasks@1.1.12:
-  version "1.1.12"
-  resolved "https://registry.yarnpkg.com/umi-ui-tasks/-/umi-ui-tasks-1.1.12.tgz#a60a92a92702404f75753c9063b49841c0e97aea"
-  integrity sha512-BvurzfXzCUs5Zc1uF2FFDH1vwmdE6my9l2T3YX9S4q+MHfRFWHQ5eJV7TgqJf2m3Az6RAnMnfqRumIfD4jCq9w==
+umi-ui-tasks@1.1.13:
+  version "1.1.13"
+  resolved "https://registry.yarnpkg.com/umi-ui-tasks/-/umi-ui-tasks-1.1.13.tgz#ed77d739ba3174ddd5878f9910c71f7a6d401b10"
+  integrity sha512-tAWt8Owp+3OGP5OhLfgltYBRxkBxzN41h1DnzT1k9Cnyuo7Jmzdmcwk4utba6NwMhVga5ALJnTMQpmADETdesA==
   dependencies:
     binary-mirror-config "1.20.3"
     mkdirp "^0.5.1"
@@ -16857,10 +16904,10 @@ umi-ui-theme@1.1.2:
   dependencies:
     less-vars-to-js "1.3.0"
 
-umi-ui@1.1.12:
-  version "1.1.12"
-  resolved "https://registry.yarnpkg.com/umi-ui/-/umi-ui-1.1.12.tgz#dc6c6dd8b9bb519aeeb319b432d07674ac3a6c51"
-  integrity sha512-1EhYIgoQbqNUXzFXnNZTD2EUY1cUqonfGLp02j/H9lUEOim+w3TUx25ZRGUUcaZEuiljmhf/llyRlHvnt4a+Rw==
+umi-ui@1.1.13:
+  version "1.1.13"
+  resolved "https://registry.yarnpkg.com/umi-ui/-/umi-ui-1.1.13.tgz#4941f722fe7c461802c6a58c842662d4d1616b74"
+  integrity sha512-uLTvS8vhFCHG0N53s6YxuF5JfNpvgb8SoBi55EyrQlWL9W8piZGajbPJ+8Zh+fXhJGOfCgYTmIGvy5AzNyNJ8Q==
   dependencies:
     "@umijs/launch-editor" "^1.0.0"
     binary-mirror-config "1.20.3"
@@ -16884,7 +16931,7 @@ umi-ui@1.1.12:
     rimraf "3.0.0"
     semver "6.3.0"
     sockjs "0.3.19"
-    umi-build-dev "1.13.12"
+    umi-build-dev "1.13.13"
     umi-ui-theme "1.1.2"
     user-home "2.0.0"
 
@@ -16933,7 +16980,19 @@ umi-utils@1.4.2:
     is-url "1.2.4"
     slash2 "2.0.0"
 
-umi-utils@1.7.1, umi-utils@^1.5.1:
+umi-utils@1.7.2:
+  version "1.7.2"
+  resolved "https://registry.yarnpkg.com/umi-utils/-/umi-utils-1.7.2.tgz#940448f1241630843dd55e7b3b48a5c3d1aff53d"
+  integrity sha512-l/IV3bcPqjhzTi4L4HkcWVh8+mLzXupXdsQi87RmGHcPR9CRlZW91PLRVaybZ3G/KTBbhlVl4pF4RrtU972/QA==
+  dependencies:
+    chalk "2.4.2"
+    dotenv "^8.2.0"
+    is-url "1.2.4"
+    node-fetch "2.6.0"
+    prettier "1.15.3"
+    slash2 "2.0.0"
+
+umi-utils@^1.5.1:
   version "1.7.1"
   resolved "https://registry.yarnpkg.com/umi-utils/-/umi-utils-1.7.1.tgz#a9ee9938aeccdef7f6d97d1d95ced1a1c20196ca"
   integrity sha512-fOOBulqgjwIupaJAd9O2cnuTiNpiwFqNOUkWhCjCobqU9f3F5sg6bIOxEepB8MQ26Vjoq0UyijT6d1/99ny0dQ==
@@ -16963,10 +17022,10 @@ umi-webpack-bundle-analyzer@^3.5.0:
     opener "^1.5.1"
     ws "^6.0.0"
 
-umi@^2.8.16:
-  version "2.10.6"
-  resolved "https://registry.yarnpkg.com/umi/-/umi-2.10.6.tgz#64f36986b72667e10f1e35dfe1318f5c8c090d5b"
-  integrity sha512-dvkkO4hYY4+/hWsWU7YqrlE6K06h/480hCZBW9dIUAJEGz2ajzpj5f7wpt7zBz45jgzZGlJZ5q3Eckp4JGFuXQ==
+umi@^2.10.7:
+  version "2.10.7"
+  resolved "https://registry.yarnpkg.com/umi/-/umi-2.10.7.tgz#7b14821ce57a769d637e58e926b503b9538becac"
+  integrity sha512-vSGzI0v5damlDuSYYUbdeSTqfET+YnD+oTCtqAlxybpEiQBP8D///+2GUxUq3eAw8+1JWdTlI4wHmJEC/T9vzQ==
   dependencies:
     "@babel/core" "7.4.5"
     "@babel/runtime" "7.4.5"
@@ -16981,10 +17040,10 @@ umi@^2.8.16:
     resolve-cwd "3.0.0"
     semver "6.1.1"
     signale "1.4.0"
-    umi-build-dev "1.13.12"
-    umi-core "1.7.4"
-    umi-ui "1.1.12"
-    umi-utils "1.7.1"
+    umi-build-dev "1.13.13"
+    umi-core "1.7.5"
+    umi-ui "1.1.13"
+    umi-utils "1.7.2"
     update-notifier "3.0.0"
     yargs-parser "13.1.1"
 

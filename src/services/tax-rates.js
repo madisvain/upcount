@@ -4,6 +4,14 @@ import db from '../db';
 
 export async function list(sort) {
   try {
+    // Check indexes
+    await db.createIndex({
+      index: { fields: ['type'] },
+    });
+    await db.createIndex({
+      index: { fields: ['name'] },
+    });
+
     return await db.find({
       selector: {
         type: 'taxRate',
