@@ -13,7 +13,7 @@
     "dist:win": "electron-builder --win"
   },
   "dependencies": {
-    "antd": "^3.24.1",
+    "antd": "^3.24.2",
     "countries-list": "^2.4.3",
     "currency-symbol-map": "^4.0.4",
     "currency.js": "^1.2.2",
@@ -43,8 +43,9 @@
     "husky": "^3.0.2",
     "lint-staged": "^9.4.2",
     "react-test-renderer": "^16.8.6",
-    "umi": "^2.8.16",
-    "umi-plugin-react": "^1.9.14"
+    "redux-mock-store": "^1.5.3",
+    "umi": "^2.10.7",
+    "umi-plugin-react": "^1.12.8"
   },
   "lint-staged": {
     "*.{js,jsx}": [
