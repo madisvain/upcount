@@ -17,7 +17,7 @@ Upcount is a painless cross-platform invoicing application, built with [React](h
 
 ## Bugs and Feature Requests
 
-Have a bug or a feature request? First, read the [issue guidelines](CONTRIBUTING.md#using-the-issue-tracker) and search for existing and closed issues. If your problem or idea is not addressed yet, [please open a new issue](/issues).
+Have a bug or a feature request? First, read the [issue guidelines](https://github.com/madisvain/upcount/blob/master/CONTRIBUTING.md#using-the-issue-tracker) and search for existing and closed issues. If your problem or idea is not addressed yet, [please open a new issue](https://github.com/madisvain/upcount/issues).
 
 For more generic product questions and feedback please email [hello@upcount.app](mailto:hello@upcount.app)
 
