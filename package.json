@@ -7,10 +7,10 @@
     "build": "umi build",
     "test": "umi test",
     "lint": "eslint --ext .js src mock tests",
-    "electron": "electron-webpack",
-    "dist:mac": "electron-builder --mac",
-    "dist:linux": "electron-builder --linux",
-    "dist:win": "electron-builder --win"
+    "electron": "electron-webpack dev",
+    "dist:mac": "electron-webpack && electron-builder --mac",
+    "dist:linux": "electron-webpack && electron-builder --linux",
+    "dist:win": "electron-webpack && electron-builder --win"
   },
   "dependencies": {
     "antd": "^3.24.2",
@@ -20,8 +20,8 @@
     "libphonenumber-js": "^1.7.26",
     "pouchdb": "^7.1.1",
     "pouchdb-find": "^7.1.1",
-    "react": "^16.10.2",
-    "react-dom": "^16.10.2",
+    "react": "^16.11.0",
+    "react-dom": "^16.11.0",
     "react-frame-component": "^4.1.1",
     "recompose": "^0.30.0",
     "redux-form": "^8.2.6",
@@ -31,7 +31,7 @@
   },
   "devDependencies": {
     "babel-eslint": "^10.0.1",
-    "electron": "^6.0.12",
+    "electron": "^7.0.0",
     "electron-builder": "^21.2.0",
     "electron-webpack": "^2.7.4",
     "eslint": "^5.4.0",
@@ -42,7 +42,7 @@
     "eslint-plugin-react": "^7.11.1",
     "husky": "^3.0.2",
     "lint-staged": "^9.4.2",
-    "react-test-renderer": "^16.8.6",
+    "react-test-renderer": "^16.11.0",
     "redux-mock-store": "^1.5.3",
     "umi": "^2.10.7",
     "umi-plugin-react": "^1.12.8"
