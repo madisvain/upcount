@@ -7,6 +7,14 @@ Upcount is a painless cross-platform invoicing application, built with [React](h
 ![Invoice list](https://raw.githubusercontent.com/madisvain/upcount/master/screenshots/invoices.png)
 ![Invoice edit](https://raw.githubusercontent.com/madisvain/upcount/master/screenshots/invoice-edit.png)
 
+## Download
+
+Upcount is available for Mac and can be downloaded from Github releases.
+
+**[https://github.com/madisvain/upcount/releases](https://github.com/madisvain/upcount/releases)**
+
+__Linux & Windows support is planned__
+
 # Features
 * 🎯 Totally free & Open source
 * 🎭 Cross platform
