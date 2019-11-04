@@ -27,3 +27,5 @@ linux:
   target:
     - deb
     - AppImage
+  publish:
+    - github
