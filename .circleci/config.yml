@@ -75,4 +75,4 @@ workflows:
     jobs:
       - build_linux
       - build_windows
-      - build_mac
+      - build_macos
