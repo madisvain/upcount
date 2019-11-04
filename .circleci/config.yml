@@ -4,7 +4,7 @@
 #
 version: 2
 jobs:
-  build:
+  build_linux:
     docker:
       - image: circleci/node:lts
 
@@ -32,3 +32,31 @@ jobs:
 
       # Build app
       - run: yarn build && yarn dist:linux
+
+  build_windows:
+    docker:
+      - image: electronuserland/builder:wine
+
+    working_directory: ~/repo
+
+    steps:
+      - checkout
+
+      # Download and cache dependencies
+      - restore_cache:
+          keys:
+            - v1-dependencies-{{ checksum "package.json" }}
+            # fallback to using the latest cache if no exact match is found
+            - v1-dependencies-
+
+      - run: yarn install
+
+      - save_cache:
+          paths:
+            - node_modules
+          key: v1-dependencies-{{ checksum "package.json" }}
+
+      # Run tests
+      # - run: yarn test
+
+      - run: yarn build && yarn dist:win
