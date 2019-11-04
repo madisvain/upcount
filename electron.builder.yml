@@ -1,17 +1,21 @@
 appId: com.upcount.app
 copyright: Konstruktor OÜ
 productName: Upcount
+
 publish:
   - provider: github
     owner: konstruktor
     repo: upcount
+
 directories:
   output: dist/
+
 mac:
   category: public.app-category.business
   target:
     - zip
     - dmg
+
 win:
   target:
     - target: nsis
@@ -22,10 +26,9 @@ win:
       arch:
         - x64
         - ia32
+
 linux:
   category: Office
   target:
     - deb
     - AppImage
-  publish:
-    - github
