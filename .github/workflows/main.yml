@@ -8,12 +8,22 @@ jobs:
 
     steps:
       - uses: actions/checkout@v1
+
+      - uses: actions/cache@v1
+        with:
+          path: ~/.cache/yarn
+          key: ${{ runner.os }}-yarn-${{ hashFiles(format('{0}{1}', github.workspace, '/yarn.lock')) }}
+          restore-keys: |
+            ${{ runner.os }}-yarn-
+
       - uses: Borales/actions-yarn@v2.0.1
         with:
           cmd: install
+
       - uses: Borales/actions-yarn@v2.0.1
         with:
           cmd: build
+
       - uses: Borales/actions-yarn@v2.0.1
         with:
           cmd: dist:linux
