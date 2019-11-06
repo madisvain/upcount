@@ -7,23 +7,22 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
+      - name: Checkout
       - uses: actions/checkout@v1
 
-      #- uses: actions/cache@v1
-      #  with:
-      #    path: ~/.cache/yarn
-      #    key: ${{ runner.os }}-yarn-${{ hashFiles(format('{0}{1}', github.workspace, '/yarn.lock')) }}
-      #    restore-keys: |
-      #      ${{ runner.os }}-yarn-
-
-      - uses: Borales/actions-yarn@v2.0.1
+      - name: Cache node modules
+        uses: actions/cache@v1
         with:
-          cmd: install
+          path: node_modules
+          key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
+          restore-keys: |
+            ${{ runner.os }}-node-
 
-      - uses: Borales/actions-yarn@v2.0.1
-        with:
-          cmd: build
+      - name: Install Dependencies
+        run: npm install
 
-      - uses: Borales/actions-yarn@v2.0.1
-        with:
-          cmd: dist:linux
+      - name: Build
+        run: npm run build
+
+      - name: Package
+        run: npm run dist:linux
