@@ -1,4 +1,4 @@
-name: Yarn CI
+name: Electron
 
 on: [push]
 
