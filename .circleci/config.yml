@@ -20,7 +20,7 @@ jobs:
       # Run tests
       # - run: yarn test
       # Build app
-      - run: yarn build && yarn dist:linux
+      - run: yarn dist:linux
 
   build_windows:
     docker:
@@ -41,7 +41,7 @@ jobs:
           key: v1-dependencies-{{ checksum "package.json" }}
       # Run tests
       # - run: yarn test
-      - run: yarn build && yarn dist:win
+      - run: yarn dist:win
 
   build_macos:
     macos:
@@ -67,7 +67,7 @@ jobs:
       # - run: security unlock-keychain -p $KEYCHAIN_PASSWORD build.keychain
       # - run: echo $KEYSTORE | base64 --decode - > keystore.p12
       # - run: security import keystore.p12 -k build.keychain -P $KEYCHAIN_PASSWORD -T /usr/bin/codesign
-      - run: yarn build && yarn dist:mac
+      - run: yarn dist:mac
 
 workflows:
   version: 2
