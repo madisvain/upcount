@@ -21,6 +21,7 @@
     "countries-list": "^2.5.0",
     "currency-symbol-map": "^4.0.4",
     "currency.js": "^1.2.2",
+    "electron-updater": "^4.2.0",
     "libphonenumber-js": "^1.7.26",
     "pouchdb": "^7.1.1",
     "pouchdb-find": "^7.1.1",

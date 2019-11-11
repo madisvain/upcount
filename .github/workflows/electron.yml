@@ -21,8 +21,5 @@ jobs:
       - name: Install Dependencies
         run: npm install
 
-      - name: Build
-        run: npm run build
-
       - name: Package
         run: npm run dist:linux
