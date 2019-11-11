@@ -3,7 +3,7 @@ name: Electron
 on: [push]
 
 jobs:
-  build:
+  linux_build:
     name: Linux Build
     runs-on: ubuntu-latest
 
@@ -25,7 +25,7 @@ jobs:
       - name: Package
         run: npm run dist:linux
 
-  build:
+  mac_build:
     name: MacOS Build
     runs-on: macos-latest
 
@@ -47,7 +47,7 @@ jobs:
       - name: Package
         run: npm run dist:mac
 
-  build:
+  win_build:
     name: Windows Build
     runs-on: windows-latest
 
