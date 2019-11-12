@@ -3,6 +3,33 @@ name: Electron
 on: [push]
 
 jobs:
+  create_release:
+    id: create_release_tag
+    name: Create Release
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@master
+
+      - name: AutoTag
+        id: auto_tag
+        uses: oomathias/action-autotag@fix-owner
+        with:
+          GITHUB_TOKEN: "${{ secrets.GITHUB_TOKEN }}"
+          tag_prefx: "v"
+
+      - name: Create Release
+        id: create_release
+        uses: actions/create-release@v1.0.0
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          tag_name: ${{ steps.auto_tag.outputs.tagname }}
+          release_name: Development Build
+          draft: false
+          prerelease: true
+
   linux_build:
     name: Linux Build
     runs-on: ubuntu-latest
@@ -24,6 +51,16 @@ jobs:
 
       - name: Package
         run: npm run dist:linux
+      
+      - name: Upload Linux Build
+        uses: actions/upload-release-asset@v1.0.1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          upload_url: ${{ jobs.create_release_tag.steps.create_release.outputs.upload_url }}
+          asset_path: dist/upcount-${{ jobs.create_release_tag.steps.auto_tag.outputs.version }}.AppImage
+          asset_name: upcount-${{ jobs.create_release_tag.steps.auto_tag.outputs.version }}.AppImage
+          asset_content_type: application/octet-stream
 
   mac_build:
     name: MacOS Build
@@ -47,6 +84,16 @@ jobs:
       - name: Package
         run: npm run dist:mac
 
+      - name: Upload MacOS Build
+        uses: actions/upload-release-asset@v1.0.1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          upload_url: ${{ jobs.create_release_tag.steps.create_release.outputs.upload_url }}
+          asset_path: dist/upcount-${{ jobs.create_release_tag.steps.auto_tag.outputs.version }}.dmg
+          asset_name: upcount-${{ jobs.create_release_tag.steps.auto_tag.outputs.version }}.dmg
+          asset_content_type: application/octet-stream
+
   win_build:
     name: Windows Build
     runs-on: windows-latest
@@ -69,59 +116,12 @@ jobs:
       - name: Package
         run: npm run dist:win
 
-  release:
-    name: Pre Release
-    runs-on: ubuntu-latest
-    needs: [linux_build, mac_build, win_build]
-
-    steps:
-      - name: Checkout
-        uses: actions/checkout@master
-
-      - name: AutoTag
-        id: auto_tag
-        uses: oomathias/action-autotag@fix-owner
-        with:
-          GITHUB_TOKEN: "${{ secrets.GITHUB_TOKEN }}"
-          tag_prefx: "v"
-
-      - name: Create Release
-        id: create_release
-        uses: actions/create-release@v1.0.0
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        with:
-          tag_name: ${{ steps.auto_tag.outputs.tagname }}
-          release_name: Development Build
-          draft: false
-          prerelease: true
-      
       - name: Upload Windows Build
         uses: actions/upload-release-asset@v1.0.1
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
-          upload_url: ${{ steps.create_release.outputs.upload_url }}
-          asset_path: dist/upcount Setup ${{ steps.auto_tag.outputs.version }}.exe
-          asset_name: upcount Setup ${{ steps.auto_tag.outputs.version }}.exe
-          asset_content_type: application/octet-stream
-      
-      - name: Upload Linux Build
-        uses: actions/upload-release-asset@v1.0.1
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        with:
-          upload_url: ${{ steps.create_release.outputs.upload_url }}
-          asset_path: dist/upcount-${{ steps.auto_tag.outputs.version }}.AppImage
-          asset_name: upcount-${{ steps.auto_tag.outputs.version }}.AppImage
-          asset_content_type: application/octet-stream
-
-      - name: Upload MacOS Build
-        uses: actions/upload-release-asset@v1.0.1
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        with:
-          upload_url: ${{ steps.create_release.outputs.upload_url }}
-          asset_path: dist/upcount-${{ steps.auto_tag.outputs.version }}.dmg
-          asset_name: upcount-${{ steps.auto_tag.outputs.version }}.dmg
+          upload_url: ${{ jobs.create_release_tag.steps.create_release.outputs.upload_url }}
+          asset_path: dist/upcount Setup ${{ jobs.create_release_tag.steps.auto_tag.outputs.version }}.exe
+          asset_name: upcount Setup ${{ jobs.create_release_tag.steps.auto_tag.outputs.version }}.exe
           asset_content_type: application/octet-stream
