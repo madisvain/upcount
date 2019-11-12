@@ -29,7 +29,7 @@ jobs:
         uses: actions/upload-artifact@v1
         with:
           name: dist
-          path: dist/upcount-*.AppImage
+          path: dist/upcount-0.1.1-alpha.AppImage
 
   mac_build:
     name: MacOS Build
