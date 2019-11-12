@@ -56,7 +56,7 @@ jobs:
           title: "Development Build"
           files: |
             LICENSE.txt
-            dist/Upcount-0.1.0.dmg
+            dist/upcount-*.dmg
 
   win_build:
     name: Windows Build
