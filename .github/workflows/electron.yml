@@ -103,12 +103,6 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
           upload_url: ${{ steps.create_release.outputs.upload_url }}
-          asset_path: |
-            dist/upcount-*.dmg
-            dist/upcount Setup *.exe
-            dist/upcount-*.AppImage
-          asset_name: |
-            upcount-*.dmg
-            upcount Setup *.exe
-            upcount-*.AppImage
+          asset_path: [dist/upcount-*.dmg, dist/upcount Setup *.exe, dist/upcount-*.AppImage]
+          asset_name: [upcount-*.dmg, upcount Setup *.exe, upcount-*.AppImage]
           asset_content_type: application/octet-stream
