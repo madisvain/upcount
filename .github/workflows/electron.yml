@@ -97,13 +97,34 @@ jobs:
           release_name: Development Build
           draft: false
           prerelease: true
-      - name: Upload Release Asset
-        id: upload-release-asset 
+
+      - name: Upload MacOS Build
         uses: actions/upload-release-asset@v1.0.1
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
           upload_url: ${{ steps.create_release.outputs.upload_url }}
-          asset_path: [dist/upcount-*.dmg, dist/upcount Setup *.exe, dist/upcount-*.AppImage]
-          asset_name: [upcount-*.dmg, upcount Setup *.exe, upcount-*.AppImage]
+          asset_path: dist/upcount-*.dmg
+          asset_name: upcount-*.dmg
           asset_content_type: application/octet-stream
+      
+      - name: Upload Windows Build
+        uses: actions/upload-release-asset@v1.0.1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          upload_url: ${{ steps.create_release.outputs.upload_url }}
+          asset_path: dist/upcount Setup *.exe
+          asset_name: upcount Setup *.exe
+          asset_content_type: application/octet-stream
+      
+      - name: Upload Windows Build
+        uses: actions/upload-release-asset@v1.0.1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          upload_url: ${{ steps.create_release.outputs.upload_url }}
+          asset_path: dist/upcount-*.AppImage
+          asset_name: upcount-*.AppImage
+          asset_content_type: application/octet-stream
+          
