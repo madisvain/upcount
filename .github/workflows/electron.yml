@@ -95,16 +95,6 @@ jobs:
           release_name: Development Build
           draft: false
           prerelease: true
-
-      - name: Upload MacOS Build
-        uses: actions/upload-release-asset@v1.0.1
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        with:
-          upload_url: ${{ steps.create_release.outputs.upload_url }}
-          asset_path: dist/upcount-${{ steps.auto_tag.outputs.version }}.dmg
-          asset_name: upcount-${{ steps.auto_tag.outputs.version }}.dmg
-          asset_content_type: application/octet-stream
       
       - name: Upload Windows Build
         uses: actions/upload-release-asset@v1.0.1
@@ -116,7 +106,7 @@ jobs:
           asset_name: upcount Setup ${{ steps.auto_tag.outputs.version }}.exe
           asset_content_type: application/octet-stream
       
-      - name: Upload Windows Build
+      - name: Upload Linux Build
         uses: actions/upload-release-asset@v1.0.1
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
@@ -124,4 +114,14 @@ jobs:
           upload_url: ${{ steps.create_release.outputs.upload_url }}
           asset_path: dist/upcount-${{ steps.auto_tag.outputs.version }}.AppImage
           asset_name: upcount-${{ steps.auto_tag.outputs.version }}.AppImage
+          asset_content_type: application/octet-stream
+
+      - name: Upload MacOS Build
+        uses: actions/upload-release-asset@v1.0.1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          upload_url: ${{ steps.create_release.outputs.upload_url }}
+          asset_path: dist/upcount-${{ steps.auto_tag.outputs.version }}.dmg
+          asset_name: upcount-${{ steps.auto_tag.outputs.version }}.dmg
           asset_content_type: application/octet-stream
