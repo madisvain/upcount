@@ -11,6 +11,13 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v1
 
+      - name: AutoTag
+        id: auto_tag
+        uses: oomathias/action-autotag@fix-owner
+        with:
+          GITHUB_TOKEN: "${{ secrets.GITHUB_TOKEN }}"
+          tag_prefx: "v"
+
       - name: Cache node modules
         uses: actions/cache@v1
         with:
@@ -29,7 +36,7 @@ jobs:
         uses: actions/upload-artifact@v1
         with:
           name: dist
-          path: dist/upcount-0.1.1-alpha.AppImage
+          path: dist/upcount-${{ steps.auto_tag.outputs.version }}.AppImage
 
   mac_build:
     name: MacOS Build
@@ -38,6 +45,13 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v1
+
+      - name: AutoTag
+        id: auto_tag
+        uses: oomathias/action-autotag@fix-owner
+        with:
+          GITHUB_TOKEN: "${{ secrets.GITHUB_TOKEN }}"
+          tag_prefx: "v"
 
       - name: Cache node modules
         uses: actions/cache@v1
@@ -57,7 +71,7 @@ jobs:
         uses: actions/upload-artifact@v1
         with:
           name: dist
-          path: dist/upcount-*.dmg
+          path: dist/upcount-${{ steps.auto_tag.outputs.version }}.dmg
 
   win_build:
     name: Windows Build
@@ -66,6 +80,13 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v1
+
+      - name: AutoTag
+        id: auto_tag
+        uses: oomathias/action-autotag@fix-owner
+        with:
+          GITHUB_TOKEN: "${{ secrets.GITHUB_TOKEN }}"
+          tag_prefx: "v"
 
       - name: Cache node modules
         uses: actions/cache@v1
@@ -85,7 +106,7 @@ jobs:
         uses: actions/upload-artifact@v1
         with:
           name: dist
-          path: dist/upcount Setup *.dmg
+          path: dist/upcount Setup ${{ steps.auto_tag.outputs.version }}.exe
 
   release:
     name: Pre Release
