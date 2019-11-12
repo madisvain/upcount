@@ -13,10 +13,11 @@ jobs:
 
       - name: AutoTag
         id: auto_tag
-        uses: oomathias/action-autotag@fix-owner
+        uses: jaliborc/action-general-autotag@1.0.0
         with:
           GITHUB_TOKEN: "${{ secrets.GITHUB_TOKEN }}"
-          tag_prefx: "v"
+          source_file: "package.json"
+          tag_format: "v{version}"
 
       - name: Cache node modules
         uses: actions/cache@v1
@@ -48,10 +49,11 @@ jobs:
 
       - name: AutoTag
         id: auto_tag
-        uses: oomathias/action-autotag@fix-owner
+        uses: jaliborc/action-general-autotag@1.0.0
         with:
           GITHUB_TOKEN: "${{ secrets.GITHUB_TOKEN }}"
-          tag_prefx: "v"
+          source_file: "package.json"
+          tag_format: "v{version}"
 
       - name: Cache node modules
         uses: actions/cache@v1
@@ -83,10 +85,11 @@ jobs:
 
       - name: AutoTag
         id: auto_tag
-        uses: oomathias/action-autotag@fix-owner
+        uses: jaliborc/action-general-autotag@1.0.0
         with:
           GITHUB_TOKEN: "${{ secrets.GITHUB_TOKEN }}"
-          tag_prefx: "v"
+          source_file: "package.json"
+          tag_format: "v{version}"
 
       - name: Cache node modules
         uses: actions/cache@v1
@@ -119,10 +122,11 @@ jobs:
 
       - name: AutoTag
         id: auto_tag
-        uses: oomathias/action-autotag@fix-owner
+        uses: jaliborc/action-general-autotag@1.0.0
         with:
           GITHUB_TOKEN: "${{ secrets.GITHUB_TOKEN }}"
-          tag_prefx: "v"
+          source_file: "package.json"
+          tag_format: "v{version}"
 
       - name: Create Release
         id: create_release
@@ -130,7 +134,7 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
-          tag_name: ${{ steps.auto_tag.outputs.tagname }}
+          tag_name: v${{ steps.auto_tag.outputs.version }}
           release_name: Development Build
           draft: false
           prerelease: true
