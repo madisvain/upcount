@@ -3,8 +3,7 @@ name: Electron
 on: [push]
 
 jobs:
-  create_release:
-    id: create_release_tag
+  create_release_tag:
     name: Create Release
     runs-on: ubuntu-latest
 
