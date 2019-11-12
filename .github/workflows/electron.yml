@@ -13,11 +13,10 @@ jobs:
 
       - name: AutoTag
         id: auto_tag
-        uses: jaliborc/action-general-autotag@1.0.0
+        uses: ButlerLogic/action-autotag@1.0.0
         with:
           GITHUB_TOKEN: "${{ secrets.GITHUB_TOKEN }}"
-          source_file: "package.json"
-          tag_format: "v{version}"
+          tag_prefx: "v"
 
       - name: Cache node modules
         uses: actions/cache@v1
@@ -49,11 +48,10 @@ jobs:
 
       - name: AutoTag
         id: auto_tag
-        uses: jaliborc/action-general-autotag@1.0.0
+        uses: ButlerLogic/action-autotag@1.0.0
         with:
           GITHUB_TOKEN: "${{ secrets.GITHUB_TOKEN }}"
-          source_file: "package.json"
-          tag_format: "v{version}"
+          tag_prefx: "v"
 
       - name: Cache node modules
         uses: actions/cache@v1
@@ -85,11 +83,10 @@ jobs:
 
       - name: AutoTag
         id: auto_tag
-        uses: jaliborc/action-general-autotag@1.0.0
+        uses: ButlerLogic/action-autotag@1.0.0
         with:
           GITHUB_TOKEN: "${{ secrets.GITHUB_TOKEN }}"
-          source_file: "package.json"
-          tag_format: "v{version}"
+          tag_prefx: "v"
 
       - name: Cache node modules
         uses: actions/cache@v1
@@ -122,11 +119,10 @@ jobs:
 
       - name: AutoTag
         id: auto_tag
-        uses: jaliborc/action-general-autotag@1.0.0
+        uses: ButlerLogic/action-autotag@1.0.0
         with:
           GITHUB_TOKEN: "${{ secrets.GITHUB_TOKEN }}"
-          source_file: "package.json"
-          tag_format: "v{version}"
+          tag_prefx: "v"
 
       - name: Create Release
         id: create_release
