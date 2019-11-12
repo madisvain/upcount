@@ -80,9 +80,10 @@ jobs:
 
       - name: AutoTag
         id: auto_tag
-        uses: butlerlogic/action-autotag@stable
+        uses: oomathias/action-autotag@fix-owner
         with:
           GITHUB_TOKEN: "${{ secrets.GITHUB_TOKEN }}"
+          ACTIONS_STEP_DEBUG: true
           tag_prefx: "v"
 
       - name: Create Release
