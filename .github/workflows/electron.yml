@@ -23,10 +23,7 @@ jobs:
         run: npm install
 
       - name: Package
-        run: npm run deploy:linux
-        env:
-          GH_TOKEN: "${{ secrets.GITHUB_TOKEN }}"
-          EP_PRE_RELEASE: true
+        run: npm run dist:linux
 
   mac_build:
     name: MacOS Build
@@ -48,10 +45,7 @@ jobs:
         run: npm install
 
       - name: Package
-        run: npm run deploy:mac
-        env:
-          GH_TOKEN: "${{ secrets.GITHUB_TOKEN }}"
-          EP_PRE_RELEASE: true
+        run: npm run dist:mac
 
   win_build:
     name: Windows Build
@@ -73,7 +67,4 @@ jobs:
         run: npm install
 
       - name: Package
-        run: npm run deploy:win
-        env:
-          GH_TOKEN: "${{ secrets.GITHUB_TOKEN }}"
-          EP_PRE_RELEASE: true
+        run: npm run dist:win
