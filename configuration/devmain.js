@@ -3,4 +3,4 @@ const { execSync } = require('child_process');
 
 setTimeout(() => {
     execSync('yarn dev:main', { cwd: path.join(__dirname, '..') })
-}, 6000);
+}, 8000);

@@ -2,7 +2,7 @@
   "name": "upcount",
   "author": "Madis Vain <madisvain@gmail.com>",
   "description": "Painless Invoicing Application",
-  "version": "0.1.1-alpha",
+  "version": "0.1.4-alpha",
   "private": true,
   "scripts": {
     "dev:renderer": "umi dev",
@@ -14,6 +14,9 @@
     "dist:mac": "yarn run build:renderer && electron-webpack && electron-builder --mac",
     "dist:linux": "yarn run build:renderer && electron-webpack && electron-builder --linux",
     "dist:win": "yarn run build:renderer && electron-webpack && electron-builder --win",
+    "deploy:mac": "yarn run build:renderer && electron-webpack && electron-builder --mac --publish always",
+    "deploy:linux": "yarn run build:renderer && electron-webpack && electron-builder --linux --publish always",
+    "deploy:win": "yarn run build:renderer && electron-webpack && electron-builder --win --publish always",
     "postinstall": "electron-builder install-app-deps"
   },
   "dependencies": {
@@ -22,6 +25,7 @@
     "currency-symbol-map": "^4.0.4",
     "currency.js": "^1.2.2",
     "electron-updater": "^4.2.0",
+    "fs": "0.0.1-security",
     "libphonenumber-js": "^1.7.26",
     "pouchdb": "^7.1.1",
     "pouchdb-find": "^7.1.1",
