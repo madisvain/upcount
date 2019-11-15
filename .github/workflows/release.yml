@@ -55,6 +55,10 @@ jobs:
         env:
           GH_TOKEN: "${{ secrets.GITHUB_TOKEN }}"
           EP_PRE_RELEASE: true
+          CSC_LINK: "${{ secrets.MAC_CSC_LINK }}"
+          CSC_KEY_PASSWORD: "${{ secrets.MAC_CSC_KEY_PASSWORD }}"
+          appleId: "${{ secrets.appleId }}"
+          appleIdPassword: "${{ secrets.appleIdPassword }}"
 
   win_build:
     name: Windows Build
@@ -80,3 +84,5 @@ jobs:
         env:
           GH_TOKEN: "${{ secrets.GITHUB_TOKEN }}"
           EP_PRE_RELEASE: true
+          CSC_LINK: "${{ secrets.WIN_CSC_LINK }}"
+          CSC_KEY_PASSWORD: "${{ secrets.WIN_CSC_KEY_PASSWORD }}"
