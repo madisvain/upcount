@@ -1,6 +1,6 @@
 # Upcount invoicing app
 
-[![CircleCI](https://circleci.com/gh/madisvain/upcount.svg?style=svg)](https://circleci.com/gh/madisvain/upcount) ![GitHub](https://img.shields.io/github/license/madisvain/upcount)
+![Github actions](https://github.com/madisvain/upcount/workflows/Electron/badge.svg) ![GitHub](https://img.shields.io/github/license/madisvain/upcount) ![GitHub release (latest by date including pre-releases)](https://img.shields.io/github/v/release/madisvain/upcount?include_prereleases)
 
 Upcount is a painless cross-platform invoicing application, built with [React](https://reactjs.org/) & [Electron](https://electronjs.org/) and simplicity in mind.
 
