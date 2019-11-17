@@ -1,4 +1,5 @@
-import { app, BrowserWindow } from 'electron';
+import { app, BrowserWindow, ipcMain } from 'electron';
+import { autoUpdater } from 'electron-updater';
 import * as path from 'path';
 import * as url from 'url';
 
@@ -8,6 +9,9 @@ function createWindow() {
   mainWindow = new BrowserWindow({
     height: 800,
     width: 1000,
+    webPreferences: {
+      nodeIntegration: true,
+    }
   });
 
   if (process.env.NODE_ENV === 'development') {
@@ -26,6 +30,8 @@ function createWindow() {
   mainWindow.on('closed', () => {
     mainWindow = null;
   });
+
+  autoUpdater.checkForUpdatesAndNotify();
 }
 
 app.on('ready', createWindow);
@@ -41,3 +47,14 @@ app.on('activate', () => {
     createWindow();
   }
 });
+
+autoUpdater.on('update-available', () => {
+  mainWindow.webContents.send('update_available');
+});
+autoUpdater.on('update-downloaded', () => {
+  mainWindow.webContents.send('update_downloaded');
+});
+
+ipcMain.on('restart_app', () => {
+  autoUpdater.quitAndInstall();
+})
