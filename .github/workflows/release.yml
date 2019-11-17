@@ -1,6 +1,9 @@
-name: Build Test
+name: Release
 
-on: [push]
+on:
+  push:
+    branches:
+      - "master"
 
 jobs:
   linux_build:
@@ -23,7 +26,10 @@ jobs:
         run: npm install
 
       - name: Package
-        run: npm run dist:linux
+        run: npm run deploy:linux
+        env:
+          GH_TOKEN: "${{ secrets.GITHUB_TOKEN }}"
+          EP_PRE_RELEASE: true
 
   mac_build:
     name: MacOS Build
@@ -45,8 +51,10 @@ jobs:
         run: npm install
 
       - name: Package
-        run: npm run dist:mac
-        env: 
+        run: npm run deploy:mac
+        env:
+          GH_TOKEN: "${{ secrets.GITHUB_TOKEN }}"
+          EP_PRE_RELEASE: true
           CSC_LINK: "${{ secrets.MAC_CSC_LINK }}"
           CSC_KEY_PASSWORD: "${{ secrets.MAC_CSC_KEY_PASSWORD }}"
           appleId: "${{ secrets.appleId }}"
@@ -72,7 +80,9 @@ jobs:
         run: npm install
 
       - name: Package
-        run: npm run dist:win
+        run: npm run deploy:win
         env:
+          GH_TOKEN: "${{ secrets.GITHUB_TOKEN }}"
+          EP_PRE_RELEASE: true
           CSC_LINK: "${{ secrets.WIN_CSC_LINK }}"
           CSC_KEY_PASSWORD: "${{ secrets.WIN_CSC_KEY_PASSWORD }}"

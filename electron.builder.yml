@@ -10,8 +10,14 @@ publish:
 directories:
   output: dist/
 
+afterSign: ./configuration/afterSignHook.js
+
 mac:
   category: public.app-category.business
+  gatekeeperAssess: false
+  hardenedRuntime: true
+  entitlements: ./configuration/entitlements.mac.plist
+  entitlementsInherit: ./configuration/entitlements.mac.plist
   target:
     - zip
     - dmg
