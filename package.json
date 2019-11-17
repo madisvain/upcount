@@ -55,7 +55,8 @@
     "react-test-renderer": "^16.11.0",
     "redux-mock-store": "^1.5.3",
     "umi": "^2.11.1",
-    "umi-plugin-react": "^1.13.1"
+    "umi-plugin-react": "^1.13.1",
+    "electron-notarize": "^0.2.0"
   },
   "lint-staged": {
     "*.{js,jsx}": [

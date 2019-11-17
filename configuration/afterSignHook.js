@@ -1,11 +1,10 @@
 const fs = require('fs')
 const path = require('path')
 var electronNotarize = require('electron-notarize')
-require('dotenv').config()
 
 module.exports = async (params) => {
   // Only notarize the app on Mac OS only.
-  if (process.platform !== 'darwin') {
+  if (process.platform !== 'darwin' || params.electronPlatformName !== 'darwin') {
     return
   }
   console.log('afterSign hook triggered', params)
