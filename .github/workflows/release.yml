@@ -3,7 +3,7 @@ name: Release
 on:
   push:
     branches:
-      - "master"
+      - 'master'
 
 jobs:
   linux_build:
@@ -28,7 +28,7 @@ jobs:
       - name: Package
         run: npm run deploy:linux
         env:
-          GH_TOKEN: "${{ secrets.GITHUB_TOKEN }}"
+          GH_TOKEN: '${{ secrets.GITHUB_TOKEN }}'
           EP_PRE_RELEASE: true
 
   mac_build:
@@ -53,12 +53,12 @@ jobs:
       - name: Package
         run: npm run deploy:mac
         env:
-          GH_TOKEN: "${{ secrets.GITHUB_TOKEN }}"
+          GH_TOKEN: '${{ secrets.GITHUB_TOKEN }}'
           EP_PRE_RELEASE: true
-          CSC_LINK: "${{ secrets.MAC_CSC_LINK }}"
-          CSC_KEY_PASSWORD: "${{ secrets.MAC_CSC_KEY_PASSWORD }}"
-          appleId: "${{ secrets.appleId }}"
-          appleIdPassword: "${{ secrets.appleIdPassword }}"
+          CSC_LINK: '${{ secrets.MAC_CSC_LINK }}'
+          CSC_KEY_PASSWORD: '${{ secrets.MAC_CSC_KEY_PASSWORD }}'
+          appleId: '${{ secrets.APPLE_ID }}'
+          appleIdPassword: '${{ secrets.APPLE_ID_PASSWORD }}'
 
   win_build:
     name: Windows Build
@@ -82,7 +82,7 @@ jobs:
       - name: Package
         run: npm run deploy:win
         env:
-          GH_TOKEN: "${{ secrets.GITHUB_TOKEN }}"
+          GH_TOKEN: '${{ secrets.GITHUB_TOKEN }}'
           EP_PRE_RELEASE: true
-          CSC_LINK: "${{ secrets.WIN_CSC_LINK }}"
-          CSC_KEY_PASSWORD: "${{ secrets.WIN_CSC_KEY_PASSWORD }}"
+          CSC_LINK: '${{ secrets.WIN_CSC_LINK }}'
+          CSC_KEY_PASSWORD: '${{ secrets.WIN_CSC_KEY_PASSWORD }}'

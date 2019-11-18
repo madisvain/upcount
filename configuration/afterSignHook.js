@@ -1,36 +1,36 @@
-const fs = require('fs')
-const path = require('path')
-var electronNotarize = require('electron-notarize')
+const fs = require('fs');
+const path = require('path');
+var electronNotarize = require('electron-notarize');
 
-module.exports = async (params) => {
+module.exports = async params => {
   // Only notarize the app on Mac OS only.
   if (process.platform !== 'darwin' || params.electronPlatformName !== 'darwin') {
-    return
+    return;
   }
-  console.log('afterSign hook triggered', params)
+  console.log('afterSign hook triggered', params);
 
   // Same appId in electron-builder.
-  let appId = 'com.upcount.app'
+  let appId = 'com.upcount.app';
 
-  let appPath = path.join(params.appOutDir, `${params.packager.appInfo.productFilename}.app`)
+  let appPath = path.join(params.appOutDir, `${params.packager.appInfo.productFilename}.app`);
   if (!fs.existsSync(appPath)) {
-    throw new Error(`Cannot find application at: ${appPath}`)
+    throw new Error(`Cannot find application at: ${appPath}`);
   }
 
-  console.log(`Notarizing ${appId} found at ${appPath}`)
+  console.log(`Notarizing ${appId} found at ${appPath}`);
 
   try {
     await electronNotarize.notarize({
       appBundleId: appId,
       appPath: appPath,
-      appleId: process.env.appleId,
-      appleIdPassword: process.env.appleIdPassword
+      appleId: process.env.APPLE_ID,
+      appleIdPassword: process.env.APPLE_ID_PASSWORD,
       // Please remove the below line if you are part of only one team.
       // ascProvider: process.env.appleIdProvider
-    })
+    });
   } catch (error) {
-    console.error(error)
+    console.error(error);
   }
 
-  console.log(`Done notarizing ${appId}`)
-}
+  console.log(`Done notarizing ${appId}`);
+};

@@ -46,11 +46,11 @@ jobs:
 
       - name: Package
         run: npm run dist:mac
-        env: 
-          CSC_LINK: "${{ secrets.MAC_CSC_LINK }}"
-          CSC_KEY_PASSWORD: "${{ secrets.MAC_CSC_KEY_PASSWORD }}"
-          appleId: "${{ secrets.appleId }}"
-          appleIdPassword: "${{ secrets.appleIdPassword }}"
+        env:
+          CSC_LINK: '${{ secrets.MAC_CSC_LINK }}'
+          CSC_KEY_PASSWORD: '${{ secrets.MAC_CSC_KEY_PASSWORD }}'
+          appleId: '${{ secrets.APPLE_ID }}'
+          appleIdPassword: '${{ secrets.APPLE_ID_PASSWORD }}'
 
   win_build:
     name: Windows Build
@@ -74,5 +74,5 @@ jobs:
       - name: Package
         run: npm run dist:win
         env:
-          CSC_LINK: "${{ secrets.WIN_CSC_LINK }}"
-          CSC_KEY_PASSWORD: "${{ secrets.WIN_CSC_KEY_PASSWORD }}"
+          CSC_LINK: '${{ secrets.WIN_CSC_LINK }}'
+          CSC_KEY_PASSWORD: '${{ secrets.WIN_CSC_KEY_PASSWORD }}'
