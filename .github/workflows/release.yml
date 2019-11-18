@@ -57,8 +57,8 @@ jobs:
           EP_PRE_RELEASE: true
           CSC_LINK: '${{ secrets.MAC_CSC_LINK }}'
           CSC_KEY_PASSWORD: '${{ secrets.MAC_CSC_KEY_PASSWORD }}'
-          appleId: '${{ secrets.APPLE_ID }}'
-          appleIdPassword: '${{ secrets.APPLE_ID_PASSWORD }}'
+          APPLE_ID: '${{ secrets.APPLE_ID }}'
+          APPLE_ID_PASSWORD: '${{ secrets.APPLE_ID_PASSWORD }}'
 
   win_build:
     name: Windows Build
