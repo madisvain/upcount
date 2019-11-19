@@ -12,7 +12,7 @@ import withRouter from 'umi/withRouter';
 import currency from 'currency.js';
 import currencyToSymbolMap from 'currency-symbol-map/map';
 
-import { ADatePicker, AInput, ASelect, ATextarea } from '../../../components/forms/fields';
+import { ADatePicker, AInput, ASelect, ATextarea, AStateDropdown } from '../../../components/forms/fields';
 import { required } from '../../../components/forms/validators';
 import LineItems from '../../../components/invoices/line-items';
 import FooterToolbar from '../../../components/layout/footer-toolbar';
@@ -73,6 +73,10 @@ class InvoiceForm extends Component {
     }
   };
 
+  onStateSelect = key => {
+    this.setState({ invoiceState: key });
+  }
+
   render() {
     const {
       location,
@@ -83,6 +87,7 @@ class InvoiceForm extends Component {
       pristine,
       submitting,
       taxRates,
+      invoiceState
     } = this.props;
     const { subTotal, taxTotal, total } = totals(lineItems, taxRates);
 
@@ -213,12 +218,18 @@ class InvoiceForm extends Component {
 
           <FooterToolbar
             extra={
-              !this.isNew() && (
-                <Button type="danger" style={{ marginTop: 10 }}>
-                  <Icon type="delete" />
-                  Revoke
-                </Button>
-              )
+              <span>
+                {!this.isNew() && (
+                  <Button type="danger" style={{ marginTop: 10, marginRight: 20 }}>
+                    <Icon type="delete" />
+                    Revoke
+                  </Button>
+                )}
+                {!this.isNew() && (
+                  <Field name="state" component={AStateDropdown} value={invoiceState}>
+                  </Field>
+                )}
+              </span>
             }
           >
             {!this.isNew() && (
@@ -262,6 +273,7 @@ export default compose(
     clients: state.clients,
     taxRates: state.taxRates,
     lineItems: selector(state, 'lineItems'),
+    invoiceState: selector(state, 'state')
   })),
   reduxForm({
     form: 'invoice',

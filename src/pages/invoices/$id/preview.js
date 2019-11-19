@@ -87,7 +87,7 @@ class InvoicePreview extends Component {
   print() {
     const PDF = document.getElementById('invoice-frame');
     PDF.focus();
-    PDF.contentWindow.print();
+    PDF.contentWindow.print({});
   }
 
   render() {
