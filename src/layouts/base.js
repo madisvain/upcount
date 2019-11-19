@@ -18,8 +18,8 @@ class BaseLayout extends Component {
   render() {
     const { children, location } = this.props;
 
-    if (location.pathname === '/') {
-      return <Layout style={{ minHeight: '100vh' }}>{children}</Layout>;
+    if (location.pathname === '/' || location.pathname.includes('print')) {
+      return <Layout style={{ minHeight: '100vh', margin: 0 }}>{children}</Layout>;
     } else {
       return (
         <Layout style={{ minHeight: '100vh' }}>

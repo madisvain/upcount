@@ -77,6 +77,10 @@ class InvoiceForm extends Component {
     this.setState({ invoiceState: key });
   }
 
+  print = () => {
+    window.require('electron').ipcRenderer.send('printPDF', get(this.props, ['match', 'params', 'id']));
+  }
+
   render() {
     const {
       location,
@@ -92,7 +96,7 @@ class InvoiceForm extends Component {
     const { subTotal, taxTotal, total } = totals(lineItems, taxRates);
 
     // Invoice preview
-    if (get(location, 'pathname', '').endsWith('preview')) {
+    if (get(location, 'pathname', '').endsWith('preview') || get(location, 'pathname', '').endsWith('print')) {
       return (
         <Layout.Content style={{ margin: '16px 16px 72px 16px', padding: 24, background: '#fff' }}>
           {children}
@@ -241,7 +245,7 @@ class InvoiceForm extends Component {
               </Link>
             )}
             {!this.isNew() && (
-              <Button style={{ marginTop: 10 }} onClick={() => window.print()}>
+              <Button style={{ marginTop: 10 }} onClick={this.print}>
                 <Icon type="printer" />
                 Print
               </Button>
@@ -286,7 +290,6 @@ export default withRouter(
   }))(
   reduxForm({
     form: 'invoice',
-    enableReinitialize: true,
     onSubmit: async (data, dispatch, props) => {
       const { lineItems, taxRates } = props;
       const { subTotal, taxTotal, total } = totals(lineItems, taxRates);

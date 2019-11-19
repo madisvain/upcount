@@ -10,7 +10,11 @@ class StateDropDown extends Component {
   render() {
     // Invoice state menu
     console.log('drop value', this.props)
-    const menu = <Menu onClick={({item, key}) => this.triggerChange(key)}>
+    const menu = <Menu onClick={({item, key}) => {
+      console.log('trigger change')
+      this.triggerChange(key)}
+    }
+    >
         <Menu.Item key="draft">Draft</Menu.Item>
         <Menu.Item key="confirmed">Confirmed</Menu.Item>
         <Menu.Item key="payed">Payed</Menu.Item>
