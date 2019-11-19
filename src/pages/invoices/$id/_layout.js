@@ -267,24 +267,26 @@ class InvoiceForm extends Component {
 
 const selector = formValueSelector('invoice');
 
-export default compose(
-  withRouter,
+export default withRouter(
+  compose(
   connect(state => ({
     clients: state.clients,
     taxRates: state.taxRates,
     lineItems: selector(state, 'lineItems'),
-    invoiceState: selector(state, 'state')
-  })),
-  reduxForm({
-    form: 'invoice',
+    invoiceState: selector(state, 'state'),
     initialValues: {
-      currency: 'EUR',
+      currency: get(state.organizations.items, [localStorage.getItem('organization'), 'currency'], ''),
       date: moment().format('YYYY-MM-DD'),
       due_date: moment()
-        .add(7, 'days')
+        .add(get(state.organizations.items, [localStorage.getItem('organization'), 'due_days'], 0), 'days')
         .format('YYYY-MM-DD'),
+      customer_note: get(state.organizations.items, [localStorage.getItem('organization'), 'notes'], ''),
       lineItems: [{}],
     },
+  }))(
+  reduxForm({
+    form: 'invoice',
+    enableReinitialize: true,
     onSubmit: async (data, dispatch, props) => {
       const { lineItems, taxRates } = props;
       const { subTotal, taxTotal, total } = totals(lineItems, taxRates);
@@ -303,5 +305,5 @@ export default compose(
         pathname: '/invoices/',
       });
     },
-  })
-)(InvoiceForm);
+  })(InvoiceForm)))
+);
