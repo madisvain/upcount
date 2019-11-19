@@ -10,7 +10,7 @@ publish:
 directories:
   output: dist/
 
-# afterSign: ./configuration/afterSignHook.js
+afterSign: ./configuration/afterSignHook.js
 
 mac:
   category: public.app-category.business
