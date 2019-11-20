@@ -5,7 +5,7 @@
 Upcount is a painless cross-platform invoicing application, built with [React](https://reactjs.org/) & [Electron](https://electronjs.org/) and simplicity in mind.
 
 ![Invoice list](https://raw.githubusercontent.com/madisvain/upcount/master/screenshots/invoices.png)
-![Invoice edit](https://raw.githubusercontent.com/madisvain/upcount/master/screenshots/invoice-edit.png)
+[Invoice editing](https://raw.githubusercontent.com/madisvain/upcount/master/screenshots/invoice-edit.png)
 
 ## Download
 
