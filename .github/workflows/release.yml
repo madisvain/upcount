@@ -59,6 +59,7 @@ jobs:
           CSC_KEY_PASSWORD: '${{ secrets.MAC_CSC_KEY_PASSWORD }}'
           APPLE_ID: '${{ secrets.APPLE_ID }}'
           APPLE_ID_PASSWORD: '${{ secrets.APPLE_ID_PASSWORD }}'
+          APPLE_PROVIDER_SHORTNAME: '${{ secrets.APPLE_PROVIDER_SHORTNAME }}'
 
   win_build:
     name: Windows Build

@@ -25,7 +25,7 @@ module.exports = async params => {
       appPath: appPath,
       appleId: process.env.APPLE_ID,
       appleIdPassword: process.env.APPLE_ID_PASSWORD,
-      ascProvider: 'Madis Vin',
+      ascProvider: process.env.APPLE_PROVIDER_SHORTNAME,
     });
   } catch (error) {
     console.error(error);
