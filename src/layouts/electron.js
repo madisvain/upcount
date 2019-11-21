@@ -1,10 +1,26 @@
 import { notification, Button } from 'antd';
-
+import router from 'umi/router';
 import BaseLayout from './base';
 
 class ElectronLayout extends BaseLayout {
   componentDidMount() {
     const { ipcRenderer } = window.require('electron');
+
+    ipcRenderer.on('log', (event, log) => {
+      console.log('log', log);
+    });
+
+    ipcRenderer.on('printPDF', (event, id) => {
+      router.push({
+        pathname: `/invoices/${id}/print`,
+      });
+    });
+
+    ipcRenderer.on('wrote-pdf', () => {
+      router.push({
+        pathname: '/',
+      });
+    });
 
     ipcRenderer.on('update_available', (event, data) => {
       notification.info({

@@ -9,12 +9,17 @@ import pathToRegexp from 'path-to-regexp';
 class Navigation extends Component {
   state = {
     selectedMenuKeys: [],
+    openKeys: [],
   };
 
   componentDidMount() {
     const pathname = get(this.props, ['location', 'pathname']);
     const match = pathToRegexp(`/(.*)`).exec(pathname);
-    this.setState({ selectedMenuKeys: get(match, 1).split('/') });
+    const pathArr = get(match, 1).split('/');
+    this.setState({
+      selectedMenuKeys: pathArr,
+      openKeys: pathArr[0] === 'settings' ? ['settings'] : [],
+    });
   }
 
   handleMenuClick = e => {
@@ -23,13 +28,27 @@ class Navigation extends Component {
       case 'logout':
         this.props.dispatch({ type: 'auth/logout' });
         break;
+      case 'invoices':
+        this.setState({ openKeys: [], selectedMenuKeys: e.keyPath });
+        break;
+      case 'clients':
+        this.setState({ openKeys: [], selectedMenuKeys: e.keyPath });
+        break;
+      case 'settings':
+        if (e.keyPath.length > 1) {
+          this.setState({ selectedMenuKeys: e.keyPath });
+        } else {
+          const openKeys = this.state.openKeys.length === 0 ? ['settings'] : [];
+          this.setState({ openKeys });
+        }
+        break;
       default:
         this.setState({ selectedMenuKeys: e.keyPath });
     }
   };
 
   render() {
-    const { selectedMenuKeys } = this.state;
+    const { selectedMenuKeys, openKeys } = this.state;
 
     return (
       <Layout.Sider trigger={null} collapsible collapsed={this.props.collapsed}>
@@ -41,8 +60,8 @@ class Navigation extends Component {
         <Menu
           theme="dark"
           mode="inline"
-          inlineCollapsed={this.props.collapsed}
           selectedKeys={selectedMenuKeys}
+          openKeys={openKeys}
           onClick={this.handleMenuClick}
         >
           <Menu.Item key="invoices">

@@ -1,9 +1,11 @@
-import { app, BrowserWindow, ipcMain } from 'electron';
+import { app, BrowserWindow, ipcMain, shell, dialog, ipcRenderer } from 'electron';
 import { autoUpdater } from 'electron-updater';
 import * as path from 'path';
 import * as url from 'url';
+import * as fs from 'fs';
 
 let mainWindow = BrowserWindow | null;
+let printerWindow = BrowserWindow | null;
 
 function createWindow() {
   mainWindow = new BrowserWindow({
@@ -11,14 +13,31 @@ function createWindow() {
     width: 1000,
     webPreferences: {
       nodeIntegration: true,
-    }
+    },
   });
+
+  printerWindow = new BrowserWindow({
+    height: 900,
+    width: 900,
+    webPreferences: {
+      nodeIntegration: true,
+    },
+  });
+  printerWindow.hide();
 
   if (process.env.NODE_ENV === 'development') {
     mainWindow.loadURL('http://localhost:8000/#/');
     mainWindow.webContents.openDevTools();
+    printerWindow.loadURL('http://localhost:8000/#/');
   } else {
     mainWindow.loadURL(
+      url.format({
+        pathname: path.join(__dirname, './index.html'),
+        protocol: 'file:',
+        slashes: true,
+      })
+    );
+    printerWindow.loadURL(
       url.format({
         pathname: path.join(__dirname, './index.html'),
         protocol: 'file:',
@@ -57,4 +76,48 @@ autoUpdater.on('update-downloaded', () => {
 
 ipcMain.on('restart_app', () => {
   autoUpdater.quitAndInstall();
-})
+});
+
+ipcMain.on('printPDF', (event, id) => {
+  printerWindow.webContents.send('printPDF', id);
+});
+
+ipcMain.on('readyToPrint', (event, data) => {
+  const options = {
+    filters: [
+      {
+        name: 'All',
+        extensions: ['pdf'],
+      },
+    ],
+  };
+
+  printerWindow.webContents
+    .printToPDF({
+      marginsType: 1,
+    })
+    .then(data => {
+      dialog
+        .showSaveDialog(options)
+        .then(({ filePath }) => {
+          if (filePath === undefined) {
+            console.log("You didn't save the file");
+            return;
+          }
+
+          fs.writeFile(filePath, data, function(error) {
+            if (error) {
+              throw error;
+            }
+            shell.openItem(filePath);
+            event.sender.send('wrote-pdf');
+          });
+        })
+        .catch(err => {
+          throw err;
+        });
+    })
+    .catch(err => {
+      throw err;
+    });
+});

@@ -1,21 +1,18 @@
 import { Component } from 'react';
 import { connect } from 'dva';
-import { Button, Icon, Spin } from 'antd';
+import { Spin } from 'antd';
 import { get, has, head } from 'lodash';
 
 import getSymbolFromCurrency from 'currency-symbol-map';
 import Frame, { FrameContextConsumer } from 'react-frame-component';
-import Link from 'umi/link';
 import styled, { StyleSheetManager } from 'styled-components';
-
-import FooterToolbar from '../../../components/layout/footer-toolbar';
-
-const { ipcRenderer } = window.require('electron')
 
 /* Styles */
 const Invoice = styled.div`
   @import url('https://fonts.googleapis.com/css?family=Open+Sans:400,400i,700&subset=latin-ext');
   font-family: 'Open Sans', sans-serif;
+  width: 700px;
+  height: 800px;
 
   .line-break {
     white-space: pre-line;
@@ -77,6 +74,7 @@ const Invoice = styled.div`
 /* Component */
 class InvoicePreview extends Component {
   componentDidMount() {
+    const { ipcRenderer } = window.require('electron');
     this.props.dispatch({ type: 'taxRates/list' });
     this.props.dispatch({
       type: 'organizations/getLogo',
@@ -84,10 +82,9 @@ class InvoicePreview extends Component {
         id: localStorage.getItem('organization'),
       },
     });
-  }
 
-  print = () => {
-    ipcRenderer.send('printPDF', get(this.props, ['match', 'params', 'id']));
+    console.log('ready to print')
+    setTimeout(() => ipcRenderer.send('readyToPrint'), 300)
   }
 
   render() {
@@ -116,7 +113,7 @@ class InvoicePreview extends Component {
               {frameContext => (
                 <StyleSheetManager target={frameContext.document.head}>
                   <Invoice>
-                    <div className="container-fluid">
+                    <div>
                       <div className="row">
                         <div className="col">
                           <h1 id="number">Invoice #{get(invoice, 'number')}</h1>
@@ -265,7 +262,7 @@ class InvoicePreview extends Component {
                       <div id="notes" className="row">
                         <div className="col line-break">{invoice.customer_note}</div>
                       </div>
-                      <div id="footer">
+                      <div>
                         <table className="table">
                           <thead>
                             <tr>
@@ -287,18 +284,6 @@ class InvoicePreview extends Component {
             <Spin />
           </div>
         )}
-        <FooterToolbar className="footer-toolbar">
-          <Link to={`/invoices/${get(invoice, '_id')}`}>
-            <Button type="dashed" style={{ marginTop: 10, marginRight: 8 }}>
-              <Icon type="edit" />
-              Edit
-            </Button>
-          </Link>
-          <Button style={{ marginTop: 10 }} onClick={this.print}>
-            <Icon type="printer" />
-            Print
-          </Button>
-        </FooterToolbar>
       </div>
     );
   }

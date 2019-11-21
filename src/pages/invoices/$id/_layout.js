@@ -2,7 +2,7 @@ import { Component } from 'react';
 import { compose } from 'redux';
 import { connect } from 'dva';
 import { Field, FieldArray, formValueSelector, reduxForm } from 'redux-form';
-import { Button, Col, Form, Icon, Layout, Row, Select } from 'antd';
+import { Button, Col, Form, Icon, Layout, Row, Select, Menu, Dropdown } from 'antd';
 import { forEach, get, isString, includes, has, lowerCase, map } from 'lodash';
 
 import moment from 'moment';
@@ -14,6 +14,7 @@ import currencyToSymbolMap from 'currency-symbol-map/map';
 
 import { ADatePicker, AInput, ASelect, ATextarea } from '../../../components/forms/fields';
 import { required } from '../../../components/forms/validators';
+import StateTag from '../../../components/invoices/state-tag';
 import LineItems from '../../../components/invoices/line-items';
 import FooterToolbar from '../../../components/layout/footer-toolbar';
 
@@ -57,7 +58,6 @@ class InvoiceForm extends Component {
       match: { params },
     } = this.props;
 
-    console.log(this.props);
     return has(params, 'id') && params['id'] === 'new';
   };
 
@@ -73,8 +73,26 @@ class InvoiceForm extends Component {
     }
   };
 
+  onStateSelect = (_id, _rev, key) => {
+    this.props.dispatch({
+      type: 'invoices/state',
+      payload: {
+        _id,
+        _rev,
+        state: key,
+      },
+    });
+  };
+
+  print = () => {
+    window
+      .require('electron')
+      .ipcRenderer.send('printPDF', get(this.props, ['match', 'params', 'id']));
+  };
+
   render() {
     const {
+      invoices,
       location,
       children,
       clients,
@@ -85,9 +103,23 @@ class InvoiceForm extends Component {
       taxRates,
     } = this.props;
     const { subTotal, taxTotal, total } = totals(lineItems, taxRates);
+    const invoice = get(invoices.items, get(this.props, ['match', 'params', 'id']));
+
+    const stateMenu = (_id, _rev) => (
+      <Menu onClick={({ item, key }) => this.onStateSelect(_id, _rev, key)}>
+        <Menu.Item key="draft">Draft</Menu.Item>
+        <Menu.Item key="confirmed">Confirmed</Menu.Item>
+        <Menu.Item key="payed">Payed</Menu.Item>
+        <Menu.Divider />
+        <Menu.Item key="void">Void</Menu.Item>
+      </Menu>
+    );
 
     // Invoice preview
-    if (get(location, 'pathname', '').endsWith('preview')) {
+    if (
+      get(location, 'pathname', '').endsWith('preview') ||
+      get(location, 'pathname', '').endsWith('print')
+    ) {
       return (
         <Layout.Content style={{ margin: '16px 16px 72px 16px', padding: 24, background: '#fff' }}>
           {children}
@@ -213,12 +245,13 @@ class InvoiceForm extends Component {
 
           <FooterToolbar
             extra={
-              !this.isNew() && (
-                <Button type="danger" style={{ marginTop: 10 }}>
-                  <Icon type="delete" />
-                  Revoke
-                </Button>
-              )
+              <span>
+                {!this.isNew() && invoice && (
+                  <Dropdown overlay={stateMenu(invoice._id, invoice._rev)} trigger={['click']}>
+                    <StateTag state={invoice.state} style={{ marginTop: 10, marginRight: 20 }} />
+                  </Dropdown>
+                )}
+              </span>
             }
           >
             {!this.isNew() && (
@@ -230,7 +263,7 @@ class InvoiceForm extends Component {
               </Link>
             )}
             {!this.isNew() && (
-              <Button style={{ marginTop: 10 }} onClick={() => window.print()}>
+              <Button style={{ marginTop: 10 }} onClick={this.print}>
                 <Icon type="printer" />
                 Print
               </Button>
@@ -256,40 +289,55 @@ class InvoiceForm extends Component {
 
 const selector = formValueSelector('invoice');
 
-export default compose(
-  withRouter,
-  connect(state => ({
-    clients: state.clients,
-    taxRates: state.taxRates,
-    lineItems: selector(state, 'lineItems'),
-  })),
-  reduxForm({
-    form: 'invoice',
-    initialValues: {
-      currency: 'EUR',
-      date: moment().format('YYYY-MM-DD'),
-      due_date: moment()
-        .add(7, 'days')
-        .format('YYYY-MM-DD'),
-      lineItems: [{}],
-    },
-    onSubmit: async (data, dispatch, props) => {
-      const { lineItems, taxRates } = props;
-      const { subTotal, taxTotal, total } = totals(lineItems, taxRates);
-      return await dispatch({
-        type: 'invoices/save',
-        data: {
-          ...data,
-          subTotal: subTotal.format(),
-          taxTotal: taxTotal.format(),
-          total: total.format(),
+export default withRouter(
+  compose(
+    connect(state => ({
+      invoices: state.invoices,
+      clients: state.clients,
+      taxRates: state.taxRates,
+      lineItems: selector(state, 'lineItems'),
+      initialValues: {
+        currency: get(
+          state.organizations.items,
+          [localStorage.getItem('organization'), 'currency'],
+          ''
+        ),
+        date: moment().format('YYYY-MM-DD'),
+        due_date: moment()
+          .add(
+            get(state.organizations.items, [localStorage.getItem('organization'), 'due_days'], 0),
+            'days'
+          )
+          .format('YYYY-MM-DD'),
+        customer_note: get(
+          state.organizations.items,
+          [localStorage.getItem('organization'), 'notes'],
+          ''
+        ),
+        lineItems: [{}],
+      },
+    }))(
+      reduxForm({
+        form: 'invoice',
+        onSubmit: async (data, dispatch, props) => {
+          const { lineItems, taxRates } = props;
+          const { subTotal, taxTotal, total } = totals(lineItems, taxRates);
+          return await dispatch({
+            type: 'invoices/save',
+            data: {
+              ...data,
+              subTotal: subTotal.format(),
+              taxTotal: taxTotal.format(),
+              total: total.format(),
+            },
+          });
         },
-      });
-    },
-    onSubmitSuccess: (result, dispatch, props) => {
-      router.push({
-        pathname: '/invoices/',
-      });
-    },
-  })
-)(InvoiceForm);
+        onSubmitSuccess: (result, dispatch, props) => {
+          router.push({
+            pathname: '/invoices/',
+          });
+        },
+      })(InvoiceForm)
+    )
+  )
+);

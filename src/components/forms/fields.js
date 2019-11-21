@@ -20,6 +20,7 @@ const makeField = Component => ({
   const hasError = meta.touched && meta.invalid;
 
   // Pickers needs moment as value
+
   if (picker) {
     if (isString(input.value)) {
       if (input.value) {
