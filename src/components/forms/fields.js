@@ -5,7 +5,6 @@ import { isString } from 'lodash';
 import moment from 'moment';
 
 import PhoneInput from './phone-input';
-import StateDropdown from './state-dropdown';
 
 const makeField = Component => ({
   input,
@@ -16,8 +15,6 @@ const makeField = Component => ({
   picker,
   isTags,
   emptyValue = '',
-  overlay = '',
-  isDrop,
   ...rest
 }) => {
   const hasError = meta.touched && meta.invalid;
@@ -50,7 +47,6 @@ const makeField = Component => ({
       validateStatus={hasError ? 'error' : 'success'}
       hasFeedback={hasFeedback && hasError}
       help={hasError && meta.error}
-      style={{ display: isDrop ? 'inline-block' : 'block', marginTop: isDrop ? 7 : 0 }}
     >
       <Component
         {...input}
@@ -78,4 +74,3 @@ export const ASelect = makeField(Select);
 export const ATags = withProps({ mode: 'tags', isTags: true })(makeField(Select));
 export const ARadioGroup = makeField(Radio.Group);
 export const ATextarea = makeField(Input.TextArea);
-export const AStateDropdown = withProps({ isDrop: true })(makeField(StateDropdown));

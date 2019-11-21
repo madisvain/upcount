@@ -9,19 +9,21 @@ import pathToRegexp from 'path-to-regexp';
 class Navigation extends Component {
   state = {
     selectedMenuKeys: [],
-    openKeys: []
+    openKeys: [],
   };
 
   componentDidMount() {
     const pathname = get(this.props, ['location', 'pathname']);
     const match = pathToRegexp(`/(.*)`).exec(pathname);
     const pathArr = get(match, 1).split('/');
-    this.setState({ selectedMenuKeys: pathArr, openKeys: pathArr[0] === 'settings' ? ['settings'] : [] });
+    this.setState({
+      selectedMenuKeys: pathArr,
+      openKeys: pathArr[0] === 'settings' ? ['settings'] : [],
+    });
   }
 
   handleMenuClick = e => {
     const key = last(e.keyPath);
-    console.log(key, e.keyPath)
     switch (key) {
       case 'logout':
         this.props.dispatch({ type: 'auth/logout' });
@@ -36,7 +38,7 @@ class Navigation extends Component {
         if (e.keyPath.length > 1) {
           this.setState({ selectedMenuKeys: e.keyPath });
         } else {
-          const openKeys = this.state.openKeys.length === 0 ? ['settings'] : []
+          const openKeys = this.state.openKeys.length === 0 ? ['settings'] : [];
           this.setState({ openKeys });
         }
         break;
