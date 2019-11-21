@@ -8,19 +8,19 @@ class ElectronLayout extends BaseLayout {
 
     ipcRenderer.on('log', (event, log) => {
       console.log('log', log);
-    })
+    });
 
     ipcRenderer.on('printPDF', (event, id) => {
       router.push({
         pathname: `/invoices/${id}/print`,
       });
-    })
+    });
 
     ipcRenderer.on('wrote-pdf', () => {
       router.push({
-        pathname: '/'
-      })
-    })
+        pathname: '/',
+      });
+    });
 
     ipcRenderer.on('update_available', (event, data) => {
       notification.info({
