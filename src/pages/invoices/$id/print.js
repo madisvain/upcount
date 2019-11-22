@@ -83,8 +83,7 @@ class InvoicePreview extends Component {
       },
     });
 
-    console.log('ready to print')
-    setTimeout(() => ipcRenderer.send('readyToPrint'), 300)
+    setTimeout(() => ipcRenderer.send('readyToPrint'), 300);
   }
 
   render() {

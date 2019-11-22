@@ -84,10 +84,10 @@ class InvoiceForm extends Component {
     });
   };
 
-  print = () => {
+  printPDF = () => {
     window
       .require('electron')
-      .ipcRenderer.send('printPDF', get(this.props, ['match', 'params', 'id']));
+      .ipcRenderer.send('printInvoicePDF', get(this.props, ['match', 'params', 'id']));
   };
 
   render() {
@@ -118,7 +118,7 @@ class InvoiceForm extends Component {
     // Invoice preview
     if (
       get(location, 'pathname', '').endsWith('preview') ||
-      get(location, 'pathname', '').endsWith('print')
+      get(location, 'pathname', '').endsWith('pdf')
     ) {
       return (
         <Layout.Content style={{ margin: '16px 16px 72px 16px', padding: 24, background: '#fff' }}>
@@ -263,9 +263,9 @@ class InvoiceForm extends Component {
               </Link>
             )}
             {!this.isNew() && (
-              <Button style={{ marginTop: 10 }} onClick={this.print}>
-                <Icon type="printer" />
-                Print
+              <Button style={{ marginTop: 10 }} onClick={this.printPDF}>
+                <Icon type="file-pdf" />
+                PDF
               </Button>
             )}
             <Button

@@ -10,7 +10,7 @@ import styled, { StyleSheetManager } from 'styled-components';
 
 import FooterToolbar from '../../../components/layout/footer-toolbar';
 
-const { ipcRenderer } = window.require('electron')
+const { ipcRenderer } = window.require('electron');
 
 /* Styles */
 const Invoice = styled.div`
@@ -86,9 +86,9 @@ class InvoicePreview extends Component {
     });
   }
 
-  print = () => {
-    ipcRenderer.send('printPDF', get(this.props, ['match', 'params', 'id']));
-  }
+  printPDF = () => {
+    ipcRenderer.send('printInvoicePDF', get(this.props, ['match', 'params', 'id']));
+  };
 
   render() {
     const { clients, organizations, invoices } = this.props;
@@ -294,9 +294,9 @@ class InvoicePreview extends Component {
               Edit
             </Button>
           </Link>
-          <Button style={{ marginTop: 10 }} onClick={this.print}>
-            <Icon type="printer" />
-            Print
+          <Button style={{ marginTop: 10 }} onClick={this.printPDF}>
+            <Icon type="file-pdf" />
+            PDF
           </Button>
         </FooterToolbar>
       </div>
