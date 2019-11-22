@@ -131,24 +131,28 @@ class Invoices extends Component {
             title="Client"
             dataIndex="client"
             key="client"
+            sorter={(a, b) => a < b ? -1 : a === b ? 0 : 1}
             render={client => get(clients.items, `${client}.name`, '-')}
           />
           <Table.Column
             title="Date"
             dataIndex="date"
             key="date"
+            sorter={(a, b) => new Date(a.date).getTime() - new Date(b.date).getTime()}
             render={date => (date ? date : '-')}
           />
           <Table.Column
             title="Due date"
             dataIndex="due_date"
             key="due_date"
+            sorter={(a, b) => new Date(a.due_date).getTime() - new Date(b.due_date).getTime()}
             render={date => (date ? date : '-')}
           />
           <Table.Column
             title="Sum"
             dataIndex="total"
             key="total"
+            sorter={(a, b) => a.total - b.total}
             render={total => (total ? total : '-')}
           />
           <Table.Column
