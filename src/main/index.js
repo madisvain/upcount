@@ -100,21 +100,21 @@ ipcMain.on('readyToPrint', (event, data) => {
       dialog
         .showSaveDialog(options)
         .then(({ filePath }) => {
-          if (filePath === undefined) {
-            console.log("You didn't save the file");
+          if (!filePath) {
+            event.sender.send('wrote-pdf');
             return;
           }
 
           fs.writeFile(filePath, data, function(error) {
             if (error) {
-              throw error;
+              event.sender.send('wrote-pdf');
             }
             shell.openItem(filePath);
             event.sender.send('wrote-pdf');
           });
         })
         .catch(err => {
-          throw err;
+          event.sender.send('wrote-pdf');
         });
     })
     .catch(err => {
