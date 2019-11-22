@@ -48,11 +48,6 @@ class ClientFormDrawer extends Component {
         onClose={this.closeDrawer}
         maskClosable={true}
         visible={true}
-        style={{
-          height: 'calc(100% - 55px)',
-          overflow: 'auto',
-          paddingBottom: 53,
-        }}
       >
         <ClientForm {...this.props} />
       </Drawer>
