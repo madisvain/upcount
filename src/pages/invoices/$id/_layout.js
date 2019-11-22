@@ -84,10 +84,8 @@ class InvoiceForm extends Component {
     });
   };
 
-  printPDF = () => {
-    window
-      .require('electron')
-      .ipcRenderer.send('printInvoicePDF', get(this.props, ['match', 'params', 'id']));
+  printPDF = invoiceId => {
+    window.require('electron').ipcRenderer.send('printInvoicePDF', invoiceId);
   };
 
   render() {
@@ -263,7 +261,10 @@ class InvoiceForm extends Component {
               </Link>
             )}
             {!this.isNew() && (
-              <Button style={{ marginTop: 10 }} onClick={this.printPDF}>
+              <Button
+                style={{ marginTop: 10 }}
+                onClick={() => this.printPDF(get(this.props, ['match', 'params', 'id']))}
+              >
                 <Icon type="file-pdf" />
                 PDF
               </Button>

@@ -78,8 +78,9 @@ ipcMain.on('restart_app', () => {
   autoUpdater.quitAndInstall();
 });
 
-ipcMain.on('printPDF', (event, id) => {
-  printerWindow.webContents.send('printPDF', id);
+ipcMain.on('printInvoicePDF', (event, id) => {
+  console.log('- - - -', id);
+  printerWindow.webContents.send('printInvoicePDF', id);
 });
 
 ipcMain.on('readyToPrint', (event, data) => {
