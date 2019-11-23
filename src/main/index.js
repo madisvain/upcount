@@ -103,20 +103,20 @@ ipcMain.on('readyToPrint', (event, data) => {
         .showSaveDialog(options)
         .then(({ filePath }) => {
           if (!filePath) {
-            event.sender.send('wrote-pdf');
+            event.sender.send('wrotePDF');
             return;
           }
 
           fs.writeFile(filePath, data, function(error) {
             if (error) {
-              event.sender.send('wrote-pdf');
+              event.sender.send('wrotePDF');
             }
             shell.openItem(filePath);
-            event.sender.send('wrote-pdf');
+            event.sender.send('wrotePDF');
           });
         })
         .catch(err => {
-          event.sender.send('wrote-pdf');
+          event.sender.send('wrotePDF');
         });
     })
     .catch(err => {
