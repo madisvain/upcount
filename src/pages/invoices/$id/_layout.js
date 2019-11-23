@@ -85,7 +85,9 @@ class InvoiceForm extends Component {
   };
 
   printPDF = invoiceId => {
-    window.require('electron').ipcRenderer.send('printInvoicePDF', invoiceId);
+    const { ipcRenderer } = window.require('electron');
+
+    ipcRenderer.send('printInvoicePDF', invoiceId);
   };
 
   render() {

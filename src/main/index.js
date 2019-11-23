@@ -1,4 +1,4 @@
-import { app, BrowserWindow, ipcMain, shell, dialog, ipcRenderer } from 'electron';
+import { app, BrowserWindow, ipcMain, shell, dialog } from 'electron';
 import { autoUpdater } from 'electron-updater';
 import * as path from 'path';
 import * as url from 'url';
@@ -10,7 +10,7 @@ let printerWindow = BrowserWindow | null;
 function createWindow() {
   mainWindow = new BrowserWindow({
     height: 800,
-    width: 1000,
+    width: process.env.NODE_ENV === 'development' ? 1400 : 900,
     webPreferences: {
       nodeIntegration: true,
     },
@@ -67,6 +67,7 @@ app.on('activate', () => {
   }
 });
 
+// Autoupdate
 autoUpdater.on('update-available', () => {
   mainWindow.webContents.send('update_available');
 });
@@ -78,8 +79,8 @@ ipcMain.on('restart_app', () => {
   autoUpdater.quitAndInstall();
 });
 
+// PDF rendering
 ipcMain.on('printInvoicePDF', (event, id) => {
-  console.log('- - - -', id);
   printerWindow.webContents.send('printInvoicePDF', id);
 });
 

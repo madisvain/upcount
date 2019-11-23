@@ -75,6 +75,7 @@ const Invoice = styled.div`
 class InvoicePreview extends Component {
   componentDidMount() {
     const { ipcRenderer } = window.require('electron');
+
     this.props.dispatch({ type: 'taxRates/list' });
     this.props.dispatch({
       type: 'organizations/getLogo',
