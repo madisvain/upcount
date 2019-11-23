@@ -72,6 +72,25 @@ class Invoices extends Component {
       </Menu>
     );
 
+    const stateFiler = [
+      {
+        text: 'Draft',
+        value: 'draft'
+      },
+      {
+        text: 'Confirmed',
+        value: 'confirmed'
+      },
+      {
+        text: 'Payed',
+        value: 'payed'
+      },
+      {
+        text: 'Void',
+        value: 'void'
+      },
+    ]
+
     return (
       <Layout.Content style={{ margin: 16, padding: 24, background: '#fff' }}>
         <Row>
@@ -135,6 +154,8 @@ class Invoices extends Component {
           <Table.Column
             title="State"
             key="state"
+            filters={stateFiler}
+            onFilter={(value, record) => record.state.indexOf(value) === 0}
             render={invoice => (
               <Dropdown overlay={stateMenu(invoice._id, invoice._rev)} trigger={['click']}>
                 <StateTag state={invoice.state} />

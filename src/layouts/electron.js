@@ -16,7 +16,7 @@ class ElectronLayout extends BaseLayout {
       });
     });
 
-    ipcRenderer.on('wrote-pdf', () => {
+    ipcRenderer.on('wrotePDF', () => {
       router.push({
         pathname: '/',
       });
