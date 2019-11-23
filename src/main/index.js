@@ -69,10 +69,10 @@ app.on('activate', () => {
 
 // Autoupdate
 autoUpdater.on('update-available', () => {
-  mainWindow.webContents.send('update_available');
+  mainWindow.webContents.send('updateAvailable');
 });
 autoUpdater.on('update-downloaded', () => {
-  mainWindow.webContents.send('update_downloaded');
+  mainWindow.webContents.send('updateDownloaded');
 });
 
 ipcMain.on('restart_app', () => {
