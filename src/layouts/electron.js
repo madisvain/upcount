@@ -10,13 +10,13 @@ class ElectronLayout extends BaseLayout {
       console.log('log', log);
     });
 
-    ipcRenderer.on('printPDF', (event, id) => {
+    ipcRenderer.on('printInvoicePDF', (event, id) => {
       router.push({
-        pathname: `/invoices/${id}/print`,
+        pathname: `/invoices/${id}/pdf`,
       });
     });
 
-    ipcRenderer.on('wrote-pdf', () => {
+    ipcRenderer.on('wrotePDF', () => {
       router.push({
         pathname: '/',
       });
