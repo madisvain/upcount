@@ -2,8 +2,7 @@ import { Component } from 'react';
 import { connect } from 'react-redux';
 import { Field, formValueSelector, change } from 'redux-form';
 import { Button, Icon, Select, Table } from 'antd';
-import { DndProvider, DragSource, DropTarget } from 'react-dnd';
-import HTML5Backend from 'react-dnd-html5-backend';
+import { Draggable, Droppable, DragDropContext } from 'react-beautiful-dnd'
 import { get, map } from 'lodash';
 
 import currency from 'currency.js';
@@ -11,77 +10,75 @@ import currency from 'currency.js';
 import { AInput, ASelect, ATextarea } from '../forms/fields';
 import { required } from '../forms/validators';
 
-let dragingIndex = -1;
+const getItemStyle = (isCurrentHover, draggableStyle) => ({
+  background: isCurrentHover ? "rgba(24, 144, 255, 0.1)" : undefined,
+  // styles we need to apply on draggables
+  ...draggableStyle
+});
 
-class BodyRow extends Component {
-  getItemStyle = (isCurrentHover, isDownward, style) => ({
-    background: isCurrentHover ? "rgba(24, 144, 255, 0.1)" : undefined,
-    cursor: 'grab',
-    borderBottom: isCurrentHover && isDownward ? '2px dashed #1890ff' : undefined,
-    borderTop: isCurrentHover && !isDownward ? '2px dashed #1890ff' : undefined,
-    // styles we need to apply on draggables
-    ...style
-  });
-
+class DragableBodyRow extends Component {
+  state = {
+    currentHover: false
+  }
   render() {
-    const { isOver, connectDragSource, connectDropTarget, connectDragPreview, moveRow, children, style, index, ...restProps } = this.props;
+    const key = parseInt(this.props['data-row-key']);
+    const draggableId = `key-${key}`;
+    const { currentHover } = this.state;
+    const { children, draggingIndex, ...restProps } = this.props;
 
-    return connectDragPreview(connectDropTarget(
-      <tr
-        {...restProps}
-        style={this.getItemStyle(isOver, index > dragingIndex, style)}
-      >
-        {connectDragSource(<td>RD</td>)}
-        {children.slice(1)}
-      </tr>
-    ))
+    return (
+      <Draggable draggableId={draggableId} index={key}>
+        {
+          (provided) => {
+            const isCurrentHover = draggingIndex === -1 ? currentHover : (draggingIndex === key);
+            return <tr ref={provided.innerRef}
+              {...provided.draggableProps}
+              {...restProps}
+              style={getItemStyle(isCurrentHover, provided.draggableProps.style)}
+              onMouseOver={() => this.setState({ currentHover: true })}
+              onMouseLeave={() => this.setState({ currentHover: false })}
+            >
+              <td {...provided.dragHandleProps}>{isCurrentHover ? <Icon type="drag" style={{ color: '#1890ff', marginLeft: 10 }} /> : ''}</td>
+              {children.slice(1)}
+            </tr>
+          }
+        }
+      </Draggable>
+    )
   }
 }
 
-const rowSource = {
-  beginDrag(props) {
-    dragingIndex = props.index;
-    return {
-      index: props.index,
-    };
-  },
-};
-
-const rowTarget = {
-  hover(props, monitor) {
-    const dragIndex = monitor.getItem().index;
-    const hoverIndex = props.index;
-    console.log('asdf', dragIndex, hoverIndex)
-
-    if (dragIndex === hoverIndex) {
-      return;
-    }
-
-    props.moveRow(dragIndex, hoverIndex);
-    monitor.getItem().index = hoverIndex;
+class DroppableBody extends Component {
+  render() {
+    const { children, ...restProps } = this.props;
+    return (
+      <Droppable droppableId="droppable">
+        {
+          (provided, snapshot) => (
+            <tbody ref={provided.innerRef}
+              {...restProps}
+              {...provided.droppableProps}
+            >
+              {children}
+              {provided.placeholder}
+            </tbody>
+          )
+        }
+      </Droppable>
+    );
   }
-};
-
-const DragableBodyRow = DropTarget('row', rowTarget, (connect, monitor) => ({
-  connectDropTarget: connect.dropTarget(),
-  isOver: monitor.isOver(),
-}))(
-  DragSource('row', rowSource, connect => ({
-    connectDragSource: connect.dragSource(),
-    connectDragPreview: connect.dragPreview()
-  }))(BodyRow),
-);
+}
 
 class LineItems extends Component {
-  components = {
-    body: {
-      row: DragableBodyRow,
-    },
+  state = {
+    draggingIndex: -1,
   };
 
-  moveRow = (dragIndex, hoverIndex) => {
-    const { fields } = this.props;
-    fields.move(dragIndex, hoverIndex)
+  components = {
+    body: {
+      wrapper: DroppableBody,
+      row: DragableBodyRow
+    }
   };
 
   onQuantityChange = (newValue, previousValue, index) => {
@@ -171,7 +168,27 @@ class LineItems extends Component {
     }
   };
 
+  onDragEnd = result => {
+    this.setState({ draggingIndex: -1 })
+    if (!result.destination || result.reason === 'CANCEL') {
+      return;
+    }
+    if (
+      result.destination.droppableId === result.source.droppableId &&
+      result.destination.index === result.source.index
+    ) {
+      return;
+    }
+    const { fields } = this.props;
+    fields.move(result.source.index, result.destination.index);
+  }
+
+  onDragStart = start => {
+    this.setState({ draggingIndex: parseInt(start.draggableId.split('-')[1]) });
+  }
+
   render() {
+    const { draggingIndex } = this.state;
     const { fields, taxRates } = this.props;
 
     const data = [];
@@ -187,22 +204,21 @@ class LineItems extends Component {
     });
 
     return (
-      <DndProvider backend={HTML5Backend}>
-        <Table dataSource={data} pagination={false} components={this.components} size="middle" className="line-items" onRow={(record, index) => ({
-            index,
-            moveRow: this.moveRow,
-          })}>
+      <DragDropContext onDragEnd={this.onDragEnd} onDragStart={this.onDragStart}>
+        <Table dataSource={data} pagination={false} size="middle" className="line-items" components={this.components} onRow={() => ({
+          draggingIndex
+        })}>
           <Table.Column
             title=""
             dataIndex="move"
             key="move"
             width={30}
-            />
+          />
           <Table.Column
             title="Description"
             dataIndex="description"
             key="description"
-            render={field => <Field name={field} component={ATextarea} autoSize onDrop={e => e.preventDefault()} />}
+            render={field => <Field name={field} component={ATextarea} autoSize />}
           />
           <Table.Column
             title="Quantity"
@@ -217,7 +233,6 @@ class LineItems extends Component {
                   this.onQuantityChange(newValue, previousValue, index)
                 }
                 validate={[required]}
-                onDrop={e => e.preventDefault()}
               />
             )}
           />
@@ -234,7 +249,6 @@ class LineItems extends Component {
                   this.onUnitPriceChange(newValue, previousValue, index)
                 }
                 validate={[required]}
-                onDrop={e => e.preventDefault()}
               />
             )}
           />
@@ -251,7 +265,6 @@ class LineItems extends Component {
                   this.onSubtotalChange(newValue, previousValue, index)
                 }
                 validate={[required]}
-                onDrop={e => e.preventDefault()}
               />
             )}
           />
@@ -260,7 +273,7 @@ class LineItems extends Component {
             dataIndex="taxRate"
             key="taxRate"
             render={(field, row, index) => (
-              <Field name={field} component={ASelect} options={[]} onDrop={e => e.preventDefault()} >
+              <Field name={field} component={ASelect} options={[]}>
                 {map(taxRates.items, rate => {
                   return (
                     <Select.Option value={rate._id} key={rate._id}>
@@ -281,7 +294,7 @@ class LineItems extends Component {
         <Button type="default" onClick={() => fields.push({})} style={{ marginTop: '10px' }}>
           Add row
         </Button>
-      </DndProvider>
+      </DragDropContext>
     );
   }
 }
