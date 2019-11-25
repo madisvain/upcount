@@ -14,6 +14,9 @@ import { required } from '../forms/validators';
 let dragingIndex = -1;
 
 class BodyRow extends Component {
+  state = {
+    currentHover: false
+  }
   getItemStyle = (isCurrentHover, isDownward, style) => ({
     background: isCurrentHover ? "rgba(24, 144, 255, 0.1)" : undefined,
     cursor: 'grab',
@@ -24,14 +27,18 @@ class BodyRow extends Component {
   });
 
   render() {
+    const { currentHover } = this.state;
     const { isOver, connectDragSource, connectDropTarget, connectDragPreview, moveRow, children, style, index, ...restProps } = this.props;
+    const isCurrentHover = dragingIndex === -1 ? currentHover : isOver;
 
     return connectDragPreview(connectDropTarget(
       <tr
         {...restProps}
-        style={this.getItemStyle(isOver, index > dragingIndex, style)}
+        style={this.getItemStyle(isCurrentHover, index > dragingIndex, style)}
+        onMouseOver={() => this.setState({ currentHover: true })}
+        onMouseLeave={() => this.setState({ currentHover: false })}
       >
-        {connectDragSource(<td>RD</td>)}
+        {connectDragSource(<td>{isCurrentHover ? <Icon type="drag" style={{ color: '#1890ff', marginLeft: 10 }} /> : ''}</td>)}
         {children.slice(1)}
       </tr>
     ))
@@ -48,6 +55,9 @@ const rowSource = {
 };
 
 const rowTarget = {
+  drop() {
+    dragingIndex = -1;
+  },
   hover(props, monitor) {
     const dragIndex = monitor.getItem().index;
     const hoverIndex = props.index;
