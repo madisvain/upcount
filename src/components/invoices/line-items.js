@@ -15,11 +15,10 @@ let dragingIndex = -1;
 
 class BodyRow extends Component {
   state = {
-    currentHover: false
+    currentHover: false,
   }
   getItemStyle = (isCurrentHover, isDownward, style) => ({
     background: isCurrentHover ? "rgba(24, 144, 255, 0.1)" : undefined,
-    cursor: 'grab',
     borderBottom: isCurrentHover && isDownward ? '2px dashed #1890ff' : undefined,
     borderTop: isCurrentHover && !isDownward ? '2px dashed #1890ff' : undefined,
     // styles we need to apply on draggables
@@ -38,7 +37,7 @@ class BodyRow extends Component {
         onMouseOver={() => this.setState({ currentHover: true })}
         onMouseLeave={() => this.setState({ currentHover: false })}
       >
-        {connectDragSource(<td>{isCurrentHover ? <Icon type="drag" style={{ color: '#1890ff', marginLeft: 10 }} /> : ''}</td>)}
+        {connectDragSource(<td style={{ cursor: 'grab' }}>{isCurrentHover ? <Icon type="drag" style={{ color: '#1890ff', marginLeft: 10 }} /> : ''}</td>)}
         {children.slice(1)}
       </tr>
     ))
@@ -61,7 +60,6 @@ const rowTarget = {
   hover(props, monitor) {
     const dragIndex = monitor.getItem().index;
     const hoverIndex = props.index;
-    console.log('asdf', dragIndex, hoverIndex)
 
     if (dragIndex === hoverIndex) {
       return;
