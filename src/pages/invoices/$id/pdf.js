@@ -75,6 +75,7 @@ const Invoice = styled.div`
 class InvoicePreview extends Component {
   componentDidMount() {
     const { ipcRenderer } = window.require('electron');
+
     this.props.dispatch({ type: 'taxRates/list' });
     this.props.dispatch({
       type: 'organizations/getLogo',
@@ -83,8 +84,7 @@ class InvoicePreview extends Component {
       },
     });
 
-    console.log('ready to print')
-    setTimeout(() => ipcRenderer.send('readyToPrint'), 300)
+    setTimeout(() => ipcRenderer.send('readyToPrint'), 300);
   }
 
   render() {

@@ -1,4 +1,4 @@
-import { app, BrowserWindow, ipcMain, shell, dialog, ipcRenderer } from 'electron';
+import { app, BrowserWindow, ipcMain, shell, dialog } from 'electron';
 import { autoUpdater } from 'electron-updater';
 import * as path from 'path';
 import * as url from 'url';
@@ -10,7 +10,7 @@ let printerWindow = BrowserWindow | null;
 function createWindow() {
   mainWindow = new BrowserWindow({
     height: 800,
-    width: 1000,
+    width: process.env.NODE_ENV === 'development' ? 1400 : 900,
     webPreferences: {
       nodeIntegration: true,
     },
@@ -67,19 +67,21 @@ app.on('activate', () => {
   }
 });
 
+// Autoupdate
 autoUpdater.on('update-available', () => {
-  mainWindow.webContents.send('update_available');
+  mainWindow.webContents.send('updateAvailable');
 });
 autoUpdater.on('update-downloaded', () => {
-  mainWindow.webContents.send('update_downloaded');
+  mainWindow.webContents.send('updateDownloaded');
 });
 
 ipcMain.on('restart_app', () => {
   autoUpdater.quitAndInstall();
 });
 
-ipcMain.on('printPDF', (event, id) => {
-  printerWindow.webContents.send('printPDF', id);
+// PDF rendering
+ipcMain.on('printInvoicePDF', (event, id) => {
+  printerWindow.webContents.send('printInvoicePDF', id);
 });
 
 ipcMain.on('readyToPrint', (event, data) => {
@@ -101,20 +103,20 @@ ipcMain.on('readyToPrint', (event, data) => {
         .showSaveDialog(options)
         .then(({ filePath }) => {
           if (!filePath) {
-            event.sender.send('wrote-pdf');
+            event.sender.send('wrotePDF');
             return;
           }
 
           fs.writeFile(filePath, data, function(error) {
             if (error) {
-              event.sender.send('wrote-pdf');
+              event.sender.send('wrotePDF');
             }
             shell.openItem(filePath);
-            event.sender.send('wrote-pdf');
+            event.sender.send('wrotePDF');
           });
         })
         .catch(err => {
-          event.sender.send('wrote-pdf');
+          event.sender.send('wrotePDF');
         });
     })
     .catch(err => {

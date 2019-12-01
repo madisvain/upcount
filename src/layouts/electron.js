@@ -1,5 +1,6 @@
 import { notification, Button } from 'antd';
 import router from 'umi/router';
+
 import BaseLayout from './base';
 
 class ElectronLayout extends BaseLayout {
@@ -10,37 +11,35 @@ class ElectronLayout extends BaseLayout {
       console.log('log', log);
     });
 
-    ipcRenderer.on('printPDF', (event, id) => {
+    ipcRenderer.on('printInvoicePDF', (event, id) => {
       router.push({
-        pathname: `/invoices/${id}/print`,
+        pathname: `/invoices/${id}/pdf`,
       });
     });
 
-    ipcRenderer.on('wrote-pdf', () => {
+    ipcRenderer.on('wrotePDF', () => {
       router.push({
         pathname: '/',
       });
     });
 
-    ipcRenderer.on('update_available', (event, data) => {
+    ipcRenderer.on('updateAvailable', (event, data) => {
       notification.info({
-        key: 'update_available',
-        placement: 'topRight',
-        duration: 0,
+        placement: 'bottomRight',
+        duration: 10,
         message: 'Update Available',
-        description: 'A new update is available. Downloading now...',
+        description: 'A new version of Upcount is available. Downloading now ...',
       });
     });
 
-    ipcRenderer.on('update_downloaded', () => {
-      notification.close('update_available');
-      notification.info({
-        placement: 'topRight',
+    ipcRenderer.on('updateDownloaded', () => {
+      notification.success({
+        placement: 'bottomRight',
         duration: 0,
         message: 'Update Downloaded',
         description: (
           <div>
-            Update Downloaded. It will be installed on restart. Restart now?
+            Upcount version update downloaded. It will be installed after restarting. Restart now?
             <Button type="primary" style={{ float: 'right' }} onClick={this.restartApp}>
               Restart
             </Button>
@@ -52,7 +51,6 @@ class ElectronLayout extends BaseLayout {
 
   restartApp = () => {
     const { ipcRenderer } = window.require('electron');
-
     ipcRenderer.send('restart_app');
   };
 }

@@ -48,7 +48,6 @@ export default compose(
       return await dispatch({ type: 'clients/save', data: data });
     },
     onSubmitSuccess: (result, dispatch, props) => {
-      console.log(this, props);
       dispatch(autofill('invoice', 'client', result._id));
 
       const pathname = get(props, ['location', 'pathname']);
