@@ -260,25 +260,27 @@ class LineItems extends Component {
             )}
           />
           <Table.Column
-            title="Tax rate"
+            title="Tax"
             dataIndex="taxRate"
             key="taxRate"
             render={(field, row, index) => (
-              <Field name={field} component={ASelect} options={[]}>
-                {map(taxRates.items, rate => {
-                  return (
-                    <Select.Option value={rate._id} key={rate._id}>
-                      {rate.name}
-                    </Select.Option>
-                  );
-                })}
-              </Field>
+              <div>
+                <Field name={field} component={ASelect} options={[]}>
+                  {map(taxRates.items, rate => {
+                    return (
+                      <Select.Option value={rate._id} key={rate._id}>
+                        {rate.name}
+                      </Select.Option>
+                    );
+                  })}
+                </Field>
+                <Icon
+                  type="delete"
+                  onClick={() => fields.remove(row.key)}
+                  style={{ position: 'absolute', marginTop: -25, right: -20 }}
+                />
+              </div>
             )}
-          />
-          <Table.Column
-            title=""
-            key="delete"
-            render={row => <Icon type="delete" onClick={() => fields.remove(row.key)} />}
           />
         </Table>
 
