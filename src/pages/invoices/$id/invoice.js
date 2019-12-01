@@ -13,6 +13,7 @@ const Page = styled.div`
   font-family: 'Open Sans', sans-serif;
   width: 700px;
   height: 800px;
+  margin: 0 auto;
 
   .line-break {
     white-space: pre-line;
@@ -88,8 +89,6 @@ class Invoice extends Component {
     const logo = get(organizations.logos, localStorage.getItem('organization'));
     const invoice = get(invoices.items, get(this.props, ['match', 'params', 'id']));
     const client = invoice ? get(clients.items, invoice.client) : null;
-
-    console.log(this.props);
 
     return (
       <Page>
