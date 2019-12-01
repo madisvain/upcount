@@ -204,7 +204,12 @@ class LineItems extends Component {
             title="Description"
             dataIndex="description"
             key="description"
-            render={field => <Field name={field} component={ATextarea} autoSize />}
+            render={field => (
+              <div>
+                <Icon type="more" style={{ position: 'absolute', marginTop: 15, left: -15 }} />
+                <Field name={field} component={ATextarea} autoSize />
+              </div>
+            )}
           />
           <Table.Column
             title="Quantity"
