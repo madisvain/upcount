@@ -1,15 +1,102 @@
 import { Component } from 'react';
 import { connect } from 'react-redux';
 import { Field, formValueSelector, change } from 'redux-form';
+import { DndProvider, DragSource, DropTarget } from 'react-dnd';
 import { Button, Icon, Select, Table } from 'antd';
 import { get, map } from 'lodash';
 
 import currency from 'currency.js';
+import HTML5Backend from 'react-dnd-html5-backend';
+import update from 'immutability-helper';
 
 import { AInput, ASelect, ATextarea } from '../forms/fields';
 import { required } from '../forms/validators';
 
+let dragingIndex = -1;
+
+class TableBodyRow extends Component {
+  render() {
+    const { isOver, connectDragSource, connectDropTarget, moveRow, ...restProps } = this.props;
+    const style = { ...restProps.style, cursor: 'move' };
+
+    let { className } = restProps;
+    if (isOver) {
+      if (restProps.index > dragingIndex) {
+        className += ' drop-over-downward';
+      }
+      if (restProps.index < dragingIndex) {
+        className += ' drop-over-upward';
+      }
+    }
+
+    return connectDragSource(
+      connectDropTarget(<tr {...restProps} className={className} style={style} />)
+    );
+  }
+}
+
+const rowSource = {
+  beginDrag(props) {
+    dragingIndex = props.index;
+    return {
+      index: props.index,
+    };
+  },
+};
+
+const rowTarget = {
+  drop(props, monitor) {
+    const dragIndex = monitor.getItem().index;
+    const hoverIndex = props.index;
+
+    // Don't replace items with themselves
+    if (dragIndex === hoverIndex) {
+      return;
+    }
+
+    // Time to actually perform the action
+    props.moveRow(dragIndex, hoverIndex);
+
+    // Note: we're mutating the monitor item here!
+    // Generally it's better to avoid mutations,
+    // but it's good here for the sake of performance
+    // to avoid expensive index searches.
+    monitor.getItem().index = hoverIndex;
+  },
+};
+
+const DragableTableBodyRow = DropTarget('row', rowTarget, (connect, monitor) => ({
+  connectDropTarget: connect.dropTarget(),
+  isOver: monitor.isOver(),
+}))(
+  DragSource('row', rowSource, connect => ({
+    connectDragSource: connect.dragSource(),
+  }))(TableBodyRow)
+);
+
 class LineItems extends Component {
+  components = {
+    body: {
+      row: DragableTableBodyRow,
+    },
+  };
+
+  moveRow = (dragIndex, hoverIndex) => {
+    const { data } = this.state;
+    const dragRow = data[dragIndex];
+
+    this.setState(
+      update(this.state, {
+        data: {
+          $splice: [
+            [dragIndex, 1],
+            [hoverIndex, 0, dragRow],
+          ],
+        },
+      })
+    );
+  };
+
   onQuantityChange = (newValue, previousValue, index) => {
     const lineItem = get(this.props.lineItems, index);
 
@@ -113,8 +200,18 @@ class LineItems extends Component {
     });
 
     return (
-      <div>
-        <Table dataSource={data} pagination={false} size="middle" className="line-items">
+      <DndProvider backend={HTML5Backend}>
+        <Table
+          dataSource={data}
+          pagination={false}
+          size="middle"
+          className="line-items"
+          components={this.components}
+          onRow={(record, index) => ({
+            index,
+            moveRow: this.moveRow,
+          })}
+        >
           <Table.Column
             title="Description"
             dataIndex="description"
@@ -195,7 +292,7 @@ class LineItems extends Component {
         <Button type="default" onClick={() => fields.push({})} style={{ marginTop: '10px' }}>
           Add row
         </Button>
-      </div>
+      </DndProvider>
     );
   }
 }
