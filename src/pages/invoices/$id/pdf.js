@@ -119,12 +119,14 @@ class InvoicePreview extends Component {
                           <h1 id="number">Invoice #{get(invoice, 'number')}</h1>
                         </div>
                         <div className="col text-right">
-                          <img
-                            id="logo"
-                            src={logo}
-                            alt="logo"
-                            style={{ maxWidth: 250, maxHeight: 250 }}
-                          />
+                          {has(logo) ? (
+                            <img
+                              id="logo"
+                              src={logo}
+                              alt="logo"
+                              style={{ maxWidth: 250, maxHeight: 250 }}
+                            />
+                          ) : null}
                         </div>
                       </div>
                       <div className="row">
