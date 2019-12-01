@@ -191,10 +191,12 @@ class InvoicePreview extends Component {
                                   <td>{invoice.due_date}</td>
                                 </tr>
                               ) : null}
-                              <tr>
-                                <td>Overdue charge</td>
-                                <td>0,2% per day</td>
-                              </tr>
+                              {invoice.overdue_charge ? (
+                                <tr>
+                                  <td>Overdue charge</td>
+                                  <td>{invoice.overdue_charge}</td>
+                                </tr>
+                              ) : null}
                             </tbody>
                           </table>
                         </div>
@@ -266,9 +268,13 @@ class InvoicePreview extends Component {
                         <table className="table">
                           <thead>
                             <tr>
-                              <td>LHV Pank EE747700771001039545</td>
-                              <td className="text-center">Reg. nr. 11928283</td>
-                              <td className="text-right">KMKR / VAT EE101600930</td>
+                              <td>
+                                {get(organization, 'bank')} {get(organization, 'iban')}
+                              </td>
+                              <td className="text-center">
+                                Reg. nr. {get(organization, 'registration_number')}
+                              </td>
+                              <td className="text-right">VAT IN {get(organization, 'vatin')}</td>
                             </tr>
                           </thead>
                         </table>

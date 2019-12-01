@@ -67,6 +67,7 @@ class Settings extends Component {
                 ))}
               </Field>
               <Field name="due_days" component={AInput} label="Due days" />
+              <Field name="overdue_charge" component={AInput} label="Overdue charge" />
               <Field name="notes" component={ATextarea} label="Notes" rows={4} />
             </Col>
           </Row>

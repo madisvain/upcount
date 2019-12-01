@@ -33,14 +33,21 @@ class Organization extends Component {
                 <Field name="address" component={ATextarea} rows={4} label="Address" />
                 <Field name="email" component={AInput} label="Email" />
                 <Field name="phone" component={APhoneInput} label="Phone" />
+                <Field name="registration_number" component={AInput} label="Registration number" />
+                <Row gutter={16}>
+                  <Col span={12}>
+                    <Field name="bank" component={AInput} label="Bank name" />
+                  </Col>
+                  <Col span={12}>
+                    <Field name="iban" component={AInput} label="IBAN" />
+                  </Col>
+                </Row>
                 <Row gutter={16}>
                   <Col span={12}>
                     <Field name="vatin" component={AInput} label="VATIN" />
                   </Col>
-                  <Col span={12}>
-                    <Field name="website" component={AInput} label="Website" />
-                  </Col>
                 </Row>
+                <Field name="website" component={AInput} label="Website" />
                 <Row>
                   <Col>
                     <Button
