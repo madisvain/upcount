@@ -215,7 +215,7 @@ class InvoiceForm extends Component {
             <Col span={8} style={{ marginTop: '20px' }}>
               <Field name="customer_note" component={ATextarea} label="Customer note" rows={4} />
             </Col>
-            <Col span={12} offset={4} style={{ marginTop: '20px' }}>
+            <Col span={12} offset={4} style={{ marginTop: '31px' }}>
               <table style={{ width: '100%' }}>
                 <tbody>
                   <tr>
