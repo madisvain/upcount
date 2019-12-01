@@ -7,7 +7,6 @@ import { get, map } from 'lodash';
 
 import currency from 'currency.js';
 import HTML5Backend from 'react-dnd-html5-backend';
-import update from 'immutability-helper';
 
 import { AInput, ASelect, ATextarea } from '../forms/fields';
 import { required } from '../forms/validators';
@@ -82,19 +81,8 @@ class LineItems extends Component {
   };
 
   moveRow = (dragIndex, hoverIndex) => {
-    const { data } = this.state;
-    const dragRow = data[dragIndex];
-
-    this.setState(
-      update(this.state, {
-        data: {
-          $splice: [
-            [dragIndex, 1],
-            [hoverIndex, 0, dragRow],
-          ],
-        },
-      })
-    );
+    const { fields } = this.props;
+    fields.move(dragIndex, hoverIndex);
   };
 
   onQuantityChange = (newValue, previousValue, index) => {
