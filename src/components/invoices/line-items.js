@@ -207,7 +207,12 @@ class LineItems extends Component {
             render={field => (
               <div>
                 <Icon type="more" style={{ position: 'absolute', marginTop: 15, left: -15 }} />
-                <Field name={field} component={ATextarea} autoSize />
+                <Field
+                  name={field}
+                  component={ATextarea}
+                  autoSize
+                  onDrop={e => e.preventDefault()}
+                />
               </div>
             )}
           />
@@ -224,6 +229,7 @@ class LineItems extends Component {
                   this.onQuantityChange(newValue, previousValue, index)
                 }
                 validate={[required]}
+                onDrop={e => e.preventDefault()}
               />
             )}
           />
@@ -240,6 +246,7 @@ class LineItems extends Component {
                   this.onUnitPriceChange(newValue, previousValue, index)
                 }
                 validate={[required]}
+                onDrop={e => e.preventDefault()}
               />
             )}
           />
@@ -256,6 +263,7 @@ class LineItems extends Component {
                   this.onSubtotalChange(newValue, previousValue, index)
                 }
                 validate={[required]}
+                onDrop={e => e.preventDefault()}
               />
             )}
           />
@@ -265,7 +273,12 @@ class LineItems extends Component {
             key="taxRate"
             render={(field, row, index) => (
               <div>
-                <Field name={field} component={ASelect} options={[]}>
+                <Field
+                  name={field}
+                  component={ASelect}
+                  options={[]}
+                  onDrop={e => e.preventDefault()}
+                >
                   {map(taxRates.items, rate => {
                     return (
                       <Select.Option value={rate._id} key={rate._id}>
