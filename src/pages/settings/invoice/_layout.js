@@ -45,7 +45,7 @@ class Settings extends Component {
     const logo = get(organizations.logos, localStorage.getItem('organization'));
 
     return (
-      <Layout.Content style={{ margin: 16, padding: 24, background: '#fff' }}>
+      <Layout.Content>
         <Form layout="vertical" onSubmit={handleSubmit}>
           <Row gutter={32}>
             <Col span={12}>

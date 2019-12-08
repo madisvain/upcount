@@ -14,6 +14,7 @@ const Page = styled.div`
   width: 700px;
   height: 800px;
   margin: 0 auto;
+  background-color: blue;
 
   .line-break {
     white-space: pre-line;
@@ -258,7 +259,6 @@ class Invoice extends Component {
         ) : (
           <div style={{ textAlign: 'center', paddingTop: 100 }}>
             <Spin />
-            XXX
           </div>
         )}
       </Page>

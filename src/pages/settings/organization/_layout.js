@@ -21,7 +21,7 @@ class Organization extends Component {
 
     return (
       <div>
-        <Layout.Content style={{ margin: 16, padding: 24, background: '#fff' }}>
+        <Layout.Content>
           <Row gutter={32}>
             <Col span={12}>
               <h2>

@@ -11,9 +11,11 @@ export default {
       {
         antd: true,
         dva: true,
-        dynamicImport: false,
+        dynamicImport: true,
         title: 'Upcount',
-        dll: true,
+        dll: {
+          exclude: ['bootstrap'],
+        },
         routes: {
           exclude: [
             /models\//,
@@ -26,6 +28,9 @@ export default {
       },
     ],
   ],
+  sass: {
+    includePaths: ['node_modules'],
+  },
   lessLoaderOptions: {
     modifyVars: {
       '@table-row-hover-bg': 'transparent',

@@ -115,21 +115,19 @@ class InvoiceForm extends Component {
       </Menu>
     );
 
-    // Invoice preview
-    if (
-      get(location, 'pathname', '').endsWith('preview') ||
-      get(location, 'pathname', '').endsWith('pdf')
-    ) {
-      return (
-        <Layout.Content style={{ margin: '16px 16px 72px 16px', padding: 24, background: '#fff' }}>
-          {children}
-        </Layout.Content>
-      );
+    // Invoice PDF
+    if (get(location, 'pathname', '').endsWith('pdf')) {
+      return children;
+    }
+
+    // Invoice Preview
+    if (get(location, 'pathname', '').endsWith('preview')) {
+      return <Layout.Content className="has-toolbar">{children}</Layout.Content>;
     }
 
     // Invoice form
     return (
-      <Layout.Content style={{ margin: '16px 16px 72px 16px', padding: 24, background: '#fff' }}>
+      <Layout.Content className="has-toolbar">
         <Form onSubmit={handleSubmit}>
           <Row gutter={16}>
             <Col span={12}>

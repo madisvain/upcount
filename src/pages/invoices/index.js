@@ -75,21 +75,21 @@ class Invoices extends Component {
     const stateFiler = [
       {
         text: 'Draft',
-        value: 'draft'
+        value: 'draft',
       },
       {
         text: 'Confirmed',
-        value: 'confirmed'
+        value: 'confirmed',
       },
       {
         text: 'Payed',
-        value: 'payed'
+        value: 'payed',
       },
       {
         text: 'Void',
-        value: 'void'
+        value: 'void',
       },
-    ]
+    ];
 
     return (
       <Layout.Content style={{ margin: 16, padding: 24, background: '#fff' }}>
@@ -131,7 +131,7 @@ class Invoices extends Component {
             title="Client"
             dataIndex="client"
             key="client"
-            sorter={(a, b) => a < b ? -1 : a === b ? 0 : 1}
+            sorter={(a, b) => (a < b ? -1 : a === b ? 0 : 1)}
             render={client => get(clients.items, `${client}.name`, '-')}
           />
           <Table.Column

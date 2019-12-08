@@ -21,6 +21,7 @@
   },
   "dependencies": {
     "antd": "^3.26.0",
+    "bootstrap": "^4.4.1",
     "countries-list": "^2.5.0",
     "currency-symbol-map": "^4.0.4",
     "currency.js": "^1.2.2",
