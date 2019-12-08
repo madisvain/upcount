@@ -20,7 +20,7 @@
     "postinstall": "electron-builder install-app-deps"
   },
   "dependencies": {
-    "antd": "^3.25.3",
+    "antd": "^3.26.0",
     "countries-list": "^2.5.0",
     "currency-symbol-map": "^4.0.4",
     "currency.js": "^1.2.2",
@@ -30,8 +30,8 @@
     "pouchdb": "^7.1.1",
     "pouchdb-find": "^7.1.1",
     "react": "^16.12.0",
-    "react-dnd": "^9.5.1",
-    "react-dnd-html5-backend": "^9.5.1",
+    "react-dnd": "^10.0.2",
+    "react-dnd-html5-backend": "^10.0.2",
     "react-dom": "^16.12.0",
     "react-frame-component": "^4.1.1",
     "recompose": "^0.30.0",
@@ -43,22 +43,23 @@
   "devDependencies": {
     "babel-eslint": "^10.0.1",
     "concurrently": "^5.0.0",
-    "electron": "^6.1.4",
+    "electron": "^6.1.5",
     "electron-builder": "^22.2.0",
     "electron-notarize": "^0.2.1",
     "electron-webpack": "^2.7.4",
     "eslint": "^5.4.0",
-    "eslint-config-umi": "^1.4.0",
-    "eslint-plugin-flowtype": "^2.50.0",
+    "eslint-config-umi": "^1.6.0",
+    "eslint-plugin-flowtype": "^2.50.3",
     "eslint-plugin-import": "^2.14.0",
-    "eslint-plugin-jsx-a11y": "^5.1.1",
-    "eslint-plugin-react": "^7.11.1",
+    "eslint-plugin-jsx-a11y": "^6.2.3",
+    "eslint-plugin-react": "^7.17.0",
+    "eslint-plugin-react-hooks": "1.5.0",
     "husky": "^3.1.0",
     "lint-staged": "^9.5.0",
     "react-test-renderer": "^16.12.0",
     "redux-mock-store": "^1.5.3",
-    "umi": "^2.12.3",
-    "umi-plugin-react": "^1.14.6"
+    "umi": "^2.12.5",
+    "umi-plugin-react": "^1.14.8"
   },
   "lint-staged": {
     "*.{js,jsx}": [
