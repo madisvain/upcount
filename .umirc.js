@@ -28,9 +28,6 @@ export default {
       },
     ],
   ],
-  sass: {
-    includePaths: ['node_modules'],
-  },
   lessLoaderOptions: {
     modifyVars: {
       '@table-row-hover-bg': 'transparent',
