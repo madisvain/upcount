@@ -10,15 +10,15 @@ let printerWindow = BrowserWindow | null;
 function createWindow() {
   mainWindow = new BrowserWindow({
     height: 800,
-    width: process.env.NODE_ENV === 'development' ? 1400 : 900,
+    width: process.env.NODE_ENV === 'development' ? 1400 : 1000,
     webPreferences: {
       nodeIntegration: true,
     },
   });
 
   printerWindow = new BrowserWindow({
-    height: 900,
-    width: 900,
+    height: 800,
+    width: 1000,
     webPreferences: {
       nodeIntegration: true,
     },
