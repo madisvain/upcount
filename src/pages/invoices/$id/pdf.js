@@ -62,9 +62,6 @@ const Page = styled.div`
   }
 
   #footer {
-    width: 100%;
-    position: fixed;
-    bottom: 0;
     font-size: 11px;
   }
 `;
@@ -79,6 +76,11 @@ class Invoice extends Component {
         id: localStorage.getItem('organization'),
       },
     });
+
+    if (get(this.props, ['match', 'path'], '').endsWith('pdf')) {
+      const { ipcRenderer } = window.require('electron');
+      setTimeout(() => ipcRenderer.send('readyToPrint'), 300);
+    }
   }
 
   render() {
@@ -237,20 +239,14 @@ class Invoice extends Component {
             <div id="notes" className="row">
               <div className="col line-break">{invoice.customer_note}</div>
             </div>
-            <div>
-              <table className="table">
-                <thead>
-                  <tr>
-                    <td>
-                      {get(organization, 'bank')} {get(organization, 'iban')}
-                    </td>
-                    <td className="text-center">
-                      Reg. nr. {get(organization, 'registration_number')}
-                    </td>
-                    <td className="text-right">VAT IN {get(organization, 'vatin')}</td>
-                  </tr>
-                </thead>
-              </table>
+            <div id="footer" className="row">
+              <div className="col">
+                {get(organization, 'bank')} {get(organization, 'iban')}
+              </div>
+              <div className="col text-center">
+                Reg. nr. {get(organization, 'registration_number')}
+              </div>
+              <div className="col text-right">VAT IN {get(organization, 'vatin')}</div>
             </div>
           </div>
         ) : (
