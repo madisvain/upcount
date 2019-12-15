@@ -115,13 +115,24 @@ class InvoiceForm extends Component {
       </Menu>
     );
 
-    // Invoice preview
-    if (
-      get(location, 'pathname', '').endsWith('preview') ||
-      get(location, 'pathname', '').endsWith('pdf')
-    ) {
+    // Invoice PDF
+    if (get(location, 'pathname', '').endsWith('pdf')) {
+      return children;
+    }
+
+    // Invoice Preview
+    if (get(location, 'pathname', '').endsWith('preview')) {
       return (
-        <Layout.Content style={{ margin: '16px 16px 72px 16px', padding: 24, background: '#fff' }}>
+        <Layout.Content
+          className="has-toolbar"
+          style={{
+            width: '21cm',
+            minHeight: '29.7cm',
+            margin: '16px auto 72px auto',
+            position: 'relative',
+            boxShadow: '0 0 0.2cm rgba(0,0,0,0.1)',
+          }}
+        >
           {children}
         </Layout.Content>
       );
@@ -129,7 +140,7 @@ class InvoiceForm extends Component {
 
     // Invoice form
     return (
-      <Layout.Content style={{ margin: '16px 16px 72px 16px', padding: 24, background: '#fff' }}>
+      <Layout.Content className="has-toolbar">
         <Form onSubmit={handleSubmit}>
           <Row gutter={16}>
             <Col span={12}>

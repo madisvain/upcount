@@ -1,3 +1,12 @@
+.ant-layout-content {
+  margin: 16px;
+  padding: 24px;
+  background: #fff;
+  &.has-toolbar {
+    margin-bottom: 72px;
+  }
+}
+
 .ant-table-wrapper {
   &.line-items {
     .ant-table-row {
@@ -32,4 +41,10 @@
       }
     }
   }
+}
+
+#bootstrapped {
+  @import '~bootstrap/scss/bootstrap';
+
+  color: #222;
 }

@@ -38,7 +38,7 @@ class Clients extends Component {
     }
 
     return (
-      <Layout.Content style={{ margin: 16, padding: 24, background: '#fff' }}>
+      <Layout.Content>
         <Row>
           <Col>
             <h2>
