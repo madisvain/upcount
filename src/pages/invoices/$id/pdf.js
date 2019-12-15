@@ -62,7 +62,19 @@ const Page = styled.div`
   }
 
   #footer {
+    width: calc(100% - 48px);
+    position: absolute;
+    bottom: 24px;
+    border-top: 1px solid #000;
+    padding-top: 10px;
     font-size: 11px;
+
+    @media print {
+      width: 100%;
+      position: fixed;
+      bottom: 0;
+      border-top: 1px solid #868686;
+    }
   }
 `;
 
@@ -209,10 +221,14 @@ class Invoice extends Component {
                     </tr>
                     <tr>
                       <td colSpan="2" className="border-top-0" />
-                      <td colSpan="2">Total</td>
+                      <td colSpan="2">
+                        <strong>Total</strong>
+                      </td>
                       <td className="text-right">
-                        {invoice.total}
-                        {getSymbolFromCurrency(invoice.currency)}
+                        <strong>
+                          {invoice.total}
+                          {getSymbolFromCurrency(invoice.currency)}
+                        </strong>
                       </td>
                     </tr>
                   </tfoot>
@@ -243,10 +259,14 @@ class Invoice extends Component {
               <div className="col">
                 {get(organization, 'bank')} {get(organization, 'iban')}
               </div>
-              <div className="col text-center">
-                Reg. nr. {get(organization, 'registration_number')}
-              </div>
-              <div className="col text-right">VAT IN {get(organization, 'vatin')}</div>
+              {organization.registration_number ? (
+                <div className="col text-center">
+                  Reg. nr. {get(organization, 'registration_number')}
+                </div>
+              ) : null}
+              {organization.vatin ? (
+                <div className="col text-right">VAT IN {get(organization, 'vatin')}</div>
+              ) : null}
             </div>
           </div>
         ) : (
