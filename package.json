@@ -20,7 +20,7 @@
     "postinstall": "electron-builder install-app-deps"
   },
   "dependencies": {
-    "antd": "^3.26.0",
+    "antd": "^3.26.3",
     "bootstrap": "^4.4.1",
     "countries-list": "^2.5.0",
     "currency-symbol-map": "^4.0.4",
@@ -41,15 +41,15 @@
   },
   "devDependencies": {
     "babel-eslint": "^10.0.1",
-    "concurrently": "^5.0.0",
-    "electron": "^6.1.5",
+    "concurrently": "^5.0.1",
+    "electron": "^6.1.6",
     "electron-builder": "^22.2.0",
     "electron-notarize": "^0.2.1",
     "electron-webpack": "^2.7.4",
     "eslint": "^5.4.0",
     "eslint-config-umi": "^1.6.0",
     "eslint-plugin-flowtype": "^2.50.3",
-    "eslint-plugin-import": "^2.14.0",
+    "eslint-plugin-import": "^2.19.1",
     "eslint-plugin-jsx-a11y": "^6.2.3",
     "eslint-plugin-react": "^7.17.0",
     "eslint-plugin-react-hooks": "1.5.0",
@@ -59,8 +59,8 @@
     "react-test-renderer": "^16.12.0",
     "redux-mock-store": "^1.5.3",
     "sass-loader": "^8.0.0",
-    "umi": "^2.12.5",
-    "umi-plugin-react": "^1.14.8"
+    "umi": "^2.12.6",
+    "umi-plugin-react": "^1.14.9"
   },
   "lint-staged": {
     "*.{js,jsx}": [
