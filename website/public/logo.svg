@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="66px" height="18px" viewBox="0 0 66 18" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 56.3 (81716) - https://sketch.com -->
+    <title>logo</title>
+    <desc>Created with Sketch.</desc>
+    <g id="Landing-page" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="upcount_landing_signup" transform="translate(-38.000000, -39.000000)">
+            <g id="upcount">
+                <g id="logo" transform="translate(38.000000, 31.000000)">
+                    <path d="M0.342105263,18.0651138 C0.342105263,17.563826 0.74738395,17.1574519 1.25197133,17.1574519 L18.8361707,17.1574519 C19.3386759,17.1574519 19.7460368,17.555611 19.7460368,18.0651138 L19.7460368,20.24979 C19.7460368,20.7510778 19.3407581,21.1574519 18.8361707,21.1574519 L1.25197133,21.1574519 C0.749466178,21.1574519 0.342105263,20.7592929 0.342105263,20.24979 L0.342105263,18.0651138 Z" id="Rectangle-5" fill="#41DB7F"></path>
+                    <text id="up" font-family="Helvetica" font-size="17.8199988" font-weight="normal" letter-spacing="-0.379999995" fill="#FFFFFF">
+                        <tspan x="1.19407735" y="18">u</tspan>
+                        <tspan x="10.7247115" y="18">p</tspan>
+                    </text>
+                    <text id="count" font-family="Helvetica" font-size="17.8199988" font-weight="normal" letter-spacing="-0.379999995" fill="#FFFFFF">
+                        <tspan x="23.4309089" y="25">coun</tspan>
+                        <tspan x="60.5528107" y="25">t</tspan>
+                    </text>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>
