@@ -8,8 +8,11 @@ export default () => (
       </span>
     </nav>
     <div className="container-fluid">
-      <div className="row">
-        <div className="col-8 offset-2" style={{ paddingTop: 40 }}>
+      <div className="row" style={{ marginTop: 80 }}>
+        <div className="col-8 offset-2">
+          <h1 className="text-center">
+            <small>💊</small> Painless invocing
+          </h1>
           <img src="/illustration.svg" className="img-fluid" alt="Illustration" />
         </div>
       </div>
