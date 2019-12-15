@@ -19,7 +19,7 @@ Upcount is available for Mac, Linux & Windows and can be downloaded from Github 
 * ⚡️ Offline-first for privacy
 * 👾 Use your own logo
 * 🍭 Customizable settings
-* ©️ MIT License
+* ©️ [GPLv3 License](https://github.com/madisvain/upcount/blob/master/LICENSE)
 
 ## Bugs and Feature Requests
 
