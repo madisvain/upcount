@@ -9,10 +9,11 @@
   "dependencies": {
     "@zeit/next-sass": "^1.0.1",
     "bootstrap": "^4.4.1",
-    "next": "latest",
+    "next": "9.1.6",
     "node-sass": "^4.13.0",
     "react": "^16.7.0",
-    "react-dom": "^16.7.0"
+    "react-dom": "^16.7.0",
+    "ua-parser-js": "^0.7.21"
   },
   "license": "ISC"
 }
