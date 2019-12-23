@@ -1,7 +1,5 @@
 import './styles.scss';
 
-import React from 'react';
-
 import Download from '../components/download';
 import { initGA, logPageView } from '../utils/analytics';
 

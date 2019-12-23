@@ -63,7 +63,7 @@
     "umi-plugin-react": "^1.14.10"
   },
   "lint-staged": {
-    "*.{js,jsx}": [
+    "src/**/*.{js,jsx}": [
       "eslint --fix",
       "git add"
     ]
