@@ -2,7 +2,6 @@ export default class Download extends React.Component {
   state = {
     os: null,
     hover: false,
-    primary: false,
   };
 
   componentDidMount() {
@@ -22,13 +21,15 @@ export default class Download extends React.Component {
   }
 
   render() {
+    const { version, small } = this.props;
     const { hover, os } = this.state;
 
     if (os === 'windows') {
+      const href = `https://github.com/madisvain/upcount/releases/download/${version}/Upcount-${version}.exe`;
       return (
         <a
-          href="#"
-          className="btn btn-sm btn-outline-dark"
+          href={href}
+          className={`btn btn-outline-dark ${small ? 'btn-sm' : ''}`.trim()}
           onMouseEnter={() => this.setState({ hover: true })}
           onMouseLeave={() => this.setState({ hover: false })}
         >
@@ -41,10 +42,11 @@ export default class Download extends React.Component {
         </a>
       );
     } else if (os === 'mac') {
+      const href = `https://github.com/madisvain/upcount/releases/download/${version}/Upcount-${version}.dmg`;
       return (
         <a
-          href="#"
-          className="btn btn-sm btn-outline-dark"
+          href={href}
+          className={`btn btn-outline-dark ${small ? 'btn-sm' : ''}`.trim()}
           onMouseEnter={() => this.setState({ hover: true })}
           onMouseLeave={() => this.setState({ hover: false })}
         >
@@ -57,10 +59,11 @@ export default class Download extends React.Component {
         </a>
       );
     } else if (os === 'linux' || os === 'unix') {
+      const href = `https://github.com/madisvain/upcount/releases/download/${version}/Upcount-${version}.deb`;
       return (
         <a
-          href="#"
-          className="btn btn-sm btn-outline-dark"
+          href={href}
+          className={`btn btn-outline-dark ${small ? 'btn-sm' : ''}`.trim()}
           onMouseEnter={() => this.setState({ hover: true })}
           onMouseLeave={() => this.setState({ hover: false })}
         >
@@ -73,10 +76,11 @@ export default class Download extends React.Component {
         </a>
       );
     } else {
+      const href = 'https://github.com/madisvain/upcount/releases';
       return (
         <a
-          href="#"
-          className="btn btn-sm btn-outline-dark"
+          href={href}
+          className={`btn btn-outline-dark ${small ? 'btn-sm' : ''}`.trim()}
           onMouseEnter={() => this.setState({ hover: true })}
           onMouseLeave={() => this.setState({ hover: false })}
         >
