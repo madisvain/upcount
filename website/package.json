@@ -13,6 +13,7 @@
     "node-sass": "^4.13.0",
     "react": "^16.7.0",
     "react-dom": "^16.7.0",
+    "react-driftjs": "^1.1.8",
     "react-ga": "^2.7.0"
   },
   "license": "ISC"

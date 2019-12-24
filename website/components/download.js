@@ -24,8 +24,10 @@ export default class Download extends React.Component {
     const { version, small } = this.props;
     const { hover, os } = this.state;
 
+    const v = version ? version.substr(1) : null;
+
     if (os === 'windows') {
-      const href = `https://github.com/madisvain/upcount/releases/download/${version}/Upcount-${version}.exe`;
+      const href = `https://github.com/madisvain/upcount/releases/download/${version}/Upcount-${v}.exe`;
       return (
         <a
           href={href}
@@ -42,7 +44,7 @@ export default class Download extends React.Component {
         </a>
       );
     } else if (os === 'mac') {
-      const href = `https://github.com/madisvain/upcount/releases/download/${version}/Upcount-${version}.dmg`;
+      const href = `https://github.com/madisvain/upcount/releases/download/${version}/Upcount-${v}.dmg`;
       return (
         <a
           href={href}
@@ -59,7 +61,7 @@ export default class Download extends React.Component {
         </a>
       );
     } else if (os === 'linux' || os === 'unix') {
-      const href = `https://github.com/madisvain/upcount/releases/download/${version}/Upcount-${version}.deb`;
+      const href = `https://github.com/madisvain/upcount/releases/download/${version}/upcount_${v}_amd64.deb`;
       return (
         <a
           href={href}
@@ -80,6 +82,7 @@ export default class Download extends React.Component {
       return (
         <a
           href={href}
+          target="_blank"
           className={`btn btn-outline-dark ${small ? 'btn-sm' : ''}`.trim()}
           onMouseEnter={() => this.setState({ hover: true })}
           onMouseLeave={() => this.setState({ hover: false })}

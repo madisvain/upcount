@@ -1,6 +1,7 @@
 import './styles.scss';
 
 import Download from '../components/download';
+import Layout from '../components/layout';
 import { initGA, logPageView } from '../utils/analytics';
 
 export default class Index extends React.Component {
@@ -30,22 +31,24 @@ export default class Index extends React.Component {
     const { version } = this.state;
 
     return (
-      <div>
-        <nav className="navbar navbar-expand">
-          <span className="navbar-brand h1">
-            <img src="/logo.svg" className="img-fluid" alt="Logo" />
-          </span>
-          <ul className="navbar-nav ml-auto">
-            <li className="nav-item mr-2 mt-1">
-              <Download small={true} version={version} />
-            </li>
-            <li className="nav-item">
-              <a href="https://github.com/madisvain/upcount" target="_blank">
-                <img src="/github.svg" className="img-fluid" alt="Logo" />
-              </a>
-            </li>
-          </ul>
-        </nav>
+      <Layout>
+        <header>
+          <nav className="navbar navbar-expand">
+            <span className="navbar-brand h1">
+              <img src="/logo.svg" className="img-fluid" alt="Logo" />
+            </span>
+            <ul className="navbar-nav ml-auto">
+              <li className="nav-item mr-2 mt-1">
+                <Download small={true} version={version} />
+              </li>
+              <li className="nav-item">
+                <a href="https://github.com/madisvain/upcount" target="_blank">
+                  <img src="/github.svg" className="img-fluid" alt="Logo" />
+                </a>
+              </li>
+            </ul>
+          </nav>
+        </header>
 
         {/* Landing & Download */}
         <div className="container">
@@ -144,19 +147,7 @@ export default class Index extends React.Component {
             </div>
           </div>
         </div>
-
-        {/* Footer */}
-        <div className="container">
-          <div className="row" style={{ marginTop: 100, marginBottom: 20 }}>
-            <div className="col text-center">
-              Made with <span style={{ color: '#e25555' }}>&hearts;</span> for coding by{' '}
-              <a href="https://github.com/madisvain">Madis Väin</a>
-              <br />
-              <small>Estonia, Tallinn</small>
-            </div>
-          </div>
-        </div>
-      </div>
+      </Layout>
     );
   }
 }
