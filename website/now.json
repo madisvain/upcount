@@ -1,3 +1,13 @@
 {
-    "name": "upcount"
+    "name": "upcount",
+    "alias": [
+        "upcount.app",
+        "www.upcount.app"
+    ],
+    "regions": [
+        "bru1"
+    ],
+    "github": {
+        "enabled": false
+    }
 }
