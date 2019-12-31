@@ -206,7 +206,7 @@ class Invoice extends Component {
                       <td colSpan="2">Subtotal</td>
                       <td className="text-right">
                         {invoice.subTotal}
-                        {invoice.currency}
+                        {getSymbolFromCurrency(invoice.currency)}
                       </td>
                     </tr>
                     <tr>
@@ -215,7 +215,7 @@ class Invoice extends Component {
                         Tax
                       </td>
                       <td className="text-right border-top-0">
-                        {invoice.tax}
+                        {invoice.taxTotal}
                         {getSymbolFromCurrency(invoice.currency)}
                       </td>
                     </tr>
