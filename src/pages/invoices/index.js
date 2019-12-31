@@ -66,7 +66,7 @@ class Invoices extends Component {
       <Menu onClick={({ item, key }) => this.onStateSelect(_id, _rev, key)}>
         <Menu.Item key="draft">Draft</Menu.Item>
         <Menu.Item key="confirmed">Confirmed</Menu.Item>
-        <Menu.Item key="payed">Payed</Menu.Item>
+        <Menu.Item key="paid">Paid</Menu.Item>
         <Menu.Divider />
         <Menu.Item key="void">Void</Menu.Item>
       </Menu>
@@ -82,8 +82,8 @@ class Invoices extends Component {
         value: 'confirmed',
       },
       {
-        text: 'Payed',
-        value: 'payed',
+        text: 'Paid',
+        value: 'paid',
       },
       {
         text: 'Void',

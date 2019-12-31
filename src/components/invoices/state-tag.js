@@ -11,7 +11,7 @@ const StateTag = props => {
     case 'confirmed':
       color = 'blue';
       break;
-    case 'payed':
+    case 'paid':
       color = 'green';
       break;
     case 'void':
