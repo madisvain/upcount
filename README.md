@@ -30,4 +30,4 @@ For more generic product questions and feedback please email [hello@upcount.app]
 
 ## License
 
-[MIT](LICENSE) &copy; [Upcount](https://upcount.app)
+[GPLv3 License](https://github.com/madisvain/upcount/blob/master/LICENSE) &copy; [Upcount](https://upcount.app)
