@@ -2,7 +2,7 @@
   "name": "upcount",
   "author": "Madis Vain <madisvain@gmail.com>",
   "description": "Painless Invoicing Application",
-  "version": "0.2.1",
+  "version": "0.3.0",
   "private": true,
   "scripts": {
     "renderer:dev": "umi dev",
@@ -20,13 +20,13 @@
     "postinstall": "electron-builder install-app-deps"
   },
   "dependencies": {
-    "antd": "^3.26.5",
+    "antd": "^3.26.8",
     "bootstrap": "^4.4.1",
-    "countries-list": "^2.5.0",
+    "countries-list": "^2.5.1",
     "currency-symbol-map": "^4.0.4",
     "currency.js": "^1.2.2",
     "electron-updater": "^4.2.0",
-    "libphonenumber-js": "^1.7.29",
+    "libphonenumber-js": "^1.7.38",
     "pouchdb": "^7.1.1",
     "pouchdb-find": "^7.1.1",
     "react": "^16.12.0",
@@ -34,14 +34,14 @@
     "react-dnd-html5-backend": "^10.0.2",
     "react-dom": "^16.12.0",
     "recompose": "^0.30.0",
-    "redux-form": "^8.2.6",
+    "redux-form": "^8.3.0",
     "source-map-support": "^0.5.16",
     "styled-components": "^4.4.1",
-    "uuid": "^3.3.3"
+    "uuid": "^3.4.0"
   },
   "devDependencies": {
     "babel-eslint": "^10.0.1",
-    "concurrently": "^5.0.2",
+    "concurrently": "^5.1.0",
     "electron": "^6.1.7",
     "electron-builder": "^22.2.0",
     "electron-notarize": "^0.2.1",
@@ -55,12 +55,12 @@
     "eslint-plugin-react-hooks": "1.5.0",
     "husky": "^3.1.0",
     "lint-staged": "^9.5.0",
-    "node-sass": "^4.13.0",
+    "node-sass": "^4.13.1",
     "react-test-renderer": "^16.12.0",
     "redux-mock-store": "^1.5.4",
-    "sass-loader": "^8.0.0",
-    "umi": "^2.12.8",
-    "umi-plugin-react": "^1.14.11"
+    "sass-loader": "^8.0.2",
+    "umi": "^2.13.3",
+    "umi-plugin-react": "^1.15.2"
   },
   "lint-staged": {
     "src/**/*.{js,jsx}": [

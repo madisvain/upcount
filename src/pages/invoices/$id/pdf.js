@@ -111,7 +111,7 @@ class Invoice extends Component {
                 <h1 id="number">Invoice #{get(invoice, 'number')}</h1>
               </div>
               <div className="col text-right">
-                {has(logo) ? (
+                {logo ? (
                   <img id="logo" src={logo} alt="logo" style={{ maxWidth: 250, maxHeight: 250 }} />
                 ) : null}
               </div>
