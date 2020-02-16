@@ -20,13 +20,13 @@
     "postinstall": "electron-builder install-app-deps"
   },
   "dependencies": {
-    "antd": "^3.26.8",
+    "antd": "^3.26.9",
     "bootstrap": "^4.4.1",
     "countries-list": "^2.5.1",
     "currency-symbol-map": "^4.0.4",
     "currency.js": "^1.2.2",
     "electron-updater": "^4.2.0",
-    "libphonenumber-js": "^1.7.38",
+    "libphonenumber-js": "^1.7.41",
     "pouchdb": "^7.1.1",
     "pouchdb-find": "^7.1.1",
     "react": "^16.12.0",

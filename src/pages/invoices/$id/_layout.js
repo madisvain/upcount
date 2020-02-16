@@ -2,7 +2,7 @@ import { Component } from 'react';
 import { compose } from 'redux';
 import { connect } from 'dva';
 import { Field, FieldArray, formValueSelector, reduxForm } from 'redux-form';
-import { Button, Col, Form, Icon, Layout, Row, Select, Menu, Dropdown } from 'antd';
+import { Button, Col, Form, Icon, Layout, Row, Select, Menu, Dropdown, Modal } from 'antd';
 import { forEach, get, isString, includes, has, lowerCase, map } from 'lodash';
 
 import moment from 'moment';
@@ -80,6 +80,24 @@ class InvoiceForm extends Component {
         _id,
         _rev,
         state: key,
+      },
+    });
+  };
+
+  deleteConfirm = (_id, _rev) => {
+    Modal.confirm({
+      title: 'Are you sure delete this invoice?',
+      okText: 'Yes',
+      okType: 'danger',
+      cancelText: 'No',
+      onOk: () => {
+        this.props.dispatch({
+          type: 'invoices/remove',
+          data: {
+            _id,
+            _rev,
+          },
+        });
       },
     });
   };
@@ -256,20 +274,29 @@ class InvoiceForm extends Component {
 
           <FooterToolbar
             extra={
-              <span>
-                {!this.isNew() && invoice && (
-                  <Dropdown overlay={stateMenu(invoice._id, invoice._rev)} trigger={['click']}>
-                    <StateTag state={invoice.state} style={{ marginTop: 10, marginRight: 20 }} />
-                  </Dropdown>
+              <div>
+                {!this.isNew() && (
+                  <Button
+                    type="dashed"
+                    onClick={() => this.deleteConfirm(invoice._id, invoice._rev)}
+                  >
+                    <Icon type="delete" />
+                    Delete
+                  </Button>
                 )}
-              </span>
+              </div>
             }
           >
+            {!this.isNew() && invoice && (
+              <Dropdown overlay={stateMenu(invoice._id, invoice._rev)} trigger={['click']}>
+                <StateTag state={invoice.state} style={{ marginTop: 10, marginRight: 20 }} />
+              </Dropdown>
+            )}
             {!this.isNew() && (
               <Link to={`/invoices/${get(this.props, ['match', 'params', 'id'])}/preview`}>
                 <Button type="dashed" style={{ marginTop: 10, marginRight: 8 }}>
                   <Icon type="eye" />
-                  Preview
+                  View
                 </Button>
               </Link>
             )}
@@ -290,7 +317,7 @@ class InvoiceForm extends Component {
               style={{ marginTop: 10 }}
             >
               <Icon type="save" />
-              Save invoice
+              Save
             </Button>
           </FooterToolbar>
         </Form>

@@ -120,6 +120,7 @@ class Invoices extends Component {
           <Table.Column
             title="Number"
             key="number"
+            sorter={(a, b) => (a < b ? -1 : a === b ? 0 : 1)}
             render={invoice => (
               <Link to={`/invoices/${invoice._id}`}>
                 <Icon type="file-text" />

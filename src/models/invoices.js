@@ -1,6 +1,7 @@
 import { initialize } from 'redux-form';
 import { message } from 'antd';
 import { keyBy } from 'lodash';
+import { push } from 'connected-react-router';
 
 import * as invoicesService from '../services/invoices';
 
@@ -12,7 +13,7 @@ export default {
   },
 
   effects: {
-    *list({ payload: { sort = ['number'] } = {} }, { put, call }) {
+    *list({ payload: { sort = [{ number: 'desc' }] } = {} }, { put, call }) {
       try {
         const response = yield call(invoicesService.list, sort);
         yield put({ type: 'listSuccess', data: response.docs });
@@ -21,12 +22,7 @@ export default {
       }
     },
 
-    *details(
-      {
-        payload: { id },
-      },
-      { put, call }
-    ) {
+    *details({ payload: { id } }, { put, call }) {
       try {
         const response = yield call(invoicesService.details, id);
         yield put({ type: 'detailsSuccess', data: response });
@@ -35,12 +31,7 @@ export default {
       }
     },
 
-    *initialize(
-      {
-        payload: { id },
-      },
-      { put, call }
-    ) {
+    *initialize({ payload: { id } }, { put, call }) {
       try {
         const response = yield call(invoicesService.details, id);
         yield put({ type: 'detailsSuccess', data: response });
@@ -50,12 +41,7 @@ export default {
       }
     },
 
-    *state(
-      {
-        payload: { _id, _rev, state },
-      },
-      { put, call }
-    ) {
+    *state({ payload: { _id, _rev, state } }, { put, call }) {
       try {
         const response = yield call(invoicesService.save, { _id, _rev, state });
         yield put({ type: 'detailsSuccess', data: response });
@@ -73,6 +59,17 @@ export default {
         return response;
       } catch (e) {
         message.error('Error saving invoice!', 5);
+      }
+    },
+
+    *remove({ data, resolve, reject }, { put, call }) {
+      try {
+        const response = yield call(invoicesService.remove, data);
+        yield put({ type: 'removeSuccess', data: response });
+        message.success('Invoice deleted!', 5);
+        yield put(push('/invoices'));
+      } catch (e) {
+        message.error('Error deleting invoice!', 5);
       }
     },
   },
@@ -96,6 +93,18 @@ export default {
           ...state.items,
           [data._id]: data,
         },
+      };
+    },
+
+    removeSuccess(state, payload) {
+      const { data } = payload;
+
+      let items = { ...state.items };
+      delete items[data._id];
+
+      return {
+        ...state,
+        items: items,
       };
     },
   },
