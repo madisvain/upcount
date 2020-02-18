@@ -17,9 +17,13 @@
     "deploy:mac": "npm run renderer:build && electron-webpack && electron-builder --mac --publish always",
     "deploy:linux": "npm run renderer:build && electron-webpack && electron-builder --linux --publish always",
     "deploy:win": "npm run renderer:build && electron-webpack && electron-builder --win --publish always",
-    "postinstall": "electron-builder install-app-deps"
+    "postinstall": "electron-builder install-app-deps",
+    "add-locale": "lingui add-locale",
+    "extract": "lingui extract",
+    "compile": "lingui compile"
   },
   "dependencies": {
+    "@lingui/react": "^2.9.1",
     "antd": "^3.26.9",
     "bootstrap": "^4.4.1",
     "countries-list": "^2.5.1",
@@ -40,6 +44,8 @@
     "uuid": "^3.4.0"
   },
   "devDependencies": {
+    "@lingui/cli": "^2.9.1",
+    "@lingui/macro": "^2.9.1",
     "babel-eslint": "^10.0.1",
     "concurrently": "^5.1.0",
     "electron": "^6.1.7",
