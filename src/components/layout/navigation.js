@@ -1,6 +1,6 @@
 import { Component } from 'react';
 import { Icon, Menu, Layout } from 'antd';
-import { get, last } from 'lodash';
+import { get } from 'lodash';
 
 import Link from 'umi/link';
 import withRouter from 'umi/withRouter';
@@ -22,48 +22,24 @@ class Navigation extends Component {
     });
   }
 
-  handleMenuClick = e => {
-    const key = last(e.keyPath);
-    switch (key) {
-      case 'logout':
-        this.props.dispatch({ type: 'auth/logout' });
-        break;
-      case 'invoices':
-        this.setState({ openKeys: [], selectedMenuKeys: e.keyPath });
-        break;
-      case 'clients':
-        this.setState({ openKeys: [], selectedMenuKeys: e.keyPath });
-        break;
-      case 'settings':
-        if (e.keyPath.length > 1) {
-          this.setState({ selectedMenuKeys: e.keyPath });
-        } else {
-          const openKeys = this.state.openKeys.length === 0 ? ['settings'] : [];
-          this.setState({ openKeys });
-        }
-        break;
-      default:
-        this.setState({ selectedMenuKeys: e.keyPath });
-    }
+  onCollapse = collapsed => {
+    this.setState({ collapsed });
   };
 
   render() {
-    const { selectedMenuKeys, openKeys } = this.state;
-
     return (
-      <Layout.Sider trigger={null} collapsible collapsed={this.props.collapsed}>
+      <Layout.Sider
+        trigger={null}
+        collapsible
+        collapsed={this.props.collapsed}
+        onCollapse={this.onCollapse}
+      >
         <div className="logo" style={{ height: 22, margin: '21px 16px', textAlign: 'center' }}>
           <Link to="/invoices/" onClick={() => this.setState({ selectedMenuKeys: ['invoices'] })}>
             <img src={require(`../../assets/logo.svg`)} alt="Upcount" />
           </Link>
         </div>
-        <Menu
-          theme="dark"
-          mode="inline"
-          selectedKeys={selectedMenuKeys}
-          openKeys={openKeys}
-          onClick={this.handleMenuClick}
-        >
+        <Menu theme="dark" mode="inline" defaultSelectedKeys={['1']}>
           <Menu.Item key="invoices">
             <Link to="/invoices/">
               <div>
@@ -80,10 +56,8 @@ class Navigation extends Component {
               </div>
             </Link>
           </Menu.Item>
-
           <Menu.SubMenu
             key="settings"
-            onTitleClick={({ key }) => this.handleMenuClick({ keyPath: [key] })}
             title={
               <span>
                 <Icon type="setting" />
