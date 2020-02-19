@@ -22,18 +22,9 @@ class Navigation extends Component {
     });
   }
 
-  onCollapse = collapsed => {
-    this.setState({ collapsed });
-  };
-
   render() {
     return (
-      <Layout.Sider
-        trigger={null}
-        collapsible
-        collapsed={this.props.collapsed}
-        onCollapse={this.onCollapse}
-      >
+      <Layout.Sider trigger={null} collapsible collapsed={this.props.collapsed}>
         <div className="logo" style={{ height: 22, margin: '21px 16px', textAlign: 'center' }}>
           <Link to="/invoices/" onClick={() => this.setState({ selectedMenuKeys: ['invoices'] })}>
             <img src={require(`../../assets/logo.svg`)} alt="Upcount" />
