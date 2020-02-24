@@ -1,6 +1,8 @@
 import { Component } from 'react';
 import { connect } from 'dva';
 import { Button, Icon, Input, Layout, Table, Tag, Row, Col } from 'antd';
+import { t, Trans } from '@lingui/macro';
+import { I18n } from '@lingui/react';
 import { compact, find, filter, flatten, get, escapeRegExp, pick, isEmpty, values } from 'lodash';
 
 import Link from 'umi/link';
@@ -43,39 +45,43 @@ class Clients extends Component {
           <Col>
             <h2>
               <Icon type="team" style={{ marginRight: 8 }} />
-              Clients
+              <Trans>Clients</Trans>
             </h2>
           </Col>
         </Row>
         <Link to="/clients/new">
           <Button type="primary" style={{ marginBottom: 10 }}>
-            New client
+            <Trans>New client</Trans>
           </Button>
         </Link>
-        <Input.Search
-          placeholder="Search text"
-          onChange={e => this.onSearch(e.target.value)}
-          style={{ width: 200, float: 'right' }}
-        />
+        <I18n>
+          {({ i18n }) => (
+            <Input.Search
+              placeholder={i18n._(t`Search text`)}
+              onChange={e => this.onSearch(e.target.value)}
+              style={{ width: 200, float: 'right' }}
+            />
+          )}
+        </I18n>
         <Table
           dataSource={search ? searchedClientItems : values(clients.items)}
           pagination={false}
           rowKey="_id"
         >
           <Table.Column
-            title="Name"
+            title={<Trans>Name</Trans>}
             key="name"
             render={client => <Link to={`/clients/${client._id}`}>{get(client, 'name', '-')}</Link>}
           />
-          <Table.Column title="Address" dataIndex="address" key="address" />
+          <Table.Column title={<Trans>Address</Trans>} dataIndex="address" key="address" />
           <Table.Column
-            title="Emails"
+            title={<Trans>Emails</Trans>}
             dataIndex="emails"
             key="emails"
             render={emails => (emails ? emails.map(email => <Tag key={email}>{email}</Tag>) : '')}
           />
           <Table.Column
-            title="Phone"
+            title={<Trans>Phone</Trans>}
             dataIndex="phone"
             key="phone"
             render={phone => {
@@ -89,9 +95,9 @@ class Clients extends Component {
               }
             }}
           />
-          <Table.Column title="VATIN" dataIndex="vatin" key="vatin" />
+          <Table.Column title={<Trans>VATIN</Trans>} dataIndex="vatin" key="vatin" />
           <Table.Column
-            title="Website"
+            title={<Trans>Website</Trans>}
             dataIndex="website"
             key="website"
             render={website => (

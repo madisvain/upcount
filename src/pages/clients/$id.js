@@ -3,6 +3,7 @@ import { compose } from 'redux';
 import { connect } from 'dva';
 import { reduxForm } from 'redux-form';
 import { Drawer } from 'antd';
+import { Trans } from '@lingui/macro';
 import { has } from 'lodash';
 
 import router from 'umi/router';
@@ -42,7 +43,7 @@ class ClientFormDrawer extends Component {
   render() {
     return (
       <Drawer
-        title={this.isNew() ? 'Add client' : 'Edit client'}
+        title={this.isNew() ? <Trans>Add client</Trans> : <Trans>Edit client</Trans>}
         width={450}
         placement="right"
         onClose={this.closeDrawer}

@@ -2,6 +2,7 @@ import { Component } from 'react';
 import { compose } from 'redux';
 import { connect } from 'dva';
 import { Spin } from 'antd';
+import { Trans } from '@lingui/macro';
 import { get, has, head } from 'lodash';
 
 import getSymbolFromCurrency from 'currency-symbol-map';
@@ -108,7 +109,9 @@ class Invoice extends Component {
           <div className="container">
             <div className="row">
               <div className="col">
-                <h1 id="number">Invoice #{get(invoice, 'number')}</h1>
+                <h1 id="number">
+                  <Trans>Invoice</Trans> #{get(invoice, 'number')}
+                </h1>
               </div>
               <div className="col text-right">
                 {logo ? (
@@ -169,18 +172,24 @@ class Invoice extends Component {
                 <table id="dates" className="table table-sm table-borderless">
                   <tbody>
                     <tr>
-                      <td>Date</td>
+                      <td>
+                        <Trans>Date</Trans>
+                      </td>
                       <td>{invoice.date}</td>
                     </tr>
                     {invoice.due_date ? (
                       <tr>
-                        <td>Due date</td>
+                        <td>
+                          <Trans>Due date</Trans>
+                        </td>
                         <td>{invoice.due_date}</td>
                       </tr>
                     ) : null}
                     {invoice.overdue_charge ? (
                       <tr>
-                        <td>Overdue charge</td>
+                        <td>
+                          <Trans>Overdue charge</Trans>
+                        </td>
                         <td>{invoice.overdue_charge}</td>
                       </tr>
                     ) : null}
@@ -194,16 +203,26 @@ class Invoice extends Component {
                   <thead>
                     <tr>
                       <td className="border-top-0 min-width text-center">#</td>
-                      <td className="border-top-0">Description</td>
-                      <td className="border-top-0 min-width">Quantity</td>
-                      <td className="border-top-0 min-width spaced text-right">Price</td>
-                      <td className="border-top-0 min-width spaced text-right">Sum</td>
+                      <td className="border-top-0">
+                        <Trans>Description</Trans>
+                      </td>
+                      <td className="border-top-0 min-width">
+                        <Trans>Quantity</Trans>
+                      </td>
+                      <td className="border-top-0 min-width spaced text-right">
+                        <Trans>Price</Trans>
+                      </td>
+                      <td className="border-top-0 min-width spaced text-right">
+                        <Trans>Sum</Trans>
+                      </td>
                     </tr>
                   </thead>
                   <tfoot>
                     <tr>
                       <td colSpan="2" />
-                      <td colSpan="2">Subtotal</td>
+                      <td colSpan="2">
+                        <Trans>Subtotal</Trans>
+                      </td>
                       <td className="text-right">
                         {invoice.subTotal}
                         {getSymbolFromCurrency(invoice.currency)}
@@ -222,7 +241,9 @@ class Invoice extends Component {
                     <tr>
                       <td colSpan="2" className="border-top-0" />
                       <td colSpan="2">
-                        <strong>Total</strong>
+                        <strong>
+                          <Trans>Total</Trans>
+                        </strong>
                       </td>
                       <td className="text-right">
                         <strong>
@@ -261,11 +282,13 @@ class Invoice extends Component {
               </div>
               {organization.registration_number ? (
                 <div className="col text-center">
-                  Reg. nr. {get(organization, 'registration_number')}
+                  <Trans>Reg. nr.</Trans> {get(organization, 'registration_number')}
                 </div>
               ) : null}
               {organization.vatin ? (
-                <div className="col text-right">VAT IN {get(organization, 'vatin')}</div>
+                <div className="col text-right">
+                  <Trans>VAT IN</Trans> {get(organization, 'vatin')}
+                </div>
               ) : null}
             </div>
           </div>

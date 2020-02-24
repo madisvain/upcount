@@ -1,8 +1,13 @@
 import { Component } from 'react';
 import { Layout } from 'antd';
+import { setupI18n } from '@lingui/core';
+import { I18nProvider } from '@lingui/react';
 
 import Header from '../components/layout/header';
 import Navigation from '../components/layout/navigation';
+
+const language = localStorage.getItem('language') || 'en';
+export const i18n = setupI18n({ language: language });
 
 class BaseLayout extends Component {
   state = {
@@ -19,18 +24,28 @@ class BaseLayout extends Component {
     const { children, location } = this.props;
 
     if (location.pathname === '/') {
-      return <Layout style={{ minHeight: '100vh', margin: 0 }}>{children}</Layout>;
+      return (
+        <I18nProvider i18n={i18n} language="en">
+          <Layout style={{ minHeight: '100vh', margin: 0 }}>{children}</Layout>
+        </I18nProvider>
+      );
     } else if (location.pathname.includes('pdf')) {
-      return children;
+      return (
+        <I18nProvider i18n={i18n} language="en">
+          {children}
+        </I18nProvider>
+      );
     } else {
       return (
-        <Layout style={{ minHeight: '100vh' }}>
-          <Navigation collapsed={this.state.collapsed} />
-          <Layout>
-            <Header collapsed={this.state.collapsed} onToggl={this.toggleSider} />
-            {children}
+        <I18nProvider i18n={i18n} language="en">
+          <Layout style={{ minHeight: '100vh' }}>
+            <Navigation collapsed={this.state.collapsed} />
+            <Layout>
+              <Header collapsed={this.state.collapsed} onToggl={this.toggleSider} />
+              {children}
+            </Layout>
           </Layout>
-        </Layout>
+        </I18nProvider>
       );
     }
   }

@@ -1,4 +1,12 @@
 import { Tag } from 'antd';
+import { Trans } from '@lingui/macro';
+
+const states = {
+  draft: <Trans>Draft</Trans>,
+  confirmed: <Trans>Confirmed</Trans>,
+  paid: <Trans>Paid</Trans>,
+  void: <Trans>Void</Trans>,
+};
 
 const StateTag = props => {
   const { state } = props;
@@ -26,7 +34,7 @@ const StateTag = props => {
       onClick={props.onClick}
       style={{ fontSize: 14, padding: '4px 8px', marginTop: 12 }}
     >
-      {state}
+      {states[state]}
     </Tag>
   );
 };

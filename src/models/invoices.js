@@ -1,8 +1,10 @@
 import { initialize } from 'redux-form';
 import { message } from 'antd';
 import { keyBy } from 'lodash';
+import { t } from '@lingui/macro';
 import { push } from 'connected-react-router';
 
+import { i18n } from '../layouts/base';
 import * as invoicesService from '../services/invoices';
 
 export default {
@@ -18,7 +20,7 @@ export default {
         const response = yield call(invoicesService.list, sort);
         yield put({ type: 'listSuccess', data: response.docs });
       } catch (e) {
-        message.error('Error loading invoices list!', 5);
+        message.error(i18n._(t`Error loading invoices list!`), 5);
       }
     },
 
@@ -27,7 +29,7 @@ export default {
         const response = yield call(invoicesService.details, id);
         yield put({ type: 'detailsSuccess', data: response });
       } catch (e) {
-        message.error('Error loading invoice details!', 5);
+        message.error(i18n._(t`Error loading invoice details!`), 5);
       }
     },
 
@@ -37,7 +39,7 @@ export default {
         yield put({ type: 'detailsSuccess', data: response });
         yield put(initialize('invoice', response, false));
       } catch (e) {
-        message.error('Error initializing invoice form!', 5);
+        message.error(i18n._(t`Error initializing invoice form!`), 5);
       }
     },
 
@@ -45,9 +47,9 @@ export default {
       try {
         const response = yield call(invoicesService.save, { _id, _rev, state });
         yield put({ type: 'detailsSuccess', data: response });
-        message.success('Invoice state changed!', 5);
+        message.success(i18n._(t`Invoice state changed!`), 5);
       } catch (e) {
-        message.error('Error changing invoice state!', 5);
+        message.error(i18n._(t`Error changing invoice state!`), 5);
       }
     },
 
@@ -55,10 +57,10 @@ export default {
       try {
         const response = yield call(invoicesService.save, data);
         yield put({ type: 'detailsSuccess', data: response });
-        message.success('Invoice saved!', 5);
+        message.success(i18n._(t`Invoice saved!`), 5);
         return response;
       } catch (e) {
-        message.error('Error saving invoice!', 5);
+        message.error(i18n._(t`Error saving invoice!`), 5);
       }
     },
 
@@ -66,10 +68,10 @@ export default {
       try {
         const response = yield call(invoicesService.remove, data);
         yield put({ type: 'removeSuccess', data: response });
-        message.success('Invoice deleted!', 5);
+        message.success(i18n._(t`Invoice deleted!`), 5);
         yield put(push('/invoices'));
       } catch (e) {
-        message.error('Error deleting invoice!', 5);
+        message.error(i18n._(t`Error deleting invoice!`), 5);
       }
     },
   },

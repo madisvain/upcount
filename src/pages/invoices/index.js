@@ -1,6 +1,7 @@
 import { Component } from 'react';
 import { connect } from 'dva';
 import { Button, Dropdown, Icon, Input, Layout, Menu, Table, Row, Col } from 'antd';
+import { t, Trans } from '@lingui/macro';
 import {
   compact,
   flatten,
@@ -16,6 +17,7 @@ import {
 
 import Link from 'umi/link';
 
+import { i18n } from '../../layouts/base';
 import StateTag from '../../components/invoices/state-tag';
 
 class Invoices extends Component {
@@ -64,29 +66,37 @@ class Invoices extends Component {
 
     const stateMenu = (_id, _rev) => (
       <Menu onClick={({ item, key }) => this.onStateSelect(_id, _rev, key)}>
-        <Menu.Item key="draft">Draft</Menu.Item>
-        <Menu.Item key="confirmed">Confirmed</Menu.Item>
-        <Menu.Item key="paid">Paid</Menu.Item>
+        <Menu.Item key="draft">
+          <Trans>Draft</Trans>
+        </Menu.Item>
+        <Menu.Item key="confirmed">
+          <Trans>Confirmed</Trans>
+        </Menu.Item>
+        <Menu.Item key="paid">
+          <Trans>Paid</Trans>
+        </Menu.Item>
         <Menu.Divider />
-        <Menu.Item key="void">Void</Menu.Item>
+        <Menu.Item key="void">
+          <Trans>Void</Trans>
+        </Menu.Item>
       </Menu>
     );
 
-    const stateFiler = [
+    const stateFilter = [
       {
-        text: 'Draft',
+        text: i18n._(t`Draft`),
         value: 'draft',
       },
       {
-        text: 'Confirmed',
+        text: i18n._(t`Confirmed`),
         value: 'confirmed',
       },
       {
-        text: 'Paid',
+        text: i18n._(t`Paid`),
         value: 'paid',
       },
       {
-        text: 'Void',
+        text: i18n._(t`Void`),
         value: 'void',
       },
     ];
@@ -97,13 +107,13 @@ class Invoices extends Component {
           <Col>
             <h2>
               <Icon type="file-text" style={{ marginRight: 8 }} />
-              Invoices
+              <Trans>Invoices</Trans>
             </h2>
           </Col>
         </Row>
         <Link to="/invoices/new">
           <Button type="primary" style={{ marginBottom: 10 }}>
-            New invoice
+            <Trans>New invoice</Trans>
           </Button>
         </Link>
         <Input.Search
@@ -159,7 +169,7 @@ class Invoices extends Component {
           <Table.Column
             title="State"
             key="state"
-            filters={stateFiler}
+            filters={stateFilter}
             onFilter={(value, record) => record.state.indexOf(value) === 0}
             render={invoice => (
               <Dropdown overlay={stateMenu(invoice._id, invoice._rev)} trigger={['click']}>

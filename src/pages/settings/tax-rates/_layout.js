@@ -2,6 +2,7 @@ import { Component } from 'react';
 import { compose } from 'redux';
 import { connect } from 'dva';
 import { Button, Col, Icon, Layout, Row, Table } from 'antd';
+import { Trans } from '@lingui/macro';
 import { values } from 'lodash';
 
 import Link from 'umi/link';
@@ -22,7 +23,8 @@ class TaxRates extends Component {
             <Col>
               <h2>
                 <Icon type="calculator" />
-                {` Tax rates`}
+                {` `}
+                <Trans>Tax rates</Trans>
               </h2>
             </Col>
           </Row>
@@ -30,7 +32,7 @@ class TaxRates extends Component {
             <Col>
               <Link to="/settings/tax-rates/new">
                 <Button type="primary" style={{ marginBottom: 10 }}>
-                  New tax
+                  <Trans>New tax</Trans>
                 </Button>
               </Link>
             </Col>
@@ -46,15 +48,19 @@ class TaxRates extends Component {
                 bordered
               >
                 <Table.Column
-                  title="Name"
+                  title={<Trans>Name</Trans>}
                   key="name"
                   render={taxRate => (
                     <Link to={`/settings/tax-rates/${taxRate._id}`}>{taxRate.name}</Link>
                   )}
                 />
-                <Table.Column title="Description" dataIndex="description" key="description" />
                 <Table.Column
-                  title="Percentage"
+                  title={<Trans>Description</Trans>}
+                  dataIndex="description"
+                  key="description"
+                />
+                <Table.Column
+                  title={<Trans>Percentage</Trans>}
                   dataIndex="percentage"
                   className="text-right"
                   key="percentage"

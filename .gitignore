@@ -1,5 +1,9 @@
 .vscode
 
+#linguijs
+src/locales/_build/
+src/locales/**/*.js
+
 # dependencies
 /node_modules
 /npm-debug.log*

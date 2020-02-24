@@ -1,10 +1,14 @@
 import { Component } from 'react';
 import { compose } from 'redux';
 import { connect } from 'dva';
-import { Icon, Layout } from 'antd';
-import { get } from 'lodash';
+import { Icon, Layout, Menu, Dropdown } from 'antd';
+import { get, map, upperCase } from 'lodash';
 
 import Link from 'umi/link';
+
+import { i18n } from '../../layouts/base';
+
+const languages = ['en', 'et'];
 
 class Header extends Component {
   componentDidMount() {
@@ -28,6 +32,30 @@ class Header extends Component {
             transition: 'color .3s',
           }}
         />
+        <Dropdown
+          placement="bottomCenter"
+          overlay={
+            <Menu>
+              {map(languages, language => {
+                return (
+                  <Menu.Item>
+                    <a target="_blank" rel="noopener noreferrer" href="http://www.alipay.com/">
+                      {upperCase(language)}
+                    </a>
+                  </Menu.Item>
+                );
+              })}
+            </Menu>
+          }
+        >
+          <a
+            href="/#"
+            style={{ color: 'rgba(0, 0, 0, 0.65)', float: 'right', marginRight: 24 }}
+            onClick={e => e.preventDefault()}
+          >
+            {upperCase(i18n.language)} <Icon type="down" />
+          </a>
+        </Dropdown>
         <Link
           to="/"
           style={{

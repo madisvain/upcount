@@ -12,3 +12,163 @@ msgstr ""
 "Last-Translator: \n"
 "Language-Team: \n"
 "Plural-Forms: \n"
+
+#: src/components/invoices/line-items.js:307
+msgid "Add row"
+msgstr "Add row"
+
+#: src/components/clients/form.js:16
+msgid "Address"
+msgstr "Address"
+
+#: src/pages/invoices/$id/_layout.js:182
+msgid "Client"
+msgstr "Client"
+
+#: src/components/layout/navigation.js:80
+#: src/pages/clients/_layout.js:48
+msgid "Clients"
+msgstr "Clients"
+
+#: src/components/invoices/state-tag.js:6
+#: src/pages/invoices/$id/_layout.js:134
+#: src/pages/invoices/index.js:73
+#: src/pages/invoices/index.js:91
+msgid "Confirmed"
+msgstr "Confirmed"
+
+#: src/pages/invoices/$id/_layout.js:202
+msgid "Create new client"
+msgstr "Create new client"
+
+#: src/pages/invoices/$id/_layout.js:305
+msgid "Delete"
+msgstr "Delete"
+
+#: src/components/invoices/line-items.js:208
+msgid "Description"
+msgstr "Description"
+
+#: src/components/invoices/state-tag.js:5
+#: src/pages/invoices/$id/_layout.js:131
+#: src/pages/invoices/index.js:70
+#: src/pages/invoices/index.js:87
+msgid "Draft"
+msgstr "Draft"
+
+#: src/components/clients/form.js:22
+#: src/pages/clients/_layout.js:82
+msgid "Emails"
+msgstr "Emails"
+
+#: src/components/layout/navigation.js:102
+msgid "Invoice"
+msgstr "Invoice"
+
+#: src/components/layout/navigation.js:72
+#: src/pages/invoices/index.js:110
+msgid "Invoices"
+msgstr "Invoices"
+
+#: src/components/clients/form.js:15
+#: src/pages/clients/_layout.js:74
+msgid "Name"
+msgstr "Name"
+
+#: src/pages/clients/_layout.js:54
+msgid "New client"
+msgstr "New client"
+
+#: src/pages/invoices/index.js:116
+msgid "New invoice"
+msgstr "New invoice"
+
+#: src/components/layout/navigation.js:97
+msgid "Organization"
+msgstr "Organization"
+
+#: src/components/invoices/state-tag.js:7
+#: src/pages/invoices/$id/_layout.js:137
+#: src/pages/invoices/index.js:76
+#: src/pages/invoices/index.js:95
+msgid "Paid"
+msgstr "Paid"
+
+#: src/components/clients/form.js:25
+#: src/pages/clients/_layout.js:90
+msgid "Phone"
+msgstr "Phone"
+
+#: src/components/invoices/line-items.js:241
+msgid "Price"
+msgstr "Price"
+
+#: src/components/invoices/line-items.js:224
+msgid "Quantity"
+msgstr "Quantity"
+
+#: src/layouts/electron.js:47
+msgid "Restart"
+msgstr "Restart"
+
+#: src/pages/invoices/$id/_layout.js:341
+msgid "Save"
+msgstr "Save"
+
+#: src/components/clients/form.js:35
+msgid "Save client"
+msgstr "Save client"
+
+#: src/pages/clients/_layout.js:60
+msgid "Search text"
+msgstr "Search text"
+
+#: src/pages/invoices/$id/_layout.js:180
+msgid "Select or create a client"
+msgstr "Select or create a client"
+
+#: src/components/layout/navigation.js:91
+msgid "Settings"
+msgstr "Settings"
+
+#: src/components/invoices/line-items.js:258
+#: src/pages/invoices/$id/_layout.js:268
+msgid "Subtotal"
+msgstr "Subtotal"
+
+#: src/components/invoices/line-items.js:275
+#: src/pages/invoices/$id/_layout.js:277
+msgid "Tax"
+msgstr "Tax"
+
+#: src/components/layout/navigation.js:107
+msgid "Tax rates"
+msgstr "Tax rates"
+
+#: src/pages/invoices/$id/_layout.js:284
+msgid "Total"
+msgstr "Total"
+
+#: src/layouts/electron.js:43
+msgid "Upcount version update downloaded. It will be installed after a restart. Restart now?"
+msgstr "Upcount version update downloaded. It will be installed after a restart. Restart now?"
+
+#: src/components/clients/form.js:26
+msgid "VATIN"
+msgstr "VATIN"
+
+#: src/pages/invoices/$id/_layout.js:320
+msgid "View"
+msgstr "View"
+
+#: src/components/invoices/state-tag.js:8
+#: src/pages/invoices/$id/_layout.js:141
+#: src/pages/invoices/index.js:80
+#: src/pages/invoices/index.js:99
+msgid "Void"
+msgstr "Void"
+
+#: src/components/clients/form.js:27
+#: src/pages/clients/_layout.js:106
+msgid "Website"
+msgstr "Website"

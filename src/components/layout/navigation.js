@@ -1,5 +1,6 @@
 import { Component } from 'react';
 import { Icon, Menu, Layout } from 'antd';
+import { Trans } from '@lingui/macro';
 import { get, last } from 'lodash';
 
 import Link from 'umi/link';
@@ -68,7 +69,7 @@ class Navigation extends Component {
             <Link to="/invoices/">
               <div>
                 <Icon type="file-text" />
-                <span>Invoices</span>
+                <Trans>Invoices</Trans>
               </div>
             </Link>
           </Menu.Item>
@@ -76,7 +77,7 @@ class Navigation extends Component {
             <Link to="/clients/">
               <div>
                 <Icon type="team" />
-                <span>Clients</span>
+                <Trans>Clients</Trans>
               </div>
             </Link>
           </Menu.Item>
@@ -87,23 +88,23 @@ class Navigation extends Component {
             title={
               <span>
                 <Icon type="setting" />
-                <span>Settings</span>
+                <Trans>Settings</Trans>
               </span>
             }
           >
             <Menu.Item key="organization">
               <Link to="/settings/organization">
-                <Icon type="contacts" /> Organization
+                <Icon type="contacts" /> <Trans>Organization</Trans>
               </Link>
             </Menu.Item>
             <Menu.Item key="invoice">
               <Link to="/settings/invoice">
-                <Icon type="contacts" /> Invoice
+                <Icon type="contacts" /> <Trans>Invoice</Trans>
               </Link>
             </Menu.Item>
             <Menu.Item key="tax-rates">
               <Link to="/settings/tax-rates">
-                <Icon type="calculator" /> Tax rates
+                <Icon type="calculator" /> <Trans>Tax rates</Trans>
               </Link>
             </Menu.Item>
           </Menu.SubMenu>

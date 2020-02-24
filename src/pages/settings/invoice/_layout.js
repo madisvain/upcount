@@ -3,6 +3,7 @@ import { compose } from 'redux';
 import { connect } from 'dva';
 import { Field, reduxForm } from 'redux-form';
 import { Button, Col, Form, Icon, Layout, Row, Select, Upload } from 'antd';
+import { Trans } from '@lingui/macro';
 import { get, map } from 'lodash';
 
 import currencyToSymbolMap from 'currency-symbol-map/map';
@@ -51,13 +52,14 @@ class Settings extends Component {
             <Col span={12}>
               <h2>
                 <Icon type="file-text" />
-                {` Invoice details`}
+                {` `}
+                <Trans>Invoice details</Trans>
               </h2>
               <Field
                 showSearch
                 name="currency"
                 component={ASelect}
-                label="Default currency"
+                label={<Trans>Default currency</Trans>}
                 style={{ width: '100%' }}
               >
                 {map(currencyToSymbolMap, (symbol, currency) => (
@@ -66,9 +68,13 @@ class Settings extends Component {
                   </Select.Option>
                 ))}
               </Field>
-              <Field name="due_days" component={AInput} label="Due days" />
-              <Field name="overdue_charge" component={AInput} label="Overdue charge" />
-              <Field name="notes" component={ATextarea} label="Notes" rows={4} />
+              <Field name="due_days" component={AInput} label={<Trans>Due days</Trans>} />
+              <Field
+                name="overdue_charge"
+                component={AInput}
+                label={<Trans>Overdue charge</Trans>}
+              />
+              <Field name="notes" component={ATextarea} label={<Trans>Notes</Trans>} rows={4} />
             </Col>
           </Row>
           <Row>
@@ -80,7 +86,7 @@ class Settings extends Component {
                 loading={submitting}
                 style={{ marginBottom: 40 }}
               >
-                Save
+                <Trans>Save</Trans>
               </Button>
             </Col>
           </Row>
@@ -89,7 +95,8 @@ class Settings extends Component {
           <Col span={12}>
             <h2>
               <Icon type="picture" />
-              {` Logo`}
+              {` `}
+              <Trans>Logo</Trans>
             </h2>
             {logo ? <img src={logo} alt="logo" style={{ maxWidth: 250, maxHeight: 250 }} /> : ''}
             <br />

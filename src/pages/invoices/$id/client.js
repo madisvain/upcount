@@ -3,6 +3,7 @@ import { compose } from 'redux';
 import { connect } from 'dva';
 import { reduxForm, autofill } from 'redux-form';
 import { Drawer } from 'antd';
+import { Trans } from '@lingui/macro';
 import { get } from 'lodash';
 
 import pathToRegexp from 'path-to-regexp';
@@ -23,7 +24,7 @@ class ClientFormDrawer extends Component {
   render() {
     return (
       <Drawer
-        title="Add client"
+        title={<Trans>Add client</Trans>}
         width={450}
         placement="right"
         onClose={this.closeDrawer}
