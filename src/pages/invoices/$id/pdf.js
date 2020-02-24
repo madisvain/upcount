@@ -287,7 +287,7 @@ class Invoice extends Component {
               ) : null}
               {organization.vatin ? (
                 <div className="col text-right">
-                  <Trans>VAT IN</Trans> {get(organization, 'vatin')}
+                  <Trans>VATIN</Trans> {get(organization, 'vatin')}
                 </div>
               ) : null}
             </div>

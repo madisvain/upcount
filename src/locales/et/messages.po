@@ -18,7 +18,8 @@ msgstr ""
 msgid "A new version of Upcount is available. Downloading now ..."
 msgstr "Uus versioon Upcountist on saadaval. Laadin alla ..."
 
-#: src/pages/clients/$id.js:46 src/pages/invoices/$id/client.js:27
+#: src/pages/clients/$id.js:46
+#: src/pages/invoices/$id/client.js:27
 msgid "Add client"
 msgstr "Lisa klient"
 
@@ -30,7 +31,8 @@ msgstr "Lisa rida"
 msgid "Add tax"
 msgstr "Lisa maksumäär"
 
-#: src/components/clients/form.js:16 src/pages/clients/_layout.js:76
+#: src/components/clients/form.js:16
+#: src/pages/clients/_layout.js:76
 #: src/pages/settings/organization/_layout.js:39
 msgid "Address"
 msgstr "Aadress"
@@ -40,15 +42,19 @@ msgid "Bank name"
 msgstr "Panga nimi"
 
 #: src/pages/invoices/$id/_layout.js:182
+#: src/pages/invoices/index.js:142
 msgid "Client"
 msgstr "Klient"
 
-#: src/components/layout/navigation.js:80 src/pages/clients/_layout.js:48
+#: src/components/layout/navigation.js:80
+#: src/pages/clients/_layout.js:48
 msgid "Clients"
 msgstr "Kliendid"
 
-#: src/components/invoices/state-tag.js:6 src/pages/invoices/$id/_layout.js:134
-#: src/pages/invoices/index.js:73 src/pages/invoices/index.js:91
+#: src/components/invoices/state-tag.js:6
+#: src/pages/invoices/$id/_layout.js:134
+#: src/pages/invoices/index.js:73
+#: src/pages/invoices/index.js:91
 msgid "Confirmed"
 msgstr "Kinnitatud"
 
@@ -68,7 +74,9 @@ msgstr "Valuuta"
 msgid "Customer note"
 msgstr "Kliendi märkus"
 
-#: src/pages/invoices/$id/_layout.js:237 src/pages/invoices/$id/pdf.js:176
+#: src/pages/invoices/$id/_layout.js:237
+#: src/pages/invoices/$id/pdf.js:176
+#: src/pages/invoices/index.js:149
 msgid "Date"
 msgstr "Kuupäev"
 
@@ -80,18 +88,23 @@ msgstr "Vaikimisi valuuta"
 msgid "Delete"
 msgstr "Kustuta"
 
-#: src/components/invoices/line-items.js:208 src/pages/invoices/$id/pdf.js:207
+#: src/components/invoices/line-items.js:208
+#: src/pages/invoices/$id/pdf.js:207
 #: src/pages/settings/tax-rates/$id.js:64
 #: src/pages/settings/tax-rates/_layout.js:58
 msgid "Description"
 msgstr "Kirjeldus"
 
-#: src/components/invoices/state-tag.js:5 src/pages/invoices/$id/_layout.js:131
-#: src/pages/invoices/index.js:70 src/pages/invoices/index.js:87
+#: src/components/invoices/state-tag.js:5
+#: src/pages/invoices/$id/_layout.js:131
+#: src/pages/invoices/index.js:70
+#: src/pages/invoices/index.js:87
 msgid "Draft"
 msgstr "Mustand"
 
-#: src/pages/invoices/$id/_layout.js:246 src/pages/invoices/$id/pdf.js:183
+#: src/pages/invoices/$id/_layout.js:246
+#: src/pages/invoices/$id/pdf.js:183
+#: src/pages/invoices/index.js:156
 msgid "Due date"
 msgstr "Makse tähtaeg"
 
@@ -115,7 +128,8 @@ msgstr "Muuda maksumäära"
 msgid "Email"
 msgstr "E-post"
 
-#: src/components/clients/form.js:22 src/pages/clients/_layout.js:78
+#: src/components/clients/form.js:22
+#: src/pages/clients/_layout.js:78
 msgid "Emails"
 msgstr "E-postid"
 
@@ -203,11 +217,13 @@ msgstr "Viga organisatsiooni logo määramisel!"
 msgid "IBAN"
 msgstr "IBAN"
 
-#: src/components/forms/validators.js:9 src/components/forms/validators.js:17
+#: src/components/forms/validators.js:9
+#: src/components/forms/validators.js:17
 msgid "Invalid email address"
 msgstr "Ebakorrektne e-posti aadress"
 
-#: src/components/layout/navigation.js:102 src/pages/invoices/$id/pdf.js:113
+#: src/components/layout/navigation.js:102
+#: src/pages/invoices/$id/pdf.js:113
 msgid "Invoice"
 msgstr "Arve"
 
@@ -231,7 +247,8 @@ msgstr "Arve salvestatud!"
 msgid "Invoice state changed!"
 msgstr "Arve staatus muudetud!"
 
-#: src/components/layout/navigation.js:72 src/pages/invoices/index.js:110
+#: src/components/layout/navigation.js:72
+#: src/pages/invoices/index.js:110
 msgid "Invoices"
 msgstr "Arved"
 
@@ -239,7 +256,8 @@ msgstr "Arved"
 msgid "Logo"
 msgstr "Logo"
 
-#: src/components/clients/form.js:15 src/pages/clients/_layout.js:72
+#: src/components/clients/form.js:15
+#: src/pages/clients/_layout.js:72
 #: src/pages/settings/organization/_layout.js:34
 #: src/pages/settings/tax-rates/$id.js:60
 #: src/pages/settings/tax-rates/_layout.js:51
@@ -261,6 +279,10 @@ msgstr "Uus maksumäär"
 #: src/pages/settings/invoice/_layout.js:77
 msgid "Notes"
 msgstr "Märkused"
+
+#: src/pages/invoices/index.js:131
+msgid "Number"
+msgstr ""
 
 #: src/components/layout/navigation.js:97
 msgid "Organization"
@@ -286,16 +308,20 @@ msgstr "Organisatsioon salvestatud!"
 msgid "Organizations"
 msgstr "Organisatsioonid"
 
-#: src/pages/invoices/$id/pdf.js:191 src/pages/settings/invoice/_layout.js:75
+#: src/pages/invoices/$id/pdf.js:191
+#: src/pages/settings/invoice/_layout.js:75
 msgid "Overdue charge"
 msgstr "Viivis"
 
-#: src/pages/invoices/$id/_layout.js:335 src/pages/invoices/$id/preview.js:35
+#: src/pages/invoices/$id/_layout.js:335
+#: src/pages/invoices/$id/preview.js:35
 msgid "PDF"
 msgstr "PDF"
 
-#: src/components/invoices/state-tag.js:7 src/pages/invoices/$id/_layout.js:137
-#: src/pages/invoices/index.js:76 src/pages/invoices/index.js:95
+#: src/components/invoices/state-tag.js:7
+#: src/pages/invoices/$id/_layout.js:137
+#: src/pages/invoices/index.js:76
+#: src/pages/invoices/index.js:95
 msgid "Paid"
 msgstr "Tasutud"
 
@@ -304,16 +330,19 @@ msgstr "Tasutud"
 msgid "Percentage"
 msgstr "Protsent"
 
-#: src/components/clients/form.js:25 src/pages/clients/_layout.js:84
+#: src/components/clients/form.js:25
+#: src/pages/clients/_layout.js:84
 #: src/pages/settings/organization/_layout.js:42
 msgid "Phone"
 msgstr "Telefon"
 
-#: src/components/invoices/line-items.js:241 src/pages/invoices/$id/pdf.js:213
+#: src/components/invoices/line-items.js:241
+#: src/pages/invoices/$id/pdf.js:213
 msgid "Price"
 msgstr "Hind"
 
-#: src/components/invoices/line-items.js:224 src/pages/invoices/$id/pdf.js:210
+#: src/components/invoices/line-items.js:224
+#: src/pages/invoices/$id/pdf.js:210
 msgid "Quantity"
 msgstr "Kogus"
 
@@ -355,12 +384,18 @@ msgstr "Vali või loo klient"
 msgid "Settings"
 msgstr "Seadistused"
 
+#: src/pages/invoices/index.js:170
+msgid "State"
+msgstr ""
+
 #: src/components/invoices/line-items.js:258
-#: src/pages/invoices/$id/_layout.js:273 src/pages/invoices/$id/pdf.js:224
+#: src/pages/invoices/$id/_layout.js:273
+#: src/pages/invoices/$id/pdf.js:224
 msgid "Subtotal"
 msgstr "Vahesumma"
 
 #: src/pages/invoices/$id/pdf.js:216
+#: src/pages/invoices/index.js:163
 msgid "Sum"
 msgstr "Summa"
 
@@ -386,7 +421,8 @@ msgstr "See väli on kohustuslik"
 msgid "To get started"
 msgstr "Alustamiseks"
 
-#: src/pages/invoices/$id/_layout.js:289 src/pages/invoices/$id/pdf.js:245
+#: src/pages/invoices/$id/_layout.js:289
+#: src/pages/invoices/$id/pdf.js:245
 msgid "Total"
 msgstr "Kokku"
 
@@ -403,10 +439,12 @@ msgid "Update Downloaded"
 msgstr "Uuendus laaditud"
 
 #: src/pages/invoices/$id/pdf.js:290
-msgid "VAT IN"
-msgstr "VATIN"
+#~ msgid "VAT IN"
+#~ msgstr "VATIN"
 
-#: src/components/clients/form.js:26 src/pages/clients/_layout.js:98
+#: src/components/clients/form.js:26
+#: src/pages/clients/_layout.js:98
+#: src/pages/invoices/$id/pdf.js:290
 #: src/pages/settings/organization/_layout.js:58
 msgid "VATIN"
 msgstr "VATIN"
@@ -415,12 +453,19 @@ msgstr "VATIN"
 msgid "View"
 msgstr "Vaata"
 
-#: src/components/invoices/state-tag.js:8 src/pages/invoices/$id/_layout.js:141
-#: src/pages/invoices/index.js:80 src/pages/invoices/index.js:99
+#: src/components/invoices/state-tag.js:8
+#: src/pages/invoices/$id/_layout.js:141
+#: src/pages/invoices/index.js:80
+#: src/pages/invoices/index.js:99
 msgid "Void"
 msgstr "Tühista"
 
-#: src/components/clients/form.js:27 src/pages/clients/_layout.js:100
+#: src/components/clients/form.js:27
+#: src/pages/clients/_layout.js:100
 #: src/pages/settings/organization/_layout.js:61
 msgid "Website"
 msgstr "Koduleht"
+
+#: src/pages/invoices/index.js:120
+msgid "input search text"
+msgstr ""

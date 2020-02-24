@@ -41,6 +41,7 @@ msgid "Bank name"
 msgstr "Bank name"
 
 #: src/pages/invoices/$id/_layout.js:182
+#: src/pages/invoices/index.js:142
 msgid "Client"
 msgstr "Client"
 
@@ -74,6 +75,7 @@ msgstr "Customer note"
 
 #: src/pages/invoices/$id/_layout.js:237
 #: src/pages/invoices/$id/pdf.js:176
+#: src/pages/invoices/index.js:149
 msgid "Date"
 msgstr "Date"
 
@@ -101,6 +103,7 @@ msgstr "Draft"
 
 #: src/pages/invoices/$id/_layout.js:246
 #: src/pages/invoices/$id/pdf.js:183
+#: src/pages/invoices/index.js:156
 msgid "Due date"
 msgstr "Due date"
 
@@ -276,6 +279,10 @@ msgstr "New tax"
 msgid "Notes"
 msgstr "Notes"
 
+#: src/pages/invoices/index.js:131
+msgid "Number"
+msgstr "Number"
+
 #: src/components/layout/navigation.js:97
 msgid "Organization"
 msgstr "Organization"
@@ -376,6 +383,10 @@ msgstr "Select or create a client"
 msgid "Settings"
 msgstr "Settings"
 
+#: src/pages/invoices/index.js:170
+msgid "State"
+msgstr "State"
+
 #: src/components/invoices/line-items.js:258
 #: src/pages/invoices/$id/_layout.js:273
 #: src/pages/invoices/$id/pdf.js:224
@@ -383,6 +394,7 @@ msgid "Subtotal"
 msgstr "Subtotal"
 
 #: src/pages/invoices/$id/pdf.js:216
+#: src/pages/invoices/index.js:163
 msgid "Sum"
 msgstr "Sum"
 
@@ -426,11 +438,12 @@ msgid "Update Downloaded"
 msgstr "Update Downloaded"
 
 #: src/pages/invoices/$id/pdf.js:290
-msgid "VAT IN"
-msgstr "VAT IN"
+#~ msgid "VAT IN"
+#~ msgstr "VAT IN"
 
 #: src/components/clients/form.js:26
 #: src/pages/clients/_layout.js:98
+#: src/pages/invoices/$id/pdf.js:290
 #: src/pages/settings/organization/_layout.js:58
 msgid "VATIN"
 msgstr "VATIN"
@@ -451,3 +464,7 @@ msgstr "Void"
 #: src/pages/settings/organization/_layout.js:61
 msgid "Website"
 msgstr "Website"
+
+#: src/pages/invoices/index.js:120
+msgid "input search text"
+msgstr "input search text"

@@ -117,7 +117,7 @@ class Invoices extends Component {
           </Button>
         </Link>
         <Input.Search
-          placeholder="input search text"
+          placeholder={i18n._(t`input search text`)}
           onChange={e => this.onSearch(e.target.value)}
           style={{ width: 200, float: 'right' }}
         />
@@ -128,7 +128,7 @@ class Invoices extends Component {
           rowKey="_id"
         >
           <Table.Column
-            title="Number"
+            title={<Trans>Number</Trans>}
             key="number"
             sorter={(a, b) => (a < b ? -1 : a === b ? 0 : 1)}
             render={invoice => (
@@ -139,35 +139,35 @@ class Invoices extends Component {
             )}
           />
           <Table.Column
-            title="Client"
+            title={<Trans>Client</Trans>}
             dataIndex="client"
             key="client"
             sorter={(a, b) => (a < b ? -1 : a === b ? 0 : 1)}
             render={client => get(clients.items, `${client}.name`, '-')}
           />
           <Table.Column
-            title="Date"
+            title={<Trans>Date</Trans>}
             dataIndex="date"
             key="date"
             sorter={(a, b) => new Date(a.date).getTime() - new Date(b.date).getTime()}
             render={date => (date ? date : '-')}
           />
           <Table.Column
-            title="Due date"
+            title={<Trans>Due date</Trans>}
             dataIndex="due_date"
             key="due_date"
             sorter={(a, b) => new Date(a.due_date).getTime() - new Date(b.due_date).getTime()}
             render={date => (date ? date : '-')}
           />
           <Table.Column
-            title="Sum"
+            title={<Trans>Sum</Trans>}
             dataIndex="total"
             key="total"
             sorter={(a, b) => a.total - b.total}
             render={total => (total ? total : '-')}
           />
           <Table.Column
-            title="State"
+            title={<Trans>State</Trans>}
             key="state"
             filters={stateFilter}
             onFilter={(value, record) => record.state.indexOf(value) === 0}

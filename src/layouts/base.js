@@ -6,8 +6,11 @@ import { I18nProvider } from '@lingui/react';
 import Header from '../components/layout/header';
 import Navigation from '../components/layout/navigation';
 
+import catalogEN from '../locales/en/messages.js';
+import catalogET from '../locales/et/messages.js';
+
 const language = localStorage.getItem('language') || 'en';
-export const i18n = setupI18n({ language: language });
+export const i18n = setupI18n({ language: language, catalogs: { en: catalogEN, et: catalogET } });
 
 class BaseLayout extends Component {
   state = {
@@ -37,7 +40,7 @@ class BaseLayout extends Component {
       );
     } else {
       return (
-        <I18nProvider i18n={i18n} language="en">
+        <I18nProvider i18n={i18n}>
           <Layout style={{ minHeight: '100vh' }}>
             <Navigation collapsed={this.state.collapsed} />
             <Layout>
