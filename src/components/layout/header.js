@@ -15,6 +15,11 @@ class Header extends Component {
     this.props.dispatch({ type: 'organizations/list' });
   }
 
+  setLanguage = language => {
+    localStorage.setItem('language', language);
+    window.location.reload();
+  };
+
   render() {
     const { organizations } = this.props;
     const organization = get(organizations.items, localStorage.getItem('organization'));
@@ -38,8 +43,12 @@ class Header extends Component {
             <Menu>
               {map(languages, language => {
                 return (
-                  <Menu.Item>
-                    <a target="_blank" rel="noopener noreferrer" href="http://www.alipay.com/">
+                  <Menu.Item key={language}>
+                    <a
+                      rel="noopener noreferrer"
+                      href="#"
+                      onClick={() => this.setLanguage(language)}
+                    >
                       {upperCase(language)}
                     </a>
                   </Menu.Item>
