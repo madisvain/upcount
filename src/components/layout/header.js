@@ -46,7 +46,7 @@ class Header extends Component {
                   <Menu.Item key={language}>
                     <a
                       rel="noopener noreferrer"
-                      href="#"
+                      href="/#"
                       onClick={() => this.setLanguage(language)}
                     >
                       {upperCase(language)}
