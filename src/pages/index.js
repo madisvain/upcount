@@ -15,7 +15,6 @@ class Index extends Component {
   }
 
   setOrganization = id => {
-    localStorage.removeItem('selectedMenuKeys'); // removing last persistans for Navigation
     localStorage.setItem('organization', id);
     router.push({
       pathname: '/invoices',
