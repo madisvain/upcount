@@ -1,42 +1,34 @@
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import { Icon, Menu, Layout } from 'antd';
+import { compact, get, join, take } from 'lodash';
 
 import Link from 'umi/link';
 import withRouter from 'umi/withRouter';
+import pathToRegexp from 'path-to-regexp';
 
 const Navigation = props => {
-  const [selectedMenuKeys, setSelectedMenueKeys] = useState(
-    JSON.parse(localStorage.getItem('selectedMenuKeys')) || []
-  );
+  const pathname = get(props, ['location', 'pathname']);
+  const match = pathToRegexp(`/(.*)`).exec(pathname);
+  const pathArr = get(match, 1).split('/');
 
-  useEffect(() => {
-    localStorage.setItem('selectedMenuKeys', JSON.stringify(selectedMenuKeys));
-  });
+  const [openKeys] = useState(pathArr[0] === 'settings' ? ['settings'] : []);
+  const [selectedKeys] = useState([join(take(compact(pathArr), 2), '.')]);
 
   return (
     <Layout.Sider trigger={null} collapsible collapsed={props.collapsed}>
       <div className="logo" style={{ height: 22, margin: '21px 16px', textAlign: 'center' }}>
-        <Link to="/invoices/">
+        <Link to="/invoices">
           <img src={require(`../../assets/logo.svg`)} alt="Upcount" />
         </Link>
       </div>
       <Menu
         theme="dark"
         mode="inline"
-        defaultSelectedKeys={selectedMenuKeys.selectedMenu}
-        defaultOpenKeys={selectedMenuKeys.openSubMenu}
-        onOpenChange={e =>
-          setSelectedMenueKeys({
-            selectedMenu: selectedMenuKeys.selectedMenu,
-            openSubMenu: e,
-          })
-        }
-        onSelect={e =>
-          setSelectedMenueKeys({ selectedMenu: e.key, openSubMenu: selectedMenuKeys.openSubMenu })
-        }
+        defaultOpenKeys={openKeys}
+        defaultSelectedKeys={selectedKeys}
       >
         <Menu.Item key="invoices">
-          <Link to="/invoices/">
+          <Link to="/invoices">
             <div>
               <Icon type="file-text" />
               <span>Invoices</span>
@@ -44,7 +36,7 @@ const Navigation = props => {
           </Link>
         </Menu.Item>
         <Menu.Item key="clients">
-          <Link to="/clients/">
+          <Link to="/clients">
             <div>
               <Icon type="team" />
               <span>Clients</span>
@@ -53,9 +45,6 @@ const Navigation = props => {
         </Menu.Item>
         <Menu.SubMenu
           key="settings"
-          // onOpenChange={e =>
-          //   setSelectedMenueKeys({ openSubMenu: e, openMenu: selectedMenuKeys.openMenu })
-          // }
           title={
             <span>
               <Icon type="setting" />
