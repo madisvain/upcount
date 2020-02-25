@@ -1,4 +1,3 @@
-import { useState } from 'react';
 import { Icon, Menu, Layout } from 'antd';
 import { compact, get, join, take } from 'lodash';
 
@@ -11,8 +10,8 @@ const Navigation = props => {
   const match = pathToRegexp(`/(.*)`).exec(pathname);
   const pathArr = get(match, 1).split('/');
 
-  const [openKeys] = useState(pathArr[0] === 'settings' ? ['settings'] : []);
-  const [selectedKeys] = useState([join(take(compact(pathArr), 2), '.')]);
+  const openKeys = pathArr[0] === 'settings' ? ['settings'] : [];
+  const selectedKeys = [join(take(compact(pathArr), 2), '.')];
 
   return (
     <Layout.Sider trigger={null} collapsible collapsed={props.collapsed}>
