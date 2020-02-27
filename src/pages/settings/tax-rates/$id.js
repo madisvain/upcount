@@ -49,11 +49,6 @@ class TaxForm extends Component {
         onClose={this.closeDrawer}
         maskClosable={true}
         visible={true}
-        style={{
-          height: 'calc(100% - 55px)',
-          overflow: 'auto',
-          paddingBottom: 53,
-        }}
       >
         <Form onSubmit={handleSubmit} layout="vertical">
           <Field name="name" component={AInput} label="Name" />
