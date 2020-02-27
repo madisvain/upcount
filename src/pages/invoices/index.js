@@ -117,7 +117,7 @@ class Invoices extends Component {
           </Button>
         </Link>
         <Input.Search
-          placeholder={i18n._(t`input search text`)}
+          placeholder={i18n._(t`Search text`)}
           onChange={e => this.onSearch(e.target.value)}
           style={{ width: 200, float: 'right' }}
         />

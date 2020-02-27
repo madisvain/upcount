@@ -45,7 +45,7 @@ msgstr "Bank name"
 msgid "Client"
 msgstr "Client"
 
-#: src/components/layout/navigation.js:80
+#: src/components/layout/navigation.js:42
 #: src/pages/clients/_layout.js:48
 msgid "Clients"
 msgstr "Clients"
@@ -89,7 +89,7 @@ msgstr "Delete"
 
 #: src/components/invoices/line-items.js:208
 #: src/pages/invoices/$id/pdf.js:207
-#: src/pages/settings/tax-rates/$id.js:64
+#: src/pages/settings/tax-rates/$id.js:59
 #: src/pages/settings/tax-rates/_layout.js:58
 msgid "Description"
 msgstr "Description"
@@ -221,7 +221,7 @@ msgstr "IBAN"
 msgid "Invalid email address"
 msgstr "Invalid email address"
 
-#: src/components/layout/navigation.js:102
+#: src/components/layout/navigation.js:62
 #: src/pages/invoices/$id/pdf.js:113
 msgid "Invoice"
 msgstr "Invoice"
@@ -246,7 +246,7 @@ msgstr "Invoice saved!"
 msgid "Invoice state changed!"
 msgstr "Invoice state changed!"
 
-#: src/components/layout/navigation.js:72
+#: src/components/layout/navigation.js:34
 #: src/pages/invoices/index.js:110
 msgid "Invoices"
 msgstr "Invoices"
@@ -258,7 +258,7 @@ msgstr "Logo"
 #: src/components/clients/form.js:15
 #: src/pages/clients/_layout.js:72
 #: src/pages/settings/organization/_layout.js:34
-#: src/pages/settings/tax-rates/$id.js:60
+#: src/pages/settings/tax-rates/$id.js:55
 #: src/pages/settings/tax-rates/_layout.js:51
 msgid "Name"
 msgstr "Name"
@@ -283,7 +283,7 @@ msgstr "Notes"
 msgid "Number"
 msgstr "Number"
 
-#: src/components/layout/navigation.js:97
+#: src/components/layout/navigation.js:57
 msgid "Organization"
 msgstr "Organization"
 
@@ -324,7 +324,7 @@ msgstr "PDF"
 msgid "Paid"
 msgstr "Paid"
 
-#: src/pages/settings/tax-rates/$id.js:67
+#: src/pages/settings/tax-rates/$id.js:62
 #: src/pages/settings/tax-rates/_layout.js:63
 msgid "Percentage"
 msgstr "Percentage"
@@ -367,11 +367,12 @@ msgstr "Save"
 msgid "Save client"
 msgstr "Save client"
 
-#: src/pages/settings/tax-rates/$id.js:75
+#: src/pages/settings/tax-rates/$id.js:70
 msgid "Save tax rate"
 msgstr "Save tax rate"
 
 #: src/pages/clients/_layout.js:60
+#: src/pages/invoices/index.js:120
 msgid "Search text"
 msgstr "Search text"
 
@@ -379,7 +380,7 @@ msgstr "Search text"
 msgid "Select or create a client"
 msgstr "Select or create a client"
 
-#: src/components/layout/navigation.js:91
+#: src/components/layout/navigation.js:51
 msgid "Settings"
 msgstr "Settings"
 
@@ -407,7 +408,7 @@ msgstr "Tax"
 msgid "Tax rate saved!"
 msgstr "Tax rate saved!"
 
-#: src/components/layout/navigation.js:107
+#: src/components/layout/navigation.js:67
 #: src/pages/settings/tax-rates/_layout.js:27
 msgid "Tax rates"
 msgstr "Tax rates"
@@ -465,6 +466,3 @@ msgstr "Void"
 msgid "Website"
 msgstr "Website"
 
-#: src/pages/invoices/index.js:120
-msgid "input search text"
-msgstr "input search text"
