@@ -20,6 +20,7 @@ Upcount is available for Mac, Linux & Windows and can be downloaded from Github 
 * ⚡️ Offline-first for privacy
 * 👾 Use your own logo
 * 🍭 Customizable settings
+* 🌐 Internationalized
 * ©️ [GPLv3 License](https://github.com/madisvain/upcount/blob/master/LICENSE)
 
 ## Bugs and Feature Requests
@@ -27,6 +28,13 @@ Upcount is available for Mac, Linux & Windows and can be downloaded from Github 
 Have a bug or a feature request? First, read the [issue guidelines](https://github.com/madisvain/upcount/blob/master/CONTRIBUTING.md#using-the-issue-tracker) and search for existing and closed issues. If your problem or idea is not addressed yet, [please open a new issue](https://github.com/madisvain/upcount/issues).
 
 For more generic product questions and feedback please email [hello@upcount.app](mailto:hello@upcount.app)
+
+
+## Contributors
+
+[<img alt="madisvain" src="https://avatars2.githubusercontent.com/u/727994?v=4&s=117 width=117">](https://github.com/madisvain) |[<img alt="stgeipel" src="https://avatars3.githubusercontent.com/u/46808966?v=4&s=117 width=117">](https://github.com/stgeipel) |
+:---:|:---:|
+[madisvain](https://github.com/madisvain)|[stgeipel](https://github.com/stgeipel)|
 
 ## License
 
