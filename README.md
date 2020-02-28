@@ -23,6 +23,23 @@ Upcount is available for Mac, Linux & Windows and can be downloaded from Github 
 * 🌐 Internationalized
 * ©️ [GPLv3 License](https://github.com/madisvain/upcount/blob/master/LICENSE)
 
+# Languages
+* 🇬🇧 English
+* 🇪🇪 Estonian
+
+If you are interested in adding a language translation to Upcount [please open a new issue](https://github.com/madisvain/upcount/issues).
+
+For developers the following commands are needed to add a language.
+
+```shell
+npm run add-locale de
+npm run extract
+```
+
+_`de` must be replaced with the language code you are adding._
+
+The translations are stored in .po files under [locales](https://github.com/madisvain/upcount/tree/master/src/locales) folder. A cross platform app named [POEdit](https://poedit.net/) could be used for translating them.
+
 ## Bugs and Feature Requests
 
 Have a bug or a feature request? First, read the [issue guidelines](https://github.com/madisvain/upcount/blob/master/CONTRIBUTING.md#using-the-issue-tracker) and search for existing and closed issues. If your problem or idea is not addressed yet, [please open a new issue](https://github.com/madisvain/upcount/issues).
