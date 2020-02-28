@@ -32,7 +32,7 @@ For more generic product questions and feedback please email [hello@upcount.app]
 
 ## Contributors
 
-[<img alt="madisvain" src="https://avatars2.githubusercontent.com/u/727994?v=4&s=117 width=117">](https://github.com/madisvain) |[<img alt="stgeipel" src="https://avatars3.githubusercontent.com/u/46808966?v=4&s=117 width=117">](https://github.com/stgeipel) |
+[<img alt="madisvain" src="https://avatars2.githubusercontent.com/u/727994?v=4&s=200" width="100">](https://github.com/madisvain) |[<img alt="stgeipel" src="https://avatars3.githubusercontent.com/u/46808966?v=4&s=200" width="100">](https://github.com/stgeipel) |
 :---:|:---:|
 [madisvain](https://github.com/madisvain)|[stgeipel](https://github.com/stgeipel)|
 
