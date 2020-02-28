@@ -1,4 +1,10 @@
+.env.production
 .vscode
+
+#linguijs
+src/locales/_build/
+src/locales/**/*.js
+src/locales/**/*.mo
 
 # dependencies
 /node_modules

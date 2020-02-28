@@ -1,5 +1,6 @@
 import { Component } from 'react';
 import { Button, Icon } from 'antd';
+import { Trans } from '@lingui/macro';
 import { get } from 'lodash';
 
 import Link from 'umi/link';
@@ -23,7 +24,7 @@ class InvoicePreview extends Component {
           <Link to={`/invoices/${get(this.props, ['match', 'params', 'id'])}`}>
             <Button type="dashed" style={{ marginTop: 10, marginRight: 8 }}>
               <Icon type="edit" />
-              Edit
+              <Trans>Edit</Trans>
             </Button>
           </Link>
           <Button
@@ -31,7 +32,7 @@ class InvoicePreview extends Component {
             onClick={() => this.printPDF(get(this.props, ['match', 'params', 'id']))}
           >
             <Icon type="file-pdf" />
-            PDF
+            <Trans>PDF</Trans>
           </Button>
         </FooterToolbar>
       </div>

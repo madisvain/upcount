@@ -1,18 +1,26 @@
 import { Component } from 'react';
 import { compose } from 'redux';
 import { connect } from 'dva';
-import { Icon, Layout } from 'antd';
-import { get } from 'lodash';
+import { withI18n } from '@lingui/react';
+import { Icon, Layout, Menu, Dropdown } from 'antd';
+import { get, map, upperCase } from 'lodash';
 
 import Link from 'umi/link';
+
+const languages = ['en', 'et'];
 
 class Header extends Component {
   componentDidMount() {
     this.props.dispatch({ type: 'organizations/list' });
   }
 
+  setLanguage = language => {
+    localStorage.setItem('language', language);
+    window.location.reload();
+  };
+
   render() {
-    const { organizations } = this.props;
+    const { i18n, organizations } = this.props;
     const organization = get(organizations.items, localStorage.getItem('organization'));
 
     return (
@@ -28,6 +36,28 @@ class Header extends Component {
             transition: 'color .3s',
           }}
         />
+        <Dropdown
+          placement="bottomCenter"
+          overlay={
+            <Menu>
+              {map(languages, language => {
+                return (
+                  <Menu.Item key={language} onClick={() => this.setLanguage(language)}>
+                    {upperCase(language)}
+                  </Menu.Item>
+                );
+              })}
+            </Menu>
+          }
+        >
+          <Link
+            to="#"
+            style={{ color: 'rgba(0, 0, 0, 0.65)', float: 'right', marginRight: 24 }}
+            onClick={e => e.preventDefault()}
+          >
+            {upperCase(i18n.language)} <Icon type="down" />
+          </Link>
+        </Dropdown>
         <Link
           to="/"
           style={{
@@ -48,6 +78,7 @@ class Header extends Component {
 }
 
 export default compose(
+  withI18n(),
   connect(state => ({
     organizations: state.organizations,
   }))

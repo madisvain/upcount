@@ -1,6 +1,9 @@
 import { Component } from 'react';
+import { compose } from 'redux';
 import { connect } from 'dva';
 import { Button, Icon, Input, Layout, Table, Tag, Row, Col } from 'antd';
+import { t, Trans } from '@lingui/macro';
+import { withI18n } from '@lingui/react';
 import { compact, find, filter, flatten, get, escapeRegExp, pick, isEmpty, values } from 'lodash';
 
 import Link from 'umi/link';
@@ -21,7 +24,7 @@ class Clients extends Component {
   };
 
   render() {
-    const { children, clients } = this.props;
+    const { children, clients, i18n } = this.props;
     const { search } = this.state;
 
     // Search - to be implemented in DB
@@ -43,17 +46,17 @@ class Clients extends Component {
           <Col>
             <h2>
               <Icon type="team" style={{ marginRight: 8 }} />
-              Clients
+              <Trans>Clients</Trans>
             </h2>
           </Col>
         </Row>
         <Link to="/clients/new">
           <Button type="primary" style={{ marginBottom: 10 }}>
-            New client
+            <Trans>New client</Trans>
           </Button>
         </Link>
         <Input.Search
-          placeholder="Search text"
+          placeholder={i18n._(t`Search text`)}
           onChange={e => this.onSearch(e.target.value)}
           style={{ width: 200, float: 'right' }}
         />
@@ -63,19 +66,19 @@ class Clients extends Component {
           rowKey="_id"
         >
           <Table.Column
-            title="Name"
+            title={<Trans>Name</Trans>}
             key="name"
             render={client => <Link to={`/clients/${client._id}`}>{get(client, 'name', '-')}</Link>}
           />
-          <Table.Column title="Address" dataIndex="address" key="address" />
+          <Table.Column title={<Trans>Address</Trans>} dataIndex="address" key="address" />
           <Table.Column
-            title="Emails"
+            title={<Trans>Emails</Trans>}
             dataIndex="emails"
             key="emails"
             render={emails => (emails ? emails.map(email => <Tag key={email}>{email}</Tag>) : '')}
           />
           <Table.Column
-            title="Phone"
+            title={<Trans>Phone</Trans>}
             dataIndex="phone"
             key="phone"
             render={phone => {
@@ -89,9 +92,9 @@ class Clients extends Component {
               }
             }}
           />
-          <Table.Column title="VATIN" dataIndex="vatin" key="vatin" />
+          <Table.Column title={<Trans>VATIN</Trans>} dataIndex="vatin" key="vatin" />
           <Table.Column
-            title="Website"
+            title={<Trans>Website</Trans>}
             dataIndex="website"
             key="website"
             render={website => (
@@ -107,6 +110,9 @@ class Clients extends Component {
   }
 }
 
-export default connect(state => {
-  return { clients: state.clients };
-})(Clients);
+export default compose(
+  withI18n(),
+  connect(state => {
+    return { clients: state.clients };
+  })
+)(Clients);

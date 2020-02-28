@@ -1,8 +1,11 @@
 import { Component } from 'react';
+import { compose } from 'redux';
 import { connect } from 'react-redux';
 import { Field, formValueSelector, change } from 'redux-form';
 import { DndProvider, DragSource, DropTarget } from 'react-dnd';
 import { Button, Icon, Select, Table } from 'antd';
+import { t, Trans } from '@lingui/macro';
+import { withI18n } from '@lingui/react';
 import { get, map } from 'lodash';
 
 import currency from 'currency.js';
@@ -173,7 +176,7 @@ class LineItems extends Component {
   };
 
   render() {
-    const { fields, taxRates } = this.props;
+    const { i18n, fields, taxRates } = this.props;
 
     const data = [];
     fields.forEach((member, index) => {
@@ -201,7 +204,7 @@ class LineItems extends Component {
           })}
         >
           <Table.Column
-            title="Description"
+            title={i18n._(t`Description`)}
             dataIndex="description"
             key="description"
             render={field => (
@@ -217,7 +220,7 @@ class LineItems extends Component {
             )}
           />
           <Table.Column
-            title="Quantity"
+            title={i18n._(t`Quantity`)}
             dataIndex="quantity"
             key="quantity"
             width={120}
@@ -234,7 +237,7 @@ class LineItems extends Component {
             )}
           />
           <Table.Column
-            title="Price"
+            title={i18n._(t`Price`)}
             dataIndex="unitPrice"
             key="price"
             width={120}
@@ -251,7 +254,7 @@ class LineItems extends Component {
             )}
           />
           <Table.Column
-            title="Subtotal"
+            title={i18n._(t`Subtotal`)}
             dataIndex="subtotal"
             key="subtotal"
             width={120}
@@ -268,7 +271,7 @@ class LineItems extends Component {
             )}
           />
           <Table.Column
-            title="Tax"
+            title={i18n._(t`Tax`)}
             dataIndex="taxRate"
             key="taxRate"
             render={(field, row, index) => (
@@ -298,7 +301,7 @@ class LineItems extends Component {
         </Table>
 
         <Button type="default" onClick={() => fields.push({})} style={{ marginTop: '10px' }}>
-          Add row
+          <Trans>Add row</Trans>
         </Button>
       </DndProvider>
     );
@@ -307,7 +310,10 @@ class LineItems extends Component {
 
 const selector = formValueSelector('invoice');
 
-export default connect(state => ({
-  taxRates: state.taxRates,
-  lineItems: selector(state, 'lineItems'),
-}))(LineItems);
+export default compose(
+  withI18n(),
+  connect(state => ({
+    taxRates: state.taxRates,
+    lineItems: selector(state, 'lineItems'),
+  }))
+)(LineItems);

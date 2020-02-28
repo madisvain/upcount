@@ -2,6 +2,7 @@ import { Component } from 'react';
 import { compose } from 'redux';
 import { Field, reduxForm } from 'redux-form';
 import { Button, Drawer, Form } from 'antd';
+import { Trans } from '@lingui/macro';
 import { has } from 'lodash';
 
 import router from 'umi/router';
@@ -43,7 +44,7 @@ class TaxForm extends Component {
 
     return (
       <Drawer
-        title={this.isNew() ? 'Add tax' : 'Edit tax'}
+        title={this.isNew() ? <Trans>Add tax</Trans> : <Trans>Edit tax</Trans>}
         width={450}
         placement="right"
         onClose={this.closeDrawer}
@@ -51,9 +52,14 @@ class TaxForm extends Component {
         visible={true}
       >
         <Form onSubmit={handleSubmit} layout="vertical">
-          <Field name="name" component={AInput} label="Name" />
-          <Field name="description" component={ATextarea} label="Description" rows={4} />
-          <Field name="percentage" component={AInput} label="Percentage" />
+          <Field name="name" component={AInput} label={<Trans>Name</Trans>} />
+          <Field
+            name="description"
+            component={ATextarea}
+            label={<Trans>Description</Trans>}
+            rows={4}
+          />
+          <Field name="percentage" component={AInput} label={<Trans>Percentage</Trans>} />
           <Button
             type="primary"
             htmlType="submit"
@@ -61,7 +67,7 @@ class TaxForm extends Component {
             loading={submitting}
             style={{ marginTop: '10px' }}
           >
-            Save percentage
+            <Trans>Save tax rate</Trans>
           </Button>
         </Form>
       </Drawer>

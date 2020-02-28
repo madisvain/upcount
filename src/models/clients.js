@@ -1,7 +1,9 @@
 import { initialize } from 'redux-form';
 import { message } from 'antd';
+import { t } from '@lingui/macro';
 import { keyBy } from 'lodash';
 
+import { i18n } from '../layouts/base';
 import * as clientsService from '../services/clients';
 
 export default {
@@ -17,36 +19,26 @@ export default {
         const response = yield call(clientsService.list, sort);
         yield put({ type: 'listSuccess', data: response.docs });
       } catch (e) {
-        message.error('Error loading clients list!', 5);
+        message.error(i18n._(t`Error loading clients list!`), 5);
       }
     },
 
-    *details(
-      {
-        payload: { id },
-      },
-      { put, call }
-    ) {
+    *details({ payload: { id } }, { put, call }) {
       try {
         const response = yield call(clientsService.details, id);
         yield put({ type: 'detailsSuccess', data: response });
       } catch (e) {
-        message.error('Error loading client details!', 5);
+        message.error(i18n._(t`Error loading client details!`), 5);
       }
     },
 
-    *initialize(
-      {
-        payload: { id },
-      },
-      { put, call }
-    ) {
+    *initialize({ payload: { id } }, { put, call }) {
       try {
         const response = yield call(clientsService.details, id);
         yield put({ type: 'detailsSuccess', data: response });
         yield put(initialize('client', response, false));
       } catch (e) {
-        message.error('Error initializing client form!', 5);
+        message.error(i18n._(t`Error initializing client form!`), 5);
       }
     },
 
@@ -57,7 +49,7 @@ export default {
         message.success('Client saved!', 5);
         return response;
       } catch (e) {
-        message.error('Error saving client!', 5);
+        message.error(i18n._(t`Error saving client!`), 5);
       }
     },
   },

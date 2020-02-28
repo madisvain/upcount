@@ -3,6 +3,7 @@ import { compose } from 'redux';
 import { connect } from 'dva';
 import { Field, Form, reduxForm } from 'redux-form';
 import { Button, Col, Icon, Layout, Row } from 'antd';
+import { Trans } from '@lingui/macro';
 
 import { AInput, APhoneInput, ATextarea } from '../../../components/forms/fields';
 
@@ -26,28 +27,38 @@ class Organization extends Component {
             <Col span={12}>
               <h2>
                 <Icon type="home" />
-                {` Organization details`}
+                {` `}
+                <Trans>Organization details</Trans>
               </h2>
               <Form layout="vertical" onSubmit={handleSubmit}>
-                <Field name="name" component={AInput} label="Name" />
-                <Field name="address" component={ATextarea} rows={4} label="Address" />
-                <Field name="email" component={AInput} label="Email" />
-                <Field name="phone" component={APhoneInput} label="Phone" />
-                <Field name="registration_number" component={AInput} label="Registration number" />
+                <Field name="name" component={AInput} label={<Trans>Name</Trans>} />
+                <Field
+                  name="address"
+                  component={ATextarea}
+                  rows={4}
+                  label={<Trans>Address</Trans>}
+                />
+                <Field name="email" component={AInput} label={<Trans>Email</Trans>} />
+                <Field name="phone" component={APhoneInput} label={<Trans>Phone</Trans>} />
+                <Field
+                  name="registration_number"
+                  component={AInput}
+                  label={<Trans>Registration number</Trans>}
+                />
                 <Row gutter={16}>
                   <Col span={12}>
-                    <Field name="bank" component={AInput} label="Bank name" />
+                    <Field name="bank" component={AInput} label={<Trans>Bank name</Trans>} />
                   </Col>
                   <Col span={12}>
-                    <Field name="iban" component={AInput} label="IBAN" />
+                    <Field name="iban" component={AInput} label={<Trans>IBAN</Trans>} />
                   </Col>
                 </Row>
                 <Row gutter={16}>
                   <Col span={12}>
-                    <Field name="vatin" component={AInput} label="VATIN" />
+                    <Field name="vatin" component={AInput} label={<Trans>VATIN</Trans>} />
                   </Col>
                 </Row>
-                <Field name="website" component={AInput} label="Website" />
+                <Field name="website" component={AInput} label={<Trans>Website</Trans>} />
                 <Row>
                   <Col>
                     <Button
@@ -57,7 +68,7 @@ class Organization extends Component {
                       loading={submitting}
                       style={{ marginTop: '10px' }}
                     >
-                      Save
+                      <Trans>Save</Trans>
                     </Button>
                   </Col>
                 </Row>

@@ -1,6 +1,7 @@
 import { Component } from 'react';
 import { Field } from 'redux-form';
 import { Button, Form } from 'antd';
+import { Trans } from '@lingui/macro';
 
 import { AInput, APhoneInput, ASelect, ATextarea } from '../../components/forms/fields';
 import { emails, required } from '../../components/forms/validators';
@@ -11,19 +12,19 @@ class ClientForm extends Component {
 
     return (
       <Form onSubmit={handleSubmit} layout="vertical">
-        <Field name="name" component={AInput} label="Name" validate={[required]} />
-        <Field name="address" component={ATextarea} label="Address" rows={4} />
+        <Field name="name" component={AInput} label={<Trans>Name</Trans>} validate={[required]} />
+        <Field name="address" component={ATextarea} label={<Trans>Address</Trans>} rows={4} />
         <Field
           name="emails"
           component={ASelect}
           mode="tags"
           tokenSeparators={[',', ';']}
-          label="Emails"
+          label={<Trans>Emails</Trans>}
           validate={[emails]}
         />
-        <Field name="phone" component={APhoneInput} label="Phone" />
-        <Field name="vatin" component={AInput} label="VATIN" />
-        <Field name="website" component={AInput} label="Website" />
+        <Field name="phone" component={APhoneInput} label={<Trans>Phone</Trans>} />
+        <Field name="vatin" component={AInput} label={<Trans>VATIN</Trans>} />
+        <Field name="website" component={AInput} label={<Trans>Website</Trans>} />
         <Button
           type="primary"
           htmlType="submit"
@@ -31,7 +32,7 @@ class ClientForm extends Component {
           loading={submitting}
           style={{ marginTop: '10px' }}
         >
-          Save client
+          <Trans>Save client</Trans>
         </Button>
       </Form>
     );

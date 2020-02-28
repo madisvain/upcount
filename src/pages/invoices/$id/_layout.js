@@ -3,6 +3,8 @@ import { compose } from 'redux';
 import { connect } from 'dva';
 import { Field, FieldArray, formValueSelector, reduxForm } from 'redux-form';
 import { Button, Col, Form, Icon, Layout, Row, Select, Menu, Dropdown, Modal } from 'antd';
+import { t, Trans } from '@lingui/macro';
+import { I18n } from '@lingui/react';
 import { forEach, get, isString, includes, has, lowerCase, map } from 'lodash';
 
 import moment from 'moment';
@@ -125,11 +127,19 @@ class InvoiceForm extends Component {
 
     const stateMenu = (_id, _rev) => (
       <Menu onClick={({ item, key }) => this.onStateSelect(_id, _rev, key)}>
-        <Menu.Item key="draft">Draft</Menu.Item>
-        <Menu.Item key="confirmed">Confirmed</Menu.Item>
-        <Menu.Item key="paid">Paid</Menu.Item>
+        <Menu.Item key="draft">
+          <Trans>Draft</Trans>
+        </Menu.Item>
+        <Menu.Item key="confirmed">
+          <Trans>Confirmed</Trans>
+        </Menu.Item>
+        <Menu.Item key="paid">
+          <Trans>Paid</Trans>
+        </Menu.Item>
         <Menu.Divider />
-        <Menu.Item key="void">Void</Menu.Item>
+        <Menu.Item key="void">
+          <Trans>Void</Trans>
+        </Menu.Item>
       </Menu>
     );
 
@@ -162,39 +172,44 @@ class InvoiceForm extends Component {
         <Form onSubmit={handleSubmit}>
           <Row gutter={16}>
             <Col span={12}>
-              <Field
-                showSearch
-                name="client"
-                placeholder="Select or create a client"
-                component={ASelect}
-                label="Client"
-                onSelect={this.clientSelect}
-                optionFilterProp="children"
-                filterOption={(input, option) => {
-                  const clientName = get(option, ['props', 'children']);
-                  if (isString(clientName)) {
-                    return includes(lowerCase(clientName), lowerCase(input));
-                  }
-                  return true;
-                }}
-                validate={[required]}
-              >
-                {map(clients.items, (client, id) => (
-                  <Select.Option value={id} key={id}>
-                    {get(client, 'name', '-')}
-                  </Select.Option>
-                ))}
-                <Select.Option value="new" key="new" style={{ borderTop: '1px solid #e8e8e8' }}>
-                  <Icon type="user-add" />
-                  {` Create new client`}
-                </Select.Option>
-              </Field>
+              <I18n>
+                {({ i18n }) => (
+                  <Field
+                    showSearch
+                    name="client"
+                    placeholder={i18n._(t`Select or create a client`)}
+                    component={ASelect}
+                    label={<Trans>Client</Trans>}
+                    onSelect={this.clientSelect}
+                    optionFilterProp="children"
+                    filterOption={(input, option) => {
+                      const clientName = get(option, ['props', 'children']);
+                      if (isString(clientName)) {
+                        return includes(lowerCase(clientName), lowerCase(input));
+                      }
+                      return true;
+                    }}
+                    validate={[required]}
+                  >
+                    {map(clients.items, (client, id) => (
+                      <Select.Option value={id} key={id}>
+                        {get(client, 'name', '-')}
+                      </Select.Option>
+                    ))}
+                    <Select.Option value="new" key="new" style={{ borderTop: '1px solid #e8e8e8' }}>
+                      <Icon type="user-add" />
+                      {` `}
+                      <Trans>Create new client</Trans>
+                    </Select.Option>
+                  </Field>
+                )}
+              </I18n>
             </Col>
             <Col span={6}>
               <Field
                 name="number"
                 component={AInput}
-                label="Invoice number"
+                label={<Trans>Invoice number</Trans>}
                 validate={[required]}
               />
             </Col>
@@ -203,7 +218,7 @@ class InvoiceForm extends Component {
                 showSearch
                 name="currency"
                 component={ASelect}
-                label="Currency"
+                label={<Trans>Currency</Trans>}
                 validate={[required]}
               >
                 {map(currencyToSymbolMap, (symbol, currency) => (
@@ -219,7 +234,7 @@ class InvoiceForm extends Component {
               <Field
                 name="date"
                 component={ADatePicker}
-                label="Date"
+                label={<Trans>Date</Trans>}
                 style={{ width: '100%' }}
                 validate={[required]}
               />
@@ -228,7 +243,7 @@ class InvoiceForm extends Component {
               <Field
                 name="due_date"
                 component={ADatePicker}
-                label="Due date"
+                label={<Trans>Due date</Trans>}
                 style={{ width: '100%' }}
               />
             </Col>
@@ -242,26 +257,37 @@ class InvoiceForm extends Component {
 
           <Row gutter={16}>
             <Col span={8} style={{ marginTop: '20px' }}>
-              <Field name="customer_note" component={ATextarea} label="Customer note" rows={4} />
+              <Field
+                name="customer_note"
+                component={ATextarea}
+                label={<Trans>Customer note</Trans>}
+                rows={4}
+              />
             </Col>
             <Col span={12} offset={4} style={{ marginTop: '31px' }}>
               <table style={{ width: '100%' }}>
                 <tbody>
                   <tr>
                     <td style={{ textAlign: 'right', width: '50%' }}>
-                      <h4>Subtotal</h4>
+                      <h4>
+                        <Trans>Subtotal</Trans>
+                      </h4>
                     </td>
                     <td style={{ textAlign: 'right' }}>
                       <h4>{subTotal.format()}</h4>
                     </td>
                   </tr>
                   <tr>
-                    <td style={{ textAlign: 'right' }}>Tax</td>
+                    <td style={{ textAlign: 'right' }}>
+                      <Trans>Tax</Trans>
+                    </td>
                     <td style={{ textAlign: 'right' }}>{taxTotal.format()}</td>
                   </tr>
                   <tr>
                     <td style={{ textAlign: 'right', paddingTop: 24 }}>
-                      <h2>Total</h2>
+                      <h2>
+                        <Trans>Total</Trans>
+                      </h2>
                     </td>
                     <td style={{ textAlign: 'right', paddingTop: 24 }}>
                       <h2>{total.format()}</h2>
@@ -281,7 +307,7 @@ class InvoiceForm extends Component {
                     onClick={() => this.deleteConfirm(invoice._id, invoice._rev)}
                   >
                     <Icon type="delete" />
-                    Delete
+                    <Trans>Delete</Trans>
                   </Button>
                 )}
               </div>
@@ -296,7 +322,7 @@ class InvoiceForm extends Component {
               <Link to={`/invoices/${get(this.props, ['match', 'params', 'id'])}/preview`}>
                 <Button type="dashed" style={{ marginTop: 10, marginRight: 8 }}>
                   <Icon type="eye" />
-                  View
+                  <Trans>View</Trans>
                 </Button>
               </Link>
             )}
@@ -306,7 +332,7 @@ class InvoiceForm extends Component {
                 onClick={() => this.printPDF(get(this.props, ['match', 'params', 'id']))}
               >
                 <Icon type="file-pdf" />
-                PDF
+                <Trans>PDF</Trans>
               </Button>
             )}
             <Button
@@ -317,7 +343,7 @@ class InvoiceForm extends Component {
               style={{ marginTop: 10 }}
             >
               <Icon type="save" />
-              Save
+              <Trans>Save</Trans>
             </Button>
           </FooterToolbar>
         </Form>

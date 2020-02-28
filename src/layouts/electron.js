@@ -1,10 +1,13 @@
 import { notification, Button } from 'antd';
+import { t, Trans } from '@lingui/macro';
 import router from 'umi/router';
 
-import BaseLayout from './base';
+import BaseLayout, { i18n } from './base';
 
 class ElectronLayout extends BaseLayout {
   componentDidMount() {
+    this.loadLanguage(this.state.language);
+
     const { ipcRenderer } = window.require('electron');
 
     ipcRenderer.on('log', (event, log) => {
@@ -27,8 +30,8 @@ class ElectronLayout extends BaseLayout {
       notification.info({
         placement: 'bottomRight',
         duration: 10,
-        message: 'Update Available',
-        description: 'A new version of Upcount is available. Downloading now ...',
+        message: i18n._(t`Update Available`),
+        description: i18n._(t`A new version of Upcount is available. Downloading now ...`),
       });
     });
 
@@ -36,12 +39,14 @@ class ElectronLayout extends BaseLayout {
       notification.success({
         placement: 'bottomRight',
         duration: 0,
-        message: 'Update Downloaded',
+        message: i18n._(t`Update Downloaded`),
         description: (
           <div>
-            Upcount version update downloaded. It will be installed after restarting. Restart now?
+            <Trans>
+              Upcount version update downloaded. It will be installed after a restart. Restart now?
+            </Trans>
             <Button type="primary" style={{ float: 'right' }} onClick={this.restartApp}>
-              Restart
+              <Trans>Restart</Trans>
             </Button>
           </div>
         ),
