@@ -22,7 +22,7 @@ msgstr ""
 msgid "Add client"
 msgstr ""
 
-#: src/components/invoices/line-items.js:307
+#: src/components/invoices/line-items.js:304
 msgid "Add row"
 msgstr ""
 
@@ -31,7 +31,7 @@ msgid "Add tax"
 msgstr ""
 
 #: src/components/clients/form.js:16
-#: src/pages/clients/_layout.js:76
+#: src/pages/clients/_layout.js:73
 #: src/pages/settings/organization/_layout.js:39
 msgid "Address"
 msgstr ""
@@ -41,23 +41,23 @@ msgid "Bank name"
 msgstr ""
 
 #: src/pages/invoices/$id/_layout.js:182
-#: src/pages/invoices/index.js:142
+#: src/pages/invoices/index.js:143
 msgid "Client"
 msgstr ""
 
 #: src/components/layout/navigation.js:42
-#: src/pages/clients/_layout.js:48
+#: src/pages/clients/_layout.js:49
 msgid "Clients"
 msgstr ""
 
 #: src/components/invoices/state-tag.js:6
 #: src/pages/invoices/$id/_layout.js:134
-#: src/pages/invoices/index.js:73
-#: src/pages/invoices/index.js:91
+#: src/pages/invoices/index.js:74
+#: src/pages/invoices/index.js:92
 msgid "Confirmed"
 msgstr ""
 
-#: src/pages/index.js:86
+#: src/pages/index.js:82
 msgid "Create an organization"
 msgstr ""
 
@@ -75,7 +75,7 @@ msgstr ""
 
 #: src/pages/invoices/$id/_layout.js:237
 #: src/pages/invoices/$id/pdf.js:176
-#: src/pages/invoices/index.js:149
+#: src/pages/invoices/index.js:150
 msgid "Date"
 msgstr ""
 
@@ -87,7 +87,7 @@ msgstr ""
 msgid "Delete"
 msgstr ""
 
-#: src/components/invoices/line-items.js:208
+#: src/components/invoices/line-items.js:207
 #: src/pages/invoices/$id/pdf.js:207
 #: src/pages/settings/tax-rates/$id.js:59
 #: src/pages/settings/tax-rates/_layout.js:58
@@ -96,14 +96,14 @@ msgstr ""
 
 #: src/components/invoices/state-tag.js:5
 #: src/pages/invoices/$id/_layout.js:131
-#: src/pages/invoices/index.js:70
-#: src/pages/invoices/index.js:87
+#: src/pages/invoices/index.js:71
+#: src/pages/invoices/index.js:88
 msgid "Draft"
 msgstr ""
 
 #: src/pages/invoices/$id/_layout.js:246
 #: src/pages/invoices/$id/pdf.js:183
-#: src/pages/invoices/index.js:156
+#: src/pages/invoices/index.js:157
 msgid "Due date"
 msgstr ""
 
@@ -128,7 +128,7 @@ msgid "Email"
 msgstr ""
 
 #: src/components/clients/form.js:22
-#: src/pages/clients/_layout.js:78
+#: src/pages/clients/_layout.js:75
 msgid "Emails"
 msgstr ""
 
@@ -247,7 +247,7 @@ msgid "Invoice state changed!"
 msgstr ""
 
 #: src/components/layout/navigation.js:34
-#: src/pages/invoices/index.js:110
+#: src/pages/invoices/index.js:111
 msgid "Invoices"
 msgstr ""
 
@@ -256,18 +256,18 @@ msgid "Logo"
 msgstr ""
 
 #: src/components/clients/form.js:15
-#: src/pages/clients/_layout.js:72
+#: src/pages/clients/_layout.js:69
 #: src/pages/settings/organization/_layout.js:34
 #: src/pages/settings/tax-rates/$id.js:55
 #: src/pages/settings/tax-rates/_layout.js:51
 msgid "Name"
 msgstr ""
 
-#: src/pages/clients/_layout.js:54
+#: src/pages/clients/_layout.js:55
 msgid "New client"
 msgstr ""
 
-#: src/pages/invoices/index.js:116
+#: src/pages/invoices/index.js:117
 msgid "New invoice"
 msgstr ""
 
@@ -279,7 +279,7 @@ msgstr ""
 msgid "Notes"
 msgstr ""
 
-#: src/pages/invoices/index.js:131
+#: src/pages/invoices/index.js:132
 msgid "Number"
 msgstr ""
 
@@ -295,7 +295,7 @@ msgstr ""
 msgid "Organization logo set!"
 msgstr ""
 
-#: src/pages/index.js:72
+#: src/pages/index.js:70
 msgid "Organization name"
 msgstr ""
 
@@ -319,8 +319,8 @@ msgstr ""
 
 #: src/components/invoices/state-tag.js:7
 #: src/pages/invoices/$id/_layout.js:137
-#: src/pages/invoices/index.js:76
-#: src/pages/invoices/index.js:95
+#: src/pages/invoices/index.js:77
+#: src/pages/invoices/index.js:96
 msgid "Paid"
 msgstr ""
 
@@ -330,17 +330,17 @@ msgid "Percentage"
 msgstr ""
 
 #: src/components/clients/form.js:25
-#: src/pages/clients/_layout.js:84
+#: src/pages/clients/_layout.js:81
 #: src/pages/settings/organization/_layout.js:42
 msgid "Phone"
 msgstr ""
 
-#: src/components/invoices/line-items.js:241
+#: src/components/invoices/line-items.js:240
 #: src/pages/invoices/$id/pdf.js:213
 msgid "Price"
 msgstr ""
 
-#: src/components/invoices/line-items.js:224
+#: src/components/invoices/line-items.js:223
 #: src/pages/invoices/$id/pdf.js:210
 msgid "Quantity"
 msgstr ""
@@ -371,8 +371,8 @@ msgstr ""
 msgid "Save tax rate"
 msgstr ""
 
-#: src/pages/clients/_layout.js:60
-#: src/pages/invoices/index.js:120
+#: src/pages/clients/_layout.js:59
+#: src/pages/invoices/index.js:121
 msgid "Search text"
 msgstr ""
 
@@ -384,22 +384,22 @@ msgstr ""
 msgid "Settings"
 msgstr ""
 
-#: src/pages/invoices/index.js:170
+#: src/pages/invoices/index.js:171
 msgid "State"
 msgstr ""
 
-#: src/components/invoices/line-items.js:258
+#: src/components/invoices/line-items.js:257
 #: src/pages/invoices/$id/_layout.js:273
 #: src/pages/invoices/$id/pdf.js:224
 msgid "Subtotal"
 msgstr ""
 
 #: src/pages/invoices/$id/pdf.js:216
-#: src/pages/invoices/index.js:163
+#: src/pages/invoices/index.js:164
 msgid "Sum"
 msgstr ""
 
-#: src/components/invoices/line-items.js:275
+#: src/components/invoices/line-items.js:274
 #: src/pages/invoices/$id/_layout.js:282
 msgid "Tax"
 msgstr ""
@@ -439,7 +439,7 @@ msgid "Update Downloaded"
 msgstr ""
 
 #: src/components/clients/form.js:26
-#: src/pages/clients/_layout.js:98
+#: src/pages/clients/_layout.js:95
 #: src/pages/invoices/$id/pdf.js:290
 #: src/pages/settings/organization/_layout.js:58
 msgid "VATIN"
@@ -451,13 +451,13 @@ msgstr ""
 
 #: src/components/invoices/state-tag.js:8
 #: src/pages/invoices/$id/_layout.js:141
-#: src/pages/invoices/index.js:80
-#: src/pages/invoices/index.js:99
+#: src/pages/invoices/index.js:81
+#: src/pages/invoices/index.js:100
 msgid "Void"
 msgstr ""
 
 #: src/components/clients/form.js:27
-#: src/pages/clients/_layout.js:100
+#: src/pages/clients/_layout.js:97
 #: src/pages/settings/organization/_layout.js:61
 msgid "Website"
 msgstr ""

@@ -4,7 +4,7 @@ import { connect } from 'dva';
 import { Field, reduxForm } from 'redux-form';
 import { Button, Card, Form, List, Row, Col } from 'antd';
 import { t, Trans } from '@lingui/macro';
-import { I18n } from '@lingui/react';
+import { withI18n } from '@lingui/react';
 import { values } from 'lodash';
 
 import router from 'umi/router';
@@ -24,7 +24,7 @@ class Index extends Component {
   };
 
   render() {
-    const { handleSubmit, organizations, pristine, submitting } = this.props;
+    const { i18n, handleSubmit, organizations, pristine, submitting } = this.props;
 
     return (
       <Row>
@@ -63,17 +63,13 @@ class Index extends Component {
           <Form onSubmit={handleSubmit} layout="vertical">
             <Row>
               <Col offset={8} span={8}>
-                <I18n>
-                  {({ i18n }) => (
-                    <Field
-                      name="name"
-                      component={AInput}
-                      size="large"
-                      placeholder={i18n._(t`Organization name`)}
-                      style={{ textAlign: 'center', margin: '10px 0' }}
-                    />
-                  )}
-                </I18n>
+                <Field
+                  name="name"
+                  component={AInput}
+                  size="large"
+                  placeholder={i18n._(t`Organization name`)}
+                  style={{ textAlign: 'center', margin: '10px 0' }}
+                />
               </Col>
             </Row>
             <Button
@@ -93,6 +89,7 @@ class Index extends Component {
 }
 
 export default compose(
+  withI18n(),
   connect(state => ({
     organizations: state.organizations,
   })),

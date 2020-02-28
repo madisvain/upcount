@@ -47,6 +47,7 @@
     "@babel/plugin-proposal-class-properties": "^7.8.3",
     "@babel/preset-react": "^7.8.3",
     "@lingui/cli": "^2.9.1",
+    "@lingui/loader": "^2.9.1",
     "@lingui/macro": "^2.9.1",
     "babel-eslint": "^10.0.1",
     "babel-plugin-macros": "^2.8.0",

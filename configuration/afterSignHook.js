@@ -1,6 +1,8 @@
 const fs = require('fs');
 const path = require('path');
-var electronNotarize = require('electron-notarize');
+const electronNotarize = require('electron-notarize');
+
+require('dotenv').config();
 
 module.exports = async params => {
   // Only notarize the app on Mac OS only.

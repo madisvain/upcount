@@ -1,12 +1,11 @@
 import { Component } from 'react';
 import { compose } from 'redux';
 import { connect } from 'dva';
+import { withI18n } from '@lingui/react';
 import { Icon, Layout, Menu, Dropdown } from 'antd';
 import { get, map, upperCase } from 'lodash';
 
 import Link from 'umi/link';
-
-import { i18n } from '../../layouts/base';
 
 const languages = ['en', 'et'];
 
@@ -21,7 +20,7 @@ class Header extends Component {
   };
 
   render() {
-    const { organizations } = this.props;
+    const { i18n, organizations } = this.props;
     const organization = get(organizations.items, localStorage.getItem('organization'));
 
     return (
@@ -43,27 +42,21 @@ class Header extends Component {
             <Menu>
               {map(languages, language => {
                 return (
-                  <Menu.Item key={language}>
-                    <a
-                      rel="noopener noreferrer"
-                      href="/#"
-                      onClick={() => this.setLanguage(language)}
-                    >
-                      {upperCase(language)}
-                    </a>
+                  <Menu.Item key={language} onClick={() => this.setLanguage(language)}>
+                    {upperCase(language)}
                   </Menu.Item>
                 );
               })}
             </Menu>
           }
         >
-          <a
-            href="/#"
+          <Link
+            to="#"
             style={{ color: 'rgba(0, 0, 0, 0.65)', float: 'right', marginRight: 24 }}
             onClick={e => e.preventDefault()}
           >
             {upperCase(i18n.language)} <Icon type="down" />
-          </a>
+          </Link>
         </Dropdown>
         <Link
           to="/"
@@ -85,6 +78,7 @@ class Header extends Component {
 }
 
 export default compose(
+  withI18n(),
   connect(state => ({
     organizations: state.organizations,
   }))

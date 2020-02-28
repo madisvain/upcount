@@ -1,8 +1,9 @@
 import { Component } from 'react';
+import { compose } from 'redux';
 import { connect } from 'dva';
 import { Button, Icon, Input, Layout, Table, Tag, Row, Col } from 'antd';
 import { t, Trans } from '@lingui/macro';
-import { I18n } from '@lingui/react';
+import { withI18n } from '@lingui/react';
 import { compact, find, filter, flatten, get, escapeRegExp, pick, isEmpty, values } from 'lodash';
 
 import Link from 'umi/link';
@@ -23,7 +24,7 @@ class Clients extends Component {
   };
 
   render() {
-    const { children, clients } = this.props;
+    const { children, clients, i18n } = this.props;
     const { search } = this.state;
 
     // Search - to be implemented in DB
@@ -54,15 +55,11 @@ class Clients extends Component {
             <Trans>New client</Trans>
           </Button>
         </Link>
-        <I18n>
-          {({ i18n }) => (
-            <Input.Search
-              placeholder={i18n._(t`Search text`)}
-              onChange={e => this.onSearch(e.target.value)}
-              style={{ width: 200, float: 'right' }}
-            />
-          )}
-        </I18n>
+        <Input.Search
+          placeholder={i18n._(t`Search text`)}
+          onChange={e => this.onSearch(e.target.value)}
+          style={{ width: 200, float: 'right' }}
+        />
         <Table
           dataSource={search ? searchedClientItems : values(clients.items)}
           pagination={false}
@@ -113,6 +110,9 @@ class Clients extends Component {
   }
 }
 
-export default connect(state => {
-  return { clients: state.clients };
-})(Clients);
+export default compose(
+  withI18n(),
+  connect(state => {
+    return { clients: state.clients };
+  })
+)(Clients);

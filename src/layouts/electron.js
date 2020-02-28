@@ -6,6 +6,8 @@ import BaseLayout, { i18n } from './base';
 
 class ElectronLayout extends BaseLayout {
   componentDidMount() {
+    this.loadLanguage(this.state.language);
+
     const { ipcRenderer } = window.require('electron');
 
     ipcRenderer.on('log', (event, log) => {

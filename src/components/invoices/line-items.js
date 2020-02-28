@@ -1,10 +1,11 @@
 import { Component } from 'react';
+import { compose } from 'redux';
 import { connect } from 'react-redux';
 import { Field, formValueSelector, change } from 'redux-form';
 import { DndProvider, DragSource, DropTarget } from 'react-dnd';
 import { Button, Icon, Select, Table } from 'antd';
 import { t, Trans } from '@lingui/macro';
-import { I18n } from '@lingui/react';
+import { withI18n } from '@lingui/react';
 import { get, map } from 'lodash';
 
 import currency from 'currency.js';
@@ -175,7 +176,7 @@ class LineItems extends Component {
   };
 
   render() {
-    const { fields, taxRates } = this.props;
+    const { i18n, fields, taxRates } = this.props;
 
     const data = [];
     fields.forEach((member, index) => {
@@ -191,117 +192,113 @@ class LineItems extends Component {
 
     return (
       <DndProvider backend={HTML5Backend}>
-        <I18n>
-          {({ i18n }) => (
-            <Table
-              dataSource={data}
-              pagination={false}
-              size="middle"
-              className="line-items"
-              components={this.components}
-              onRow={(record, index) => ({
-                index,
-                moveRow: this.moveRow,
-              })}
-            >
-              <Table.Column
-                title={i18n._(t`Description`)}
-                dataIndex="description"
-                key="description"
-                render={field => (
-                  <div>
-                    <Icon type="more" style={{ position: 'absolute', marginTop: 15, left: -15 }} />
-                    <Field
-                      name={field}
-                      component={ATextarea}
-                      autoSize
-                      onDrop={e => e.preventDefault()}
-                    />
-                  </div>
-                )}
+        <Table
+          dataSource={data}
+          pagination={false}
+          size="middle"
+          className="line-items"
+          components={this.components}
+          onRow={(record, index) => ({
+            index,
+            moveRow: this.moveRow,
+          })}
+        >
+          <Table.Column
+            title={i18n._(t`Description`)}
+            dataIndex="description"
+            key="description"
+            render={field => (
+              <div>
+                <Icon type="more" style={{ position: 'absolute', marginTop: 15, left: -15 }} />
+                <Field
+                  name={field}
+                  component={ATextarea}
+                  autoSize
+                  onDrop={e => e.preventDefault()}
+                />
+              </div>
+            )}
+          />
+          <Table.Column
+            title={i18n._(t`Quantity`)}
+            dataIndex="quantity"
+            key="quantity"
+            width={120}
+            render={(field, row, index) => (
+              <Field
+                name={field}
+                component={AInput}
+                onChange={(event, newValue, previousValue) =>
+                  this.onQuantityChange(newValue, previousValue, index)
+                }
+                validate={[required]}
+                onDrop={e => e.preventDefault()}
               />
-              <Table.Column
-                title={i18n._(t`Quantity`)}
-                dataIndex="quantity"
-                key="quantity"
-                width={120}
-                render={(field, row, index) => (
-                  <Field
-                    name={field}
-                    component={AInput}
-                    onChange={(event, newValue, previousValue) =>
-                      this.onQuantityChange(newValue, previousValue, index)
-                    }
-                    validate={[required]}
-                    onDrop={e => e.preventDefault()}
-                  />
-                )}
+            )}
+          />
+          <Table.Column
+            title={i18n._(t`Price`)}
+            dataIndex="unitPrice"
+            key="price"
+            width={120}
+            render={(field, row, index) => (
+              <Field
+                name={field}
+                component={AInput}
+                onChange={(event, newValue, previousValue) =>
+                  this.onUnitPriceChange(newValue, previousValue, index)
+                }
+                validate={[required]}
+                onDrop={e => e.preventDefault()}
               />
-              <Table.Column
-                title={i18n._(t`Price`)}
-                dataIndex="unitPrice"
-                key="price"
-                width={120}
-                render={(field, row, index) => (
-                  <Field
-                    name={field}
-                    component={AInput}
-                    onChange={(event, newValue, previousValue) =>
-                      this.onUnitPriceChange(newValue, previousValue, index)
-                    }
-                    validate={[required]}
-                    onDrop={e => e.preventDefault()}
-                  />
-                )}
+            )}
+          />
+          <Table.Column
+            title={i18n._(t`Subtotal`)}
+            dataIndex="subtotal"
+            key="subtotal"
+            width={120}
+            render={(field, row, index) => (
+              <Field
+                name={field}
+                component={AInput}
+                onChange={(event, newValue, previousValue) =>
+                  this.onSubtotalChange(newValue, previousValue, index)
+                }
+                validate={[required]}
+                onDrop={e => e.preventDefault()}
               />
-              <Table.Column
-                title={i18n._(t`Subtotal`)}
-                dataIndex="subtotal"
-                key="subtotal"
-                width={120}
-                render={(field, row, index) => (
-                  <Field
-                    name={field}
-                    component={AInput}
-                    onChange={(event, newValue, previousValue) =>
-                      this.onSubtotalChange(newValue, previousValue, index)
-                    }
-                    validate={[required]}
-                    onDrop={e => e.preventDefault()}
-                  />
-                )}
-              />
-              <Table.Column
-                title={i18n._(t`Tax`)}
-                dataIndex="taxRate"
-                key="taxRate"
-                render={(field, row, index) => (
-                  <div>
-                    <Field
-                      name={field}
-                      component={ASelect}
-                      options={[]}
-                      onDrop={e => e.preventDefault()}
-                    >
-                      {map(taxRates.items, rate => {
-                        return (
-                          <Select.Option value={rate._id} key={rate._id}>
-                            {rate.name}
-                          </Select.Option>
-                        );
-                      })}
-                    </Field>
-                    <Icon
-                      type="delete"
-                      onClick={() => fields.remove(row.key)}
-                      style={{ position: 'absolute', marginTop: -25, right: -20 }}
-                    />
-                  </div>
-                )}
-              />
-            </Table>
-          )}
-        </I18n>
+            )}
+          />
+          <Table.Column
+            title={i18n._(t`Tax`)}
+            dataIndex="taxRate"
+            key="taxRate"
+            render={(field, row, index) => (
+              <div>
+                <Field
+                  name={field}
+                  component={ASelect}
+                  options={[]}
+                  onDrop={e => e.preventDefault()}
+                >
+                  {map(taxRates.items, rate => {
+                    return (
+                      <Select.Option value={rate._id} key={rate._id}>
+                        {rate.name}
+                      </Select.Option>
+                    );
+                  })}
+                </Field>
+                <Icon
+                  type="delete"
+                  onClick={() => fields.remove(row.key)}
+                  style={{ position: 'absolute', marginTop: -25, right: -20 }}
+                />
+              </div>
+            )}
+          />
+        </Table>
 
         <Button type="default" onClick={() => fields.push({})} style={{ marginTop: '10px' }}>
           <Trans>Add row</Trans>
@@ -313,7 +310,10 @@ class LineItems extends Component {
 
 const selector = formValueSelector('invoice');
 
-export default connect(state => ({
-  taxRates: state.taxRates,
-  lineItems: selector(state, 'lineItems'),
-}))(LineItems);
+export default compose(
+  withI18n(),
+  connect(state => ({
+    taxRates: state.taxRates,
+    lineItems: selector(state, 'lineItems'),
+  }))
+)(LineItems);

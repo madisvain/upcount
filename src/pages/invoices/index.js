@@ -1,7 +1,9 @@
 import { Component } from 'react';
+import { compose } from 'redux';
 import { connect } from 'dva';
 import { Button, Dropdown, Icon, Input, Layout, Menu, Table, Row, Col } from 'antd';
 import { t, Trans } from '@lingui/macro';
+import { withI18n } from '@lingui/react';
 import {
   compact,
   flatten,
@@ -17,7 +19,6 @@ import {
 
 import Link from 'umi/link';
 
-import { i18n } from '../../layouts/base';
 import StateTag from '../../components/invoices/state-tag';
 
 class Invoices extends Component {
@@ -48,7 +49,7 @@ class Invoices extends Component {
   };
 
   render() {
-    const { clients, invoices } = this.props;
+    const { clients, i18n, invoices } = this.props;
     const { search } = this.state;
 
     let searchedInvoiceItems = [];
@@ -183,9 +184,12 @@ class Invoices extends Component {
   }
 }
 
-export default connect(state => {
-  return {
-    clients: state.clients,
-    invoices: state.invoices,
-  };
-})(Invoices);
+export default compose(
+  withI18n(),
+  connect(state => {
+    return {
+      clients: state.clients,
+      invoices: state.invoices,
+    };
+  })
+)(Invoices);
