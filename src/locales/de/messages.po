@@ -53,13 +53,12 @@ msgid "Confirmed"
 msgstr "Bestätigt"
 
 #: src/pages/index.js:82
-#, fuzzy
 msgid "Create an organization"
-msgstr "Erstellen einer Organisation"
+msgstr "Unternehmen erstellen"
 
 #: src/pages/invoices/$id/_layout.js:202
 msgid "Create new client"
-msgstr "Erstellen Sie einen neuen Kunden"
+msgstr "Neuen Kunden erstellen"
 
 #: src/pages/invoices/$id/_layout.js:221
 msgid "Currency"
@@ -131,9 +130,8 @@ msgid "Error deleting invoice!"
 msgstr "Fehler beim Löschen der Rechnung!"
 
 #: src/models/organizations.js:51
-#, fuzzy
 msgid "Error getting organization logo!"
-msgstr "Fehler beim Laden des Organisationslogos!"
+msgstr "Fehler beim Laden des Unternehmenslogo!"
 
 #: src/models/clients.js:41
 msgid "Error initializing client form!"
@@ -145,7 +143,7 @@ msgstr "Fehler beim Initialisieren des Rechnungsformulars!"
 
 #: src/models/organizations.js:41
 msgid "Error initializing organization form!"
-msgstr "Fehler beim Initialisieren des Organisationsformular!"
+msgstr "Fehler beim Initialisieren des Unternehmensformular!"
 
 #: src/models/tax-rates.js:41
 msgid "Error initializing tax rate form!"
@@ -169,11 +167,11 @@ msgstr "Fehler beim Laden der Rechnungen!"
 
 #: src/models/organizations.js:31
 msgid "Error loading organization details!"
-msgstr "Fehler beim Laden der Organisationsinformationen!"
+msgstr "Fehler beim Laden der Unternehmensinformationen!"
 
 #: src/models/organizations.js:22
 msgid "Error loading organizations list!"
-msgstr "Fehler beim Laden der Organisationen!"
+msgstr "Fehler beim Laden des Unternehmens!"
 
 #: src/models/tax-rates.js:31
 msgid "Error loading tax rate details!"
@@ -193,15 +191,15 @@ msgstr "Fehler beim Speichern der Rechnung!"
 
 #: src/models/organizations.js:73
 msgid "Error saving organization!"
-msgstr "Fehler beim Speichern der Organisation!"
+msgstr "Fehler beim Speichern des Unternehmens!"
 
 #: src/models/tax-rates.js:52
 msgid "Error saving tax rate!"
-msgstr "Fehler beim Speichern der Organisation!"
+msgstr "Fehler beim Speichern der Umsatzsteuer!"
 
 #: src/models/organizations.js:62
 msgid "Error setting organization logo!"
-msgstr "Fehler beim Speichern des Logos!"
+msgstr "Fehler beim Speichern des Unternehmenslogo!"
 
 #: src/pages/settings/organization/_layout.js:53
 msgid "IBAN"
@@ -272,31 +270,31 @@ msgstr "Nummer"
 
 #: src/components/layout/navigation.js:57
 msgid "Organization"
-msgstr "Organisation"
+msgstr "Unternehmen"
 
 #: src/pages/settings/organization/_layout.js:31
 msgid "Organization details"
-msgstr "Organisationsinformationen"
+msgstr "Unternehmensinformationen"
 
 #: src/models/organizations.js:60
 msgid "Organization logo set!"
-msgstr "Logo der Organisation wurde gespeichert!"
+msgstr "Logo des Unternehmens wurde gespeichert!"
 
 #: src/pages/index.js:70
 msgid "Organization name"
-msgstr "Name der Organisation"
+msgstr "Name des Unternehmens"
 
 #: src/models/organizations.js:70
 msgid "Organization saved!"
-msgstr "Organisation wurde gespeichert!"
+msgstr "Unternehmen wurde gespeichert!"
 
 #: src/pages/index.js:33
 msgid "Organizations"
-msgstr "Organisationen"
+msgstr "Unternehmen"
 
 #: src/pages/invoices/$id/pdf.js:191 src/pages/settings/invoice/_layout.js:75
 msgid "Overdue charge"
-msgstr ""
+msgstr "Überfällige Gebühr"
 
 #: src/pages/invoices/$id/_layout.js:335 src/pages/invoices/$id/preview.js:35
 msgid "PDF"
@@ -327,11 +325,11 @@ msgstr "Menge"
 
 #: src/pages/invoices/$id/pdf.js:285
 msgid "Reg. nr."
-msgstr ""
+msgstr "Reg. nr."
 
 #: src/pages/settings/organization/_layout.js:46
 msgid "Registration number"
-msgstr ""
+msgstr "Registernummer"
 
 #: src/layouts/electron.js:47
 msgid "Restart"
@@ -423,7 +421,7 @@ msgstr "Ust-IdNr."
 
 #: src/pages/invoices/$id/_layout.js:325
 msgid "View"
-msgstr ""
+msgstr "Vorschau"
 
 #: src/components/invoices/state-tag.js:8 src/pages/invoices/$id/_layout.js:141
 #: src/pages/invoices/index.js:81 src/pages/invoices/index.js:100
@@ -433,4 +431,4 @@ msgstr "Storniert"
 #: src/components/clients/form.js:27 src/pages/clients/_layout.js:97
 #: src/pages/settings/organization/_layout.js:61
 msgid "Website"
-msgstr ""
+msgstr "Webseite"
