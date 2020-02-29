@@ -15,26 +15,26 @@ msgstr ""
 
 #: src/layouts/electron.js:32
 msgid "A new version of Upcount is available. Downloading now ..."
-msgstr ""
+msgstr "Eine neue Version von Upcount ist verfügbar. Laden Sie"
 
 #: src/pages/clients/$id.js:46
 #: src/pages/invoices/$id/client.js:27
 msgid "Add client"
-msgstr ""
+msgstr "Neuer Kunde"
 
 #: src/components/invoices/line-items.js:304
 msgid "Add row"
-msgstr ""
+msgstr "Posten hinzufügen"
 
 #: src/pages/settings/tax-rates/$id.js:47
 msgid "Add tax"
-msgstr ""
+msgstr "Umsatzsteuer hinzufügen"
 
 #: src/components/clients/form.js:16
 #: src/pages/clients/_layout.js:73
 #: src/pages/settings/organization/_layout.js:39
 msgid "Address"
-msgstr ""
+msgstr "Adresse"
 
 #: src/pages/settings/organization/_layout.js:50
 msgid "Bank name"
@@ -43,12 +43,12 @@ msgstr ""
 #: src/pages/invoices/$id/_layout.js:182
 #: src/pages/invoices/index.js:143
 msgid "Client"
-msgstr ""
+msgstr "Kunde"
 
 #: src/components/layout/navigation.js:42
 #: src/pages/clients/_layout.js:49
 msgid "Clients"
-msgstr ""
+msgstr "Kunden"
 
 #: src/components/invoices/state-tag.js:6
 #: src/pages/invoices/$id/_layout.js:134
@@ -63,11 +63,11 @@ msgstr ""
 
 #: src/pages/invoices/$id/_layout.js:202
 msgid "Create new client"
-msgstr ""
+msgstr "Erstellen Sie einen neuen Kunden"
 
 #: src/pages/invoices/$id/_layout.js:221
 msgid "Currency"
-msgstr ""
+msgstr "Währung"
 
 #: src/pages/invoices/$id/_layout.js:263
 msgid "Customer note"
@@ -77,22 +77,22 @@ msgstr ""
 #: src/pages/invoices/$id/pdf.js:176
 #: src/pages/invoices/index.js:150
 msgid "Date"
-msgstr ""
+msgstr "Datum"
 
 #: src/pages/settings/invoice/_layout.js:62
 msgid "Default currency"
-msgstr ""
+msgstr "Standard Währung"
 
 #: src/pages/invoices/$id/_layout.js:310
 msgid "Delete"
-msgstr ""
+msgstr "Löschen"
 
 #: src/components/invoices/line-items.js:207
 #: src/pages/invoices/$id/pdf.js:207
 #: src/pages/settings/tax-rates/$id.js:59
 #: src/pages/settings/tax-rates/_layout.js:58
 msgid "Description"
-msgstr ""
+msgstr "Beschreibung"
 
 #: src/components/invoices/state-tag.js:5
 #: src/pages/invoices/$id/_layout.js:131
@@ -113,11 +113,11 @@ msgstr ""
 
 #: src/pages/invoices/$id/preview.js:27
 msgid "Edit"
-msgstr ""
+msgstr "bearbeiten"
 
 #: src/pages/clients/$id.js:46
 msgid "Edit client"
-msgstr ""
+msgstr "Kunden beabeiten"
 
 #: src/pages/settings/tax-rates/$id.js:47
 msgid "Edit tax"
