@@ -5,7 +5,6 @@ import { Spin } from 'antd';
 import { Trans, NumberFormat } from '@lingui/macro';
 import { get, has, head } from 'lodash';
 
-import getSymbolFromCurrency from 'currency-symbol-map';
 import styled from 'styled-components';
 import withRouter from 'umi/withRouter';
 
