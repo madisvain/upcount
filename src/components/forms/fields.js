@@ -1,5 +1,5 @@
 import React from 'react';
-import { Checkbox, DatePicker, Form, Input, Radio, Select } from 'antd';
+import { Checkbox, DatePicker, Form, Input, InputNumber, Radio, Select } from 'antd';
 import { withProps } from 'recompose';
 import { isString } from 'lodash';
 import moment from 'moment';
@@ -65,6 +65,7 @@ const makeField = Component => ({
 };
 
 export const AInput = makeField(Input);
+export const AInputNumber = makeField(InputNumber);
 export const APasswordInput = makeField(Input.Password);
 export const ACheckbox = makeField(Checkbox);
 export const ADatePicker = withProps({ picker: true })(makeField(DatePicker));

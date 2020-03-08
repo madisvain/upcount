@@ -8,7 +8,7 @@ import { get, map } from 'lodash';
 
 import currencyToSymbolMap from 'currency-symbol-map/map';
 
-import { AInput, ASelect, ATextarea } from '../../../components/forms/fields';
+import { AInput, AInputNumber, ASelect, ATextarea } from '../../../components/forms/fields';
 
 class Settings extends Component {
   componentDidMount() {
@@ -68,6 +68,13 @@ class Settings extends Component {
                   </Select.Option>
                 ))}
               </Field>
+              <Field
+                name="minimum_fraction_digits"
+                min={0}
+                max={10}
+                component={AInputNumber}
+                label={<Trans>Decimal places</Trans>}
+              />
               <Field name="due_days" component={AInput} label={<Trans>Due days</Trans>} />
               <Field
                 name="overdue_charge"
