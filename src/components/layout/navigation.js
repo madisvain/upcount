@@ -31,7 +31,9 @@ const Navigation = props => {
           <Link to="/invoices">
             <div>
               <Icon type="file-text" />
-              <Trans>Invoices</Trans>
+              <span>
+                <Trans>Invoices</Trans>
+              </span>
             </div>
           </Link>
         </Menu.Item>
@@ -39,17 +41,21 @@ const Navigation = props => {
           <Link to="/clients">
             <div>
               <Icon type="team" />
-              <Trans>Clients</Trans>
+              <span>
+                <Trans>Clients</Trans>
+              </span>
             </div>
           </Link>
         </Menu.Item>
         <Menu.SubMenu
           key="settings"
           title={
-            <span>
+            <div>
               <Icon type="setting" />
-              <Trans>Settings</Trans>
-            </span>
+              <span>
+                <Trans>Settings</Trans>
+              </span>
+            </div>
           }
         >
           <Menu.Item key="settings.organization">

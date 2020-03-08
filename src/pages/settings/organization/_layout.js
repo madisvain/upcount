@@ -46,10 +46,12 @@ class Organization extends Component {
                   label={<Trans>Registration number</Trans>}
                 />
                 <Row gutter={16}>
-                  <Col span={12}>
+                  <Col>
                     <Field name="bank" component={AInput} label={<Trans>Bank name</Trans>} />
                   </Col>
-                  <Col span={12}>
+                </Row>
+                <Row gutter={16}>
+                  <Col>
                     <Field name="iban" component={AInput} label={<Trans>IBAN</Trans>} />
                   </Col>
                 </Row>
