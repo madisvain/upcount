@@ -7,7 +7,7 @@ import * as fs from 'fs';
 let mainWindow = BrowserWindow | null;
 let printerWindow = BrowserWindow | null;
 
-function createWindow() {
+const createWindow = () => {
   mainWindow = new BrowserWindow({
     height: 800,
     width: process.env.NODE_ENV === 'development' ? 1400 : 1000,
@@ -51,7 +51,7 @@ function createWindow() {
   });
 
   autoUpdater.checkForUpdatesAndNotify();
-}
+};
 
 app.on('ready', createWindow);
 
@@ -84,8 +84,9 @@ ipcMain.on('printInvoicePDF', (event, id) => {
   printerWindow.webContents.send('printInvoicePDF', id);
 });
 
-ipcMain.on('readyToPrint', (event, data) => {
+ipcMain.on('readyToPrint', (event, filename) => {
   const options = {
+    defaultPath: `${app.getPath('documents')}/${filename}`,
     filters: [
       {
         name: 'All',
