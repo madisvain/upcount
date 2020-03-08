@@ -42,19 +42,19 @@ class BaseLayout extends Component {
 
     if (location.pathname === '/') {
       return (
-        <I18nProvider catalogs={catalogs} language={language}>
+        <I18nProvider i18n={i18n} catalogs={catalogs} language={language}>
           <Layout style={{ minHeight: '100vh', margin: 0 }}>{children}</Layout>
         </I18nProvider>
       );
     } else if (location.pathname.includes('pdf')) {
       return (
-        <I18nProvider catalogs={catalogs} language={language}>
+        <I18nProvider i18n={i18n} catalogs={catalogs} language={language}>
           {children}
         </I18nProvider>
       );
     } else {
       return (
-        <I18nProvider catalogs={catalogs} language={language}>
+        <I18nProvider i18n={i18n} catalogs={catalogs} language={language}>
           <Layout style={{ minHeight: '100vh' }}>
             <Navigation collapsed={this.state.collapsed} />
             <Layout>
