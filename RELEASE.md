@@ -1,6 +1,8 @@
 # Bump version
 Bump the version number in package.json to (1.0.0) the version you are about to release.
 
+**NB! Commit the version bump**
+
 # Create a tag
 git tag -a v1.0.0 -m "v1.0.0"
 
