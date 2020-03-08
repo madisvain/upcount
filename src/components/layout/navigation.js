@@ -24,11 +24,16 @@ const Navigation = props => {
         height: '100vh',
         position: 'fixed',
         left: 0,
+        zIndex: 10,
       }}
     >
       <div className="logo" style={{ height: 22, margin: '21px 16px', textAlign: 'center' }}>
         <Link to="/invoices">
-          <img src={require(`../../assets/logo.svg`)} alt="Upcount" />
+          {props.collapsed ? (
+            <img src={require(`../../assets/logo-minimal.svg`)} alt="Upcount" />
+          ) : (
+            <img src={require(`../../assets/logo.svg`)} alt="Upcount" />
+          )}
         </Link>
       </div>
       <Menu
