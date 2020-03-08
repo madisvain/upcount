@@ -7,7 +7,7 @@ import { get, map, upperCase } from 'lodash';
 
 import Link from 'umi/link';
 
-const languages = ['en', 'et'];
+const languages = ['en', 'et', 'de'];
 
 class Header extends Component {
   componentDidMount() {
