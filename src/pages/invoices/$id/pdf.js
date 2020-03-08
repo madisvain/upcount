@@ -92,7 +92,14 @@ class Invoice extends Component {
 
     if (get(this.props, ['match', 'path'], '').endsWith('pdf')) {
       const { ipcRenderer } = window.require('electron');
-      setTimeout(() => ipcRenderer.send('readyToPrint'), 300);
+
+      const { invoices } = this.props;
+      const invoice = get(invoices.items, get(this.props, ['match', 'params', 'id']));
+
+      setTimeout(
+        () => ipcRenderer.send('readyToPrint', `Invoice ${get(invoice, 'number')}.pdf`),
+        200
+      );
     }
   }
 

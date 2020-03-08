@@ -84,9 +84,9 @@ ipcMain.on('printInvoicePDF', (event, id) => {
   printerWindow.webContents.send('printInvoicePDF', id);
 });
 
-ipcMain.on('readyToPrint', (event, data) => {
+ipcMain.on('readyToPrint', (event, filename) => {
   const options = {
-    defaultPath: '~/invoice.pdf',
+    defaultPath: `${app.getPath('documents')}/${filename}`,
     filters: [
       {
         name: 'All',
