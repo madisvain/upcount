@@ -1,8 +1,8 @@
 import { Component } from 'react';
 import { Input, Select } from 'antd';
-import { get, chain, map, memoize } from 'lodash';
+import { chain, find, map, isEmpty, toNumber } from 'lodash';
 import { countries } from 'countries-list';
-import { parsePhoneNumberFromString, AsYouType } from 'libphonenumber-js';
+import { AsYouType } from 'libphonenumber-js';
 
 const flattenedCleanedSortedPhones = chain(countries)
   .flatMap(country => country)
@@ -11,39 +11,51 @@ const flattenedCleanedSortedPhones = chain(countries)
   .value();
 
 class PhoneInput extends Component {
-  fromRepresentation = memoize(value => {
-    const phoneNumber = parsePhoneNumberFromString(value);
-    if (phoneNumber) {
-      return phoneNumber;
-    } else {
-      const asYouType = new AsYouType();
-      asYouType.input(value);
-      const parsedNumber = asYouType.getNumber() || {};
-      return {
-        countryCallingCode: parsedNumber.countryCallingCode || '372',
-        nationalNumber: parsedNumber.nationalNumber || '',
-      };
-    }
-  });
-
-  toRepresentation = (prefix, value) => {
-    return `+${prefix}${value}`;
+  state = {
+    initialized: false,
+    prefix: '',
+    number: '',
   };
 
+  static getDerivedStateFromProps(props, state) {
+    if (!state.initialized && props.value) {
+      const asYouType = new AsYouType();
+      asYouType.input(props.value);
+      const phoneNumber = asYouType.getNumber() || {};
+
+      let prefix = phoneNumber.countryCallingCode || '';
+      let number = phoneNumber.nationalNumber || '';
+
+      if (isEmpty(phoneNumber) && !isEmpty(props.value)) {
+        const country = find(flattenedCleanedSortedPhones, ['phone', props.value.replace('+', '')]);
+        if (country) {
+          prefix = country.phone;
+        }
+      }
+
+      return {
+        initialized: true,
+        prefix,
+        number,
+      };
+    }
+    return null;
+  }
+
   handlePrefixChange = prefix => {
-    const value = get(this.props, 'value', '');
-    const parsedValue = this.fromRepresentation(value);
-    this.triggerChange(this.toRepresentation(prefix, parsedValue.nationalNumber));
+    this.setState({ initialized: true, prefix });
+    this.triggerChange(`+${prefix}${this.state.number}`);
   };
 
   handleNumberChange = e => {
-    const number = parseInt(e.target.value || '');
-    if (Number.isNaN(number)) {
-      return;
+    if (!isNaN(toNumber(e.target.value))) {
+      let number = '';
+      if (e.target.value !== '') {
+        number = toNumber(e.target.value);
+      }
+      this.setState({ initialized: true, number });
+      this.triggerChange(`+${this.state.prefix}${number}`);
     }
-    const value = get(this.props, 'value', '');
-    const parsedValue = this.fromRepresentation(value);
-    this.triggerChange(this.toRepresentation(parsedValue.countryCallingCode, number));
   };
 
   triggerChange = value => {
@@ -51,13 +63,10 @@ class PhoneInput extends Component {
   };
 
   render() {
-    const { value } = this.props;
-    const parsedValue = this.fromRepresentation(value);
-
     return (
       <Input.Group compact>
         <Select
-          value={parsedValue.countryCallingCode}
+          value={this.state.prefix}
           style={{ width: '25%' }}
           showSearch
           optionFilterProp="name"
@@ -70,7 +79,7 @@ class PhoneInput extends Component {
           ))}
         </Select>
         <Input
-          value={parsedValue.nationalNumber}
+          value={this.state.number}
           style={{ width: '75%' }}
           onChange={this.handleNumberChange}
         />
