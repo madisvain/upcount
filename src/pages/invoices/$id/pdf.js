@@ -2,7 +2,7 @@ import { Component } from 'react';
 import { compose } from 'redux';
 import { connect } from 'dva';
 import { Spin } from 'antd';
-import { Trans } from '@lingui/macro';
+import { Trans, NumberFormat } from '@lingui/macro';
 import { get, has, head } from 'lodash';
 
 import getSymbolFromCurrency from 'currency-symbol-map';
@@ -224,8 +224,14 @@ class Invoice extends Component {
                         <Trans>Subtotal</Trans>
                       </td>
                       <td className="text-right">
-                        {invoice.subTotal}
-                        {getSymbolFromCurrency(invoice.currency)}
+                        <NumberFormat
+                          value={invoice.subTotal}
+                          format={{
+                            style: 'currency',
+                            currency: invoice.currency,
+                            minimumFractionDigits: get(organization, 'minimum_fraction_digits', 2),
+                          }}
+                        />
                       </td>
                     </tr>
                     <tr>
@@ -234,8 +240,14 @@ class Invoice extends Component {
                         Tax
                       </td>
                       <td className="text-right border-top-0">
-                        {invoice.taxTotal}
-                        {getSymbolFromCurrency(invoice.currency)}
+                        <NumberFormat
+                          value={invoice.taxTotal}
+                          format={{
+                            style: 'currency',
+                            currency: invoice.currency,
+                            minimumFractionDigits: get(organization, 'minimum_fraction_digits', 2),
+                          }}
+                        />
                       </td>
                     </tr>
                     <tr>
@@ -247,8 +259,18 @@ class Invoice extends Component {
                       </td>
                       <td className="text-right">
                         <strong>
-                          {invoice.total}
-                          {getSymbolFromCurrency(invoice.currency)}
+                          <NumberFormat
+                            value={invoice.total}
+                            format={{
+                              style: 'currency',
+                              currency: invoice.currency,
+                              minimumFractionDigits: get(
+                                organization,
+                                'minimum_fraction_digits',
+                                2
+                              ),
+                            }}
+                          />
                         </strong>
                       </td>
                     </tr>
@@ -260,12 +282,32 @@ class Invoice extends Component {
                         <td>{lineItem.description}</td>
                         <td className="min-width">{lineItem.quantity}</td>
                         <td className="min-width spaced text-right">
-                          {lineItem.unitPrice}
-                          {getSymbolFromCurrency(invoice.currency)}
+                          <NumberFormat
+                            value={lineItem.unitPrice}
+                            format={{
+                              style: 'currency',
+                              currency: invoice.currency,
+                              minimumFractionDigits: get(
+                                organization,
+                                'minimum_fraction_digits',
+                                2
+                              ),
+                            }}
+                          />
                         </td>
                         <td className="min-width spaced text-right">
-                          {lineItem.subtotal}
-                          {getSymbolFromCurrency(invoice.currency)}
+                          <NumberFormat
+                            value={lineItem.subtotal}
+                            format={{
+                              style: 'currency',
+                              currency: invoice.currency,
+                              minimumFractionDigits: get(
+                                organization,
+                                'minimum_fraction_digits',
+                                2
+                              ),
+                            }}
+                          />
                         </td>
                       </tr>
                     ))}
