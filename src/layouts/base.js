@@ -34,6 +34,7 @@ class BaseLayout extends Component {
     this.setState({
       collapsed: !this.state.collapsed,
     });
+    setTimeout(() => window.dispatchEvent(new Event('resize')), 250);
   };
 
   render() {
@@ -57,7 +58,7 @@ class BaseLayout extends Component {
         <I18nProvider i18n={i18n} catalogs={catalogs} language={language}>
           <Layout style={{ minHeight: '100vh' }}>
             <Navigation collapsed={this.state.collapsed} />
-            <Layout>
+            <Layout style={{ marginLeft: this.state.collapsed ? 80 : 200, transition: 'all 0.2s' }}>
               <Header collapsed={this.state.collapsed} onToggl={this.toggleSider} />
               {children}
             </Layout>
