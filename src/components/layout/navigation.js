@@ -29,22 +29,18 @@ const Navigation = props => {
       >
         <Menu.Item key="invoices">
           <Link to="/invoices">
-            <div>
-              <Icon type="file-text" />
-              <span>
-                <Trans>Invoices</Trans>
-              </span>
-            </div>
+            <Icon type="file-text" />
+            <span>
+              <Trans>Invoices</Trans>
+            </span>
           </Link>
         </Menu.Item>
         <Menu.Item key="clients">
           <Link to="/clients">
-            <div>
-              <Icon type="team" />
-              <span>
-                <Trans>Clients</Trans>
-              </span>
-            </div>
+            <Icon type="team" />
+            <span>
+              <Trans>Clients</Trans>
+            </span>
           </Link>
         </Menu.Item>
         <Menu.SubMenu
@@ -60,17 +56,20 @@ const Navigation = props => {
         >
           <Menu.Item key="settings.organization">
             <Link to="/settings/organization">
-              <Icon type="contacts" /> <Trans>Organization</Trans>
+              <Icon type="bank" />
+              <Trans>Organization</Trans>
             </Link>
           </Menu.Item>
           <Menu.Item key="settings.invoice">
             <Link to="/settings/invoice">
-              <Icon type="contacts" /> <Trans>Invoice</Trans>
+              <Icon type="file" />
+              <Trans>Invoice</Trans>
             </Link>
           </Menu.Item>
           <Menu.Item key="settings.tax-rates">
             <Link to="/settings/tax-rates">
-              <Icon type="calculator" /> <Trans>Tax rates</Trans>
+              <Icon type="calculator" />
+              <Trans>Tax rates</Trans>
             </Link>
           </Menu.Item>
         </Menu.SubMenu>
