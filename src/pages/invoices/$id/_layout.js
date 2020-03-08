@@ -306,8 +306,7 @@ class InvoiceForm extends Component {
                     type="dashed"
                     onClick={() => this.deleteConfirm(invoice._id, invoice._rev)}
                   >
-                    <Icon type="delete" />
-                    <Trans>Delete</Trans>
+                    <Icon type="delete" /> <Trans>Delete</Trans>
                   </Button>
                 )}
               </div>
@@ -321,8 +320,7 @@ class InvoiceForm extends Component {
             {!this.isNew() && (
               <Link to={`/invoices/${get(this.props, ['match', 'params', 'id'])}/preview`}>
                 <Button type="dashed" style={{ marginTop: 10, marginRight: 8 }}>
-                  <Icon type="eye" />
-                  <Trans>View</Trans>
+                  <Icon type="eye" /> <Trans>View</Trans>
                 </Button>
               </Link>
             )}
@@ -331,8 +329,7 @@ class InvoiceForm extends Component {
                 style={{ marginTop: 10 }}
                 onClick={() => this.printPDF(get(this.props, ['match', 'params', 'id']))}
               >
-                <Icon type="file-pdf" />
-                <Trans>PDF</Trans>
+                <Icon type="file-pdf" /> <Trans>PDF</Trans>
               </Button>
             )}
             <Button
@@ -342,8 +339,7 @@ class InvoiceForm extends Component {
               loading={submitting}
               style={{ marginTop: 10 }}
             >
-              <Icon type="save" />
-              <Trans>Save</Trans>
+              <Icon type="save" /> <Trans>Save</Trans>
             </Button>
           </FooterToolbar>
         </Form>

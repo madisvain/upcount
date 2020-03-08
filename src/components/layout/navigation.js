@@ -15,7 +15,17 @@ const Navigation = props => {
   const selectedKeys = [join(take(compact(pathArr), 2), '.')];
 
   return (
-    <Layout.Sider trigger={null} collapsible collapsed={props.collapsed}>
+    <Layout.Sider
+      trigger={null}
+      collapsible
+      collapsed={props.collapsed}
+      style={{
+        overflow: 'auto',
+        height: '100vh',
+        position: 'fixed',
+        left: 0,
+      }}
+    >
       <div className="logo" style={{ height: 22, margin: '21px 16px', textAlign: 'center' }}>
         <Link to="/invoices">
           <img src={require(`../../assets/logo.svg`)} alt="Upcount" />
