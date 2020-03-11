@@ -2,7 +2,8 @@ import { Component } from 'react';
 import { compose } from 'redux';
 import { connect } from 'dva';
 import { Field, reduxForm } from 'redux-form';
-import { Button, Col, Form, Icon, Layout, Row, Select, Upload } from 'antd';
+import { Button, Col, Form, Layout, Row, Select, Upload } from 'antd';
+import { FileTextOutlined, PictureOutlined, UploadOutlined } from '@ant-design/icons';
 import { Trans } from '@lingui/macro';
 import { get, map } from 'lodash';
 
@@ -47,11 +48,11 @@ class Settings extends Component {
 
     return (
       <Layout.Content>
-        <Form layout="vertical" onSubmit={handleSubmit}>
+        <Form layout="vertical" onFinish={() => handleSubmit()}>
           <Row gutter={32}>
             <Col span={12}>
               <h2>
-                <Icon type="file-text" />
+                <FileTextOutlined />
                 {` `}
                 <Trans>Invoice details</Trans>
               </h2>
@@ -85,7 +86,7 @@ class Settings extends Component {
             </Col>
           </Row>
           <Row>
-            <Col>
+            <Col span={24}>
               <Button
                 type="primary"
                 htmlType="submit"
@@ -101,7 +102,7 @@ class Settings extends Component {
         <Row>
           <Col span={12}>
             <h2>
-              <Icon type="picture" />
+              <PictureOutlined />
               {` `}
               <Trans>Logo</Trans>
             </h2>
@@ -113,7 +114,7 @@ class Settings extends Component {
               customRequest={data => this.handleLogoUpload(data)}
             >
               <Button style={{ marginTop: 20 }}>
-                <Icon type="upload" /> {logo ? 'Change' : 'Upload'}
+                <UploadOutlined /> {logo ? 'Change' : 'Upload'}
               </Button>
             </Upload>
           </Col>

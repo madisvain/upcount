@@ -51,7 +51,7 @@ class TaxForm extends Component {
         maskClosable={true}
         visible={true}
       >
-        <Form onSubmit={handleSubmit} layout="vertical">
+        <Form onFinish={() => handleSubmit()} layout="vertical">
           <Field name="name" component={AInput} label={<Trans>Name</Trans>} />
           <Field
             name="description"

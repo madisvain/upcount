@@ -2,9 +2,16 @@ import { Component } from 'react';
 import { compose } from 'redux';
 import { connect } from 'dva';
 import { Field, FieldArray, formValueSelector, reduxForm } from 'redux-form';
-import { Button, Col, Form, Icon, Layout, Row, Select, Menu, Dropdown, Modal } from 'antd';
+import { Button, Col, Form, Layout, Row, Select, Menu, Dropdown, Modal } from 'antd';
+import {
+  UserAddOutlined,
+  DeleteOutlined,
+  EyeOutlined,
+  FilePdfOutlined,
+  SaveOutlined,
+} from '@ant-design/icons';
 import { t, Trans } from '@lingui/macro';
-import { I18n } from '@lingui/react';
+import { withI18n } from '@lingui/react';
 import { forEach, get, isString, includes, has, lowerCase, map } from 'lodash';
 
 import moment from 'moment';
@@ -112,6 +119,7 @@ class InvoiceForm extends Component {
 
   render() {
     const {
+      i18n,
       invoices,
       location,
       children,
@@ -169,41 +177,37 @@ class InvoiceForm extends Component {
     // Invoice form
     return (
       <Layout.Content className="has-toolbar">
-        <Form onSubmit={handleSubmit}>
+        <Form onFinish={() => handleSubmit()} layout="vertical">
           <Row gutter={16}>
             <Col span={12}>
-              <I18n>
-                {({ i18n }) => (
-                  <Field
-                    showSearch
-                    name="client"
-                    placeholder={i18n._(t`Select or create a client`)}
-                    component={ASelect}
-                    label={<Trans>Client</Trans>}
-                    onSelect={this.clientSelect}
-                    optionFilterProp="children"
-                    filterOption={(input, option) => {
-                      const clientName = get(option, ['props', 'children']);
-                      if (isString(clientName)) {
-                        return includes(lowerCase(clientName), lowerCase(input));
-                      }
-                      return true;
-                    }}
-                    validate={[required]}
-                  >
-                    {map(clients.items, (client, id) => (
-                      <Select.Option value={id} key={id}>
-                        {get(client, 'name', '-')}
-                      </Select.Option>
-                    ))}
-                    <Select.Option value="new" key="new" style={{ borderTop: '1px solid #e8e8e8' }}>
-                      <Icon type="user-add" />
-                      {` `}
-                      <Trans>Create new client</Trans>
-                    </Select.Option>
-                  </Field>
-                )}
-              </I18n>
+              <Field
+                showSearch
+                name="client"
+                placeholder={i18n._(t`Select or create a client`)}
+                component={ASelect}
+                label={<Trans>Client</Trans>}
+                onSelect={this.clientSelect}
+                optionFilterProp="children"
+                filterOption={(input, option) => {
+                  const clientName = get(option, ['props', 'children']);
+                  if (isString(clientName)) {
+                    return includes(lowerCase(clientName), lowerCase(input));
+                  }
+                  return true;
+                }}
+                validate={[required]}
+              >
+                {map(clients.items, (client, id) => (
+                  <Select.Option value={id} key={id}>
+                    {get(client, 'name', '-')}
+                  </Select.Option>
+                ))}
+                <Select.Option value="new" key="new" style={{ borderTop: '1px solid #e8e8e8' }}>
+                  <UserAddOutlined />
+                  {` `}
+                  <Trans>Create new client</Trans>
+                </Select.Option>
+              </Field>
             </Col>
             <Col span={6}>
               <Field
@@ -250,7 +254,7 @@ class InvoiceForm extends Component {
           </Row>
 
           <Row gutter={16} style={{ marginTop: '20px' }}>
-            <Col>
+            <Col span={24}>
               <FieldArray name="lineItems" component={LineItems} />
             </Col>
           </Row>
@@ -306,7 +310,7 @@ class InvoiceForm extends Component {
                     type="dashed"
                     onClick={() => this.deleteConfirm(invoice._id, invoice._rev)}
                   >
-                    <Icon type="delete" /> <Trans>Delete</Trans>
+                    <DeleteOutlined /> <Trans>Delete</Trans>
                   </Button>
                 )}
               </div>
@@ -320,7 +324,7 @@ class InvoiceForm extends Component {
             {!this.isNew() && (
               <Link to={`/invoices/${get(this.props, ['match', 'params', 'id'])}/preview`}>
                 <Button type="dashed" style={{ marginTop: 10, marginRight: 8 }}>
-                  <Icon type="eye" /> <Trans>View</Trans>
+                  <EyeOutlined /> <Trans>View</Trans>
                 </Button>
               </Link>
             )}
@@ -329,7 +333,7 @@ class InvoiceForm extends Component {
                 style={{ marginTop: 10 }}
                 onClick={() => this.printPDF(get(this.props, ['match', 'params', 'id']))}
               >
-                <Icon type="file-pdf" /> <Trans>PDF</Trans>
+                <FilePdfOutlined /> <Trans>PDF</Trans>
               </Button>
             )}
             <Button
@@ -339,7 +343,7 @@ class InvoiceForm extends Component {
               loading={submitting}
               style={{ marginTop: 10 }}
             >
-              <Icon type="save" /> <Trans>Save</Trans>
+              <SaveOutlined /> <Trans>Save</Trans>
             </Button>
           </FooterToolbar>
         </Form>
@@ -352,55 +356,57 @@ class InvoiceForm extends Component {
 
 const selector = formValueSelector('invoice');
 
-export default withRouter(
-  compose(
-    connect(state => ({
-      invoices: state.invoices,
-      clients: state.clients,
-      taxRates: state.taxRates,
-      lineItems: selector(state, 'lineItems'),
-      initialValues: {
-        currency: get(
-          state.organizations.items,
-          [localStorage.getItem('organization'), 'currency'],
-          ''
-        ),
-        date: moment().format('YYYY-MM-DD'),
-        due_date: moment()
-          .add(
-            get(state.organizations.items, [localStorage.getItem('organization'), 'due_days'], 0),
-            'days'
-          )
-          .format('YYYY-MM-DD'),
-        customer_note: get(
-          state.organizations.items,
-          [localStorage.getItem('organization'), 'notes'],
-          ''
-        ),
-        lineItems: [{}],
-      },
-    }))(
-      reduxForm({
-        form: 'invoice',
-        onSubmit: async (data, dispatch, props) => {
-          const { lineItems, taxRates } = props;
-          const { subTotal, taxTotal, total } = totals(lineItems, taxRates);
-          return await dispatch({
-            type: 'invoices/save',
-            data: {
-              ...data,
-              subTotal: subTotal.format(),
-              taxTotal: taxTotal.format(),
-              total: total.format(),
-            },
-          });
+export default withI18n()(
+  withRouter(
+    compose(
+      connect(state => ({
+        invoices: state.invoices,
+        clients: state.clients,
+        taxRates: state.taxRates,
+        lineItems: selector(state, 'lineItems'),
+        initialValues: {
+          currency: get(
+            state.organizations.items,
+            [localStorage.getItem('organization'), 'currency'],
+            ''
+          ),
+          date: moment().format('YYYY-MM-DD'),
+          due_date: moment()
+            .add(
+              get(state.organizations.items, [localStorage.getItem('organization'), 'due_days'], 0),
+              'days'
+            )
+            .format('YYYY-MM-DD'),
+          customer_note: get(
+            state.organizations.items,
+            [localStorage.getItem('organization'), 'notes'],
+            ''
+          ),
+          lineItems: [{}],
         },
-        onSubmitSuccess: (result, dispatch, props) => {
-          router.push({
-            pathname: '/invoices/',
-          });
-        },
-      })(InvoiceForm)
+      }))(
+        reduxForm({
+          form: 'invoice',
+          onSubmit: async (data, dispatch, props) => {
+            const { lineItems, taxRates } = props;
+            const { subTotal, taxTotal, total } = totals(lineItems, taxRates);
+            return await dispatch({
+              type: 'invoices/save',
+              data: {
+                ...data,
+                subTotal: subTotal.format(),
+                taxTotal: taxTotal.format(),
+                total: total.format(),
+              },
+            });
+          },
+          onSubmitSuccess: (result, dispatch, props) => {
+            router.push({
+              pathname: '/invoices/',
+            });
+          },
+        })(InvoiceForm)
+      )
     )
   )
 );

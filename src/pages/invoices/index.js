@@ -1,7 +1,8 @@
 import { Component } from 'react';
 import { compose } from 'redux';
 import { connect } from 'dva';
-import { Button, Dropdown, Icon, Input, Layout, Menu, Table, Row, Col } from 'antd';
+import { Button, Dropdown, Input, Layout, Menu, Table, Row, Col } from 'antd';
+import { FileTextOutlined } from '@ant-design/icons';
 import { t, Trans } from '@lingui/macro';
 import { withI18n } from '@lingui/react';
 import {
@@ -105,9 +106,9 @@ class Invoices extends Component {
     return (
       <Layout.Content style={{ margin: 16, padding: 24, background: '#fff' }}>
         <Row>
-          <Col>
+          <Col span={24}>
             <h2>
-              <Icon type="file-text" style={{ marginRight: 8 }} />
+              <FileTextOutlined style={{ marginRight: 8 }} />
               <Trans>Invoices</Trans>
             </h2>
           </Col>
@@ -134,7 +135,7 @@ class Invoices extends Component {
             sorter={(a, b) => (a < b ? -1 : a === b ? 0 : 1)}
             render={invoice => (
               <Link to={`/invoices/${invoice._id}`}>
-                <Icon type="file-text" />
+                <FileTextOutlined />
                 {isUndefined(invoice.number) ? ` #${invoice._id}` : ` #${invoice.number}`}
               </Link>
             )}

@@ -1,4 +1,13 @@
-import { Icon, Menu, Layout } from 'antd';
+import { Menu, Layout } from 'antd';
+import {
+  FileTextOutlined,
+  TeamOutlined,
+  SettingOutlined,
+  BankOutlined,
+  FileOutlined,
+  CalculatorOutlined,
+  ApiOutlined,
+} from '@ant-design/icons';
 import { Trans } from '@lingui/macro';
 import { compact, get, join, take } from 'lodash';
 
@@ -44,7 +53,7 @@ const Navigation = props => {
       >
         <Menu.Item key="invoices">
           <Link to="/invoices">
-            <Icon type="file-text" />
+            <FileTextOutlined />
             <span>
               <Trans>Invoices</Trans>
             </span>
@@ -52,7 +61,7 @@ const Navigation = props => {
         </Menu.Item>
         <Menu.Item key="clients">
           <Link to="/clients">
-            <Icon type="team" />
+            <TeamOutlined />
             <span>
               <Trans>Clients</Trans>
             </span>
@@ -62,7 +71,7 @@ const Navigation = props => {
           key="settings"
           title={
             <div>
-              <Icon type="setting" />
+              <SettingOutlined />
               <span>
                 <Trans>Settings</Trans>
               </span>
@@ -71,23 +80,40 @@ const Navigation = props => {
         >
           <Menu.Item key="settings.organization">
             <Link to="/settings/organization">
-              <Icon type="bank" />
+              <BankOutlined />
               <Trans>Organization</Trans>
             </Link>
           </Menu.Item>
           <Menu.Item key="settings.invoice">
             <Link to="/settings/invoice">
-              <Icon type="file" />
+              <FileOutlined />
               <Trans>Invoice</Trans>
             </Link>
           </Menu.Item>
           <Menu.Item key="settings.tax-rates">
             <Link to="/settings/tax-rates">
-              <Icon type="calculator" />
+              <CalculatorOutlined />
               <Trans>Tax rates</Trans>
             </Link>
           </Menu.Item>
         </Menu.SubMenu>
+        {/* Account */}
+        <Menu.Item
+          key="account"
+          style={{
+            position: 'fixed',
+            left: 0,
+            bottom: 0,
+            zIndex: 10,
+          }}
+        >
+          <Link to="/sync">
+            <ApiOutlined />
+            <span>
+              <Trans>Not synced</Trans>
+            </span>
+          </Link>
+        </Menu.Item>
       </Menu>
     </Layout.Sider>
   );

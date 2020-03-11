@@ -24,9 +24,9 @@
   },
   "dependencies": {
     "@lingui/react": "^2.9.1",
-    "antd": "^3.26.13",
+    "antd": "^4.0.2",
     "bootstrap": "^4.4.1",
-    "countries-list": "^2.5.2",
+    "countries-list": "^2.5.4",
     "currency-symbol-map": "^4.0.4",
     "currency.js": "^1.2.2",
     "electron-updater": "^4.2.4",

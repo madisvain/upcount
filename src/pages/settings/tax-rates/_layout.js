@@ -1,7 +1,8 @@
 import { Component } from 'react';
 import { compose } from 'redux';
 import { connect } from 'dva';
-import { Button, Col, Icon, Layout, Row, Table } from 'antd';
+import { Button, Col, Layout, Row, Table } from 'antd';
+import { CalculatorOutlined } from '@ant-design/icons';
 import { Trans } from '@lingui/macro';
 import { values } from 'lodash';
 
@@ -20,16 +21,16 @@ class TaxRates extends Component {
       <div>
         <Layout.Content>
           <Row>
-            <Col>
+            <Col span={24}>
               <h2>
-                <Icon type="calculator" />
+                <CalculatorOutlined />
                 {` `}
                 <Trans>Tax rates</Trans>
               </h2>
             </Col>
           </Row>
           <Row>
-            <Col>
+            <Col span={24}>
               <Link to="/settings/tax-rates/new">
                 <Button type="primary" style={{ marginBottom: 10 }}>
                   <Trans>New tax</Trans>
@@ -38,7 +39,7 @@ class TaxRates extends Component {
             </Col>
           </Row>
           <Row>
-            <Col>
+            <Col span={24}>
               <Table
                 dataSource={values(taxRates.items)}
                 pagination={false}
@@ -46,6 +47,7 @@ class TaxRates extends Component {
                 rowKey="_id"
                 size="middle"
                 bordered
+                style={{ width: '100%' }}
               >
                 <Table.Column
                   title={<Trans>Name</Trans>}
