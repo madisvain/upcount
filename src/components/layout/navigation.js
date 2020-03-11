@@ -105,6 +105,7 @@ const Navigation = props => {
             left: 0,
             bottom: 0,
             zIndex: 10,
+            width: props.collapsed ? 80 : 200,
           }}
         >
           <Link to="/sync">
