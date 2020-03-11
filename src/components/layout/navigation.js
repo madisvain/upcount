@@ -6,7 +6,7 @@ import {
   BankOutlined,
   FileOutlined,
   CalculatorOutlined,
-  ApiOutlined,
+  WarningOutlined,
 } from '@ant-design/icons';
 import { Trans } from '@lingui/macro';
 import { compact, get, join, take } from 'lodash';
@@ -98,23 +98,18 @@ const Navigation = props => {
           </Menu.Item>
         </Menu.SubMenu>
         {/* Account */}
-        <Menu.Item
-          key="account"
+        <div
           style={{
             position: 'fixed',
             left: 0,
-            bottom: 0,
+            bottom: 24,
             zIndex: 10,
             width: props.collapsed ? 80 : 200,
+            textAlign: 'center',
           }}
         >
-          <Link to="/sync">
-            <ApiOutlined />
-            <span>
-              <Trans>Not synced</Trans>
-            </span>
-          </Link>
-        </Menu.Item>
+          <WarningOutlined style={{ color: '#cf1322' }} /> <Trans>Not syncronized</Trans>
+        </div>
       </Menu>
     </Layout.Sider>
   );

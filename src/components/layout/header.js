@@ -2,21 +2,27 @@ import React, { Component } from 'react';
 import { compose } from 'redux';
 import { connect } from 'dva';
 import { withI18n } from '@lingui/react';
-import { Layout, Menu, Dropdown } from 'antd';
+import { Avatar, Layout, Menu, Dropdown } from 'antd';
 import {
   MenuUnfoldOutlined,
   MenuFoldOutlined,
   DownOutlined,
   SwapOutlined,
+  UserOutlined,
 } from '@ant-design/icons';
-
 import { get, map, upperCase } from 'lodash';
 
 import Link from 'umi/link';
 
+import AccountDrawer from '../account/drawer';
+
 const languages = ['en', 'et', 'de'];
 
 class Header extends Component {
+  state = {
+    accountDrawerVisible: false,
+  };
+
   componentDidMount() {
     this.props.dispatch({ type: 'organizations/list' });
   }
@@ -36,12 +42,30 @@ class Header extends Component {
           className: 'trigger',
           onClick: this.props.onToggl,
           style: {
+            marginTop: 24,
             padding: '0 24px',
             fontSize: 18,
             cursor: 'pointer',
             transition: 'color .3s',
           },
         })}
+        <Link to="#" onClick={() => this.setState({ accountDrawerVisible: true })}>
+          <Avatar
+            shape="square"
+            icon={<UserOutlined />}
+            style={{
+              backgroundColor: '#001529',
+              color: '#46DC8A',
+              float: 'right',
+              marginRight: 24,
+              marginTop: 16,
+            }}
+          />
+        </Link>
+        <AccountDrawer
+          visible={this.state.accountDrawerVisible}
+          closeDrawer={() => this.setState({ accountDrawerVisible: false })}
+        />
         <Dropdown
           placement="bottomCenter"
           overlay={
