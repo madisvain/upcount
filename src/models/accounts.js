@@ -32,24 +32,25 @@ export default {
       }
     },
 
-    *initialize({ payload: { id } }, { put, call }) {
+    *login({ data }, { put, call }) {
       try {
-        const response = yield call(accountsService.details, id);
+        const response = yield call(accountsService.login, data);
         yield put({ type: 'detailsSuccess', data: response });
-        yield put(initialize('client', response, false));
+        message.success('Login successful!', 5);
+        return response;
       } catch (e) {
-        message.error(i18n._(t`Error initializing account form!`), 5);
+        message.error(i18n._(t`Error logging in!`), 5);
       }
     },
 
-    *save({ data }, { put, call }) {
+    *register({ data }, { put, call }) {
       try {
-        const response = yield call(accountsService.save, data);
+        const response = yield call(accountsService.register, data);
         yield put({ type: 'detailsSuccess', data: response });
-        message.success('Client saved!', 5);
+        message.success('Registration successful!', 5);
         return response;
       } catch (e) {
-        message.error(i18n._(t`Error saving account!`), 5);
+        message.error(i18n._(t`Error registering!`), 5);
       }
     },
   },

@@ -1,3 +1,6 @@
 {
-  "extends": "eslint-config-umi"
+  "extends": "eslint-config-umi",
+  "globals": {
+    "API_URL": true
+  }
 }

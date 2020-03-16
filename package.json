@@ -25,6 +25,7 @@
   "dependencies": {
     "@lingui/react": "^2.9.1",
     "antd": "^4.0.2",
+    "axios": "^0.19.2",
     "bootstrap": "^4.4.1",
     "countries-list": "^2.5.4",
     "currency-symbol-map": "^4.0.4",

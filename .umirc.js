@@ -33,4 +33,7 @@ export default {
       '@table-row-hover-bg': 'transparent',
     },
   },
+  define: {
+    API_URL: process.env.API_URL,
+  },
 };
