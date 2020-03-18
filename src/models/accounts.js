@@ -45,7 +45,7 @@ export default {
 
     *register({ data }, { put, call }) {
       try {
-        const response = yield call(accountsService.register, data);
+        const response = yield call(accountsService.signup, data);
         yield put({ type: 'detailsSuccess', data: response });
         message.success('Registration successful!', 5);
         return response;

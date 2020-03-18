@@ -1,3 +1,5 @@
+/* global API_URL:readonly */
+
 import axios from 'axios';
 
 export const getHeaders = () => {
@@ -12,7 +14,7 @@ export const getHeaders = () => {
 
 export default () =>
   axios.create({
-    baseURL: typeof API_URL !== 'undefined' ? API_URL : 'http://localhost:8000/',
+    baseURL: typeof API_URL !== 'undefined' ? API_URL : 'http://localhost:8888/',
     timeout: 30000,
     headers: getHeaders(),
   });
