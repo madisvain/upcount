@@ -1,7 +1,7 @@
 {
   "name": "upcount",
   "author": "Madis Vain <madisvain@gmail.com>",
-  "description": "Painless Invoicing Application",
+  "description": "Invoicing for freelancers & small businesses",
   "version": "0.6.0",
   "private": true,
   "scripts": {
@@ -24,14 +24,14 @@
   },
   "dependencies": {
     "@lingui/react": "^2.9.1",
-    "antd": "^4.0.2",
+    "antd": "^4.0.3",
     "axios": "^0.19.2",
     "bootstrap": "^4.4.1",
     "countries-list": "^2.5.4",
     "currency-symbol-map": "^4.0.4",
     "currency.js": "^1.2.2",
-    "electron-updater": "^4.2.4",
-    "libphonenumber-js": "^1.7.46",
+    "electron-updater": "^4.2.5",
+    "libphonenumber-js": "^1.7.47",
     "pouchdb": "^7.2.1",
     "pouchdb-find": "^7.2.1",
     "react": "^16.13.0",
@@ -53,7 +53,7 @@
     "babel-plugin-macros": "^2.8.0",
     "concurrently": "^5.1.0",
     "electron": "^6.1.9",
-    "electron-builder": "^22.4.0",
+    "electron-builder": "^22.4.1",
     "electron-notarize": "^0.2.1",
     "electron-webpack": "^2.7.4",
     "eslint": "^5.4.0",
@@ -69,8 +69,8 @@
     "react-test-renderer": "^16.13.0",
     "redux-mock-store": "^1.5.4",
     "sass-loader": "^8.0.2",
-    "umi": "^2.13.3",
-    "umi-plugin-react": "^1.15.2"
+    "umi": "^2.13.7",
+    "umi-plugin-react": "^1.15.3"
   },
   "lint-staged": {
     "src/**/*.{js,jsx}": [

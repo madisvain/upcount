@@ -1,5 +1,3 @@
-/* global API_URL:readonly */
-
 import axios from 'axios';
 
 export const getHeaders = () => {
@@ -12,9 +10,11 @@ export const getHeaders = () => {
   return headers;
 };
 
-export default () =>
-  axios.create({
-    baseURL: typeof API_URL !== 'undefined' ? API_URL : 'http://localhost:8888/',
+export default () => {
+  return axios.create({
+    baseURL:
+      process.env.NODE_ENV === 'development' ? 'http://localhost:8888/' : 'https://api.upcount.app',
     timeout: 30000,
     headers: getHeaders(),
   });
+};
