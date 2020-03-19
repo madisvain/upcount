@@ -243,7 +243,7 @@ class Invoice extends Component {
                     <tr>
                       <td colSpan="2" className="border-top-0" />
                       <td colSpan="2" className="border-top-0">
-                        Tax
+                        <Trans>Tax</Trans>
                       </td>
                       <td className="text-right border-top-0">
                         <NumberFormat
