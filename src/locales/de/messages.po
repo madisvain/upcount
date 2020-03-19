@@ -368,7 +368,7 @@ msgstr "Status"
 #: src/components/invoices/line-items.js:257
 #: src/pages/invoices/$id/_layout.js:273 src/pages/invoices/$id/pdf.js:224
 msgid "Subtotal"
-msgstr "Zischensumme"
+msgstr "Zwischensumme"
 
 #: src/pages/invoices/$id/pdf.js:216 src/pages/invoices/index.js:164
 msgid "Sum"
