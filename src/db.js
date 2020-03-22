@@ -5,10 +5,18 @@ PouchDB.plugin(PouchDBFind);
 
 const db = new PouchDB('invoicer', { auto_compaction: true });
 
+const toHex = str => {
+  var result = '';
+  for (var i = 0; i < str.length; i++) {
+    result += str.charCodeAt(i).toString(16);
+  }
+  return result;
+};
+
 // CouchDB replication
 if (localStorage.getItem('email') && localStorage.getItem('token')) {
   const couchDB = new PouchDB(
-    'https://couchdb.upcount.app/userdb-6d616469737661696e40676d61696c2e636f6d',
+    `https://couchdb.upcount.app/userdb-${toHex(localStorage.getItem('email'))}`,
     {
       auth: {
         username: localStorage.getItem('email'),
