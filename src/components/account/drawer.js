@@ -1,7 +1,17 @@
 import { useState } from 'react';
-import { Button, Drawer, Typography } from 'antd';
-import { SyncOutlined } from '@ant-design/icons';
+import { compose } from 'redux';
+import { connect } from 'dva';
+import { Button, Drawer, Switch, Tooltip, Typography } from 'antd';
+import {
+  CheckOutlined,
+  CloseOutlined,
+  DeploymentUnitOutlined,
+  LockOutlined,
+  SyncOutlined,
+  SwapOutlined,
+} from '@ant-design/icons';
 import { Trans } from '@lingui/macro';
+import { withI18n } from '@lingui/react';
 import { capitalize } from 'lodash';
 
 import LoginForm from './login';
@@ -9,13 +19,13 @@ import RegisterForm from './register';
 
 const { Title } = Typography;
 
-const AccountDrawer = ({ visible, closeDrawer }) => {
+const NeedsToken = (visible, closeDrawer) => {
   const [form, setForm] = useState(null);
 
   return (
     <Drawer
       visible={visible}
-      title={true ? null : 'Upcount account'}
+      title="Upcount account"
       placement="right"
       closable={false}
       onClose={closeDrawer}
@@ -41,13 +51,104 @@ const AccountDrawer = ({ visible, closeDrawer }) => {
         onClose={() => setForm(null)}
       >
         {form === 'login' ? (
-          <LoginForm setForm={() => setForm(null)} />
+          <LoginForm closeDrawer={closeDrawer} />
         ) : (
-          <RegisterForm setForm={() => setForm(null)} />
+          <RegisterForm closeDrawer={closeDrawer} />
         )}
       </Drawer>
+      <p style={{ marginTop: 40 }}>
+        <DeploymentUnitOutlined style={{ fontSize: 20, marginRight: 8, float: 'left' }} />
+        Registering an Upcount account will allow you to syncronize your data between computers and
+        provides a secure backup.
+      </p>
+      <p>
+        <SwapOutlined style={{ fontSize: 20, marginRight: 8, float: 'left' }} />
+        Your data is always securely transfered between the hosted CouchDB server and your devices
+        over encrypted HTTP requests.
+      </p>
     </Drawer>
   );
 };
 
-export default AccountDrawer;
+const HasToken = (visible, closeDrawer, organizations, dispatch) => {
+  return (
+    <Drawer
+      visible={visible}
+      title={
+        <div>
+          {localStorage.getItem('email')}
+          <Tooltip title="Logout">
+            <LockOutlined
+              onClick={() => {
+                dispatch({ type: 'accounts/logout' });
+                closeDrawer();
+              }}
+              style={{ float: 'right' }}
+            />
+          </Tooltip>
+        </div>
+      }
+      placement="right"
+      closable={false}
+      onClose={closeDrawer}
+      width={500}
+    >
+      <Title level={4} style={{ textAlign: 'center', marginTop: 100, marginBottom: 40 }}>
+        <Trans>Sync enabled</Trans> <SyncOutlined />
+      </Title>
+      <Switch
+        checked={true}
+        disabled={true}
+        checkedChildren={<CheckOutlined />}
+        unCheckedChildren={<CloseOutlined />}
+        style={{ marginBottom: 60, marginLeft: 'auto', marginRight: 'auto', display: 'block' }}
+      />
+      {/*<Title level={4}>Organizations</Title>
+      <List
+        itemLayout="horizontal"
+        dataSource={values(organizations.items)}
+        renderItem={item => (
+          <List.Item actions={[<SyncOutlined />]}>
+            <List.Item.Meta
+              avatar={
+                <Switch
+                  disabled={true}
+                  checkedChildren={<CheckOutlined />}
+                  unCheckedChildren={<CloseOutlined />}
+                  onChange={checked => {
+                    dispatch({
+                      type: 'organizations/setSync',
+                      payload: {
+                        id: item._id,
+                        sync: checked,
+                      },
+                    });
+                  }}
+                />
+              }
+              title={item.name}
+            />
+          </List.Item>
+        )}
+      />*/}
+      <p style={{ marginTop: 40 }}>
+        <SwapOutlined style={{ fontSize: 20, marginRight: 8, float: 'left' }} />
+        Your data is always securely transfered between the hosted CouchDB server and your devices
+        over encrypted HTTP requests.
+      </p>
+    </Drawer>
+  );
+};
+
+const AccountDrawer = ({ visible, closeDrawer, organizations, dispatch }) => {
+  return localStorage.getItem('token') && localStorage.getItem('email')
+    ? HasToken(visible, closeDrawer, organizations, dispatch)
+    : NeedsToken(visible, closeDrawer);
+};
+
+export default compose(
+  withI18n(),
+  connect(state => ({
+    organizations: state.organizations,
+  }))
+)(AccountDrawer);

@@ -47,6 +47,14 @@ export async function setLogo(data) {
   }
 }
 
+export async function setSync(data) {
+  // const { id, sync } = data;
+  try {
+  } catch (error) {
+    console.log(error);
+  }
+}
+
 export async function save(data) {
   try {
     if (has(data, '_id')) {

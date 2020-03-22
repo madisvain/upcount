@@ -5,7 +5,7 @@ import { Trans } from '@lingui/macro';
 
 import { AInput, APasswordInput } from '../forms/fields';
 
-const AccountDrawer = ({ setForm, handleSubmit, pristine, submitting }) => {
+const AccountDrawer = ({ handleSubmit, pristine, submitting }) => {
   return (
     <Form onFinish={() => handleSubmit()} layout="vertical">
       <Field name="email" component={AInput} label={<Trans>Email</Trans>} />
@@ -27,10 +27,12 @@ export default compose(
   reduxForm({
     form: 'login',
     onSubmit: async (data, dispatch) => {
-      return await dispatch({ type: 'accounts/login', data: data });
+      return new Promise((resolve, reject) => {
+        dispatch({ type: 'accounts/login', data: data, resolve, reject });
+      });
     },
     onSubmitSuccess: (result, dispatch, props) => {
-      props.setForm();
+      props.closeDrawer();
     },
   })
 )(AccountDrawer);

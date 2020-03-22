@@ -1,4 +1,4 @@
-import { initialize } from 'redux-form';
+import { SubmissionError, stopSubmit } from 'redux-form';
 import { message } from 'antd';
 import { t } from '@lingui/macro';
 import { keyBy } from 'lodash';
@@ -32,14 +32,19 @@ export default {
       }
     },
 
-    *login({ data }, { put, call }) {
+    *login({ data, resolve, reject }, { put, call }) {
       try {
         const response = yield call(accountsService.login, data);
-        yield put({ type: 'detailsSuccess', data: response });
+        localStorage.setItem('token', response.data.token);
+        localStorage.setItem('email', data.email);
+
         message.success('Login successful!', 5);
-        return response;
+
+        yield call(resolve);
+        yield put(stopSubmit('login'));
       } catch (e) {
         message.error(i18n._(t`Error logging in!`), 5);
+        yield call(reject, new SubmissionError(e.response.data));
       }
     },
 
@@ -51,6 +56,17 @@ export default {
         return response;
       } catch (e) {
         message.error(i18n._(t`Error registering!`), 5);
+      }
+    },
+
+    *logout({}, { put, call }) {
+      try {
+        localStorage.removeItem('token');
+        localStorage.removeItem('email');
+        yield put({ type: 'logoutSuccess' });
+        message.success('Logout successful!', 5);
+      } catch (e) {
+        message.error(i18n._(t`Error logging out!`), 5);
       }
     },
   },
