@@ -33,6 +33,7 @@ export default compose(
     },
     onSubmitSuccess: (result, dispatch, props) => {
       props.closeDrawer();
+      window.location.reload();
     },
   })
 )(AccountDrawer);

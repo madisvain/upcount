@@ -70,7 +70,7 @@ const NeedsToken = (visible, closeDrawer) => {
   );
 };
 
-const HasToken = (visible, closeDrawer, organizations, dispatch) => {
+const HasToken = (visible, closeDrawer, dispatch) => {
   return (
     <Drawer
       visible={visible}
@@ -82,6 +82,7 @@ const HasToken = (visible, closeDrawer, organizations, dispatch) => {
               onClick={() => {
                 dispatch({ type: 'accounts/logout' });
                 closeDrawer();
+                window.location.reload();
               }}
               style={{ float: 'right' }}
             />
@@ -96,41 +97,17 @@ const HasToken = (visible, closeDrawer, organizations, dispatch) => {
       <Title level={4} style={{ textAlign: 'center', marginTop: 100, marginBottom: 40 }}>
         <Trans>Sync enabled</Trans> <SyncOutlined />
       </Title>
-      <Switch
-        checked={true}
-        disabled={true}
-        checkedChildren={<CheckOutlined />}
-        unCheckedChildren={<CloseOutlined />}
-        style={{ marginBottom: 60, marginLeft: 'auto', marginRight: 'auto', display: 'block' }}
-      />
-      {/*<Title level={4}>Organizations</Title>
-      <List
-        itemLayout="horizontal"
-        dataSource={values(organizations.items)}
-        renderItem={item => (
-          <List.Item actions={[<SyncOutlined />]}>
-            <List.Item.Meta
-              avatar={
-                <Switch
-                  disabled={true}
-                  checkedChildren={<CheckOutlined />}
-                  unCheckedChildren={<CloseOutlined />}
-                  onChange={checked => {
-                    dispatch({
-                      type: 'organizations/setSync',
-                      payload: {
-                        id: item._id,
-                        sync: checked,
-                      },
-                    });
-                  }}
-                />
-              }
-              title={item.name}
-            />
-          </List.Item>
-        )}
-      />*/}
+      <Tooltip title="To disable syncing log out.">
+        <div>
+          <Switch
+            checked={true}
+            disabled={true}
+            checkedChildren={<CheckOutlined />}
+            unCheckedChildren={<CloseOutlined />}
+            style={{ marginBottom: 60, marginLeft: 'auto', marginRight: 'auto', display: 'block' }}
+          />
+        </div>
+      </Tooltip>
       <p style={{ marginTop: 40 }}>
         <SwapOutlined style={{ fontSize: 20, marginRight: 8, float: 'left' }} />
         Your data is always securely transfered between the hosted CouchDB server and your devices
@@ -140,9 +117,9 @@ const HasToken = (visible, closeDrawer, organizations, dispatch) => {
   );
 };
 
-const AccountDrawer = ({ visible, closeDrawer, organizations, dispatch }) => {
+const AccountDrawer = ({ visible, closeDrawer, dispatch }) => {
   return localStorage.getItem('token') && localStorage.getItem('email')
-    ? HasToken(visible, closeDrawer, organizations, dispatch)
+    ? HasToken(visible, closeDrawer, dispatch)
     : NeedsToken(visible, closeDrawer);
 };
 

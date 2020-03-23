@@ -7,6 +7,7 @@ import {
   FileOutlined,
   CalculatorOutlined,
   WarningOutlined,
+  SyncOutlined,
 } from '@ant-design/icons';
 import { Trans } from '@lingui/macro';
 import { compact, get, join, take } from 'lodash';
@@ -108,7 +109,15 @@ const Navigation = props => {
             textAlign: 'center',
           }}
         >
-          <WarningOutlined style={{ color: '#cf1322' }} /> <Trans>Not syncronized</Trans>
+          {localStorage.getItem('email') && localStorage.getItem('token') ? (
+            <div>
+              <SyncOutlined style={{ color: '#46DC8A' }} /> <Trans>Syncing</Trans>
+            </div>
+          ) : (
+            <div>
+              <WarningOutlined style={{ color: '#cf1322' }} /> <Trans>Not syncing</Trans>
+            </div>
+          )}
         </div>
       </Menu>
     </Layout.Sider>

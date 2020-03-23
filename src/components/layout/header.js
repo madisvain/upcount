@@ -55,7 +55,10 @@ class Header extends Component {
             icon={<UserOutlined />}
             style={{
               backgroundColor: '#001529',
-              color: '#46DC8A',
+              color:
+                localStorage.getItem('email') && localStorage.getItem('token')
+                  ? '#46DC8A'
+                  : '#ffffff',
               float: 'right',
               marginRight: 24,
               marginTop: 16,
