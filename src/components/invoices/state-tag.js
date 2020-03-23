@@ -29,11 +29,7 @@ const StateTag = props => {
       color = null;
   }
   return (
-    <Tag
-      color={color}
-      onClick={props.onClick}
-      style={{ fontSize: 14, padding: '4px 8px', marginTop: 12 }}
-    >
+    <Tag color={color} onClick={props.onClick}>
       {states[state]}
     </Tag>
   );

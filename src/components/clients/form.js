@@ -11,7 +11,7 @@ class ClientForm extends Component {
     const { handleSubmit, pristine, submitting } = this.props;
 
     return (
-      <Form onSubmit={handleSubmit} layout="vertical">
+      <Form onFinish={() => handleSubmit()} layout="vertical">
         <Field name="name" component={AInput} label={<Trans>Name</Trans>} validate={[required]} />
         <Field name="address" component={ATextarea} label={<Trans>Address</Trans>} rows={4} />
         <Field

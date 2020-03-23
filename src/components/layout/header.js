@@ -1,15 +1,28 @@
-import { Component } from 'react';
+import React, { Component } from 'react';
 import { compose } from 'redux';
 import { connect } from 'dva';
 import { withI18n } from '@lingui/react';
-import { Icon, Layout, Menu, Dropdown } from 'antd';
+import { Avatar, Layout, Menu, Dropdown } from 'antd';
+import {
+  MenuUnfoldOutlined,
+  MenuFoldOutlined,
+  DownOutlined,
+  SwapOutlined,
+  UserOutlined,
+} from '@ant-design/icons';
 import { get, map, upperCase } from 'lodash';
 
 import Link from 'umi/link';
 
+import AccountDrawer from '../account/drawer';
+
 const languages = ['en', 'et', 'de'];
 
 class Header extends Component {
+  state = {
+    accountDrawerVisible: false,
+  };
+
   componentDidMount() {
     this.props.dispatch({ type: 'organizations/list' });
   }
@@ -25,16 +38,36 @@ class Header extends Component {
 
     return (
       <Layout.Header style={{ background: '#fff', padding: 0 }}>
-        <Icon
-          className="trigger"
-          type={this.props.collapsed ? 'menu-unfold' : 'menu-fold'}
-          onClick={this.props.onToggl}
-          style={{
+        {React.createElement(this.props.collapsed ? MenuUnfoldOutlined : MenuFoldOutlined, {
+          className: 'trigger',
+          onClick: this.props.onToggl,
+          style: {
+            marginTop: 24,
             padding: '0 24px',
             fontSize: 18,
             cursor: 'pointer',
             transition: 'color .3s',
-          }}
+          },
+        })}
+        <Link to="#" onClick={() => this.setState({ accountDrawerVisible: true })}>
+          <Avatar
+            shape="square"
+            icon={<UserOutlined />}
+            style={{
+              backgroundColor: '#001529',
+              color:
+                localStorage.getItem('email') && localStorage.getItem('token')
+                  ? '#46DC8A'
+                  : '#ffffff',
+              float: 'right',
+              marginRight: 24,
+              marginTop: 16,
+            }}
+          />
+        </Link>
+        <AccountDrawer
+          visible={this.state.accountDrawerVisible}
+          closeDrawer={() => this.setState({ accountDrawerVisible: false })}
         />
         <Dropdown
           placement="bottomCenter"
@@ -55,7 +88,7 @@ class Header extends Component {
             style={{ color: 'rgba(0, 0, 0, 0.65)', float: 'right', marginRight: 24 }}
             onClick={e => e.preventDefault()}
           >
-            {upperCase(i18n.language)} <Icon type="down" />
+            {upperCase(i18n.language)} <DownOutlined />
           </Link>
         </Dropdown>
         <Link
@@ -69,7 +102,7 @@ class Header extends Component {
             marginRight: 24,
           }}
         >
-          <Icon type="swap" style={{ marginRight: 8 }} />
+          <SwapOutlined style={{ marginRight: 8 }} />
           {get(organization, 'name')}
         </Link>
       </Layout.Header>

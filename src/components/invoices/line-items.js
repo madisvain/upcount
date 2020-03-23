@@ -3,7 +3,8 @@ import { compose } from 'redux';
 import { connect } from 'react-redux';
 import { Field, formValueSelector, change } from 'redux-form';
 import { DndProvider, DragSource, DropTarget } from 'react-dnd';
-import { Button, Icon, Select, Table } from 'antd';
+import { MoreOutlined, DeleteOutlined } from '@ant-design/icons';
+import { Button, Select, Table } from 'antd';
 import { t, Trans } from '@lingui/macro';
 import { withI18n } from '@lingui/react';
 import { get, map } from 'lodash';
@@ -209,7 +210,7 @@ class LineItems extends Component {
             key="description"
             render={field => (
               <div>
-                <Icon type="more" style={{ position: 'absolute', marginTop: 15, left: -15 }} />
+                <MoreOutlined style={{ position: 'absolute', marginTop: 15, left: -15 }} />
                 <Field
                   name={field}
                   component={ATextarea}
@@ -290,8 +291,7 @@ class LineItems extends Component {
                     );
                   })}
                 </Field>
-                <Icon
-                  type="delete"
+                <DeleteOutlined
                   onClick={() => fields.remove(row.key)}
                   style={{ position: 'absolute', marginTop: -25, right: -20 }}
                 />

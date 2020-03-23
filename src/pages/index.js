@@ -60,7 +60,7 @@ class Index extends Component {
           <h2 style={{ marginTop: 80 }}>
             <Trans>To get started</Trans>
           </h2>
-          <Form onSubmit={handleSubmit} layout="vertical">
+          <Form onFinish={() => handleSubmit()} layout="vertical">
             <Row>
               <Col offset={8} span={8}>
                 <Field

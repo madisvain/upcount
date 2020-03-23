@@ -1,7 +1,8 @@
 import { Component } from 'react';
 import { compose } from 'redux';
 import { connect } from 'dva';
-import { Button, Icon, Input, Layout, Table, Tag, Row, Col } from 'antd';
+import { Button, Input, Layout, Table, Tag, Row, Col } from 'antd';
+import { TeamOutlined, PhoneOutlined } from '@ant-design/icons';
 import { t, Trans } from '@lingui/macro';
 import { withI18n } from '@lingui/react';
 import { compact, find, filter, flatten, get, escapeRegExp, pick, isEmpty, values } from 'lodash';
@@ -43,9 +44,9 @@ class Clients extends Component {
     return (
       <Layout.Content>
         <Row>
-          <Col>
+          <Col span={24}>
             <h2>
-              <Icon type="team" style={{ marginRight: 8 }} />
+              <TeamOutlined style={{ marginRight: 8 }} />
               <Trans>Clients</Trans>
             </h2>
           </Col>
@@ -85,7 +86,7 @@ class Clients extends Component {
               if (!isEmpty(phone)) {
                 return (
                   <a href={`tel:${phone}`}>
-                    <Icon type="phone" />
+                    <PhoneOutlined />
                     {` ${phone}`}
                   </a>
                 );

@@ -58,6 +58,7 @@ const makeField = Component => ({
             input.onChange(value);
           }
         }}
+        onBlur={() => input.onBlur()}
         children={children}
       />
     </Form.Item>

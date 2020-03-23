@@ -63,6 +63,16 @@ export default {
       }
     },
 
+    *setSync({ payload: { id, sync } }, { put, call }) {
+      try {
+        const response = yield call(organizationsService.setSync, { id, sync });
+        yield put({ type: 'syncSuccess', data: assign(response, { id: id }) });
+        message.success(i18n._(t`Organization sync ${sync ? 'enabled' : 'disabled'}!`), 5);
+      } catch (e) {
+        message.error(i18n._(t`Error setting organization sync!`), 5);
+      }
+    },
+
     *save({ data }, { put, call }) {
       try {
         const response = yield call(organizationsService.save, data);
@@ -98,6 +108,18 @@ export default {
     },
 
     logoSuccess(state, payload) {
+      const { data } = payload;
+
+      return {
+        ...state,
+        logos: {
+          ...state.logos,
+          [data.id]: URL.createObjectURL(data),
+        },
+      };
+    },
+
+    syncSuccess(state, payload) {
       const { data } = payload;
 
       return {
