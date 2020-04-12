@@ -1,4 +1,4 @@
-import { initialize } from 'redux-form';
+import { initialize, stopSubmit } from 'redux-form';
 import { message } from 'antd';
 import { t } from '@lingui/macro';
 import { assign, keyBy } from 'lodash';
@@ -23,7 +23,12 @@ export default {
       }
     },
 
-    *details({ payload: { id } }, { put, call }) {
+    *details(
+      {
+        payload: { id },
+      },
+      { put, call }
+    ) {
       try {
         const response = yield call(organizationsService.details, id);
         yield put({ type: 'detailsSuccess', data: response });
@@ -32,7 +37,12 @@ export default {
       }
     },
 
-    *initialize({ payload: { id } }, { put, call }) {
+    *initialize(
+      {
+        payload: { id },
+      },
+      { put, call }
+    ) {
       try {
         const response = yield call(organizationsService.details, id);
         yield put({ type: 'detailsSuccess', data: response });
@@ -42,7 +52,12 @@ export default {
       }
     },
 
-    *getLogo({ payload: { id } }, { put, call }) {
+    *getLogo(
+      {
+        payload: { id },
+      },
+      { put, call }
+    ) {
       try {
         const response = yield call(organizationsService.getLogo, { id });
         yield put({ type: 'logoSuccess', data: assign(response, { id }) });
@@ -53,7 +68,12 @@ export default {
       }
     },
 
-    *setLogo({ payload: { _id, _rev, file } }, { put, call }) {
+    *setLogo(
+      {
+        payload: { _id, _rev, file },
+      },
+      { put, call }
+    ) {
       try {
         const response = yield call(organizationsService.setLogo, { _id, _rev, file });
         yield put({ type: 'logoSuccess', data: assign(response, { id: _id }) });
@@ -63,7 +83,12 @@ export default {
       }
     },
 
-    *setSync({ payload: { id, sync } }, { put, call }) {
+    *setSync(
+      {
+        payload: { id, sync },
+      },
+      { put, call }
+    ) {
       try {
         const response = yield call(organizationsService.setSync, { id, sync });
         yield put({ type: 'syncSuccess', data: assign(response, { id: id }) });
@@ -73,12 +98,15 @@ export default {
       }
     },
 
-    *save({ data }, { put, call }) {
+    *save({ data, resolve, reject }, { put, call }) {
       try {
         const response = yield call(organizationsService.save, data);
         yield put({ type: 'detailsSuccess', data: response });
+
         message.success(i18n._(t`Organization saved!`), 5);
-        return response;
+
+        yield call(resolve);
+        yield put(stopSubmit('organization'));
       } catch (e) {
         message.error(i18n._(t`Error saving organization!`), 5);
       }

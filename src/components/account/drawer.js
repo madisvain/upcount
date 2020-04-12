@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { compose } from 'redux';
 import { connect } from 'dva';
-import { Button, Drawer, Switch, Tooltip, Typography } from 'antd';
+import { Button, Drawer, List, Switch, Tooltip, Typography } from 'antd';
 import {
   CheckOutlined,
   CloseOutlined,
@@ -12,7 +12,7 @@ import {
 } from '@ant-design/icons';
 import { Trans } from '@lingui/macro';
 import { withI18n } from '@lingui/react';
-import { capitalize } from 'lodash';
+import { capitalize, values } from 'lodash';
 
 import LoginForm from './login';
 import RegisterForm from './register';
@@ -70,7 +70,7 @@ const NeedsToken = (visible, closeDrawer) => {
   );
 };
 
-const HasToken = (visible, closeDrawer, dispatch) => {
+const HasToken = (visible, closeDrawer, organizations, dispatch) => {
   return (
     <Drawer
       visible={visible}
@@ -106,6 +106,36 @@ const HasToken = (visible, closeDrawer, dispatch) => {
             unCheckedChildren={<CloseOutlined />}
             style={{ marginBottom: 60, marginLeft: 'auto', marginRight: 'auto', display: 'block' }}
           />
+          <Title level={4}>
+            <Trans>Organizations</Trans>
+          </Title>
+          <List
+            itemLayout="horizontal"
+            dataSource={values(organizations.items)}
+            renderItem={item => (
+              <List.Item actions={[<SyncOutlined />]}>
+                <List.Item.Meta
+                  avatar={
+                    <Switch
+                      disabled={true}
+                      checkedChildren={<CheckOutlined />}
+                      unCheckedChildren={<CloseOutlined />}
+                      onChange={checked => {
+                        dispatch({
+                          type: 'organizations/setSync',
+                          payload: {
+                            id: item._id,
+                            sync: checked,
+                          },
+                        });
+                      }}
+                    />
+                  }
+                  title={item.name}
+                />
+              </List.Item>
+            )}
+          />
         </div>
       </Tooltip>
       <p style={{ marginTop: 40 }}>
@@ -117,9 +147,9 @@ const HasToken = (visible, closeDrawer, dispatch) => {
   );
 };
 
-const AccountDrawer = ({ visible, closeDrawer, dispatch }) => {
+const AccountDrawer = ({ visible, closeDrawer, organizations, dispatch }) => {
   return localStorage.getItem('token') && localStorage.getItem('email')
-    ? HasToken(visible, closeDrawer, dispatch)
+    ? HasToken(visible, closeDrawer, organizations, dispatch)
     : NeedsToken(visible, closeDrawer);
 };
 

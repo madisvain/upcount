@@ -82,7 +82,9 @@ export default compose(
   reduxForm({
     form: 'organization',
     onSubmit: async (data, dispatch) => {
-      return await dispatch({ type: 'organizations/save', data: data });
+      return new Promise((resolve, reject) => {
+        dispatch({ type: 'organizations/save', data: data, resolve, reject });
+      });
     },
     onSubmitSuccess: (result, dispatch) => {
       dispatch({

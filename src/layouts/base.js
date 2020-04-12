@@ -44,7 +44,10 @@ class BaseLayout extends Component {
     if (location.pathname === '/') {
       return (
         <I18nProvider i18n={i18n} catalogs={catalogs} language={language}>
-          <Layout style={{ minHeight: '100vh', margin: 0 }}>{children}</Layout>
+          <Layout style={{ minHeight: '100vh' }}>
+            <Header backgroundColor={'#f0f2f5'} collapsible={false} organizationSelect={false} />
+            {children}
+          </Layout>
         </I18nProvider>
       );
     } else if (location.pathname.includes('pdf')) {
