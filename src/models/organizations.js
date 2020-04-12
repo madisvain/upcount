@@ -76,23 +76,18 @@ export default {
     ) {
       try {
         const response = yield call(organizationsService.setLogo, { _id, _rev, file });
-        yield put({ type: 'logoSuccess', data: assign(response, { id: _id }) });
+        yield put({ type: 'logoSuccess', data: assign(response) });
         message.success(i18n._(t`Organization logo set!`), 5);
       } catch (e) {
         message.error(i18n._(t`Error setting organization logo!`), 5);
       }
     },
 
-    *setSync(
-      {
-        payload: { id, sync },
-      },
-      { put, call }
-    ) {
+    *setSync({ data, resolve, reject }, { put, call }) {
       try {
-        const response = yield call(organizationsService.setSync, { id, sync });
-        yield put({ type: 'syncSuccess', data: assign(response, { id: id }) });
-        message.success(i18n._(t`Organization sync ${sync ? 'enabled' : 'disabled'}!`), 5);
+        const response = yield call(organizationsService.save, data);
+        yield put({ type: 'detailsSuccess', data: response });
+        message.success(i18n._(t`Organization sync ${data.sync ? 'enabled' : 'disabled'}!`), 5);
       } catch (e) {
         message.error(i18n._(t`Error setting organization sync!`), 5);
       }
@@ -136,18 +131,6 @@ export default {
     },
 
     logoSuccess(state, payload) {
-      const { data } = payload;
-
-      return {
-        ...state,
-        logos: {
-          ...state.logos,
-          [data.id]: URL.createObjectURL(data),
-        },
-      };
-    },
-
-    syncSuccess(state, payload) {
       const { data } = payload;
 
       return {

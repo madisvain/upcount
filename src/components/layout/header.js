@@ -40,6 +40,7 @@ class Header extends Component {
       organizations,
       organizationSelect,
       languageSelect,
+      logo,
     } = this.props;
     const organization = get(organizations.items, localStorage.getItem('organization'));
 
@@ -58,6 +59,13 @@ class Header extends Component {
               },
             })
           : null}
+        {logo ? (
+          <img
+            src={require(`../../assets/logo-dark.svg`)}
+            alt="Upcount"
+            style={{ marginLeft: 24 }}
+          />
+        ) : null}
         <Link to="#" onClick={() => this.setState({ accountDrawerVisible: true })}>
           <Avatar
             shape="square"
@@ -128,6 +136,7 @@ Header.defaultProps = {
   collapsible: true,
   organizationSelect: true,
   languageSelect: true,
+  logo: false,
 };
 
 export default compose(

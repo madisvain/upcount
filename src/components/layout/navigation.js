@@ -1,3 +1,4 @@
+import { connect } from 'dva';
 import { Menu, Layout } from 'antd';
 import {
   FileTextOutlined,
@@ -24,6 +25,8 @@ const Navigation = props => {
   const openKeys = pathArr[0] === 'settings' ? ['settings'] : [];
   const selectedKeys = [join(take(compact(pathArr), 2), '.')];
 
+  const organization = get(props.organizations.items, localStorage.getItem('organization'));
+
   return (
     <Layout.Sider
       trigger={null}
@@ -38,7 +41,7 @@ const Navigation = props => {
       }}
     >
       <div className="logo" style={{ height: 22, margin: '21px 16px', textAlign: 'center' }}>
-        <Link to="/invoices">
+        <Link to="/">
           {props.collapsed ? (
             <img src={require(`../../assets/logo-minimal.svg`)} alt="Upcount" />
           ) : (
@@ -109,7 +112,9 @@ const Navigation = props => {
             textAlign: 'center',
           }}
         >
-          {localStorage.getItem('email') && localStorage.getItem('token') ? (
+          {localStorage.getItem('email') &&
+          localStorage.getItem('token') &&
+          get(organization, 'sync', false) ? (
             <div>
               <SyncOutlined style={{ color: '#46DC8A' }} /> <Trans>Syncing</Trans>
             </div>
@@ -124,4 +129,6 @@ const Navigation = props => {
   );
 };
 
-export default withRouter(Navigation);
+export default connect(state => ({
+  organizations: state.organizations,
+}))(withRouter(Navigation));

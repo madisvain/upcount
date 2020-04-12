@@ -1,5 +1,4 @@
 import { assign, has } from 'lodash';
-
 import db from '../db';
 
 export async function list(sort) {
@@ -34,7 +33,7 @@ export async function details(id) {
 
 export async function getLogo(data) {
   const { id } = data;
-  return await await db.getAttachment(id, 'logo');
+  return await db.getAttachment(id, 'logo');
 }
 
 export async function setLogo(data) {
@@ -42,14 +41,6 @@ export async function setLogo(data) {
   try {
     const response = await db.putAttachment(_id, 'logo', _rev, file, file.type);
     return await db.getAttachment(response.id, 'logo');
-  } catch (error) {
-    console.log(error);
-  }
-}
-
-export async function setSync(data) {
-  // const { id, sync } = data;
-  try {
   } catch (error) {
     console.log(error);
   }

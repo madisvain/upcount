@@ -12,7 +12,7 @@ import {
 } from '@ant-design/icons';
 import { Trans } from '@lingui/macro';
 import { withI18n } from '@lingui/react';
-import { capitalize, values } from 'lodash';
+import { assign, capitalize, get, values } from 'lodash';
 
 import LoginForm from './login';
 import RegisterForm from './register';
@@ -94,50 +94,36 @@ const HasToken = (visible, closeDrawer, organizations, dispatch) => {
       onClose={closeDrawer}
       width={500}
     >
-      <Title level={4} style={{ textAlign: 'center', marginTop: 100, marginBottom: 40 }}>
-        <Trans>Sync enabled</Trans> <SyncOutlined />
-      </Title>
-      <Tooltip title="To disable syncing log out.">
-        <div>
-          <Switch
-            checked={true}
-            disabled={true}
-            checkedChildren={<CheckOutlined />}
-            unCheckedChildren={<CloseOutlined />}
-            style={{ marginBottom: 60, marginLeft: 'auto', marginRight: 'auto', display: 'block' }}
-          />
-          <Title level={4}>
-            <Trans>Organizations</Trans>
-          </Title>
-          <List
-            itemLayout="horizontal"
-            dataSource={values(organizations.items)}
-            renderItem={item => (
-              <List.Item actions={[<SyncOutlined />]}>
-                <List.Item.Meta
-                  avatar={
-                    <Switch
-                      disabled={true}
-                      checkedChildren={<CheckOutlined />}
-                      unCheckedChildren={<CloseOutlined />}
-                      onChange={checked => {
-                        dispatch({
-                          type: 'organizations/setSync',
-                          payload: {
-                            id: item._id,
-                            sync: checked,
-                          },
-                        });
-                      }}
-                    />
-                  }
-                  title={item.name}
-                />
-              </List.Item>
-            )}
-          />
-        </div>
-      </Tooltip>
+      <div>
+        <Title level={4}>
+          <Trans>Organizations syncing</Trans>
+        </Title>
+        <p>Toggle the organizations you want to enable syncronization for.</p>
+        <List
+          itemLayout="horizontal"
+          dataSource={values(organizations.items)}
+          renderItem={organization => (
+            <List.Item actions={[<SyncOutlined />]}>
+              <List.Item.Meta
+                avatar={
+                  <Switch
+                    checked={get(organization, 'sync', false)}
+                    checkedChildren={<CheckOutlined />}
+                    unCheckedChildren={<CloseOutlined />}
+                    onChange={checked => {
+                      dispatch({
+                        type: 'organizations/setSync',
+                        data: assign(organization, { sync: checked }),
+                      });
+                    }}
+                  />
+                }
+                title={organization.name}
+              />
+            </List.Item>
+          )}
+        />
+      </div>
       <p style={{ marginTop: 40 }}>
         <SwapOutlined style={{ fontSize: 20, marginRight: 8, float: 'left' }} />
         Your data is always securely transfered between the hosted CouchDB server and your devices

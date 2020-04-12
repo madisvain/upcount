@@ -45,7 +45,12 @@ class BaseLayout extends Component {
       return (
         <I18nProvider i18n={i18n} catalogs={catalogs} language={language}>
           <Layout style={{ minHeight: '100vh' }}>
-            <Header backgroundColor={'#f0f2f5'} collapsible={false} organizationSelect={false} />
+            <Header
+              backgroundColor={'#f0f2f5'}
+              collapsible={false}
+              organizationSelect={false}
+              logo={true}
+            />
             {children}
           </Layout>
         </I18nProvider>
