@@ -14,6 +14,7 @@ import { Trans } from '@lingui/macro';
 import { compact, get, join, take } from 'lodash';
 
 import Link from 'umi/link';
+import moment from 'moment';
 import withRouter from 'umi/withRouter';
 import pathToRegexp from 'path-to-regexp';
 
@@ -106,7 +107,7 @@ const Navigation = props => {
           style={{
             position: 'fixed',
             left: 0,
-            bottom: 24,
+            bottom: 34,
             zIndex: 10,
             width: props.collapsed ? 80 : 200,
             textAlign: 'center',
@@ -116,7 +117,14 @@ const Navigation = props => {
           localStorage.getItem('token') &&
           get(organization, 'sync', false) ? (
             <div>
-              <SyncOutlined style={{ color: '#46DC8A' }} /> <Trans>Syncing</Trans>
+              <SyncOutlined style={{ color: '#46DC8A' }} /> <Trans>Latest sync</Trans>
+              <div style={{ fontSize: 10, paddingTop: 10 }}>
+                {get(JSON.parse(localStorage.getItem('syncedAt')), organization._id)
+                  ? moment(
+                      get(JSON.parse(localStorage.getItem('syncedAt')), organization._id)
+                    ).format('YYYY-MM-DD HH:mm')
+                  : '-'}
+              </div>
             </div>
           ) : (
             <div>

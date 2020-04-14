@@ -14,6 +14,8 @@ import { Trans } from '@lingui/macro';
 import { withI18n } from '@lingui/react';
 import { assign, capitalize, get, values } from 'lodash';
 
+import moment from 'moment';
+
 import LoginForm from './login';
 import RegisterForm from './register';
 
@@ -103,7 +105,20 @@ const HasToken = (visible, closeDrawer, organizations, dispatch) => {
           itemLayout="horizontal"
           dataSource={values(organizations.items)}
           renderItem={organization => (
-            <List.Item actions={[<SyncOutlined />]}>
+            <List.Item
+              actions={[
+                organization.sync ? (
+                  <div>
+                    {get(JSON.parse(localStorage.getItem('syncedAt')), organization._id)
+                      ? moment(
+                          get(JSON.parse(localStorage.getItem('syncedAt')), organization._id)
+                        ).format('YYYY-MM-DD HH:mm')
+                      : '-'}{' '}
+                    <SyncOutlined />
+                  </div>
+                ) : null,
+              ]}
+            >
               <List.Item.Meta
                 avatar={
                   <Switch

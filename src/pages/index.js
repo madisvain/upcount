@@ -27,6 +27,7 @@ class Index extends Component {
     router.push({
       pathname: '/invoices',
     });
+    window.location.reload();
   };
 
   render() {

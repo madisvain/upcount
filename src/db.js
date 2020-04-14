@@ -1,5 +1,6 @@
 import PouchDB from 'pouchdb';
 import PouchDBFind from 'pouchdb-find';
+import { assignIn } from 'lodash';
 
 import api from './api';
 
@@ -32,20 +33,29 @@ if (
             db.sync(couchDB, {
               live: true,
               retry: true,
+              filter: doc => {
+                return doc.organization === organization._id || doc._id === organization._id;
+              },
             })
               .on('change', function(change) {
-                console.log(change);
+                console.log('Change:', change);
+                // Update syncedAt timestamps
+                const syncedAt = JSON.parse(localStorage.getItem('syncedAt')) || {};
+                localStorage.setItem(
+                  'syncedAt',
+                  JSON.stringify(assignIn(syncedAt, { [organization._id]: new Date() }))
+                );
               })
               .on('paused', function(info) {
-                console.log(info);
+                console.log('Sync paused:', info);
               })
               .on('active', function(info) {
-                console.log(info);
+                console.log('Sync active:', info);
               })
               .on('error', function(err) {
-                console.log(err);
+                console.log('Sync error:', err);
               });
-          }, 5000);
+          }, 2000);
         })
         .catch(function(error) {
           console.log(error);
