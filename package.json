@@ -2,7 +2,7 @@
   "name": "upcount",
   "author": "Madis Vain <madisvain@gmail.com>",
   "description": "Invoicing for freelancers & small businesses",
-  "version": "0.6.0",
+  "version": "0.7.0",
   "private": true,
   "scripts": {
     "renderer:dev": "umi dev",
