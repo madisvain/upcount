@@ -5,14 +5,17 @@ import { I18nProvider } from '@lingui/react';
 
 import Header from '../components/layout/header';
 import Navigation from '../components/layout/navigation';
+import OrganizationProvider from '../providers/organization';
 
 export const i18n = setupI18n();
+const languages = ['en', 'et', 'de'];
 
+// Base layout
 class BaseLayout extends Component {
   state = {
-    language: localStorage.getItem('language') || 'en',
     collapsed: false,
     catalogs: {},
+    language: localStorage.getItem('language') || 'en',
   };
 
   componentDidMount() {
@@ -30,6 +33,12 @@ class BaseLayout extends Component {
     }));
   };
 
+  setLanguage = async language => {
+    await this.loadLanguage(language);
+    this.setState({ language });
+    localStorage.setItem('language', language);
+  };
+
   toggleSider = () => {
     this.setState({
       collapsed: !this.state.collapsed,
@@ -44,15 +53,19 @@ class BaseLayout extends Component {
     if (location.pathname === '/') {
       return (
         <I18nProvider i18n={i18n} catalogs={catalogs} language={language}>
-          <Layout style={{ minHeight: '100vh' }}>
-            <Header
-              backgroundColor={'#f0f2f5'}
-              collapsible={false}
-              organizationSelect={false}
-              logo={true}
-            />
-            {children}
-          </Layout>
+          <OrganizationProvider>
+            <Layout style={{ minHeight: '100vh' }}>
+              <Header
+                backgroundColor={'#f0f2f5'}
+                collapsible={false}
+                organizationSelect={false}
+                logo={true}
+                languages={languages}
+                setLanguage={this.setLanguage}
+              />
+              {children}
+            </Layout>
+          </OrganizationProvider>
         </I18nProvider>
       );
     } else if (location.pathname.includes('pdf')) {
@@ -64,13 +77,22 @@ class BaseLayout extends Component {
     } else {
       return (
         <I18nProvider i18n={i18n} catalogs={catalogs} language={language}>
-          <Layout style={{ minHeight: '100vh' }}>
-            <Navigation collapsed={this.state.collapsed} />
-            <Layout style={{ marginLeft: this.state.collapsed ? 80 : 200, transition: 'all 0.2s' }}>
-              <Header collapsed={this.state.collapsed} onToggl={this.toggleSider} />
-              {children}
+          <OrganizationProvider>
+            <Layout style={{ minHeight: '100vh' }}>
+              <Navigation collapsed={this.state.collapsed} />
+              <Layout
+                style={{ marginLeft: this.state.collapsed ? 80 : 200, transition: 'all 0.2s' }}
+              >
+                <Header
+                  collapsed={this.state.collapsed}
+                  onToggl={this.toggleSider}
+                  languages={languages}
+                  setLanguage={this.setLanguage}
+                />
+                {children}
+              </Layout>
             </Layout>
-          </Layout>
+          </OrganizationProvider>
         </I18nProvider>
       );
     }

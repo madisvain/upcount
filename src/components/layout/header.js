@@ -1,6 +1,4 @@
 import React, { Component } from 'react';
-import { compose } from 'redux';
-import { connect } from 'dva';
 import { withI18n } from '@lingui/react';
 import { Avatar, Layout, Menu, Dropdown } from 'antd';
 import {
@@ -15,21 +13,11 @@ import { get, map, upperCase } from 'lodash';
 import Link from 'umi/link';
 
 import AccountDrawer from '../account/drawer';
-
-const languages = ['en', 'et', 'de'];
+import { OrganizationContext } from '../../providers/contexts';
 
 class Header extends Component {
   state = {
     accountDrawerVisible: false,
-  };
-
-  componentDidMount() {
-    this.props.dispatch({ type: 'organizations/list' });
-  }
-
-  setLanguage = language => {
-    localStorage.setItem('language', language);
-    window.location.reload();
   };
 
   render() {
@@ -37,12 +25,12 @@ class Header extends Component {
       backgroundColor,
       collapsible,
       i18n,
-      organizations,
       organizationSelect,
+      languages,
       languageSelect,
+      setLanguage,
       logo,
     } = this.props;
-    const organization = get(organizations.items, localStorage.getItem('organization'));
 
     return (
       <Layout.Header style={{ background: backgroundColor, padding: 0 }}>
@@ -93,7 +81,7 @@ class Header extends Component {
               <Menu>
                 {map(languages, language => {
                   return (
-                    <Menu.Item key={language} onClick={() => this.setLanguage(language)}>
+                    <Menu.Item key={language} onClick={() => setLanguage(language)}>
                       {upperCase(language)}
                     </Menu.Item>
                   );
@@ -111,20 +99,24 @@ class Header extends Component {
           </Dropdown>
         ) : null}
         {organizationSelect ? (
-          <Link
-            to="/"
-            style={{
-              float: 'right',
-              color: 'rgba(0, 0, 0, 0.65)',
-              fontSize: 15,
-              display: 'inline-block',
-              lineHeight: '64px',
-              marginRight: 24,
-            }}
-          >
-            <SwapOutlined style={{ marginRight: 8 }} />
-            {get(organization, 'name')}
-          </Link>
+          <OrganizationContext.Consumer>
+            {context => (
+              <Link
+                to="/"
+                style={{
+                  float: 'right',
+                  color: 'rgba(0, 0, 0, 0.65)',
+                  fontSize: 15,
+                  display: 'inline-block',
+                  lineHeight: '64px',
+                  marginRight: 24,
+                }}
+              >
+                <SwapOutlined style={{ marginRight: 8 }} />
+                {get(context.state, 'organization.name')}
+              </Link>
+            )}
+          </OrganizationContext.Consumer>
         ) : null}
       </Layout.Header>
     );
@@ -139,9 +131,4 @@ Header.defaultProps = {
   logo: false,
 };
 
-export default compose(
-  withI18n(),
-  connect(state => ({
-    organizations: state.organizations,
-  }))
-)(Header);
+export default withI18n()(Header);
