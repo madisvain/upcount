@@ -49,7 +49,7 @@ class Index extends Component {
                     <Trans>New organization</Trans>
                   </Button>
                   <Modal
-                    title="New organization"
+                    title={i18n._(t`New organization`)}
                     visible={organizationModal}
                     okText={<Trans>Create an organization</Trans>}
                     onOk={() => handleSubmit()}

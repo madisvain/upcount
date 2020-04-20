@@ -14,7 +14,7 @@ msgstr ""
 "Plural-Forms: \n"
 "MIME-Version: 1.0\n"
 
-#: src/layouts/electron.js:32
+#: src/layouts/electron.js:34
 msgid "A new version of Upcount is available. Downloading now ..."
 msgstr "Uus versioon Upcountist on saadaval. Laadin alla ..."
 
@@ -32,87 +32,100 @@ msgid "Add tax"
 msgstr "Lisa maksumäär"
 
 #: src/components/clients/form.js:16
-#: src/pages/clients/_layout.js:73
-#: src/pages/settings/organization/_layout.js:39
+#: src/pages/clients/_layout.js:74
+#: src/pages/settings/organization/_layout.js:35
 msgid "Address"
 msgstr "Aadress"
 
-#: src/pages/settings/organization/_layout.js:50
+#: src/pages/settings/organization/_layout.js:45
 msgid "Bank name"
 msgstr "Panga nimi"
 
-#: src/pages/invoices/$id/_layout.js:182
-#: src/pages/invoices/index.js:143
+#: src/pages/settings/invoice/_layout.js:117
+msgid "Change"
+msgstr ""
+
+#: src/pages/invoices/$id/_layout.js:188
+#: src/pages/invoices/index.js:144
 msgid "Client"
 msgstr "Klient"
 
-#: src/components/layout/navigation.js:42
-#: src/pages/clients/_layout.js:49
+#: src/models/clients.js:49
+msgid "Client saved!"
+msgstr ""
+
+#: src/components/layout/navigation.js:71
+#: src/pages/clients/_layout.js:50
 msgid "Clients"
 msgstr "Kliendid"
 
 #: src/components/invoices/state-tag.js:6
-#: src/pages/invoices/$id/_layout.js:134
-#: src/pages/invoices/index.js:74
-#: src/pages/invoices/index.js:92
+#: src/pages/invoices/$id/_layout.js:142
+#: src/pages/invoices/index.js:75
+#: src/pages/invoices/index.js:93
 msgid "Confirmed"
 msgstr "Kinnitatud"
 
-#: src/pages/index.js:82
+#: src/pages/index.js:54
+#: src/pages/index.js:123
 msgid "Create an organization"
 msgstr "Loo organisatsioon"
 
-#: src/pages/invoices/$id/_layout.js:202
+#: src/pages/invoices/$id/_layout.js:208
 msgid "Create new client"
 msgstr "Loo uus klient"
 
-#: src/pages/invoices/$id/_layout.js:221
+#: src/pages/invoices/$id/_layout.js:225
 msgid "Currency"
 msgstr "Valuuta"
 
-#: src/pages/invoices/$id/_layout.js:263
+#: src/pages/invoices/$id/_layout.js:267
 msgid "Customer note"
 msgstr "Kliendi märkus"
 
-#: src/pages/invoices/$id/_layout.js:237
-#: src/pages/invoices/$id/pdf.js:176
-#: src/pages/invoices/index.js:150
+#: src/pages/invoices/$id/_layout.js:241
+#: src/pages/invoices/$id/pdf.js:182
+#: src/pages/invoices/index.js:151
 msgid "Date"
 msgstr "Kuupäev"
 
-#: src/pages/settings/invoice/_layout.js:62
+#: src/pages/settings/invoice/_layout.js:77
+msgid "Decimal places"
+msgstr ""
+
+#: src/pages/settings/invoice/_layout.js:63
 msgid "Default currency"
 msgstr "Vaikimisi valuuta"
 
-#: src/pages/invoices/$id/_layout.js:310
+#: src/pages/invoices/$id/_layout.js:313
 msgid "Delete"
 msgstr "Kustuta"
 
-#: src/components/invoices/line-items.js:207
-#: src/pages/invoices/$id/pdf.js:207
+#: src/components/invoices/line-items.js:208
+#: src/pages/invoices/$id/pdf.js:213
 #: src/pages/settings/tax-rates/$id.js:59
-#: src/pages/settings/tax-rates/_layout.js:58
+#: src/pages/settings/tax-rates/_layout.js:60
 msgid "Description"
 msgstr "Kirjeldus"
 
 #: src/components/invoices/state-tag.js:5
-#: src/pages/invoices/$id/_layout.js:131
-#: src/pages/invoices/index.js:71
-#: src/pages/invoices/index.js:88
+#: src/pages/invoices/$id/_layout.js:139
+#: src/pages/invoices/index.js:72
+#: src/pages/invoices/index.js:89
 msgid "Draft"
 msgstr "Mustand"
 
-#: src/pages/invoices/$id/_layout.js:246
-#: src/pages/invoices/$id/pdf.js:183
-#: src/pages/invoices/index.js:157
+#: src/pages/invoices/$id/_layout.js:250
+#: src/pages/invoices/$id/pdf.js:189
+#: src/pages/invoices/index.js:158
 msgid "Due date"
 msgstr "Makse tähtaeg"
 
-#: src/pages/settings/invoice/_layout.js:71
+#: src/pages/settings/invoice/_layout.js:79
 msgid "Due days"
 msgstr "Makse päevades"
 
-#: src/pages/invoices/$id/preview.js:27
+#: src/pages/invoices/$id/preview.js:28
 msgid "Edit"
 msgstr "Muuda"
 
@@ -124,12 +137,14 @@ msgstr "Muuda klienti"
 msgid "Edit tax"
 msgstr "Muuda maksumäära"
 
-#: src/pages/settings/organization/_layout.js:41
+#: src/components/account/login.js:11
+#: src/components/account/register.js:12
+#: src/pages/settings/organization/_layout.js:36
 msgid "Email"
 msgstr "E-post"
 
 #: src/components/clients/form.js:22
-#: src/pages/clients/_layout.js:75
+#: src/pages/clients/_layout.js:76
 msgid "Emails"
 msgstr "E-postid"
 
@@ -141,7 +156,7 @@ msgstr "Viga arve staatuse muutmisel!"
 msgid "Error deleting invoice!"
 msgstr "Viga arve kustutamisel!"
 
-#: src/models/organizations.js:51
+#: src/models/organizations.js:66
 msgid "Error getting organization logo!"
 msgstr "Viga organisatsiooni logo laadimisel!"
 
@@ -153,13 +168,21 @@ msgstr "Viga kliendi vormi laadimisel!"
 msgid "Error initializing invoice form!"
 msgstr "Viga arve vormi laadimisel!"
 
-#: src/models/organizations.js:41
+#: src/models/organizations.js:51
 msgid "Error initializing organization form!"
 msgstr "Viga organisatsiooni vormi laadimisel!"
 
 #: src/models/tax-rates.js:41
 msgid "Error initializing tax rate form!"
 msgstr "Viga maksumäära vormi laadimisel!"
+
+#: src/models/accounts.js:31
+msgid "Error loading account details!"
+msgstr ""
+
+#: src/models/accounts.js:22
+msgid "Error loading accounts list!"
+msgstr ""
 
 #: src/models/clients.js:31
 msgid "Error loading client details!"
@@ -177,7 +200,7 @@ msgstr "Viga arve detailide laadimisel!"
 msgid "Error loading invoices list!"
 msgstr "Viga arvete nimekirja laadimisel!"
 
-#: src/models/organizations.js:31
+#: src/models/organizations.js:36
 msgid "Error loading organization details!"
 msgstr "Viga organisatsiooni detailide laadimisel!"
 
@@ -193,6 +216,18 @@ msgstr "Viga maksumäära detailide laadimisel!"
 msgid "Error loading tax rates list!"
 msgstr "Viga maksumäärade nimekirja laadimisel!"
 
+#: src/models/accounts.js:46
+msgid "Error logging in!"
+msgstr ""
+
+#: src/models/accounts.js:69
+msgid "Error logging out!"
+msgstr ""
+
+#: src/models/accounts.js:58
+msgid "Error registering!"
+msgstr ""
+
 #: src/models/clients.js:52
 msgid "Error saving client!"
 msgstr "Viga kliendi salvestamisel!"
@@ -201,7 +236,7 @@ msgstr "Viga kliendi salvestamisel!"
 msgid "Error saving invoice!"
 msgstr "Viga arve salvestamisel!"
 
-#: src/models/organizations.js:73
+#: src/models/organizations.js:106
 msgid "Error saving organization!"
 msgstr "Viga organisatsiooni salvestamisel!"
 
@@ -209,11 +244,15 @@ msgstr "Viga organisatsiooni salvestamisel!"
 msgid "Error saving tax rate!"
 msgstr "Viga maksumäära salvestamisel!"
 
-#: src/models/organizations.js:62
+#: src/models/organizations.js:82
 msgid "Error setting organization logo!"
 msgstr "Viga organisatsiooni logo määramisel!"
 
-#: src/pages/settings/organization/_layout.js:53
+#: src/models/organizations.js:92
+msgid "Error setting organization sync!"
+msgstr ""
+
+#: src/pages/settings/organization/_layout.js:50
 msgid "IBAN"
 msgstr "IBAN"
 
@@ -222,8 +261,8 @@ msgstr "IBAN"
 msgid "Invalid email address"
 msgstr "Ebakorrektne e-posti aadress"
 
-#: src/components/layout/navigation.js:62
-#: src/pages/invoices/$id/pdf.js:113
+#: src/components/layout/navigation.js:95
+#: src/pages/invoices/$id/pdf.js:119
 msgid "Invoice"
 msgstr "Arve"
 
@@ -231,11 +270,11 @@ msgstr "Arve"
 msgid "Invoice deleted!"
 msgstr "Arve kustutatud!"
 
-#: src/pages/settings/invoice/_layout.js:56
+#: src/pages/settings/invoice/_layout.js:57
 msgid "Invoice details"
 msgstr "Arve detailid"
 
-#: src/pages/invoices/$id/_layout.js:212
+#: src/pages/invoices/$id/_layout.js:216
 msgid "Invoice number"
 msgstr "Arve number"
 
@@ -247,120 +286,180 @@ msgstr "Arve salvestatud!"
 msgid "Invoice state changed!"
 msgstr "Arve staatus muudetud!"
 
-#: src/components/layout/navigation.js:34
-#: src/pages/invoices/index.js:111
+#: src/components/layout/navigation.js:63
+#: src/pages/invoices/index.js:112
 msgid "Invoices"
 msgstr "Arved"
 
-#: src/pages/settings/invoice/_layout.js:99
+#: src/components/layout/navigation.js:120
+msgid "Latest sync"
+msgstr ""
+
+#: src/components/account/drawer.js:42
+#: src/components/account/login.js:20
+msgid "Log in"
+msgstr ""
+
+#: src/models/accounts.js:41
+msgid "Login successful!"
+msgstr ""
+
+#: src/pages/settings/invoice/_layout.js:107
 msgid "Logo"
 msgstr "Logo"
 
+#: src/models/accounts.js:67
+msgid "Logout successful!"
+msgstr ""
+
 #: src/components/clients/form.js:15
-#: src/pages/clients/_layout.js:69
+#: src/pages/clients/_layout.js:70
 #: src/pages/settings/organization/_layout.js:34
 #: src/pages/settings/tax-rates/$id.js:55
-#: src/pages/settings/tax-rates/_layout.js:51
+#: src/pages/settings/tax-rates/_layout.js:53
 msgid "Name"
 msgstr "Nimi"
 
-#: src/pages/clients/_layout.js:55
+#: src/pages/clients/_layout.js:56
 msgid "New client"
 msgstr "Uus klient"
 
-#: src/pages/invoices/index.js:117
+#: src/pages/invoices/index.js:118
 msgid "New invoice"
 msgstr "Uus arve"
 
-#: src/pages/settings/tax-rates/_layout.js:35
+#: src/pages/index.js:49
+msgid "New organization"
+msgstr ""
+
+#: src/pages/settings/tax-rates/_layout.js:36
 msgid "New tax"
 msgstr "Uus maksumäär"
 
-#: src/pages/settings/invoice/_layout.js:77
+#: src/components/layout/navigation.js:131
+msgid "Not syncing"
+msgstr ""
+
+#: src/pages/settings/invoice/_layout.js:85
 msgid "Notes"
 msgstr "Märkused"
 
-#: src/pages/invoices/index.js:132
+#: src/pages/invoices/index.js:133
 msgid "Number"
 msgstr "Number"
 
-#: src/components/layout/navigation.js:57
+#: src/components/layout/navigation.js:89
 msgid "Organization"
 msgstr "Organisatsioon"
 
-#: src/pages/settings/organization/_layout.js:31
+#: src/pages/settings/organization/_layout.js:32
 msgid "Organization details"
 msgstr "Organisatsiooni detailid"
 
-#: src/models/organizations.js:60
+#: src/models/organizations.js:80
 msgid "Organization logo set!"
 msgstr "Organisatsiooni logo määratud!"
 
-#: src/pages/index.js:70
+#: src/pages/index.js:63
+#: src/pages/index.js:111
 msgid "Organization name"
 msgstr "Organisatsiooni nimi"
 
-#: src/models/organizations.js:70
+#: src/models/organizations.js:101
 msgid "Organization saved!"
 msgstr "Organisatsioon salvestatud!"
 
-#: src/pages/index.js:33
+#: src/models/organizations.js:90
+msgid "Organization sync disabled!"
+msgstr ""
+
+#: src/models/organizations.js:90
+msgid "Organization sync enabled!"
+msgstr ""
+
+#: src/models/organizations.js:90
+#~ msgid "Organization sync {0}!"
+#~ msgstr ""
+
+#: src/pages/index.js:43
 msgid "Organizations"
 msgstr "Organisatsioonid"
 
-#: src/pages/invoices/$id/pdf.js:191
-#: src/pages/settings/invoice/_layout.js:75
+#: src/components/account/drawer.js:102
+msgid "Organizations syncing"
+msgstr ""
+
+#: src/pages/invoices/$id/pdf.js:197
+#: src/pages/settings/invoice/_layout.js:83
 msgid "Overdue charge"
 msgstr "Viivis"
 
-#: src/pages/invoices/$id/_layout.js:335
-#: src/pages/invoices/$id/preview.js:35
+#: src/pages/invoices/$id/_layout.js:336
+#: src/pages/invoices/$id/preview.js:36
 msgid "PDF"
 msgstr "PDF"
 
 #: src/components/invoices/state-tag.js:7
-#: src/pages/invoices/$id/_layout.js:137
-#: src/pages/invoices/index.js:77
-#: src/pages/invoices/index.js:96
+#: src/pages/invoices/$id/_layout.js:145
+#: src/pages/invoices/index.js:78
+#: src/pages/invoices/index.js:97
 msgid "Paid"
 msgstr "Tasutud"
 
+#: src/components/account/login.js:12
+#: src/components/account/register.js:13
+msgid "Password"
+msgstr ""
+
 #: src/pages/settings/tax-rates/$id.js:62
-#: src/pages/settings/tax-rates/_layout.js:63
+#: src/pages/settings/tax-rates/_layout.js:65
 msgid "Percentage"
 msgstr "Protsent"
 
 #: src/components/clients/form.js:25
-#: src/pages/clients/_layout.js:81
-#: src/pages/settings/organization/_layout.js:42
+#: src/pages/clients/_layout.js:82
+#: src/pages/settings/organization/_layout.js:37
 msgid "Phone"
 msgstr "Telefon"
 
-#: src/components/invoices/line-items.js:240
-#: src/pages/invoices/$id/pdf.js:213
+#: src/components/invoices/line-items.js:241
+#: src/pages/invoices/$id/pdf.js:219
 msgid "Price"
 msgstr "Hind"
 
-#: src/components/invoices/line-items.js:223
-#: src/pages/invoices/$id/pdf.js:210
+#: src/components/invoices/line-items.js:224
+#: src/pages/invoices/$id/pdf.js:216
 msgid "Quantity"
 msgstr "Kogus"
 
-#: src/pages/invoices/$id/pdf.js:285
+#: src/pages/invoices/$id/pdf.js:333
 msgid "Reg. nr."
 msgstr "Reg. nr."
 
-#: src/pages/settings/organization/_layout.js:46
+#: src/components/account/drawer.js:45
+#: src/components/account/register.js:21
+msgid "Register"
+msgstr ""
+
+#: src/components/account/drawer.js:64
+msgid "Registering an Upcount account will allow you to syncronize your data between computers and provides a secure backup."
+msgstr ""
+
+#: src/pages/settings/organization/_layout.js:41
 msgid "Registration number"
 msgstr "Registreerimis number"
 
-#: src/layouts/electron.js:47
+#: src/models/accounts.js:55
+msgid "Registration successful!"
+msgstr ""
+
+#: src/layouts/electron.js:49
 msgid "Restart"
 msgstr "Taaskäivita"
 
 #: src/pages/invoices/$id/_layout.js:346
-#: src/pages/settings/invoice/_layout.js:89
-#: src/pages/settings/organization/_layout.js:71
+#: src/pages/settings/invoice/_layout.js:97
+#: src/pages/settings/organization/_layout.js:68
 msgid "Save"
 msgstr "Salvesta"
 
@@ -372,36 +471,37 @@ msgstr "Salvesta klient"
 msgid "Save tax rate"
 msgstr "Salvesta maksumäär"
 
-#: src/pages/clients/_layout.js:59
-#: src/pages/invoices/index.js:121
+#: src/pages/clients/_layout.js:60
+#: src/pages/invoices/index.js:122
 msgid "Search text"
 msgstr "Otsingu sisu"
 
-#: src/pages/invoices/$id/_layout.js:180
+#: src/pages/invoices/$id/_layout.js:186
 msgid "Select or create a client"
 msgstr "Vali või loo klient"
 
-#: src/components/layout/navigation.js:51
+#: src/components/layout/navigation.js:81
 msgid "Settings"
 msgstr "Seadistused"
 
-#: src/pages/invoices/index.js:171
+#: src/pages/invoices/index.js:172
 msgid "State"
 msgstr "Staatus"
 
-#: src/components/invoices/line-items.js:257
-#: src/pages/invoices/$id/_layout.js:273
-#: src/pages/invoices/$id/pdf.js:224
+#: src/components/invoices/line-items.js:258
+#: src/pages/invoices/$id/_layout.js:277
+#: src/pages/invoices/$id/pdf.js:230
 msgid "Subtotal"
 msgstr "Vahesumma"
 
-#: src/pages/invoices/$id/pdf.js:216
-#: src/pages/invoices/index.js:164
+#: src/pages/invoices/$id/pdf.js:222
+#: src/pages/invoices/index.js:165
 msgid "Sum"
 msgstr "Summa"
 
-#: src/components/invoices/line-items.js:274
-#: src/pages/invoices/$id/_layout.js:282
+#: src/components/invoices/line-items.js:275
+#: src/pages/invoices/$id/_layout.js:286
+#: src/pages/invoices/$id/pdf.js:246
 msgid "Tax"
 msgstr "Maksumäär"
 
@@ -409,8 +509,8 @@ msgstr "Maksumäär"
 msgid "Tax rate saved!"
 msgstr "Maksumäär salvestatud!"
 
-#: src/components/layout/navigation.js:67
-#: src/pages/settings/tax-rates/_layout.js:27
+#: src/components/layout/navigation.js:101
+#: src/pages/settings/tax-rates/_layout.js:28
 msgid "Tax rates"
 msgstr "Maksumäärad"
 
@@ -418,47 +518,68 @@ msgstr "Maksumäärad"
 msgid "This field is required"
 msgstr "See väli on kohustuslik"
 
-#: src/pages/index.js:61
+#: src/pages/index.js:102
 msgid "To get started"
 msgstr "Alustamiseks"
 
-#: src/pages/invoices/$id/_layout.js:289
-#: src/pages/invoices/$id/pdf.js:245
+#: src/components/account/drawer.js:38
+msgid "To start syncing"
+msgstr ""
+
+#: src/components/account/drawer.js:104
+msgid "Toggle the organizations you want to enable syncronization for."
+msgstr ""
+
+#: src/pages/invoices/$id/_layout.js:293
+#: src/pages/invoices/$id/pdf.js:263
 msgid "Total"
 msgstr "Kokku"
 
-#: src/layouts/electron.js:43
+#: src/components/account/drawer.js:31
+msgid "Upcount account"
+msgstr ""
+
+#: src/layouts/electron.js:45
 msgid "Upcount version update downloaded. It will be installed after a restart. Restart now?"
 msgstr "Upcounti uus versioon alla laetud. Uus versioon paigaldatakse peale taaskäivitamist. Taaskäivita kohe?"
 
-#: src/layouts/electron.js:31
+#: src/layouts/electron.js:33
 msgid "Update Available"
 msgstr "Uuendus saadaval"
 
-#: src/layouts/electron.js:40
+#: src/layouts/electron.js:42
 msgid "Update Downloaded"
 msgstr "Uuendus laaditud"
 
+#: src/pages/settings/invoice/_layout.js:117
+msgid "Upload"
+msgstr ""
+
 #: src/components/clients/form.js:26
-#: src/pages/clients/_layout.js:95
-#: src/pages/invoices/$id/pdf.js:290
-#: src/pages/settings/organization/_layout.js:58
+#: src/pages/clients/_layout.js:96
+#: src/pages/invoices/$id/pdf.js:338
+#: src/pages/settings/organization/_layout.js:55
 msgid "VATIN"
 msgstr "VATIN"
 
-#: src/pages/invoices/$id/_layout.js:325
+#: src/pages/invoices/$id/_layout.js:327
 msgid "View"
 msgstr "Vaata"
 
 #: src/components/invoices/state-tag.js:8
-#: src/pages/invoices/$id/_layout.js:141
-#: src/pages/invoices/index.js:81
-#: src/pages/invoices/index.js:100
+#: src/pages/invoices/$id/_layout.js:149
+#: src/pages/invoices/index.js:82
+#: src/pages/invoices/index.js:101
 msgid "Void"
 msgstr "Tühista"
 
 #: src/components/clients/form.js:27
-#: src/pages/clients/_layout.js:97
-#: src/pages/settings/organization/_layout.js:61
+#: src/pages/clients/_layout.js:98
+#: src/pages/settings/organization/_layout.js:58
 msgid "Website"
 msgstr "Koduleht"
+
+#: src/components/account/drawer.js:69
+#: src/components/account/drawer.js:145
+msgid "Your data is always securely transfered between the hosted CouchDB server and your devices over encrypted HTTP requests."
+msgstr ""

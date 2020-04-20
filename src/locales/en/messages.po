@@ -13,7 +13,7 @@ msgstr ""
 "Language-Team: \n"
 "Plural-Forms: \n"
 
-#: src/layouts/electron.js:32
+#: src/layouts/electron.js:34
 msgid "A new version of Upcount is available. Downloading now ..."
 msgstr "A new version of Upcount is available. Downloading now ..."
 
@@ -31,87 +31,100 @@ msgid "Add tax"
 msgstr "Add tax"
 
 #: src/components/clients/form.js:16
-#: src/pages/clients/_layout.js:73
-#: src/pages/settings/organization/_layout.js:39
+#: src/pages/clients/_layout.js:74
+#: src/pages/settings/organization/_layout.js:35
 msgid "Address"
 msgstr "Address"
 
-#: src/pages/settings/organization/_layout.js:50
+#: src/pages/settings/organization/_layout.js:45
 msgid "Bank name"
 msgstr "Bank name"
 
-#: src/pages/invoices/$id/_layout.js:182
-#: src/pages/invoices/index.js:143
+#: src/pages/settings/invoice/_layout.js:117
+msgid "Change"
+msgstr "Change"
+
+#: src/pages/invoices/$id/_layout.js:188
+#: src/pages/invoices/index.js:144
 msgid "Client"
 msgstr "Client"
 
-#: src/components/layout/navigation.js:42
-#: src/pages/clients/_layout.js:49
+#: src/models/clients.js:49
+msgid "Client saved!"
+msgstr "Client saved!"
+
+#: src/components/layout/navigation.js:71
+#: src/pages/clients/_layout.js:50
 msgid "Clients"
 msgstr "Clients"
 
 #: src/components/invoices/state-tag.js:6
-#: src/pages/invoices/$id/_layout.js:134
-#: src/pages/invoices/index.js:74
-#: src/pages/invoices/index.js:92
+#: src/pages/invoices/$id/_layout.js:142
+#: src/pages/invoices/index.js:75
+#: src/pages/invoices/index.js:93
 msgid "Confirmed"
 msgstr "Confirmed"
 
-#: src/pages/index.js:82
+#: src/pages/index.js:54
+#: src/pages/index.js:123
 msgid "Create an organization"
 msgstr "Create an organization"
 
-#: src/pages/invoices/$id/_layout.js:202
+#: src/pages/invoices/$id/_layout.js:208
 msgid "Create new client"
 msgstr "Create new client"
 
-#: src/pages/invoices/$id/_layout.js:221
+#: src/pages/invoices/$id/_layout.js:225
 msgid "Currency"
 msgstr "Currency"
 
-#: src/pages/invoices/$id/_layout.js:263
+#: src/pages/invoices/$id/_layout.js:267
 msgid "Customer note"
 msgstr "Customer note"
 
-#: src/pages/invoices/$id/_layout.js:237
-#: src/pages/invoices/$id/pdf.js:176
-#: src/pages/invoices/index.js:150
+#: src/pages/invoices/$id/_layout.js:241
+#: src/pages/invoices/$id/pdf.js:182
+#: src/pages/invoices/index.js:151
 msgid "Date"
 msgstr "Date"
 
-#: src/pages/settings/invoice/_layout.js:62
+#: src/pages/settings/invoice/_layout.js:77
+msgid "Decimal places"
+msgstr "Decimal places"
+
+#: src/pages/settings/invoice/_layout.js:63
 msgid "Default currency"
 msgstr "Default currency"
 
-#: src/pages/invoices/$id/_layout.js:310
+#: src/pages/invoices/$id/_layout.js:313
 msgid "Delete"
 msgstr "Delete"
 
-#: src/components/invoices/line-items.js:207
-#: src/pages/invoices/$id/pdf.js:207
+#: src/components/invoices/line-items.js:208
+#: src/pages/invoices/$id/pdf.js:213
 #: src/pages/settings/tax-rates/$id.js:59
-#: src/pages/settings/tax-rates/_layout.js:58
+#: src/pages/settings/tax-rates/_layout.js:60
 msgid "Description"
 msgstr "Description"
 
 #: src/components/invoices/state-tag.js:5
-#: src/pages/invoices/$id/_layout.js:131
-#: src/pages/invoices/index.js:71
-#: src/pages/invoices/index.js:88
+#: src/pages/invoices/$id/_layout.js:139
+#: src/pages/invoices/index.js:72
+#: src/pages/invoices/index.js:89
 msgid "Draft"
 msgstr "Draft"
 
-#: src/pages/invoices/$id/_layout.js:246
-#: src/pages/invoices/$id/pdf.js:183
-#: src/pages/invoices/index.js:157
+#: src/pages/invoices/$id/_layout.js:250
+#: src/pages/invoices/$id/pdf.js:189
+#: src/pages/invoices/index.js:158
 msgid "Due date"
 msgstr "Due date"
 
-#: src/pages/settings/invoice/_layout.js:71
+#: src/pages/settings/invoice/_layout.js:79
 msgid "Due days"
 msgstr "Due days"
 
-#: src/pages/invoices/$id/preview.js:27
+#: src/pages/invoices/$id/preview.js:28
 msgid "Edit"
 msgstr "Edit"
 
@@ -123,12 +136,14 @@ msgstr "Edit client"
 msgid "Edit tax"
 msgstr "Edit tax"
 
-#: src/pages/settings/organization/_layout.js:41
+#: src/components/account/login.js:11
+#: src/components/account/register.js:12
+#: src/pages/settings/organization/_layout.js:36
 msgid "Email"
 msgstr "Email"
 
 #: src/components/clients/form.js:22
-#: src/pages/clients/_layout.js:75
+#: src/pages/clients/_layout.js:76
 msgid "Emails"
 msgstr "Emails"
 
@@ -140,7 +155,7 @@ msgstr "Error changing invoice state!"
 msgid "Error deleting invoice!"
 msgstr "Error deleting invoice!"
 
-#: src/models/organizations.js:51
+#: src/models/organizations.js:66
 msgid "Error getting organization logo!"
 msgstr "Error getting organization logo!"
 
@@ -152,13 +167,21 @@ msgstr "Error initializing client form!"
 msgid "Error initializing invoice form!"
 msgstr "Error initializing invoice form!"
 
-#: src/models/organizations.js:41
+#: src/models/organizations.js:51
 msgid "Error initializing organization form!"
 msgstr "Error initializing organization form!"
 
 #: src/models/tax-rates.js:41
 msgid "Error initializing tax rate form!"
 msgstr "Error initializing tax rate form!"
+
+#: src/models/accounts.js:31
+msgid "Error loading account details!"
+msgstr "Error loading account details!"
+
+#: src/models/accounts.js:22
+msgid "Error loading accounts list!"
+msgstr "Error loading accounts list!"
 
 #: src/models/clients.js:31
 msgid "Error loading client details!"
@@ -176,7 +199,7 @@ msgstr "Error loading invoice details!"
 msgid "Error loading invoices list!"
 msgstr "Error loading invoices list!"
 
-#: src/models/organizations.js:31
+#: src/models/organizations.js:36
 msgid "Error loading organization details!"
 msgstr "Error loading organization details!"
 
@@ -192,6 +215,18 @@ msgstr "Error loading tax rate details!"
 msgid "Error loading tax rates list!"
 msgstr "Error loading tax rates list!"
 
+#: src/models/accounts.js:46
+msgid "Error logging in!"
+msgstr "Error logging in!"
+
+#: src/models/accounts.js:69
+msgid "Error logging out!"
+msgstr "Error logging out!"
+
+#: src/models/accounts.js:58
+msgid "Error registering!"
+msgstr "Error registering!"
+
 #: src/models/clients.js:52
 msgid "Error saving client!"
 msgstr "Error saving client!"
@@ -200,7 +235,7 @@ msgstr "Error saving client!"
 msgid "Error saving invoice!"
 msgstr "Error saving invoice!"
 
-#: src/models/organizations.js:73
+#: src/models/organizations.js:106
 msgid "Error saving organization!"
 msgstr "Error saving organization!"
 
@@ -208,11 +243,15 @@ msgstr "Error saving organization!"
 msgid "Error saving tax rate!"
 msgstr "Error saving tax rate!"
 
-#: src/models/organizations.js:62
+#: src/models/organizations.js:82
 msgid "Error setting organization logo!"
 msgstr "Error setting organization logo!"
 
-#: src/pages/settings/organization/_layout.js:53
+#: src/models/organizations.js:92
+msgid "Error setting organization sync!"
+msgstr "Error setting organization sync!"
+
+#: src/pages/settings/organization/_layout.js:50
 msgid "IBAN"
 msgstr "IBAN"
 
@@ -221,8 +260,8 @@ msgstr "IBAN"
 msgid "Invalid email address"
 msgstr "Invalid email address"
 
-#: src/components/layout/navigation.js:62
-#: src/pages/invoices/$id/pdf.js:113
+#: src/components/layout/navigation.js:95
+#: src/pages/invoices/$id/pdf.js:119
 msgid "Invoice"
 msgstr "Invoice"
 
@@ -230,11 +269,11 @@ msgstr "Invoice"
 msgid "Invoice deleted!"
 msgstr "Invoice deleted!"
 
-#: src/pages/settings/invoice/_layout.js:56
+#: src/pages/settings/invoice/_layout.js:57
 msgid "Invoice details"
 msgstr "Invoice details"
 
-#: src/pages/invoices/$id/_layout.js:212
+#: src/pages/invoices/$id/_layout.js:216
 msgid "Invoice number"
 msgstr "Invoice number"
 
@@ -246,120 +285,180 @@ msgstr "Invoice saved!"
 msgid "Invoice state changed!"
 msgstr "Invoice state changed!"
 
-#: src/components/layout/navigation.js:34
-#: src/pages/invoices/index.js:111
+#: src/components/layout/navigation.js:63
+#: src/pages/invoices/index.js:112
 msgid "Invoices"
 msgstr "Invoices"
 
-#: src/pages/settings/invoice/_layout.js:99
+#: src/components/layout/navigation.js:120
+msgid "Latest sync"
+msgstr "Latest sync"
+
+#: src/components/account/drawer.js:42
+#: src/components/account/login.js:20
+msgid "Log in"
+msgstr "Log in"
+
+#: src/models/accounts.js:41
+msgid "Login successful!"
+msgstr "Login successful!"
+
+#: src/pages/settings/invoice/_layout.js:107
 msgid "Logo"
 msgstr "Logo"
 
+#: src/models/accounts.js:67
+msgid "Logout successful!"
+msgstr "Logout successful!"
+
 #: src/components/clients/form.js:15
-#: src/pages/clients/_layout.js:69
+#: src/pages/clients/_layout.js:70
 #: src/pages/settings/organization/_layout.js:34
 #: src/pages/settings/tax-rates/$id.js:55
-#: src/pages/settings/tax-rates/_layout.js:51
+#: src/pages/settings/tax-rates/_layout.js:53
 msgid "Name"
 msgstr "Name"
 
-#: src/pages/clients/_layout.js:55
+#: src/pages/clients/_layout.js:56
 msgid "New client"
 msgstr "New client"
 
-#: src/pages/invoices/index.js:117
+#: src/pages/invoices/index.js:118
 msgid "New invoice"
 msgstr "New invoice"
 
-#: src/pages/settings/tax-rates/_layout.js:35
+#: src/pages/index.js:49
+msgid "New organization"
+msgstr "New organization"
+
+#: src/pages/settings/tax-rates/_layout.js:36
 msgid "New tax"
 msgstr "New tax"
 
-#: src/pages/settings/invoice/_layout.js:77
+#: src/components/layout/navigation.js:131
+msgid "Not syncing"
+msgstr "Not syncing"
+
+#: src/pages/settings/invoice/_layout.js:85
 msgid "Notes"
 msgstr "Notes"
 
-#: src/pages/invoices/index.js:132
+#: src/pages/invoices/index.js:133
 msgid "Number"
 msgstr "Number"
 
-#: src/components/layout/navigation.js:57
+#: src/components/layout/navigation.js:89
 msgid "Organization"
 msgstr "Organization"
 
-#: src/pages/settings/organization/_layout.js:31
+#: src/pages/settings/organization/_layout.js:32
 msgid "Organization details"
 msgstr "Organization details"
 
-#: src/models/organizations.js:60
+#: src/models/organizations.js:80
 msgid "Organization logo set!"
 msgstr "Organization logo set!"
 
-#: src/pages/index.js:70
+#: src/pages/index.js:63
+#: src/pages/index.js:111
 msgid "Organization name"
 msgstr "Organization name"
 
-#: src/models/organizations.js:70
+#: src/models/organizations.js:101
 msgid "Organization saved!"
 msgstr "Organization saved!"
 
-#: src/pages/index.js:33
+#: src/models/organizations.js:90
+msgid "Organization sync disabled!"
+msgstr "Organization sync disabled!"
+
+#: src/models/organizations.js:90
+msgid "Organization sync enabled!"
+msgstr "Organization sync enabled!"
+
+#: src/models/organizations.js:90
+#~ msgid "Organization sync {0}!"
+#~ msgstr "Organization sync {0}!"
+
+#: src/pages/index.js:43
 msgid "Organizations"
 msgstr "Organizations"
 
-#: src/pages/invoices/$id/pdf.js:191
-#: src/pages/settings/invoice/_layout.js:75
+#: src/components/account/drawer.js:102
+msgid "Organizations syncing"
+msgstr "Organizations syncing"
+
+#: src/pages/invoices/$id/pdf.js:197
+#: src/pages/settings/invoice/_layout.js:83
 msgid "Overdue charge"
 msgstr "Overdue charge"
 
-#: src/pages/invoices/$id/_layout.js:335
-#: src/pages/invoices/$id/preview.js:35
+#: src/pages/invoices/$id/_layout.js:336
+#: src/pages/invoices/$id/preview.js:36
 msgid "PDF"
 msgstr "PDF"
 
 #: src/components/invoices/state-tag.js:7
-#: src/pages/invoices/$id/_layout.js:137
-#: src/pages/invoices/index.js:77
-#: src/pages/invoices/index.js:96
+#: src/pages/invoices/$id/_layout.js:145
+#: src/pages/invoices/index.js:78
+#: src/pages/invoices/index.js:97
 msgid "Paid"
 msgstr "Paid"
 
+#: src/components/account/login.js:12
+#: src/components/account/register.js:13
+msgid "Password"
+msgstr "Password"
+
 #: src/pages/settings/tax-rates/$id.js:62
-#: src/pages/settings/tax-rates/_layout.js:63
+#: src/pages/settings/tax-rates/_layout.js:65
 msgid "Percentage"
 msgstr "Percentage"
 
 #: src/components/clients/form.js:25
-#: src/pages/clients/_layout.js:81
-#: src/pages/settings/organization/_layout.js:42
+#: src/pages/clients/_layout.js:82
+#: src/pages/settings/organization/_layout.js:37
 msgid "Phone"
 msgstr "Phone"
 
-#: src/components/invoices/line-items.js:240
-#: src/pages/invoices/$id/pdf.js:213
+#: src/components/invoices/line-items.js:241
+#: src/pages/invoices/$id/pdf.js:219
 msgid "Price"
 msgstr "Price"
 
-#: src/components/invoices/line-items.js:223
-#: src/pages/invoices/$id/pdf.js:210
+#: src/components/invoices/line-items.js:224
+#: src/pages/invoices/$id/pdf.js:216
 msgid "Quantity"
 msgstr "Quantity"
 
-#: src/pages/invoices/$id/pdf.js:285
+#: src/pages/invoices/$id/pdf.js:333
 msgid "Reg. nr."
 msgstr "Reg. nr."
 
-#: src/pages/settings/organization/_layout.js:46
+#: src/components/account/drawer.js:45
+#: src/components/account/register.js:21
+msgid "Register"
+msgstr "Register"
+
+#: src/components/account/drawer.js:64
+msgid "Registering an Upcount account will allow you to syncronize your data between computers and provides a secure backup."
+msgstr "Registering an Upcount account will allow you to syncronize your data between computers and provides a secure backup."
+
+#: src/pages/settings/organization/_layout.js:41
 msgid "Registration number"
 msgstr "Registration number"
 
-#: src/layouts/electron.js:47
+#: src/models/accounts.js:55
+msgid "Registration successful!"
+msgstr "Registration successful!"
+
+#: src/layouts/electron.js:49
 msgid "Restart"
 msgstr "Restart"
 
 #: src/pages/invoices/$id/_layout.js:346
-#: src/pages/settings/invoice/_layout.js:89
-#: src/pages/settings/organization/_layout.js:71
+#: src/pages/settings/invoice/_layout.js:97
+#: src/pages/settings/organization/_layout.js:68
 msgid "Save"
 msgstr "Save"
 
@@ -371,36 +470,37 @@ msgstr "Save client"
 msgid "Save tax rate"
 msgstr "Save tax rate"
 
-#: src/pages/clients/_layout.js:59
-#: src/pages/invoices/index.js:121
+#: src/pages/clients/_layout.js:60
+#: src/pages/invoices/index.js:122
 msgid "Search text"
 msgstr "Search text"
 
-#: src/pages/invoices/$id/_layout.js:180
+#: src/pages/invoices/$id/_layout.js:186
 msgid "Select or create a client"
 msgstr "Select or create a client"
 
-#: src/components/layout/navigation.js:51
+#: src/components/layout/navigation.js:81
 msgid "Settings"
 msgstr "Settings"
 
-#: src/pages/invoices/index.js:171
+#: src/pages/invoices/index.js:172
 msgid "State"
 msgstr "State"
 
-#: src/components/invoices/line-items.js:257
-#: src/pages/invoices/$id/_layout.js:273
-#: src/pages/invoices/$id/pdf.js:224
+#: src/components/invoices/line-items.js:258
+#: src/pages/invoices/$id/_layout.js:277
+#: src/pages/invoices/$id/pdf.js:230
 msgid "Subtotal"
 msgstr "Subtotal"
 
-#: src/pages/invoices/$id/pdf.js:216
-#: src/pages/invoices/index.js:164
+#: src/pages/invoices/$id/pdf.js:222
+#: src/pages/invoices/index.js:165
 msgid "Sum"
 msgstr "Sum"
 
-#: src/components/invoices/line-items.js:274
-#: src/pages/invoices/$id/_layout.js:282
+#: src/components/invoices/line-items.js:275
+#: src/pages/invoices/$id/_layout.js:286
+#: src/pages/invoices/$id/pdf.js:246
 msgid "Tax"
 msgstr "Tax"
 
@@ -408,8 +508,8 @@ msgstr "Tax"
 msgid "Tax rate saved!"
 msgstr "Tax rate saved!"
 
-#: src/components/layout/navigation.js:67
-#: src/pages/settings/tax-rates/_layout.js:27
+#: src/components/layout/navigation.js:101
+#: src/pages/settings/tax-rates/_layout.js:28
 msgid "Tax rates"
 msgstr "Tax rates"
 
@@ -417,51 +517,72 @@ msgstr "Tax rates"
 msgid "This field is required"
 msgstr "This field is required"
 
-#: src/pages/index.js:61
+#: src/pages/index.js:102
 msgid "To get started"
 msgstr "To get started"
 
-#: src/pages/invoices/$id/_layout.js:289
-#: src/pages/invoices/$id/pdf.js:245
+#: src/components/account/drawer.js:38
+msgid "To start syncing"
+msgstr "To start syncing"
+
+#: src/components/account/drawer.js:104
+msgid "Toggle the organizations you want to enable syncronization for."
+msgstr "Toggle the organizations you want to enable syncronization for."
+
+#: src/pages/invoices/$id/_layout.js:293
+#: src/pages/invoices/$id/pdf.js:263
 msgid "Total"
 msgstr "Total"
 
-#: src/layouts/electron.js:43
+#: src/components/account/drawer.js:31
+msgid "Upcount account"
+msgstr "Upcount account"
+
+#: src/layouts/electron.js:45
 msgid "Upcount version update downloaded. It will be installed after a restart. Restart now?"
 msgstr "Upcount version update downloaded. It will be installed after a restart. Restart now?"
 
-#: src/layouts/electron.js:31
+#: src/layouts/electron.js:33
 msgid "Update Available"
 msgstr "Update Available"
 
-#: src/layouts/electron.js:40
+#: src/layouts/electron.js:42
 msgid "Update Downloaded"
 msgstr "Update Downloaded"
+
+#: src/pages/settings/invoice/_layout.js:117
+msgid "Upload"
+msgstr "Upload"
 
 #: src/pages/invoices/$id/pdf.js:290
 #~ msgid "VAT IN"
 #~ msgstr "VAT IN"
 
 #: src/components/clients/form.js:26
-#: src/pages/clients/_layout.js:95
-#: src/pages/invoices/$id/pdf.js:290
-#: src/pages/settings/organization/_layout.js:58
+#: src/pages/clients/_layout.js:96
+#: src/pages/invoices/$id/pdf.js:338
+#: src/pages/settings/organization/_layout.js:55
 msgid "VATIN"
 msgstr "VATIN"
 
-#: src/pages/invoices/$id/_layout.js:325
+#: src/pages/invoices/$id/_layout.js:327
 msgid "View"
 msgstr "View"
 
 #: src/components/invoices/state-tag.js:8
-#: src/pages/invoices/$id/_layout.js:141
-#: src/pages/invoices/index.js:81
-#: src/pages/invoices/index.js:100
+#: src/pages/invoices/$id/_layout.js:149
+#: src/pages/invoices/index.js:82
+#: src/pages/invoices/index.js:101
 msgid "Void"
 msgstr "Void"
 
 #: src/components/clients/form.js:27
-#: src/pages/clients/_layout.js:97
-#: src/pages/settings/organization/_layout.js:61
+#: src/pages/clients/_layout.js:98
+#: src/pages/settings/organization/_layout.js:58
 msgid "Website"
 msgstr "Website"
+
+#: src/components/account/drawer.js:69
+#: src/components/account/drawer.js:145
+msgid "Your data is always securely transfered between the hosted CouchDB server and your devices over encrypted HTTP requests."
+msgstr "Your data is always securely transfered between the hosted CouchDB server and your devices over encrypted HTTP requests."
