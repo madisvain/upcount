@@ -280,7 +280,6 @@ class LineItems extends Component {
                 <Field
                   name={field}
                   component={ASelect}
-                  options={[]}
                   onDrop={e => e.preventDefault()}
                 >
                   {map(taxRates.items, rate => {
