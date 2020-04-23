@@ -282,6 +282,8 @@ class LineItems extends Component {
                   component={ASelect}
                   onDrop={e => e.preventDefault()}
                 >
+                  <Select.Option>
+                  </Select.Option>
                   {map(taxRates.items, rate => {
                     return (
                       <Select.Option value={rate._id} key={rate._id}>
