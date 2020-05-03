@@ -38,7 +38,7 @@ export default {
         localStorage.setItem('token', response.data.token);
         localStorage.setItem('email', data.email);
 
-        message.success('Login successful!', 5);
+        message.success(i18n._(t`Login successful!`), 5);
 
         yield call(resolve);
         yield put(stopSubmit('login'));
@@ -52,7 +52,7 @@ export default {
       try {
         const response = yield call(accountsService.signup, data);
         yield put({ type: 'detailsSuccess', data: response });
-        message.success('Registration successful!', 5);
+        message.success(i18n._(t`Registration successful!`), 5);
         return response;
       } catch (e) {
         message.error(i18n._(t`Error registering!`), 5);
@@ -64,7 +64,7 @@ export default {
         localStorage.removeItem('token');
         localStorage.removeItem('email');
         yield put({ type: 'logoutSuccess' });
-        message.success('Logout successful!', 5);
+        message.success(i18n._(t`Logout successful!`), 5);
       } catch (e) {
         message.error(i18n._(t`Error logging out!`), 5);
       }
