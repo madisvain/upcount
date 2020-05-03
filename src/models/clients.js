@@ -46,7 +46,7 @@ export default {
       try {
         const response = yield call(clientsService.save, data);
         yield put({ type: 'detailsSuccess', data: response });
-        message.success('Client saved!', 5);
+        message.success(i18n._(t`Client saved!`), 5);
         return response;
       } catch (e) {
         message.error(i18n._(t`Error saving client!`), 5);

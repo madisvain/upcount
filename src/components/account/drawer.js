@@ -10,7 +10,7 @@ import {
   SyncOutlined,
   SwapOutlined,
 } from '@ant-design/icons';
-import { Trans } from '@lingui/macro';
+import { t, Trans } from '@lingui/macro';
 import { withI18n } from '@lingui/react';
 import { assign, capitalize, get, values } from 'lodash';
 
@@ -18,6 +18,7 @@ import moment from 'moment';
 
 import LoginForm from './login';
 import RegisterForm from './register';
+import { i18n } from '@/layouts/base';
 
 const { Title } = Typography;
 
@@ -27,7 +28,7 @@ const NeedsToken = (visible, closeDrawer) => {
   return (
     <Drawer
       visible={visible}
-      title="Upcount account"
+      title={i18n._(t`Upcount account`)}
       placement="right"
       closable={false}
       onClose={closeDrawer}
@@ -60,13 +61,13 @@ const NeedsToken = (visible, closeDrawer) => {
       </Drawer>
       <p style={{ marginTop: 40 }}>
         <DeploymentUnitOutlined style={{ fontSize: 20, marginRight: 8, float: 'left' }} />
-        Registering an Upcount account will allow you to syncronize your data between computers and
-        provides a secure backup.
+        <Trans>Registering an Upcount account will allow you to syncronize your data between computers and
+          provides a secure backup.</Trans>
       </p>
       <p>
         <SwapOutlined style={{ fontSize: 20, marginRight: 8, float: 'left' }} />
-        Your data is always securely transfered between the hosted CouchDB server and your devices
-        over encrypted HTTP requests.
+        <Trans>Your data is always securely transfered between the hosted CouchDB server and your devices
+          over encrypted HTTP requests.</Trans>
       </p>
     </Drawer>
   );
@@ -100,7 +101,7 @@ const HasToken = (visible, closeDrawer, organizations, dispatch) => {
         <Title level={4}>
           <Trans>Organizations syncing</Trans>
         </Title>
-        <p>Toggle the organizations you want to enable syncronization for.</p>
+        <p><Trans>Toggle the organizations you want to enable syncronization for.</Trans></p>
         <List
           itemLayout="horizontal"
           dataSource={values(organizations.items)}
@@ -141,8 +142,8 @@ const HasToken = (visible, closeDrawer, organizations, dispatch) => {
       </div>
       <p style={{ marginTop: 40 }}>
         <SwapOutlined style={{ fontSize: 20, marginRight: 8, float: 'left' }} />
-        Your data is always securely transfered between the hosted CouchDB server and your devices
-        over encrypted HTTP requests.
+        <Trans>Your data is always securely transfered between the hosted CouchDB server and your devices
+          over encrypted HTTP requests.</Trans>
       </p>
     </Drawer>
   );

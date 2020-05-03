@@ -114,7 +114,7 @@ class Settings extends Component {
               customRequest={data => this.handleLogoUpload(data)}
             >
               <Button style={{ marginTop: 20 }}>
-                <UploadOutlined /> {logo ? 'Change' : 'Upload'}
+                <UploadOutlined /> {logo ? <Trans>Change</Trans> : <Trans>Upload</Trans>}
               </Button>
             </Upload>
           </Col>

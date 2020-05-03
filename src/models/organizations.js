@@ -87,7 +87,7 @@ export default {
       try {
         const response = yield call(organizationsService.save, data);
         yield put({ type: 'detailsSuccess', data: response });
-        message.success(i18n._(t`Organization sync ${data.sync ? 'enabled' : 'disabled'}!`), 5);
+        message.success(data.sync ? i18n._(t`Organization sync enabled!`) : i18n._(t`Organization sync disabled!`), 5);
       } catch (e) {
         message.error(i18n._(t`Error setting organization sync!`), 5);
       }
