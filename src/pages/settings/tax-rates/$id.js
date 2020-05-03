@@ -8,6 +8,7 @@ import { has } from 'lodash';
 import router from 'umi/router';
 
 import { AInput, ATextarea } from '../../../components/forms/fields';
+import { numeric } from '../../../components/forms/validators';
 
 class TaxForm extends Component {
   closeDrawer = () => {
@@ -59,7 +60,12 @@ class TaxForm extends Component {
             label={<Trans>Description</Trans>}
             rows={4}
           />
-          <Field name="percentage" component={AInput} label={<Trans>Percentage</Trans>} />
+          <Field
+            name="percentage"
+            component={AInput}
+            label={<Trans>Percentage</Trans>}
+            validate={[numeric]}
+          />
           <Button
             type="primary"
             htmlType="submit"
