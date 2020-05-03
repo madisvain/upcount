@@ -277,13 +277,8 @@ class LineItems extends Component {
             key="taxRate"
             render={(field, row, index) => (
               <div>
-                <Field
-                  name={field}
-                  component={ASelect}
-                  onDrop={e => e.preventDefault()}
-                >
-                  <Select.Option>
-                  </Select.Option>
+                <Field name={field} component={ASelect} onDrop={e => e.preventDefault()}>
+                  <Select.Option />
                   {map(taxRates.items, rate => {
                     return (
                       <Select.Option value={rate._id} key={rate._id}>
