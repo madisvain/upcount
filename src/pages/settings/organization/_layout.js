@@ -2,9 +2,10 @@ import { Component } from 'react';
 import { compose } from 'redux';
 import { connect } from 'dva';
 import { Field, reduxForm } from 'redux-form';
-import { Form, Button, Col, Layout, Row } from 'antd';
+import { Form, Button, Col, Layout, Row, Popconfirm } from 'antd';
 import { HomeOutlined } from '@ant-design/icons';
 import { Trans } from '@lingui/macro';
+import { get } from 'lodash';
 
 import { AInput, APhoneInput, ATextarea } from '../../../components/forms/fields';
 
@@ -17,6 +18,16 @@ class Organization extends Component {
       },
     });
   }
+
+  handleDelete = () => {
+    const { organizations } = this.props;
+    const organization = get(organizations.items, localStorage.getItem('organization'));
+
+    this.props.dispatch({
+      type: 'organizations/remove',
+      data: organization,
+    });
+  };
 
   render() {
     const { handleSubmit, pristine, submitting } = this.props;
@@ -56,19 +67,33 @@ class Organization extends Component {
                 </Col>
               </Row>
               <Field name="website" component={AInput} label={<Trans>Website</Trans>} />
-              <Row>
-                <Col span={24}>
-                  <Button
-                    type="primary"
-                    htmlType="submit"
-                    disabled={pristine || submitting}
-                    loading={submitting}
-                    style={{ marginTop: '10px' }}
-                  >
-                    <Trans>Save</Trans>
-                  </Button>
-                </Col>
-              </Row>
+            </Col>
+          </Row>
+          <Row>
+            <Col span={24}>
+              <Button
+                type="primary"
+                htmlType="submit"
+                disabled={pristine || submitting}
+                loading={submitting}
+                style={{ marginTop: '10px' }}
+              >
+                <Trans>Save</Trans>
+              </Button>
+              <Popconfirm
+                title="Are you sure delete this organization?"
+                onConfirm={this.handleDelete}
+                okText="Yes"
+                cancelText="No!"
+              >
+                <Button
+                  type="danger"
+                  loading={submitting}
+                  style={{ marginTop: '10px', float: 'right' }}
+                >
+                  <Trans>Delete</Trans>
+                </Button>
+              </Popconfirm>
             </Col>
           </Row>
         </Form>
@@ -78,7 +103,9 @@ class Organization extends Component {
 }
 
 export default compose(
-  connect(state => ({})),
+  connect(state => ({
+    organizations: state.organizations,
+  })),
   reduxForm({
     form: 'organization',
     onSubmit: async (data, dispatch) => {

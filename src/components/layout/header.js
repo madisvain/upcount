@@ -1,4 +1,6 @@
 import React, { Component } from 'react';
+import { compose } from 'redux';
+import { connect } from 'dva';
 import { withI18n } from '@lingui/react';
 import { Avatar, Layout, Menu, Dropdown } from 'antd';
 import {
@@ -19,6 +21,10 @@ class Header extends Component {
   state = {
     accountDrawerVisible: false,
   };
+
+  componentDidMount() {
+    this.props.dispatch({ type: 'organizations/list' });
+  }
 
   render() {
     const {
@@ -131,4 +137,9 @@ Header.defaultProps = {
   logo: false,
 };
 
-export default withI18n()(Header);
+export default compose(
+  withI18n(),
+  connect(state => ({
+    organizations: state.organizations,
+  }))
+)(Header);

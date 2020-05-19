@@ -14,10 +14,6 @@ import { required } from '../components/forms/validators';
 import { OrganizationContext } from '../providers/contexts';
 
 class Index extends Component {
-  componentDidMount() {
-    this.props.dispatch({ type: 'organizations/list' });
-  }
-
   closeNewOrganizationModal = () => {
     this.setState({ newOrganizationModal: false });
   };

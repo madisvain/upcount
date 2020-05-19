@@ -30,7 +30,7 @@ export default compose(
     form: 'register',
     onSubmit: async (data, dispatch) => {
       return new Promise((resolve, reject) => {
-        dispatch({ type: 'accounts/login', data: data, resolve, reject });
+        dispatch({ type: 'accounts/register', data: data, resolve, reject });
       });
     },
     onSubmitSuccess: (result, dispatch, props) => {

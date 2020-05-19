@@ -1,6 +1,7 @@
 import { initialize, stopSubmit } from 'redux-form';
 import { message } from 'antd';
 import { t } from '@lingui/macro';
+import { push } from 'connected-react-router';
 import { assign, keyBy } from 'lodash';
 
 import { i18n } from '../layouts/base';
@@ -87,7 +88,12 @@ export default {
       try {
         const response = yield call(organizationsService.save, data);
         yield put({ type: 'detailsSuccess', data: response });
-        message.success(data.sync ? i18n._(t`Organization sync enabled!`) : i18n._(t`Organization sync disabled!`), 5);
+        message.success(
+          data.sync
+            ? i18n._(t`Organization sync enabled!`)
+            : i18n._(t`Organization sync disabled!`),
+          5
+        );
       } catch (e) {
         message.error(i18n._(t`Error setting organization sync!`), 5);
       }
@@ -104,6 +110,17 @@ export default {
         yield put(stopSubmit('organization'));
       } catch (e) {
         message.error(i18n._(t`Error saving organization!`), 5);
+      }
+    },
+
+    *remove({ data, resolve, reject }, { put, call }) {
+      try {
+        const response = yield call(organizationsService.remove, data);
+        yield put({ type: 'removeSuccess', data: response });
+        message.success(i18n._(t`Organization deleted!`), 5);
+        yield put(push('/'));
+      } catch (e) {
+        message.error(i18n._(t`Error deleting organization!`), 5);
       }
     },
   },
@@ -139,6 +156,18 @@ export default {
           ...state.logos,
           [data.id]: URL.createObjectURL(data),
         },
+      };
+    },
+
+    removeSuccess(state, payload) {
+      const { data } = payload;
+
+      let items = { ...state.items };
+      delete items[data._id];
+
+      return {
+        ...state,
+        items: items,
       };
     },
   },

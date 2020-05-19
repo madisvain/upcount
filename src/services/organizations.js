@@ -69,4 +69,10 @@ export async function save(data) {
   }
 }
 
-export async function remove(id) {}
+export async function remove(data) {
+  try {
+    return db.remove(data._id, data._rev);
+  } catch (error) {
+    console.log(error);
+  }
+}
