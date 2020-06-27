@@ -327,9 +327,14 @@ class Invoice extends Component {
             <div id="footer" className="row">
               <div className="col">
                 {get(organization, 'bank')} {get(organization, 'iban')}
-                {get(organization, 'swift') && (
+                {get(organization, 'bic') && (
                   <Fragment>
-                    <br />(<Trans>SWIFT</Trans>: {get(organization, 'swift')})
+                    <br />(<Trans>BIC</Trans>: {get(organization, 'bic')})
+                  </Fragment>
+                )}
+                {get(organization, 'bic') && (
+                  <Fragment>
+                    <br />(<Trans>Intermediary BIC</Trans>: {get(organization, 'bic')})
                   </Fragment>
                 )}
               </div>
