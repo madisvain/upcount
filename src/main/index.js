@@ -48,6 +48,7 @@ const createWindow = () => {
 
   mainWindow.on('closed', () => {
     mainWindow = null;
+    printerWindow.close();
   });
 
   autoUpdater.checkForUpdatesAndNotify();
