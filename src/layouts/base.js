@@ -8,7 +8,7 @@ import Navigation from '../components/layout/navigation';
 import OrganizationProvider from '../providers/organization';
 
 export const i18n = setupI18n();
-const languages = ['en', 'et', 'de', 'fi'];
+const languages = ['en', 'et', 'de', 'fi', 'es'];
 
 // Base layout
 class BaseLayout extends Component {
