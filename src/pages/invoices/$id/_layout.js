@@ -1,4 +1,4 @@
-import { Component } from 'react';
+import React, { Component } from 'react';
 import { compose } from 'redux';
 import { connect } from 'dva';
 import { Field, FieldArray, formValueSelector, reduxForm } from 'redux-form';
@@ -21,11 +21,12 @@ import withRouter from 'umi/withRouter';
 import currency from 'currency.js';
 import currencyToSymbolMap from 'currency-symbol-map/map';
 
-import { ADatePicker, AInput, ASelect, ATextarea } from '../../../components/forms/fields';
+import { AInput, ASelect, ATextarea, ADatePicker } from '../../../components/forms/fields';
 import { required } from '../../../components/forms/validators';
 import StateTag from '../../../components/invoices/state-tag';
 import LineItems from '../../../components/invoices/line-items';
 import FooterToolbar from '../../../components/layout/footer-toolbar';
+import * as util from '@/util';
 
 const totals = (lineItems, taxRates) => {
   let subTotal = currency(0, { separator: '' });
@@ -129,9 +130,11 @@ class InvoiceForm extends Component {
       pristine,
       submitting,
       taxRates,
+      organizations
     } = this.props;
     const { subTotal, taxTotal, total } = totals(lineItems, taxRates);
     const invoice = get(invoices.items, get(this.props, ['match', 'params', 'id']));
+    const organization = get(organizations.items, localStorage.getItem('organization'));
 
     const stateMenu = (_id, _rev) => (
       <Menu onClick={({ item, key }) => this.onStateSelect(_id, _rev, key)}>
@@ -238,6 +241,7 @@ class InvoiceForm extends Component {
               <Field
                 name="date"
                 component={ADatePicker}
+                props={{ format: util.getDatePickerFormats(get(organization, 'date_format')) }}
                 label={<Trans>Date</Trans>}
                 style={{ width: '100%' }}
                 validate={[required]}
@@ -247,6 +251,7 @@ class InvoiceForm extends Component {
               <Field
                 name="due_date"
                 component={ADatePicker}
+                props={{ format: util.getDatePickerFormats(get(organization, 'date_format')) }}
                 label={<Trans>Due date</Trans>}
                 style={{ width: '100%' }}
               />
@@ -364,6 +369,7 @@ export default withI18n()(
         clients: state.clients,
         taxRates: state.taxRates,
         lineItems: selector(state, 'lineItems'),
+        organizations: state.organizations,
         initialValues: {
           currency: get(
             state.organizations.items,

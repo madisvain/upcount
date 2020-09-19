@@ -1,4 +1,4 @@
-import { Component } from 'react';
+import React, { Component } from 'react';
 import { compose } from 'redux';
 import { connect } from 'dva';
 import { Field, reduxForm } from 'redux-form';
@@ -45,6 +45,7 @@ class Settings extends Component {
   render() {
     const { handleSubmit, pristine, submitting, organizations } = this.props;
     const logo = get(organizations.logos, localStorage.getItem('organization'));
+    const { ipcRenderer } = window.require('electron');
 
     return (
       <Layout.Content>
@@ -76,6 +77,20 @@ class Settings extends Component {
                 component={AInputNumber}
                 label={<Trans>Decimal places</Trans>}
               />
+              <Field
+                name="date_format"
+                min={0}
+                max={20}
+                component={AInput}
+                label={
+                  <div>
+                    <Trans>Date format</Trans> (
+                    <a onClick={() => ipcRenderer.send('openLink', 'https://momentjscom.readthedocs.io/en/latest/moment/04-displaying/01-format/')} target="_blank">
+                      https://momentjscom.readthedocs.io/en/latest/moment/04-displaying/01-format/
+                    </a>
+                    )
+                  </div>
+              } />
               <Field name="due_days" component={AInput} label={<Trans>Due days</Trans>} />
               <Field
                 name="overdue_charge"

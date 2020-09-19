@@ -32,6 +32,7 @@
     "currency.js": "^1.2.2",
     "electron-updater": "^4.3.1",
     "libphonenumber-js": "^1.7.51",
+    "moment": "^2.28.0",
     "pouchdb": "^7.2.1",
     "pouchdb-find": "^7.2.1",
     "react": "^16.13.1",

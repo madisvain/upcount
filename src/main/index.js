@@ -125,3 +125,9 @@ ipcMain.on('readyToPrint', (event, filename) => {
       throw err;
     });
 });
+
+ipcMain.on('openLink', (event, url) => {
+  shell.openExternal(url)
+    .then(() => console.log('Opened link successfully', url))
+    .catch(e => console.log('Error while opening link', e))
+});

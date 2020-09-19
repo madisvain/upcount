@@ -7,6 +7,7 @@ import { get, has, head } from 'lodash';
 
 import styled from 'styled-components';
 import withRouter from 'umi/withRouter';
+import * as util from '@/util';
 
 const Page = styled.div`
   @import url('https://fonts.googleapis.com/css?family=Open+Sans:400,400i,700&subset=latin-ext');
@@ -181,14 +182,14 @@ class Invoice extends Component {
                       <td>
                         <Trans>Date</Trans>
                       </td>
-                      <td>{invoice.date}</td>
+                      <td>{util.formatDateString(invoice.date, get(organization, 'date_format'))}</td>
                     </tr>
                     {invoice.due_date ? (
                       <tr>
                         <td>
                           <Trans>Due date</Trans>
                         </td>
-                        <td>{invoice.due_date}</td>
+                        <td>{util.formatDateString(invoice.due_date, get(organization, 'date_format'))}</td>
                       </tr>
                     ) : null}
                     {invoice.overdue_charge ? (
