@@ -2,19 +2,17 @@ import React, { Component } from 'react';
 import { compose } from 'redux';
 import { connect } from 'dva';
 import { withI18n } from '@lingui/react';
-import { Avatar, Layout, Menu, Dropdown } from 'antd';
+import { Layout, Menu, Dropdown } from 'antd';
 import {
   MenuUnfoldOutlined,
   MenuFoldOutlined,
   DownOutlined,
   SwapOutlined,
-  UserOutlined,
 } from '@ant-design/icons';
 import { get, map, upperCase } from 'lodash';
 
 import Link from 'umi/link';
 
-import AccountDrawer from '../account/drawer';
 import { OrganizationContext } from '../../providers/contexts';
 
 class Header extends Component {
@@ -60,26 +58,6 @@ class Header extends Component {
             style={{ marginLeft: 24 }}
           />
         ) : null}
-        <Link to="#" onClick={() => this.setState({ accountDrawerVisible: true })}>
-          <Avatar
-            shape="square"
-            icon={<UserOutlined />}
-            style={{
-              backgroundColor: '#001529',
-              color:
-                localStorage.getItem('email') && localStorage.getItem('token')
-                  ? '#46DC8A'
-                  : '#ffffff',
-              float: 'right',
-              marginRight: 24,
-              marginTop: 16,
-            }}
-          />
-        </Link>
-        <AccountDrawer
-          visible={this.state.accountDrawerVisible}
-          closeDrawer={() => this.setState({ accountDrawerVisible: false })}
-        />
         {languageSelect ? (
           <Dropdown
             placement="bottomCenter"
