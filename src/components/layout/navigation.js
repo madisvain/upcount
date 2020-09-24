@@ -7,14 +7,11 @@ import {
   BankOutlined,
   FileOutlined,
   CalculatorOutlined,
-  WarningOutlined,
-  SyncOutlined,
 } from '@ant-design/icons';
 import { Trans } from '@lingui/macro';
 import { compact, get, join, take } from 'lodash';
 
 import Link from 'umi/link';
-import moment from 'moment';
 import withRouter from 'umi/withRouter';
 import pathToRegexp from 'path-to-regexp';
 
@@ -25,8 +22,6 @@ const Navigation = props => {
 
   const openKeys = pathArr[0] === 'settings' ? ['settings'] : [];
   const selectedKeys = [join(take(compact(pathArr), 2), '.')];
-
-  const organization = get(props.organizations.items, localStorage.getItem('organization'));
 
   return (
     <Layout.Sider
