@@ -102,36 +102,6 @@ const Navigation = props => {
             </Link>
           </Menu.Item>
         </Menu.SubMenu>
-        {/* Account */}
-        <div
-          style={{
-            position: 'fixed',
-            left: 0,
-            bottom: 34,
-            zIndex: 10,
-            width: props.collapsed ? 80 : 200,
-            textAlign: 'center',
-          }}
-        >
-          {localStorage.getItem('email') &&
-          localStorage.getItem('token') &&
-          get(organization, 'sync', false) ? (
-            <div>
-              <SyncOutlined style={{ color: '#46DC8A' }} /> <Trans>Latest sync</Trans>
-              <div style={{ fontSize: 10, paddingTop: 10 }}>
-                {get(JSON.parse(localStorage.getItem('syncedAt')), organization._id)
-                  ? moment(
-                      get(JSON.parse(localStorage.getItem('syncedAt')), organization._id)
-                    ).format('YYYY-MM-DD HH:mm')
-                  : '-'}
-              </div>
-            </div>
-          ) : (
-            <div>
-              <WarningOutlined style={{ color: '#cf1322' }} /> <Trans>Not syncing</Trans>
-            </div>
-          )}
-        </div>
       </Menu>
     </Layout.Sider>
   );

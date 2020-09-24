@@ -10,7 +10,7 @@ import { withI18n } from '@lingui/react';
 import { get, map } from 'lodash';
 
 import currency from 'currency.js';
-import HTML5Backend from 'react-dnd-html5-backend';
+import { HTML5Backend } from 'react-dnd-html5-backend';
 
 import { AInput, ASelect, ATextarea } from '../forms/fields';
 import { required } from '../forms/validators';
