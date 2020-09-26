@@ -241,7 +241,7 @@ class InvoiceForm extends Component {
               <Field
                 name="date"
                 component={ADatePicker}
-                props={{ format: util.getDatePickerFormats(get(organization, 'date_format')) }}
+                props={{ format: util.getDatePickerFormats() }}
                 label={<Trans>Date</Trans>}
                 style={{ width: '100%' }}
                 validate={[required]}
@@ -251,7 +251,7 @@ class InvoiceForm extends Component {
               <Field
                 name="due_date"
                 component={ADatePicker}
-                props={{ format: util.getDatePickerFormats(get(organization, 'date_format')) }}
+                props={{ format: util.getDatePickerFormats() }}
                 label={<Trans>Due date</Trans>}
                 style={{ width: '100%' }}
               />

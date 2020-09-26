@@ -181,14 +181,14 @@ class Invoice extends Component {
                       <td>
                         <Trans>Date</Trans>
                       </td>
-                      <td>{util.formatDateString(invoice.date, get(organization, 'date_format'))}</td>
+                      <td>{util.formatDateString(invoice.date)}</td>
                     </tr>
                     {invoice.due_date ? (
                       <tr>
                         <td>
                           <Trans>Due date</Trans>
                         </td>
-                        <td>{util.formatDateString(invoice.due_date, get(organization, 'date_format'))}</td>
+                        <td>{util.formatDateString(invoice.due_date)}</td>
                       </tr>
                     ) : null}
                     {invoice.overdue_charge ? (

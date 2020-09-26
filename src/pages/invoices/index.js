@@ -17,11 +17,13 @@ import {
   pick,
   values,
 } from 'lodash';
+import moment from 'moment/min/moment-with-locales';
 
 import Link from 'umi/link';
 
 import StateTag from '../../components/invoices/state-tag';
 import * as util from '@/util';
+import { DEFAULT_LOCALE_KEY } from '@/util';
 
 class Invoices extends Component {
   state = {
@@ -67,6 +69,9 @@ class Invoices extends Component {
         });
       });
     }
+
+    // Set global locale based on organizational setting
+    moment.locale(get(organization, 'locale') || DEFAULT_LOCALE_KEY);
 
     const stateMenu = (_id, _rev) => (
       <Menu onClick={({ item, key }) => this.onStateSelect(_id, _rev, key)}>
@@ -154,14 +159,14 @@ class Invoices extends Component {
             dataIndex="date"
             key="date"
             sorter={(a, b) => new Date(a.date).getTime() - new Date(b.date).getTime()}
-            render={date => (date ? util.formatDateString(date, get(organization, 'date_format')) : '-')}
+            render={date => (date ? util.formatDateString(date) : '-')}
           />
           <Table.Column
             title={<Trans>Due date</Trans>}
             dataIndex="due_date"
             key="due_date"
             sorter={(a, b) => new Date(a.due_date).getTime() - new Date(b.due_date).getTime()}
-            render={date => (date ? util.formatDateString(date, get(organization, 'date_format')) : '-')}
+            render={date => (date ? util.formatDateString(date) : '-')}
           />
           <Table.Column
             title={<Trans>Sum</Trans>}

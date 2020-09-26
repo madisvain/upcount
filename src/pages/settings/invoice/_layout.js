@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+  import React, { Component } from 'react';
 import { compose } from 'redux';
 import { connect } from 'dva';
 import { Field, reduxForm } from 'redux-form';
@@ -6,10 +6,12 @@ import { Button, Col, Form, Layout, Row, Select, Upload } from 'antd';
 import { FileTextOutlined, PictureOutlined, UploadOutlined } from '@ant-design/icons';
 import { Trans } from '@lingui/macro';
 import { get, map } from 'lodash';
+import moment from 'moment/min/moment-with-locales';
 
 import currencyToSymbolMap from 'currency-symbol-map/map';
 
 import { AInput, AInputNumber, ASelect, ATextarea } from '../../../components/forms/fields';
+  import { DEFAULT_LOCALE_KEY } from '@/util';
 
 class Settings extends Component {
   componentDidMount() {
@@ -78,19 +80,21 @@ class Settings extends Component {
                 label={<Trans>Decimal places</Trans>}
               />
               <Field
-                name="date_format"
-                min={0}
-                max={20}
-                component={AInput}
-                label={
-                  <div>
-                    <Trans>Date format</Trans> (
-                    <a onClick={() => ipcRenderer.send('openLink', 'https://momentjscom.readthedocs.io/en/latest/moment/04-displaying/01-format/')} target="_blank">
-                      https://momentjscom.readthedocs.io/en/latest/moment/04-displaying/01-format/
-                    </a>
-                    )
-                  </div>
-              } />
+                showSearch
+                name="locale"
+                component={ASelect}
+                label={<Trans>Date format</Trans>}
+                style={{ width: '100%' }}
+              >
+                <Select.Option value={DEFAULT_LOCALE_KEY} key={DEFAULT_LOCALE_KEY}>
+                  default
+                </Select.Option>
+                {map(moment.locales().filter(l => l !== DEFAULT_LOCALE_KEY), (localeStr) => (
+                  <Select.Option value={localeStr} key={localeStr}>
+                    {localeStr}
+                  </Select.Option>
+                ))}
+              </Field>
               <Field name="due_days" component={AInput} label={<Trans>Due days</Trans>} />
               <Field
                 name="overdue_charge"
