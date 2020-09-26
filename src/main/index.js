@@ -1,4 +1,4 @@
-import { app, BrowserWindow, ipcMain, shell, dialog } from 'electron';
+import { app, BrowserWindow, ipcMain, dialog } from 'electron';
 import { autoUpdater } from 'electron-updater';
 import * as path from 'path';
 import * as url from 'url';
@@ -113,7 +113,8 @@ ipcMain.on('readyToPrint', (event, filename) => {
             if (error) {
               event.sender.send('wrotePDF');
             }
-            shell.openItem(filePath);
+            // TODO: Causes an exception on OSX
+            // shell.openItem(filePath);
             event.sender.send('wrotePDF');
           });
         })
