@@ -1,4 +1,4 @@
-import { app, BrowserWindow, ipcMain, shell, dialog } from 'electron';
+import { app, BrowserWindow, ipcMain, dialog } from 'electron';
 import { autoUpdater } from 'electron-updater';
 import * as path from 'path';
 import * as url from 'url';
@@ -125,10 +125,4 @@ ipcMain.on('readyToPrint', (event, filename) => {
     .catch(err => {
       throw err;
     });
-});
-
-ipcMain.on('openLink', (event, url) => {
-  shell.openExternal(url)
-    .then(() => console.log('Opened link successfully', url))
-    .catch(e => console.log('Error while opening link', e))
 });

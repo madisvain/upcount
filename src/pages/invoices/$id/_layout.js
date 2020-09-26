@@ -21,7 +21,7 @@ import withRouter from 'umi/withRouter';
 import currency from 'currency.js';
 import currencyToSymbolMap from 'currency-symbol-map/map';
 
-import { AInput, ASelect, ATextarea, ADatePicker } from '../../../components/forms/fields';
+import { ADatePicker, AInput, ASelect, ATextarea } from '../../../components/forms/fields';
 import { required } from '../../../components/forms/validators';
 import StateTag from '../../../components/invoices/state-tag';
 import LineItems from '../../../components/invoices/line-items';
@@ -130,11 +130,9 @@ class InvoiceForm extends Component {
       pristine,
       submitting,
       taxRates,
-      organizations
     } = this.props;
     const { subTotal, taxTotal, total } = totals(lineItems, taxRates);
     const invoice = get(invoices.items, get(this.props, ['match', 'params', 'id']));
-    const organization = get(organizations.items, localStorage.getItem('organization'));
 
     const stateMenu = (_id, _rev) => (
       <Menu onClick={({ item, key }) => this.onStateSelect(_id, _rev, key)}>
@@ -369,7 +367,6 @@ export default withI18n()(
         clients: state.clients,
         taxRates: state.taxRates,
         lineItems: selector(state, 'lineItems'),
-        organizations: state.organizations,
         initialValues: {
           currency: get(
             state.organizations.items,

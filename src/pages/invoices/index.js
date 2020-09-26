@@ -23,7 +23,6 @@ import Link from 'umi/link';
 
 import StateTag from '../../components/invoices/state-tag';
 import * as util from '@/util';
-import { DEFAULT_LOCALE_KEY } from '@/util';
 
 class Invoices extends Component {
   state = {
@@ -71,7 +70,7 @@ class Invoices extends Component {
     }
 
     // Set global locale based on organizational setting
-    moment.locale(get(organization, 'locale') || DEFAULT_LOCALE_KEY);
+    moment.locale(get(organization, 'locale') || util.DEFAULT_LOCALE_KEY);
 
     const stateMenu = (_id, _rev) => (
       <Menu onClick={({ item, key }) => this.onStateSelect(_id, _rev, key)}>

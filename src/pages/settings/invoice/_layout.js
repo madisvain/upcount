@@ -1,4 +1,4 @@
-  import React, { Component } from 'react';
+import React, { Component } from 'react';
 import { compose } from 'redux';
 import { connect } from 'dva';
 import { Field, reduxForm } from 'redux-form';
@@ -11,7 +11,7 @@ import moment from 'moment/min/moment-with-locales';
 import currencyToSymbolMap from 'currency-symbol-map/map';
 
 import { AInput, AInputNumber, ASelect, ATextarea } from '../../../components/forms/fields';
-  import { DEFAULT_LOCALE_KEY } from '@/util';
+import * as util from '@/util';
 
 class Settings extends Component {
   componentDidMount() {
@@ -47,7 +47,6 @@ class Settings extends Component {
   render() {
     const { handleSubmit, pristine, submitting, organizations } = this.props;
     const logo = get(organizations.logos, localStorage.getItem('organization'));
-    const { ipcRenderer } = window.require('electron');
 
     return (
       <Layout.Content>
@@ -86,10 +85,10 @@ class Settings extends Component {
                 label={<Trans>Date format</Trans>}
                 style={{ width: '100%' }}
               >
-                <Select.Option value={DEFAULT_LOCALE_KEY} key={DEFAULT_LOCALE_KEY}>
-                  default
+                <Select.Option value={util.DEFAULT_LOCALE_KEY} key={util.DEFAULT_LOCALE_KEY}>
+                  {util.DEFAULT_LOCALE_KEY}
                 </Select.Option>
-                {map(moment.locales().filter(l => l !== DEFAULT_LOCALE_KEY), (localeStr) => (
+                {map(moment.locales().filter(l => l !== util.DEFAULT_LOCALE_KEY), (localeStr) => (
                   <Select.Option value={localeStr} key={localeStr}>
                     {localeStr}
                   </Select.Option>
