@@ -1,4 +1,4 @@
-import { Component } from 'react';
+import React, { Component } from 'react';
 import { compose } from 'redux';
 import { connect } from 'dva';
 import { Field, FieldArray, formValueSelector, reduxForm } from 'redux-form';
@@ -26,6 +26,7 @@ import { required } from '../../../components/forms/validators';
 import StateTag from '../../../components/invoices/state-tag';
 import LineItems from '../../../components/invoices/line-items';
 import FooterToolbar from '../../../components/layout/footer-toolbar';
+import * as util from '@/util';
 
 const totals = (lineItems, taxRates) => {
   let subTotal = currency(0, { separator: '' });
@@ -238,6 +239,7 @@ class InvoiceForm extends Component {
               <Field
                 name="date"
                 component={ADatePicker}
+                props={{ format: util.getDatePickerFormats() }}
                 label={<Trans>Date</Trans>}
                 style={{ width: '100%' }}
                 validate={[required]}
@@ -247,6 +249,7 @@ class InvoiceForm extends Component {
               <Field
                 name="due_date"
                 component={ADatePicker}
+                props={{ format: util.getDatePickerFormats() }}
                 label={<Trans>Due date</Trans>}
                 style={{ width: '100%' }}
               />

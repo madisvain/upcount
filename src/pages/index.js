@@ -7,11 +7,13 @@ import { Button, Card, Empty, Form, List, Modal, Row, Col } from 'antd';
 import { t, Trans } from '@lingui/macro';
 import { withI18n } from '@lingui/react';
 import { values } from 'lodash';
+import moment from 'moment/min/moment-with-locales';
 
 import { AInput } from '../components/forms/fields';
 import { required } from '../components/forms/validators';
 
 import { OrganizationContext } from '../providers/contexts';
+import { setDefaultDateLocale } from '@/util';
 
 class Index extends Component {
   closeNewOrganizationModal = () => {
@@ -28,6 +30,8 @@ class Index extends Component {
       pristine,
       submitting,
     } = this.props;
+
+    setDefaultDateLocale()
 
     return (
       <OrganizationContext.Consumer>

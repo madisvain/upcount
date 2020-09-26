@@ -1,4 +1,4 @@
-import { Component } from 'react';
+import React, { Component } from 'react';
 import { compose } from 'redux';
 import { connect } from 'dva';
 import { Field, reduxForm } from 'redux-form';
@@ -6,10 +6,12 @@ import { Button, Col, Form, Layout, Row, Select, Upload } from 'antd';
 import { FileTextOutlined, PictureOutlined, UploadOutlined } from '@ant-design/icons';
 import { Trans } from '@lingui/macro';
 import { get, map } from 'lodash';
+import moment from 'moment/min/moment-with-locales';
 
 import currencyToSymbolMap from 'currency-symbol-map/map';
 
 import { AInput, AInputNumber, ASelect, ATextarea } from '../../../components/forms/fields';
+import * as util from '@/util';
 
 class Settings extends Component {
   componentDidMount() {
@@ -76,6 +78,22 @@ class Settings extends Component {
                 component={AInputNumber}
                 label={<Trans>Decimal places</Trans>}
               />
+              <Field
+                showSearch
+                name="locale"
+                component={ASelect}
+                label={<Trans>Date format</Trans>}
+                style={{ width: '100%' }}
+              >
+                <Select.Option value={util.DEFAULT_LOCALE_KEY} key={util.DEFAULT_LOCALE_KEY}>
+                  {util.DEFAULT_LOCALE_KEY}
+                </Select.Option>
+                {map(moment.locales().filter(l => l !== util.DEFAULT_LOCALE_KEY), (localeStr) => (
+                  <Select.Option value={localeStr} key={localeStr}>
+                    {localeStr}
+                  </Select.Option>
+                ))}
+              </Field>
               <Field name="due_days" component={AInput} label={<Trans>Due days</Trans>} />
               <Field
                 name="overdue_charge"
