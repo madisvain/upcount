@@ -13,7 +13,9 @@ export const getHeaders = () => {
 export default () => {
   return axios.create({
     baseURL:
-      process.env.NODE_ENV === 'development' ? 'http://localhost:8888/' : 'https://api.upcount.app',
+      process.env.NODE_ENV === 'development'
+        ? 'https://api.upcount.app'
+        : 'https://api.upcount.app',
     timeout: 30000,
     headers: getHeaders(),
   });

@@ -113,7 +113,8 @@ ipcMain.on('readyToPrint', (event, filename) => {
             if (error) {
               event.sender.send('wrotePDF');
             }
-            shell.openItem(filePath);
+            // TODO: Causes an exception on OSX
+            // shell.openItem(filePath);
             event.sender.send('wrotePDF');
           });
         })
