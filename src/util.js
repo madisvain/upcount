@@ -1,5 +1,5 @@
 // date-fns package would be preferred, but the DatePicker uses moment, so it would be tough to convert formats
-import * as Moment from 'moment'
+import moment from 'moment'
 
 const DateFormats = {
   defaultViewFormat: 'YYYY-MM-DD',
@@ -13,7 +13,7 @@ export const getDatePickerFormats = (dateFormat) => {
 
 export const formatDateString = (dateString, dateFormat) => {
   try {
-    return Moment(dateString).format(dateFormat ? dateFormat : DateFormats.defaultViewFormat)
+    return moment(dateString).format(dateFormat ? dateFormat : DateFormats.defaultViewFormat)
   } catch (e) {
     console.log('Error while formatting date string ', e)
   }
