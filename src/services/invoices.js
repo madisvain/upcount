@@ -1,4 +1,5 @@
 import { assign, has } from 'lodash';
+import moment from 'moment';
 
 import db from '../db';
 
@@ -34,6 +35,14 @@ export async function details(id) {
 }
 
 export async function save(data) {
+  // Convert the moment objects to date strings
+  if (has(data, 'date') && moment.isMoment(data['date'])) {
+    data['date'] = data['date'].format('YYYY-MM-DD');
+  }
+  if (has(data, 'due_date') && moment.isMoment(data['due_date'])) {
+    data['due_date'] = data['due_date'].format('YYYY-MM-DD');
+  }
+
   try {
     if (has(data, '_id')) {
       const original = await db.get(data._id);
