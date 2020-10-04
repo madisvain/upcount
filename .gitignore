@@ -1,5 +1,6 @@
 .env.production
 .vscode
+*.sqlite3
 
 #linguijs
 src/locales/_build/
