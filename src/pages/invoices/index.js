@@ -18,6 +18,7 @@ import {
   values,
 } from 'lodash';
 
+import currency from 'currency.js';
 import Link from 'umi/link';
 
 import StateTag from '../../components/invoices/state-tag';
@@ -170,7 +171,7 @@ class Invoices extends Component {
                 ? Intl.NumberFormat(i18n.language, {
                     style: 'currency',
                     currency: invoice.currency,
-                  }).format(invoice.total)
+                  }).format(currency(invoice.total, { separator: '', symbol: '' }))
                 : '-'
             }
           />

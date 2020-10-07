@@ -131,7 +131,6 @@ class InvoiceForm extends Component {
       handleSubmit,
       submitting,
     } = this.props;
-    console.log(currency);
     const { subTotal, taxTotal, total } = totals(lineItems, taxRates);
     const invoice = get(invoices.items, get(this.props, ['match', 'params', 'id']));
 
