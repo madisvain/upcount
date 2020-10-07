@@ -10,7 +10,7 @@ import {
   FilePdfOutlined,
   SaveOutlined,
 } from '@ant-design/icons';
-import { t, Trans } from '@lingui/macro';
+import { t, NumberFormat, Trans } from '@lingui/macro';
 import { withI18n } from '@lingui/react';
 import { forEach, get, isString, includes, has, lowerCase, map } from 'lodash';
 
@@ -26,6 +26,7 @@ import { required } from '../../../components/forms/validators';
 import StateTag from '../../../components/invoices/state-tag';
 import LineItems from '../../../components/invoices/line-items';
 import FooterToolbar from '../../../components/layout/footer-toolbar';
+import { OrganizationContext } from '../../../providers/contexts';
 
 const totals = (lineItems, taxRates) => {
   let subTotal = currency(0, { separator: '', symbol: '' });
@@ -270,54 +271,82 @@ class InvoiceForm extends Component {
               />
             </Col>
             <Col span={12} offset={4} style={{ marginTop: '31px' }}>
-              <table style={{ width: '100%' }}>
-                <tbody>
-                  <tr>
-                    <td style={{ textAlign: 'right', width: '50%' }}>
-                      <h4>
-                        <Trans>Subtotal</Trans>
-                      </h4>
-                    </td>
-                    <td style={{ textAlign: 'right' }}>
-                      <h4>
-                        {currency &&
-                          Intl.NumberFormat(i18n.language, {
-                            style: 'currency',
-                            currency: currency,
-                          }).format(subTotal)}
-                      </h4>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td style={{ textAlign: 'right' }}>
-                      <Trans>Tax</Trans>
-                    </td>
-                    <td style={{ textAlign: 'right' }}>
-                      {currency &&
-                        Intl.NumberFormat(i18n.language, {
-                          style: 'currency',
-                          currency: currency,
-                        }).format(taxTotal)}
-                    </td>
-                  </tr>
-                  <tr>
-                    <td style={{ textAlign: 'right', paddingTop: 24 }}>
-                      <h2>
-                        <Trans>Total</Trans>
-                      </h2>
-                    </td>
-                    <td style={{ textAlign: 'right', paddingTop: 24 }}>
-                      <h2>
-                        {currency &&
-                          Intl.NumberFormat(i18n.language, {
-                            style: 'currency',
-                            currency: currency,
-                          }).format(total)}
-                      </h2>
-                    </td>
-                  </tr>
-                </tbody>
-              </table>
+              <OrganizationContext.Consumer>
+                {context => (
+                  <table style={{ width: '100%' }}>
+                    <tbody>
+                      <tr>
+                        <td style={{ textAlign: 'right', width: '50%' }}>
+                          <h4>
+                            <Trans>Subtotal</Trans>
+                          </h4>
+                        </td>
+                        <td style={{ textAlign: 'right' }}>
+                          <h4>
+                            <NumberFormat
+                              value={subTotal}
+                              format={{
+                                style: 'currency',
+                                currency:
+                                  currency || get(context.state, 'organization.currency', 'EUR'),
+                                minimumFractionDigits: get(
+                                  context.state,
+                                  'organization.minimum_fraction_digits',
+                                  2
+                                ),
+                              }}
+                            />
+                          </h4>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td style={{ textAlign: 'right' }}>
+                          <Trans>Tax</Trans>
+                        </td>
+                        <td style={{ textAlign: 'right' }}>
+                          <NumberFormat
+                            value={taxTotal}
+                            format={{
+                              style: 'currency',
+                              currency:
+                                currency || get(context.state, 'organization.currency', 'EUR'),
+                              minimumFractionDigits: get(
+                                context.state,
+                                'organization.minimum_fraction_digits',
+                                2
+                              ),
+                            }}
+                          />
+                        </td>
+                      </tr>
+                      <tr>
+                        <td style={{ textAlign: 'right', paddingTop: 24 }}>
+                          <h2>
+                            <Trans>Total</Trans>
+                          </h2>
+                        </td>
+                        <td style={{ textAlign: 'right', paddingTop: 24 }}>
+                          <h2>
+                            <NumberFormat
+                              value={total}
+                              format={{
+                                style: 'currency',
+                                currency:
+                                  currency || get(context.state, 'organization.currency', 'EUR'),
+                                minimumFractionDigits: get(
+                                  context.state,
+                                  'organization.minimum_fraction_digits',
+                                  2
+                                ),
+                              }}
+                            />
+                          </h2>
+                        </td>
+                      </tr>
+                    </tbody>
+                  </table>
+                )}
+              </OrganizationContext.Consumer>
             </Col>
           </Row>
 

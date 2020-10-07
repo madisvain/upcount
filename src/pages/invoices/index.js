@@ -3,7 +3,7 @@ import { compose } from 'redux';
 import { connect } from 'dva';
 import { Button, Dropdown, Input, Layout, Menu, Table, Row, Col } from 'antd';
 import { FileTextOutlined } from '@ant-design/icons';
-import { t, Trans } from '@lingui/macro';
+import { t, NumberFormat, Trans } from '@lingui/macro';
 import { withI18n } from '@lingui/react';
 import {
   compact,
@@ -22,6 +22,7 @@ import currency from 'currency.js';
 import Link from 'umi/link';
 
 import StateTag from '../../components/invoices/state-tag';
+import { OrganizationContext } from '../../providers/contexts';
 
 class Invoices extends Component {
   state = {
@@ -167,12 +168,26 @@ class Invoices extends Component {
             key="total"
             sorter={(a, b) => a.total - b.total}
             render={invoice =>
-              invoice.currency && invoice.total
-                ? Intl.NumberFormat(i18n.language, {
-                    style: 'currency',
-                    currency: invoice.currency,
-                  }).format(currency(invoice.total, { separator: '', symbol: '' }))
-                : '-'
+              invoice.currency && invoice.total ? (
+                <OrganizationContext.Consumer>
+                  {context => (
+                    <NumberFormat
+                      value={currency(invoice.total)}
+                      format={{
+                        style: 'currency',
+                        currency: invoice.currency,
+                        minimumFractionDigits: get(
+                          context.state,
+                          'organization.minimum_fraction_digits',
+                          2
+                        ),
+                      }}
+                    />
+                  )}
+                </OrganizationContext.Consumer>
+              ) : (
+                '-'
+              )
             }
           />
           <Table.Column
