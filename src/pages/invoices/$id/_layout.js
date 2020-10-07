@@ -28,8 +28,8 @@ import LineItems from '../../../components/invoices/line-items';
 import FooterToolbar from '../../../components/layout/footer-toolbar';
 
 const totals = (lineItems, taxRates) => {
-  let subTotal = currency(0, { separator: '' });
-  let taxTotal = currency(0, { separator: '' });
+  let subTotal = currency(0, { separator: '', symbol: '' });
+  let taxTotal = currency(0, { separator: '', symbol: '' });
 
   forEach(lineItems, line => {
     if (has(line, 'subtotal')) {
@@ -120,16 +120,18 @@ class InvoiceForm extends Component {
   render() {
     const {
       i18n,
+      children,
       invoices,
       location,
-      children,
       clients,
-      handleSubmit,
+      currency,
       lineItems,
-      pristine,
-      submitting,
       taxRates,
+      pristine,
+      handleSubmit,
+      submitting,
     } = this.props;
+    console.log(currency);
     const { subTotal, taxTotal, total } = totals(lineItems, taxRates);
     const invoice = get(invoices.items, get(this.props, ['match', 'params', 'id']));
 
@@ -278,14 +280,26 @@ class InvoiceForm extends Component {
                       </h4>
                     </td>
                     <td style={{ textAlign: 'right' }}>
-                      <h4>{subTotal.format()}</h4>
+                      <h4>
+                        {currency &&
+                          Intl.NumberFormat(i18n.language, {
+                            style: 'currency',
+                            currency: currency,
+                          }).format(subTotal)}
+                      </h4>
                     </td>
                   </tr>
                   <tr>
                     <td style={{ textAlign: 'right' }}>
                       <Trans>Tax</Trans>
                     </td>
-                    <td style={{ textAlign: 'right' }}>{taxTotal.format()}</td>
+                    <td style={{ textAlign: 'right' }}>
+                      {currency &&
+                        Intl.NumberFormat(i18n.language, {
+                          style: 'currency',
+                          currency: currency,
+                        }).format(taxTotal)}
+                    </td>
                   </tr>
                   <tr>
                     <td style={{ textAlign: 'right', paddingTop: 24 }}>
@@ -294,7 +308,13 @@ class InvoiceForm extends Component {
                       </h2>
                     </td>
                     <td style={{ textAlign: 'right', paddingTop: 24 }}>
-                      <h2>{total.format()}</h2>
+                      <h2>
+                        {currency &&
+                          Intl.NumberFormat(i18n.language, {
+                            style: 'currency',
+                            currency: currency,
+                          }).format(total)}
+                      </h2>
                     </td>
                   </tr>
                 </tbody>
@@ -363,6 +383,7 @@ export default withI18n()(
         invoices: state.invoices,
         clients: state.clients,
         taxRates: state.taxRates,
+        currency: selector(state, 'currency'),
         lineItems: selector(state, 'lineItems'),
         initialValues: {
           currency: get(

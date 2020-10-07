@@ -163,10 +163,16 @@ class Invoices extends Component {
           />
           <Table.Column
             title={<Trans>Sum</Trans>}
-            dataIndex="total"
             key="total"
             sorter={(a, b) => a.total - b.total}
-            render={total => (total ? total : '-')}
+            render={invoice =>
+              invoice.currency && invoice.total
+                ? Intl.NumberFormat(i18n.language, {
+                    style: 'currency',
+                    currency: invoice.currency,
+                  }).format(invoice.total)
+                : '-'
+            }
           />
           <Table.Column
             title={<Trans>State</Trans>}

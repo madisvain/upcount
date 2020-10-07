@@ -100,7 +100,7 @@ class LineItems extends Component {
         change(
           'invoice',
           `lineItems[${index}].subtotal`,
-          currency(newValue, { separator: '' })
+          currency(newValue, { separator: '', symbol: '' })
             .multiply(unitPrice)
             .format()
         )
@@ -110,7 +110,7 @@ class LineItems extends Component {
         change(
           'invoice',
           `lineItems[${index}].unitPrice`,
-          currency(subtotal, { separator: '' })
+          currency(subtotal, { separator: '', symbol: '' })
             .divide(newValue)
             .format()
         )
@@ -129,7 +129,7 @@ class LineItems extends Component {
         change(
           'invoice',
           `lineItems[${index}].subtotal`,
-          currency(newValue, { separator: '' })
+          currency(newValue, { separator: '', symbol: '' })
             .multiply(quantity)
             .format()
         )
@@ -139,7 +139,7 @@ class LineItems extends Component {
         change(
           'invoice',
           `lineItems[${index}].quantity`,
-          currency(subtotal, { separator: '' })
+          currency(subtotal, { separator: '', symbol: '' })
             .divide(newValue)
             .format()
         )
@@ -158,7 +158,7 @@ class LineItems extends Component {
         change(
           'invoice',
           `lineItems[${index}].unitPrice`,
-          currency(newValue, { separator: '' })
+          currency(newValue, { separator: '', symbol: '' })
             .divide(quantity)
             .format()
         )
@@ -168,7 +168,7 @@ class LineItems extends Component {
         change(
           'invoice',
           `lineItems[${index}].quantity`,
-          currency(newValue, { separator: '' })
+          currency(newValue, { separator: '', symbol: '' })
             .divide(unitPrice)
             .format()
         )
