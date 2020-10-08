@@ -83,7 +83,7 @@ msgstr "Datum"
 
 #: src/pages/settings/invoice/_layout.js:77
 msgid "Decimal places"
-msgstr "Decimal places"
+msgstr "Aantal decimalen"
 
 #: src/pages/settings/invoice/_layout.js:63
 msgid "Default currency"
@@ -402,7 +402,7 @@ msgstr "Aantal"
 
 #: src/pages/invoices/$id/pdf.js:333
 msgid "Reg. nr."
-msgstr "Reg. nr."
+msgstr "KVK. nr."
 
 #: src/components/account/drawer.js:45 src/components/account/register.js:21
 msgid "Register"
