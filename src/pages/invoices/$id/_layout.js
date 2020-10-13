@@ -96,7 +96,7 @@ class InvoiceForm extends Component {
 
   deleteConfirm = (_id, _rev) => {
     Modal.confirm({
-      title: 'Are you sure delete this invoice?',
+      title: 'Are you sure you want to delete this invoice?',
       okText: 'Yes',
       okType: 'danger',
       cancelText: 'No',
