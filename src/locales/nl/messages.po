@@ -87,7 +87,7 @@ msgstr "Aantal decimalen"
 
 #: src/pages/settings/invoice/_layout.js:63
 msgid "Default currency"
-msgstr "Standaart valuta"
+msgstr "Standaard valuta"
 
 #: src/pages/invoices/$id/_layout.js:313
 msgid "Delete"
@@ -132,7 +132,7 @@ msgstr "Email"
 
 #: src/components/clients/form.js:22 src/pages/clients/_layout.js:76
 msgid "Emails"
-msgstr "Emails"
+msgstr "Email adres(sen)"
 
 #: src/models/invoices.js:52
 msgid "Error changing invoice state!"
@@ -440,7 +440,7 @@ msgstr "BTW template opslaan"
 
 #: src/pages/clients/_layout.js:60 src/pages/invoices/index.js:122
 msgid "Search text"
-msgstr "Zoek tekst"
+msgstr "Zoeken"
 
 #: src/pages/invoices/$id/_layout.js:186
 msgid "Select or create a client"
@@ -461,7 +461,7 @@ msgstr "Subtotal"
 
 #: src/pages/invoices/$id/pdf.js:222 src/pages/invoices/index.js:165
 msgid "Sum"
-msgstr "Sum"
+msgstr "Totaal"
 
 #: src/components/invoices/line-items.js:275
 #: src/pages/invoices/$id/_layout.js:286 src/pages/invoices/$id/pdf.js:246
