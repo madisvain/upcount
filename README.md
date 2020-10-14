@@ -25,6 +25,7 @@ Upcount is available for Mac, Linux & Windows and can be downloaded from Github 
 
 # Languages
 * 🇬🇧 English
+* 🇳🇱 Dutch
 * 🇩🇪 German
 * 🇫🇮 Finnish 
 * 🇪🇪 Estonian
