@@ -1,7 +1,7 @@
 import { Component } from 'react';
 import { compose } from 'redux';
 import { connect } from 'dva';
-import { Field, FieldArray, formValueSelector, reduxForm } from 'redux-form';
+import { Field, FieldArray, formValueSelector, reduxForm, change } from 'redux-form';
 import { Button, Col, Form, Layout, Row, Select, Menu, Dropdown, Modal } from 'antd';
 import {
   UserAddOutlined,
@@ -28,25 +28,40 @@ import LineItems from '../../../components/invoices/line-items';
 import FooterToolbar from '../../../components/layout/footer-toolbar';
 import { OrganizationContext } from '../../../providers/contexts';
 
-const totals = (lineItems, taxRates) => {
+const totals = (lineItems, taxRates, discountType, discountValue) => {
   let subTotal = currency(0, { separator: '', symbol: '' });
   let taxTotal = currency(0, { separator: '', symbol: '' });
+  let discount = currency(0, { separator: '', symbol: '' });
 
   forEach(lineItems, line => {
     if (has(line, 'subtotal')) {
       subTotal = subTotal.add(line.subtotal);
+
+      let lineDiscount;
+      if(discountValue !== 0 | discountValue !== ""){
+        if(discountType === "%"){
+          lineDiscount = currency(line.subtotal).multiply(discountValue / 100);
+        } else if(discountType==="currency"){
+          lineDiscount = currency(lineDiscount).add(discountValue / lineItems.length);
+        }
+      }
       if (has(line, 'taxRate')) {
-        const taxRate = get(taxRates.items, line.taxRate);
+        const taxRate = get(taxRates.items, line.taxRate) 
+
         if (taxRate) {
-          const lineTax = currency(line.subtotal).multiply(taxRate.percentage / 100);
+          const afterDiscount = currency(line.subtotal).subtract(lineDiscount)
+          const lineTax = afterDiscount.multiply(taxRate.percentage / 100);
           taxTotal = taxTotal.add(lineTax);
         }
       }
+      discount = discount.add(lineDiscount)
     }
   });
 
-  const total = subTotal.add(taxTotal);
-  return { subTotal, taxTotal, total };
+  
+  const total = currency(subTotal, { separator: '', symbol: '' }).subtract(discount).add(taxTotal);
+  return { subTotal, taxTotal, total, discount};
+
 };
 
 class InvoiceForm extends Component {
@@ -82,6 +97,26 @@ class InvoiceForm extends Component {
       });
     }
   };
+
+  onDiscountTypeChange = (value) => {  
+    this.props.dispatch(
+      change(
+        'invoice',
+        `discountType`,
+        value
+      )
+    );
+  }
+
+  onDiscountChange = (value) => {
+    this.props.dispatch(
+      change(
+        'invoice',
+        `discountValue`,
+        value
+      )
+    );
+  }; 
 
   onStateSelect = (_id, _rev, key) => {
     this.props.dispatch({
@@ -131,8 +166,10 @@ class InvoiceForm extends Component {
       pristine,
       handleSubmit,
       submitting,
+      discountType,
+      discountValue
     } = this.props;
-    const { subTotal, taxTotal, total } = totals(lineItems, taxRates);
+    const { subTotal, taxTotal, total, discount } = totals(lineItems, taxRates, discountType, discountValue);
     const invoice = get(invoices.items, get(this.props, ['match', 'params', 'id']));
 
     const stateMenu = (_id, _rev) => (
@@ -262,6 +299,24 @@ class InvoiceForm extends Component {
           </Row>
 
           <Row gutter={16}>
+            <Col span={5} style={{ marginTop: '20px' }}>
+              <Field
+                name="discountValue"
+                component={AInput}
+                label={<Trans>Discount</Trans>}
+                onChange={(event, newValue) => 
+                  this.onDiscountChange(newValue)
+                }
+              />
+            </Col>
+            <Col span={3} style={{ marginTop: '20px'}}>
+             <Field name="discountType" component={ASelect} onDrop={e => e.preventDefault()} label=" " defaultValue="%" onChange={(value) => this.onDiscountTypeChange(value)}>
+                <Select.Option value="%">%</Select.Option>
+                <Select.Option value="currency">{currency}</Select.Option>
+              </Field>
+            </Col>
+          </Row>
+          <Row gutter={16}>
             <Col span={8} style={{ marginTop: '20px' }}>
               <Field
                 name="customer_note"
@@ -299,6 +354,26 @@ class InvoiceForm extends Component {
                           </h4>
                         </td>
                       </tr>
+                      { discount > 0 && <tr>
+                        <td style={{ textAlign: 'right' }}>
+                          <Trans>Discount {discountType === '%' ? '(' + discountValue +'%)' : ''}</Trans>
+                        </td>
+                        <td style={{ textAlign: 'right' }}>
+                          <NumberFormat
+                            value={discount}
+                            format={{
+                              style: 'currency',
+                              currency:
+                                currency || get(context.state, 'organization.currency', 'EUR'),
+                              minimumFractionDigits: get(
+                                context.state,
+                                'organization.minimum_fraction_digits',
+                                2
+                              ),
+                            }}
+                          />
+                        </td>
+                      </tr>}
                       <tr>
                         <td style={{ textAlign: 'right' }}>
                           <Trans>Tax</Trans>
@@ -413,6 +488,8 @@ export default withI18n()(
         taxRates: state.taxRates,
         currency: selector(state, 'currency'),
         lineItems: selector(state, 'lineItems'),
+        discountType: selector(state, 'discountType'),
+        discountValue: selector(state, 'discountValue'),
         initialValues: {
           currency: get(
             state.organizations.items,
@@ -437,13 +514,14 @@ export default withI18n()(
         reduxForm({
           form: 'invoice',
           onSubmit: async (data, dispatch, props) => {
-            const { lineItems, taxRates } = props;
-            const { subTotal, taxTotal, total } = totals(lineItems, taxRates);
+            const { lineItems, taxRates, discountType, discountValue } = props;
+            const { subTotal, taxTotal, total, discount } = totals(lineItems, taxRates, discountType, discountValue);
             return await dispatch({
               type: 'invoices/save',
               data: {
                 ...data,
                 subTotal: subTotal.format(),
+                discount: discount.format(),
                 taxTotal: taxTotal.format(),
                 total: total.format(),
               },

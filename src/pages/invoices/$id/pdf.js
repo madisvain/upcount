@@ -239,6 +239,22 @@ class Invoice extends Component {
                         />
                       </td>
                     </tr>
+                    { invoice.discount > 0 && <tr>
+                      <td colSpan="2" className="border-top-0" />
+                      <td colSpan="2" className="border-top-0">
+                        <Trans>Discount {invoice.discountType === '%' ? '(' + invoice.discountValue +'%)' : ''}</Trans>
+                      </td>
+                      <td className="text-right border-top-0">
+                        <NumberFormat
+                          value={invoice.discount}
+                          format={{
+                            style: 'currency',
+                            currency: invoice.currency,
+                            minimumFractionDigits: get(organization, 'minimum_fraction_digits', 2),
+                          }}
+                        />
+                      </td>
+                    </tr>}
                     <tr>
                       <td colSpan="2" className="border-top-0" />
                       <td colSpan="2" className="border-top-0">
