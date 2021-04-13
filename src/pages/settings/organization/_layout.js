@@ -62,6 +62,20 @@ class Organization extends Component {
                 </Col>
               </Row>
               <Row gutter={16}>
+                <Col span={24}>
+                  <Field name="bic" component={AInput} label={<Trans>BIC</Trans>} />
+                </Col>
+              </Row>
+              <Row gutter={16}>
+                <Col span={24}>
+                  <Field
+                    name="intermediary_bic"
+                    component={AInput}
+                    label={<Trans>Intermediary BIC</Trans>}
+                  />
+                </Col>
+              </Row>
+              <Row gutter={16}>
                 <Col span={12}>
                   <Field name="vatin" component={AInput} label={<Trans>VATIN</Trans>} />
                 </Col>

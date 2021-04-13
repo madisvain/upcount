@@ -1,4 +1,4 @@
-import { Component } from 'react';
+import { Component, Fragment } from 'react';
 import { compose } from 'redux';
 import { connect } from 'dva';
 import { Spin } from 'antd';
@@ -326,6 +326,16 @@ class Invoice extends Component {
             <div id="footer" className="row">
               <div className="col">
                 {get(organization, 'bank')} {get(organization, 'iban')}
+                {get(organization, 'bic') && (
+                  <Fragment>
+                    <br />(<Trans>BIC</Trans>: {get(organization, 'bic')})
+                  </Fragment>
+                )}
+                {get(organization, 'bic') && (
+                  <Fragment>
+                    <br />(<Trans>Intermediary BIC</Trans>: {get(organization, 'bic')})
+                  </Fragment>
+                )}
               </div>
               {organization.registration_number ? (
                 <div className="col text-center">
