@@ -29,6 +29,7 @@ Upcount is available for Mac, Linux & Windows and can be downloaded from Github 
 * 🇩🇪 German
 * 🇫🇮 Finnish 
 * 🇪🇪 Estonian
+* 🇫🇷 French
 
 If you are interested in adding a language translation to Upcount [please open a new issue](https://github.com/madisvain/upcount/issues).
 
