@@ -1,0 +1,587 @@
+msgid ""
+msgstr ""
+"POT-Creation-Date: 2020-10-08 00:19+0300\n"
+"Mime-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Poedit 2.4.1\n"
+"Language: pt\n"
+"Project-Id-Version: \n"
+"Report-Msgid-Bugs-To: \n"
+"PO-Revision-Date: \n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"Plural-Forms: \n"
+"MIME-Version: 1.0\n"
+
+#: src/layouts/electron.js:34
+msgid "A new version of Upcount is available. Downloading now ..."
+msgstr "Uma nova versão do Upcount está disponível. Baixando agora..."
+
+#: src/pages/clients/$id.js:46
+#: src/pages/invoices/$id/client.js:27
+msgid "Add client"
+msgstr "Adicionar cliente"
+
+#: src/components/invoices/line-items.js:300
+msgid "Add row"
+msgstr "Adicionar Linha"
+
+#: src/pages/settings/tax-rates/$id.js:48
+msgid "Add tax"
+msgstr "Adicionar taxa"
+
+#: src/components/clients/form.js:16
+#: src/pages/clients/_layout.js:74
+#: src/pages/settings/organization/_layout.js:46
+msgid "Address"
+msgstr "Endereço"
+
+#: src/pages/settings/organization/_layout.js:56
+msgid "Bank name"
+msgstr "Nome do Banco"
+
+#: src/pages/settings/invoice/_layout.js:117
+msgid "Change"
+msgstr "Alterar"
+
+#: src/pages/invoices/$id/_layout.js:190
+#: src/pages/invoices/index.js:146
+msgid "Client"
+msgstr "Cliente"
+
+#: src/models/clients.js:49
+msgid "Client saved!"
+msgstr "Cliente salvo!"
+
+#: src/components/layout/navigation.js:66
+#: src/pages/clients/_layout.js:50
+msgid "Clients"
+msgstr "Clientes"
+
+#: src/components/invoices/state-tag.js:6
+#: src/pages/invoices/$id/_layout.js:144
+#: src/pages/invoices/index.js:77
+#: src/pages/invoices/index.js:95
+msgid "Confirmed"
+msgstr "Confirmado"
+
+#: src/pages/index.js:50
+#: src/pages/index.js:119
+msgid "Create an organization"
+msgstr "Crie uma organização"
+
+#: src/pages/invoices/$id/_layout.js:210
+msgid "Create new client"
+msgstr "Crie um novo cliente"
+
+#: src/pages/invoices/$id/_layout.js:227
+msgid "Currency"
+msgstr "Moeda"
+
+#: src/pages/invoices/$id/_layout.js:269
+msgid "Customer note"
+msgstr "Nota do cliente"
+
+#: src/pages/invoices/$id/_layout.js:243
+#: src/pages/invoices/$id/pdf.js:181
+#: src/pages/invoices/index.js:153
+msgid "Date"
+msgstr "Data"
+
+#: src/pages/settings/invoice/_layout.js:77
+msgid "Decimal places"
+msgstr "Casas decimais"
+
+#: src/pages/settings/invoice/_layout.js:63
+msgid "Default currency"
+msgstr "Moeda principal"
+
+#: src/pages/invoices/$id/_layout.js:361
+#: src/pages/settings/organization/_layout.js:94
+msgid "Delete"
+msgstr "Deletar"
+
+#: src/components/invoices/line-items.js:208
+#: src/pages/invoices/$id/pdf.js:212
+#: src/pages/settings/tax-rates/$id.js:60
+#: src/pages/settings/tax-rates/_layout.js:60
+msgid "Description"
+msgstr "Descrição"
+
+#: src/components/invoices/state-tag.js:5
+#: src/pages/invoices/$id/_layout.js:141
+#: src/pages/invoices/index.js:74
+#: src/pages/invoices/index.js:91
+msgid "Draft"
+msgstr "Esboço"
+
+#: src/pages/invoices/$id/_layout.js:252
+#: src/pages/invoices/$id/pdf.js:188
+#: src/pages/invoices/index.js:160
+msgid "Due date"
+msgstr "Data de vencimento"
+
+#: src/pages/settings/invoice/_layout.js:79
+msgid "Due days"
+msgstr "Dias de vencimento"
+
+#: src/pages/invoices/$id/preview.js:28
+msgid "Edit"
+msgstr "Editar"
+
+#: src/pages/clients/$id.js:46
+msgid "Edit client"
+msgstr "Editar cliente"
+
+#: src/pages/settings/tax-rates/$id.js:48
+msgid "Edit tax"
+msgstr "Editar taxa"
+
+#: src/components/account/login.js:11
+#: src/components/account/register.js:12
+#: src/pages/settings/organization/_layout.js:47
+msgid "Email"
+msgstr "E-mail"
+
+#: src/components/clients/form.js:22
+#: src/pages/clients/_layout.js:76
+msgid "Emails"
+msgstr "E-mails"
+
+#: src/models/invoices.js:52
+msgid "Error changing invoice state!"
+msgstr "Erro ao alterar estado da fatura!"
+
+#: src/models/invoices.js:74
+msgid "Error deleting invoice!"
+msgstr "Erro ao deletar fatura!"
+
+#: src/models/organizations.js:123
+msgid "Error deleting organization!"
+msgstr "Erro ao deletar organização!"
+
+#: src/models/organizations.js:67
+msgid "Error getting organization logo!"
+msgstr "Erro ao buscar logo da organização!"
+
+#: src/models/clients.js:41
+msgid "Error initializing client form!"
+msgstr "Erro ao inicializar o formulário do cliente!"
+
+#: src/models/invoices.js:42
+msgid "Error initializing invoice form!"
+msgstr "Erro ao inicializar o formulário da fatura!"
+
+#: src/models/organizations.js:52
+msgid "Error initializing organization form!"
+msgstr "Erro ao inicializar o formulário da organização!"
+
+#: src/models/tax-rates.js:41
+msgid "Error initializing tax rate form!"
+msgstr "Erro ao inicializar formulário da taxa de imposto!"
+
+#: src/models/accounts.js:31
+msgid "Error loading account details!"
+msgstr "Erro ao carregar detalhes da conta!"
+
+#: src/models/accounts.js:22
+msgid "Error loading accounts list!"
+msgstr "Erro ao listar contas!"
+
+#: src/models/clients.js:31
+msgid "Error loading client details!"
+msgstr "Erro ao carregar dados do cliente!"
+
+#: src/models/clients.js:22
+msgid "Error loading clients list!"
+msgstr "Erro ao carregar lista de clientes!"
+
+#: src/models/invoices.js:32
+msgid "Error loading invoice details!"
+msgstr "Erro ao carregar detalhes da fatura!"
+
+#: src/models/invoices.js:23
+msgid "Error loading invoices list!"
+msgstr "Erro ao carregar lista de faturas!"
+
+#: src/models/organizations.js:37
+msgid "Error loading organization details!"
+msgstr "Erro ao carregar detalhes da organização!"
+
+#: src/models/organizations.js:23
+msgid "Error loading organizations list!"
+msgstr "Erro ao carregar lista de organizações!"
+
+#: src/models/tax-rates.js:31
+msgid "Error loading tax rate details!"
+msgstr "Erro ao carregar os detalhes da taxa de imposto!"
+
+#: src/models/tax-rates.js:22
+msgid "Error loading tax rates list!"
+msgstr "Erro ao carregar a lista de taxas de impostos!"
+
+#: src/models/accounts.js:46
+msgid "Error logging in!"
+msgstr "Erro ao conectar!"
+
+#: src/models/accounts.js:69
+msgid "Error logging out!"
+msgstr "Erro ao deslogar!"
+
+#: src/models/accounts.js:58
+msgid "Error registering!"
+msgstr "Erro ao registrar!"
+
+#: src/models/clients.js:52
+msgid "Error saving client!"
+msgstr "Erro ao salvar cliente!"
+
+#: src/models/invoices.js:63
+msgid "Error saving invoice!"
+msgstr "Erro ao salvar fatura!"
+
+#: src/models/organizations.js:112
+msgid "Error saving organization!"
+msgstr "Erro ao salvar organização!"
+
+#: src/models/tax-rates.js:52
+msgid "Error saving tax rate!"
+msgstr "Erro ao salvar taxa de imposto!"
+
+#: src/models/organizations.js:83
+msgid "Error setting organization logo!"
+msgstr "Erro ao adicionar logo da organização!"
+
+#: src/models/organizations.js:98
+msgid "Error setting organization sync!"
+msgstr "Erro ao sincronizar configurações da organização!"
+
+#: src/pages/settings/organization/_layout.js:61
+msgid "IBAN"
+msgstr "IBAN"
+
+#: src/components/forms/validators.js:19
+#: src/components/forms/validators.js:26
+msgid "Invalid email address"
+msgstr "Endereço de e-mail inválido"
+
+#: src/components/forms/validators.js:14
+msgid "Invalid number"
+msgstr "Número inválido"
+
+#: src/components/layout/navigation.js:90
+#: src/pages/invoices/$id/pdf.js:118
+msgid "Invoice"
+msgstr "Fatura"
+
+#: src/models/invoices.js:71
+msgid "Invoice deleted!"
+msgstr "Fatura deletada!"
+
+#: src/pages/settings/invoice/_layout.js:57
+msgid "Invoice details"
+msgstr "Detalhes da fatura"
+
+#: src/pages/invoices/$id/_layout.js:218
+msgid "Invoice number"
+msgstr "Número da fatura"
+
+#: src/models/invoices.js:60
+msgid "Invoice saved!"
+msgstr "Fatura salva!"
+
+#: src/models/invoices.js:50
+msgid "Invoice state changed!"
+msgstr "Estado da fatura alterado!"
+
+#: src/components/layout/navigation.js:58
+#: src/pages/invoices/index.js:114
+msgid "Invoices"
+msgstr "Faturas"
+
+#: src/components/account/drawer.js:42
+#: src/components/account/login.js:20
+msgid "Log in"
+msgstr "Conectar"
+
+#: src/models/accounts.js:41
+msgid "Login successful!"
+msgstr "Conectado(a) com sucesso!"
+
+#: src/pages/settings/invoice/_layout.js:107
+msgid "Logo"
+msgstr "Logo"
+
+#: src/models/accounts.js:67
+msgid "Logout successful!"
+msgstr "Desconectado(a) com sucesso!"
+
+#: src/components/clients/form.js:15
+#: src/pages/clients/_layout.js:70
+#: src/pages/settings/organization/_layout.js:45
+#: src/pages/settings/tax-rates/$id.js:56
+#: src/pages/settings/tax-rates/_layout.js:53
+msgid "Name"
+msgstr "Nome"
+
+#: src/pages/clients/_layout.js:56
+msgid "New client"
+msgstr "Novo cliente"
+
+#: src/pages/invoices/index.js:120
+msgid "New invoice"
+msgstr "Nova fatura"
+
+#: src/pages/index.js:45
+#: src/pages/index.js:48
+msgid "New organization"
+msgstr "Nova organização"
+
+#: src/pages/settings/tax-rates/_layout.js:36
+msgid "New tax"
+msgstr "Nova taxa"
+
+#: src/pages/settings/invoice/_layout.js:85
+msgid "Notes"
+msgstr "Notas"
+
+#: src/pages/invoices/index.js:135
+msgid "Number"
+msgstr "Número"
+
+#: src/components/layout/navigation.js:84
+msgid "Organization"
+msgstr "Organização"
+
+#: src/models/organizations.js:120
+msgid "Organization deleted!"
+msgstr "Organização deletada!"
+
+#: src/pages/settings/organization/_layout.js:43
+msgid "Organization details"
+msgstr "Detalhes da organização"
+
+#: src/models/organizations.js:81
+msgid "Organization logo set!"
+msgstr "Logo da organização definido!"
+
+#: src/pages/index.js:59
+#: src/pages/index.js:107
+msgid "Organization name"
+msgstr "Nome da organização"
+
+#: src/models/organizations.js:107
+msgid "Organization saved!"
+msgstr "Organização salva!"
+
+#: src/models/organizations.js:94
+msgid "Organization sync disabled!"
+msgstr "Sincronização da organização desabilitado!"
+
+#: src/models/organizations.js:93
+msgid "Organization sync enabled!"
+msgstr "Sincronização da organização habilitado!"
+
+#: src/pages/index.js:39
+msgid "Organizations"
+msgstr "Organizações"
+
+#: src/components/account/drawer.js:102
+msgid "Organizations syncing"
+msgstr "Sincronizando organizações"
+
+#: src/pages/invoices/$id/pdf.js:196
+#: src/pages/settings/invoice/_layout.js:83
+msgid "Overdue charge"
+msgstr "Cobrança vencida"
+
+#: src/pages/invoices/$id/_layout.js:384
+#: src/pages/invoices/$id/preview.js:36
+msgid "PDF"
+msgstr "PDF"
+
+#: src/components/invoices/state-tag.js:7
+#: src/pages/invoices/$id/_layout.js:147
+#: src/pages/invoices/index.js:80
+#: src/pages/invoices/index.js:99
+msgid "Paid"
+msgstr "Pago"
+
+#: src/components/account/login.js:12
+#: src/components/account/register.js:13
+msgid "Password"
+msgstr "Senha"
+
+#: src/pages/settings/tax-rates/$id.js:66
+#: src/pages/settings/tax-rates/_layout.js:65
+msgid "Percentage"
+msgstr "Porcentagem"
+
+#: src/components/clients/form.js:25
+#: src/pages/clients/_layout.js:82
+#: src/pages/settings/organization/_layout.js:48
+msgid "Phone"
+msgstr "Telefone"
+
+#: src/components/invoices/line-items.js:241
+#: src/pages/invoices/$id/pdf.js:218
+msgid "Price"
+msgstr "Preço"
+
+#: src/components/invoices/line-items.js:224
+#: src/pages/invoices/$id/pdf.js:215
+msgid "Quantity"
+msgstr "Quantidade"
+
+#: src/pages/invoices/$id/pdf.js:332
+msgid "Reg. nr."
+msgstr "Reg. nr."
+
+#: src/components/account/drawer.js:45
+#: src/components/account/register.js:21
+msgid "Register"
+msgstr "Registro"
+
+#: src/components/account/drawer.js:64
+msgid "Registering an Upcount account will allow you to syncronize your data between computers and provides a secure backup."
+msgstr "O registro de uma conta Upcount permite que você sincronize seus dados entre computadores e fornece um backup seguro."
+
+#: src/pages/settings/organization/_layout.js:52
+msgid "Registration number"
+msgstr "Número de registro"
+
+#: src/models/accounts.js:55
+msgid "Registration successful!"
+msgstr "Registro bem sucedido!"
+
+#: src/layouts/electron.js:49
+msgid "Restart"
+msgstr "Reiniciar"
+
+#: src/pages/invoices/$id/_layout.js:394
+#: src/pages/settings/invoice/_layout.js:97
+#: src/pages/settings/organization/_layout.js:81
+msgid "Save"
+msgstr "Salvar"
+
+#: src/components/clients/form.js:35
+msgid "Save client"
+msgstr "Salvar cliente"
+
+#: src/pages/settings/tax-rates/$id.js:76
+msgid "Save tax rate"
+msgstr "Salvar taxa de imposto"
+
+#: src/pages/clients/_layout.js:60
+#: src/pages/invoices/index.js:124
+msgid "Search text"
+msgstr "Procurar texto"
+
+#: src/pages/invoices/$id/_layout.js:188
+msgid "Select or create a client"
+msgstr "Selecione ou crie um cliente"
+
+#: src/components/layout/navigation.js:76
+msgid "Settings"
+msgstr "Configurações"
+
+#: src/pages/invoices/index.js:194
+msgid "State"
+msgstr "Estado"
+
+#: src/components/invoices/line-items.js:258
+#: src/pages/invoices/$id/_layout.js:281
+#: src/pages/invoices/$id/pdf.js:229
+msgid "Subtotal"
+msgstr "Subtotal"
+
+#: src/pages/invoices/$id/pdf.js:221
+#: src/pages/invoices/index.js:167
+msgid "Sum"
+msgstr "Soma"
+
+#: src/components/invoices/line-items.js:275
+#: src/pages/invoices/$id/_layout.js:304
+#: src/pages/invoices/$id/pdf.js:245
+msgid "Tax"
+msgstr "Taxa"
+
+#: src/models/tax-rates.js:49
+msgid "Tax rate saved!"
+msgstr "Taxa de imposto salva!"
+
+#: src/components/layout/navigation.js:96
+#: src/pages/settings/tax-rates/_layout.js:28
+msgid "Tax rates"
+msgstr "Taxas de impostos"
+
+#: src/components/forms/validators.js:11
+msgid "This field is required"
+msgstr "Este campo é obrigatório"
+
+#: src/pages/index.js:98
+msgid "To get started"
+msgstr "Para começar"
+
+#: src/components/account/drawer.js:38
+msgid "To start syncing"
+msgstr "Para iniciar a sincronização"
+
+#: src/components/account/drawer.js:104
+msgid "Toggle the organizations you want to enable syncronization for."
+msgstr "Alterne as organizações para as quais você deseja habilitar a sincronização."
+
+#: src/pages/invoices/$id/_layout.js:325
+#: src/pages/invoices/$id/pdf.js:262
+msgid "Total"
+msgstr "Total"
+
+#: src/components/account/drawer.js:31
+msgid "Upcount account"
+msgstr "Conta Upcount"
+
+#: src/layouts/electron.js:45
+msgid "Upcount version update downloaded. It will be installed after a restart. Restart now?"
+msgstr "Baixada a versão atualizada do Upcount. Ela será instalada após uma reinicialização. Reiniciar agora?"
+
+#: src/layouts/electron.js:33
+msgid "Update Available"
+msgstr "Atualização Disponível"
+
+#: src/layouts/electron.js:42
+msgid "Update Downloaded"
+msgstr "Baixada Atualização"
+
+#: src/pages/settings/invoice/_layout.js:117
+msgid "Upload"
+msgstr "Carregar"
+
+#: src/components/clients/form.js:26
+#: src/pages/clients/_layout.js:96
+#: src/pages/invoices/$id/pdf.js:337
+#: src/pages/settings/organization/_layout.js:66
+msgid "VATIN"
+msgstr "VATIN"
+
+#: src/pages/invoices/$id/_layout.js:375
+msgid "View"
+msgstr "Visualizar"
+
+#: src/components/invoices/state-tag.js:8
+#: src/pages/invoices/$id/_layout.js:151
+#: src/pages/invoices/index.js:84
+#: src/pages/invoices/index.js:103
+msgid "Void"
+msgstr "Vazio"
+
+#: src/components/clients/form.js:27
+#: src/pages/clients/_layout.js:98
+#: src/pages/settings/organization/_layout.js:69
+msgid "Website"
+msgstr "Site"
+
+#: src/components/account/drawer.js:69
+#: src/components/account/drawer.js:145
+msgid "Your data is always securely transfered between the hosted CouchDB server and your devices over encrypted HTTP requests."
+msgstr "Seus dados são sempre transferidos com segurança entre o servidor hospedado CouchDB e seus dispositivos por meio de solicitações HTTP criptografadas."
