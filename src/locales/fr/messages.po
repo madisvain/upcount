@@ -16,7 +16,7 @@ msgstr ""
 
 #: src/layouts/electron.js:34
 msgid "A new version of Upcount is available. Downloading now ..."
-msgstr "Une nouvelle version d'Upcount est disponible. Télécharger en cours ..."
+msgstr "Une nouvelle version d'Upcount est disponible. Téléchargement en cours ..."
 
 #: src/pages/clients/$id.js:46
 #: src/pages/invoices/$id/client.js:27
@@ -52,7 +52,7 @@ msgstr "Client"
 
 #: src/models/clients.js:49
 msgid "Client saved!"
-msgstr "Client sauvegarder !"
+msgstr "Client sauvegardé !"
 
 #: src/components/layout/navigation.js:66
 #: src/pages/clients/_layout.js:50
@@ -81,7 +81,7 @@ msgstr "Devise"
 
 #: src/pages/invoices/$id/_layout.js:269
 msgid "Customer note"
-msgstr "Note aux clients"
+msgstr "Remarque client"
 
 #: src/pages/invoices/$id/_layout.js:243
 #: src/pages/invoices/$id/pdf.js:181
@@ -107,7 +107,7 @@ msgstr "Supprimer"
 #: src/pages/settings/tax-rates/$id.js:60
 #: src/pages/settings/tax-rates/_layout.js:60
 msgid "Description"
-msgstr "Déscription"
+msgstr "Description"
 
 #: src/components/invoices/state-tag.js:5
 #: src/pages/invoices/$id/_layout.js:141
@@ -191,11 +191,11 @@ msgstr "Erreur de chargement de la liste des comptes !"
 
 #: src/models/clients.js:31
 msgid "Error loading client details!"
-msgstr "Erreur de chargement des données du client !"
+msgstr "Erreur de chargement des détails client !"
 
 #: src/models/clients.js:22
 msgid "Error loading clients list!"
-msgstr "Erreur de chargement des données du client !"
+msgstr "Erreur de chargement de la liste des clients !"
 
 #: src/models/invoices.js:32
 msgid "Error loading invoice details!"
@@ -215,11 +215,11 @@ msgstr "Erreur de chargement de la liste des organisations !"
 
 #: src/models/tax-rates.js:31
 msgid "Error loading tax rate details!"
-msgstr "Erreur de chargement des détails des taux d'imposition !"
+msgstr "Erreur de chargement des détails des taux de TVA !"
 
 #: src/models/tax-rates.js:22
 msgid "Error loading tax rates list!"
-msgstr "Erreur de chargement de la liste des taux d'imposition !"
+msgstr "Erreur de chargement de la liste des taux de TVA !"
 
 #: src/models/accounts.js:46
 msgid "Error logging in!"
@@ -251,11 +251,11 @@ msgstr "Erreur d'enregistrement de la TVA !"
 
 #: src/models/organizations.js:83
 msgid "Error setting organization logo!"
-msgstr "Erreur de réglage du logo de l'organisation !"
+msgstr "Erreur, impossible de configurer le logo de l'organisation !"
 
 #: src/models/organizations.js:98
 msgid "Error setting organization sync!"
-msgstr "Erreur de réglage de la synchronisation de l'organisation !"
+msgstr "Erreur, impossible de configurer la synchronisation de l'organisation !"
 
 #: src/pages/settings/organization/_layout.js:61
 msgid "IBAN"
@@ -293,7 +293,7 @@ msgstr "Facture enregistrée !"
 
 #: src/models/invoices.js:50
 msgid "Invoice state changed!"
-msgstr "L'état des factures a changé !"
+msgstr "L'état de la facture a changé !"
 
 #: src/components/layout/navigation.js:58
 #: src/pages/invoices/index.js:114
