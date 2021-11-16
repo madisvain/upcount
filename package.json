@@ -25,7 +25,7 @@
   "dependencies": {
     "@lingui/react": "^2.9.2",
     "antd": "^4.6.6",
-    "aws-sdk": "^2.769.0",
+    "aws-sdk": "^2.814.0",
     "axios": "^0.21.1",
     "bootstrap": "^4.5.2",
     "countries-list": "^2.5.6",
