@@ -69,7 +69,7 @@
     "eslint-plugin-react-hooks": "1.5.0",
     "husky": "^3.1.0",
     "lint-staged": "^9.5.0",
-    "node-sass": "^4.14.1",
+    "node-sass": "^7.0.0",
     "react-test-renderer": "^16.13.1",
     "redux-mock-store": "^1.5.4",
     "sass-loader": "^10.0.2",
