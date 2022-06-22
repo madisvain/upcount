@@ -43,7 +43,7 @@
     "recompose": "^0.30.0",
     "redux-form": "^8.3.6",
     "source-map-support": "^0.5.19",
-    "sqlite3": "^5.0.0",
+    "sqlite3": "^5.0.3",
     "styled-components": "^5.2.0",
     "typeorm": "^0.2.28"
   },
