@@ -60,7 +60,7 @@ class Header extends Component {
         ) : null}
         {languageSelect ? (
           <Dropdown
-            placement="bottomCenter"
+            placement="bottom"
             overlay={
               <Menu>
                 {map(languages, language => {
