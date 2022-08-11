@@ -1,6 +1,17 @@
 {
-   "localeDir": "src/locales/",
-   "srcPathDirs": ["src/"],
-   "format": "po",
-   "sourceLocale": "en"
+  "catalogs": [
+    {
+      "path": "src/locales"
+    }
+  ],
+  "locales": [
+    "de",
+    "en",
+    "es",
+    "et",
+    "fi",
+    "nl"
+  ],
+  "format": "po",
+  "sourceLocale": "en"
 }

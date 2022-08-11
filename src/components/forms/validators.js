@@ -1,7 +1,6 @@
+import { i18n } from '@lingui/core';
 import { t } from '@lingui/macro';
 import { isArray, isEmpty, isNumber, isString, includes, map } from 'lodash';
-
-import { i18n } from '../../layouts/base';
 
 const isNumeric = value => {
   return isNumber(value) || (!isEmpty(value) && !isNaN(value));
@@ -22,7 +21,10 @@ const email = value =>
 /* Array of emails */
 const emails = value => {
   if (isArray(value) && !isEmpty(value)) {
-    return includes(map(value, v => (isString(email(v)) ? false : true)), false)
+    return includes(
+      map(value, v => (isString(email(v)) ? false : true)),
+      false
+    )
       ? i18n._(t`Invalid email address`)
       : undefined;
   } else {

@@ -1,10 +1,10 @@
 import { initialize, stopSubmit } from 'redux-form';
 import { message } from 'antd';
+import { i18n } from '@lingui/core';
 import { t } from '@lingui/macro';
 import { push } from 'connected-react-router';
 import { assign, keyBy } from 'lodash';
 
-import { i18n } from '../layouts/base';
 import * as organizationsService from '../services/organizations';
 
 export default {
@@ -24,12 +24,7 @@ export default {
       }
     },
 
-    *details(
-      {
-        payload: { id },
-      },
-      { put, call }
-    ) {
+    *details({ payload: { id } }, { put, call }) {
       try {
         const response = yield call(organizationsService.details, id);
         yield put({ type: 'detailsSuccess', data: response });
@@ -38,12 +33,7 @@ export default {
       }
     },
 
-    *initialize(
-      {
-        payload: { id },
-      },
-      { put, call }
-    ) {
+    *initialize({ payload: { id } }, { put, call }) {
       try {
         const response = yield call(organizationsService.details, id);
         yield put({ type: 'detailsSuccess', data: response });
@@ -53,12 +43,7 @@ export default {
       }
     },
 
-    *getLogo(
-      {
-        payload: { id },
-      },
-      { put, call }
-    ) {
+    *getLogo({ payload: { id } }, { put, call }) {
       try {
         const response = yield call(organizationsService.getLogo, { id });
         yield put({ type: 'logoSuccess', data: assign(response, { id }) });
@@ -69,12 +54,7 @@ export default {
       }
     },
 
-    *setLogo(
-      {
-        payload: { _id, _rev, file },
-      },
-      { put, call }
-    ) {
+    *setLogo({ payload: { _id, _rev, file } }, { put, call }) {
       try {
         const response = yield call(organizationsService.setLogo, { _id, _rev, file });
         yield put({ type: 'logoSuccess', data: assign(response) });

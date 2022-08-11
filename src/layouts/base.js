@@ -1,14 +1,19 @@
 import { Component } from 'react';
 import { Layout } from 'antd';
-import { setupI18n } from '@lingui/core';
+import { i18n } from '@lingui/core';
 import { I18nProvider } from '@lingui/react';
 
 import Header from '../components/layout/header';
 import Navigation from '../components/layout/navigation';
 import OrganizationProvider from '../providers/organization';
 
-export const i18n = setupI18n();
 const languages = ['de', 'en', 'es', 'et', 'fi', 'nl'];
+
+const dynamicActivate = locale => {
+  /*const { messages } = import(`@lingui/loader!./locales/${locale}/messages.po`);
+  i18n.load(locale, messages);
+  i18n.activate(locale);*/
+};
 
 // Base layout
 class BaseLayout extends Component {
@@ -18,23 +23,12 @@ class BaseLayout extends Component {
     language: localStorage.getItem('language') || 'en',
   };
 
-  componentDidMount() {
-    this.loadLanguage(this.state.language);
+  async componentDidMount() {
+    await dynamicActivate(this.state.language);
   }
 
-  loadLanguage = async language => {
-    const catalogs = await import(`@lingui/loader!../locales/${language}/messages.po`);
-
-    this.setState(state => ({
-      catalogs: {
-        ...state.catalogs,
-        [language]: catalogs,
-      },
-    }));
-  };
-
   setLanguage = async language => {
-    await this.loadLanguage(language);
+    // await this.loadLanguage(language);
     this.setState({ language });
     localStorage.setItem('language', language);
   };

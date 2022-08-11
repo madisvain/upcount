@@ -1,13 +1,12 @@
 import { notification, Button } from 'antd';
+import { i18n } from '@lingui/core';
 import { t, Trans } from '@lingui/macro';
 import router from 'umi/router';
 
-import BaseLayout, { i18n } from './base';
+import BaseLayout from './base';
 
 class ElectronLayout extends BaseLayout {
   componentDidMount() {
-    this.loadLanguage(this.state.language);
-
     const { ipcRenderer } = window.require('electron');
 
     ipcRenderer.on('log', (event, log) => {

@@ -10,7 +10,7 @@ import {
   FilePdfOutlined,
   SaveOutlined,
 } from '@ant-design/icons';
-import { t, NumberFormat, Trans } from '@lingui/macro';
+import { t, Trans } from '@lingui/macro';
 import { withI18n } from '@lingui/react';
 import { forEach, get, isString, includes, has, lowerCase, map } from 'lodash';
 
@@ -283,30 +283,7 @@ class InvoiceForm extends Component {
                         </td>
                         <td style={{ textAlign: 'right' }}>
                           <h4>
-                            <NumberFormat
-                              value={subTotal}
-                              format={{
-                                style: 'currency',
-                                currency:
-                                  currency || get(context.state, 'organization.currency', 'EUR'),
-                                minimumFractionDigits: get(
-                                  context.state,
-                                  'organization.minimum_fraction_digits',
-                                  2
-                                ),
-                              }}
-                            />
-                          </h4>
-                        </td>
-                      </tr>
-                      <tr>
-                        <td style={{ textAlign: 'right' }}>
-                          <Trans>Tax</Trans>
-                        </td>
-                        <td style={{ textAlign: 'right' }}>
-                          <NumberFormat
-                            value={taxTotal}
-                            format={{
+                            {i18n.number(subTotal, {
                               style: 'currency',
                               currency:
                                 currency || get(context.state, 'organization.currency', 'EUR'),
@@ -315,8 +292,25 @@ class InvoiceForm extends Component {
                                 'organization.minimum_fraction_digits',
                                 2
                               ),
-                            }}
-                          />
+                            })}
+                          </h4>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td style={{ textAlign: 'right' }}>
+                          <Trans>Tax</Trans>
+                        </td>
+                        <td style={{ textAlign: 'right' }}>
+                          {i18n.number(taxTotal, {
+                            style: 'currency',
+                            currency:
+                              currency || get(context.state, 'organization.currency', 'EUR'),
+                            minimumFractionDigits: get(
+                              context.state,
+                              'organization.minimum_fraction_digits',
+                              2
+                            ),
+                          })}
                         </td>
                       </tr>
                       <tr>
@@ -327,19 +321,16 @@ class InvoiceForm extends Component {
                         </td>
                         <td style={{ textAlign: 'right', paddingTop: 24 }}>
                           <h2>
-                            <NumberFormat
-                              value={total}
-                              format={{
-                                style: 'currency',
-                                currency:
-                                  currency || get(context.state, 'organization.currency', 'EUR'),
-                                minimumFractionDigits: get(
-                                  context.state,
-                                  'organization.minimum_fraction_digits',
-                                  2
-                                ),
-                              }}
-                            />
+                            {i18n.number(total, {
+                              style: 'currency',
+                              currency:
+                                currency || get(context.state, 'organization.currency', 'EUR'),
+                              minimumFractionDigits: get(
+                                context.state,
+                                'organization.minimum_fraction_digits',
+                                2
+                              ),
+                            })}
                           </h2>
                         </td>
                       </tr>

@@ -1,10 +1,10 @@
 import { initialize } from 'redux-form';
 import { message } from 'antd';
 import { keyBy } from 'lodash';
+import { i18n } from '@lingui/core';
 import { t } from '@lingui/macro';
 import { push } from 'connected-react-router';
 
-import { i18n } from '../layouts/base';
 import * as invoicesService from '../services/invoices';
 
 export default {

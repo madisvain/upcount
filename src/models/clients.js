@@ -1,9 +1,9 @@
 import { initialize } from 'redux-form';
 import { message } from 'antd';
+import { i18n } from '@lingui/core';
 import { t } from '@lingui/macro';
 import { keyBy } from 'lodash';
 
-import { i18n } from '../layouts/base';
 import * as clientsService from '../services/clients';
 
 export default {

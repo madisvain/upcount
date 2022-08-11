@@ -2,7 +2,8 @@ import { Component } from 'react';
 import { compose } from 'redux';
 import { connect } from 'dva';
 import { Spin } from 'antd';
-import { Trans, NumberFormat } from '@lingui/macro';
+import { withI18n } from '@lingui/react';
+import { Trans } from '@lingui/macro';
 import { get, has, head } from 'lodash';
 
 import styled from 'styled-components';
@@ -102,7 +103,7 @@ class Invoice extends Component {
   }
 
   render() {
-    const { clients, organizations, invoices } = this.props;
+    const { clients, organizations, invoices, i18n } = this.props;
     const organization = get(organizations.items, localStorage.getItem('organization'));
     const logo = get(organizations.logos, localStorage.getItem('organization'));
     const invoice = get(invoices.items, get(this.props, ['match', 'params', 'id']));
@@ -229,14 +230,11 @@ class Invoice extends Component {
                         <Trans>Subtotal</Trans>
                       </td>
                       <td className="text-right">
-                        <NumberFormat
-                          value={invoice.subTotal}
-                          format={{
-                            style: 'currency',
-                            currency: invoice.currency,
-                            minimumFractionDigits: get(organization, 'minimum_fraction_digits', 2),
-                          }}
-                        />
+                        {i18n.number(invoice.subTotal, {
+                          style: 'currency',
+                          currency: invoice.currency,
+                          minimumFractionDigits: get(organization, 'minimum_fraction_digits', 2),
+                        })}
                       </td>
                     </tr>
                     <tr>
@@ -245,14 +243,11 @@ class Invoice extends Component {
                         <Trans>Tax</Trans>
                       </td>
                       <td className="text-right border-top-0">
-                        <NumberFormat
-                          value={invoice.taxTotal}
-                          format={{
-                            style: 'currency',
-                            currency: invoice.currency,
-                            minimumFractionDigits: get(organization, 'minimum_fraction_digits', 2),
-                          }}
-                        />
+                        {i18n.number(invoice.taxTotal, {
+                          style: 'currency',
+                          currency: invoice.currency,
+                          minimumFractionDigits: get(organization, 'minimum_fraction_digits', 2),
+                        })}
                       </td>
                     </tr>
                     <tr>
@@ -264,18 +259,11 @@ class Invoice extends Component {
                       </td>
                       <td className="text-right">
                         <strong>
-                          <NumberFormat
-                            value={invoice.total}
-                            format={{
-                              style: 'currency',
-                              currency: invoice.currency,
-                              minimumFractionDigits: get(
-                                organization,
-                                'minimum_fraction_digits',
-                                2
-                              ),
-                            }}
-                          />
+                          {i18n.number(invoice.total, {
+                            style: 'currency',
+                            currency: invoice.currency,
+                            minimumFractionDigits: get(organization, 'minimum_fraction_digits', 2),
+                          })}
                         </strong>
                       </td>
                     </tr>
@@ -287,32 +275,18 @@ class Invoice extends Component {
                         <td>{lineItem.description}</td>
                         <td className="min-width">{lineItem.quantity}</td>
                         <td className="min-width spaced text-right">
-                          <NumberFormat
-                            value={lineItem.unitPrice}
-                            format={{
-                              style: 'currency',
-                              currency: invoice.currency,
-                              minimumFractionDigits: get(
-                                organization,
-                                'minimum_fraction_digits',
-                                2
-                              ),
-                            }}
-                          />
+                          {i18n.number(lineItem.unitPrice, {
+                            style: 'currency',
+                            currency: invoice.currency,
+                            minimumFractionDigits: get(organization, 'minimum_fraction_digits', 2),
+                          })}
                         </td>
                         <td className="min-width spaced text-right">
-                          <NumberFormat
-                            value={lineItem.subtotal}
-                            format={{
-                              style: 'currency',
-                              currency: invoice.currency,
-                              minimumFractionDigits: get(
-                                organization,
-                                'minimum_fraction_digits',
-                                2
-                              ),
-                            }}
-                          />
+                          {i18n.number(lineItem.subtotal, {
+                            style: 'currency',
+                            currency: invoice.currency,
+                            minimumFractionDigits: get(organization, 'minimum_fraction_digits', 2),
+                          })}
                         </td>
                       </tr>
                     ))}
@@ -349,14 +323,16 @@ class Invoice extends Component {
   }
 }
 
-export default withRouter(
-  compose(
-    connect(state => {
-      return {
-        clients: state.clients,
-        organizations: state.organizations,
-        invoices: state.invoices,
-      };
-    })(Invoice)
+export default withI18n(
+  withRouter(
+    compose(
+      connect(state => {
+        return {
+          clients: state.clients,
+          organizations: state.organizations,
+          invoices: state.invoices,
+        };
+      })(Invoice)
+    )
   )
 );
