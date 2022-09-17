@@ -1,7 +1,10 @@
 {
   "catalogs": [
     {
-      "path": "src/locales"
+      "path": "src/locales/{locale}/messages",
+      "include": [
+        "src"
+      ]
     }
   ],
   "locales": [

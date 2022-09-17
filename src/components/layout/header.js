@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { compose } from 'redux';
 import { connect } from 'dva';
 import { withI18n } from '@lingui/react';
+import { locales } from '../../i18n';
 import { Layout, Menu, Dropdown } from 'antd';
 import {
   MenuUnfoldOutlined,
@@ -9,7 +10,7 @@ import {
   DownOutlined,
   SwapOutlined,
 } from '@ant-design/icons';
-import { get, map, upperCase } from 'lodash';
+import { get, map, keys, upperCase } from 'lodash';
 
 import Link from 'umi/link';
 
@@ -30,7 +31,6 @@ class Header extends Component {
       collapsible,
       i18n,
       organizationSelect,
-      languages,
       languageSelect,
       setLanguage,
       logo,
@@ -63,22 +63,23 @@ class Header extends Component {
             placement="bottom"
             overlay={
               <Menu>
-                {map(languages, language => {
+                {map(keys(locales), locale => {
                   return (
-                    <Menu.Item key={language} onClick={() => setLanguage(language)}>
-                      {upperCase(language)}
+                    <Menu.Item key={locale} onClick={() => setLanguage(locale)}>
+                      {`${upperCase(locale)} - ${get(locales, locale)}`}
                     </Menu.Item>
                   );
                 })}
               </Menu>
             }
+            overlayStyle={{ width: 140 }}
           >
             <Link
               to="#"
               style={{ color: 'rgba(0, 0, 0, 0.65)', float: 'right', marginRight: 24 }}
               onClick={e => e.preventDefault()}
             >
-              {upperCase(i18n.language)} <DownOutlined />
+              {upperCase(i18n.locale)} <DownOutlined />
             </Link>
           </Dropdown>
         ) : null}

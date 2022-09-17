@@ -6,29 +6,21 @@ import { I18nProvider } from '@lingui/react';
 import Header from '../components/layout/header';
 import Navigation from '../components/layout/navigation';
 import OrganizationProvider from '../providers/organization';
-
-const languages = ['de', 'en', 'es', 'et', 'fi', 'nl'];
-
-const dynamicActivate = locale => {
-  /*const { messages } = import(`@lingui/loader!./locales/${locale}/messages.po`);
-  i18n.load(locale, messages);
-  i18n.activate(locale);*/
-};
+import { defaultLocale, dynamicActivate } from '../i18n';
 
 // Base layout
 class BaseLayout extends Component {
-  state = {
-    collapsed: false,
-    catalogs: {},
-    language: localStorage.getItem('language') || 'en',
-  };
-
-  async componentDidMount() {
-    await dynamicActivate(this.state.language);
+  constructor(props) {
+    super();
+    this.state = {
+      collapsed: false,
+      language: localStorage.getItem('language') || defaultLocale,
+    };
+    dynamicActivate(this.state.language);
   }
 
   setLanguage = async language => {
-    // await this.loadLanguage(language);
+    dynamicActivate(language);
     this.setState({ language });
     localStorage.setItem('language', language);
   };
@@ -42,11 +34,10 @@ class BaseLayout extends Component {
 
   render() {
     const { children, location } = this.props;
-    const { catalogs, language } = this.state;
 
     if (location.pathname === '/') {
       return (
-        <I18nProvider i18n={i18n} catalogs={catalogs} language={language}>
+        <I18nProvider i18n={i18n}>
           <OrganizationProvider>
             <Layout style={{ minHeight: '100vh' }}>
               <Header
@@ -54,7 +45,6 @@ class BaseLayout extends Component {
                 collapsible={false}
                 organizationSelect={false}
                 logo={true}
-                languages={languages}
                 setLanguage={this.setLanguage}
               />
               {children}
@@ -63,14 +53,10 @@ class BaseLayout extends Component {
         </I18nProvider>
       );
     } else if (location.pathname.includes('pdf')) {
-      return (
-        <I18nProvider i18n={i18n} catalogs={catalogs} language={language}>
-          {children}
-        </I18nProvider>
-      );
+      return <I18nProvider i18n={i18n}>{children}</I18nProvider>;
     } else {
       return (
-        <I18nProvider i18n={i18n} catalogs={catalogs} language={language}>
+        <I18nProvider i18n={i18n}>
           <OrganizationProvider>
             <Layout style={{ minHeight: '100vh' }}>
               <Navigation collapsed={this.state.collapsed} />
@@ -80,7 +66,6 @@ class BaseLayout extends Component {
                 <Header
                   collapsed={this.state.collapsed}
                   onToggl={this.toggleSider}
-                  languages={languages}
                   setLanguage={this.setLanguage}
                 />
                 {children}
