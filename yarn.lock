@@ -14835,6 +14835,31 @@ pouchdb-adapter-http@7.3.0:
     pouchdb-fetch "7.3.0"
     pouchdb-utils "7.3.0"
 
+pouchdb-adapter-idb@^7.3.0:
+  version "7.3.0"
+  resolved "https://registry.yarnpkg.com/pouchdb-adapter-idb/-/pouchdb-adapter-idb-7.3.0.tgz#41939b4b3d8c6a2d1ad21df16c81a7c2e124b41d"
+  integrity sha512-qMy0lrB+LyOFyFUo7Gfr5VvSM1IXyP2c9N2XwmMSSaTib/OsNnBqLj8AWrgPEnzvEkDgImBkk34e5F6MlUFRyA==
+  dependencies:
+    pouchdb-adapter-utils "7.3.0"
+    pouchdb-binary-utils "7.3.0"
+    pouchdb-collections "7.3.0"
+    pouchdb-errors "7.3.0"
+    pouchdb-json "7.3.0"
+    pouchdb-merge "7.3.0"
+    pouchdb-utils "7.3.0"
+
+pouchdb-adapter-utils@7.3.0:
+  version "7.3.0"
+  resolved "https://registry.yarnpkg.com/pouchdb-adapter-utils/-/pouchdb-adapter-utils-7.3.0.tgz#1747e4ea0b519a9d817c6eda0e2f0ebc3dc18c41"
+  integrity sha512-mU1+smcagWSpInVx/VQk7VVjjnJlyagKtusUS3OdCMFZY35L6RbXC8eIhoNVDbkBfEv3cIwqQ3t7fdvkaa1odQ==
+  dependencies:
+    pouchdb-binary-utils "7.3.0"
+    pouchdb-collections "7.3.0"
+    pouchdb-errors "7.3.0"
+    pouchdb-md5 "7.3.0"
+    pouchdb-merge "7.3.0"
+    pouchdb-utils "7.3.0"
+
 pouchdb-all-dbs@1.1.1:
   version "1.1.1"
   resolved "https://registry.yarnpkg.com/pouchdb-all-dbs/-/pouchdb-all-dbs-1.1.1.tgz#85f04a39cafda52497ec49abf1c93bb5e72813f6"
@@ -14930,6 +14955,13 @@ pouchdb-generate-replication-id@7.3.0:
   dependencies:
     pouchdb-collate "7.3.0"
     pouchdb-md5 "7.3.0"
+
+pouchdb-json@7.3.0:
+  version "7.3.0"
+  resolved "https://registry.yarnpkg.com/pouchdb-json/-/pouchdb-json-7.3.0.tgz#94c2d876202c6879cb525db05e7633b926346e5d"
+  integrity sha512-D4wyi20ltyiFpuziQeMk3CbXs/Q58VoGTYTJQY8MWBw37OidtHGQAt1Kh5yJ435wJqDzJZyxMA5RxGZxEOBDVg==
+  dependencies:
+    vuvuzela "1.0.3"
 
 pouchdb-mapreduce-utils@7.3.0:
   version "7.3.0"
@@ -17525,6 +17557,11 @@ run-queue@^1.0.0, run-queue@^1.0.3:
   integrity sha512-ntymy489o0/QQplUDnpYAYUsO50K9SBrIVaKCWDOJzYJts0f9WH9RFJkyagebkw5+y1oi00R7ynNW/d12GBumg==
   dependencies:
     aproba "^1.1.1"
+
+rxdb-hooks@^4.0.3:
+  version "4.0.3"
+  resolved "https://registry.yarnpkg.com/rxdb-hooks/-/rxdb-hooks-4.0.3.tgz#fb461f0e0e90d0782fb97185e4076d60698985b2"
+  integrity sha512-OlJKA6t1trJOjOEKb6eONhF0EUhRRj7IEyCAQozOb++93haRBwSWYqBu/U4Kt7sc88Z1pzbyQapF+pi9vhC9Qg==
 
 rxdb@^13.0.2:
   version "13.0.2"

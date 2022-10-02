@@ -37,6 +37,7 @@
     "libphonenumber-js": "^1",
     "moment": "^2.29.1",
     "pouchdb": "^7.2.2",
+    "pouchdb-adapter-idb": "^7.3.0",
     "pouchdb-find": "^7.2.2",
     "react": "^16.13.1",
     "react-dnd": "^14",
@@ -45,6 +46,7 @@
     "recompose": "^0.30.0",
     "redux-form": "^8.3.6",
     "rxdb": "^13.0.2",
+    "rxdb-hooks": "^4.0.3",
     "rxjs": "^7.5.6",
     "source-map-support": "^0.5.19",
     "styled-components": "^5.2.0"

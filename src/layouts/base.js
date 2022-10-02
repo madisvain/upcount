@@ -2,17 +2,24 @@ import { Component } from 'react';
 import { Layout } from 'antd';
 import { i18n } from '@lingui/core';
 import { I18nProvider } from '@lingui/react';
+import { Provider as DBProvider } from 'rxdb-hooks';
 
 import Header from '../components/layout/header';
 import Navigation from '../components/layout/navigation';
 import OrganizationProvider from '../providers/organization';
 import { defaultLocale, dynamicActivate } from '../i18n';
 
+import { createDatabase } from '../database';
+
 // Base layout
 class BaseLayout extends Component {
   constructor(props) {
     super();
+    let db = null;
+    createDatabase('upcount', 'idb').then((db = db));
+
     this.state = {
+      db: db,
       collapsed: false,
       language: localStorage.getItem('language') || defaultLocale,
     };
@@ -37,42 +44,46 @@ class BaseLayout extends Component {
 
     if (location.pathname === '/') {
       return (
-        <I18nProvider i18n={i18n}>
-          <OrganizationProvider>
-            <Layout style={{ minHeight: '100vh' }}>
-              <Header
-                backgroundColor={'#f0f2f5'}
-                collapsible={false}
-                organizationSelect={false}
-                logo={true}
-                setLanguage={this.setLanguage}
-              />
-              {children}
-            </Layout>
-          </OrganizationProvider>
-        </I18nProvider>
+        <DBProvider>
+          <I18nProvider i18n={i18n}>
+            <OrganizationProvider>
+              <Layout style={{ minHeight: '100vh' }}>
+                <Header
+                  backgroundColor={'#f0f2f5'}
+                  collapsible={false}
+                  organizationSelect={false}
+                  logo={true}
+                  setLanguage={this.setLanguage}
+                />
+                {children}
+              </Layout>
+            </OrganizationProvider>
+          </I18nProvider>
+        </DBProvider>
       );
     } else if (location.pathname.includes('pdf')) {
       return <I18nProvider i18n={i18n}>{children}</I18nProvider>;
     } else {
       return (
-        <I18nProvider i18n={i18n}>
-          <OrganizationProvider>
-            <Layout style={{ minHeight: '100vh' }}>
-              <Navigation collapsed={this.state.collapsed} />
-              <Layout
-                style={{ marginLeft: this.state.collapsed ? 80 : 200, transition: 'all 0.2s' }}
-              >
-                <Header
-                  collapsed={this.state.collapsed}
-                  onToggl={this.toggleSider}
-                  setLanguage={this.setLanguage}
-                />
-                {children}
+        <DBProvider>
+          <I18nProvider i18n={i18n}>
+            <OrganizationProvider>
+              <Layout style={{ minHeight: '100vh' }}>
+                <Navigation collapsed={this.state.collapsed} />
+                <Layout
+                  style={{ marginLeft: this.state.collapsed ? 80 : 200, transition: 'all 0.2s' }}
+                >
+                  <Header
+                    collapsed={this.state.collapsed}
+                    onToggl={this.toggleSider}
+                    setLanguage={this.setLanguage}
+                  />
+                  {children}
+                </Layout>
               </Layout>
-            </Layout>
-          </OrganizationProvider>
-        </I18nProvider>
+            </OrganizationProvider>
+          </I18nProvider>
+        </DBProvider>
       );
     }
   }
