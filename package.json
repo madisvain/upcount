@@ -45,9 +45,9 @@
     "react-dom": "^16.13.1",
     "recompose": "^0.30.0",
     "redux-form": "^8.3.6",
-    "rxdb": "^13.0.2",
+    "rxdb": "^13.8.2",
     "rxdb-hooks": "^4.0.3",
-    "rxjs": "^7.5.6",
+    "rxjs": "^7.5.7",
     "source-map-support": "^0.5.19",
     "styled-components": "^5.2.0"
   },

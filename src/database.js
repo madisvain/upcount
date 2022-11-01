@@ -178,6 +178,7 @@ const taxRateSchema = {
 
 const createDatabase = async (name, adapter) => {
   console.log('creating database ...');
+
   const db = await createRxDatabase({
     name,
     storage: getRxStoragePouch(adapter),

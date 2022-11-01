@@ -15,15 +15,19 @@ import { createDatabase } from '../database';
 class BaseLayout extends Component {
   constructor(props) {
     super();
-    let db = null;
-    createDatabase('upcount', 'idb').then((db = db));
-
     this.state = {
-      db: db,
+      db: null,
       collapsed: false,
       language: localStorage.getItem('language') || defaultLocale,
     };
     dynamicActivate(this.state.language);
+  }
+
+  componentDidMount() {
+    // Create DB and set in state
+    createDatabase('upcount', 'idb').then(db => {
+      this.setState({ db });
+    });
   }
 
   setLanguage = async language => {
@@ -40,11 +44,12 @@ class BaseLayout extends Component {
   };
 
   render() {
+    const { db } = this.state;
     const { children, location } = this.props;
 
     if (location.pathname === '/') {
       return (
-        <DBProvider>
+        <DBProvider db={db}>
           <I18nProvider i18n={i18n}>
             <OrganizationProvider>
               <Layout style={{ minHeight: '100vh' }}>
@@ -65,7 +70,7 @@ class BaseLayout extends Component {
       return <I18nProvider i18n={i18n}>{children}</I18nProvider>;
     } else {
       return (
-        <DBProvider>
+        <DBProvider db={db}>
           <I18nProvider i18n={i18n}>
             <OrganizationProvider>
               <Layout style={{ minHeight: '100vh' }}>

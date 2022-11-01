@@ -4,9 +4,15 @@ import { t, Trans } from '@lingui/macro';
 import router from 'umi/router';
 
 import BaseLayout from './base';
+import { createDatabase } from '../database';
 
 class ElectronLayout extends BaseLayout {
   componentDidMount() {
+    // Create DB and set in state
+    createDatabase('upcount', 'idb').then(db => {
+      this.setState({ db });
+    });
+
     const { ipcRenderer } = window.require('electron');
 
     ipcRenderer.on('log', (event, log) => {

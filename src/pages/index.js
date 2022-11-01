@@ -1,148 +1,122 @@
-import { Component } from 'react';
-import { compose } from 'redux';
-import { connect } from 'dva';
-import { Field, reduxForm } from 'redux-form';
-import { withState } from 'recompose';
-import { Button, Card, Empty, Form, List, Modal, Row, Col } from 'antd';
+import React, { useState } from 'react';
+import { Button, Col, Card, Form, Input, List, Row, Modal, Empty, Spin } from 'antd';
 import { t, Trans } from '@lingui/macro';
 import { withI18n } from '@lingui/react';
-import { values } from 'lodash';
+import { useRxCollection, useRxData } from 'rxdb-hooks';
 
-import { AInput } from '../components/forms/fields';
-import { required } from '../components/forms/validators';
+const Organizations = props => {
+  const [form] = Form.useForm();
+  const [modalVisible, setModalVisible] = useState(false);
+  const [submitting, setSubmitting] = useState(false);
 
-import { OrganizationContext } from '../providers/contexts';
+  const organizationsCollection = useRxCollection('organizations');
+  const { result: organizations, isFetching } = useRxData('organizations', collection =>
+    collection.find()
+  );
 
-class Index extends Component {
-  closeNewOrganizationModal = () => {
-    this.setState({ newOrganizationModal: false });
+  console.log(organizations);
+  const handleSubmit = values => {
+    organizationsCollection.insert(values);
   };
 
-  render() {
-    const {
-      i18n,
-      handleSubmit,
-      organizations,
-      organizationModal,
-      setOrganizationModal,
-      pristine,
-      submitting,
-    } = this.props;
+  if (isFetching) {
+    return <Spin />;
+  }
 
+  if (organizations) {
     return (
-      <OrganizationContext.Consumer>
-        {context =>
-          organizations ? (
-            <Row>
-              <Col offset={2} span={20} style={{ marginTop: 40 }}>
-                <h2 style={{ marginBottom: 20 }}>
-                  <Trans>Organizations</Trans>
-                  <Button
-                    type="primary"
-                    style={{ marginBottom: 10, float: 'right' }}
-                    onClick={() => setOrganizationModal(true)}
-                  >
-                    <Trans>New organization</Trans>
-                  </Button>
-                  <Modal
-                    title={i18n._(t`New organization`)}
-                    visible={organizationModal}
-                    okText={<Trans>Create an organization</Trans>}
-                    onOk={() => handleSubmit()}
-                    onCancel={() => setOrganizationModal(false)}
-                  >
-                    <Form layout="vertical">
-                      <Field
-                        name="name"
-                        component={AInput}
-                        size="large"
-                        placeholder={i18n._(t`Organization name`)}
-                        style={{ textAlign: 'center', margin: '10px 0' }}
-                        validate={[required]}
-                      />
-                    </Form>
-                  </Modal>
-                </h2>
-                {organizations.items && (
-                  <List
-                    grid={{
-                      gutter: 16,
-                      xs: 1,
-                      sm: 2,
-                      md: 4,
-                      lg: 4,
-                      xl: 6,
-                      xxl: 3,
-                    }}
-                    dataSource={values(organizations.items)}
-                    renderItem={organization => (
-                      <List.Item>
-                        <Card
-                          title={organization.name}
-                          onClick={() => context.setOrganization(organization)}
-                          style={{ cursor: 'pointer' }}
-                        >
-                          {organization.name}
-                        </Card>
-                      </List.Item>
-                    )}
-                  />
-                )}
-              </Col>
-            </Row>
-          ) : (
-            <Row>
-              <Col offset={2} span={20} style={{ textAlign: 'center', marginTop: 40 }}>
-                <Empty />
-                <h2 style={{ marginTop: 40 }}>
-                  <Trans>To get started</Trans>
-                </h2>
-                <Form onFinish={() => handleSubmit()} layout="vertical">
-                  <Row>
-                    <Col offset={8} span={8}>
-                      <Field
-                        name="name"
-                        component={AInput}
-                        size="large"
-                        placeholder={i18n._(t`Organization name`)}
-                        style={{ textAlign: 'center', margin: '10px 0' }}
-                      />
-                    </Col>
-                  </Row>
-                  <Button
-                    type="primary"
-                    htmlType="submit"
+      <Row>
+        <Col offset={2} span={20} style={{ marginTop: 40 }}>
+          <h2 style={{ marginBottom: 20 }}>
+            <Trans>Organizations</Trans>
+            <Button
+              type="primary"
+              style={{ marginBottom: 10, float: 'right' }}
+              onClick={() => setModalVisible(true)}
+            >
+              <Trans>New organization</Trans>
+            </Button>
+            <Modal
+              title="New organization"
+              visible={modalVisible}
+              okText="Create an organization"
+              onOk={() => form.submit()}
+              onCancel={() => setModalVisible(false)}
+            >
+              <Form form={form} layout="vertical" onFinish={handleSubmit}>
+                <Form.Item name="name" rules={[{ required: true, message: t`Please input name!` }]}>
+                  <Input
                     size="large"
-                    disabled={pristine || submitting}
-                    loading={submitting}
+                    placeholder={t`Organization name`}
+                    style={{ textAlign: 'center', margin: '10px 0' }}
+                  />
+                </Form.Item>
+              </Form>
+            </Modal>
+          </h2>
+          {organizations && (
+            <List
+              grid={{
+                gutter: 16,
+                xs: 1,
+                sm: 2,
+                md: 4,
+                lg: 4,
+                xl: 6,
+                xxl: 3,
+              }}
+              dataSource={organizations}
+              renderItem={organization => (
+                <List.Item>
+                  <Card
+                    title={organization.name}
+                    // onClick={() => context.setOrganization(organization)}
+                    style={{ cursor: 'pointer' }}
                   >
-                    <Trans>Create an organization</Trans>
-                  </Button>
-                </Form>
+                    {organization.name}
+                  </Card>
+                </List.Item>
+              )}
+            />
+          )}
+        </Col>
+      </Row>
+    );
+  } else {
+    return (
+      <Row>
+        <Col offset={2} span={20} style={{ textAlign: 'center', marginTop: 40 }}>
+          <Empty />
+          <h2 style={{ marginTop: 40 }}>To get started create an organization</h2>
+          <Form onFinish={handleSubmit} layout="vertical">
+            <Row>
+              <Col offset={8} span={8}>
+                <Form.Item
+                  name="name"
+                  rules={[{ required: true, message: 'Please input organization name!' }]}
+                >
+                  <Input
+                    size="large"
+                    placeholder="Organization name"
+                    style={{ textAlign: 'center', margin: '10px 0' }}
+                  />
+                </Form.Item>
               </Col>
             </Row>
-          )
-        }
-      </OrganizationContext.Consumer>
+            <Button
+              type="primary"
+              htmlType="submit"
+              size="large"
+              disabled={submitting}
+              loading={submitting}
+            >
+              Create
+            </Button>
+          </Form>
+        </Col>
+      </Row>
     );
   }
-}
+};
 
-export default compose(
-  withI18n(),
-  withState('organizationModal', 'setOrganizationModal', false),
-  connect(state => ({
-    organizations: state.organizations,
-  })),
-  reduxForm({
-    form: 'organization',
-    onSubmit: async (data, dispatch) => {
-      return new Promise((resolve, reject) => {
-        dispatch({ type: 'organizations/save', data: data, resolve, reject });
-      });
-    },
-    onSubmitSuccess: (result, dispatch, props) => {
-      props.setOrganizationModal(false);
-    },
-  })
-)(Index);
+export default Organizations;
