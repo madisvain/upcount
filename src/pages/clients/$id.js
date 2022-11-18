@@ -13,23 +13,23 @@ const ClientFormDrawer = props => {
   const [submitting, setSubmitting] = useState(false);
   const clientsCollection = useRxCollection('clients');
 
-  useEffect(() => {
-    const {
-      match: { params },
-    } = props;
+  const {
+    match: { params },
+  } = props;
+  console.log(params['id']);
+  /*
+  clientsCollection
+    .findOne(params['id'])
+    .exec()
+    .then(doc => console.dir(doc));
+  */
 
-    if (!isNew()) {
-      props.dispatch({
-        type: 'clients/initialize',
-        payload: {
-          id: params['id'],
-        },
-      });
-    }
-  });
-
-  const handleSubmit = () => {
-    console.log('SUBMITTING');
+  const handleSubmit = values => {
+    setSubmitting(true);
+    console.log(values);
+    clientsCollection.insert(values);
+    setSubmitting(false);
+    closeDrawer();
   };
 
   const closeDrawer = () => {

@@ -38,11 +38,11 @@ const Clients = props => {
         onChange={e => setSearch(e.target.value)}
         style={{ width: 200, float: 'right' }}
       />
-      <Table dataSource={clients} pagination={false} rowKey="_id">
+      <Table dataSource={clients} pagination={false} rowKey="name">
         <Table.Column
           title={<Trans>Name</Trans>}
           key="name"
-          render={client => <Link to={`/clients/${client._id}`}>{get(client, 'name', '-')}</Link>}
+          render={client => <Link to={`/clients/${client.name}`}>{get(client, 'name', '-')}</Link>}
         />
         <Table.Column title={<Trans>Address</Trans>} dataIndex="address" key="address" />
         <Table.Column
