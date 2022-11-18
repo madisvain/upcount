@@ -1,61 +1,72 @@
-import { Component } from 'react';
-import { compose } from 'redux';
-import { connect } from 'dva';
-import { reduxForm } from 'redux-form';
+import React, { useEffect, useState } from 'react';
+import { useRxCollection } from 'rxdb-hooks';
 import { Drawer } from 'antd';
 import { Trans } from '@lingui/macro';
+import { withI18n } from '@lingui/react';
 import { has } from 'lodash';
 
 import router from 'umi/router';
 
 import ClientForm from '../../components/clients/form';
 
-class ClientFormDrawer extends Component {
-  closeDrawer = () => {
-    router.push({
-      pathname: '/clients',
-    });
-  };
+const ClientFormDrawer = props => {
+  const [submitting, setSubmitting] = useState(false);
+  const clientsCollection = useRxCollection('clients');
 
-  componentWillMount() {
+  useEffect(() => {
     const {
       match: { params },
-    } = this.props;
+    } = props;
 
-    if (!this.isNew()) {
-      this.props.dispatch({
+    if (!isNew()) {
+      props.dispatch({
         type: 'clients/initialize',
         payload: {
           id: params['id'],
         },
       });
     }
-  }
+  });
 
-  isNew = () => {
+  const handleSubmit = () => {
+    console.log('SUBMITTING');
+  };
+
+  const closeDrawer = () => {
+    router.push({
+      pathname: '/clients',
+    });
+  };
+
+  const isNew = () => {
     const {
       match: { params },
-    } = this.props;
+    } = props;
 
     return has(params, 'id') && params['id'] === 'new';
   };
 
-  render() {
-    return (
-      <Drawer
-        title={this.isNew() ? <Trans>Add client</Trans> : <Trans>Edit client</Trans>}
-        width={450}
-        placement="right"
-        onClose={this.closeDrawer}
-        maskClosable={true}
-        visible={true}
-      >
-        <ClientForm {...this.props} />
-      </Drawer>
-    );
-  }
-}
+  return (
+    <Drawer
+      title={isNew() ? <Trans>Add client</Trans> : <Trans>Edit client</Trans>}
+      width={450}
+      placement="right"
+      onClose={closeDrawer}
+      maskClosable={true}
+      open={true}
+    >
+      <ClientForm
+        initialValues={{ emails: [] }}
+        handleSubmit={handleSubmit}
+        submitting={submitting}
+      />
+    </Drawer>
+  );
+};
 
+export default withI18n()(ClientFormDrawer);
+
+/*
 export default compose(
   connect(state => ({
     initialValues: {
@@ -74,3 +85,4 @@ export default compose(
     },
   })
 )(ClientFormDrawer);
+*/

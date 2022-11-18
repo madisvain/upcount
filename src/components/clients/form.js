@@ -1,42 +1,44 @@
-import { Component } from 'react';
-import { Field } from 'redux-form';
-import { Button, Form } from 'antd';
-import { Trans } from '@lingui/macro';
+import { Button, Form, Input, Select } from 'antd';
+import { t, Trans } from '@lingui/macro';
+import { withI18n } from '@lingui/react';
 
-import { AInput, APhoneInput, ASelect, ATextarea } from '../../components/forms/fields';
-import { emails, required } from '../../components/forms/validators';
+const ClientForm = props => {
+  const { handleSubmit, submitting } = props;
+  const [form] = Form.useForm();
 
-class ClientForm extends Component {
-  render() {
-    const { handleSubmit, pristine, submitting } = this.props;
+  return (
+    <Form form={form} layout="vertical" onFinish={handleSubmit}>
+      <Form.Item name="name" rules={[{ required: true, message: t`Please input name!` }]}>
+        <Input placeholder={t`Name`} />
+      </Form.Item>
+      <Form.Item name="address">
+        <Input.TextArea rows={4} placeholder={t`Address`} />
+      </Form.Item>
+      {/* TODO: E-mail validation */}
+      <Form.Item name="emails">
+        <Select placeholder={t`E-mails`} mode="tags" tokenSeparators={[',', ';']} />
+      </Form.Item>
+      <Form.Item name="phone">
+        <Input placeholder={t`Phone`} />
+      </Form.Item>
+      <Form.Item name="vatin">
+        <Input placeholder={t`VATIN`} />
+      </Form.Item>
+      <Form.Item name="website">
+        <Input placeholder={t`Website`} />
+      </Form.Item>
 
-    return (
-      <Form onFinish={() => handleSubmit()} layout="vertical">
-        <Field name="name" component={AInput} label={<Trans>Name</Trans>} validate={[required]} />
-        <Field name="address" component={ATextarea} label={<Trans>Address</Trans>} rows={4} />
-        <Field
-          name="emails"
-          component={ASelect}
-          mode="tags"
-          tokenSeparators={[',', ';']}
-          label={<Trans>Emails</Trans>}
-          validate={[emails]}
-        />
-        <Field name="phone" component={APhoneInput} label={<Trans>Phone</Trans>} />
-        <Field name="vatin" component={AInput} label={<Trans>VATIN</Trans>} />
-        <Field name="website" component={AInput} label={<Trans>Website</Trans>} />
-        <Button
-          type="primary"
-          htmlType="submit"
-          disabled={pristine || submitting}
-          loading={submitting}
-          style={{ marginTop: '10px' }}
-        >
-          <Trans>Save client</Trans>
-        </Button>
-      </Form>
-    );
-  }
-}
+      <Button
+        type="primary"
+        htmlType="submit"
+        disabled={submitting}
+        loading={submitting}
+        style={{ marginTop: '10px' }}
+      >
+        <Trans>Save client</Trans>
+      </Button>
+    </Form>
+  );
+};
 
-export default ClientForm;
+export default withI18n()(ClientForm);

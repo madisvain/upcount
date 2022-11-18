@@ -1,8 +1,9 @@
 import React, { useState } from 'react';
-import { Button, Col, Card, Form, Input, List, Row, Modal, Empty, Spin } from 'antd';
+import { useRxCollection, useRxData } from 'rxdb-hooks';
+import { Button, Col, Card, Form, Input, List, Row, Modal, Empty, Spin, message } from 'antd';
+import { get } from 'lodash';
 import { t, Trans } from '@lingui/macro';
 import { withI18n } from '@lingui/react';
-import { useRxCollection, useRxData } from 'rxdb-hooks';
 
 import { OrganizationContext } from '../providers/contexts';
 
@@ -15,12 +16,18 @@ const Organizations = props => {
   const { result: organizations, isFetching } = useRxData('organizations', collection =>
     collection.find()
   );
-  console.log(organizations);
 
   const handleSubmit = values => {
     if (!submitting) {
       setSubmitting(true);
-      organizationsCollection.insert(values);
+      organizationsCollection.insert(values).catch(e => {
+        if (get(e.parameters, 'error.status') === 409) {
+          message.error('An organization with this name already exists!');
+        }
+        console.log(e);
+      });
+      setSubmitting(false);
+      setModalVisible(false);
     }
   };
 
