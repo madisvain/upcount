@@ -1,9 +1,9 @@
-import React, { useEffect, useState } from 'react';
-import { useRxCollection } from 'rxdb-hooks';
-import { Drawer } from 'antd';
+import React, { useState } from 'react';
+import { useRxCollection, useRxData } from 'rxdb-hooks';
+import { Drawer, Spin } from 'antd';
 import { Trans } from '@lingui/macro';
 import { withI18n } from '@lingui/react';
-import { has } from 'lodash';
+import { first, get, has } from 'lodash';
 
 import router from 'umi/router';
 
@@ -11,23 +11,16 @@ import ClientForm from '../../components/clients/form';
 
 const ClientFormDrawer = props => {
   const [submitting, setSubmitting] = useState(false);
-  const clientsCollection = useRxCollection('clients');
 
-  const {
-    match: { params },
-  } = props;
-  console.log(params['id']);
-  /*
-  clientsCollection
-    .findOne(params['id'])
-    .exec()
-    .then(doc => console.dir(doc));
-  */
+  const collection = useRxCollection('clients');
+  const { result: client, isFetching } = useRxData('clients', collection =>
+    collection.findOne(get(props, 'match.params.id'))
+  );
 
   const handleSubmit = values => {
     setSubmitting(true);
     console.log(values);
-    clientsCollection.insert(values);
+    collection.insert(values);
     setSubmitting(false);
     closeDrawer();
   };
@@ -46,6 +39,10 @@ const ClientFormDrawer = props => {
     return has(params, 'id') && params['id'] === 'new';
   };
 
+  if (isFetching) {
+    return <Spin />;
+  }
+
   return (
     <Drawer
       title={isNew() ? <Trans>Add client</Trans> : <Trans>Edit client</Trans>}
@@ -56,7 +53,7 @@ const ClientFormDrawer = props => {
       open={true}
     >
       <ClientForm
-        initialValues={{ emails: [] }}
+        initialValues={!isFetching && first(client) ? first(client).toJSON() : { emails: [] }}
         handleSubmit={handleSubmit}
         submitting={submitting}
       />
@@ -65,24 +62,3 @@ const ClientFormDrawer = props => {
 };
 
 export default withI18n()(ClientFormDrawer);
-
-/*
-export default compose(
-  connect(state => ({
-    initialValues: {
-      emails: [],
-    },
-  })),
-  reduxForm({
-    form: 'client',
-    onSubmit: async (data, dispatch) => {
-      return await dispatch({ type: 'clients/save', data: data });
-    },
-    onSubmitSuccess: (result, dispatch) => {
-      router.push({
-        pathname: '/clients',
-      });
-    },
-  })
-)(ClientFormDrawer);
-*/

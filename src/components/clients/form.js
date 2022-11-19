@@ -3,11 +3,11 @@ import { t, Trans } from '@lingui/macro';
 import { withI18n } from '@lingui/react';
 
 const ClientForm = props => {
-  const { handleSubmit, submitting } = props;
+  const { initialValues, handleSubmit, submitting } = props;
   const [form] = Form.useForm();
 
   return (
-    <Form form={form} layout="vertical" onFinish={handleSubmit}>
+    <Form form={form} initialValues={initialValues} layout="vertical" onFinish={handleSubmit}>
       <Form.Item name="name" rules={[{ required: true, message: t`Please input name!` }]}>
         <Input placeholder={t`Name`} />
       </Form.Item>
