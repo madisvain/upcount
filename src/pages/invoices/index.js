@@ -56,7 +56,7 @@ const Invoices = props => {
 
   const invoicesCollection = useRxCollection('invoices');
   const { result: invoices, isFetching } = useRxData('invoices', collection => collection.find());
-  const clients = [];
+  const { result: clients } = useRxData('clients', collection => collection.find());
 
   return (
     <Layout.Content style={{ margin: 16, padding: 24, background: '#fff' }}>
@@ -96,7 +96,7 @@ const Invoices = props => {
           dataIndex="client"
           key="client"
           sorter={(a, b) => (a < b ? -1 : a === b ? 0 : 1)}
-          render={client => get(clients.items, `${client}.name`, '-')}
+          render={client => get(clients, `${client}.name`, '-')}
         />
         <Table.Column
           title={<Trans>Date</Trans>}

@@ -19,8 +19,7 @@ const ClientFormDrawer = props => {
 
   const handleSubmit = values => {
     setSubmitting(true);
-    console.log(values);
-    collection.insert(values);
+    collection.upsert(values);
     setSubmitting(false);
     closeDrawer();
   };
