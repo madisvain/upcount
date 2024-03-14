@@ -1,3 +1,8 @@
+
+# 📣 [Version 2 plans & development](https://github.com/madisvain/upcount)
+Happy to announce that I'm nearing the long overdue release of Upcount with improved functionality. Your input is welcome on the discussion above.
+
+
 # Upcount invoicing app
 
 ![Github actions](https://github.com/madisvain/upcount/workflows/Release/badge.svg) ![GitHub release (latest by date including pre-releases)](https://img.shields.io/github/v/release/madisvain/upcount?include_prereleases) ![GitHub](https://img.shields.io/github/license/madisvain/upcount) [![Slack](https://img.shields.io/badge/slack-upcount-green.svg?logo=slack)](https://join.slack.com/t/upcount/shared_invite/enQtOTY0Nzk5NTgzMjQ5LThlMWE3Y2YyNGY1MTc3M2Y1YmQ4YTdmZDYyNmJlYzBiNmQ0NTFhYjBkNzNjZjIwNWNlZDY2OTdiN2UwYzc3YWU)
