@@ -1,5 +1,5 @@
 
-# 📣 [Version 2 plans & development](https://github.com/madisvain/upcount)
+# 📣 [Version 2 plans & development](https://github.com/madisvain/upcount/discussions/142)
 Happy to announce that I'm nearing the long overdue release of Upcount with improved functionality. Your input is welcome on the discussion above.
 
 
