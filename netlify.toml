@@ -1,9 +1,0 @@
-[[redirects]]
-    from = "http://upcount.netlify.com/*"
-    to = "http://upcount.app/:splat"
-    status = 301
-
-[[redirects]]
-    from = "/*"
-    to = "/index.html"
-    status = 200
