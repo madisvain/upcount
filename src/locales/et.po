@@ -1,0 +1,275 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: \n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2024-01-13 08:22+0200\n"
+"PO-Revision-Date: \n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"Language: et\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: \n"
+"X-Generator: Poedit 3.4.2\n"
+
+#: src/components/clients/form.tsx:71 src/routes/clients.tsx:61
+#: src/routes/settings/organization.tsx:59
+msgid "Address"
+msgstr "Aadress"
+
+#: src/routes/settings/organization.tsx:109
+msgid "Are you sure delete this organization?"
+msgstr "Kas olete kindel, et kustutate selle organisatsiooni?"
+
+#: src/routes/invoices/details.tsx:476
+msgid "Are you sure to delete this invoice?"
+msgstr "Kas olete kindel, et soovite selle arve kustutada?"
+
+#: src/routes/settings/organization.tsx:74
+msgid "Bank name"
+msgstr "Panga nimi"
+
+#: src/routes/invoices/index.tsx:80
+msgid "Client"
+msgstr "Klient"
+
+#: src/components/clients/form.tsx:39
+msgid "Client has been created"
+msgstr "Klient on loodud"
+
+#: src/components/clients/form.tsx:32
+msgid "Client has been updated"
+msgstr "Klient on uuendatud"
+
+#: src/layouts/base.tsx:73 src/routes/clients.tsx:39
+msgid "Clients"
+msgstr "Kliendid"
+
+#: src/components/organizations/form.tsx:65
+msgid "Country"
+msgstr "Riik"
+
+#: src/components/organizations/form.tsx:74 src/routes/settings/invoice.tsx:53
+msgid "Currency"
+msgstr "Valuuta"
+
+#: src/routes/invoices/index.tsx:87
+msgid "Date"
+msgstr "Kuupäaev"
+
+#: src/routes/settings/tax-rates.tsx:77
+msgid "Default"
+msgstr "Vaikimisi"
+
+#: src/routes/invoices/details.tsx:482 src/routes/settings/organization.tsx:115
+msgid "Delete"
+msgstr "Kustuta"
+
+#: src/routes/invoices/details.tsx:475
+msgid "Delete the invoice?"
+msgstr "Soovite arve kustutada?"
+
+#: src/components/tax-rates/form.tsx:69 src/routes/settings/tax-rates.tsx:58
+msgid "Description"
+msgstr "Kirjeldus"
+
+#: src/routes/invoices/index.tsx:94
+msgid "Due date"
+msgstr "Tähtaeg"
+
+#: src/routes/settings/organization.tsx:62
+msgid "E-mail"
+msgstr "E-post"
+
+#: src/components/clients/form.tsx:75
+msgid "E-mails"
+msgstr "E-posti aadressid"
+
+#: src/components/clients/form.tsx:55
+msgid "Edit client"
+msgstr "Muuda klienti"
+
+#: src/components/tax-rates/form.tsx:53
+msgid "Edit tax rate"
+msgstr "Muuda maksumäära"
+
+#: src/routes/settings/organization.tsx:81
+msgid "IBAN"
+msgstr "IBAN"
+
+#: src/layouts/base.tsx:105
+msgid "Invoice"
+msgstr "Arve"
+
+#: src/routes/settings/invoice.tsx:48
+msgid "Invoice details"
+msgstr "Arve detailid"
+
+#: src/routes/invoices/details.tsx:124
+msgid "Invoice has been created"
+msgstr "Arve on loodud"
+
+#: src/routes/invoices/details.tsx:157
+msgid "Invoice has been deleted"
+msgstr "Arve on kustutatud"
+
+#: src/routes/invoices/details.tsx:150
+msgid "Invoice has been updated"
+msgstr "Arve on uuendatud"
+
+#: src/layouts/base.tsx:64 src/routes/invoices/index.tsx:52
+msgid "Invoices"
+msgstr "Arved"
+
+#: src/components/clients/form.tsx:68 src/components/organizations/form.tsx:62
+#: src/components/tax-rates/form.tsx:66 src/routes/clients.tsx:57
+#: src/routes/settings/organization.tsx:56 src/routes/settings/tax-rates.tsx:54
+msgid "Name"
+msgstr "Nimi"
+
+#: src/components/clients/form.tsx:55 src/routes/clients.tsx:47
+msgid "New client"
+msgstr "Uus klient"
+
+#: src/routes/invoices/index.tsx:60
+msgid "New invoice"
+msgstr "Uus arve"
+
+#: src/routes/settings/tax-rates.tsx:45
+msgid "New tax"
+msgstr "Uus maksumäär"
+
+#: src/components/tax-rates/form.tsx:53
+msgid "New tax rate"
+msgstr "Uus maksumäär"
+
+#: src/routes/invoices/details.tsx:479
+msgid "No"
+msgstr "Ei"
+
+#: src/routes/settings/organization.tsx:112
+msgid "No!"
+msgstr "Ei!"
+
+#: src/routes/invoices/index.tsx:69
+msgid "Number"
+msgstr "Number"
+
+#: src/layouts/base.tsx:96
+msgid "Organization"
+msgstr "Organisatsioon"
+
+#: src/routes/settings/organization.tsx:49
+msgid "Organization details"
+msgstr "Organisatsiooni detailid"
+
+#: src/routes/settings/invoice.tsx:31 src/routes/settings/organization.tsx:35
+msgid "Organization details have been updated"
+msgstr ""
+
+#: src/components/organizations/form.tsx:39
+msgid "Organization has been created"
+msgstr ""
+
+#: src/components/tax-rates/form.tsx:72 src/routes/settings/tax-rates.tsx:62
+msgid "Percentage"
+msgstr ""
+
+#: src/components/clients/form.tsx:78 src/routes/clients.tsx:69
+#: src/routes/settings/organization.tsx:65
+msgid "Phone"
+msgstr ""
+
+#: src/components/tax-rates/form.tsx:71
+msgid "Please input a percentage!"
+msgstr ""
+
+#: src/components/clients/form.tsx:67 src/components/organizations/form.tsx:61
+#: src/components/tax-rates/form.tsx:65
+msgid "Please input name!"
+msgstr ""
+
+#: src/routes/settings/organization.tsx:68
+msgid "Registration number"
+msgstr ""
+
+#: src/components/clients/form.tsx:57
+msgid "Save client"
+msgstr ""
+
+#: src/components/organizations/form.tsx:54
+msgid "Save organization"
+msgstr ""
+
+#: src/components/tax-rates/form.tsx:55
+msgid "Save tax rate"
+msgstr ""
+
+#: src/routes/clients.tsx:44 src/routes/invoices/index.tsx:57
+msgid "Search text"
+msgstr ""
+
+#: src/layouts/base.tsx:89
+msgid "Settings"
+msgstr ""
+
+#: src/routes/invoices/index.tsx:116
+msgid "State"
+msgstr ""
+
+#: src/routes/invoices/details.tsx:424
+msgid "Subtotal"
+msgstr ""
+
+#: src/routes/invoices/index.tsx:101
+msgid "Sum"
+msgstr ""
+
+#: src/routes/invoices/details.tsx:431
+msgid "Tax"
+msgstr ""
+
+#: src/components/tax-rates/form.tsx:37
+msgid "Tax rate has been created"
+msgstr ""
+
+#: src/components/tax-rates/form.tsx:30
+msgid "Tax rate has been updated"
+msgstr ""
+
+#: src/layouts/base.tsx:114 src/routes/settings/tax-rates.tsx:38
+msgid "Tax rates"
+msgstr ""
+
+#: src/routes/settings/invoice.tsx:55
+msgid "This field is required!"
+msgstr ""
+
+#: src/layouts/base.tsx:82
+msgid "Time tracking"
+msgstr ""
+
+#: src/routes/invoices/details.tsx:441
+msgid "Total"
+msgstr ""
+
+#: src/components/clients/form.tsx:81
+msgid "VAT Number"
+msgstr ""
+
+#: src/routes/clients.tsx:83
+msgid "VATIN"
+msgstr ""
+
+#: src/components/clients/form.tsx:84 src/routes/clients.tsx:85
+msgid "Website"
+msgstr ""
+
+#: src/routes/invoices/details.tsx:478 src/routes/settings/organization.tsx:111
+msgid "Yes"
+msgstr ""
+
+#: src/components/organizations/form.tsx:48
+msgid "Your organization details"
+msgstr ""
