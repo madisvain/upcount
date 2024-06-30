@@ -1,6 +1,6 @@
 import isNumber from "lodash/isNumber";
 
-// @ts-ignore
+// @ts-expect-error - Intl supportedValuesOf support?
 export const currencies = Intl.supportedValuesOf("currency");
 
 export const getCurrencySymbol = (locale: string, currency: string) => {

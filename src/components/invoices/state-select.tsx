@@ -55,7 +55,7 @@ const InvoiceStateSelect = ({ invoice }: { invoice: any }) => {
         },
       }}
     >
-      {/* @ts-ignore */}
+      {/* @ts-expect-error - TODO: stateColor ts definition */}
       <Tag color={stateColor[invoice.state]} style={{ marginInlineEnd: 0, cursor: "pointer" }}>
         <Space size={4} style={{ fontSize: 12 }}>
           {capitalize(invoice.state)}

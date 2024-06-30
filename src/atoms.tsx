@@ -177,8 +177,8 @@ export const invoiceAtom = atom(
   async (get, set, newValues: any) => {
     const invoiceId = get(invoiceIdAtom);
 
-    let invoice = omit(newValues, "lineItems");
-    let lineItems = newValues.lineItems;
+    const invoice = omit(newValues, "lineItems");
+    const lineItems = newValues.lineItems;
 
     if (!invoiceId) {
       // Insert

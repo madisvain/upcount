@@ -80,11 +80,11 @@ const styles = StyleSheet.create({
   /* Table */
   table: {
     // TODO: Check if can be removed
-    // @ts-ignore
+    // @ts-expect-error - "table" is not a valid display value
     display: "table",
     width: "auto",
     // TODO: Check if can be removed
-    // @ts-ignore
+    // @ts-expect-error - "none" is not a valid border style
     borderStyle: "none",
   },
   tableRow: {
@@ -164,6 +164,7 @@ const InvoicePDF = ({
 }) => {
   // TODO: Check if taxRates are needed
   if (taxRates) {
+    console.log("taxRates", taxRates);
   }
 
   return (

@@ -17,7 +17,7 @@ const Clients = () => {
   const location = useLocation();
   const clients = useAtomValue(clientsAtom);
   const setClients = useSetAtom(setClientsAtom);
-  const [_search, setSearch] = useAtom(searchAtom);
+  const [, setSearch] = useAtom(searchAtom);
 
   useEffect(() => {
     if (location.pathname === "/clients") {

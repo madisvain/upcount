@@ -197,7 +197,7 @@ const InvoicePreview: React.FC = () => {
                   </Col>
                 </Row>
               </Footer>,
-              // @ts-ignore
+              // @ts-expect-error - Footer can be null
               document.getElementById("footer")
             )}
         </Col>

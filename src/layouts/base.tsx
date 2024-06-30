@@ -31,7 +31,7 @@ export default function BaseLayout() {
   const { i18n } = useLingui();
   const navigate = useNavigate();
 
-  const [_messageApi, contextHolder] = message.useMessage();
+  const [, contextHolder] = message.useMessage();
   const {
     token: { colorBgContainer, borderRadiusLG },
   } = theme.useToken();

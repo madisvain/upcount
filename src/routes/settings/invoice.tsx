@@ -1,4 +1,3 @@
-import { useEffect, useState } from "react";
 import { Button, Col, Form, Input, InputNumber, Select, Space, Typography, Row, Upload } from "antd";
 import { atom, useAtom, useSetAtom } from "jotai";
 import { FileTextOutlined, PictureOutlined, UploadOutlined } from "@ant-design/icons";
@@ -12,7 +11,6 @@ const { Option } = Select;
 
 import { organizationAtom, setOrganizationsAtom } from "src/atoms";
 import { currencies, getCurrencySymbol } from "src/utils/currencies";
-import { set } from "lodash";
 
 const submittingAtom = atom(false);
 
@@ -21,8 +19,6 @@ function SettingsInvoice() {
   const setOrganizations = useSetAtom(setOrganizationsAtom);
   const [organization, setOrganization] = useAtom(organizationAtom);
   const [submitting, setSubmitting] = useAtom(submittingAtom);
-
-  const [logo, setLogo] = useState(null);
 
   const onSubmit = async (values: object) => {
     setSubmitting(true);

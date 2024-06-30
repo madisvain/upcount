@@ -52,6 +52,7 @@ const App = () => {
   useEffect(() => {
     setOrganizations();
   }, []);
+
   // Watch for organization changes
   useEffect(() => {
     if (!find(organizations, { id: organizationId })) {

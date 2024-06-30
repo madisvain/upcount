@@ -77,7 +77,7 @@ const InvoiceDetails: React.FC = () => {
   const setClients = useSetAtom(setClientsAtom);
   const taxRates = useAtomValue(taxRatesAtom);
   const setTaxRates = useSetAtom(setTaxRatesAtom);
-  const [_submitting, setSubmitting] = useState(false);
+  const [, setSubmitting] = useState(false);
 
   const isNew = id === "new";
 
@@ -537,7 +537,7 @@ const InvoiceDetails: React.FC = () => {
                     </Col>
                   </Row>
                 </Footer>,
-                // @ts-ignore
+                // @ts-expect-error - Footer can be null
                 document.getElementById("footer")
               )}
           </Form>
