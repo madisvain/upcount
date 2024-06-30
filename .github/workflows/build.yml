@@ -74,9 +74,9 @@ jobs:
           TAURI_PRIVATE_KEY=: ${{ secrets.TAURI_PRIVATE_KEY }}
 
         with:
-          tagName: app-v__VERSION__
-          releaseName: "App v__VERSION__"
-          releaseBody: "See the assets to download this version and install."
+          tagName: v__VERSION__
+          releaseName: "v__VERSION__"
+          releaseBody: "See the assets to download a version and install."
           releaseDraft: false
           prerelease: false
           args: ${{ matrix.settings.args }}
