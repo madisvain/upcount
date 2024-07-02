@@ -266,7 +266,21 @@ export const invoiceAtom = atom(
     }
 
     // Update invoice in list
-    const returning: any = await sqlite.select("SELECT * FROM invoices WHERE id = $1 LIMIT 1", [get(invoiceIdAtom)]);
+    const returning: any = await sqlite.select(
+      `
+      SELECT
+        invoices.*,
+        clients.name AS clientName
+      FROM
+        invoices
+      INNER JOIN
+        clients ON invoices.clientId = clients.id
+      WHERE
+        invoices.id = $1
+      LIMIT 1
+    `,
+      [get(invoiceIdAtom)]
+    );
 
     const invoices: any = get(invoicesAtom);
     const mergedInvoices: any = keyBy([...invoices, ...returning], "id");

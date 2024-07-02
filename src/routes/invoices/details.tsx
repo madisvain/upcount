@@ -95,7 +95,6 @@ const InvoiceDetails: React.FC = () => {
   }, []);
 
   const handleSubmit = async (values: any) => {
-    console.log(values);
     setSubmitting(true);
     setInvoice({ ...values, subTotal, taxTotal, total });
     setSubmitting(false);
