@@ -1,8 +1,7 @@
 import { Suspense } from "react";
-import { Outlet, Link } from "react-router-dom";
+import { Outlet, Link, useLocation, useNavigate } from "react-router-dom";
 import { Button, Divider, Layout, Menu, Select, Space, Row, Col, message, theme } from "antd";
 import { useAtom, useAtomValue, useSetAtom } from "jotai";
-import { useNavigate } from "react-router-dom";
 import {
   MenuFoldOutlined,
   MenuUnfoldOutlined,
@@ -17,8 +16,13 @@ import {
 } from "@ant-design/icons";
 import { Trans } from "@lingui/macro";
 import { useLingui } from "@lingui/react";
+import { pathToRegexp } from "path-to-regexp";
+import compact from "lodash/compact";
 import isEmpty from "lodash/isEmpty";
+import join from "lodash/join";
+import get from "lodash/get";
 import map from "lodash/map";
+import take from "lodash/take";
 import toUpper from "lodash/toUpper";
 
 import { organizationsAtom, organizationIdAtom, organizationAtom, siderAtom, localeAtom } from "src/atoms";
@@ -29,6 +33,7 @@ const { Option } = Select;
 
 export default function BaseLayout() {
   const { i18n } = useLingui();
+  const location = useLocation();
   const navigate = useNavigate();
 
   const [, contextHolder] = message.useMessage();
@@ -43,8 +48,21 @@ export default function BaseLayout() {
   const setOrganizationId = useSetAtom(organizationIdAtom);
   const organization = useAtomValue(organizationAtom);
 
+  // Locale
   const setLocale = useSetAtom(localeAtom);
+
+  // Sider
   const [siderCollapsed, setSiderCollapsed] = useAtom(siderAtom);
+
+  // Active menu item detection
+  let openKeys: string[] = [];
+  let selectedKeys: string[] = [];
+  const match = pathToRegexp(`/(.*)`).exec(location.pathname);
+  if (match) {
+    const pathArray = get(match, 1).split("/");
+    openKeys = pathArray[0] === "settings" ? ["settings"] : [];
+    selectedKeys = [join(take(compact(pathArray), 2), ".")];
+  }
 
   return (
     organization && (
@@ -63,7 +81,8 @@ export default function BaseLayout() {
           <Menu
             theme="dark"
             mode="inline"
-            defaultSelectedKeys={["invoices"]}
+            defaultOpenKeys={openKeys}
+            defaultSelectedKeys={selectedKeys}
             items={[
               {
                 icon: <FileTextOutlined />,
@@ -104,7 +123,7 @@ export default function BaseLayout() {
                         <Trans>Organization</Trans>
                       </Link>
                     ),
-                    key: "settings-organization",
+                    key: "settings.organization",
                   },
                   {
                     icon: <FileOutlined />,
@@ -113,7 +132,7 @@ export default function BaseLayout() {
                         <Trans>Invoice</Trans>
                       </Link>
                     ),
-                    key: "settings-invoice",
+                    key: "settings.invoice",
                   },
                   {
                     icon: <CalculatorOutlined />,
@@ -122,7 +141,7 @@ export default function BaseLayout() {
                         <Trans>Tax rates</Trans>
                       </Link>
                     ),
-                    key: "settings-tax-rates",
+                    key: "settings.tax-rates",
                   },
                 ],
               },
