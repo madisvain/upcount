@@ -166,7 +166,7 @@ export default function BaseLayout() {
                             onClick={() => {}}
                             style={{ textAlign: "left", paddingLeft: 11, paddingRight: 11 }}
                           >
-                            New organization
+                            <Trans>New organization</Trans>
                           </Button>
                         </>
                       )}

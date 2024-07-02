@@ -2,6 +2,7 @@ import { Button, Col, Form, Input, InputNumber, Select, Space, Typography, Row, 
 import { atom, useAtom, useSetAtom } from "jotai";
 import { FileTextOutlined, PictureOutlined, UploadOutlined } from "@ant-design/icons";
 import { t, Trans } from "@lingui/macro";
+import { useLingui } from "@lingui/react";
 import map from "lodash/map";
 import isEmpty from "lodash/isEmpty";
 
@@ -16,6 +17,8 @@ const submittingAtom = atom(false);
 
 function SettingsInvoice() {
   const [form] = Form.useForm();
+  const { i18n } = useLingui();
+
   const setOrganizations = useSetAtom(setOrganizationsAtom);
   const [organization, setOrganization] = useAtom(organizationAtom);
   const [submitting, setSubmitting] = useAtom(submittingAtom);
@@ -57,8 +60,7 @@ function SettingsInvoice() {
               >
                 <Select showSearch>
                   {map(currencies, (currency) => {
-                    const locale = "en-US";
-                    const symbol = getCurrencySymbol(locale, currency);
+                    const symbol = getCurrencySymbol(i18n.locale, currency);
                     return (
                       <Option value={currency} key={currency}>
                         {`${currency} ${currency !== symbol ? symbol : ""}`}
@@ -67,16 +69,16 @@ function SettingsInvoice() {
                   })}
                 </Select>
               </Form.Item>
-              <Form.Item label="Decimal places" name="minimum_fraction_digits">
+              <Form.Item label={t`Decimal places`} name="minimum_fraction_digits">
                 <InputNumber min={0} max={10} />
               </Form.Item>
-              <Form.Item label="Due days" name="due_days">
+              <Form.Item label={t`Due days`} name="due_days">
                 <InputNumber min={0} />
               </Form.Item>
-              <Form.Item label="Overdue charge" name="overdue_charge">
+              <Form.Item label={t`Overdue charge`} name="overdue_charge">
                 <InputNumber min={0} />
               </Form.Item>
-              <Form.Item label="Notes" name="customerNotes">
+              <Form.Item label={t`Notes`} name="customerNotes">
                 <TextArea rows={4} />
               </Form.Item>
             </Col>
@@ -90,7 +92,7 @@ function SettingsInvoice() {
                 loading={submitting}
                 style={{ marginBottom: 40 }}
               >
-                Save
+                <Trans>Save</Trans>
               </Button>
             </Col>
           </Row>
@@ -102,7 +104,7 @@ function SettingsInvoice() {
                 <Title level={3}>
                   <Space>
                     <PictureOutlined />
-                    Logo
+                    <Trans>Logo</Trans>
                   </Space>
                 </Title>
                 {organization.logo && (
@@ -111,7 +113,7 @@ function SettingsInvoice() {
                 <br />
                 <Upload accept="image/*" showUploadList={false} customRequest={(data) => onLogoUpload(data)}>
                   <Button style={{ marginTop: 20 }}>
-                    <UploadOutlined /> {organization.logo ? "Change" : "Upload"}
+                    <UploadOutlined /> {organization.logo ? t`Change` : t`Upload`}
                   </Button>
                 </Upload>
               </Col>

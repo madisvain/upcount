@@ -1,3 +1,6 @@
+# Locales
+src/locales/*.mo
+
 # Logs
 logs
 *.log

@@ -153,9 +153,9 @@ const InvoiceDetails: React.FC = () => {
             <Row gutter={24}>
               <Col span={12}>
                 <Form.Item
-                  label="Select or create a client"
+                  label={t`Select or create a client`}
                   name="clientId"
-                  rules={[{ required: true, message: "This field is required!" }]}
+                  rules={[{ required: true, message: t`This field is required!` }]}
                 >
                   <Select
                     showSearch
@@ -196,23 +196,22 @@ const InvoiceDetails: React.FC = () => {
               </Col>
               <Col span={6}>
                 <Form.Item
-                  label="Invoice number"
+                  label={t`Invoice number`}
                   name="number"
-                  rules={[{ required: true, message: "This field is required!" }]}
+                  rules={[{ required: true, message: t`This field is required!` }]}
                 >
                   <Input />
                 </Form.Item>
               </Col>
               <Col span={6}>
                 <Form.Item
-                  label="Currency"
+                  label={t`Currency`}
                   name="currency"
-                  rules={[{ required: true, message: "This field is required!" }]}
+                  rules={[{ required: true, message: t`This field is required!` }]}
                 >
                   <Select>
                     {map(currencies, (currency) => {
-                      const locale = "en-US";
-                      const symbol = getCurrencySymbol(locale, currency);
+                      const symbol = getCurrencySymbol(i18n.locale, currency);
                       return (
                         <Option value={currency} key={currency}>
                           {`${currency} ${currency !== symbol ? symbol : ""}`}
@@ -225,15 +224,15 @@ const InvoiceDetails: React.FC = () => {
             </Row>
             <Row gutter={24}>
               <Col span={6} offset={12}>
-                <Form.Item label="Date" name="date" rules={[{ required: true, message: "This field is required!" }]}>
+                <Form.Item label="Date" name="date" rules={[{ required: true, message: t`This field is required!` }]}>
                   <DatePicker style={{ width: "100%" }} />
                 </Form.Item>
               </Col>
               <Col span={6}>
                 <Form.Item
-                  label="Due date"
+                  label={t`Due date`}
                   name="dueDate"
-                  rules={[{ required: true, message: "This field is required!" }]}
+                  rules={[{ required: true, message: t`This field is required!` }]}
                 >
                   <DatePicker style={{ width: "100%" }} />
                 </Form.Item>
@@ -249,10 +248,10 @@ const InvoiceDetails: React.FC = () => {
                         dataSource={fields}
                         pagination={false}
                         size="middle"
-                        locale={{ emptyText: "No line items" }}
+                        locale={{ emptyText: t`No line items` }}
                       >
                         <Table.Column
-                          title="Description"
+                          title={t`Description`}
                           key="description"
                           onCell={() => {
                             return {
@@ -266,7 +265,7 @@ const InvoiceDetails: React.FC = () => {
                               <MoreOutlined style={{ position: "absolute", top: 20, left: -20 }} />
                               <Form.Item
                                 name={[field.name, "description"]}
-                                rules={[{ required: true, message: "This field is required!" }]}
+                                rules={[{ required: true, message: t`This field is required!` }]}
                                 noStyle
                               >
                                 <TextArea rows={4} autoSize />
@@ -275,13 +274,13 @@ const InvoiceDetails: React.FC = () => {
                           )}
                         />
                         <Table.Column
-                          title="Qty."
+                          title={t`Qty.`}
                           key="quantity"
                           width={120}
                           render={(field) => (
                             <Form.Item
                               name={[field.name, "quantity"]}
-                              rules={[{ required: true, message: "This field is required!" }]}
+                              rules={[{ required: true, message: t`This field is required!` }]}
                               noStyle
                             >
                               <InputNumber
@@ -303,13 +302,13 @@ const InvoiceDetails: React.FC = () => {
                           )}
                         />
                         <Table.Column
-                          title="Price"
+                          title={t`Price`}
                           key="unitPrice"
                           width={120}
                           render={(field) => (
                             <Form.Item
                               name={[field.name, "unitPrice"]}
-                              rules={[{ required: true, message: "This field is required!" }]}
+                              rules={[{ required: true, message: t`This field is required!` }]}
                               noStyle
                             >
                               <InputNumber
@@ -331,13 +330,13 @@ const InvoiceDetails: React.FC = () => {
                           )}
                         />
                         <Table.Column
-                          title="Total"
+                          title={t`Total`}
                           key="total"
                           width={120}
                           render={(field) => (
                             <Form.Item
                               name={[field.name, "total"]}
-                              rules={[{ required: true, message: "This field is required!" }]}
+                              rules={[{ required: true, message: t`This field is required!` }]}
                               noStyle
                             >
                               <InputNumber
@@ -504,7 +503,7 @@ const InvoiceDetails: React.FC = () => {
                         {!isNew && (
                           <Link to={`/invoices/${id}/preview`}>
                             <Button type="dashed">
-                              <EyeOutlined /> View
+                              <EyeOutlined /> <Trans>View</Trans>
                             </Button>
                           </Link>
                         )}
@@ -531,7 +530,7 @@ const InvoiceDetails: React.FC = () => {
                           </Button>
                         )}
                         <Button type="primary" disabled={false} loading={false} onClick={() => form.submit()}>
-                          <SaveOutlined /> Save
+                          <SaveOutlined /> <Trans>Save</Trans>
                         </Button>
                       </Space>
                     </Col>

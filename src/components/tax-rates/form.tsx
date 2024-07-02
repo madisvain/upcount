@@ -34,7 +34,7 @@ const TaxRateForm = () => {
     <Modal
       title={id ? <Trans>Edit tax rate</Trans> : <Trans>New tax rate</Trans>}
       open={true}
-      okText={<Trans>Save tax rate</Trans>}
+      okText={<Trans>Save</Trans>}
       onOk={() => form.submit()}
       confirmLoading={submitting}
       onCancel={() => {

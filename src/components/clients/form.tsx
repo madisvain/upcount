@@ -43,7 +43,7 @@ const ClientForm = () => {
     <Modal
       title={clientId ? <Trans>Edit client</Trans> : <Trans>New client</Trans>}
       open={get(location.state, "clientModal", false)}
-      okText={<Trans>Save client</Trans>}
+      okText={<Trans>Save</Trans>}
       onOk={() => form.submit()}
       confirmLoading={submitting}
       onCancel={() => {

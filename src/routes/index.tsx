@@ -41,7 +41,7 @@ const Index = () => {
       <Row style={{ marginTop: 100 }}>
         <Col span={12} offset={6}>
           <Text type="secondary" style={{ fontWeight: 400 }}>
-            Create your organization to get started
+            <Trans>Create your organization to get started</Trans>
           </Text>
           <Title level={3} style={{ marginTop: 12 }}>
             <Trans>Organization details</Trans>
@@ -69,7 +69,7 @@ const Index = () => {
               </Select>
             </Form.Item>
             <Button type="primary" htmlType="submit" disabled={submitting}>
-              Get started
+              <Trans>Get started</Trans>
             </Button>
           </Form>
         </Col>

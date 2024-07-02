@@ -1,4 +1,5 @@
 import { Col, Row, Alert } from "antd";
+import { t, Trans } from "@lingui/macro";
 
 const TimeTracking = () => {
   return (
@@ -6,13 +7,13 @@ const TimeTracking = () => {
       <Row justify="center">
         <Col span={12} style={{ paddingTop: 60 }}>
           <Alert
-            message="Under Development"
+            message={t`Under Development`}
             description={
               <>
-                Our time tracking feature is currently being developed.
+                <Trans>Our time tracking feature is currently being developed.</Trans>
                 <br />
                 <br />
-                Check back soon for updates!
+                <Trans>Check back soon for updates!</Trans>
               </>
             }
             type="info"

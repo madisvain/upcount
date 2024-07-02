@@ -170,7 +170,7 @@ const InvoicePreview: React.FC = () => {
                         )*/}
                       <Link to={`/invoices/${id}`}>
                         <Button type="dashed">
-                          <EditOutlined /> Edit
+                          <EditOutlined /> <Trans>Edit</Trans>
                         </Button>
                       </Link>
                       <Button
