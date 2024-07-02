@@ -63,7 +63,7 @@ export default function BaseLayout() {
           <Menu
             theme="dark"
             mode="inline"
-            defaultSelectedKeys={["1"]}
+            defaultSelectedKeys={["invoices"]}
             items={[
               {
                 icon: <FileTextOutlined />,

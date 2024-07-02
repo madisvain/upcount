@@ -7,18 +7,18 @@ license = ""
 repository = "https://github.com/madisvain/upcount"
 default-run = "upcount"
 edition = "2021"
-rust-version = "1.60"
+rust-version = "1.75"
 
 # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
 
 [build-dependencies]
-tauri-build = { version = "1.5.2", features = [] }
+tauri-build = { version = "1.5.3", features = [] }
 
 [dependencies]
 include_dir = { version = "0.7.4", features = ["glob"] }
 serde_json = "1.0"
 serde = { version = "1.0.203", features = ["derive"] }
-tauri = { version = "1.6.8", features = [ "fs-all", "dialog-all"] }
+tauri = { version = "1.7.1", features = [ "fs-all", "dialog-all"] }
 
 [features]
 # this feature is used for production builds or when `devPath` points to the filesystem and the built-in dev server is disabled.

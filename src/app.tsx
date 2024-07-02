@@ -1,4 +1,5 @@
 import "src/styles/base.scss";
+import "jotai-devtools/styles.css";
 
 import "dayjs/locale/en";
 import "dayjs/locale/et";
