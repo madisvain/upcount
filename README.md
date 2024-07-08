@@ -5,7 +5,7 @@ Happy to announce that I'm nearing the long overdue release of Upcount with impr
 
 NB! It's not backwards compatible with the current version and will require a new installation. The new version is currently in alpha and not recommended for production use.
 
-## 🚀 [Upcount 2.0.0-alpha.1](https://github.com/madisvain/upcount/releases/tag/v2.0.0-alpha.1)
+## 🚀 [Upcount 2.0.0-alpha.2](https://github.com/madisvain/upcount/releases/tag/v2.0.0-alpha.2)
 
 Source code can be found on [Tauri](https://github.com/madisvain/upcount/tree/tauri) branch of the repository.
 

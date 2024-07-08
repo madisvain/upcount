@@ -5,25 +5,39 @@ import { atom, useAtom, useAtomValue, useSetAtom } from "jotai";
 import { Trans, t } from "@lingui/macro";
 import { PhoneOutlined, TeamOutlined } from "@ant-design/icons";
 import isEmpty from "lodash/isEmpty";
+import filter from "lodash/filter";
+import get from "lodash/get";
+import includes from "lodash/includes";
+import some from "lodash/some";
+import toString from "lodash/toString";
 
 import { clientsAtom, setClientsAtom } from "src/atoms";
 import ClientForm from "src/components/clients/form";
 
 const { Title } = Typography;
 
-const searchAtom = atom("");
+const searchAtom = atom<string>("");
 
 const Clients = () => {
   const location = useLocation();
   const clients = useAtomValue(clientsAtom);
   const setClients = useSetAtom(setClientsAtom);
-  const [, setSearch] = useAtom(searchAtom);
+  const [search, setSearch] = useAtom(searchAtom);
 
   useEffect(() => {
     if (location.pathname === "/clients") {
       setClients();
     }
   }, [location]);
+
+  const searchClients = () => {
+    return filter(clients, (client: any) => {
+      return some(["name", "registration_number", "address", "emails", "phone", "vatin", "website"], (field) => {
+        const value = get(client, field);
+        return includes(toString(value).toLowerCase(), search.toLowerCase());
+      });
+    });
+  };
 
   return (
     <>
@@ -47,10 +61,11 @@ const Clients = () => {
       </Row>
       <Row>
         <Col span={24}>
-          <Table dataSource={clients} pagination={false} rowKey="id">
+          <Table dataSource={search ? searchClients() : clients} pagination={false} rowKey="id">
             <Table.Column
               title={<Trans>Name</Trans>}
               key="name"
+              sorter={(a: any, b: any) => (a.name < b.name ? -1 : a.name === b.name ? 0 : 1)}
               render={(client) => (
                 <Link to={`/clients`} state={{ clientModal: true, clientId: client.id }}>
                   {client.name}

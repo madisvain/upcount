@@ -6,6 +6,11 @@ import { FileTextOutlined } from "@ant-design/icons";
 import { Trans, t } from "@lingui/macro";
 import { useLingui } from "@lingui/react";
 import dayjs from "dayjs";
+import filter from "lodash/filter";
+import get from "lodash/get";
+import includes from "lodash/includes";
+import some from "lodash/some";
+import toString from "lodash/toString";
 
 import { invoicesAtom, setInvoicesAtom, organizationAtom } from "src/atoms";
 import { getFormattedNumber } from "src/utils/currencies";
@@ -13,7 +18,7 @@ import InvoiceStateSelect from "src/components/invoices/state-select";
 
 const { Title } = Typography;
 
-const searchAtom = atom("");
+const searchAtom = atom<string>("");
 
 const stateFilter = [
   {
@@ -40,13 +45,22 @@ const Invoices = () => {
   const organization = useAtomValue(organizationAtom);
   const invoices = useAtomValue(invoicesAtom);
   const setInvoices = useSetAtom(setInvoicesAtom);
-  const [, setSearch] = useAtom(searchAtom);
+  const [search, setSearch] = useAtom(searchAtom);
 
   useEffect(() => {
     if (location.pathname === "/invoices") {
       setInvoices();
     }
   }, [location]);
+
+  const searchInvoices = () => {
+    return filter(invoices, (invoice: any) => {
+      return some(["clientName", "number", "customerNotes", "total"], (field) => {
+        const value = get(invoice, field);
+        return includes(toString(value).toLowerCase(), search.toLowerCase());
+      });
+    });
+  };
 
   return (
     <>
@@ -69,31 +83,31 @@ const Invoices = () => {
         </Col>
       </Row>
 
-      <Table dataSource={invoices} pagination={false} rowKey="id">
+      <Table dataSource={search ? searchInvoices() : invoices} pagination={false} rowKey="id">
         <Table.Column
           title={<Trans>Number</Trans>}
           dataIndex="number"
-          sorter={(a: string, b: string) => (a < b ? -1 : a === b ? 0 : 1)}
+          sorter={(a: any, b: any) => (a.number < b.nuber ? -1 : a.number === b.number ? 0 : 1)}
           render={(number, invoice: any) => <Link to={`/invoices/${invoice.id}`}>{number}</Link>}
         />
         <Table.Column
           title={<Trans>Client</Trans>}
           dataIndex="clientName"
-          sorter={(a: string, b: string) => (a < b ? -1 : a === b ? 0 : 1)}
+          sorter={(a: any, b: any) => (a.clientName < b.clientName ? -1 : a.clientName === b.clientName ? 0 : 1)}
           render={(clientName) => (clientName ? clientName : "-")}
         />
         <Table.Column
           title={<Trans>Date</Trans>}
           dataIndex="date"
           key="date"
-          sorter={(a: string, b: string) => dayjs(a).valueOf() - dayjs(b).valueOf()}
+          sorter={(a: any, b: any) => dayjs(a.date).valueOf() - dayjs(b.date).valueOf()}
           render={(date) => (date ? dayjs(date).format("L") : "-")}
         />
         <Table.Column
           title={<Trans>Due date</Trans>}
           dataIndex="dueDate"
           key="dueDate"
-          sorter={(a: string, b: string) => dayjs(a).valueOf() - dayjs(b).valueOf()}
+          sorter={(a: any, b: any) => dayjs(a.dueDate).valueOf() - dayjs(b.dueDate).valueOf()}
           render={(date) => (date ? dayjs(date).format("L") : "-")}
         />
         <Table.Column
@@ -101,7 +115,7 @@ const Invoices = () => {
           dataIndex="total"
           key="total"
           align="right"
-          sorter={(a: number, b: number) => a - b}
+          sorter={(a: any, b: any) => a.total - b.total}
           render={(total, invoice: any) => getFormattedNumber(total, invoice.currency, i18n.locale, organization)}
         />
         <Table.Column
