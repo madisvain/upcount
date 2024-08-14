@@ -322,8 +322,8 @@ export const organizationAtom = atom(
         ).join(", ")})`,
         values(newValues)
       );
-      set(organizationIdAtom, newValues.id);
       set(setOrganizationsAtom);
+      set(organizationIdAtom, newValues.id);
       if (response["rowsAffected"] == 1) {
         message.success(t`Organization created`);
       } else {
@@ -341,6 +341,8 @@ export const organizationAtom = atom(
       } else {
         message.error(t`Organization updated failed`);
       }
+      set(setOrganizationsAtom);
+      set(organizationIdAtom, organizationId);
     }
   }
 );

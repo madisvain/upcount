@@ -3,6 +3,7 @@ import { Link, Outlet, useLocation } from "react-router-dom";
 import { Button, Col, Input, Space, Table, Typography, Row, Tag } from "antd";
 import { atom, useAtom, useAtomValue, useSetAtom } from "jotai";
 import { Trans, t } from "@lingui/macro";
+import { useLingui } from "@lingui/react";
 import { PhoneOutlined, TeamOutlined } from "@ant-design/icons";
 import isEmpty from "lodash/isEmpty";
 import filter from "lodash/filter";
@@ -19,6 +20,7 @@ const { Title } = Typography;
 const searchAtom = atom<string>("");
 
 const Clients = () => {
+  useLingui();
   const location = useLocation();
   const clients = useAtomValue(clientsAtom);
   const setClients = useSetAtom(setClientsAtom);

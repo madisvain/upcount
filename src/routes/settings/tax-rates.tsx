@@ -4,13 +4,16 @@ import { Button, Col, Space, Table, Typography, Row } from "antd";
 import { useAtomValue, useSetAtom } from "jotai";
 import { CalculatorOutlined, CheckSquareOutlined } from "@ant-design/icons";
 import { Trans } from "@lingui/macro";
+import { useLingui } from "@lingui/react";
 
 import { taxRatesAtom, setTaxRatesAtom } from "src/atoms";
 
 const { Title } = Typography;
 
 function SettingsTaxRates() {
+  useLingui();
   const location = useLocation();
+
   const taxRates = useAtomValue(taxRatesAtom);
   const setTaxRates = useSetAtom(setTaxRatesAtom);
 

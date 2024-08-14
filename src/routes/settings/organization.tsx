@@ -2,6 +2,7 @@ import { Button, Col, Form, Input, Popconfirm, Space, Typography, Row } from "an
 import { atom, useAtom, useSetAtom } from "jotai";
 import { HomeOutlined } from "@ant-design/icons";
 import { t, Trans } from "@lingui/macro";
+import { useLingui } from "@lingui/react";
 import isEmpty from "lodash/isEmpty";
 
 import { organizationAtom, setOrganizationsAtom, deleteOrganizationAtom } from "src/atoms";
@@ -12,7 +13,9 @@ const { TextArea } = Input;
 const submittingAtom = atom(false);
 
 function SettingsInvoice() {
+  useLingui();
   const [form] = Form.useForm();
+
   const setOrganizations = useSetAtom(setOrganizationsAtom);
   const deleteOrganization = useSetAtom(deleteOrganizationAtom);
   const [organization, setOrganization] = useAtom(organizationAtom);

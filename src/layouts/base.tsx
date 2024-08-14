@@ -183,7 +183,7 @@ export default function BaseLayout() {
                             block
                             icon={<PlusOutlined />}
                             onClick={() => {}}
-                            style={{ textAlign: "left", paddingLeft: 11, paddingRight: 11 }}
+                            style={{ textAlign: "left" }}
                           >
                             <Trans>New organization</Trans>
                           </Button>
