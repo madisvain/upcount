@@ -16,7 +16,7 @@
     "@lingui/react": "^4.8.0",
     "@react-pdf/renderer": "^3.4.2",
     "antd": "^5.19.0",
-    "axios": "^1.7.2",
+    "axios": "^1.7.4",
     "jotai": "^2.8.4",
     "jotai-devtools": "^0.10.0",
     "lodash": "^4.17.21",
