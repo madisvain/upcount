@@ -21,7 +21,7 @@
     "jotai-devtools": "^0.10.0",
     "lodash": "^4.17.21",
     "nanoid": "^5.0.7",
-    "path-to-regexp": "^7.0.0",
+    "path-to-regexp": "^8.0.0",
     "react": "^18",
     "react-dom": "^18",
     "react-pdf": "^8",
