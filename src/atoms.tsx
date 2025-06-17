@@ -109,6 +109,20 @@ export const clientAtom = atom(
   }
 );
 
+// Delete client
+export const deleteClientAtom = atom(null, async (get, set, clientId: string) => {
+  const response = await sqlite.execute("DELETE FROM clients WHERE id = $1", [clientId]);
+  
+  if (response["rowsAffected"] == 1) {
+    // Remove client from the list
+    const clients: any = reject(get(clientsAtom), (obj: any) => isEqual(obj.id, clientId));
+    set(clientsAtom, clients);
+    message.success(t`Client deleted`);
+  } else {
+    message.error(t`Client deletion failed`);
+  }
+});
+
 // Invoices
 export const invoicesAtom = atom([]);
 export const setInvoicesAtom = atom(null, async (get, set) => {
@@ -349,7 +363,7 @@ export const organizationAtom = atom(
 // Delete organization
 export const deleteOrganizationAtom = atom(null, async (get, set) => {
   const organizationId = get(organizationIdAtom);
-  await sqlite.select("DELETE FROM organizations WHERE id = $1", [organizationId]);
+  await sqlite.execute("DELETE FROM organizations WHERE id = $1", [organizationId]);
 
   // TODO: needs some validation that DELETE was successful
   const organizations: any = reject(get(organizationsAtom), (obj: any) => isEqual(obj.id, organizationId));
