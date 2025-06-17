@@ -12,6 +12,7 @@
   "app": {
     "windows": [
       {
+        "label": "main",
         "fullscreen": false,
         "height": 800,
         "resizable": true,
@@ -20,7 +21,28 @@
       }
     ],
     "security": {
-      "csp": null
+      "csp": null,
+      "capabilities": [
+        {
+          "identifier": "default",
+          "description": "Default capabilities for the application",
+          "windows": ["main"],
+          "permissions": [
+            "core:default",
+            "core:webview:default",
+            "core:webview:allow-internal-toggle-devtools",
+            "dialog:default",
+            "fs:default",
+            "fs:allow-read-file",
+            "fs:allow-write-file",
+            "sql:default",
+            "sql:allow-load",
+            "sql:allow-execute",
+            "sql:allow-select",
+            "updater:default"
+          ]
+        }
+      ]
     }
   },
   "bundle": {
