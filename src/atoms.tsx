@@ -15,7 +15,7 @@ import keys from "lodash/keys";
 import keyBy from "lodash/keyBy";
 import values from "lodash/values";
 import reject from "lodash/reject";
-import Database from "tauri-plugin-sql-api";
+import Database from "@tauri-apps/plugin-sql";
 
 import { defaultLocale } from "src/utils/lingui";
 

@@ -30,8 +30,8 @@ import {
   SaveOutlined,
   UserAddOutlined,
 } from "@ant-design/icons";
-import { save } from "@tauri-apps/api/dialog";
-import { writeBinaryFile } from "@tauri-apps/api/fs";
+import { save } from "@tauri-apps/plugin-dialog";
+import { writeFile } from "@tauri-apps/plugin-fs";
 import { pdf } from "@react-pdf/renderer";
 import dayjs from "dayjs";
 import get from "lodash/get";
@@ -521,8 +521,8 @@ const InvoiceDetails: React.FC = () => {
                                   i18n={i18n}
                                 />
                               ).toBlob();
-                              const contents = await blob.arrayBuffer();
-                              await writeBinaryFile(filePath, contents);
+                              const contents = new Uint8Array(await blob.arrayBuffer());
+                              await writeFile(filePath, contents);
                             }}
                           >
                             <FilePdfOutlined /> PDF

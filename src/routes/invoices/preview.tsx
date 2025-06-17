@@ -9,8 +9,8 @@ import { DeleteOutlined, EditOutlined, FilePdfOutlined } from "@ant-design/icons
 import { Trans, t } from "@lingui/macro";
 import { useLingui } from "@lingui/react";
 import { pdf, BlobProvider, PDFViewer } from "@react-pdf/renderer";
-import { save } from "@tauri-apps/api/dialog";
-import { writeBinaryFile } from "@tauri-apps/api/fs";
+import { save } from "@tauri-apps/plugin-dialog";
+import { writeFile } from "@tauri-apps/plugin-fs";
 
 import {
   invoiceIdAtom,
@@ -187,8 +187,8 @@ const InvoicePreview: React.FC = () => {
                           const filePath = await save({ defaultPath: `invoice-${id}.pdf` });
                           if (!filePath) return;
 
-                          const contents = await blob.arrayBuffer();
-                          await writeBinaryFile(filePath, contents);
+                          const contents = new Uint8Array(await blob.arrayBuffer());
+                          await writeFile(filePath, contents);
                         }}
                       >
                         <FilePdfOutlined /> PDF
