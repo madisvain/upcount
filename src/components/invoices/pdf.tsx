@@ -283,17 +283,21 @@ const InvoicePDF = ({
             </View>
           </View>
 
-          <View style={styles.row}>
-            <View style={styles.column}>
-              <Text style={styles.notes}>Thank you for your business!</Text>
+          {invoice.customerNotes && (
+            <View style={styles.row}>
+              <View style={styles.column}>
+                <Text style={styles.notes}>{invoice.customerNotes}</Text>
+              </View>
             </View>
-          </View>
+          )}
 
           <View style={styles.footer}>
             <Text style={[styles.text]}>
               {organization.bank_name} {organization.iban}
             </Text>
-            <Text style={[styles.text, { textAlign: "center" }]}>Reg. nr {organization.registration_number}</Text>
+            {organization.registration_number && (
+              <Text style={[styles.text, { textAlign: "center" }]}>Reg. nr {organization.registration_number}</Text>
+            )}
             <Text style={[styles.text, { textAlign: "right" }]}>VATIN {organization.vatin}</Text>
           </View>
         </Page>
