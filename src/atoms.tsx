@@ -15,7 +15,7 @@ import keys from "lodash/keys";
 import keyBy from "lodash/keyBy";
 import values from "lodash/values";
 import reject from "lodash/reject";
-import Database from "tauri-plugin-sql-api";
+import Database from "@tauri-apps/plugin-sql";
 
 import { defaultLocale } from "src/utils/lingui";
 
@@ -108,6 +108,20 @@ export const clientAtom = atom(
     set(clientsAtom, orderBy(map(mergedClients), "name", "asc"));
   }
 );
+
+// Delete client
+export const deleteClientAtom = atom(null, async (get, set, clientId: string) => {
+  const response = await sqlite.execute("DELETE FROM clients WHERE id = $1", [clientId]);
+  
+  if (response["rowsAffected"] == 1) {
+    // Remove client from the list
+    const clients: any = reject(get(clientsAtom), (obj: any) => isEqual(obj.id, clientId));
+    set(clientsAtom, clients);
+    message.success(t`Client deleted`);
+  } else {
+    message.error(t`Client deletion failed`);
+  }
+});
 
 // Invoices
 export const invoicesAtom = atom([]);
@@ -349,7 +363,7 @@ export const organizationAtom = atom(
 // Delete organization
 export const deleteOrganizationAtom = atom(null, async (get, set) => {
   const organizationId = get(organizationIdAtom);
-  await sqlite.select("DELETE FROM organizations WHERE id = $1", [organizationId]);
+  await sqlite.execute("DELETE FROM organizations WHERE id = $1", [organizationId]);
 
   // TODO: needs some validation that DELETE was successful
   const organizations: any = reject(get(organizationsAtom), (obj: any) => isEqual(obj.id, organizationId));

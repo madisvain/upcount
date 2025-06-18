@@ -1,12 +1,13 @@
 import { useEffect } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
-import { Form, Input, Modal, Select } from "antd";
-import { atom, useAtom } from "jotai";
+import { Form, Input, Modal, Select, Button, Popconfirm } from "antd";
+import { atom, useAtom, useSetAtom } from "jotai";
 import { t, Trans } from "@lingui/macro";
+import { DeleteOutlined } from "@ant-design/icons";
 import isEmpty from "lodash/isEmpty";
 import get from "lodash/get";
 
-import { clientIdAtom, clientAtom } from "src/atoms";
+import { clientIdAtom, clientAtom, deleteClientAtom } from "src/atoms";
 
 const submittingAtom = atom(false);
 
@@ -18,6 +19,7 @@ const ClientForm = () => {
   const [clientId, setClientId] = useAtom(clientIdAtom);
   const [client, setClient] = useAtom(clientAtom);
   const [submitting, setSubmitting] = useAtom(submittingAtom);
+  const deleteClient = useSetAtom(deleteClientAtom);
 
   const handleSubmit = async (values: any) => {
     setSubmitting(true);
@@ -26,6 +28,17 @@ const ClientForm = () => {
     navigate(location.pathname, { state: { clientModal: false } });
     form.resetFields();
     setSubmitting(false);
+  };
+
+  const handleDelete = async () => {
+    if (clientId) {
+      setSubmitting(true);
+      await deleteClient(clientId);
+      setClientId(null);
+      navigate(location.pathname, { state: { clientModal: false } });
+      form.resetFields();
+      setSubmitting(false);
+    }
   };
 
   useEffect(() => {
@@ -51,6 +64,44 @@ const ClientForm = () => {
         form.resetFields();
         navigate(location.pathname, { state: { clientModal: false } });
       }}
+      footer={[
+        <div key="footer" style={{ display: 'flex', justifyContent: 'space-between', width: '100%' }}>
+          <div>
+            {clientId && (
+              <Popconfirm
+                title={<Trans>Are you sure you want to delete this client?</Trans>}
+                onConfirm={handleDelete}
+                okText={<Trans>Yes</Trans>}
+                cancelText={<Trans>No</Trans>}
+                placement="topRight"
+              >
+                <Button danger icon={<DeleteOutlined />} loading={submitting}>
+                  <Trans>Delete</Trans>
+                </Button>
+              </Popconfirm>
+            )}
+          </div>
+          <div>
+            <Button
+              onClick={() => {
+                setClientId(null);
+                form.resetFields();
+                navigate(location.pathname, { state: { clientModal: false } });
+              }}
+              style={{ marginRight: 8 }}
+            >
+              <Trans>Cancel</Trans>
+            </Button>
+            <Button
+              type="primary"
+              loading={submitting}
+              onClick={() => form.submit()}
+            >
+              <Trans>Save</Trans>
+            </Button>
+          </div>
+        </div>
+      ]}
       forceRender={true}
     >
       {(!clientId || !isEmpty(client)) && (
