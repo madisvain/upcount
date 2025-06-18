@@ -19,7 +19,7 @@
     "@tauri-apps/plugin-fs": "^2.3.0",
     "@tauri-apps/plugin-sql": "^2.2.1",
     "antd": "^5.19.0",
-    "axios": "^1.7.2",
+    "axios": "^1.8.2",
     "jotai": "^2.8.4",
     "jotai-devtools": "^0.10.0",
     "lodash": "^4.17.21",
