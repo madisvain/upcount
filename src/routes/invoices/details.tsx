@@ -53,6 +53,7 @@ import {
   organizationAtom,
   taxRatesAtom,
   setTaxRatesAtom,
+  deleteInvoiceAtom,
 } from "src/atoms";
 import ClientForm from "src/components/clients/form.tsx";
 import InvoicePDF from "src/components/invoices/pdf";
@@ -77,6 +78,7 @@ const InvoiceDetails: React.FC = () => {
   const setClients = useSetAtom(setClientsAtom);
   const taxRates = useAtomValue(taxRatesAtom);
   const setTaxRates = useSetAtom(setTaxRatesAtom);
+  const deleteInvoice = useSetAtom(deleteInvoiceAtom);
   const [, setSubmitting] = useState(false);
 
   const isNew = id === "new";
@@ -101,10 +103,8 @@ const InvoiceDetails: React.FC = () => {
   };
 
   const handleDelete = (id: string) => async () => {
-    console.log("Delete invoice", id);
-    // TODO: Implement delete
-    // messageApi.success(t`Invoice has been deleted`);
-    // navigate("/invoices");
+    await deleteInvoice(id);
+    navigate("/invoices");
   };
 
   let initialValues = {

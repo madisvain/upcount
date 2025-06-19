@@ -1,6 +1,6 @@
 import { useEffect, useState, useMemo, useRef } from "react";
 import { createPortal } from "react-dom";
-import { useParams, Link } from "react-router-dom";
+import { useParams, Link, useNavigate } from "react-router-dom";
 import { Page, Document, pdfjs } from "react-pdf";
 import { useSetAtom, useAtomValue } from "jotai";
 import { Button, Row, Col, Space, Layout, Popconfirm, theme } from "antd";
@@ -20,6 +20,7 @@ import {
   organizationAtom,
   taxRatesAtom,
   setTaxRatesAtom,
+  deleteInvoiceAtom,
 } from "src/atoms";
 import InvoicePDF from "src/components/invoices/pdf";
 
@@ -31,6 +32,7 @@ pdfjs.GlobalWorkerOptions.workerSrc = new URL("pdfjs-dist/build/pdf.worker.min.j
 
 const InvoicePreview: React.FC = () => {
   const { id } = useParams<string>();
+  const navigate = useNavigate();
   const { i18n } = useLingui();
   const {
     token: { colorBgContainer },
@@ -43,6 +45,7 @@ const InvoicePreview: React.FC = () => {
   const organization = useAtomValue(organizationAtom);
   const taxRates = useAtomValue(taxRatesAtom);
   const setTaxRates = useSetAtom(setTaxRatesAtom);
+  const deleteInvoice = useSetAtom(deleteInvoiceAtom);
 
   const ref = useRef<HTMLDivElement>(null);
   const [pageWidth, setPageWidth] = useState(0);
@@ -63,10 +66,8 @@ const InvoicePreview: React.FC = () => {
   }, [invoice]);
 
   const handleDelete = (id: string) => async () => {
-    console.log("Delete invoice", id);
-    // TODO: Implement delete
-    // messageApi.success(t`Invoice has been deleted`);
-    // navigate("/invoices");
+    await deleteInvoice(id);
+    navigate("/invoices");
   };
 
   const fitHorizontal = useMemo(() => {

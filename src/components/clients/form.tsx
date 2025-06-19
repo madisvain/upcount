@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import { Form, Input, Modal, Select, Button, Popconfirm } from "antd";
 import { atom, useAtom, useSetAtom } from "jotai";
@@ -6,6 +6,7 @@ import { t, Trans } from "@lingui/macro";
 import { DeleteOutlined } from "@ant-design/icons";
 import isEmpty from "lodash/isEmpty";
 import get from "lodash/get";
+import { invoke } from "@tauri-apps/api/core";
 
 import { clientIdAtom, clientAtom, deleteClientAtom } from "src/atoms";
 
@@ -20,10 +21,11 @@ const ClientForm = () => {
   const [client, setClient] = useAtom(clientAtom);
   const [submitting, setSubmitting] = useAtom(submittingAtom);
   const deleteClient = useSetAtom(deleteClientAtom);
+  const [invoiceCount, setInvoiceCount] = useState<number | null>(null);
 
   const handleSubmit = async (values: any) => {
     setSubmitting(true);
-    setClient(values);
+    await setClient(values);
     setClientId(null);
     navigate(location.pathname, { state: { clientModal: false } });
     form.resetFields();
@@ -42,15 +44,37 @@ const ClientForm = () => {
   };
 
   useEffect(() => {
-    form.resetFields();
     if (get(location, "state.clientId")) {
       setClientId(get(location, "state.clientId"));
+    } else {
+      form.resetFields();
+      setClientId(null);
     }
   }, [location]);
 
   useEffect(() => {
-    form.setFieldsValue(client);
+    if (client) {
+      form.setFieldsValue(client);
+    }
   }, [client]);
+
+  useEffect(() => {
+    if (clientId) {
+      // Fetch invoice count when clientId changes
+      const fetchInvoiceCount = async () => {
+        try {
+          const count = await invoke<number>("get_client_invoice_count", { clientId });
+          setInvoiceCount(count);
+        } catch (error) {
+          console.error("Failed to fetch invoice count:", error);
+          setInvoiceCount(0);
+        }
+      };
+      fetchInvoiceCount();
+    } else {
+      setInvoiceCount(null);
+    }
+  }, [clientId]);
 
   return (
     <Modal
@@ -69,7 +93,16 @@ const ClientForm = () => {
           <div>
             {clientId && (
               <Popconfirm
-                title={<Trans>Are you sure you want to delete this client?</Trans>}
+                title={
+                  <div>
+                    <div><Trans>Are you sure you want to delete this client?</Trans></div>
+                    {invoiceCount !== null && invoiceCount > 0 && (
+                      <div style={{ color: '#ff4d4f', marginTop: 4 }}>
+                        <Trans>Warning: This will also delete {invoiceCount} related invoice(s).</Trans>
+                      </div>
+                    )}
+                  </div>
+                }
                 onConfirm={handleDelete}
                 okText={<Trans>Yes</Trans>}
                 cancelText={<Trans>No</Trans>}
