@@ -9,17 +9,12 @@ import first from "lodash/first";
 import map from "lodash/map";
 import omit from "lodash/omit";
 import orderBy from "lodash/orderBy";
-import keys from "lodash/keys";
 import keyBy from "lodash/keyBy";
-import values from "lodash/values";
 import reject from "lodash/reject";
 import { invoke } from "@tauri-apps/api/core";
-import Database from "@tauri-apps/plugin-sql";
 
 import { defaultLocale } from "src/utils/lingui";
 import { centsToUnits, unitsToCents } from "src/utils/currency";
-
-const sqlite = await Database.load("sqlite:sqlite.db");
 
 // Generic
 export const siderAtom = atomWithStorage("sider", false);
@@ -295,20 +290,22 @@ export const organizationAtom = atom(
     const organizationId = get(organizationIdAtom);
     if (!organizationId) return null;
 
-    const response: any = await sqlite.select(
-      `
-      SELECT
-        *
-      FROM
-        organizations
-      WHERE
-        id = $1
-      LIMIT 1
-    `,
-      [organizationId]
-    );
-    const organization: any = first(response);
-    return organization;
+    try {
+      const organization = await invoke<any>("get_organization", { organizationId });
+
+      // Convert logo byte array to data URL string if present
+      if (organization?.logo && Array.isArray(organization.logo)) {
+        // The byte array contains UTF-8 bytes of the original data URL string
+        const bytes = new Uint8Array(organization.logo);
+        const decoder = new TextDecoder("utf-8");
+        organization.logo = decoder.decode(bytes);
+      }
+
+      return organization;
+    } catch (error) {
+      console.error("Failed to fetch organization:", error);
+      return null;
+    }
   },
   async (get, set, newValues: any) => {
     const organizationId = get(organizationIdAtom);
@@ -350,7 +347,7 @@ export const organizationAtom = atom(
 // Delete organization
 export const deleteOrganizationAtom = atom(null, async (get, set) => {
   const organizationId = get(organizationIdAtom);
-  
+
   try {
     const success = await invoke<boolean>("delete_organization", { organizationId });
 
@@ -409,7 +406,7 @@ export const taxRateAtom = atom(
           id: nanoid(),
           organizationId: get(organizationIdAtom),
           // Convert boolean to integer for isDefault
-          isDefault: typeof newValues.isDefault === 'boolean' ? (newValues.isDefault ? 1 : 0) : newValues.isDefault,
+          isDefault: typeof newValues.isDefault === "boolean" ? (newValues.isDefault ? 1 : 0) : newValues.isDefault,
         };
 
         const createdTaxRate = await invoke<any>("create_tax_rate", {
@@ -426,9 +423,9 @@ export const taxRateAtom = atom(
         const updateData = {
           ...newValues,
           // Convert boolean to integer for isDefault
-          isDefault: typeof newValues.isDefault === 'boolean' ? (newValues.isDefault ? 1 : 0) : newValues.isDefault,
+          isDefault: typeof newValues.isDefault === "boolean" ? (newValues.isDefault ? 1 : 0) : newValues.isDefault,
         };
-        
+
         const updatedTaxRate = await invoke<any>("update_tax_rate", {
           taxRateId,
           updates: updateData,
