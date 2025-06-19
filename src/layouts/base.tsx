@@ -149,7 +149,16 @@ export default function BaseLayout() {
           />
         </Sider>
         <Layout style={{ width: "100%", marginLeft: siderCollapsed ? 80 : 200, transition: "all 0.2s" }}>
-          <Header style={{ position: "sticky", top: 0, zIndex: 1, padding: 0, background: colorBgContainer }}>
+          <Header
+            style={{
+              position: "sticky",
+              top: 0,
+              zIndex: 1,
+              padding: 0,
+              background: colorBgContainer,
+              borderTop: "1px solid #f0f0f0",
+            }}
+          >
             <Row>
               <Col flex="auto">
                 <Button
