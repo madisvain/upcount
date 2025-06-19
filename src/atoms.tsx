@@ -193,6 +193,7 @@ export const invoiceAtom = atom(
           ...invoice,
           id: nanoid(),
           organizationId: get(organizationIdAtom),
+          state: invoice.state || 'draft',  // Default to draft if not specified
           // Convert dayjs objects to unix timestamps
           date: invoice.date?.valueOf ? invoice.date.valueOf() : invoice.date,
           dueDate: invoice.dueDate?.valueOf ? invoice.dueDate.valueOf() : invoice.dueDate,
