@@ -326,7 +326,7 @@ export const organizationAtom = atom(
         message.success(t`Organization created`);
       } else {
         // Update
-        const updatedOrganization = await invoke<any>("update_organization", {
+        await invoke<any>("update_organization", {
           organizationId,
           updates: newValues,
         });
