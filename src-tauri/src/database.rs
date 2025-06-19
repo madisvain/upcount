@@ -87,6 +87,110 @@ pub struct InvoiceLineItem {
     pub created_at: Option<String>,
 }
 
+#[derive(Debug, Serialize, Deserialize, FromRow)]
+pub struct Organization {
+    pub id: String,
+    pub name: Option<String>,
+    pub country: Option<String>,
+    pub address: Option<String>,
+    pub email: Option<String>,
+    pub phone: Option<String>,
+    pub website: Option<String>,
+    pub registration_number: Option<String>,
+    pub vatin: Option<String>,
+    pub bank_name: Option<String>,
+    pub iban: Option<String>,
+    pub currency: Option<String>,
+    pub minimum_fraction_digits: Option<i64>,
+    pub due_days: Option<i64>,
+    pub overdue_charge: Option<f64>,
+    #[serde(rename = "customerNotes")]
+    #[sqlx(rename = "customerNotes")]
+    pub customer_notes: Option<String>,
+    #[serde(rename = "createdAt")]
+    #[sqlx(rename = "createdAt")]
+    pub created_at: Option<String>,
+    pub logo: Option<Vec<u8>>,
+}
+
+#[derive(Debug, Deserialize)]
+pub struct CreateOrganizationRequest {
+    pub id: String,
+    pub name: Option<String>,
+    pub country: Option<String>,
+    pub address: Option<String>,
+    pub email: Option<String>,
+    pub phone: Option<String>,
+    pub website: Option<String>,
+    pub registration_number: Option<String>,
+    pub vatin: Option<String>,
+    pub bank_name: Option<String>,
+    pub iban: Option<String>,
+    pub currency: Option<String>,
+    pub minimum_fraction_digits: Option<i64>,
+    pub due_days: Option<i64>,
+    pub overdue_charge: Option<f64>,
+    #[serde(rename = "customerNotes")]
+    pub customer_notes: Option<String>,
+    pub logo: Option<Vec<u8>>,
+}
+
+#[derive(Debug, Deserialize)]
+pub struct UpdateOrganizationRequest {
+    pub name: Option<String>,
+    pub country: Option<String>,
+    pub address: Option<String>,
+    pub email: Option<String>,
+    pub phone: Option<String>,
+    pub website: Option<String>,
+    pub registration_number: Option<String>,
+    pub vatin: Option<String>,
+    pub bank_name: Option<String>,
+    pub iban: Option<String>,
+    pub currency: Option<String>,
+    pub minimum_fraction_digits: Option<i64>,
+    pub due_days: Option<i64>,
+    pub overdue_charge: Option<f64>,
+    #[serde(rename = "customerNotes")]
+    pub customer_notes: Option<String>,
+    pub logo: Option<Vec<u8>>,
+}
+
+#[derive(Debug, Serialize, Deserialize, FromRow)]
+pub struct TaxRate {
+    pub id: String,
+    #[serde(rename = "organizationId")]
+    #[sqlx(rename = "organizationId")]
+    pub organization_id: String,
+    pub name: String,
+    pub description: Option<String>,
+    pub percentage: f64,
+    #[serde(rename = "isDefault")]
+    #[sqlx(rename = "isDefault")]
+    pub is_default: Option<i64>,
+}
+
+#[derive(Debug, Deserialize)]
+pub struct CreateTaxRateRequest {
+    pub id: String,
+    #[serde(rename = "organizationId")]
+    pub organization_id: String,
+    pub name: String,
+    pub description: Option<String>,
+    pub percentage: f64,
+    #[serde(rename = "isDefault")]
+    pub is_default: Option<i64>,
+}
+
+#[derive(Debug, Deserialize)]
+pub struct UpdateTaxRateRequest {
+    pub name: Option<String>,
+    pub description: Option<String>,
+    pub percentage: Option<f64>,
+    #[serde(rename = "isDefault")]
+    pub is_default: Option<i64>,
+}
+
 #[derive(Debug, Deserialize)]
 pub struct CreateInvoiceRequest {
     pub id: String,
@@ -453,6 +557,208 @@ impl Database {
             .await?;
 
         tx.commit().await?;
+
+        Ok(result.rows_affected() > 0)
+    }
+
+    pub async fn get_organizations(&self) -> Result<Vec<Organization>, sqlx::Error> {
+        sqlx::query_as::<_, Organization>(
+            r#"
+            SELECT *
+            FROM organizations
+            ORDER BY name ASC
+            "#,
+        )
+        .fetch_all(&self.pool)
+        .await
+    }
+
+    pub async fn get_organization(&self, organization_id: &str) -> Result<Option<Organization>, sqlx::Error> {
+        sqlx::query_as::<_, Organization>(
+            r#"
+            SELECT *
+            FROM organizations
+            WHERE id = ?
+            LIMIT 1
+            "#,
+        )
+        .bind(organization_id)
+        .fetch_optional(&self.pool)
+        .await
+    }
+
+    pub async fn create_organization(&self, organization: CreateOrganizationRequest) -> Result<Organization, sqlx::Error> {
+        sqlx::query(
+            r#"
+            INSERT INTO organizations (
+                id, name, country, address, email, phone, website, 
+                registration_number, vatin, bank_name, iban, currency,
+                minimum_fraction_digits, due_days, overdue_charge, 
+                customerNotes, logo
+            )
+            VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+            "#,
+        )
+        .bind(&organization.id)
+        .bind(&organization.name)
+        .bind(&organization.country)
+        .bind(&organization.address)
+        .bind(&organization.email)
+        .bind(&organization.phone)
+        .bind(&organization.website)
+        .bind(&organization.registration_number)
+        .bind(&organization.vatin)
+        .bind(&organization.bank_name)
+        .bind(&organization.iban)
+        .bind(&organization.currency)
+        .bind(&organization.minimum_fraction_digits)
+        .bind(&organization.due_days)
+        .bind(&organization.overdue_charge)
+        .bind(&organization.customer_notes)
+        .bind(&organization.logo)
+        .execute(&self.pool)
+        .await?;
+
+        self.get_organization(&organization.id).await.map(|o| o.unwrap())
+    }
+
+    pub async fn update_organization(
+        &self,
+        organization_id: &str,
+        updates: UpdateOrganizationRequest,
+    ) -> Result<Organization, sqlx::Error> {
+        sqlx::query(
+            r#"
+            UPDATE organizations
+            SET name = COALESCE(?, name),
+                country = COALESCE(?, country),
+                address = COALESCE(?, address),
+                email = COALESCE(?, email),
+                phone = COALESCE(?, phone),
+                website = COALESCE(?, website),
+                registration_number = COALESCE(?, registration_number),
+                vatin = COALESCE(?, vatin),
+                bank_name = COALESCE(?, bank_name),
+                iban = COALESCE(?, iban),
+                currency = COALESCE(?, currency),
+                minimum_fraction_digits = COALESCE(?, minimum_fraction_digits),
+                due_days = COALESCE(?, due_days),
+                overdue_charge = COALESCE(?, overdue_charge),
+                customerNotes = COALESCE(?, customerNotes),
+                logo = COALESCE(?, logo)
+            WHERE id = ?
+            "#,
+        )
+        .bind(&updates.name)
+        .bind(&updates.country)
+        .bind(&updates.address)
+        .bind(&updates.email)
+        .bind(&updates.phone)
+        .bind(&updates.website)
+        .bind(&updates.registration_number)
+        .bind(&updates.vatin)
+        .bind(&updates.bank_name)
+        .bind(&updates.iban)
+        .bind(&updates.currency)
+        .bind(&updates.minimum_fraction_digits)
+        .bind(&updates.due_days)
+        .bind(&updates.overdue_charge)
+        .bind(&updates.customer_notes)
+        .bind(&updates.logo)
+        .bind(organization_id)
+        .execute(&self.pool)
+        .await?;
+
+        self.get_organization(organization_id).await.map(|o| o.unwrap())
+    }
+
+    pub async fn delete_organization(&self, organization_id: &str) -> Result<bool, sqlx::Error> {
+        let result = sqlx::query("DELETE FROM organizations WHERE id = ?")
+            .bind(organization_id)
+            .execute(&self.pool)
+            .await?;
+
+        Ok(result.rows_affected() > 0)
+    }
+
+    pub async fn get_tax_rates(&self, organization_id: &str) -> Result<Vec<TaxRate>, sqlx::Error> {
+        sqlx::query_as::<_, TaxRate>(
+            r#"
+            SELECT *
+            FROM taxRates
+            WHERE organizationId = ?
+            ORDER BY name ASC
+            "#,
+        )
+        .bind(organization_id)
+        .fetch_all(&self.pool)
+        .await
+    }
+
+    pub async fn get_tax_rate(&self, tax_rate_id: &str) -> Result<Option<TaxRate>, sqlx::Error> {
+        sqlx::query_as::<_, TaxRate>(
+            r#"
+            SELECT *
+            FROM taxRates
+            WHERE id = ?
+            LIMIT 1
+            "#,
+        )
+        .bind(tax_rate_id)
+        .fetch_optional(&self.pool)
+        .await
+    }
+
+    pub async fn create_tax_rate(&self, tax_rate: CreateTaxRateRequest) -> Result<TaxRate, sqlx::Error> {
+        sqlx::query(
+            r#"
+            INSERT INTO taxRates (id, organizationId, name, description, percentage, isDefault)
+            VALUES (?, ?, ?, ?, ?, ?)
+            "#,
+        )
+        .bind(&tax_rate.id)
+        .bind(&tax_rate.organization_id)
+        .bind(&tax_rate.name)
+        .bind(&tax_rate.description)
+        .bind(&tax_rate.percentage)
+        .bind(&tax_rate.is_default)
+        .execute(&self.pool)
+        .await?;
+
+        self.get_tax_rate(&tax_rate.id).await.map(|t| t.unwrap())
+    }
+
+    pub async fn update_tax_rate(
+        &self,
+        tax_rate_id: &str,
+        updates: UpdateTaxRateRequest,
+    ) -> Result<TaxRate, sqlx::Error> {
+        sqlx::query(
+            r#"
+            UPDATE taxRates
+            SET name = COALESCE(?, name),
+                description = COALESCE(?, description),
+                percentage = COALESCE(?, percentage),
+                isDefault = COALESCE(?, isDefault)
+            WHERE id = ?
+            "#,
+        )
+        .bind(&updates.name)
+        .bind(&updates.description)
+        .bind(&updates.percentage)
+        .bind(&updates.is_default)
+        .bind(tax_rate_id)
+        .execute(&self.pool)
+        .await?;
+
+        self.get_tax_rate(tax_rate_id).await.map(|t| t.unwrap())
+    }
+
+    pub async fn delete_tax_rate(&self, tax_rate_id: &str) -> Result<bool, sqlx::Error> {
+        let result = sqlx::query("DELETE FROM taxRates WHERE id = ?")
+            .bind(tax_rate_id)
+            .execute(&self.pool)
+            .await?;
 
         Ok(result.rows_affected() > 0)
     }

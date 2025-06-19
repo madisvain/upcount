@@ -1,6 +1,8 @@
 use crate::database::{
     Client, CreateClientRequest, Database, UpdateClientRequest,
-    Invoice, InvoiceLineItem, CreateInvoiceRequest, UpdateInvoiceRequest
+    Invoice, InvoiceLineItem, CreateInvoiceRequest, UpdateInvoiceRequest,
+    Organization, CreateOrganizationRequest, UpdateOrganizationRequest,
+    TaxRate, CreateTaxRateRequest, UpdateTaxRateRequest
 };
 use tauri::State;
 
@@ -107,6 +109,93 @@ pub async fn update_invoice(
 #[tauri::command]
 pub async fn delete_invoice(invoice_id: String, db: State<'_, Database>) -> Result<bool, String> {
     db.delete_invoice(&invoice_id)
+        .await
+        .map_err(|e| e.to_string())
+}
+
+#[tauri::command]
+pub async fn get_organizations(db: State<'_, Database>) -> Result<Vec<Organization>, String> {
+    db.get_organizations()
+        .await
+        .map_err(|e| e.to_string())
+}
+
+#[tauri::command]
+pub async fn get_organization(organization_id: String, db: State<'_, Database>) -> Result<Option<Organization>, String> {
+    db.get_organization(&organization_id)
+        .await
+        .map_err(|e| e.to_string())
+}
+
+#[tauri::command]
+pub async fn create_organization(
+    organization: CreateOrganizationRequest,
+    db: State<'_, Database>,
+) -> Result<Organization, String> {
+    db.create_organization(organization)
+        .await
+        .map_err(|e| e.to_string())
+}
+
+#[tauri::command]
+pub async fn update_organization(
+    organization_id: String,
+    updates: UpdateOrganizationRequest,
+    db: State<'_, Database>,
+) -> Result<Organization, String> {
+    db.update_organization(&organization_id, updates)
+        .await
+        .map_err(|e| e.to_string())
+}
+
+#[tauri::command]
+pub async fn delete_organization(organization_id: String, db: State<'_, Database>) -> Result<bool, String> {
+    db.delete_organization(&organization_id)
+        .await
+        .map_err(|e| e.to_string())
+}
+
+#[tauri::command]
+pub async fn get_tax_rates(
+    organization_id: String,
+    db: State<'_, Database>,
+) -> Result<Vec<TaxRate>, String> {
+    db.get_tax_rates(&organization_id)
+        .await
+        .map_err(|e| e.to_string())
+}
+
+#[tauri::command]
+pub async fn get_tax_rate(tax_rate_id: String, db: State<'_, Database>) -> Result<Option<TaxRate>, String> {
+    db.get_tax_rate(&tax_rate_id)
+        .await
+        .map_err(|e| e.to_string())
+}
+
+#[tauri::command]
+pub async fn create_tax_rate(
+    tax_rate: CreateTaxRateRequest,
+    db: State<'_, Database>,
+) -> Result<TaxRate, String> {
+    db.create_tax_rate(tax_rate)
+        .await
+        .map_err(|e| e.to_string())
+}
+
+#[tauri::command]
+pub async fn update_tax_rate(
+    tax_rate_id: String,
+    updates: UpdateTaxRateRequest,
+    db: State<'_, Database>,
+) -> Result<TaxRate, String> {
+    db.update_tax_rate(&tax_rate_id, updates)
+        .await
+        .map_err(|e| e.to_string())
+}
+
+#[tauri::command]
+pub async fn delete_tax_rate(tax_rate_id: String, db: State<'_, Database>) -> Result<bool, String> {
+    db.delete_tax_rate(&tax_rate_id)
         .await
         .map_err(|e| e.to_string())
 }

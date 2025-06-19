@@ -63,6 +63,16 @@ pub fn run() {
       commands::create_invoice,
       commands::update_invoice,
       commands::delete_invoice,
+      commands::get_organizations,
+      commands::get_organization,
+      commands::create_organization,
+      commands::update_organization,
+      commands::delete_organization,
+      commands::get_tax_rates,
+      commands::get_tax_rate,
+      commands::create_tax_rate,
+      commands::update_tax_rate,
+      commands::delete_tax_rate,
     ])
     .run(tauri::generate_context!())
     .expect("error while running tauri application");
