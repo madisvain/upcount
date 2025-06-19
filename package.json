@@ -14,7 +14,7 @@
     "@ant-design/icons": "6.0.0",
     "@lingui/macro": "4.14.1",
     "@lingui/react": "4.14.1",
-    "@react-pdf/renderer": "3.4.5",
+    "@react-pdf/renderer": "4.3.0",
     "@tauri-apps/plugin-dialog": "^2.2.2",
     "@tauri-apps/plugin-fs": "^2.3.0",
     "@tauri-apps/plugin-sql": "^2.2.1",
