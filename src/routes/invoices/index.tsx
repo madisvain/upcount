@@ -52,7 +52,7 @@ const Invoices = () => {
     if (location.pathname === "/invoices") {
       setInvoices();
     }
-  }, [location]);
+  }, [setInvoices]);
 
   const searchInvoices = () => {
     return filter(invoices, (invoice: any) => {

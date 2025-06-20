@@ -21,7 +21,7 @@ function SettingsTaxRates() {
     if (location.pathname === "/settings/tax-rates") {
       setTaxRates();
     }
-  }, [location]);
+  }, [location, setTaxRates]);
 
   return (
     <>

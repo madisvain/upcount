@@ -52,7 +52,7 @@ const App = () => {
 
   useEffect(() => {
     setOrganizations();
-  }, []);
+  }, [setOrganizations]);
 
   // Watch for organization changes
   useEffect(() => {
@@ -60,7 +60,7 @@ const App = () => {
       const nextOrganization: any = first(organizations);
       setOrganizationId(organizations.length > 0 ? nextOrganization.id : null);
     }
-  }, [organizations]);
+  }, [organizations, organizationId, setOrganizationId]);
 
   return (
     <Suspense fallback={<Loading />}>

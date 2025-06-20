@@ -31,7 +31,7 @@ const Clients = () => {
     if (location.pathname === "/clients") {
       setClients();
     }
-  }, [location]);
+  }, [location, setClients]);
 
   const searchClients = () => {
     return filter(clients, (client: any) => {

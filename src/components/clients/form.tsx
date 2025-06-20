@@ -51,13 +51,13 @@ const ClientForm = () => {
       form.resetFields();
       setClientId(null);
     }
-  }, [location]);
+  }, [location, form, setClientId]);
 
   useEffect(() => {
     if (client) {
       form.setFieldsValue(client);
     }
-  }, [client]);
+  }, [client, form]);
 
   useEffect(() => {
     if (clientId) {

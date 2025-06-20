@@ -95,7 +95,7 @@ const InvoiceDetails: React.FC = () => {
     return () => {
       setInvoiceId(null);
     };
-  }, []);
+  }, [id, isNew, setClients, setInvoiceId, setTaxRates]);
 
   const handleSubmit = async (values: any) => {
     setSubmitting(true);

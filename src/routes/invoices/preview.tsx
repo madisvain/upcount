@@ -69,10 +69,10 @@ const InvoicePreview: React.FC = () => {
     return () => {
       setInvoiceId(null);
     };
-  }, []);
+  }, [id, setInvoiceId, setTaxRates]);
   useEffect(() => {
     if (invoice) setClientId(invoice.clientId);
-  }, [invoice]);
+  }, [invoice, setClientId]);
 
   const handleDelete = (id: string) => async () => {
     await deleteInvoice(id);
