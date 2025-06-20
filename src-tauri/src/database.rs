@@ -1,5 +1,7 @@
 use serde::{Deserialize, Serialize};
-use sqlx::{FromRow, SqlitePool};
+use sqlx::{FromRow, SqlitePool, sqlite::SqliteConnectOptions, migrate::{MigrateDatabase, Migrator}};
+use std::str::FromStr;
+use std::path::Path;
 
 #[derive(Debug, Serialize, Deserialize, FromRow)]
 pub struct Client {
@@ -263,7 +265,20 @@ pub struct Database {
 
 impl Database {
     pub async fn new(database_url: &str) -> Result<Self, sqlx::Error> {
-        let pool = SqlitePool::connect(database_url).await?;
+        // Ensure database exists
+        if !sqlx::Sqlite::database_exists(database_url).await.unwrap_or(false) {
+            sqlx::Sqlite::create_database(database_url).await?;
+        }
+        
+        let options = SqliteConnectOptions::from_str(database_url)?
+            .create_if_missing(true);
+        let pool = SqlitePool::connect_with(options).await?;
+        
+        // Run migrations
+        let migrations = Path::new(env!("CARGO_MANIFEST_DIR")).join("migrations");
+        let migrator = Migrator::new(migrations).await?;
+        migrator.run(&pool).await?;
+        
         Ok(Self { pool })
     }
 
