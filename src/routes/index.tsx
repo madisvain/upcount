@@ -1,7 +1,8 @@
 import { Form, Input, Select, Typography, Row, Col, Button } from "antd";
 import { atom, useAtom, useAtomValue, useSetAtom } from "jotai";
 import { useNavigate } from "react-router-dom";
-import { t, Trans } from "@lingui/macro";
+import { Trans } from "@lingui/react/macro";
+import { t } from "@lingui/core/macro";
 import compact from "lodash/compact";
 import map from "lodash/map";
 import uniq from "lodash/uniq";

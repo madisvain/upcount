@@ -1,7 +1,8 @@
 import { Button, Col, Form, Input, InputNumber, Select, Space, Typography, Row, Upload } from "antd";
 import { atom, useAtom, useSetAtom } from "jotai";
 import { FileTextOutlined, PictureOutlined, UploadOutlined } from "@ant-design/icons";
-import { t, Trans } from "@lingui/macro";
+import { Trans } from "@lingui/react/macro";
+import { t } from "@lingui/core/macro";
 import { useLingui } from "@lingui/react";
 import map from "lodash/map";
 import isEmpty from "lodash/isEmpty";

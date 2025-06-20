@@ -1,4 +1,4 @@
-import { Trans } from "@lingui/macro";
+import { Trans } from "@lingui/react/macro";
 import { I18nProvider } from "@lingui/react";
 import { Document, Font, Page, Text, View, StyleSheet, Image } from "@react-pdf/renderer";
 import dayjs from "dayjs";

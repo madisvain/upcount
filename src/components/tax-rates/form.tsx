@@ -1,7 +1,8 @@
 import { useParams, useNavigate } from "react-router-dom";
 import { Checkbox, Form, Input, Modal } from "antd";
 import { atom, useAtom, useSetAtom } from "jotai";
-import { t, Trans } from "@lingui/macro";
+import { Trans } from "@lingui/react/macro";
+import { t } from "@lingui/core/macro";
 import isEmpty from "lodash/isEmpty";
 
 import { taxRateIdAtom, taxRateAtom } from "src/atoms";

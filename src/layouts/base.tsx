@@ -14,7 +14,7 @@ import {
   PlusOutlined,
   FieldTimeOutlined,
 } from "@ant-design/icons";
-import { Trans } from "@lingui/macro";
+import { Trans } from "@lingui/react/macro";
 import { useLingui } from "@lingui/react";
 import { pathToRegexp } from "path-to-regexp";
 import compact from "lodash/compact";

@@ -8,12 +8,13 @@
     "build": "tsc && vite build",
     "lint": "eslint . --ext ts,tsx --report-unused-disable-directives --max-warnings 0",
     "preview": "vite preview",
-    "extract": "lingui extract"
+    "extract": "lingui extract",
+    "add-locale": "lingui add-locale"
   },
   "dependencies": {
     "@ant-design/icons": "6.0.0",
-    "@lingui/macro": "4.14.1",
-    "@lingui/react": "4.14.1",
+    "@lingui/macro": "^5.0.0",
+    "@lingui/react": "^5.0.0",
     "@react-pdf/renderer": "4.3.0",
     "@tauri-apps/plugin-dialog": "^2.2.2",
     "@tauri-apps/plugin-fs": "^2.3.0",
@@ -32,8 +33,9 @@
     "usehooks-ts": "3.1.1"
   },
   "devDependencies": {
-    "@lingui/cli": "4.14.1",
-    "@lingui/vite-plugin": "4.14.1",
+    "@lingui/babel-plugin-lingui-macro": "^5.0.0",
+    "@lingui/cli": "^5.0.0",
+    "@lingui/vite-plugin": "^5.0.0",
     "@tauri-apps/cli": "^2.0.0",
     "@types/react": "18.3.23",
     "@types/react-dom": "18.3.7",

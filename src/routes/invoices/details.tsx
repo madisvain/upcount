@@ -19,7 +19,8 @@ import {
   theme,
 } from "antd";
 import { useAtom, useAtomValue, useSetAtom } from "jotai";
-import { Trans, t } from "@lingui/macro";
+import { Trans } from "@lingui/react/macro";
+import { t } from "@lingui/core/macro";
 import { useLingui } from "@lingui/react";
 import {
   DeleteOutlined,

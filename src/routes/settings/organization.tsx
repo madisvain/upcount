@@ -1,7 +1,8 @@
 import { Button, Col, Form, Input, Popconfirm, Space, Typography, Row } from "antd";
 import { atom, useAtom, useSetAtom } from "jotai";
 import { HomeOutlined } from "@ant-design/icons";
-import { t, Trans } from "@lingui/macro";
+import { Trans } from "@lingui/react/macro";
+import { t } from "@lingui/core/macro";
 import { useLingui } from "@lingui/react";
 import isEmpty from "lodash/isEmpty";
 
