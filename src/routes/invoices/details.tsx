@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { createPortal } from "react-dom";
-import { useLocation, useNavigate, useParams, Link } from "react-router-dom";
+import { useLocation, useNavigate, useParams, Link } from "react-router";
 import {
   Button,
   DatePicker,
@@ -19,7 +19,8 @@ import {
   theme,
 } from "antd";
 import { useAtom, useAtomValue, useSetAtom } from "jotai";
-import { Trans, t } from "@lingui/macro";
+import { Trans } from "@lingui/react/macro";
+import { t } from "@lingui/core/macro";
 import { useLingui } from "@lingui/react";
 import {
   DeleteOutlined,
@@ -94,7 +95,7 @@ const InvoiceDetails: React.FC = () => {
     return () => {
       setInvoiceId(null);
     };
-  }, []);
+  }, [id, isNew, setClients, setInvoiceId, setTaxRates]);
 
   const handleSubmit = async (values: any) => {
     setSubmitting(true);
@@ -166,7 +167,7 @@ const InvoiceDetails: React.FC = () => {
                       }
                       return true;
                     }}
-                    dropdownRender={(menu) => (
+                    popupRender={(menu) => (
                       <>
                         {menu}
                         <Divider style={{ margin: "8px 0" }} />
@@ -411,22 +412,24 @@ const InvoiceDetails: React.FC = () => {
               <Col span={12} offset={4}>
                 <Descriptions
                   column={1}
-                  contentStyle={{
-                    textAlign: "right",
-                    display: "inline-block",
-                    minWidth: 120,
-                    color: "rgba(0, 0, 0, 0.88)",
-                    fontSize: 15,
-                    lineHeight: 1.4,
-                  }}
-                  labelStyle={{
-                    textAlign: "right",
-                    display: "inline-block",
-                    width: "100%",
-                    color: "rgba(0, 0, 0, 0.88)",
-                    fontWeight: 500,
-                    fontSize: 15,
-                    lineHeight: 1.4,
+                  styles={{
+                    content: {
+                      textAlign: "right",
+                      display: "inline-block",
+                      minWidth: 120,
+                      color: "rgba(0, 0, 0, 0.88)",
+                      fontSize: 15,
+                      lineHeight: 1.4,
+                    },
+                    label: {
+                      textAlign: "right",
+                      display: "inline-block",
+                      width: "100%",
+                      color: "rgba(0, 0, 0, 0.88)",
+                      fontWeight: 500,
+                      fontSize: 15,
+                      lineHeight: 1.4,
+                    }
                   }}
                 >
                   <Descriptions.Item label={<Trans>Subtotal</Trans>}>

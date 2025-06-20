@@ -2,7 +2,7 @@ import { atom } from "jotai";
 import { atomWithStorage } from "jotai/utils";
 import { message } from "antd";
 import { nanoid } from "nanoid";
-import { t } from "@lingui/macro";
+import { t } from "@lingui/core/macro";
 import dayjs from "dayjs";
 import isEqual from "lodash/isEqual";
 import first from "lodash/first";

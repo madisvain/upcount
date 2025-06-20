@@ -1,9 +1,9 @@
 import { useEffect } from "react";
-import { Link, Outlet, useLocation } from "react-router-dom";
+import { Link, Outlet, useLocation } from "react-router";
 import { Button, Col, Space, Table, Typography, Row } from "antd";
 import { useAtomValue, useSetAtom } from "jotai";
 import { CalculatorOutlined, CheckSquareOutlined } from "@ant-design/icons";
-import { Trans } from "@lingui/macro";
+import { Trans } from "@lingui/react/macro";
 import { useLingui } from "@lingui/react";
 
 import { taxRatesAtom, setTaxRatesAtom } from "src/atoms";
@@ -21,7 +21,7 @@ function SettingsTaxRates() {
     if (location.pathname === "/settings/tax-rates") {
       setTaxRates();
     }
-  }, [location]);
+  }, [location, setTaxRates]);
 
   return (
     <>

@@ -7,12 +7,22 @@ export default defineConfig({
   plugins: [
     react({
       babel: {
-        plugins: ["macros"],
+        plugins: ["@lingui/babel-plugin-lingui-macro"],
         presets: ["jotai/babel/preset"],
       },
     }),
     lingui(),
   ],
+  optimizeDeps: {
+    include: ['pdfjs-dist'],
+  },
+  css: {
+    preprocessorOptions: {
+      scss: {
+        api: 'modern-compiler',
+      },
+    },
+  },
   resolve: {
     alias: [{ find: "src", replacement: "/src" }],
   },

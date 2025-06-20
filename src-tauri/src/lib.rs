@@ -4,31 +4,7 @@
 mod commands;
 mod database;
 
-use include_dir::{include_dir, Dir};
 use tauri::Manager;
-use tauri_plugin_sql::{Migration, MigrationKind};
-
-fn load_migrations() -> Vec<Migration> {
-  static MIGRATIONS_DIR: Dir = include_dir!("$CARGO_MANIFEST_DIR/migrations");
-
-  let mut migrations: Vec<Migration> = vec![];
-
-  for file in MIGRATIONS_DIR.files() {
-    let file_name = file.path().file_name().unwrap().to_str().unwrap();
-
-    let version = file_name[0..4].parse::<i64>().expect("Failed to parse version number");
-    let sql = file.contents_utf8().expect("Migration file should not be empty");
-
-    migrations.push(Migration {
-      version,
-      description: file_name,
-      sql,
-      kind: MigrationKind::Up,
-    });
-  }
-
-  migrations
-}
 
 #[cfg_attr(mobile, tauri::mobile_entry_point)]
 pub fn run() {
@@ -36,10 +12,13 @@ pub fn run() {
     .plugin(tauri_plugin_updater::Builder::new().build())
     .plugin(tauri_plugin_dialog::init())
     .plugin(tauri_plugin_fs::init())
-    .plugin(tauri_plugin_sql::Builder::default().add_migrations("sqlite:sqlite.db", load_migrations()).build())
     .setup(|app| {
-      // Get the app data directory where tauri-plugin-sql stores the database
+      // Get the app data directory for the database
       let app_dir = app.path().app_data_dir().expect("Failed to get app data dir");
+      
+      // Ensure the directory exists
+      std::fs::create_dir_all(&app_dir).expect("Failed to create app data directory");
+      
       let db_path = app_dir.join("sqlite.db");
       let db_url = format!("sqlite://{}", db_path.display());
       

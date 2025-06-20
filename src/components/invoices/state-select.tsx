@@ -1,7 +1,7 @@
 import { Dropdown, Space, Tag } from "antd";
 import { useSetAtom } from "jotai";
 import { MoreOutlined } from "@ant-design/icons";
-import { t } from "@lingui/macro";
+import { t } from "@lingui/core/macro";
 import capitalize from "lodash/capitalize";
 
 import type { MenuProps } from "antd";

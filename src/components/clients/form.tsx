@@ -1,8 +1,9 @@
 import { useEffect, useState } from "react";
-import { useLocation, useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router";
 import { Form, Input, Modal, Select, Button, Popconfirm } from "antd";
 import { atom, useAtom, useSetAtom } from "jotai";
-import { t, Trans } from "@lingui/macro";
+import { Trans } from "@lingui/react/macro";
+import { t } from "@lingui/core/macro";
 import { DeleteOutlined } from "@ant-design/icons";
 import isEmpty from "lodash/isEmpty";
 import get from "lodash/get";
@@ -50,13 +51,13 @@ const ClientForm = () => {
       form.resetFields();
       setClientId(null);
     }
-  }, [location]);
+  }, [location, form, setClientId]);
 
   useEffect(() => {
     if (client) {
       form.setFieldsValue(client);
     }
-  }, [client]);
+  }, [client, form]);
 
   useEffect(() => {
     if (clientId) {

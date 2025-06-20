@@ -1,9 +1,10 @@
 import { useEffect } from "react";
-import { Link } from "react-router-dom";
+import { Link } from "react-router";
 import { Button, Col, Input, Space, Table, Typography, Row } from "antd";
 import { atom, useAtom, useAtomValue, useSetAtom } from "jotai";
 import { FileTextOutlined } from "@ant-design/icons";
-import { Trans, t } from "@lingui/macro";
+import { Trans } from "@lingui/react/macro";
+import { t } from "@lingui/core/macro";
 import { useLingui } from "@lingui/react";
 import dayjs from "dayjs";
 import filter from "lodash/filter";
@@ -51,7 +52,7 @@ const Invoices = () => {
     if (location.pathname === "/invoices") {
       setInvoices();
     }
-  }, [location]);
+  }, [setInvoices]);
 
   const searchInvoices = () => {
     return filter(invoices, (invoice: any) => {

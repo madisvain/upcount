@@ -1,16 +1,21 @@
 import { useEffect, useState, useMemo, useRef } from "react";
 import { createPortal } from "react-dom";
-import { useParams, Link, useNavigate } from "react-router-dom";
+import { useParams, Link, useNavigate } from "react-router";
 import { Page, Document, pdfjs } from "react-pdf";
 import { useSetAtom, useAtomValue } from "jotai";
 import { Button, Row, Col, Space, Layout, Popconfirm, theme } from "antd";
 import { useResizeObserver } from "usehooks-ts";
 import { DeleteOutlined, EditOutlined, FilePdfOutlined } from "@ant-design/icons";
-import { Trans, t } from "@lingui/macro";
+import { Trans } from "@lingui/react/macro";
+import { t } from "@lingui/core/macro";
 import { useLingui } from "@lingui/react";
 import { pdf, BlobProvider, PDFViewer } from "@react-pdf/renderer";
 import { save } from "@tauri-apps/plugin-dialog";
 import { writeFile } from "@tauri-apps/plugin-fs";
+
+// Import CSS for react-pdf
+import "react-pdf/dist/esm/Page/AnnotationLayer.css";
+import "react-pdf/dist/esm/Page/TextLayer.css";
 
 import {
   invoiceIdAtom,
@@ -28,7 +33,11 @@ const { Footer } = Layout;
 
 const PDF_DEBUG = false;
 
-pdfjs.GlobalWorkerOptions.workerSrc = new URL("pdfjs-dist/build/pdf.worker.min.js", import.meta.url).toString();
+// Configure PDF.js worker for Vite
+pdfjs.GlobalWorkerOptions.workerSrc = new URL(
+  'pdfjs-dist/build/pdf.worker.min.mjs',
+  import.meta.url,
+).toString();
 
 const InvoicePreview: React.FC = () => {
   const { id } = useParams<string>();
@@ -60,10 +69,10 @@ const InvoicePreview: React.FC = () => {
     return () => {
       setInvoiceId(null);
     };
-  }, []);
+  }, [id, setInvoiceId, setTaxRates]);
   useEffect(() => {
     if (invoice) setClientId(invoice.clientId);
-  }, [invoice]);
+  }, [invoice, setClientId]);
 
   const handleDelete = (id: string) => async () => {
     await deleteInvoice(id);

@@ -5,7 +5,7 @@ import "dayjs/locale/en";
 import "dayjs/locale/et";
 
 import { useEffect, Suspense } from "react";
-import { BrowserRouter, Navigate, Route, Routes } from "react-router-dom";
+import { BrowserRouter, Navigate, Route, Routes } from "react-router";
 import { ConfigProvider } from "antd";
 import { useAtom, useAtomValue, useSetAtom } from "jotai";
 import { DevTools } from "jotai-devtools";
@@ -52,7 +52,7 @@ const App = () => {
 
   useEffect(() => {
     setOrganizations();
-  }, []);
+  }, [setOrganizations]);
 
   // Watch for organization changes
   useEffect(() => {
@@ -60,7 +60,7 @@ const App = () => {
       const nextOrganization: any = first(organizations);
       setOrganizationId(organizations.length > 0 ? nextOrganization.id : null);
     }
-  }, [organizations]);
+  }, [organizations, organizationId, setOrganizationId]);
 
   return (
     <Suspense fallback={<Loading />}>

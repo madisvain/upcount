@@ -1,5 +1,5 @@
 import { Suspense } from "react";
-import { Outlet, Link, useLocation, useNavigate } from "react-router-dom";
+import { Outlet, Link, useLocation, useNavigate } from "react-router";
 import { Button, Divider, Layout, Menu, Select, Space, Row, Col, message, theme } from "antd";
 import { useAtom, useAtomValue, useSetAtom } from "jotai";
 import {
@@ -14,7 +14,7 @@ import {
   PlusOutlined,
   FieldTimeOutlined,
 } from "@ant-design/icons";
-import { Trans } from "@lingui/macro";
+import { Trans } from "@lingui/react/macro";
 import { useLingui } from "@lingui/react";
 import { pathToRegexp } from "path-to-regexp";
 import compact from "lodash/compact";
@@ -183,7 +183,7 @@ export default function BaseLayout() {
                         setOrganizationId(value);
                         navigate("/");
                       }}
-                      dropdownRender={(menu) => (
+                      popupRender={(menu) => (
                         <>
                           {menu}
                           <Divider style={{ margin: "8px 0" }} />
@@ -208,7 +208,7 @@ export default function BaseLayout() {
                   )}
                   <Select
                     variant="borderless"
-                    style={{ width: 60, marginRight: 24 }}
+                    style={{ marginRight: 24 }}
                     onSelect={(value) => {
                       setLocale(value);
                       dynamicActivate(value);
