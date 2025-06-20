@@ -13,6 +13,10 @@ import { pdf, BlobProvider, PDFViewer } from "@react-pdf/renderer";
 import { save } from "@tauri-apps/plugin-dialog";
 import { writeFile } from "@tauri-apps/plugin-fs";
 
+// Import CSS for react-pdf
+import "react-pdf/dist/esm/Page/AnnotationLayer.css";
+import "react-pdf/dist/esm/Page/TextLayer.css";
+
 import {
   invoiceIdAtom,
   invoiceAtom,
@@ -29,7 +33,11 @@ const { Footer } = Layout;
 
 const PDF_DEBUG = false;
 
-pdfjs.GlobalWorkerOptions.workerSrc = new URL("pdfjs-dist/build/pdf.worker.min.js", import.meta.url).toString();
+// Configure PDF.js worker for Vite
+pdfjs.GlobalWorkerOptions.workerSrc = new URL(
+  'pdfjs-dist/build/pdf.worker.min.mjs',
+  import.meta.url,
+).toString();
 
 const InvoicePreview: React.FC = () => {
   const { id } = useParams<string>();

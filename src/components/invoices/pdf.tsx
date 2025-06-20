@@ -83,18 +83,20 @@ const styles = StyleSheet.create({
     // @ts-expect-error - "table" is not a valid display value
     display: "table",
     width: "auto",
-    // TODO: Check if can be removed
-    // @ts-expect-error - "none" is not a valid border style
-    borderStyle: "none",
   },
   tableRow: {
     flexDirection: "row",
   },
   tableRowBordered: {
-    borderStyle: "solid",
-    borderWidth: 0,
+    borderTopStyle: "solid",
+    borderRightStyle: "solid",
+    borderBottomStyle: "solid",
+    borderLeftStyle: "solid",
+    borderTopWidth: 0,
+    borderRightWidth: 0,
     borderBottomWidth: 2,
-    borderColor: "#868686",
+    borderLeftWidth: 0,
+    borderBottomColor: "#868686",
   },
   tableCol: {
     fontFamily: "Montserrat",
@@ -141,6 +143,7 @@ const styles = StyleSheet.create({
     bottom: 30,
     left: 30,
     right: 30,
+    borderTopStyle: "solid",
     borderTopWidth: 1,
     borderTopColor: "#868686",
     paddingTop: 8,
@@ -178,7 +181,7 @@ const InvoicePDF = ({
               </Text>
             </View>
             <View style={[styles.column]}>
-              <Image src={organization.logo} style={{ maxWidth: 120, marginLeft: "auto" }} />
+              {organization.logo && <Image src={organization.logo} style={{ maxWidth: 120, marginLeft: "auto" }} />}
             </View>
           </View>
 

@@ -28,7 +28,7 @@
     "path-to-regexp": "7.2.0",
     "react": "^18",
     "react-dom": "^18",
-    "react-pdf": "^8",
+    "react-pdf": "^9.2.1",
     "react-router-dom": "6.30.1",
     "usehooks-ts": "3.1.1"
   },

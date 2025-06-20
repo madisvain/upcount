@@ -13,6 +13,9 @@ export default defineConfig({
     }),
     lingui(),
   ],
+  optimizeDeps: {
+    include: ['pdfjs-dist'],
+  },
   resolve: {
     alias: [{ find: "src", replacement: "/src" }],
   },
