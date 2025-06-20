@@ -6,7 +6,7 @@
   "scripts": {
     "dev": "vite",
     "build": "tsc && vite build",
-    "lint": "eslint . --ext ts,tsx --report-unused-disable-directives --max-warnings 0",
+    "lint": "eslint . --report-unused-disable-directives --max-warnings 0",
     "preview": "vite preview",
     "extract": "lingui extract",
     "add-locale": "lingui add-locale"
@@ -43,8 +43,10 @@
     "@typescript-eslint/parser": "^8.34.1",
     "@vitejs/plugin-react": "4.5.2",
     "babel-plugin-macros": "^3.1.0",
-    "eslint": "8.57.1",
-    "eslint-plugin-react-hooks": "^4.6.2",
+    "@eslint/js": "^9.29.0",
+    "eslint": "^9.29.0",
+    "globals": "^15.9.0",
+    "eslint-plugin-react-hooks": "^5.2.0",
     "eslint-plugin-react-refresh": "0.4.20",
     "sass": "1.89.2",
     "tsx": "4.20.3",
