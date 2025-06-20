@@ -1,6 +1,6 @@
 import { useEffect, useState, useMemo, useRef } from "react";
 import { createPortal } from "react-dom";
-import { useParams, Link, useNavigate } from "react-router-dom";
+import { useParams, Link, useNavigate } from "react-router";
 import { Page, Document, pdfjs } from "react-pdf";
 import { useSetAtom, useAtomValue } from "jotai";
 import { Button, Row, Col, Space, Layout, Popconfirm, theme } from "antd";

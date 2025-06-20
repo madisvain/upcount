@@ -1,6 +1,7 @@
+import { useEffect } from "react";
 import { Form, Input, Select, Typography, Row, Col, Button } from "antd";
 import { atom, useAtom, useAtomValue, useSetAtom } from "jotai";
-import { useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router";
 import { Trans } from "@lingui/react/macro";
 import { t } from "@lingui/core/macro";
 import compact from "lodash/compact";
@@ -33,9 +34,12 @@ const Index = () => {
     setSubmitting(false);
   };
 
-  if (organizationId && organizations.length > 0) {
-    navigate("/invoices");
-  }
+  // Handle redirect to invoices when organization exists
+  useEffect(() => {
+    if (organizationId && organizations.length > 0) {
+      navigate("/invoices");
+    }
+  }, [organizationId, organizations.length, navigate]);
 
   return (
     <>

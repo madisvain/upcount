@@ -1,4 +1,4 @@
-import { useParams, useNavigate } from "react-router-dom";
+import { useParams, useNavigate } from "react-router";
 import { Checkbox, Form, Input, Modal } from "antd";
 import { atom, useAtom, useSetAtom } from "jotai";
 import { Trans } from "@lingui/react/macro";

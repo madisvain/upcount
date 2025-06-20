@@ -165,11 +165,6 @@ const InvoicePDF = ({
   taxRates: any;
   i18n: any;
 }) => {
-  // TODO: Check if taxRates are needed
-  if (taxRates) {
-    console.log("taxRates", taxRates);
-  }
-
   return (
     <I18nProvider i18n={i18n}>
       <Document>

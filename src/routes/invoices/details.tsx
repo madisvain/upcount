@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { createPortal } from "react-dom";
-import { useLocation, useNavigate, useParams, Link } from "react-router-dom";
+import { useLocation, useNavigate, useParams, Link } from "react-router";
 import {
   Button,
   DatePicker,
@@ -167,7 +167,7 @@ const InvoiceDetails: React.FC = () => {
                       }
                       return true;
                     }}
-                    dropdownRender={(menu) => (
+                    popupRender={(menu) => (
                       <>
                         {menu}
                         <Divider style={{ margin: "8px 0" }} />
