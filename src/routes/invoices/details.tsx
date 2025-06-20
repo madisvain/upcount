@@ -412,22 +412,24 @@ const InvoiceDetails: React.FC = () => {
               <Col span={12} offset={4}>
                 <Descriptions
                   column={1}
-                  contentStyle={{
-                    textAlign: "right",
-                    display: "inline-block",
-                    minWidth: 120,
-                    color: "rgba(0, 0, 0, 0.88)",
-                    fontSize: 15,
-                    lineHeight: 1.4,
-                  }}
-                  labelStyle={{
-                    textAlign: "right",
-                    display: "inline-block",
-                    width: "100%",
-                    color: "rgba(0, 0, 0, 0.88)",
-                    fontWeight: 500,
-                    fontSize: 15,
-                    lineHeight: 1.4,
+                  styles={{
+                    content: {
+                      textAlign: "right",
+                      display: "inline-block",
+                      minWidth: 120,
+                      color: "rgba(0, 0, 0, 0.88)",
+                      fontSize: 15,
+                      lineHeight: 1.4,
+                    },
+                    label: {
+                      textAlign: "right",
+                      display: "inline-block",
+                      width: "100%",
+                      color: "rgba(0, 0, 0, 0.88)",
+                      fontWeight: 500,
+                      fontSize: 15,
+                      lineHeight: 1.4,
+                    }
                   }}
                 >
                   <Descriptions.Item label={<Trans>Subtotal</Trans>}>
