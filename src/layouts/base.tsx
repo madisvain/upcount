@@ -16,11 +16,10 @@ import {
 } from "@ant-design/icons";
 import { Trans } from "@lingui/react/macro";
 import { useLingui } from "@lingui/react";
-import { pathToRegexp } from "path-to-regexp";
+import { match } from "path-to-regexp";
 import compact from "lodash/compact";
 import isEmpty from "lodash/isEmpty";
 import join from "lodash/join";
-import get from "lodash/get";
 import map from "lodash/map";
 import take from "lodash/take";
 import toUpper from "lodash/toUpper";
@@ -57,9 +56,13 @@ export default function BaseLayout() {
   // Active menu item detection
   let openKeys: string[] = [];
   let selectedKeys: string[] = [];
-  const match = pathToRegexp(`/(.*)`).exec(location.pathname);
-  if (match) {
-    const pathArray = get(match, 1).split("/");
+  const matchFn = match(`/:path*`, { decode: decodeURIComponent });
+  const matchResult = matchFn(location.pathname);
+  if (matchResult && matchResult.params.path) {
+    const pathString = Array.isArray(matchResult.params.path) 
+      ? matchResult.params.path.join("/") 
+      : matchResult.params.path;
+    const pathArray = pathString.split("/");
     openKeys = pathArray[0] === "settings" ? ["settings"] : [];
     selectedKeys = [join(take(compact(pathArray), 2), ".")];
   }

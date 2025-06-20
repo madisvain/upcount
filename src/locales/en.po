@@ -27,8 +27,8 @@ msgstr ""
 msgid "Are you sure delete this organization?"
 msgstr ""
 
-#: src/routes/invoices/preview.tsx:155
-#: src/routes/invoices/details.tsx:485
+#: src/routes/invoices/preview.tsx:163
+#: src/routes/invoices/details.tsx:487
 msgid "Are you sure to delete this invoice?"
 msgstr ""
 
@@ -95,7 +95,7 @@ msgid "Client updated successfully"
 msgstr ""
 
 #: src/routes/clients.tsx:51
-#: src/layouts/base.tsx:100
+#: src/layouts/base.tsx:103
 msgid "Clients"
 msgstr ""
 
@@ -103,15 +103,15 @@ msgstr ""
 msgid "Confirmed"
 msgstr ""
 
-#: src/routes/index.tsx:55
+#: src/routes/index.tsx:59
 msgid "Country"
 msgstr ""
 
-#: src/routes/index.tsx:45
+#: src/routes/index.tsx:49
 msgid "Create your organization to get started"
 msgstr ""
 
-#: src/routes/index.tsx:64
+#: src/routes/index.tsx:68
 #: src/routes/settings/invoice.tsx:58
 #: src/routes/invoices/details.tsx:208
 msgid "Currency"
@@ -122,7 +122,7 @@ msgid "Customer note"
 msgstr ""
 
 #: src/routes/invoices/index.tsx:101
-#: src/components/invoices/pdf.tsx:203
+#: src/components/invoices/pdf.tsx:199
 msgid "Date"
 msgstr ""
 
@@ -136,21 +136,21 @@ msgid "Default"
 msgstr ""
 
 #: src/routes/settings/organization.tsx:112
-#: src/routes/invoices/preview.tsx:161
-#: src/routes/invoices/details.tsx:491
+#: src/routes/invoices/preview.tsx:169
+#: src/routes/invoices/details.tsx:493
 #: src/components/clients/form.tsx:113
 msgid "Delete"
 msgstr ""
 
-#: src/routes/invoices/preview.tsx:154
-#: src/routes/invoices/details.tsx:484
+#: src/routes/invoices/preview.tsx:162
+#: src/routes/invoices/details.tsx:486
 msgid "Delete the invoice?"
 msgstr ""
 
 #: src/routes/settings/tax-rates.tsx:53
 #: src/routes/invoices/details.tsx:254
 #: src/components/tax-rates/form.tsx:53
-#: src/components/invoices/pdf.tsx:225
+#: src/components/invoices/pdf.tsx:221
 msgid "Description"
 msgstr ""
 
@@ -161,7 +161,7 @@ msgstr ""
 
 #: src/routes/invoices/index.tsx:108
 #: src/routes/invoices/details.tsx:233
-#: src/components/invoices/pdf.tsx:206
+#: src/components/invoices/pdf.tsx:202
 msgid "Due date"
 msgstr ""
 
@@ -177,7 +177,7 @@ msgstr ""
 msgid "E-mails"
 msgstr ""
 
-#: src/routes/invoices/preview.tsx:175
+#: src/routes/invoices/preview.tsx:183
 msgid "Edit"
 msgstr ""
 
@@ -209,7 +209,7 @@ msgstr ""
 msgid "Failed to fetch tax rates"
 msgstr ""
 
-#: src/routes/index.tsx:73
+#: src/routes/index.tsx:77
 msgid "Get started"
 msgstr ""
 
@@ -217,12 +217,12 @@ msgstr ""
 msgid "IBAN"
 msgstr ""
 
-#: src/layouts/base.tsx:132
+#: src/layouts/base.tsx:135
 msgid "Invoice"
 msgstr ""
 
 #. placeholder {0}: invoice.number
-#: src/components/invoices/pdf.tsx:177
+#: src/components/invoices/pdf.tsx:173
 msgid "Invoice #{0}"
 msgstr ""
 
@@ -276,7 +276,7 @@ msgid "Invoice updated successfully"
 msgstr ""
 
 #: src/routes/invoices/index.tsx:72
-#: src/layouts/base.tsx:91
+#: src/layouts/base.tsx:94
 msgid "Invoices"
 msgstr ""
 
@@ -284,7 +284,7 @@ msgstr ""
 msgid "Logo"
 msgstr ""
 
-#: src/routes/index.tsx:52
+#: src/routes/index.tsx:56
 #: src/routes/clients.tsx:69
 #: src/routes/settings/tax-rates.tsx:49
 #: src/routes/settings/organization.tsx:53
@@ -303,7 +303,7 @@ msgstr ""
 msgid "New invoice"
 msgstr ""
 
-#: src/layouts/base.tsx:197
+#: src/layouts/base.tsx:200
 msgid "New organization"
 msgstr ""
 
@@ -315,8 +315,8 @@ msgstr ""
 msgid "New tax rate"
 msgstr ""
 
-#: src/routes/invoices/preview.tsx:158
-#: src/routes/invoices/details.tsx:488
+#: src/routes/invoices/preview.tsx:166
+#: src/routes/invoices/details.tsx:490
 #: src/components/clients/form.tsx:109
 msgid "No"
 msgstr ""
@@ -337,7 +337,7 @@ msgstr ""
 msgid "Number"
 msgstr ""
 
-#: src/layouts/base.tsx:123
+#: src/layouts/base.tsx:126
 msgid "Organization"
 msgstr ""
 
@@ -358,7 +358,7 @@ msgstr ""
 msgid "Organization deletion failed"
 msgstr ""
 
-#: src/routes/index.tsx:48
+#: src/routes/index.tsx:52
 #: src/routes/settings/organization.tsx:46
 msgid "Organization details"
 msgstr ""
@@ -389,7 +389,7 @@ msgid "Our time tracking feature is currently being developed."
 msgstr ""
 
 #: src/routes/settings/invoice.tsx:79
-#: src/components/invoices/pdf.tsx:210
+#: src/components/invoices/pdf.tsx:206
 msgid "Overdue charge"
 msgstr ""
 
@@ -413,19 +413,19 @@ msgstr ""
 msgid "Please input a percentage!"
 msgstr ""
 
-#: src/routes/index.tsx:51
+#: src/routes/index.tsx:55
 #: src/components/tax-rates/form.tsx:49
 #: src/components/clients/form.tsx:143
 msgid "Please input name!"
 msgstr ""
 
 #: src/routes/invoices/details.tsx:305
-#: src/components/invoices/pdf.tsx:231
+#: src/components/invoices/pdf.tsx:227
 msgid "Price"
 msgstr ""
 
 #: src/routes/invoices/details.tsx:277
-#: src/components/invoices/pdf.tsx:228
+#: src/components/invoices/pdf.tsx:224
 msgid "Qty."
 msgstr ""
 
@@ -435,7 +435,7 @@ msgstr ""
 
 #: src/routes/settings/organization.tsx:103
 #: src/routes/settings/invoice.tsx:96
-#: src/routes/invoices/details.tsx:533
+#: src/routes/invoices/details.tsx:535
 #: src/components/tax-rates/form.tsx:38
 #: src/components/clients/form.tsx:84
 #: src/components/clients/form.tsx:134
@@ -467,7 +467,7 @@ msgstr ""
 msgid "Sent"
 msgstr ""
 
-#: src/layouts/base.tsx:116
+#: src/layouts/base.tsx:119
 msgid "Settings"
 msgstr ""
 
@@ -475,8 +475,8 @@ msgstr ""
 msgid "State"
 msgstr ""
 
-#: src/routes/invoices/details.tsx:433
-#: src/components/invoices/pdf.tsx:256
+#: src/routes/invoices/details.tsx:435
+#: src/components/invoices/pdf.tsx:252
 msgid "Subtotal"
 msgstr ""
 
@@ -485,8 +485,8 @@ msgstr ""
 #~ msgstr ""
 
 #: src/routes/invoices/details.tsx:361
-#: src/routes/invoices/details.tsx:440
-#: src/components/invoices/pdf.tsx:267
+#: src/routes/invoices/details.tsx:442
+#: src/components/invoices/pdf.tsx:263
 msgid "Tax"
 msgstr ""
 
@@ -515,7 +515,7 @@ msgid "Tax rate updated successfully"
 msgstr ""
 
 #: src/routes/settings/tax-rates.tsx:33
-#: src/layouts/base.tsx:141
+#: src/layouts/base.tsx:144
 msgid "Tax rates"
 msgstr ""
 
@@ -532,15 +532,15 @@ msgstr ""
 msgid "This field is required!"
 msgstr ""
 
-#: src/layouts/base.tsx:109
+#: src/layouts/base.tsx:112
 msgid "Time tracking"
 msgstr ""
 
 #: src/routes/invoices/index.tsx:115
 #: src/routes/invoices/details.tsx:333
-#: src/routes/invoices/details.tsx:450
-#: src/components/invoices/pdf.tsx:234
-#: src/components/invoices/pdf.tsx:278
+#: src/routes/invoices/details.tsx:452
+#: src/components/invoices/pdf.tsx:230
+#: src/components/invoices/pdf.tsx:274
 msgid "Total"
 msgstr ""
 
@@ -560,7 +560,7 @@ msgstr ""
 msgid "VATIN"
 msgstr ""
 
-#: src/routes/invoices/details.tsx:506
+#: src/routes/invoices/details.tsx:508
 msgid "View"
 msgstr ""
 
@@ -579,8 +579,8 @@ msgid "Website"
 msgstr ""
 
 #: src/routes/settings/organization.tsx:108
-#: src/routes/invoices/preview.tsx:157
-#: src/routes/invoices/details.tsx:487
+#: src/routes/invoices/preview.tsx:165
+#: src/routes/invoices/details.tsx:489
 #: src/components/clients/form.tsx:108
 msgid "Yes"
 msgstr ""

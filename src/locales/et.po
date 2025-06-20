@@ -27,8 +27,8 @@ msgstr "Aadress"
 msgid "Are you sure delete this organization?"
 msgstr "Kas olete kindel, et kustutate selle organisatsiooni?"
 
-#: src/routes/invoices/preview.tsx:155
-#: src/routes/invoices/details.tsx:485
+#: src/routes/invoices/preview.tsx:163
+#: src/routes/invoices/details.tsx:487
 msgid "Are you sure to delete this invoice?"
 msgstr "Kas olete kindel, et soovite selle arve kustutada?"
 
@@ -93,7 +93,7 @@ msgid "Client updated successfully"
 msgstr "Kliendi uuendamine edukas"
 
 #: src/routes/clients.tsx:51
-#: src/layouts/base.tsx:100
+#: src/layouts/base.tsx:103
 msgid "Clients"
 msgstr "Kliendid"
 
@@ -101,15 +101,15 @@ msgstr "Kliendid"
 msgid "Confirmed"
 msgstr "Kinnitatud"
 
-#: src/routes/index.tsx:55
+#: src/routes/index.tsx:59
 msgid "Country"
 msgstr "Riik"
 
-#: src/routes/index.tsx:45
+#: src/routes/index.tsx:49
 msgid "Create your organization to get started"
 msgstr "Loo oma ettevõte, et alustada"
 
-#: src/routes/index.tsx:64
+#: src/routes/index.tsx:68
 #: src/routes/settings/invoice.tsx:58
 #: src/routes/invoices/details.tsx:208
 msgid "Currency"
@@ -120,7 +120,7 @@ msgid "Customer note"
 msgstr "Kliendi märkus"
 
 #: src/routes/invoices/index.tsx:101
-#: src/components/invoices/pdf.tsx:203
+#: src/components/invoices/pdf.tsx:199
 msgid "Date"
 msgstr "Kuupäaev"
 
@@ -134,21 +134,21 @@ msgid "Default"
 msgstr "Vaikimisi"
 
 #: src/routes/settings/organization.tsx:112
-#: src/routes/invoices/preview.tsx:161
-#: src/routes/invoices/details.tsx:491
+#: src/routes/invoices/preview.tsx:169
+#: src/routes/invoices/details.tsx:493
 #: src/components/clients/form.tsx:113
 msgid "Delete"
 msgstr "Kustuta"
 
-#: src/routes/invoices/preview.tsx:154
-#: src/routes/invoices/details.tsx:484
+#: src/routes/invoices/preview.tsx:162
+#: src/routes/invoices/details.tsx:486
 msgid "Delete the invoice?"
 msgstr "Soovite arve kustutada?"
 
 #: src/routes/settings/tax-rates.tsx:53
 #: src/routes/invoices/details.tsx:254
 #: src/components/tax-rates/form.tsx:53
-#: src/components/invoices/pdf.tsx:225
+#: src/components/invoices/pdf.tsx:221
 msgid "Description"
 msgstr "Kirjeldus"
 
@@ -159,7 +159,7 @@ msgstr "Mustand"
 
 #: src/routes/invoices/index.tsx:108
 #: src/routes/invoices/details.tsx:233
-#: src/components/invoices/pdf.tsx:206
+#: src/components/invoices/pdf.tsx:202
 msgid "Due date"
 msgstr "Tähtaeg"
 
@@ -175,7 +175,7 @@ msgstr "E-post"
 msgid "E-mails"
 msgstr "E-posti aadressid"
 
-#: src/routes/invoices/preview.tsx:175
+#: src/routes/invoices/preview.tsx:183
 msgid "Edit"
 msgstr "Muuda"
 
@@ -207,7 +207,7 @@ msgstr ""
 msgid "Failed to fetch tax rates"
 msgstr ""
 
-#: src/routes/index.tsx:73
+#: src/routes/index.tsx:77
 msgid "Get started"
 msgstr "Alusta"
 
@@ -215,12 +215,12 @@ msgstr "Alusta"
 msgid "IBAN"
 msgstr "IBAN"
 
-#: src/layouts/base.tsx:132
+#: src/layouts/base.tsx:135
 msgid "Invoice"
 msgstr "Arve"
 
 #. placeholder {0}: invoice.number
-#: src/components/invoices/pdf.tsx:177
+#: src/components/invoices/pdf.tsx:173
 msgid "Invoice #{0}"
 msgstr "Arve #{0}"
 
@@ -271,7 +271,7 @@ msgid "Invoice updated successfully"
 msgstr "Arve uuendamine õnnestus"
 
 #: src/routes/invoices/index.tsx:72
-#: src/layouts/base.tsx:91
+#: src/layouts/base.tsx:94
 msgid "Invoices"
 msgstr "Arved"
 
@@ -279,7 +279,7 @@ msgstr "Arved"
 msgid "Logo"
 msgstr "Logo"
 
-#: src/routes/index.tsx:52
+#: src/routes/index.tsx:56
 #: src/routes/clients.tsx:69
 #: src/routes/settings/tax-rates.tsx:49
 #: src/routes/settings/organization.tsx:53
@@ -298,7 +298,7 @@ msgstr "Uus klient"
 msgid "New invoice"
 msgstr "Uus arve"
 
-#: src/layouts/base.tsx:197
+#: src/layouts/base.tsx:200
 msgid "New organization"
 msgstr "Uus ettevõte"
 
@@ -310,8 +310,8 @@ msgstr "Uus maksumäär"
 msgid "New tax rate"
 msgstr "Uus maksumäär"
 
-#: src/routes/invoices/preview.tsx:158
-#: src/routes/invoices/details.tsx:488
+#: src/routes/invoices/preview.tsx:166
+#: src/routes/invoices/details.tsx:490
 #: src/components/clients/form.tsx:109
 msgid "No"
 msgstr "Ei"
@@ -332,7 +332,7 @@ msgstr "Märkused"
 msgid "Number"
 msgstr "Number"
 
-#: src/layouts/base.tsx:123
+#: src/layouts/base.tsx:126
 msgid "Organization"
 msgstr "Organisatsioon"
 
@@ -353,7 +353,7 @@ msgstr "Ettevõte kustutatud"
 msgid "Organization deletion failed"
 msgstr ""
 
-#: src/routes/index.tsx:48
+#: src/routes/index.tsx:52
 #: src/routes/settings/organization.tsx:46
 msgid "Organization details"
 msgstr "Organisatsiooni detailid"
@@ -375,7 +375,7 @@ msgid "Our time tracking feature is currently being developed."
 msgstr "Ajaarvestuse võimalus on hetkel arenduses."
 
 #: src/routes/settings/invoice.tsx:79
-#: src/components/invoices/pdf.tsx:210
+#: src/components/invoices/pdf.tsx:206
 msgid "Overdue charge"
 msgstr "Viivis"
 
@@ -399,19 +399,19 @@ msgstr "Telefon"
 msgid "Please input a percentage!"
 msgstr "Palun sisestage protsent!"
 
-#: src/routes/index.tsx:51
+#: src/routes/index.tsx:55
 #: src/components/tax-rates/form.tsx:49
 #: src/components/clients/form.tsx:143
 msgid "Please input name!"
 msgstr "Palun sisestage nimi!"
 
 #: src/routes/invoices/details.tsx:305
-#: src/components/invoices/pdf.tsx:231
+#: src/components/invoices/pdf.tsx:227
 msgid "Price"
 msgstr "Hind"
 
 #: src/routes/invoices/details.tsx:277
-#: src/components/invoices/pdf.tsx:228
+#: src/components/invoices/pdf.tsx:224
 msgid "Qty."
 msgstr "Kogus"
 
@@ -421,7 +421,7 @@ msgstr "Registri number"
 
 #: src/routes/settings/organization.tsx:103
 #: src/routes/settings/invoice.tsx:96
-#: src/routes/invoices/details.tsx:533
+#: src/routes/invoices/details.tsx:535
 #: src/components/tax-rates/form.tsx:38
 #: src/components/clients/form.tsx:84
 #: src/components/clients/form.tsx:134
@@ -445,7 +445,7 @@ msgstr "Vali või loo klient"
 msgid "Sent"
 msgstr "Saadetud"
 
-#: src/layouts/base.tsx:116
+#: src/layouts/base.tsx:119
 msgid "Settings"
 msgstr "Seaded"
 
@@ -453,14 +453,14 @@ msgstr "Seaded"
 msgid "State"
 msgstr "Staatus"
 
-#: src/routes/invoices/details.tsx:433
-#: src/components/invoices/pdf.tsx:256
+#: src/routes/invoices/details.tsx:435
+#: src/components/invoices/pdf.tsx:252
 msgid "Subtotal"
 msgstr "Vahesumma"
 
 #: src/routes/invoices/details.tsx:361
-#: src/routes/invoices/details.tsx:440
-#: src/components/invoices/pdf.tsx:267
+#: src/routes/invoices/details.tsx:442
+#: src/components/invoices/pdf.tsx:263
 msgid "Tax"
 msgstr "Maks"
 
@@ -481,7 +481,7 @@ msgid "Tax rate updated successfully"
 msgstr ""
 
 #: src/routes/settings/tax-rates.tsx:33
-#: src/layouts/base.tsx:141
+#: src/layouts/base.tsx:144
 msgid "Tax rates"
 msgstr "Maksud"
 
@@ -498,15 +498,15 @@ msgstr "Maksud"
 msgid "This field is required!"
 msgstr "See väli on kohustuslik!"
 
-#: src/layouts/base.tsx:109
+#: src/layouts/base.tsx:112
 msgid "Time tracking"
 msgstr "Ajaarvestus"
 
 #: src/routes/invoices/index.tsx:115
 #: src/routes/invoices/details.tsx:333
-#: src/routes/invoices/details.tsx:450
-#: src/components/invoices/pdf.tsx:234
-#: src/components/invoices/pdf.tsx:278
+#: src/routes/invoices/details.tsx:452
+#: src/components/invoices/pdf.tsx:230
+#: src/components/invoices/pdf.tsx:274
 msgid "Total"
 msgstr "Summa"
 
@@ -526,7 +526,7 @@ msgstr "KMKR number"
 msgid "VATIN"
 msgstr "KMKR"
 
-#: src/routes/invoices/details.tsx:506
+#: src/routes/invoices/details.tsx:508
 msgid "View"
 msgstr "Vaata"
 
@@ -545,8 +545,8 @@ msgid "Website"
 msgstr "Koduleht"
 
 #: src/routes/settings/organization.tsx:108
-#: src/routes/invoices/preview.tsx:157
-#: src/routes/invoices/details.tsx:487
+#: src/routes/invoices/preview.tsx:165
+#: src/routes/invoices/details.tsx:489
 #: src/components/clients/form.tsx:108
 msgid "Yes"
 msgstr "Jah"

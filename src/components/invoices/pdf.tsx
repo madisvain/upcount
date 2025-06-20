@@ -156,13 +156,11 @@ const InvoicePDF = ({
   invoice,
   client,
   organization,
-  taxRates, // eslint-disable-line @typescript-eslint/no-unused-vars
   i18n,
 }: {
   invoice: any;
   client: any;
   organization: any;
-  taxRates: any;
   i18n: any;
 }) => {
   return (

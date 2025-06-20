@@ -520,7 +520,6 @@ const InvoiceDetails: React.FC = () => {
                                   invoice={invoice}
                                   client={find(clients, { id: invoice.clientId })}
                                   organization={organization}
-                                  taxRates={taxRates}
                                   i18n={i18n}
                                 />
                               ).toBlob();
