@@ -13,6 +13,7 @@ import {
   CalculatorOutlined,
   PlusOutlined,
   FieldTimeOutlined,
+  DatabaseOutlined,
 } from "@ant-design/icons";
 import { Trans } from "@lingui/react/macro";
 import { useLingui } from "@lingui/react";
@@ -56,7 +57,7 @@ export default function BaseLayout() {
   // Active menu item detection
   let openKeys: string[] = [];
   let selectedKeys: string[] = [];
-  const matchFn = match(`/:path*`, { decode: decodeURIComponent });
+  const matchFn = match(`/*path`, { decode: decodeURIComponent });
   const matchResult = matchFn(location.pathname);
   if (matchResult && matchResult.params.path) {
     const pathString = Array.isArray(matchResult.params.path) 
@@ -145,6 +146,15 @@ export default function BaseLayout() {
                       </Link>
                     ),
                     key: "settings.tax-rates",
+                  },
+                  {
+                    icon: <DatabaseOutlined />,
+                    label: (
+                      <Link to="/settings/backup">
+                        <Trans>Backup</Trans>
+                      </Link>
+                    ),
+                    key: "settings.backup",
                   },
                 ],
               },

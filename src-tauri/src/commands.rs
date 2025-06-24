@@ -4,7 +4,9 @@ use crate::database::{
     Organization, CreateOrganizationRequest, UpdateOrganizationRequest,
     TaxRate, CreateTaxRateRequest, UpdateTaxRateRequest
 };
-use tauri::State;
+use tauri::{AppHandle, Manager, State};
+use chrono::{DateTime, Utc};
+use std::fs;
 
 #[tauri::command]
 pub async fn get_clients(
@@ -198,4 +200,50 @@ pub async fn delete_tax_rate(tax_rate_id: String, db: State<'_, Database>) -> Re
     db.delete_tax_rate(&tax_rate_id)
         .await
         .map_err(|e| e.to_string())
+}
+
+#[tauri::command]
+pub async fn backup_database(app: AppHandle) -> Result<String, String> {
+    use tauri_plugin_dialog::DialogExt;
+    use tokio::sync::oneshot;
+    use std::path::PathBuf;
+    
+    // Get the app data directory and database path
+    let app_dir = app.path().app_data_dir()
+        .map_err(|e| format!("Failed to get app data directory: {}", e))?;
+    let db_path = app_dir.join("sqlite.db");
+    
+    // Check if database file exists
+    if !db_path.exists() {
+        return Err("Database file not found".to_string());
+    }
+    
+    // Generate default filename with current date
+    let now: DateTime<Utc> = Utc::now();
+    let default_filename = format!("upcount-backup-{}.db", now.format("%Y-%m-%d"));
+    
+    // Show save dialog using callback approach
+    let (tx, rx) = oneshot::channel();
+    
+    app.dialog()
+        .file()
+        .set_title("Save Database Backup")
+        .set_file_name(&default_filename)
+        .add_filter("Database", &["db"])
+        .save_file(move |file_path| {
+            let _ = tx.send(file_path);
+        });
+    
+    let file_path = rx.await
+        .map_err(|_| "Dialog callback failed")?
+        .ok_or("User cancelled save dialog")?;
+    
+    // Convert FilePath to PathBuf
+    let path_buf = PathBuf::from(file_path.to_string());
+    
+    // Copy database file to selected location
+    fs::copy(&db_path, &path_buf)
+        .map_err(|e| format!("Failed to copy database file: {}", e))?;
+    
+    Ok(path_buf.to_string_lossy().to_string())
 }

@@ -5,8 +5,12 @@ export const locales = ["en", "et"];
 
 export const defaultLocale = "en";
 
-// Initialize i18n with default locale to prevent race conditions
-// Load default locale messages asynchronously
+// Initialize i18n synchronously with empty messages to prevent race conditions
+// This ensures i18n.activate() is called before any translation functions
+i18n.load(defaultLocale, {});
+i18n.activate(defaultLocale);
+
+// Load actual messages asynchronously and update
 (async () => {
   try {
     const { messages } = await import(`../locales/${defaultLocale}.po`);
@@ -14,8 +18,6 @@ export const defaultLocale = "en";
     i18n.activate(defaultLocale);
   } catch (error) {
     console.warn(`Failed to load default messages:`, error);
-    i18n.load(defaultLocale, {});
-    i18n.activate(defaultLocale);
   }
 })();
 

@@ -52,6 +52,7 @@ pub fn run() {
       commands::create_tax_rate,
       commands::update_tax_rate,
       commands::delete_tax_rate,
+      commands::backup_database,
     ])
     .run(tauri::generate_context!())
     .expect("error while running tauri application");

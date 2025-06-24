@@ -28,6 +28,7 @@ tauri-plugin-fs = "2.3.0"
 sqlx = { version = "0.8.6", features = ["runtime-tokio-native-tls", "sqlite", "macros", "migrate"] }
 tokio = { version = "1.45.1", features = ["full"] }
 nanoid = "0.4"
+chrono = { version = "0.4", features = ["serde"] }
 
 [features]
 # this feature is used for production builds or when `devPath` points to the filesystem and the built-in dev server is disabled.

@@ -1,14 +1,12 @@
 import "src/styles/base.scss";
-import "jotai-devtools/styles.css";
 
 import "dayjs/locale/en";
 import "dayjs/locale/et";
 
-import { useEffect, Suspense } from "react";
+import { useEffect, Suspense, lazy } from "react";
 import { BrowserRouter, Navigate, Route, Routes } from "react-router";
 import { ConfigProvider } from "antd";
 import { useAtom, useAtomValue, useSetAtom } from "jotai";
-import { DevTools } from "jotai-devtools";
 import { i18n } from "@lingui/core";
 import { I18nProvider } from "@lingui/react";
 import dayjs from "dayjs";
@@ -29,6 +27,7 @@ import InvoicePreview from "src/routes/invoices/preview.tsx";
 import SettingsInvoice from "src/routes/settings/invoice";
 import SettingsOrganization from "src/routes/settings/organization";
 import SettingsTaxRates from "src/routes/settings/tax-rates";
+import SettingsBackup from "src/routes/settings/backup";
 import TimeTracking from "src/routes/time-tracking";
 
 // Components
@@ -36,6 +35,13 @@ import Loading from "src/components/loading";
 import TaxRateForm from "src/components/tax-rates/form.tsx";
 
 dayjs.extend(localizedFormat);
+
+// Lazy load DevTools for development only
+const DevTools = lazy(() => 
+  process.env.NODE_ENV === 'development' 
+    ? import('jotai-devtools').then(module => ({ default: module.DevTools }))
+    : Promise.resolve({ default: () => null })
+);
 
 const App = () => {
   // Load locale
@@ -71,7 +77,9 @@ const App = () => {
           },
         }}
       >
-        <DevTools />
+        <Suspense fallback={null}>
+          <DevTools />
+        </Suspense>
         <I18nProvider i18n={i18n}>
           <BrowserRouter>
             <Routes>
@@ -96,6 +104,7 @@ const App = () => {
                   <Route path="new" element={<TaxRateForm />} />
                   <Route path=":id" element={<TaxRateForm />} />
                 </Route>
+                <Route path="backup" element={<SettingsBackup />} />
               </Route>
             </Routes>
           </BrowserRouter>
