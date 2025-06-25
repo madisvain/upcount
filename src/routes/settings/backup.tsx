@@ -36,7 +36,7 @@ function SettingsBackup() {
       );
     } catch (error) {
       console.error("Backup failed:", error);
-      messageApi.error(t`Failed to backup database: ${error}`);
+      messageApi.error(t`Failed to backup database: ${String(error)}`);
     } finally {
       setBacking(false);
     }
@@ -61,7 +61,7 @@ function SettingsBackup() {
           });
         } catch (error) {
           console.error("Restore failed:", error);
-          messageApi.error(t`Failed to restore database: ${error}`);
+          messageApi.error(t`Failed to restore database: ${String(error)}`);
         } finally {
           setRestoring(false);
         }
