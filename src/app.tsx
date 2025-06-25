@@ -1,5 +1,10 @@
 import "src/styles/base.scss";
 
+// Import devtools styles for development
+if (import.meta.env.DEV) {
+  import("jotai-devtools/styles.css");
+}
+
 import "dayjs/locale/en";
 import "dayjs/locale/et";
 
@@ -38,7 +43,7 @@ dayjs.extend(localizedFormat);
 
 // Lazy load DevTools for development only
 const DevTools = lazy(() => 
-  process.env.NODE_ENV === 'development' 
+  import.meta.env.DEV 
     ? import('jotai-devtools').then(module => ({ default: module.DevTools }))
     : Promise.resolve({ default: () => null })
 );

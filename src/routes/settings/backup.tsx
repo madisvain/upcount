@@ -1,6 +1,19 @@
 import { useState } from "react";
-import { Button, Col, Space, Typography, Row, message, Card } from "antd";
-import { CloudDownloadOutlined, DatabaseOutlined } from "@ant-design/icons";
+import {
+  Button,
+  Col,
+  Space,
+  Typography,
+  Row,
+  message,
+  Card,
+  Modal,
+} from "antd";
+import {
+  CloudDownloadOutlined,
+  CloudUploadOutlined,
+  DatabaseOutlined,
+} from "@ant-design/icons";
 import { Trans } from "@lingui/react/macro";
 import { t } from "@lingui/core/macro";
 import { useLingui } from "@lingui/react";
@@ -12,18 +25,48 @@ function SettingsBackup() {
   useLingui();
   const [messageApi, contextHolder] = message.useMessage();
   const [backing, setBacking] = useState(false);
+  const [restoring, setRestoring] = useState(false);
 
   const handleBackup = async () => {
     setBacking(true);
     try {
       const backupPath = await invoke<string>("backup_database");
-      messageApi.success(t`Database backup saved successfully to ${backupPath}`);
+      messageApi.success(
+        t`Database backup saved successfully to ${backupPath}`,
+      );
     } catch (error) {
       console.error("Backup failed:", error);
       messageApi.error(t`Failed to backup database: ${error}`);
     } finally {
       setBacking(false);
     }
+  };
+
+  const handleRestore = async () => {
+    Modal.confirm({
+      title: t`Restore Database`,
+      content: t`Are you sure you want to restore from a backup? This will replace all current data and cannot be undone.`,
+      okText: t`Restore`,
+      cancelText: t`Cancel`,
+      okType: "danger",
+      onOk: async () => {
+        setRestoring(true);
+        try {
+          const result = await invoke<string>("restore_database");
+          messageApi.success(result);
+          // Recommend restarting the application
+          Modal.info({
+            title: t`Restore Complete`,
+            content: t`Database has been restored successfully. Please restart the application to see the changes.`,
+          });
+        } catch (error) {
+          console.error("Restore failed:", error);
+          messageApi.error(t`Failed to restore database: ${error}`);
+        } finally {
+          setRestoring(false);
+        }
+      },
+    });
   };
 
   return (
@@ -34,38 +77,60 @@ function SettingsBackup() {
           <Title level={3} style={{ marginTop: 0 }}>
             <Space>
               <DatabaseOutlined />
-              <Trans>Database Backup</Trans>
+              <Trans>Backup & restore</Trans>
             </Space>
           </Title>
         </Col>
       </Row>
-      <Row>
-        <Col span={12}>
-          <Card>
-            <Space direction="vertical" size="middle" style={{ width: "100%" }}>
-              <Paragraph>
-                <Trans>
-                  Create a backup of your database to save all your invoices, clients, and settings. 
-                  The backup file can be used to restore your data if needed.
-                </Trans>
-              </Paragraph>
-              
-              <Paragraph type="secondary">
-                <Trans>
-                  The backup will include all organizations, clients, invoices, tax rates, and settings.
-                </Trans>
-              </Paragraph>
-
+      <Row gutter={[16, 16]}>
+        <Col xs={24} sm={24} md={12} lg={12} xl={12}>
+          <Card
+            style={{ height: "100%", display: "flex", flexDirection: "column" }}
+            styles={{ body: { flex: 1 } }}
+            actions={[
               <Button
                 type="primary"
-                size="large"
                 icon={<CloudDownloadOutlined />}
                 loading={backing}
                 onClick={handleBackup}
+                style={{ margin: "0 16px" }}
               >
                 <Trans>Create Backup</Trans>
-              </Button>
-            </Space>
+              </Button>,
+            ]}
+          >
+            <Paragraph>
+              <Trans>
+                Create a backup of your database to save all your invoices,
+                clients, and settings. The backup file can be used to restore
+                your data if needed.
+              </Trans>
+            </Paragraph>
+          </Card>
+        </Col>
+
+        <Col xs={24} sm={24} md={12} lg={12} xl={12}>
+          <Card
+            style={{ height: "100%", display: "flex", flexDirection: "column" }}
+            styles={{ body: { flex: 1 } }}
+            actions={[
+              <Button
+                type="default"
+                icon={<CloudUploadOutlined />}
+                loading={restoring}
+                onClick={handleRestore}
+                style={{ margin: "0 16px" }}
+              >
+                <Trans>Restore from Backup</Trans>
+              </Button>,
+            ]}
+          >
+            <Paragraph>
+              <Trans>
+                Restore your database from a previously created backup file.
+                This will replace all current data with the backup data.
+              </Trans>
+            </Paragraph>
           </Card>
         </Col>
       </Row>

@@ -247,3 +247,62 @@ pub async fn backup_database(app: AppHandle) -> Result<String, String> {
     
     Ok(path_buf.to_string_lossy().to_string())
 }
+
+#[tauri::command]
+pub async fn restore_database(app: AppHandle) -> Result<String, String> {
+    use tauri_plugin_dialog::DialogExt;
+    use tokio::sync::oneshot;
+    use std::path::PathBuf;
+    
+    // Get the app data directory and database path
+    let app_dir = app.path().app_data_dir()
+        .map_err(|e| format!("Failed to get app data directory: {}", e))?;
+    let db_path = app_dir.join("sqlite.db");
+    let backup_path = app_dir.join("sqlite.db.backup");
+    
+    // Show open dialog using callback approach
+    let (tx, rx) = oneshot::channel();
+    
+    app.dialog()
+        .file()
+        .set_title("Select Database Backup to Restore")
+        .add_filter("Database", &["db"])
+        .pick_file(move |file_path| {
+            let _ = tx.send(file_path);
+        });
+    
+    let file_path = rx.await
+        .map_err(|_| "Dialog callback failed")?
+        .ok_or("User cancelled open dialog")?;
+    
+    // Convert FilePath to PathBuf
+    let source_path = PathBuf::from(file_path.to_string());
+    
+    // Verify the source file exists
+    if !source_path.exists() {
+        return Err("Selected backup file does not exist".to_string());
+    }
+    
+    // Create a backup of current database before replacing
+    if db_path.exists() {
+        fs::copy(&db_path, &backup_path)
+            .map_err(|e| format!("Failed to backup current database: {}", e))?;
+    }
+    
+    // Copy backup file to database location
+    fs::copy(&source_path, &db_path)
+        .map_err(|e| {
+            // Try to restore the original database if copy fails
+            if backup_path.exists() {
+                let _ = fs::copy(&backup_path, &db_path);
+            }
+            format!("Failed to restore database: {}", e)
+        })?;
+    
+    // Remove temporary backup if restore was successful
+    if backup_path.exists() {
+        let _ = fs::remove_file(&backup_path);
+    }
+    
+    Ok("Database restored successfully".to_string())
+}
