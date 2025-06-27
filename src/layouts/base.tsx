@@ -27,6 +27,7 @@ import toUpper from "lodash/toUpper";
 
 import { organizationsAtom, organizationIdAtom, organizationAtom, siderAtom, localeAtom } from "src/atoms";
 import { dynamicActivate, locales } from "src/utils/lingui";
+import { useAutoUpdater } from "src/hooks/useAutoUpdater";
 
 const { Content, Header, Sider } = Layout;
 const { Option } = Select;
@@ -53,6 +54,9 @@ export default function BaseLayout() {
 
   // Sider
   const [siderCollapsed, setSiderCollapsed] = useAtom(siderAtom);
+
+  // Auto-updater
+  useAutoUpdater();
 
   // Active menu item detection
   let openKeys: string[] = [];
