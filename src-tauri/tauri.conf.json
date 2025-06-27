@@ -4,8 +4,8 @@
   "version": "2.0.0-beta.4",
   "identifier": "com.upcount.dev",
   "build": {
-    "beforeBuildCommand": "npm run build",
-    "beforeDevCommand": "npm run dev",
+    "beforeBuildCommand": "yarn build",
+    "beforeDevCommand": "yarn dev",
     "devUrl": "http://localhost:5173",
     "frontendDist": "../dist"
   },
@@ -32,10 +32,15 @@
             "core:webview:default",
             "core:webview:allow-internal-toggle-devtools",
             "dialog:default",
+            "dialog:allow-ask",
+            "dialog:allow-message",
             "fs:default",
             "fs:allow-read-file",
             "fs:allow-write-file",
-            "updater:default"
+            "updater:default",
+            "updater:allow-check",
+            "updater:allow-download-and-install",
+            "process:allow-restart"
           ]
         }
       ]
@@ -44,6 +49,7 @@
   "bundle": {
     "active": true,
     "targets": "all",
+    "createUpdaterArtifacts": true,
     "icon": ["icons/32x32.png", "icons/128x128.png", "icons/128x128@2x.png", "icons/icon.icns", "icons/icon.ico"],
     "category": "DeveloperTool",
     "shortDescription": "",
@@ -71,8 +77,7 @@
   },
   "plugins": {
     "updater": {
-      "endpoints": ["https://releases.upcount.app/{{target}}/{{arch}}/{{current_version}}"],
-      "dialog": true,
+      "endpoints": ["https://github.com/madisvain/upcount/releases/latest/download/latest.json"],
       "pubkey": "dW50cnVzdGVkIGNvbW1lbnQ6IG1pbmlzaWduIHB1YmxpYyBrZXk6IDY3NDAzREUxNTYwNTkyOApSV1FvV1dBVjNnTjBCa0IydHZ0QjBCMWtoZjJqdmZiR0FSS2VSWUIzUzVXRnduclJXbFprVTJYTAo="
     }
   }
