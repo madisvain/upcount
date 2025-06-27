@@ -8,6 +8,11 @@ use tauri::{AppHandle, Manager, State};
 use chrono::{DateTime, Utc};
 use std::fs;
 
+// Helper function to handle database errors
+fn handle_db_error(error: sqlx::Error, operation: &str) -> String {
+    format!("{}: {}", operation, error)
+}
+
 #[tauri::command]
 pub async fn get_clients(
     organization_id: String,
@@ -15,14 +20,14 @@ pub async fn get_clients(
 ) -> Result<Vec<Client>, String> {
     db.get_clients(&organization_id)
         .await
-        .map_err(|e| e.to_string())
+        .map_err(|e| handle_db_error(e, "get_clients"))
 }
 
 #[tauri::command]
 pub async fn get_client(client_id: String, db: State<'_, Database>) -> Result<Option<Client>, String> {
     db.get_client(&client_id)
         .await
-        .map_err(|e| e.to_string())
+        .map_err(|e| handle_db_error(e, "get_client"))
 }
 
 #[tauri::command]
@@ -32,7 +37,7 @@ pub async fn create_client(
 ) -> Result<Client, String> {
     db.create_client(client)
         .await
-        .map_err(|e| e.to_string())
+        .map_err(|e| handle_db_error(e, "create_client"))
 }
 
 #[tauri::command]
@@ -43,21 +48,21 @@ pub async fn update_client(
 ) -> Result<Client, String> {
     db.update_client(&client_id, updates)
         .await
-        .map_err(|e| e.to_string())
+        .map_err(|e| handle_db_error(e, "update_client"))
 }
 
 #[tauri::command]
 pub async fn delete_client(client_id: String, db: State<'_, Database>) -> Result<bool, String> {
     db.delete_client(&client_id)
         .await
-        .map_err(|e| e.to_string())
+        .map_err(|e| handle_db_error(e, "delete_client"))
 }
 
 #[tauri::command]
 pub async fn get_client_invoice_count(client_id: String, db: State<'_, Database>) -> Result<i64, String> {
     db.get_client_invoice_count(&client_id)
         .await
-        .map_err(|e| e.to_string())
+        .map_err(|e| handle_db_error(e, "get_client_invoice_count"))
 }
 
 #[tauri::command]
@@ -67,14 +72,14 @@ pub async fn get_invoices(
 ) -> Result<Vec<Invoice>, String> {
     db.get_invoices(&organization_id)
         .await
-        .map_err(|e| e.to_string())
+        .map_err(|e| handle_db_error(e, "get_invoices"))
 }
 
 #[tauri::command]
 pub async fn get_invoice(invoice_id: String, db: State<'_, Database>) -> Result<Option<Invoice>, String> {
     db.get_invoice(&invoice_id)
         .await
-        .map_err(|e| e.to_string())
+        .map_err(|e| handle_db_error(e, "get_invoice"))
 }
 
 #[tauri::command]
@@ -84,7 +89,7 @@ pub async fn get_invoice_line_items(
 ) -> Result<Vec<InvoiceLineItem>, String> {
     db.get_invoice_line_items(&invoice_id)
         .await
-        .map_err(|e| e.to_string())
+        .map_err(|e| handle_db_error(e, "get_invoice_line_items"))
 }
 
 #[tauri::command]
@@ -94,7 +99,7 @@ pub async fn create_invoice(
 ) -> Result<Invoice, String> {
     db.create_invoice(invoice)
         .await
-        .map_err(|e| e.to_string())
+        .map_err(|e| handle_db_error(e, "create_invoice"))
 }
 
 #[tauri::command]
@@ -105,28 +110,28 @@ pub async fn update_invoice(
 ) -> Result<Invoice, String> {
     db.update_invoice(&invoice_id, updates)
         .await
-        .map_err(|e| e.to_string())
+        .map_err(|e| handle_db_error(e, "update_invoice"))
 }
 
 #[tauri::command]
 pub async fn delete_invoice(invoice_id: String, db: State<'_, Database>) -> Result<bool, String> {
     db.delete_invoice(&invoice_id)
         .await
-        .map_err(|e| e.to_string())
+        .map_err(|e| handle_db_error(e, "delete_invoice"))
 }
 
 #[tauri::command]
 pub async fn get_organizations(db: State<'_, Database>) -> Result<Vec<Organization>, String> {
     db.get_organizations()
         .await
-        .map_err(|e| e.to_string())
+        .map_err(|e| handle_db_error(e, "get_organizations"))
 }
 
 #[tauri::command]
 pub async fn get_organization(organization_id: String, db: State<'_, Database>) -> Result<Option<Organization>, String> {
     db.get_organization(&organization_id)
         .await
-        .map_err(|e| e.to_string())
+        .map_err(|e| handle_db_error(e, "get_organization"))
 }
 
 #[tauri::command]
@@ -136,7 +141,7 @@ pub async fn create_organization(
 ) -> Result<Organization, String> {
     db.create_organization(organization)
         .await
-        .map_err(|e| e.to_string())
+        .map_err(|e| handle_db_error(e, "create_organization"))
 }
 
 #[tauri::command]
@@ -147,14 +152,14 @@ pub async fn update_organization(
 ) -> Result<Organization, String> {
     db.update_organization(&organization_id, updates)
         .await
-        .map_err(|e| e.to_string())
+        .map_err(|e| handle_db_error(e, "update_organization"))
 }
 
 #[tauri::command]
 pub async fn delete_organization(organization_id: String, db: State<'_, Database>) -> Result<bool, String> {
     db.delete_organization(&organization_id)
         .await
-        .map_err(|e| e.to_string())
+        .map_err(|e| handle_db_error(e, "delete_organization"))
 }
 
 #[tauri::command]
@@ -164,14 +169,14 @@ pub async fn get_tax_rates(
 ) -> Result<Vec<TaxRate>, String> {
     db.get_tax_rates(&organization_id)
         .await
-        .map_err(|e| e.to_string())
+        .map_err(|e| handle_db_error(e, "get_tax_rates"))
 }
 
 #[tauri::command]
 pub async fn get_tax_rate(tax_rate_id: String, db: State<'_, Database>) -> Result<Option<TaxRate>, String> {
     db.get_tax_rate(&tax_rate_id)
         .await
-        .map_err(|e| e.to_string())
+        .map_err(|e| handle_db_error(e, "get_tax_rate"))
 }
 
 #[tauri::command]
@@ -181,7 +186,7 @@ pub async fn create_tax_rate(
 ) -> Result<TaxRate, String> {
     db.create_tax_rate(tax_rate)
         .await
-        .map_err(|e| e.to_string())
+        .map_err(|e| handle_db_error(e, "create_tax_rate"))
 }
 
 #[tauri::command]
@@ -192,14 +197,14 @@ pub async fn update_tax_rate(
 ) -> Result<TaxRate, String> {
     db.update_tax_rate(&tax_rate_id, updates)
         .await
-        .map_err(|e| e.to_string())
+        .map_err(|e| handle_db_error(e, "update_tax_rate"))
 }
 
 #[tauri::command]
 pub async fn delete_tax_rate(tax_rate_id: String, db: State<'_, Database>) -> Result<bool, String> {
     db.delete_tax_rate(&tax_rate_id)
         .await
-        .map_err(|e| e.to_string())
+        .map_err(|e| handle_db_error(e, "delete_tax_rate"))
 }
 
 #[tauri::command]

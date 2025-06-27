@@ -13,20 +13,34 @@ pub fn run() {
     .plugin(tauri_plugin_dialog::init())
     .plugin(tauri_plugin_fs::init())
     .setup(|app| {
-      // Get the app data directory for the database
-      let app_dir = app.path().app_data_dir().expect("Failed to get app data dir");
+      // Get the app data directory for the database with fallback options
+      let app_dir = app.path().app_data_dir()
+        .or_else(|_| {
+          eprintln!("Warning: Could not access app data directory, falling back to local data dir");
+          app.path().app_local_data_dir()
+        })
+        .or_else(|_| {
+          eprintln!("Warning: Could not access local data directory, falling back to temp dir");
+          app.path().temp_dir()
+        })
+        .map_err(|e| format!("Cannot access any writable directory: {}", e))?;
       
       // Ensure the directory exists
-      std::fs::create_dir_all(&app_dir).expect("Failed to create app data directory");
+      std::fs::create_dir_all(&app_dir)
+        .map_err(|e| format!("Failed to create app data directory '{}': {}", app_dir.display(), e))?;
       
       let db_path = app_dir.join("sqlite.db");
       let db_url = format!("sqlite://{}", db_path.display());
       
+      println!("Initializing database at: {}", db_url);
+      
       let db = tauri::async_runtime::block_on(async move {
-        database::Database::new(&db_url).await.expect("Failed to initialize database")
-      });
+        database::Database::new(&db_url).await
+          .map_err(|e| format!("Failed to initialize database at '{}': {}", db_url, e))
+      })?;
       
       app.manage(db);
+      println!("Database initialized successfully");
       Ok(())
     })
     .invoke_handler(tauri::generate_handler![
@@ -56,5 +70,9 @@ pub fn run() {
       commands::restore_database,
     ])
     .run(tauri::generate_context!())
+    .map_err(|e| {
+      sentry::capture_error(&e);
+      e
+    })
     .expect("error while running tauri application");
 }

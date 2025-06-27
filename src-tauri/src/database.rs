@@ -266,18 +266,50 @@ pub struct Database {
 impl Database {
     pub async fn new(database_url: &str) -> Result<Self, sqlx::Error> {
         // Ensure database exists
-        if !sqlx::Sqlite::database_exists(database_url).await.unwrap_or(false) {
-            sqlx::Sqlite::create_database(database_url).await?;
+        let db_exists = sqlx::Sqlite::database_exists(database_url).await
+            .map_err(|e| sqlx::Error::Configuration(format!("Failed to check if database exists: {}", e).into()))?;
+        
+        if !db_exists {
+            println!("Creating new database at: {}", database_url);
+            sqlx::Sqlite::create_database(database_url).await
+                .map_err(|e| sqlx::Error::Configuration(format!("Failed to create database: {}", e).into()))?;
         }
         
         let options = SqliteConnectOptions::from_str(database_url)?
             .create_if_missing(true);
         let pool = SqlitePool::connect_with(options).await?;
         
+        // Check SQLite version before running migrations
+        let sqlite_version = sqlx::query_scalar::<_, String>("SELECT sqlite_version()")
+            .fetch_one(&pool)
+            .await?;
+        
+        println!("SQLite version: {}", sqlite_version);
+        
+        // Check if SQLite version supports required features (minimum 3.35 for DROP COLUMN)
+        let version_parts: Vec<u32> = sqlite_version
+            .split('.')
+            .take(3)
+            .filter_map(|s| s.parse().ok())
+            .collect();
+        
+        if version_parts.len() >= 2 {
+            let major = version_parts[0];
+            let minor = version_parts.get(1).unwrap_or(&0);
+            let _patch = version_parts.get(2).unwrap_or(&0);
+            
+            if major < 3 || (major == 3 && minor < &35) {
+                eprintln!("Warning: SQLite version {} may not support all migration features. Minimum recommended: 3.35", sqlite_version);
+            }
+        }
+        
         // Run migrations
         let migrations = Path::new(env!("CARGO_MANIFEST_DIR")).join("migrations");
-        let migrator = Migrator::new(migrations).await?;
-        migrator.run(&pool).await?;
+        let migrator = Migrator::new(migrations).await
+            .map_err(|e| sqlx::Error::Configuration(format!("Failed to load migrations: {}", e).into()))?;
+        
+        migrator.run(&pool).await
+            .map_err(|e| sqlx::Error::Configuration(format!("Migration failed: {}", e).into()))?;
         
         Ok(Self { pool })
     }
@@ -329,7 +361,8 @@ impl Database {
         .execute(&self.pool)
         .await?;
 
-        self.get_client(&client.id).await.map(|c| c.unwrap())
+        self.get_client(&client.id).await?
+            .ok_or_else(|| sqlx::Error::RowNotFound)
     }
 
     pub async fn update_client(
@@ -355,7 +388,8 @@ impl Database {
         .execute(&self.pool)
         .await?;
 
-        self.get_client(client_id).await.map(|c| c.unwrap())
+        self.get_client(client_id).await?
+            .ok_or_else(|| sqlx::Error::RowNotFound)
     }
 
     pub async fn delete_client(&self, client_id: &str) -> Result<bool, sqlx::Error> {
@@ -482,7 +516,8 @@ impl Database {
 
         tx.commit().await?;
 
-        self.get_invoice(&invoice.id).await.map(|i| i.unwrap())
+        self.get_invoice(&invoice.id).await?
+            .ok_or_else(|| sqlx::Error::RowNotFound)
     }
 
     pub async fn update_invoice(
@@ -553,7 +588,8 @@ impl Database {
 
         tx.commit().await?;
 
-        self.get_invoice(invoice_id).await.map(|i| i.unwrap())
+        self.get_invoice(invoice_id).await?
+            .ok_or_else(|| sqlx::Error::RowNotFound)
     }
 
     pub async fn delete_invoice(&self, invoice_id: &str) -> Result<bool, sqlx::Error> {
@@ -634,7 +670,8 @@ impl Database {
         .execute(&self.pool)
         .await?;
 
-        self.get_organization(&organization.id).await.map(|o| o.unwrap())
+        self.get_organization(&organization.id).await?
+            .ok_or_else(|| sqlx::Error::RowNotFound)
     }
 
     pub async fn update_organization(
@@ -684,7 +721,8 @@ impl Database {
         .execute(&self.pool)
         .await?;
 
-        self.get_organization(organization_id).await.map(|o| o.unwrap())
+        self.get_organization(organization_id).await?
+            .ok_or_else(|| sqlx::Error::RowNotFound)
     }
 
     pub async fn delete_organization(&self, organization_id: &str) -> Result<bool, sqlx::Error> {
@@ -740,7 +778,8 @@ impl Database {
         .execute(&self.pool)
         .await?;
 
-        self.get_tax_rate(&tax_rate.id).await.map(|t| t.unwrap())
+        self.get_tax_rate(&tax_rate.id).await?
+            .ok_or_else(|| sqlx::Error::RowNotFound)
     }
 
     pub async fn update_tax_rate(
@@ -766,7 +805,8 @@ impl Database {
         .execute(&self.pool)
         .await?;
 
-        self.get_tax_rate(tax_rate_id).await.map(|t| t.unwrap())
+        self.get_tax_rate(tax_rate_id).await?
+            .ok_or_else(|| sqlx::Error::RowNotFound)
     }
 
     pub async fn delete_tax_rate(&self, tax_rate_id: &str) -> Result<bool, sqlx::Error> {
