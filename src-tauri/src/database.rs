@@ -1,7 +1,6 @@
 use serde::{Deserialize, Serialize};
-use sqlx::{FromRow, SqlitePool, sqlite::SqliteConnectOptions, migrate::{MigrateDatabase, Migrator}};
+use sqlx::{FromRow, SqlitePool, sqlite::SqliteConnectOptions, migrate::MigrateDatabase};
 use std::str::FromStr;
-use std::path::Path;
 
 #[derive(Debug, Serialize, Deserialize, FromRow)]
 pub struct Client {
@@ -303,10 +302,8 @@ impl Database {
             }
         }
         
-        // Run migrations
-        let migrations = Path::new(env!("CARGO_MANIFEST_DIR")).join("migrations");
-        let migrator = Migrator::new(migrations).await
-            .map_err(|e| sqlx::Error::Configuration(format!("Failed to load migrations: {}", e).into()))?;
+        // Run migrations - use embedded migrations for production builds
+        let migrator = sqlx::migrate!("./migrations");
         
         migrator.run(&pool).await
             .map_err(|e| sqlx::Error::Configuration(format!("Migration failed: {}", e).into()))?;
