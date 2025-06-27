@@ -55,6 +55,7 @@ import {
   taxRatesAtom,
   setTaxRatesAtom,
   deleteInvoiceAtom,
+  nextInvoiceNumberAtom,
 } from "src/atoms";
 import ClientForm from "src/components/clients/form.tsx";
 import InvoicePDF from "src/components/invoices/pdf";
@@ -80,6 +81,7 @@ const InvoiceDetails: React.FC = () => {
   const taxRates = useAtomValue(taxRatesAtom);
   const setTaxRates = useSetAtom(setTaxRatesAtom);
   const deleteInvoice = useSetAtom(deleteInvoiceAtom);
+  const nextInvoiceNumber = useAtomValue(nextInvoiceNumberAtom);
   const [, setSubmitting] = useState(false);
 
   const isNew = id === "new";
@@ -114,6 +116,7 @@ const InvoiceDetails: React.FC = () => {
     dueDate: organization.due_days ? dayjs().add(organization.due_days, "day") : null,
     lineItems: [{ quantity: 1, taxRate: get(find(taxRates, { default: 1 }), "id") }],
     customerNotes: organization.customerNotes,
+    number: isNew ? nextInvoiceNumber : undefined,
   };
   if (!isNew && invoice) {
     initialValues = {

@@ -24,19 +24,19 @@ Upcount is a cross-platform invoicing application built with Tauri, React, and S
 ## Development Commands
 ```bash
 # Start development server (runs both Tauri and Vite)
-npm run dev
+yarn dev
 
 # Build for production
-npm run build
+yarn tauri build
 
 # Lint TypeScript/React code
-npm run lint
+yarn lint
 
 # Extract translation strings
-npm run extract
+yarn extract
 
 # Add new locale (replace 'de' with language code)
-npm run add-locale de
+yarn add-locale de
 ```
 
 ## File Structure

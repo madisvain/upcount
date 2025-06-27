@@ -208,6 +208,16 @@ pub async fn delete_tax_rate(tax_rate_id: String, db: State<'_, Database>) -> Re
 }
 
 #[tauri::command]
+pub async fn get_next_invoice_number(
+    organization_id: String,
+    db: State<'_, Database>,
+) -> Result<String, String> {
+    db.generate_next_invoice_number(&organization_id)
+        .await
+        .map_err(|e| handle_db_error(e, "get_next_invoice_number"))
+}
+
+#[tauri::command]
 pub async fn backup_database(app: AppHandle) -> Result<String, String> {
     use tauri_plugin_dialog::DialogExt;
     use tokio::sync::oneshot;
