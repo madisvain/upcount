@@ -21,7 +21,7 @@ I'd be happy to receive feedback on this new version and any feature requests yo
 
 # Upcount invoicing app
 
-![Github actions](https://github.com/madisvain/upcount/workflows/Release/badge.svg) ![GitHub release (latest by date including pre-releases)](https://img.shields.io/github/v/release/madisvain/upcount?include_prereleases) ![GitHub](https://img.shields.io/github/license/madisvain/upcount)
+![Github actions](https://github.com/madisvain/upcount/workflows/publish/badge.svg) ![GitHub release (latest by date including pre-releases)](https://img.shields.io/github/v/release/madisvain/upcount?include_prereleases) ![GitHub](https://img.shields.io/github/license/madisvain/upcount)
 
 ![Invoice list](https://www.upcount.app/screenshots/invoices.png)
 [Invoice editing](https://www.upcount.app/screenshots/invoice-edit.png)
