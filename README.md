@@ -3,11 +3,11 @@
 
 Happy to announce that I'm nearing the long overdue release of Upcount with improved functionality. The new version is a complete rewrite of the application with a focus on performance and stability.
 
-NB! It's not backwards compatible with the current version and will require a new installation. The new version is currently in alpha and not recommended for production use.
+NB! It's not backwards compatible with Upcount version 1 and will require a new installation. The beta version is backward compatible with alpha releases.
 
-## 🚀 [Upcount 2.0.0-alpha.2](https://github.com/madisvain/upcount/releases/tag/v2.0.0-alpha.2)
+## 🚀 [Upcount 2.0.0-beta.1](https://github.com/madisvain/upcount/releases/latest)
 
-Source code can be found on [Tauri](https://github.com/madisvain/upcount/tree/tauri) branch of the repository.
+The beta version is now available on the main branch of the repository.
 
 The new version is built with
 
