@@ -112,6 +112,21 @@ pub struct Organization {
     #[sqlx(rename = "createdAt")]
     pub created_at: Option<String>,
     pub logo: Option<Vec<u8>>,
+    #[serde(rename = "invoiceNumberStart")]
+    #[sqlx(rename = "invoice_number_start")]
+    pub invoice_number_start: Option<i64>,
+    #[serde(rename = "invoiceNumberDigits")]
+    #[sqlx(rename = "invoice_number_digits")]
+    pub invoice_number_digits: Option<i64>,
+    #[serde(rename = "invoiceNumberPrefix")]
+    #[sqlx(rename = "invoice_number_prefix")]
+    pub invoice_number_prefix: Option<String>,
+    #[serde(rename = "invoiceNumberSeparator")]
+    #[sqlx(rename = "invoice_number_separator")]
+    pub invoice_number_separator: Option<String>,
+    #[serde(rename = "invoiceNumberSuffix")]
+    #[sqlx(rename = "invoice_number_suffix")]
+    pub invoice_number_suffix: Option<String>,
 }
 
 #[derive(Debug, Deserialize)]
@@ -134,6 +149,16 @@ pub struct CreateOrganizationRequest {
     #[serde(rename = "customerNotes")]
     pub customer_notes: Option<String>,
     pub logo: Option<Vec<u8>>,
+    #[serde(rename = "invoiceNumberStart")]
+    pub invoice_number_start: Option<i64>,
+    #[serde(rename = "invoiceNumberDigits")]
+    pub invoice_number_digits: Option<i64>,
+    #[serde(rename = "invoiceNumberPrefix")]
+    pub invoice_number_prefix: Option<String>,
+    #[serde(rename = "invoiceNumberSeparator")]
+    pub invoice_number_separator: Option<String>,
+    #[serde(rename = "invoiceNumberSuffix")]
+    pub invoice_number_suffix: Option<String>,
 }
 
 #[derive(Debug, Deserialize)]
@@ -155,6 +180,16 @@ pub struct UpdateOrganizationRequest {
     #[serde(rename = "customerNotes")]
     pub customer_notes: Option<String>,
     pub logo: Option<Vec<u8>>,
+    #[serde(rename = "invoiceNumberStart")]
+    pub invoice_number_start: Option<i64>,
+    #[serde(rename = "invoiceNumberDigits")]
+    pub invoice_number_digits: Option<i64>,
+    #[serde(rename = "invoiceNumberPrefix")]
+    pub invoice_number_prefix: Option<String>,
+    #[serde(rename = "invoiceNumberSeparator")]
+    pub invoice_number_separator: Option<String>,
+    #[serde(rename = "invoiceNumberSuffix")]
+    pub invoice_number_suffix: Option<String>,
 }
 
 #[derive(Debug, Serialize, Deserialize, FromRow)]
@@ -642,9 +677,10 @@ impl Database {
                 id, name, country, address, email, phone, website, 
                 registration_number, vatin, bank_name, iban, currency,
                 minimum_fraction_digits, due_days, overdue_charge, 
-                customerNotes, logo
+                customerNotes, logo, invoice_number_start, invoice_number_digits,
+                invoice_number_prefix, invoice_number_separator, invoice_number_suffix
             )
-            VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+            VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
             "#,
         )
         .bind(&organization.id)
@@ -664,6 +700,11 @@ impl Database {
         .bind(&organization.overdue_charge)
         .bind(&organization.customer_notes)
         .bind(&organization.logo)
+        .bind(&organization.invoice_number_start)
+        .bind(&organization.invoice_number_digits)
+        .bind(&organization.invoice_number_prefix)
+        .bind(&organization.invoice_number_separator)
+        .bind(&organization.invoice_number_suffix)
         .execute(&self.pool)
         .await?;
 
@@ -694,7 +735,12 @@ impl Database {
                 due_days = COALESCE(?, due_days),
                 overdue_charge = COALESCE(?, overdue_charge),
                 customerNotes = COALESCE(?, customerNotes),
-                logo = COALESCE(?, logo)
+                logo = COALESCE(?, logo),
+                invoice_number_start = COALESCE(?, invoice_number_start),
+                invoice_number_digits = COALESCE(?, invoice_number_digits),
+                invoice_number_prefix = COALESCE(?, invoice_number_prefix),
+                invoice_number_separator = COALESCE(?, invoice_number_separator),
+                invoice_number_suffix = COALESCE(?, invoice_number_suffix)
             WHERE id = ?
             "#,
         )
@@ -714,6 +760,11 @@ impl Database {
         .bind(&updates.overdue_charge)
         .bind(&updates.customer_notes)
         .bind(&updates.logo)
+        .bind(&updates.invoice_number_start)
+        .bind(&updates.invoice_number_digits)
+        .bind(&updates.invoice_number_prefix)
+        .bind(&updates.invoice_number_separator)
+        .bind(&updates.invoice_number_suffix)
         .bind(organization_id)
         .execute(&self.pool)
         .await?;
@@ -814,4 +865,73 @@ impl Database {
 
         Ok(result.rows_affected() > 0)
     }
+
+    pub async fn generate_next_invoice_number(&self, organization_id: &str) -> Result<String, sqlx::Error> {
+        // Get organization settings
+        let org = self.get_organization(organization_id).await?
+            .ok_or_else(|| sqlx::Error::RowNotFound)?;
+
+        // Get default values if not set
+        let start = org.invoice_number_start.unwrap_or(1);
+        let digits = org.invoice_number_digits.unwrap_or(4);
+        let prefix = org.invoice_number_prefix.unwrap_or_else(|| "INV".to_string());
+        let separator = org.invoice_number_separator.unwrap_or_else(|| "-".to_string());
+        let suffix = org.invoice_number_suffix.unwrap_or_else(|| "".to_string());
+
+        // Find the highest existing invoice number that matches our pattern
+        let pattern_prefix = if suffix.is_empty() {
+            format!("{}{}", prefix, separator)
+        } else {
+            format!("{}{}", prefix, separator)
+        };
+        
+        // Query for existing invoice numbers that start with our pattern
+        let existing_numbers: Vec<String> = sqlx::query_scalar(
+            "SELECT number FROM invoices WHERE organizationId = ? AND number LIKE ? ORDER BY number"
+        )
+        .bind(organization_id)
+        .bind(format!("{}%", pattern_prefix))
+        .fetch_all(&self.pool)
+        .await?;
+
+        // Extract numeric parts and find the highest
+        let mut highest_number = start - 1;
+        for invoice_number in existing_numbers {
+            if let Some(numeric_part) = extract_numeric_part(&invoice_number, &prefix, &separator, &suffix) {
+                if numeric_part > highest_number {
+                    highest_number = numeric_part;
+                }
+            }
+        }
+
+        // Calculate next number
+        let next_number = highest_number + 1;
+
+        // Format the invoice number: PREFIX + SEPARATOR + NUMBER (padded) + SUFFIX
+        let formatted_number = format!("{:0width$}", next_number, width = digits as usize);
+        let invoice_number = if suffix.is_empty() {
+            format!("{}{}{}", prefix, separator, formatted_number)
+        } else {
+            format!("{}{}{}{}{}", prefix, separator, formatted_number, separator, suffix)
+        };
+
+        Ok(invoice_number)
+    }
+}
+
+// Helper function to extract numeric part from invoice number
+fn extract_numeric_part(invoice_number: &str, prefix: &str, separator: &str, suffix: &str) -> Option<i64> {
+    // Remove prefix and separator
+    let after_prefix = invoice_number.strip_prefix(&format!("{}{}", prefix, separator))?;
+    
+    // Remove suffix if present
+    let numeric_str = if !suffix.is_empty() {
+        let suffix_pattern = format!("{}{}", separator, suffix);
+        after_prefix.strip_suffix(&suffix_pattern).unwrap_or(after_prefix)
+    } else {
+        after_prefix
+    };
+    
+    // Parse the numeric part
+    numeric_str.parse::<i64>().ok()
 }

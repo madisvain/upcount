@@ -344,6 +344,22 @@ export const organizationAtom = atom(
     }
   }
 );
+// Get next invoice number
+export const nextInvoiceNumberAtom = atom(
+  async (get) => {
+    const organizationId = get(organizationIdAtom);
+    if (!organizationId) return null;
+
+    try {
+      const nextNumber = await invoke<string>("get_next_invoice_number", { organizationId });
+      return nextNumber;
+    } catch (error) {
+      console.error("Failed to get next invoice number:", error);
+      return null;
+    }
+  }
+);
+
 // Delete organization
 export const deleteOrganizationAtom = atom(null, async (get, set) => {
   const organizationId = get(organizationIdAtom);
