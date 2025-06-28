@@ -13,6 +13,18 @@ msgstr ""
 "Plural-Forms: \n"
 "X-Generator: Poedit 3.4.4\n"
 
+#: src/routes/settings/invoice.tsx:105
+msgid "2-digit month"
+msgstr ""
+
+#: src/routes/settings/invoice.tsx:104
+msgid "2-digit year"
+msgstr ""
+
+#: src/routes/settings/invoice.tsx:103
+msgid "4-digit year"
+msgstr ""
+
 #: src/routes/invoices/details.tsx:398
 msgid "Add line item"
 msgstr "Lisa rida"
@@ -23,7 +35,7 @@ msgstr "Lisa rida"
 msgid "Address"
 msgstr "Aadress"
 
-#: src/routes/settings/organization.tsx:142
+#: src/routes/settings/organization.tsx:106
 msgid "Are you sure delete this organization?"
 msgstr "Kas olete kindel, et kustutate selle organisatsiooni?"
 
@@ -38,6 +50,10 @@ msgstr ""
 
 #: src/routes/settings/backup.tsx:48
 msgid "Are you sure you want to restore from a backup? This will replace all current data and cannot be undone."
+msgstr ""
+
+#: src/routes/settings/invoice.tsx:100
+msgid "Available variables"
 msgstr ""
 
 #: src/layouts/base.tsx:158
@@ -57,7 +73,7 @@ msgstr "Panga nimi"
 msgid "Cancel"
 msgstr ""
 
-#: src/routes/settings/invoice.tsx:117
+#: src/routes/settings/invoice.tsx:132
 msgid "Change"
 msgstr "Muuda"
 
@@ -131,7 +147,7 @@ msgid "Create your organization to get started"
 msgstr "Loo oma ettevõte, et alustada"
 
 #: src/routes/index.tsx:68
-#: src/routes/settings/invoice.tsx:58
+#: src/routes/settings/invoice.tsx:59
 #: src/routes/invoices/details.tsx:211
 msgid "Currency"
 msgstr "Valuuta"
@@ -153,7 +169,11 @@ msgstr ""
 msgid "Date"
 msgstr "Kuupäaev"
 
-#: src/routes/settings/invoice.tsx:73
+#: src/routes/settings/invoice.tsx:107
+msgid "Day of month"
+msgstr ""
+
+#: src/routes/settings/invoice.tsx:74
 msgid "Decimal places"
 msgstr "Komakohad"
 
@@ -162,7 +182,7 @@ msgstr "Komakohad"
 msgid "Default"
 msgstr "Vaikimisi"
 
-#: src/routes/settings/organization.tsx:148
+#: src/routes/settings/organization.tsx:112
 #: src/routes/invoices/preview.tsx:167
 #: src/routes/invoices/details.tsx:496
 #: src/components/clients/form.tsx:113
@@ -192,7 +212,7 @@ msgstr "Mustand"
 msgid "Due date"
 msgstr "Tähtaeg"
 
-#: src/routes/settings/invoice.tsx:76
+#: src/routes/settings/invoice.tsx:77
 msgid "Due days"
 msgstr "Tähtaeg"
 
@@ -237,7 +257,7 @@ msgstr ""
 msgid "Failed to fetch organizations"
 msgstr ""
 
-#: src/atoms.tsx:396
+#: src/atoms.tsx:417
 msgid "Failed to fetch tax rates"
 msgstr ""
 
@@ -280,7 +300,7 @@ msgstr ""
 msgid "Invoice deletion failed"
 msgstr ""
 
-#: src/routes/settings/invoice.tsx:53
+#: src/routes/settings/invoice.tsx:54
 msgid "Invoice details"
 msgstr "Arve detailid"
 
@@ -297,7 +317,11 @@ msgstr "Arve detailid"
 msgid "Invoice number"
 msgstr "Arve number"
 
-#: src/routes/settings/organization.tsx:99
+#: src/routes/settings/invoice.tsx:92
+msgid "Invoice Number Format"
+msgstr ""
+
+#: src/routes/settings/invoice.tsx:88
 msgid "Invoice Numbering"
 msgstr "Arve numbrid"
 
@@ -318,9 +342,13 @@ msgstr "Arve uuendamine õnnestus"
 msgid "Invoices"
 msgstr "Arved"
 
-#: src/routes/settings/invoice.tsx:108
+#: src/routes/settings/invoice.tsx:117
 msgid "Logo"
 msgstr "Logo"
+
+#: src/routes/settings/invoice.tsx:106
+msgid "Month name"
+msgstr ""
 
 #: src/routes/index.tsx:56
 #: src/routes/clients.tsx:69
@@ -363,11 +391,11 @@ msgstr "Ei"
 msgid "No line items"
 msgstr "Arve read puuduvad"
 
-#: src/routes/settings/organization.tsx:145
+#: src/routes/settings/organization.tsx:109
 msgid "No!"
 msgstr "Ei!"
 
-#: src/routes/settings/invoice.tsx:82
+#: src/routes/settings/invoice.tsx:83
 msgid "Notes"
 msgstr "Märkused"
 
@@ -376,8 +404,8 @@ msgid "Number"
 msgstr "Number"
 
 #: src/routes/settings/organization.tsx:121
-msgid "Number of Digits"
-msgstr "Numbrikohtade arv"
+#~ msgid "Number of Digits"
+#~ msgstr "Numbrikohtade arv"
 
 #: src/layouts/base.tsx:131
 msgid "Organization"
@@ -391,12 +419,12 @@ msgstr "Ettevõte loodud"
 msgid "Organization creation failed"
 msgstr "Ettevõtte loomine ebaõnnestus"
 
-#: src/atoms.tsx:377
+#: src/atoms.tsx:398
 msgid "Organization deleted"
 msgstr "Ettevõte kustutatud"
 
-#: src/atoms.tsx:379
-#: src/atoms.tsx:383
+#: src/atoms.tsx:400
+#: src/atoms.tsx:404
 msgid "Organization deletion failed"
 msgstr ""
 
@@ -421,7 +449,7 @@ msgstr "Ettevõtte uuendamine edukas"
 msgid "Our time tracking feature is currently being developed."
 msgstr "Ajaarvestuse võimalus on hetkel arenduses."
 
-#: src/routes/settings/invoice.tsx:79
+#: src/routes/settings/invoice.tsx:80
 #: src/components/invoices/pdf.tsx:206
 msgid "Overdue charge"
 msgstr "Viivis"
@@ -453,8 +481,12 @@ msgid "Please input name!"
 msgstr "Palun sisestage nimi!"
 
 #: src/routes/settings/organization.tsx:104
-msgid "Prefix"
-msgstr "Eesliide"
+#~ msgid "Prefix"
+#~ msgstr "Eesliide"
+
+#: src/routes/settings/invoice.tsx:97
+msgid "Preview"
+msgstr ""
 
 #: src/routes/invoices/details.tsx:308
 #: src/components/invoices/pdf.tsx:227
@@ -490,8 +522,8 @@ msgstr ""
 msgid "Restore your database from a previously created backup file. This will replace all current data with the backup data."
 msgstr ""
 
-#: src/routes/settings/organization.tsx:139
-#: src/routes/settings/invoice.tsx:96
+#: src/routes/settings/organization.tsx:103
+#: src/routes/settings/invoice.tsx:148
 #: src/routes/invoices/details.tsx:537
 #: src/components/tax-rates/form.tsx:38
 #: src/components/clients/form.tsx:84
@@ -517,16 +549,20 @@ msgid "Sent"
 msgstr "Saadetud"
 
 #: src/routes/settings/organization.tsx:109
-msgid "Separator"
-msgstr "Eraldaja"
+#~ msgid "Separator"
+#~ msgstr "Eraldaja"
+
+#: src/routes/settings/invoice.tsx:102
+msgid "Sequential number"
+msgstr ""
 
 #: src/layouts/base.tsx:124
 msgid "Settings"
 msgstr "Seaded"
 
 #: src/routes/settings/organization.tsx:116
-msgid "Start Number"
-msgstr "Algnumber"
+#~ msgid "Start Number"
+#~ msgstr "Algnumber"
 
 #: src/routes/invoices/index.tsx:123
 msgid "State"
@@ -538,8 +574,8 @@ msgid "Subtotal"
 msgstr "Vahesumma"
 
 #: src/routes/settings/organization.tsx:128
-msgid "Suffix"
-msgstr "Järelliide"
+#~ msgid "Suffix"
+#~ msgstr "Järelliide"
 
 #: src/routes/invoices/details.tsx:364
 #: src/routes/invoices/details.tsx:445
@@ -547,19 +583,19 @@ msgstr "Järelliide"
 msgid "Tax"
 msgstr "Maks"
 
-#: src/atoms.tsx:432
+#: src/atoms.tsx:453
 msgid "Tax rate created"
 msgstr ""
 
-#: src/atoms.tsx:459
+#: src/atoms.tsx:480
 msgid "Tax rate creation failed"
 msgstr ""
 
-#: src/atoms.tsx:461
+#: src/atoms.tsx:482
 msgid "Tax rate update failed"
 msgstr ""
 
-#: src/atoms.tsx:449
+#: src/atoms.tsx:470
 msgid "Tax rate updated successfully"
 msgstr ""
 
@@ -568,7 +604,7 @@ msgstr ""
 msgid "Tax rates"
 msgstr "Maksud"
 
-#: src/routes/settings/invoice.tsx:60
+#: src/routes/settings/invoice.tsx:61
 #: src/routes/invoices/details.tsx:161
 #: src/routes/invoices/details.tsx:204
 #: src/routes/invoices/details.tsx:213
@@ -597,7 +633,7 @@ msgstr "Summa"
 msgid "Under Development"
 msgstr "Arenduses"
 
-#: src/routes/settings/invoice.tsx:117
+#: src/routes/settings/invoice.tsx:132
 msgid "Upload"
 msgstr "Lae üles"
 
@@ -627,7 +663,7 @@ msgstr ""
 msgid "Website"
 msgstr "Koduleht"
 
-#: src/routes/settings/organization.tsx:144
+#: src/routes/settings/organization.tsx:108
 #: src/routes/invoices/preview.tsx:163
 #: src/routes/invoices/details.tsx:492
 #: src/components/clients/form.tsx:108

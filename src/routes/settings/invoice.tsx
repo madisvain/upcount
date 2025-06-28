@@ -1,5 +1,5 @@
 import { Button, Col, Form, Input, InputNumber, Select, Space, Typography, Row, Upload, Divider } from "antd";
-import { atom, useAtom, useSetAtom } from "jotai";
+import { atom, useAtom, useSetAtom, useAtomValue } from "jotai";
 import { FileTextOutlined, UploadOutlined } from "@ant-design/icons";
 import { Trans } from "@lingui/react/macro";
 import { t } from "@lingui/core/macro";
@@ -11,7 +11,7 @@ const { Title } = Typography;
 const { TextArea } = Input;
 const { Option } = Select;
 
-import { organizationAtom, setOrganizationsAtom } from "src/atoms";
+import { organizationAtom, setOrganizationsAtom, invoiceNumberPreviewAtom } from "src/atoms";
 import { currencies, getCurrencySymbol } from "src/utils/currencies";
 
 const submittingAtom = atom(false);
@@ -23,6 +23,7 @@ function SettingsInvoice() {
   const setOrganizations = useSetAtom(setOrganizationsAtom);
   const [organization, setOrganization] = useAtom(organizationAtom);
   const [submitting, setSubmitting] = useAtom(submittingAtom);
+  const invoiceNumberPreview = useAtomValue(invoiceNumberPreviewAtom);
 
   const onSubmit = async (values: object) => {
     setSubmitting(true);
@@ -87,37 +88,30 @@ function SettingsInvoice() {
                 <Trans>Invoice Numbering</Trans>
               </Divider>
 
-              <Row gutter={16}>
-                <Col span={12}>
-                  <Form.Item label={t`Start Number`} name="invoiceNumberStart">
-                    <InputNumber min={1} style={{ width: "100%" }} />
-                  </Form.Item>
-                </Col>
-                <Col span={12}>
-                  <Form.Item label={t`Number of Digits`} name="invoiceNumberDigits">
-                    <InputNumber min={1} max={10} style={{ width: "100%" }} />
-                  </Form.Item>
-                </Col>
-              </Row>
-              <Row gutter={16}>
-                <Col span={12}>
-                  <Form.Item label={t`Prefix`} name="invoiceNumberPrefix">
-                    <Input />
-                  </Form.Item>
-                </Col>
-                <Col span={12}>
-                  <Form.Item label={t`Suffix`} name="invoiceNumberSuffix">
-                    <Input placeholder="" />
-                  </Form.Item>
-                </Col>
-              </Row>
-              <Row>
-                <Col span={12}>
-                  <Form.Item label={t`Separator`} name="invoiceNumberSeparator">
-                    <Input placeholder="-" />
-                  </Form.Item>
-                </Col>
-              </Row>
+              <Form.Item 
+                label={t`Invoice Number Format`} 
+                name="invoiceNumberFormat"
+                help={
+                  <div style={{ marginTop: 8 }}>
+                    <div style={{ marginBottom: 8 }}>
+                      <strong><Trans>Preview</Trans>:</strong> {invoiceNumberPreview || 'INV-2025-00001'}
+                    </div>
+                    <div>
+                      <strong><Trans>Available variables</Trans>:</strong>
+                      <ul style={{ margin: '4px 0', paddingLeft: 20 }}>
+                        <li>{'{number}'} - <Trans>Sequential number</Trans></li>
+                        <li>{'{year}'} - <Trans>4-digit year</Trans> (2025)</li>
+                        <li>{'{y}'} - <Trans>2-digit year</Trans> (25)</li>
+                        <li>{'{month}'} - <Trans>2-digit month</Trans> (06)</li>
+                        <li>{'{m}'} - <Trans>Month name</Trans> (Jun)</li>
+                        <li>{'{day}'} - <Trans>Day of month</Trans> (28)</li>
+                      </ul>
+                    </div>
+                  </div>
+                }
+              >
+                <Input placeholder="INV-{year}-{number}" />
+              </Form.Item>
 
               <Divider orientation="left">
                 <Trans>Logo</Trans>

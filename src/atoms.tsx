@@ -360,6 +360,27 @@ export const nextInvoiceNumberAtom = atom(
   }
 );
 
+// Generate invoice number preview (for settings page)
+export const invoiceNumberPreviewAtom = atom((get) => {
+  const organization = get(organizationAtom);
+  if (!organization) return null;
+
+  const format = organization.invoiceNumberFormat || "INV-{year}-{number}";
+  const counter = (organization.invoiceNumberCounter || 0) + 1;
+  const now = new Date();
+
+  // Replace template variables with actual values
+  let preview = format;
+  preview = preview.replace("{number}", String(counter).padStart(5, "0"));
+  preview = preview.replace("{year}", now.getFullYear().toString());
+  preview = preview.replace("{y}", String(now.getFullYear() % 100).padStart(2, "0"));
+  preview = preview.replace("{month}", String(now.getMonth() + 1).padStart(2, "0"));
+  preview = preview.replace("{m}", now.toLocaleString("en", { month: "short" }));
+  preview = preview.replace("{day}", String(now.getDate()).padStart(2, "0"));
+
+  return preview;
+});
+
 // Delete organization
 export const deleteOrganizationAtom = atom(null, async (get, set) => {
   const organizationId = get(organizationIdAtom);
