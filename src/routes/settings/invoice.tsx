@@ -88,23 +88,40 @@ function SettingsInvoice() {
                 <Trans>Invoice Numbering</Trans>
               </Divider>
 
-              <Form.Item 
-                label={t`Invoice Number Format`} 
+              <Form.Item
+                label={t`Invoice Number Format`}
                 name="invoiceNumberFormat"
                 help={
                   <div style={{ marginTop: 8 }}>
                     <div style={{ marginBottom: 8 }}>
-                      <strong><Trans>Preview</Trans>:</strong> {invoiceNumberPreview || 'INV-2025-00001'}
+                      <strong>
+                        <Trans>Preview</Trans>:
+                      </strong>{" "}
+                      {invoiceNumberPreview}
                     </div>
                     <div>
-                      <strong><Trans>Available variables</Trans>:</strong>
-                      <ul style={{ margin: '4px 0', paddingLeft: 20 }}>
-                        <li>{'{number}'} - <Trans>Sequential number</Trans></li>
-                        <li>{'{year}'} - <Trans>4-digit year</Trans> (2025)</li>
-                        <li>{'{y}'} - <Trans>2-digit year</Trans> (25)</li>
-                        <li>{'{month}'} - <Trans>2-digit month</Trans> (06)</li>
-                        <li>{'{m}'} - <Trans>Month name</Trans> (Jun)</li>
-                        <li>{'{day}'} - <Trans>Day of month</Trans> (28)</li>
+                      <strong>
+                        <Trans>Available variables</Trans>:
+                      </strong>
+                      <ul style={{ margin: "4px 0", paddingLeft: 20 }}>
+                        <li>
+                          {"{number}"} - <Trans>Sequential number</Trans>
+                        </li>
+                        <li>
+                          {"{year}"} - <Trans>4-digit year</Trans> ({new Date().getFullYear()})
+                        </li>
+                        <li>
+                          {"{y}"} - <Trans>2-digit year</Trans> ({String(new Date().getFullYear() % 100).padStart(2, "0")})
+                        </li>
+                        <li>
+                          {"{month}"} - <Trans>2-digit month</Trans> ({String(new Date().getMonth() + 1).padStart(2, "0")})
+                        </li>
+                        <li>
+                          {"{m}"} - <Trans>Month name</Trans> ({new Date().toLocaleString("en", { month: "short" })})
+                        </li>
+                        <li>
+                          {"{day}"} - <Trans>Day of month</Trans> ({String(new Date().getDate()).padStart(2, "0")})
+                        </li>
                       </ul>
                     </div>
                   </div>
