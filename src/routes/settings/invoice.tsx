@@ -1,6 +1,6 @@
 import { Button, Col, Form, Input, InputNumber, Select, Space, Typography, Row, Upload, Divider } from "antd";
 import { atom, useAtom, useSetAtom } from "jotai";
-import { FileTextOutlined, PictureOutlined, UploadOutlined } from "@ant-design/icons";
+import { FileTextOutlined, UploadOutlined } from "@ant-design/icons";
 import { Trans } from "@lingui/react/macro";
 import { t } from "@lingui/core/macro";
 import { useLingui } from "@lingui/react";
@@ -89,38 +89,60 @@ function SettingsInvoice() {
 
               <Row gutter={16}>
                 <Col span={12}>
-                  <Form.Item label={t`Prefix`} name="invoiceNumberPrefix">
-                    <Input placeholder="INV" />
+                  <Form.Item label={t`Start Number`} name="invoiceNumberStart">
+                    <InputNumber min={1} style={{ width: "100%" }} />
                   </Form.Item>
                 </Col>
+                <Col span={12}>
+                  <Form.Item label={t`Number of Digits`} name="invoiceNumberDigits">
+                    <InputNumber min={1} max={10} style={{ width: "100%" }} />
+                  </Form.Item>
+                </Col>
+              </Row>
+              <Row gutter={16}>
+                <Col span={12}>
+                  <Form.Item label={t`Prefix`} name="invoiceNumberPrefix">
+                    <Input />
+                  </Form.Item>
+                </Col>
+                <Col span={12}>
+                  <Form.Item label={t`Suffix`} name="invoiceNumberSuffix">
+                    <Input placeholder="" />
+                  </Form.Item>
+                </Col>
+              </Row>
+              <Row>
                 <Col span={12}>
                   <Form.Item label={t`Separator`} name="invoiceNumberSeparator">
                     <Input placeholder="-" />
                   </Form.Item>
                 </Col>
               </Row>
-              <Row gutter={16}>
-                <Col span={12}>
-                  <Form.Item label={t`Start Number`} name="invoiceNumberStart">
-                    <InputNumber min={1} placeholder={1} style={{ width: "100%" }} />
-                  </Form.Item>
-                </Col>
-                <Col span={12}>
-                  <Form.Item label={t`Number of Digits`} name="invoiceNumberDigits">
-                    <InputNumber min={1} max={10} placeholder={4} style={{ width: "100%" }} />
-                  </Form.Item>
-                </Col>
-              </Row>
+
+              <Divider orientation="left">
+                <Trans>Logo</Trans>
+              </Divider>
+
               <Row>
                 <Col span={24}>
-                  <Form.Item label={t`Suffix`} name="invoiceNumberSuffix">
-                    <Input placeholder="" />
-                  </Form.Item>
+                  {organization.logo && (
+                    <img
+                      src={organization.logo}
+                      alt="logo"
+                      style={{ maxWidth: 250, maxHeight: 250, marginBottom: 16 }}
+                    />
+                  )}
+                  <br />
+                  <Upload accept="image/*" showUploadList={false} customRequest={(data) => onLogoUpload(data)}>
+                    <Button>
+                      <UploadOutlined /> {organization.logo ? t`Change` : t`Upload`}
+                    </Button>
+                  </Upload>
                 </Col>
               </Row>
             </Col>
           </Row>
-          <Row>
+          <Row style={{ marginTop: 24 }}>
             <Col span={24}>
               <Button
                 type="primary"
@@ -134,29 +156,6 @@ function SettingsInvoice() {
             </Col>
           </Row>
         </Form>
-        <Row>
-          <Col span={24}>
-            <Row>
-              <Col span={12}>
-                <Title level={3}>
-                  <Space>
-                    <PictureOutlined />
-                    <Trans>Logo</Trans>
-                  </Space>
-                </Title>
-                {organization.logo && (
-                  <img src={organization.logo} alt="logo" style={{ maxWidth: 250, maxHeight: 250 }} />
-                )}
-                <br />
-                <Upload accept="image/*" showUploadList={false} customRequest={(data) => onLogoUpload(data)}>
-                  <Button style={{ marginTop: 20 }}>
-                    <UploadOutlined /> {organization.logo ? t`Change` : t`Upload`}
-                  </Button>
-                </Upload>
-              </Col>
-            </Row>
-          </Col>
-        </Row>
       </>
     )
   );
