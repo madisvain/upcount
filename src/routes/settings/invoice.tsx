@@ -1,5 +1,5 @@
 import { Button, Col, Form, Input, InputNumber, Select, Space, Typography, Row, Upload, Divider } from "antd";
-import { atom, useAtom, useSetAtom, useAtomValue } from "jotai";
+import { atom, useAtom, useSetAtom } from "jotai";
 import { FileTextOutlined, UploadOutlined } from "@ant-design/icons";
 import { Trans } from "@lingui/react/macro";
 import { t } from "@lingui/core/macro";
@@ -11,7 +11,7 @@ const { Title } = Typography;
 const { TextArea } = Input;
 const { Option } = Select;
 
-import { organizationAtom, setOrganizationsAtom, invoiceNumberPreviewAtom } from "src/atoms";
+import { organizationAtom, setOrganizationsAtom } from "src/atoms";
 import { currencies, getCurrencySymbol } from "src/utils/currencies";
 
 const submittingAtom = atom(false);
@@ -23,7 +23,26 @@ function SettingsInvoice() {
   const setOrganizations = useSetAtom(setOrganizationsAtom);
   const [organization, setOrganization] = useAtom(organizationAtom);
   const [submitting, setSubmitting] = useAtom(submittingAtom);
-  const invoiceNumberPreview = useAtomValue(invoiceNumberPreviewAtom);
+  
+  // Generate preview based on form values
+  const invoiceFormat = Form.useWatch("invoiceNumberFormat", form);
+  const generatePreview = (format: string | undefined) => {
+    const template = format || organization?.invoiceNumberFormat || "INV-{year}-{number}";
+    const counter = (organization?.invoiceNumberCounter || 0) + 1;
+    const now = new Date();
+    
+    let preview = template;
+    preview = preview.replace("{number}", String(counter).padStart(5, "0"));
+    preview = preview.replace("{year}", now.getFullYear().toString());
+    preview = preview.replace("{y}", String(now.getFullYear() % 100).padStart(2, "0"));
+    preview = preview.replace("{month}", String(now.getMonth() + 1).padStart(2, "0"));
+    preview = preview.replace("{m}", now.toLocaleString("en", { month: "short" }));
+    preview = preview.replace("{day}", String(now.getDate()).padStart(2, "0"));
+    
+    return preview;
+  };
+  
+  const invoiceNumberPreview = generatePreview(invoiceFormat);
 
   const onSubmit = async (values: object) => {
     setSubmitting(true);
