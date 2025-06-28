@@ -832,7 +832,7 @@ impl Database {
         use chrono::{DateTime, Utc, Datelike};
         
         // Get organization settings
-        let mut org = self.get_organization(organization_id).await?
+        let org = self.get_organization(organization_id).await?
             .ok_or_else(|| sqlx::Error::RowNotFound)?;
 
         // Get format template or use default
