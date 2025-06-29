@@ -1,271 +1,265 @@
 msgid ""
 msgstr ""
-"POT-Creation-Date: 2025-06-29 15:39+0300\n"
+"POT-Creation-Date: 2025-06-29 16:46+0300\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "X-Generator: @lingui/cli\n"
-"Language: uk\n"
-"Project-Id-Version: \n"
-"Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: \n"
-"Last-Translator: \n"
-"Language-Team: \n"
-"Plural-Forms: \n"
+"Language: sv\n"
 
 #: src/routes/settings/invoice.tsx:223
 msgid "2-digit month"
-msgstr "2-значний місяць"
+msgstr "2-siffrig månad"
 
 #: src/routes/settings/invoice.tsx:219
 msgid "2-digit year"
-msgstr "2-значний рік"
+msgstr "2-siffrigt år"
 
 #: src/routes/settings/invoice.tsx:216
 msgid "4-digit year"
-msgstr "4-значний рік"
+msgstr "4-siffrigt år"
 
 #: src/routes/invoices/details.tsx:398
 msgid "Add line item"
-msgstr "Додати позицію"
+msgstr "Lägg till rad"
 
 #: src/routes/clients.tsx:78
 #: src/routes/settings/organization.tsx:56
 #: src/components/clients/form.tsx:147
 msgid "Address"
-msgstr "Адреса"
+msgstr "Adress"
 
 #: src/routes/settings/organization.tsx:106
 msgid "Are you sure delete this organization?"
-msgstr "Ви впевнені, що хочете видалити цю організацію?"
+msgstr "Är du säker på att du vill ta bort denna organisation?"
 
 #: src/routes/invoices/preview.tsx:161
 #: src/routes/invoices/details.tsx:490
 msgid "Are you sure to delete this invoice?"
-msgstr "Ви впевнені, що хочете видалити цей рахунок?"
+msgstr "Är du säker på att du vill ta bort denna faktura?"
 
 #: src/components/clients/form.tsx:99
 msgid "Are you sure you want to delete this client?"
-msgstr "Ви впевнені, що хочете видалити цього клієнта?"
+msgstr "Är du säker på att du vill ta bort denna kund?"
 
 #: src/routes/settings/backup.tsx:48
 msgid "Are you sure you want to restore from a backup? This will replace all current data and cannot be undone."
-msgstr "Ви впевнені, що хочете відновити з резервної копії? Це замінить всі поточні дані і не може бути скасовано."
+msgstr "Är du säker på att du vill återställa från en säkerhetskopia? Detta kommer att ersätta all nuvarande data och kan inte ångras."
 
 #: src/routes/settings/invoice.tsx:209
 msgid "Available variables:"
-msgstr "Доступні змінні:"
+msgstr "Tillgängliga variabler:"
 
 #: src/layouts/base.tsx:158
 msgid "Backup"
-msgstr "Резервне копіювання"
+msgstr "Säkerhetskopia"
 
 #: src/routes/settings/backup.tsx:80
 msgid "Backup & restore"
-msgstr "Резервне копіювання та відновлення"
+msgstr "Säkerhetskopia & återställning"
 
 #: src/routes/settings/organization.tsx:71
 msgid "Bank name"
-msgstr "Назва банку"
+msgstr "Banknamn"
 
 #: src/routes/settings/backup.tsx:50
 #: src/components/clients/form.tsx:127
 msgid "Cancel"
-msgstr "Скасувати"
+msgstr "Avbryt"
 
 #: src/routes/settings/invoice.tsx:257
 msgid "Change"
-msgstr "Змінити"
+msgstr "Ändra"
 
 #: src/routes/time-tracking.tsx:17
 msgid "Check back soon for updates!"
-msgstr "Перевіряйте оновлення незабаром!"
+msgstr "Kom tillbaka snart för uppdateringar!"
 
 #: src/routes/invoices/index.tsx:95
 msgid "Client"
-msgstr "Клієнт"
+msgstr "Kund"
 
 #: src/atoms.tsx:76
 msgid "Client created"
-msgstr "Клієнта створено"
+msgstr "Kund skapad"
 
 #: src/atoms.tsx:97
 msgid "Client creation failed"
-msgstr "Помилка створення клієнта"
+msgstr "Kunde inte skapa kund"
 
 #: src/atoms.tsx:114
 msgid "Client deleted"
-msgstr "Клієнта видалено"
+msgstr "Kund borttagen"
 
 #: src/atoms.tsx:116
 #: src/atoms.tsx:120
 msgid "Client deletion failed"
-msgstr "Помилка видалення клієнта"
+msgstr "Kunde inte ta bort kund"
 
 #: src/atoms.tsx:99
 msgid "Client update failed"
-msgstr "Помилка оновлення клієнта"
+msgstr "Kunde inte uppdatera kund"
 
 #: src/atoms.tsx:87
 msgid "Client updated successfully"
-msgstr "Клієнта успішно оновлено"
+msgstr "Kund uppdaterad framgångsrikt"
 
 #: src/routes/clients.tsx:51
 #: src/layouts/base.tsx:108
 msgid "Clients"
-msgstr "Клієнти"
+msgstr "Kunder"
 
 #: src/routes/invoices/index.tsx:30
 msgid "Confirmed"
-msgstr "Підтверджено"
+msgstr "Bekräftad"
 
 #: src/routes/settings/invoice.tsx:188
 msgid "Counter must be 0 or greater"
-msgstr "Лічильник повинен бути 0 або більше"
+msgstr "Räknaren måste vara 0 eller större"
 
 #: src/routes/index.tsx:59
 msgid "Country"
-msgstr "Країна"
+msgstr "Land"
 
 #: src/routes/settings/backup.tsx:103
 msgid "Create a backup of your database to save all your invoices, clients, and settings. The backup file can be used to restore your data if needed."
-msgstr "Створіть резервну копію бази даних, щоб зберегти всі рахунки, клієнтів та налаштування. Файл резервної копії можна використовувати для відновлення даних у разі потреби."
+msgstr "Skapa en säkerhetskopia av din databas för att spara alla dina fakturor, kunder och inställningar. Säkerhetskopian kan användas för att återställa dina data vid behov."
 
 #: src/routes/settings/backup.tsx:98
 msgid "Create Backup"
-msgstr "Створити резервну копію"
+msgstr "Skapa säkerhetskopia"
 
 #: src/routes/index.tsx:49
 msgid "Create your organization to get started"
-msgstr "Створіть свою організацію для початку роботи"
+msgstr "Skapa din organisation för att komma igång"
 
 #: src/routes/index.tsx:68
 #: src/routes/settings/invoice.tsx:78
 #: src/routes/invoices/details.tsx:211
 msgid "Currency"
-msgstr "Валюта"
+msgstr "Valuta"
 
 #: src/routes/invoices/details.tsx:409
 msgid "Customer note"
-msgstr "Примітка клієнта"
+msgstr "Kundanteckning"
 
 #: src/routes/settings/backup.tsx:35
 msgid "Database backup saved successfully to {backupPath}"
-msgstr "Резервну копію бази даних успішно збережено в {backupPath}"
+msgstr "Databas-säkerhetskopia sparad framgångsrikt till {backupPath}"
 
 #: src/routes/settings/backup.tsx:60
 msgid "Database has been restored successfully. Please restart the application to see the changes."
-msgstr "Базу даних успішно відновлено. Будь ласка, перезапустіть програму, щоб побачити зміни."
+msgstr "Databasen har återställts framgångsrikt. Starta om applikationen för att se ändringarna."
 
 #: src/routes/invoices/index.tsx:101
 #: src/components/invoices/pdf.tsx:199
 msgid "Date"
-msgstr "Дата"
+msgstr "Datum"
 
 #: src/routes/settings/invoice.tsx:231
 msgid "Day of month"
-msgstr "День місяця"
+msgstr "Dag i månaden"
 
 #: src/routes/settings/invoice.tsx:93
 msgid "Decimal places"
-msgstr "Десяткові розряди"
+msgstr "Decimalplatser"
 
 #: src/routes/settings/tax-rates.tsx:68
 #: src/components/tax-rates/form.tsx:60
 msgid "Default"
-msgstr "За замовчуванням"
+msgstr "Standard"
 
 #: src/routes/settings/organization.tsx:112
 #: src/routes/invoices/preview.tsx:167
 #: src/routes/invoices/details.tsx:496
 #: src/components/clients/form.tsx:113
 msgid "Delete"
-msgstr "Видалити"
+msgstr "Ta bort"
 
 #: src/routes/invoices/preview.tsx:160
 #: src/routes/invoices/details.tsx:489
 msgid "Delete the invoice?"
-msgstr "Видалити рахунок?"
+msgstr "Ta bort fakturan?"
 
 #: src/routes/settings/tax-rates.tsx:53
 #: src/routes/invoices/details.tsx:257
 #: src/components/tax-rates/form.tsx:53
 #: src/components/invoices/pdf.tsx:221
 msgid "Description"
-msgstr "Опис"
+msgstr "Beskrivning"
 
 #: src/routes/invoices/index.tsx:26
 #: src/components/invoices/state-select.tsx:21
 msgid "Draft"
-msgstr "Чернетка"
+msgstr "Utkast"
 
 #: src/routes/invoices/index.tsx:108
 #: src/routes/invoices/details.tsx:236
 #: src/components/invoices/pdf.tsx:202
 msgid "Due date"
-msgstr "Термін оплати"
+msgstr "Förfallodatum"
 
 #: src/routes/settings/invoice.tsx:96
 msgid "Due days"
-msgstr "Дні до оплати"
+msgstr "Förfallodagar"
 
 #: src/routes/settings/organization.tsx:59
 msgid "E-mail"
-msgstr "Електронна пошта"
+msgstr "E-post"
 
 #: src/components/clients/form.tsx:151
 msgid "E-mails"
-msgstr "Електронні пошти"
+msgstr "E-postadresser"
 
 #: src/routes/invoices/preview.tsx:181
 msgid "Edit"
-msgstr "Редагувати"
+msgstr "Redigera"
 
 #: src/components/clients/form.tsx:82
 msgid "Edit client"
-msgstr "Редагувати клієнта"
+msgstr "Redigera kund"
 
 #: src/components/tax-rates/form.tsx:36
 msgid "Edit tax rate"
-msgstr "Редагувати податкову ставку"
+msgstr "Redigera momssats"
 
 #: src/routes/clients.tsx:80
 msgid "Emails"
-msgstr "Електронні пошти"
+msgstr "E-postadresser"
 
 #: src/routes/settings/invoice.tsx:199
 msgid "Enter format to see preview"
-msgstr "Введіть формат для перегляду"
+msgstr "Ange format för att se förhandsvisning"
 
 #. placeholder {0}: String(error)
 #: src/routes/settings/backup.tsx:39
 msgid "Failed to backup database: {0}"
-msgstr "Помилка створення резервної копії бази даних: {0}"
+msgstr "Misslyckades att säkerhetskopiera databasen: {0}"
 
 #: src/atoms.tsx:34
 msgid "Failed to fetch clients"
-msgstr "Помилка завантаження клієнтів"
+msgstr "Misslyckades att hämta kunder"
 
 #: src/atoms.tsx:140
 msgid "Failed to fetch invoices"
-msgstr "Помилка завантаження рахунків"
+msgstr "Misslyckades att hämta fakturor"
 
 #: src/atoms.tsx:284
 msgid "Failed to fetch organizations"
-msgstr "Помилка завантаження організацій"
+msgstr "Misslyckades att hämta organisationer"
 
 #: src/atoms.tsx:392
 msgid "Failed to fetch tax rates"
-msgstr "Помилка завантаження податкових ставок"
+msgstr "Misslyckades att hämta momssatser"
 
 #. placeholder {0}: String(error)
 #: src/routes/settings/backup.tsx:64
 msgid "Failed to restore database: {0}"
-msgstr "Помилка відновлення бази даних: {0}"
+msgstr "Misslyckades att återställa databasen: {0}"
 
 #: src/routes/index.tsx:77
 msgid "Get started"
-msgstr "Розпочати"
+msgstr "Kom igång"
 
 #: src/routes/settings/organization.tsx:78
 msgid "IBAN"
@@ -273,71 +267,71 @@ msgstr "IBAN"
 
 #: src/layouts/base.tsx:140
 msgid "Invoice"
-msgstr "Рахунок"
+msgstr "Faktura"
 
 #. placeholder {0}: invoice.number
 #: src/components/invoices/pdf.tsx:173
 msgid "Invoice #{0}"
-msgstr "Рахунок №{0}"
+msgstr "Faktura #{0}"
 
 #: src/atoms.tsx:210
 msgid "Invoice created"
-msgstr "Рахунок створено"
+msgstr "Faktura skapad"
 
 #: src/atoms.tsx:249
 msgid "Invoice creation failed"
-msgstr "Помилка створення рахунку"
+msgstr "Kunde inte skapa faktura"
 
 #: src/atoms.tsx:266
 msgid "Invoice deleted"
-msgstr "Рахунок видалено"
+msgstr "Faktura borttagen"
 
 #: src/atoms.tsx:268
 #: src/atoms.tsx:272
 msgid "Invoice deletion failed"
-msgstr "Помилка видалення рахунку"
+msgstr "Kunde inte ta bort faktura"
 
 #: src/routes/settings/invoice.tsx:73
 msgid "Invoice details"
-msgstr "Деталі рахунку"
+msgstr "Fakturadetaljer"
 
 #: src/routes/invoices/details.tsx:202
 msgid "Invoice number"
-msgstr "Номер рахунку"
+msgstr "Fakturanummer"
 
 #: src/routes/settings/invoice.tsx:184
 msgid "Invoice Number Counter"
-msgstr "Лічильник номерів рахунків"
+msgstr "Fakturanummer-räknare"
 
 #: src/routes/settings/invoice.tsx:153
 msgid "Invoice Number Format"
-msgstr "Формат номеру рахунку"
+msgstr "Fakturanummer-format"
 
 #: src/routes/settings/invoice.tsx:107
 #: src/routes/settings/invoice.tsx:146
 msgid "Invoice Numbering"
-msgstr "Нумерація рахунків"
+msgstr "Fakturanumrering"
 
 #: src/atoms.tsx:251
 msgid "Invoice update failed"
-msgstr "Помилка оновлення рахунку"
+msgstr "Kunde inte uppdatera faktura"
 
 #: src/atoms.tsx:239
 msgid "Invoice updated successfully"
-msgstr "Рахунок успішно оновлено"
+msgstr "Faktura uppdaterad framgångsrikt"
 
 #: src/routes/invoices/index.tsx:72
 #: src/layouts/base.tsx:99
 msgid "Invoices"
-msgstr "Рахунки"
+msgstr "Fakturor"
 
 #: src/routes/settings/invoice.tsx:242
 msgid "Logo"
-msgstr "Логотип"
+msgstr "Logotyp"
 
 #: src/routes/settings/invoice.tsx:227
 msgid "Month name"
-msgstr "Назва місяця"
+msgstr "Månadsnamn"
 
 #: src/routes/index.tsx:56
 #: src/routes/clients.tsx:69
@@ -346,170 +340,170 @@ msgstr "Назва місяця"
 #: src/components/tax-rates/form.tsx:50
 #: src/components/clients/form.tsx:144
 msgid "Name"
-msgstr "Назва"
+msgstr "Namn"
 
 #: src/routes/clients.tsx:59
 #: src/routes/invoices/details.tsx:187
 #: src/components/clients/form.tsx:82
 msgid "New client"
-msgstr "Новий клієнт"
+msgstr "Ny kund"
 
 #: src/routes/invoices/index.tsx:80
 msgid "New invoice"
-msgstr "Новий рахунок"
+msgstr "Ny faktura"
 
 #: src/layouts/base.tsx:214
 msgid "New organization"
-msgstr "Нова організація"
+msgstr "Ny organisation"
 
 #: src/routes/settings/tax-rates.tsx:40
 msgid "New tax"
-msgstr "Новий податок"
+msgstr "Ny moms"
 
 #: src/components/tax-rates/form.tsx:36
 msgid "New tax rate"
-msgstr "Нова податкова ставка"
+msgstr "Ny momssats"
 
 #: src/routes/settings/invoice.tsx:191
 msgid "Next invoice will use this number + 1"
-msgstr "Наступний рахунок використовуватиме цей номер + 1"
+msgstr "Nästa faktura kommer använda detta nummer + 1"
 
 #: src/routes/invoices/preview.tsx:164
 #: src/routes/invoices/details.tsx:493
 #: src/components/clients/form.tsx:109
 msgid "No"
-msgstr "Ні"
+msgstr "Nej"
 
 #: src/routes/invoices/details.tsx:254
 msgid "No line items"
-msgstr "Немає позицій"
+msgstr "Inga rader"
 
 #: src/routes/settings/organization.tsx:109
 msgid "No!"
-msgstr "Ні!"
+msgstr "Nej!"
 
 #: src/routes/settings/invoice.tsx:102
 msgid "Notes"
-msgstr "Примітки"
+msgstr "Anteckningar"
 
 #: src/routes/invoices/index.tsx:89
 msgid "Number"
-msgstr "Номер"
+msgstr "Nummer"
 
 #: src/routes/settings/invoice.tsx:129
 msgid "Number of Digits"
-msgstr "Кількість цифр"
+msgstr "Antal siffror"
 
 #: src/layouts/base.tsx:131
 msgid "Organization"
-msgstr "Організація"
+msgstr "Organisation"
 
 #: src/atoms.tsx:327
 msgid "Organization created"
-msgstr "Організацію створено"
+msgstr "Organisation skapad"
 
 #: src/atoms.tsx:341
 msgid "Organization creation failed"
-msgstr "Помилка створення організації"
+msgstr "Kunde inte skapa organisation"
 
 #: src/atoms.tsx:373
 msgid "Organization deleted"
-msgstr "Організацію видалено"
+msgstr "Organisation borttagen"
 
 #: src/atoms.tsx:375
 #: src/atoms.tsx:379
 msgid "Organization deletion failed"
-msgstr "Помилка видалення організації"
+msgstr "Kunde inte ta bort organisation"
 
 #: src/routes/index.tsx:52
 #: src/routes/settings/organization.tsx:46
 msgid "Organization details"
-msgstr "Деталі організації"
+msgstr "Organisationsdetaljer"
 
 #: src/atoms.tsx:343
 msgid "Organization update failed"
-msgstr "Помилка оновлення організації"
+msgstr "Kunde inte uppdatera organisation"
 
 #: src/atoms.tsx:334
 msgid "Organization updated successfully"
-msgstr "Організацію успішно оновлено"
+msgstr "Organisation uppdaterad framgångsrikt"
 
 #: src/routes/time-tracking.tsx:14
 msgid "Our time tracking feature is currently being developed."
-msgstr "Наша функція відстеження часу наразі розробляється."
+msgstr "Vår tidsrapporteringsfunktion utvecklas för närvarande."
 
 #: src/routes/settings/invoice.tsx:99
 #: src/components/invoices/pdf.tsx:206
 msgid "Overdue charge"
-msgstr "Штраф за прострочення"
+msgstr "Förseningsavgift"
 
 #: src/routes/invoices/index.tsx:34
 #: src/components/invoices/state-select.tsx:29
 msgid "Paid"
-msgstr "Оплачено"
+msgstr "Betald"
 
 #: src/routes/settings/tax-rates.tsx:57
 #: src/components/tax-rates/form.tsx:56
 msgid "Percentage"
-msgstr "Відсоток"
+msgstr "Procent"
 
 #: src/routes/clients.tsx:88
 #: src/routes/settings/organization.tsx:62
 #: src/components/clients/form.tsx:154
 msgid "Phone"
-msgstr "Телефон"
+msgstr "Telefon"
 
 #: src/components/tax-rates/form.tsx:55
 msgid "Please input a percentage!"
-msgstr "Будь ласка, введіть відсоток!"
+msgstr "Vänligen ange en procentsats!"
 
 #: src/routes/index.tsx:55
 #: src/components/tax-rates/form.tsx:49
 #: src/components/clients/form.tsx:143
 msgid "Please input name!"
-msgstr "Будь ласка, введіть назву!"
+msgstr "Vänligen ange namn!"
 
 #: src/routes/settings/invoice.tsx:112
 msgid "Prefix"
-msgstr "Префікс"
+msgstr "Prefix"
 
 #: src/routes/settings/invoice.tsx:197
 msgid "Preview"
-msgstr "Попередній перегляд"
+msgstr "Förhandsvisning"
 
 #: src/routes/invoices/details.tsx:308
 #: src/components/invoices/pdf.tsx:227
 msgid "Price"
-msgstr "Ціна"
+msgstr "Pris"
 
 #: src/routes/invoices/details.tsx:280
 #: src/components/invoices/pdf.tsx:224
 msgid "Qty."
-msgstr "Кільк."
+msgstr "Antal"
 
 #: src/routes/settings/organization.tsx:65
 msgid "Registration number"
-msgstr "Реєстраційний номер"
+msgstr "Organisationsnummer"
 
 #: src/routes/settings/backup.tsx:49
 msgid "Restore"
-msgstr "Відновити"
+msgstr "Återställ"
 
 #: src/routes/settings/backup.tsx:59
 msgid "Restore Complete"
-msgstr "Відновлення завершено"
+msgstr "Återställning slutförd"
 
 #: src/routes/settings/backup.tsx:47
 msgid "Restore Database"
-msgstr "Відновити базу даних"
+msgstr "Återställ databas"
 
 #: src/routes/settings/backup.tsx:124
 msgid "Restore from Backup"
-msgstr "Відновити з резервної копії"
+msgstr "Återställ från säkerhetskopia"
 
 #: src/routes/settings/backup.tsx:129
 msgid "Restore your database from a previously created backup file. This will replace all current data with the backup data."
-msgstr "Відновіть базу даних з раніше створеного файлу резервної копії. Це замінить всі поточні дані на дані з резервної копії."
+msgstr "Återställ din databas från en tidigare skapad säkerhetskopia. Detta kommer att ersätta all nuvarande data med säkerhetskopiedata."
 
 #: src/routes/settings/organization.tsx:103
 #: src/routes/settings/invoice.tsx:273
@@ -518,80 +512,80 @@ msgstr "Відновіть базу даних з раніше створено�
 #: src/components/clients/form.tsx:84
 #: src/components/clients/form.tsx:134
 msgid "Save"
-msgstr "Зберегти"
+msgstr "Spara"
 
 #: src/routes/clients.tsx:56
 #: src/routes/invoices/index.tsx:77
 msgid "Search text"
-msgstr "Пошук"
+msgstr "Sök text"
 
 #: src/routes/invoices/details.tsx:159
 msgid "Select or create a client"
-msgstr "Виберіть або створіть клієнта"
+msgstr "Välj eller skapa en kund"
 
 #: src/components/invoices/state-select.tsx:25
 msgid "Sent"
-msgstr "Відправлено"
+msgstr "Skickad"
 
 #: src/routes/settings/invoice.tsx:117
 msgid "Separator"
-msgstr "Роздільник"
+msgstr "Separator"
 
 #: src/routes/settings/invoice.tsx:213
 msgid "Sequential number"
-msgstr "Послідовний номер"
+msgstr "Löpnummer"
 
 #: src/layouts/base.tsx:124
 msgid "Settings"
-msgstr "Налаштування"
+msgstr "Inställningar"
 
 #: src/routes/settings/invoice.tsx:180
 msgid "Show variables"
-msgstr "Показати змінні"
+msgstr "Visa variabler"
 
 #: src/routes/settings/invoice.tsx:124
 msgid "Start Number"
-msgstr "Початковий номер"
+msgstr "Startnummer"
 
 #: src/routes/invoices/index.tsx:123
 msgid "State"
-msgstr "Статус"
+msgstr "Status"
 
 #: src/routes/invoices/details.tsx:438
 #: src/components/invoices/pdf.tsx:252
 msgid "Subtotal"
-msgstr "Проміжна сума"
+msgstr "Delsumma"
 
 #: src/routes/settings/invoice.tsx:136
 msgid "Suffix"
-msgstr "Суфікс"
+msgstr "Suffix"
 
 #: src/routes/invoices/details.tsx:364
 #: src/routes/invoices/details.tsx:445
 #: src/components/invoices/pdf.tsx:263
 msgid "Tax"
-msgstr "Податок"
+msgstr "Moms"
 
 #: src/atoms.tsx:428
 msgid "Tax rate created"
-msgstr "Податкову ставку створено"
+msgstr "Momssats skapad"
 
 #: src/atoms.tsx:455
 msgid "Tax rate creation failed"
-msgstr "Помилка створення податкової ставки"
+msgstr "Kunde inte skapa momssats"
 
 #: src/atoms.tsx:457
 msgid "Tax rate update failed"
-msgstr "Помилка оновлення податкової ставки"
+msgstr "Kunde inte uppdatera momssats"
 
 #: src/atoms.tsx:445
 msgid "Tax rate updated successfully"
-msgstr "Податкову ставку успішно оновлено"
+msgstr "Momssats uppdaterad framgångsrikt"
 
 #: src/routes/settings/tax-rates.tsx:33
 #: src/layouts/base.tsx:149
 msgid "Tax rates"
-msgstr "Податкові ставки"
+msgstr "Momssatser"
 
 #: src/routes/settings/invoice.tsx:80
 #: src/routes/settings/invoice.tsx:156
@@ -606,11 +600,11 @@ msgstr "Податкові ставки"
 #: src/routes/invoices/details.tsx:314
 #: src/routes/invoices/details.tsx:342
 msgid "This field is required!"
-msgstr "Це поле обов'язкове!"
+msgstr "Detta fält är obligatoriskt!"
 
 #: src/layouts/base.tsx:117
 msgid "Time tracking"
-msgstr "Відстеження часу"
+msgstr "Tidsrapportering"
 
 #: src/routes/invoices/index.tsx:115
 #: src/routes/invoices/details.tsx:336
@@ -618,45 +612,45 @@ msgstr "Відстеження часу"
 #: src/components/invoices/pdf.tsx:230
 #: src/components/invoices/pdf.tsx:274
 msgid "Total"
-msgstr "Загалом"
+msgstr "Totalt"
 
 #: src/routes/time-tracking.tsx:11
 msgid "Under Development"
-msgstr "В розробці"
+msgstr "Under utveckling"
 
 #: src/routes/settings/invoice.tsx:257
 msgid "Upload"
-msgstr "Завантажити"
+msgstr "Ladda upp"
 
 #: src/components/clients/form.tsx:157
 msgid "VAT Number"
-msgstr "Номер ПДВ"
+msgstr "Momsregistreringsnummer"
 
 #: src/routes/clients.tsx:102
 msgid "VATIN"
-msgstr "Номер ПДВ"
+msgstr "Momsreg.nr"
 
 #: src/routes/invoices/details.tsx:511
 msgid "View"
-msgstr "Переглянути"
+msgstr "Visa"
 
 #: src/routes/invoices/index.tsx:38
 #: src/components/invoices/state-select.tsx:33
 msgid "Void"
-msgstr "Скасовано"
+msgstr "Ogiltig"
 
 #: src/components/clients/form.tsx:102
 msgid "Warning: This will also delete {invoiceCount} related invoice(s)."
-msgstr "Попередження: Це також видалить {invoiceCount} пов'язаних рахунків."
+msgstr "Varning: Detta kommer också att ta bort {invoiceCount} relaterad(e) faktura(or)."
 
 #: src/routes/clients.tsx:104
 #: src/components/clients/form.tsx:160
 msgid "Website"
-msgstr "Веб-сайт"
+msgstr "Webbplats"
 
 #: src/routes/settings/organization.tsx:108
 #: src/routes/invoices/preview.tsx:163
 #: src/routes/invoices/details.tsx:492
 #: src/components/clients/form.tsx:108
 msgid "Yes"
-msgstr "Так"
+msgstr "Ja"

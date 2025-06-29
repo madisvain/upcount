@@ -34,9 +34,6 @@ yarn lint
 
 # Extract translation strings
 yarn extract
-
-# Add new locale (replace 'de' with language code)
-yarn add-locale de
 ```
 
 ## File Structure

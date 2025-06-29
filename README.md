@@ -44,11 +44,13 @@ Upcount is available for Mac, Linux & Windows and can be downloaded from Github 
 
 # Languages
 * 🇬🇧 English
-* 🇳🇱 Dutch
 * 🇩🇪 German
-* 🇫🇮 Finnish 
 * 🇪🇪 Estonian
+* 🇫🇮 Finnish
 * 🇫🇷 French
+* 🇳🇱 Dutch
+* 🇸🇪 Swedish
+* 🇺🇦 Ukrainian
 
 If you are interested in adding a language translation to Upcount [please open a new issue](https://github.com/madisvain/upcount/issues).
 

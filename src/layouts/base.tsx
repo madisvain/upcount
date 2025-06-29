@@ -232,11 +232,23 @@ export default function BaseLayout() {
                     }}
                     value={i18n.locale}
                   >
-                    {map(locales, (locale) => (
-                      <Option value={locale} key={locale}>
-                        {toUpper(locale)}
-                      </Option>
-                    ))}
+                    {map(locales, (locale) => {
+                      const languageMap: Record<string, string> = {
+                        en: "🇬🇧 English",
+                        de: "🇩🇪 German", 
+                        et: "🇪🇪 Estonian",
+                        fi: "🇫🇮 Finnish",
+                        fr: "🇫🇷 French",
+                        nl: "🇳🇱 Dutch",
+                        sv: "🇸🇪 Swedish",
+                        uk: "🇺🇦 Ukrainian"
+                      };
+                      return (
+                        <Option value={locale} key={locale}>
+                          {languageMap[locale] || toUpper(locale)}
+                        </Option>
+                      );
+                    })}
                   </Select>
                 </Space>
               </Col>
