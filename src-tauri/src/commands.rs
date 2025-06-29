@@ -2,7 +2,9 @@ use crate::database::{
     Client, CreateClientRequest, Database, UpdateClientRequest,
     Invoice, InvoiceLineItem, CreateInvoiceRequest, UpdateInvoiceRequest,
     Organization, CreateOrganizationRequest, UpdateOrganizationRequest,
-    TaxRate, CreateTaxRateRequest, UpdateTaxRateRequest
+    TaxRate, CreateTaxRateRequest, UpdateTaxRateRequest,
+    Tag, CreateTagRequest, UpdateTagRequest,
+    TimeEntry, CreateTimeEntryRequest, UpdateTimeEntryRequest
 };
 use tauri::{AppHandle, Manager, State};
 use chrono::{DateTime, Utc};
@@ -310,4 +312,98 @@ pub async fn restore_database(app: AppHandle) -> Result<String, String> {
     }
     
     Ok("Database restored successfully".to_string())
+}
+
+// Time Tracking Commands
+
+// Tag Commands
+#[tauri::command]
+pub async fn get_tags(
+    organization_id: String,
+    db: State<'_, Database>,
+) -> Result<Vec<Tag>, String> {
+    db.get_tags(&organization_id)
+        .await
+        .map_err(|e| handle_db_error(e, "get_tags"))
+}
+
+#[tauri::command]
+pub async fn get_tag(tag_id: String, db: State<'_, Database>) -> Result<Option<Tag>, String> {
+    db.get_tag(&tag_id)
+        .await
+        .map_err(|e| handle_db_error(e, "get_tag"))
+}
+
+#[tauri::command]
+pub async fn create_tag(
+    tag: CreateTagRequest,
+    db: State<'_, Database>,
+) -> Result<Tag, String> {
+    db.create_tag(tag)
+        .await
+        .map_err(|e| handle_db_error(e, "create_tag"))
+}
+
+#[tauri::command]
+pub async fn update_tag(
+    tag_id: String,
+    updates: UpdateTagRequest,
+    db: State<'_, Database>,
+) -> Result<Tag, String> {
+    db.update_tag(&tag_id, updates)
+        .await
+        .map_err(|e| handle_db_error(e, "update_tag"))
+}
+
+#[tauri::command]
+pub async fn delete_tag(tag_id: String, db: State<'_, Database>) -> Result<bool, String> {
+    db.delete_tag(&tag_id)
+        .await
+        .map_err(|e| handle_db_error(e, "delete_tag"))
+}
+
+// Time Entry Commands
+#[tauri::command]
+pub async fn get_time_entries(
+    organization_id: String,
+    db: State<'_, Database>,
+) -> Result<Vec<TimeEntry>, String> {
+    db.get_time_entries(&organization_id)
+        .await
+        .map_err(|e| handle_db_error(e, "get_time_entries"))
+}
+
+#[tauri::command]
+pub async fn get_time_entry(time_entry_id: String, db: State<'_, Database>) -> Result<Option<TimeEntry>, String> {
+    db.get_time_entry(&time_entry_id)
+        .await
+        .map_err(|e| handle_db_error(e, "get_time_entry"))
+}
+
+#[tauri::command]
+pub async fn create_time_entry(
+    time_entry: CreateTimeEntryRequest,
+    db: State<'_, Database>,
+) -> Result<TimeEntry, String> {
+    db.create_time_entry(time_entry)
+        .await
+        .map_err(|e| handle_db_error(e, "create_time_entry"))
+}
+
+#[tauri::command]
+pub async fn update_time_entry(
+    time_entry_id: String,
+    updates: UpdateTimeEntryRequest,
+    db: State<'_, Database>,
+) -> Result<TimeEntry, String> {
+    db.update_time_entry(&time_entry_id, updates)
+        .await
+        .map_err(|e| handle_db_error(e, "update_time_entry"))
+}
+
+#[tauri::command]
+pub async fn delete_time_entry(time_entry_id: String, db: State<'_, Database>) -> Result<bool, String> {
+    db.delete_time_entry(&time_entry_id)
+        .await
+        .map_err(|e| handle_db_error(e, "delete_time_entry"))
 }

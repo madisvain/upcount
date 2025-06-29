@@ -5,6 +5,10 @@ if (import.meta.env.DEV) {
   import("jotai-devtools/styles.css");
 }
 
+// Initialize Sentry for error tracking
+import { initSentry } from "src/utils/sentry";
+initSentry();
+
 import "dayjs/locale/en";
 import "dayjs/locale/et";
 

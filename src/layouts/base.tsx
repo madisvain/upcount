@@ -26,6 +26,7 @@ import take from "lodash/take";
 import toUpper from "lodash/toUpper";
 
 import { organizationsAtom, organizationIdAtom, organizationAtom, siderAtom, localeAtom } from "src/atoms";
+import Timer from "src/components/timer";
 import { RESET } from "jotai/utils";
 import { dynamicActivate, locales } from "src/utils/lingui";
 import { useAutoUpdater } from "src/hooks/useAutoUpdater";
@@ -195,6 +196,7 @@ export default function BaseLayout() {
               </Col>
               <Col>
                 <Space>
+                  <Timer />
                   {!isEmpty(organizations) && (
                     <Select
                       showSearch={organizations.length > 5 ? true : false}
