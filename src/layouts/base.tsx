@@ -226,6 +226,7 @@ export default function BaseLayout() {
                   <Select
                     variant="borderless"
                     style={{ marginRight: 24 }}
+                    popupMatchSelectWidth={false}
                     onSelect={(value) => {
                       setLocale(value);
                       dynamicActivate(value);
