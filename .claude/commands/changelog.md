@@ -85,6 +85,16 @@ When releasing a version:
 3. Clear the "Unreleased" section (keep the heading)
 4. Update comparison links at the bottom
 5. Commit with message: "Release version X.X.X"
+6. **Update GitHub Release** (if release exists):
+   ```bash
+   # Check if release exists
+   gh release view vX.X.X --repo madisvain/upcount
+   
+   # If it exists, update the release notes
+   gh release edit vX.X.X --repo madisvain/upcount --notes-file release-notes.md
+   ```
+   
+   Where `release-notes.md` contains the changelog section for that version.
 
 ## Good Examples
 
