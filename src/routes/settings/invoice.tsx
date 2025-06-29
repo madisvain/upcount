@@ -31,7 +31,9 @@ function SettingsInvoice() {
   // Generate preview based on form values
   const invoiceFormat = Form.useWatch("invoiceNumberFormat", form);
   const getPreview = (format: string | undefined) => {
-    const template = format || organization?.invoiceNumberFormat || "INV-{year}-{number}";
+    const template = format || organization?.invoiceNumberFormat;
+    if (!template) return "";
+
     const counter = (organization?.invoiceNumberCounter || 0) + 1;
     return generateInvoicePreview(template, counter);
   };
@@ -54,6 +56,10 @@ function SettingsInvoice() {
     };
     reader.readAsDataURL(data.file);
   };
+
+  console.log("Organization settings:", organization);
+  console.log("Organization invoiceNumberFormat:", organization?.invoiceNumberFormat);
+  console.log("Form values:", form.getFieldsValue());
 
   return (
     !isEmpty(organization) && (
@@ -107,40 +113,42 @@ function SettingsInvoice() {
           </Row>
           <Row gutter={24}>
             <Col span={12}>
-              <Form.Item 
-                label={t`Invoice Number Format`} 
+              <Form.Item
+                label={t`Invoice Number Format`}
                 name="invoiceNumberFormat"
                 rules={[
                   { required: true, message: t`This field is required!` },
                   {
                     validator: (_, value) => {
                       if (!value) return Promise.resolve();
-                      
+
                       const validation = validateInvoiceFormat(value);
                       if (!validation.isValid) {
                         return Promise.reject(new Error(validation.error));
                       }
-                      
+
                       return Promise.resolve();
-                    }
-                  }
+                    },
+                  },
                 ]}
               >
-                <Input placeholder="INV-{year}-{number}" />
-                <Button
-                  type="link"
-                  size="small"
-                  onClick={() => setShowVariables(!showVariables)}
-                  style={{ marginTop: 4, padding: 0, height: "auto" }}
-                >
-                  {showVariables ? <CaretDownOutlined /> : <CaretRightOutlined />}
-                  <Trans>Show variables</Trans>
-                </Button>
+                <Input />
               </Form.Item>
+              <Button
+                type="link"
+                size="small"
+                onClick={() => setShowVariables(!showVariables)}
+                style={{ marginTop: 4, padding: 0, height: "auto" }}
+              >
+                {showVariables ? <CaretDownOutlined /> : <CaretRightOutlined />}
+                <Trans>Show variables</Trans>
+              </Button>
             </Col>
             <Col span={12}>
-              <Form.Item label={t`Preview`} name="invoiceNumberFormat">
-                <Input value={invoiceNumberPreview} disabled />
+              <Form.Item label={t`Preview`}>
+                <Text code style={{ fontSize: "16px" }}>
+                  {invoiceNumberPreview || t`Enter format to see preview`}
+                </Text>
               </Form.Item>
             </Col>
           </Row>
