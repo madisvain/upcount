@@ -55,8 +55,7 @@ const TimeEntryForm = () => {
     };
 
     await setTimeEntry(submitData);
-    setTimeEntryId(null);
-    navigate(location.pathname, { state: { timeEntryModal: false } });
+    navigate(location.pathname, { state: { timeEntryModal: false }, replace: true });
     form.resetFields();
     setSubmitting(false);
   };
@@ -65,8 +64,7 @@ const TimeEntryForm = () => {
     if (timeEntryId) {
       setSubmitting(true);
       await deleteTimeEntry(timeEntryId);
-      setTimeEntryId(null);
-      navigate(location.pathname, { state: { timeEntryModal: false } });
+      navigate(location.pathname, { state: { timeEntryModal: false }, replace: true });
       form.resetFields();
       setSubmitting(false);
     }
@@ -114,9 +112,8 @@ const TimeEntryForm = () => {
       onOk={() => form.submit()}
       confirmLoading={submitting}
       onCancel={() => {
-        setTimeEntryId(null);
         form.resetFields();
-        navigate(location.pathname, { state: { timeEntryModal: false } });
+        navigate(location.pathname, { state: { timeEntryModal: false }, replace: true });
       }}
       footer={[
         <div key="footer" style={{ display: 'flex', justifyContent: 'space-between', width: '100%' }}>
@@ -138,9 +135,8 @@ const TimeEntryForm = () => {
           <div>
             <Button
               onClick={() => {
-                setTimeEntryId(null);
                 form.resetFields();
-                navigate(location.pathname, { state: { timeEntryModal: false } });
+                navigate(location.pathname, { state: { timeEntryModal: false }, replace: true });
               }}
               style={{ marginRight: 8 }}
             >

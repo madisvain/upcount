@@ -1,5 +1,5 @@
 import React, { useEffect, useState, useContext, useRef } from "react";
-import { Link, useLocation } from "react-router";
+import { Link, useLocation, useNavigate } from "react-router";
 import { Button, Row, Col, Space, Input, Table, Typography, Tag, Popconfirm, Dropdown, Form, Select } from "antd";
 import type { GetRef, InputRef } from "antd";
 import {
@@ -34,6 +34,7 @@ import {
   updateTimeEntryDirectlyAtom,
 } from "src/atoms";
 import TimeEntryForm from "src/components/time-entries/form";
+import TimeRangeCell from "src/components/time-entries/time-range-cell";
 
 dayjs.extend(duration);
 
@@ -163,6 +164,7 @@ const EditableCell: React.FC<React.PropsWithChildren<EditableCellProps>> = ({
 
 const TimeTracking = () => {
   const location = useLocation();
+  const navigate = useNavigate();
   const [search, setSearch] = useAtom(searchAtom);
 
   // Atoms
@@ -290,6 +292,19 @@ const TimeTracking = () => {
       const client = clients.find(c => c.id === row.clientId);
       updates.clientName = client?.name || null;
     }
+
+    // Handle time range updates
+    if (row.startTime !== original?.startTime) {
+      updates.startTime = row.startTime;
+    }
+    
+    if (row.endTime !== original?.endTime) {
+      updates.endTime = row.endTime;
+    }
+    
+    if (row.duration !== original?.duration) {
+      updates.duration = row.duration;
+    }
     
     // Only update if there are actual changes
     if (Object.keys(updates).length > 0) {
@@ -304,7 +319,7 @@ const TimeTracking = () => {
       dataIndex: "description",
       key: "description",
       editable: true,
-      render: (text: string) => text,
+      render: (text: string) => text || <span style={{ color: '#bfbfbf', fontStyle: 'italic' }}>Add description...</span>,
     },
     {
       title: <Trans>Client</Trans>,
@@ -320,11 +335,15 @@ const TimeTracking = () => {
       onFilter: (value: any, record: any) => record.clientId === value,
     },
     {
-      title: <Trans>Start Time</Trans>,
-      dataIndex: "startTime",
-      key: "startTime",
-      render: (timestamp: number) => dayjs(timestamp).format("MMM DD, HH:mm"),
+      title: <Trans>Time Range</Trans>,
+      dataIndex: "timeRange",
+      key: "timeRange",
+      render: (_: any, record: any) => (
+        <TimeRangeCell record={record} handleSave={handleSave} />
+      ),
       sorter: (a: any, b: any) => a.startTime - b.startTime,
+      defaultSortOrder: 'descend',
+      showSorterTooltip: false,
     },
     {
       title: <Trans>Duration</Trans>,
@@ -385,9 +404,14 @@ const TimeTracking = () => {
                 label: <Trans>Edit</Trans>,
                 icon: <EditOutlined />,
                 onClick: () => {
-                  // Navigate to modal using React Router state
-                  window.history.replaceState({ timeEntryModal: true, timeEntryId: record.id }, "", "/time-tracking");
-                  window.dispatchEvent(new PopStateEvent("popstate"));
+                  navigate(location.pathname, { 
+                    state: { 
+                      ...location.state,
+                      timeEntryModal: true, 
+                      timeEntryId: record.id 
+                    }, 
+                    replace: true 
+                  });
                 },
               },
               {
