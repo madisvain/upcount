@@ -1,6 +1,7 @@
 import { Button, Col, Form, Input, InputNumber, Select, Space, Typography, Row, Upload, Divider } from "antd";
 import { atom, useAtom, useSetAtom } from "jotai";
-import { FileTextOutlined, UploadOutlined } from "@ant-design/icons";
+import { FileTextOutlined, UploadOutlined, CaretRightOutlined, CaretDownOutlined } from "@ant-design/icons";
+import { useState } from "react";
 import { Trans } from "@lingui/react/macro";
 import { t } from "@lingui/core/macro";
 import { useLingui } from "@lingui/react";
@@ -8,11 +9,13 @@ import map from "lodash/map";
 import isEmpty from "lodash/isEmpty";
 
 const { Title } = Typography;
+const { Text } = Typography;
 const { TextArea } = Input;
 const { Option } = Select;
 
 import { organizationAtom, setOrganizationsAtom } from "src/atoms";
 import { currencies, getCurrencySymbol } from "src/utils/currencies";
+import { validateInvoiceFormat, generateInvoicePreview } from "src/utils/invoice";
 
 const submittingAtom = atom(false);
 
@@ -23,26 +26,17 @@ function SettingsInvoice() {
   const setOrganizations = useSetAtom(setOrganizationsAtom);
   const [organization, setOrganization] = useAtom(organizationAtom);
   const [submitting, setSubmitting] = useAtom(submittingAtom);
-  
+  const [showVariables, setShowVariables] = useState(false);
+
   // Generate preview based on form values
   const invoiceFormat = Form.useWatch("invoiceNumberFormat", form);
-  const generatePreview = (format: string | undefined) => {
+  const getPreview = (format: string | undefined) => {
     const template = format || organization?.invoiceNumberFormat || "INV-{year}-{number}";
     const counter = (organization?.invoiceNumberCounter || 0) + 1;
-    const now = new Date();
-    
-    let preview = template;
-    preview = preview.replace("{number}", String(counter).padStart(5, "0"));
-    preview = preview.replace("{year}", now.getFullYear().toString());
-    preview = preview.replace("{y}", String(now.getFullYear() % 100).padStart(2, "0"));
-    preview = preview.replace("{month}", String(now.getMonth() + 1).padStart(2, "0"));
-    preview = preview.replace("{m}", now.toLocaleString("en", { month: "short" }));
-    preview = preview.replace("{day}", String(now.getDate()).padStart(2, "0"));
-    
-    return preview;
+    return generateInvoicePreview(template, counter);
   };
-  
-  const invoiceNumberPreview = generatePreview(invoiceFormat);
+
+  const invoiceNumberPreview = getPreview(invoiceFormat);
 
   const onSubmit = async (values: object) => {
     setSubmitting(true);
@@ -102,53 +96,91 @@ function SettingsInvoice() {
               <Form.Item label={t`Notes`} name="customerNotes">
                 <TextArea rows={4} />
               </Form.Item>
-
+            </Col>
+          </Row>
+          <Row gutter={24}>
+            <Col span={24}>
               <Divider orientation="left">
                 <Trans>Invoice Numbering</Trans>
               </Divider>
-
-              <Form.Item
-                label={t`Invoice Number Format`}
+            </Col>
+          </Row>
+          <Row gutter={24}>
+            <Col span={12}>
+              <Form.Item 
+                label={t`Invoice Number Format`} 
                 name="invoiceNumberFormat"
-                help={
-                  <div style={{ marginTop: 8 }}>
-                    <div style={{ marginBottom: 8 }}>
-                      <strong>
-                        <Trans>Preview</Trans>:
-                      </strong>{" "}
-                      {invoiceNumberPreview}
-                    </div>
-                    <div>
-                      <strong>
-                        <Trans>Available variables</Trans>:
-                      </strong>
-                      <ul style={{ margin: "4px 0", paddingLeft: 20 }}>
-                        <li>
-                          {"{number}"} - <Trans>Sequential number</Trans>
-                        </li>
-                        <li>
-                          {"{year}"} - <Trans>4-digit year</Trans> ({new Date().getFullYear()})
-                        </li>
-                        <li>
-                          {"{y}"} - <Trans>2-digit year</Trans> ({String(new Date().getFullYear() % 100).padStart(2, "0")})
-                        </li>
-                        <li>
-                          {"{month}"} - <Trans>2-digit month</Trans> ({String(new Date().getMonth() + 1).padStart(2, "0")})
-                        </li>
-                        <li>
-                          {"{m}"} - <Trans>Month name</Trans> ({new Date().toLocaleString("en", { month: "short" })})
-                        </li>
-                        <li>
-                          {"{day}"} - <Trans>Day of month</Trans> ({String(new Date().getDate()).padStart(2, "0")})
-                        </li>
-                      </ul>
-                    </div>
-                  </div>
-                }
+                rules={[
+                  { required: true, message: t`This field is required!` },
+                  {
+                    validator: (_, value) => {
+                      if (!value) return Promise.resolve();
+                      
+                      const validation = validateInvoiceFormat(value);
+                      if (!validation.isValid) {
+                        return Promise.reject(new Error(validation.error));
+                      }
+                      
+                      return Promise.resolve();
+                    }
+                  }
+                ]}
               >
                 <Input placeholder="INV-{year}-{number}" />
+                <Button
+                  type="link"
+                  size="small"
+                  onClick={() => setShowVariables(!showVariables)}
+                  style={{ marginTop: 4, padding: 0, height: "auto" }}
+                >
+                  {showVariables ? <CaretDownOutlined /> : <CaretRightOutlined />}
+                  <Trans>Show variables</Trans>
+                </Button>
               </Form.Item>
-
+            </Col>
+            <Col span={12}>
+              <Form.Item label={t`Preview`} name="invoiceNumberFormat">
+                <Input value={invoiceNumberPreview} disabled />
+              </Form.Item>
+            </Col>
+          </Row>
+          {showVariables && (
+            <Row gutter={24}>
+              <Col span={24}>
+                <div style={{ marginBottom: 16, padding: "12px 16px", backgroundColor: "#f5f5f5", borderRadius: 4 }}>
+                  <Text strong style={{ display: "block", marginBottom: 8 }}>
+                    <Trans>Available variables:</Trans>
+                  </Text>
+                  <Space direction="vertical" size={4} style={{ width: "100%" }}>
+                    <div>
+                      <Text code>{"{number}"}</Text> - <Trans>Sequential number</Trans>
+                    </div>
+                    <div>
+                      <Text code>{"{year}"}</Text> - <Trans>4-digit year</Trans> ({new Date().getFullYear()})
+                    </div>
+                    <div>
+                      <Text code>{"{y}"}</Text> - <Trans>2-digit year</Trans> (
+                      {String(new Date().getFullYear() % 100).padStart(2, "0")})
+                    </div>
+                    <div>
+                      <Text code>{"{month}"}</Text> - <Trans>2-digit month</Trans> (
+                      {String(new Date().getMonth() + 1).padStart(2, "0")})
+                    </div>
+                    <div>
+                      <Text code>{"{m}"}</Text> - <Trans>Month name</Trans> (
+                      {new Date().toLocaleString("en", { month: "short" })})
+                    </div>
+                    <div>
+                      <Text code>{"{day}"}</Text> - <Trans>Day of month</Trans> (
+                      {String(new Date().getDate()).padStart(2, "0")})
+                    </div>
+                  </Space>
+                </div>
+              </Col>
+            </Row>
+          )}
+          <Row gutter={16}>
+            <Col span={24}>
               <Divider orientation="left">
                 <Trans>Logo</Trans>
               </Divider>
