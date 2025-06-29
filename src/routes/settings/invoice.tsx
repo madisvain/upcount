@@ -102,12 +102,12 @@ function SettingsInvoice() {
               <Row gutter={16}>
                 <Col span={12}>
                   <Form.Item label={t`Start Number`} name="invoiceNumberStart">
-                    <InputNumber min={1} placeholder={1} style={{ width: "100%" }} />
+                    <InputNumber min={1} placeholder="1" style={{ width: "100%" }} />
                   </Form.Item>
                 </Col>
                 <Col span={12}>
                   <Form.Item label={t`Number of Digits`} name="invoiceNumberDigits">
-                    <InputNumber min={1} max={10} placeholder={4} style={{ width: "100%" }} />
+                    <InputNumber min={1} max={10} placeholder="4" style={{ width: "100%" }} />
                   </Form.Item>
                 </Col>
               </Row>

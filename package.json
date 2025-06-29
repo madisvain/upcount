@@ -6,7 +6,8 @@
   "scripts": {
     "dev": "vite",
     "build": "tsc && vite build",
-    "lint": "eslint . --report-unused-disable-directives --max-warnings 0",
+    "type-check": "tsc --noEmit",
+    "lint": "tsc --noEmit && eslint . --report-unused-disable-directives --max-warnings 0",
     "preview": "vite preview",
     "extract": "lingui extract",
     "add-locale": "lingui add-locale"
