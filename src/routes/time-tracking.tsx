@@ -1,6 +1,6 @@
 import React, { useEffect, useState, useContext, useRef } from "react";
 import { Link, useLocation } from "react-router";
-import { Button, Row, Col, Space, Input, Table, Typography, Tag, Popconfirm, Dropdown, Form } from "antd";
+import { Button, Row, Col, Space, Input, Table, Typography, Tag, Popconfirm, Dropdown, Form, Select } from "antd";
 import type { GetRef, InputRef } from "antd";
 import {
   PlayCircleOutlined,
@@ -66,6 +66,8 @@ interface EditableCellProps extends React.HTMLAttributes<HTMLElement> {
   dataIndex: string;
   record: any;
   handleSave: (record: any) => void;
+  inputType?: 'text' | 'select';
+  options?: Array<{ value: any; label: string }>;
 }
 
 const EditableCell: React.FC<React.PropsWithChildren<EditableCellProps>> = ({
@@ -75,18 +77,27 @@ const EditableCell: React.FC<React.PropsWithChildren<EditableCellProps>> = ({
   dataIndex,
   record,
   handleSave,
+  inputType = 'text',
+  options = [],
   ...restProps
 }) => {
   const [editing, setEditing] = useState(false);
   const [saving, setSaving] = useState(false);
+  const [selectOpen, setSelectOpen] = useState(false);
   const inputRef = useRef<InputRef>(null);
   const form = useContext(EditableContext)!;
 
   useEffect(() => {
     if (editing) {
       inputRef.current?.focus();
+      // Auto-open dropdown for client field
+      if (dataIndex === 'clientId') {
+        setSelectOpen(true);
+      }
+    } else {
+      setSelectOpen(false);
     }
-  }, [editing]);
+  }, [editing, dataIndex]);
 
   const toggleEdit = () => {
     setEditing(!editing);
@@ -121,7 +132,20 @@ const EditableCell: React.FC<React.PropsWithChildren<EditableCellProps>> = ({
         style={{ margin: 0 }}
         name={dataIndex}
       >
-        <Input ref={inputRef} onPressEnter={handlePressEnter} onBlur={save} />
+        {dataIndex === 'clientId' ? (
+          <Select
+            ref={inputRef}
+            open={selectOpen}
+            onOpenChange={setSelectOpen}
+            onBlur={save}
+            onChange={save}
+            options={options}
+            allowClear
+            placeholder="Select client"
+          />
+        ) : (
+          <Input ref={inputRef} onPressEnter={handlePressEnter} onBlur={save} />
+        )}
       </Form.Item>
     ) : (
       <div
@@ -252,8 +276,25 @@ const TimeTracking = () => {
 
   // Handle inline field update
   const handleSave = async (row: any) => {
-    // Use direct update to avoid triggering fetches and re-renders
-    await updateTimeEntryDirectly({ id: row.id, updates: { description: row.description } });
+    // Extract the changed fields (exclude unchanged ones)
+    const original = timeEntries.find(e => e.id === row.id);
+    const updates: any = {};
+    
+    if (row.description !== original?.description) {
+      updates.description = row.description;
+    }
+    
+    if (row.clientId !== original?.clientId) {
+      updates.clientId = row.clientId;
+      // Also update the clientName for display
+      const client = clients.find(c => c.id === row.clientId);
+      updates.clientName = client?.name || null;
+    }
+    
+    // Only update if there are actual changes
+    if (Object.keys(updates).length > 0) {
+      await updateTimeEntryDirectly({ id: row.id, updates });
+    }
   };
 
   // Table columns
@@ -267,9 +308,11 @@ const TimeTracking = () => {
     },
     {
       title: <Trans>Client</Trans>,
-      dataIndex: "clientName",
-      key: "clientName",
-      render: (text: string) => text || "-",
+      dataIndex: "clientId",
+      key: "clientId",
+      editable: true,
+      inputType: 'select',
+      render: (clientId: string, record: any) => record.clientName || "-",
       filters: clients.map((client: any) => ({
         text: client.name,
         value: client.id,
@@ -393,6 +436,16 @@ const TimeTracking = () => {
     if (!col.editable) {
       return col;
     }
+    
+    // Prepare options for select fields
+    let options: Array<{ value: any; label: string }> = [];
+    if (col.inputType === 'select' && col.dataIndex === 'clientId') {
+      options = clients.map((client: any) => ({
+        value: client.id,
+        label: client.name,
+      }));
+    }
+    
     return {
       ...col,
       onCell: (record: any) => ({
@@ -401,6 +454,8 @@ const TimeTracking = () => {
         dataIndex: col.dataIndex,
         title: col.title,
         handleSave,
+        inputType: col.inputType,
+        options,
       }),
     };
   });
