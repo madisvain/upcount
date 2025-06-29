@@ -42,17 +42,17 @@ import TaxRateForm from "src/components/tax-rates/form.tsx";
 dayjs.extend(localizedFormat);
 
 // Lazy load DevTools for development only
-const DevTools = lazy(() => 
-  import.meta.env.DEV 
-    ? import('jotai-devtools').then(module => ({ default: module.DevTools }))
+const DevTools = lazy(() =>
+  import.meta.env.DEV
+    ? import("jotai-devtools").then((module) => ({ default: module.DevTools }))
     : Promise.resolve({ default: () => null })
 );
 
 const AppContent = () => {
   const navigate = useNavigate();
   const location = useLocation();
-  const [isOrganizationChanging, setIsOrganizationChanging] = useState(false);
-  
+  const [isInitialLoading, setIsInitialLoading] = useState(true);
+
   // Load locale
   const locale = useAtomValue(localeAtom);
 
@@ -69,82 +69,75 @@ const AppContent = () => {
     setOrganizations();
   }, [setOrganizations]);
 
+  // Brief loading to prevent CSS flicker
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setIsInitialLoading(false);
+    }, 100);
+    
+    return () => clearTimeout(timer);
+  }, []);
+
   // Watch for organization changes
   useEffect(() => {
-    let isChanging = false;
-    
     // If organizationId is null and we're not on the index page, redirect to index
     if (organizationId === null && location.pathname !== "/") {
-      setIsOrganizationChanging(true);
       navigate("/");
       return;
     }
-    
+
     // Only auto-set if organizationId is not null and not found in organizations
-    if (organizationId !== null && !find(organizations, { id: organizationId })) {
-      isChanging = true;
-      setIsOrganizationChanging(true);
+    if (organizationId !== null && organizations.length > 0 && !find(organizations, { id: organizationId })) {
       const nextOrganization: any = first(organizations);
-      setOrganizationId(organizations.length > 0 ? nextOrganization.id : null);
+      setOrganizationId(nextOrganization.id);
     }
-    
-    // Clear loading state after a short delay if we didn't change anything
-    if (!isChanging && isOrganizationChanging) {
-      setTimeout(() => setIsOrganizationChanging(false), 100);
-    }
-  }, [organizations, organizationId, setOrganizationId, navigate, location.pathname, isOrganizationChanging]);
-  
-  // Clear loading state when organizationId is stable
-  useEffect(() => {
-    if (isOrganizationChanging && organizationId !== null && find(organizations, { id: organizationId })) {
-      setIsOrganizationChanging(false);
-    }
-  }, [organizationId, organizations, isOrganizationChanging]);
+  }, [organizations, organizationId, setOrganizationId, navigate, location.pathname]);
+
+  // Show loading spinner briefly to prevent CSS flicker
+  if (isInitialLoading) {
+    return <Loading />;
+  }
 
   return (
-    <Suspense fallback={<Loading />}>
-      {isOrganizationChanging ? (
-        <Loading />
-      ) : (
-        <ConfigProvider
-          theme={{
-            token: {
-              borderRadius: 2,
-            },
-          }}
-        >
-          <Suspense fallback={null}>
-            <DevTools />
-          </Suspense>
-          <I18nProvider i18n={i18n}>
-            <Routes>
-              <Route path="/" element={<Index />} />
-              <Route path="/invoices" element={<BaseLayout />}>
-                <Route index element={<Invoices />} />
-                <Route path=":id" element={<InvoiceDetails />} />
-                <Route path=":id/preview" element={<InvoicePreview />} />
-                <Route path=":id/pdf" element={<InvoiceDetails />} />
+    <Suspense fallback={<div>Loading...</div>}>
+      <ConfigProvider
+        theme={{
+          token: {
+            borderRadius: 2,
+          },
+        }}
+      >
+        <Suspense fallback={null}>
+          <DevTools />
+        </Suspense>
+        <I18nProvider i18n={i18n}>
+          <Routes>
+            <Route path="/" element={<Index />} />
+            <Route path="/invoices" element={<BaseLayout />}>
+              <Route index element={<Invoices />} />
+              <Route path=":id" element={<InvoiceDetails />} />
+              <Route path=":id/preview" element={<InvoicePreview />} />
+              <Route path=":id/pdf" element={<InvoiceDetails />} />
+            </Route>
+            <Route path="/clients" element={<BaseLayout />}>
+              <Route index element={<Clients />} />
+            </Route>
+            <Route path="/time-tracking" element={<BaseLayout />}>
+              <Route path="" element={<TimeTracking />} />
+            </Route>
+            <Route path="/settings" element={<BaseLayout />}>
+              <Route index element={<Navigate to="/invoices/organization" />} />
+              <Route path="invoice" element={<SettingsInvoice />} />
+              <Route path="organization" element={<SettingsOrganization />} />
+              <Route path="tax-rates" element={<SettingsTaxRates />}>
+                <Route path="new" element={<TaxRateForm />} />
+                <Route path=":id" element={<TaxRateForm />} />
               </Route>
-              <Route path="/clients" element={<BaseLayout />}>
-                <Route index element={<Clients />} />
-              </Route>
-              <Route path="/time-tracking" element={<BaseLayout />}>
-                <Route path="" element={<TimeTracking />} />
-              </Route>
-              <Route path="/settings" element={<BaseLayout />}>
-                <Route index element={<Navigate to="/invoices/organization" />} />
-                <Route path="invoice" element={<SettingsInvoice />} />
-                <Route path="organization" element={<SettingsOrganization />} />
-                <Route path="tax-rates" element={<SettingsTaxRates />}>
-                  <Route path="new" element={<TaxRateForm />} />
-                  <Route path=":id" element={<TaxRateForm />} />
-                </Route>
-                <Route path="backup" element={<SettingsBackup />} />
-              </Route>
-            </Routes>
-          </I18nProvider>
-        </ConfigProvider>
-      )}
+              <Route path="backup" element={<SettingsBackup />} />
+            </Route>
+          </Routes>
+        </I18nProvider>
+      </ConfigProvider>
     </Suspense>
   );
 };

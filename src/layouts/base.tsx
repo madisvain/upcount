@@ -73,9 +73,12 @@ export default function BaseLayout() {
     selectedKeys = [join(take(compact(pathArray), 2), ".")];
   }
 
+  if (!organization) {
+    return <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', height: '100vh' }}>Loading...</div>;
+  }
+
   return (
-    organization && (
-      <Layout hasSider style={{ minHeight: "100vh", width: "100%" }}>
+    <Layout hasSider style={{ minHeight: "100vh", width: "100%" }}>
         <Sider
           trigger={null}
           collapsible
@@ -199,7 +202,7 @@ export default function BaseLayout() {
                       defaultValue={organization.id}
                       onSelect={(value) => {
                         setOrganizationId(value);
-                        navigate("/");
+                        window.location.reload();
                       }}
                       popupRender={(menu) => (
                         <>
@@ -281,6 +284,5 @@ export default function BaseLayout() {
         </Layout>
         {contextHolder}
       </Layout>
-    )
   );
 }

@@ -352,7 +352,7 @@ export const setOrganizationsAtom = atom(null, async (_get, set) => {
   }
 });
 // Organization
-export const organizationIdAtom = atomWithStorage<string | null>("organizationId", null);
+export const organizationIdAtom = atomWithStorage<string | null>("organizationId", null, undefined, { getOnInit: true });
 export const organizationAtom = atom(
   async (get) => {
     const organizationId = get(organizationIdAtom);
