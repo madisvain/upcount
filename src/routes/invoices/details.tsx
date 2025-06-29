@@ -23,6 +23,7 @@ import { Trans } from "@lingui/react/macro";
 import { t } from "@lingui/core/macro";
 import { useLingui } from "@lingui/react";
 import {
+  CopyOutlined,
   DeleteOutlined,
   EyeOutlined,
   FilePdfOutlined,
@@ -55,6 +56,7 @@ import {
   taxRatesAtom,
   setTaxRatesAtom,
   deleteInvoiceAtom,
+  duplicateInvoiceAtom,
   nextInvoiceNumberAtom,
 } from "src/atoms";
 import ClientForm from "src/components/clients/form.tsx";
@@ -81,6 +83,7 @@ const InvoiceDetails: React.FC = () => {
   const taxRates = useAtomValue(taxRatesAtom);
   const setTaxRates = useSetAtom(setTaxRatesAtom);
   const deleteInvoice = useSetAtom(deleteInvoiceAtom);
+  const duplicateInvoice = useSetAtom(duplicateInvoiceAtom);
   const nextInvoiceNumber = useAtomValue(nextInvoiceNumberAtom);
   const [, setSubmitting] = useState(false);
 
@@ -99,6 +102,39 @@ const InvoiceDetails: React.FC = () => {
     };
   }, [id, isNew, setClients, setInvoiceId, setTaxRates]);
 
+  const getInitialValues = () => {
+    let values = {
+      currency: organization.currency,
+      date: dayjs(),
+      dueDate: organization.due_days ? dayjs().add(organization.due_days, "day") : null,
+      lineItems: [{ quantity: 1, taxRate: get(find(taxRates, { default: 1 }), "id") }],
+      customerNotes: organization.customerNotes,
+      number: isNew ? nextInvoiceNumber : undefined,
+    };
+    if (!isNew && invoice) {
+      values = {
+        ...invoice,
+        lineItems: map(invoice.lineItems, (item) => ({ ...item, total: item.quantity * item.unitPrice })),
+      };
+    }
+    return values;
+  };
+
+  const initialValues = getInitialValues();
+  const [form] = Form.useForm();
+
+  // Reset form when invoice data changes (e.g., after duplication)
+  useEffect(() => {
+    if (!isNew && invoice) {
+      const newValues = {
+        ...invoice,
+        lineItems: map(invoice.lineItems, (item) => ({ ...item, total: item.quantity * item.unitPrice })),
+      };
+      form.resetFields();
+      form.setFieldsValue(newValues);
+    }
+  }, [invoice, isNew, form]);
+
   const handleSubmit = async (values: any) => {
     setSubmitting(true);
     setInvoice({ ...values, subTotal, taxTotal, total });
@@ -110,22 +146,12 @@ const InvoiceDetails: React.FC = () => {
     navigate("/invoices");
   };
 
-  let initialValues = {
-    currency: organization.currency,
-    date: dayjs(),
-    dueDate: organization.due_days ? dayjs().add(organization.due_days, "day") : null,
-    lineItems: [{ quantity: 1, taxRate: get(find(taxRates, { default: 1 }), "id") }],
-    customerNotes: organization.customerNotes,
-    number: isNew ? nextInvoiceNumber : undefined,
+  const handleDuplicate = (id: string) => async () => {
+    const newInvoiceId = await duplicateInvoice(id);
+    if (newInvoiceId) {
+      navigate(`/invoices/${newInvoiceId}`);
+    }
   };
-  if (!isNew && invoice) {
-    initialValues = {
-      ...invoice,
-      lineItems: map(invoice.lineItems, (item) => ({ ...item, total: item.quantity * item.unitPrice })),
-    };
-  }
-
-  const [form] = Form.useForm();
   const lineItems = Form.useWatch("lineItems", form);
 
   const subTotal = sum(
@@ -484,19 +510,26 @@ const InvoiceDetails: React.FC = () => {
                 >
                   <Row align="middle" justify="space-between" style={{ height: 64 }}>
                     <Col>
-                      {id && !isNew && (
-                        <Popconfirm
-                          title={t`Delete the invoice?`}
-                          description={t`Are you sure to delete this invoice?`}
-                          onConfirm={handleDelete(id)}
-                          okText={t`Yes`}
-                          cancelText={t`No`}
-                        >
-                          <Button type="dashed">
-                            <DeleteOutlined /> <Trans>Delete</Trans>
+                      <Space>
+                        {id && !isNew && (
+                          <Button type="dashed" onClick={handleDuplicate(id)}>
+                            <CopyOutlined /> <Trans>Duplicate</Trans>
                           </Button>
-                        </Popconfirm>
-                      )}
+                        )}
+                        {id && !isNew && (
+                          <Popconfirm
+                            title={t`Delete the invoice?`}
+                            description={t`Are you sure to delete this invoice?`}
+                            onConfirm={handleDelete(id)}
+                            okText={t`Yes`}
+                            cancelText={t`No`}
+                          >
+                            <Button type="dashed">
+                              <DeleteOutlined /> <Trans>Delete</Trans>
+                            </Button>
+                          </Popconfirm>
+                        )}
+                      </Space>
                     </Col>
                     <Col>
                       <Space>

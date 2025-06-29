@@ -1,8 +1,8 @@
-import { useEffect } from "react";
-import { Link } from "react-router";
-import { Button, Col, Input, Space, Table, Typography, Row } from "antd";
+import React, { useEffect } from "react";
+import { Link, useNavigate } from "react-router";
+import { Button, Col, Input, Space, Table, Typography, Row, Dropdown, MenuProps, Popconfirm } from "antd";
 import { atom, useAtom, useAtomValue, useSetAtom } from "jotai";
-import { FileTextOutlined } from "@ant-design/icons";
+import { FileTextOutlined, MoreOutlined, CopyOutlined, EditOutlined, DeleteOutlined } from "@ant-design/icons";
 import { Trans } from "@lingui/react/macro";
 import { t } from "@lingui/core/macro";
 import { useLingui } from "@lingui/react";
@@ -13,7 +13,7 @@ import includes from "lodash/includes";
 import some from "lodash/some";
 import toString from "lodash/toString";
 
-import { invoicesAtom, setInvoicesAtom, organizationAtom } from "src/atoms";
+import { invoicesAtom, setInvoicesAtom, organizationAtom, duplicateInvoiceAtom, deleteInvoiceAtom } from "src/atoms";
 import { getFormattedNumber } from "src/utils/currencies";
 import InvoiceStateSelect from "src/components/invoices/state-select";
 
@@ -42,10 +42,13 @@ const stateFilter = [
 
 const Invoices = () => {
   const { i18n } = useLingui();
+  const navigate = useNavigate();
 
   const organization = useAtomValue(organizationAtom);
   const invoices = useAtomValue(invoicesAtom);
   const setInvoices = useSetAtom(setInvoicesAtom);
+  const duplicateInvoice = useSetAtom(duplicateInvoiceAtom);
+  const deleteInvoice = useSetAtom(deleteInvoiceAtom);
   const [search, setSearch] = useAtom(searchAtom);
 
   useEffect(() => {
@@ -62,6 +65,55 @@ const Invoices = () => {
       });
     });
   };
+
+  const handleDuplicateInvoice = async (invoiceId: string) => {
+    const newInvoiceId = await duplicateInvoice(invoiceId);
+    if (newInvoiceId) {
+      navigate(`/invoices/${newInvoiceId}`);
+    }
+  };
+
+  const handleDeleteInvoice = async (invoiceId: string) => {
+    await deleteInvoice(invoiceId);
+  };
+
+  const getActionItems = (invoice: any): MenuProps["items"] => [
+    {
+      key: "edit",
+      label: <Trans>Edit</Trans>,
+      icon: <EditOutlined />,
+      onClick: () => navigate(`/invoices/${invoice.id}`),
+    },
+    {
+      key: "duplicate",
+      label: <Trans>Duplicate</Trans>,
+      icon: <CopyOutlined />,
+      onClick: () => handleDuplicateInvoice(invoice.id),
+    },
+    {
+      type: "divider",
+    },
+    {
+      key: "delete",
+      label: (
+        <Popconfirm
+          title={t`Delete the invoice?`}
+          description={t`Are you sure to delete this invoice?`}
+          onConfirm={(e?: React.MouseEvent<HTMLElement>) => {
+            e?.stopPropagation();
+            handleDeleteInvoice(invoice.id);
+          }}
+          okText={t`Yes`}
+          cancelText={t`No`}
+        >
+          <span>
+            <DeleteOutlined /> <Trans>Delete</Trans>
+          </span>
+        </Popconfirm>
+      ),
+      onClick: (e) => e.domEvent.stopPropagation(),
+    },
+  ];
 
   return (
     <>
@@ -126,6 +178,16 @@ const Invoices = () => {
           filters={stateFilter}
           onFilter={(value, record: any) => record.state.indexOf(value) === 0}
           render={(invoice) => <InvoiceStateSelect invoice={invoice} />}
+        />
+        <Table.Column
+          key="actions"
+          align="right"
+          width={60}
+          render={(invoice) => (
+            <Dropdown menu={{ items: getActionItems(invoice) }} trigger={["click"]}>
+              <Button type="text" icon={<MoreOutlined />} />
+            </Dropdown>
+          )}
         />
       </Table>
     </>

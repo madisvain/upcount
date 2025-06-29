@@ -6,6 +6,12 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "X-Generator: @lingui/cli\n"
 "Language: pt\n"
+"Project-Id-Version: \n"
+"Report-Msgid-Bugs-To: \n"
+"PO-Revision-Date: \n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"Plural-Forms: \n"
 
 #: src/routes/settings/invoice.tsx:223
 msgid "2-digit month"
@@ -19,7 +25,11 @@ msgstr "Ano de 2 dígitos"
 msgid "4-digit year"
 msgstr "Ano de 4 dígitos"
 
-#: src/routes/invoices/details.tsx:398
+#: src/routes/invoices/index.tsx:149
+#~ msgid "Actions"
+#~ msgstr ""
+
+#: src/routes/invoices/details.tsx:424
 msgid "Add line item"
 msgstr "Adicionar item de linha"
 
@@ -33,8 +43,9 @@ msgstr "Morada"
 msgid "Are you sure delete this organization?"
 msgstr "Tem a certeza de que pretende eliminar esta organização?"
 
-#: src/routes/invoices/preview.tsx:161
-#: src/routes/invoices/details.tsx:490
+#: src/routes/invoices/preview.tsx:176
+#: src/routes/invoices/index.tsx:101
+#: src/routes/invoices/details.tsx:522
 msgid "Are you sure to delete this invoice?"
 msgstr "Tem a certeza de que pretende eliminar esta fatura?"
 
@@ -75,7 +86,7 @@ msgstr "Alterar"
 msgid "Check back soon for updates!"
 msgstr "Volte em breve para atualizações!"
 
-#: src/routes/invoices/index.tsx:95
+#: src/routes/invoices/index.tsx:147
 msgid "Client"
 msgstr "Cliente"
 
@@ -135,11 +146,11 @@ msgstr "Crie a sua organização para começar"
 
 #: src/routes/index.tsx:68
 #: src/routes/settings/invoice.tsx:78
-#: src/routes/invoices/details.tsx:211
+#: src/routes/invoices/details.tsx:237
 msgid "Currency"
 msgstr "Moeda"
 
-#: src/routes/invoices/details.tsx:409
+#: src/routes/invoices/details.tsx:435
 msgid "Customer note"
 msgstr "Nota do cliente"
 
@@ -151,7 +162,7 @@ msgstr "Cópia de segurança da base de dados guardada com sucesso em {backupPat
 msgid "Database has been restored successfully. Please restart the application to see the changes."
 msgstr "A base de dados foi restaurada com sucesso. Por favor, reinicie a aplicação para ver as alterações."
 
-#: src/routes/invoices/index.tsx:101
+#: src/routes/invoices/index.tsx:153
 #: src/components/invoices/pdf.tsx:199
 msgid "Date"
 msgstr "Data"
@@ -170,19 +181,21 @@ msgid "Default"
 msgstr "Predefinido"
 
 #: src/routes/settings/organization.tsx:112
-#: src/routes/invoices/preview.tsx:167
-#: src/routes/invoices/details.tsx:496
+#: src/routes/invoices/preview.tsx:182
+#: src/routes/invoices/index.tsx:110
+#: src/routes/invoices/details.tsx:528
 #: src/components/clients/form.tsx:113
 msgid "Delete"
 msgstr "Eliminar"
 
-#: src/routes/invoices/preview.tsx:160
-#: src/routes/invoices/details.tsx:489
+#: src/routes/invoices/preview.tsx:175
+#: src/routes/invoices/index.tsx:100
+#: src/routes/invoices/details.tsx:521
 msgid "Delete the invoice?"
 msgstr "Eliminar a fatura?"
 
 #: src/routes/settings/tax-rates.tsx:53
-#: src/routes/invoices/details.tsx:257
+#: src/routes/invoices/details.tsx:283
 #: src/components/tax-rates/form.tsx:53
 #: src/components/invoices/pdf.tsx:221
 msgid "Description"
@@ -193,8 +206,8 @@ msgstr "Descrição"
 msgid "Draft"
 msgstr "Rascunho"
 
-#: src/routes/invoices/index.tsx:108
-#: src/routes/invoices/details.tsx:236
+#: src/routes/invoices/index.tsx:160
+#: src/routes/invoices/details.tsx:262
 #: src/components/invoices/pdf.tsx:202
 msgid "Due date"
 msgstr "Data de vencimento"
@@ -202,6 +215,12 @@ msgstr "Data de vencimento"
 #: src/routes/settings/invoice.tsx:96
 msgid "Due days"
 msgstr "Dias de vencimento"
+
+#: src/routes/invoices/preview.tsx:170
+#: src/routes/invoices/index.tsx:89
+#: src/routes/invoices/details.tsx:516
+msgid "Duplicate"
+msgstr ""
 
 #: src/routes/settings/organization.tsx:59
 msgid "E-mail"
@@ -211,7 +230,8 @@ msgstr "E-mail"
 msgid "E-mails"
 msgstr "E-mails"
 
-#: src/routes/invoices/preview.tsx:181
+#: src/routes/invoices/preview.tsx:197
+#: src/routes/invoices/index.tsx:83
 msgid "Edit"
 msgstr "Editar"
 
@@ -244,13 +264,17 @@ msgstr "Falha ao obter clientes"
 msgid "Failed to fetch invoices"
 msgstr "Falha ao obter faturas"
 
-#: src/atoms.tsx:284
+#: src/atoms.tsx:351
 msgid "Failed to fetch organizations"
 msgstr "Falha ao obter organizações"
 
-#: src/atoms.tsx:392
+#: src/atoms.tsx:459
 msgid "Failed to fetch tax rates"
 msgstr "Falha ao obter taxas de imposto"
+
+#: src/atoms.tsx:293
+msgid "Failed to generate invoice number"
+msgstr ""
 
 #. placeholder {0}: String(error)
 #: src/routes/settings/backup.tsx:64
@@ -295,7 +319,19 @@ msgstr "Falha na eliminação da fatura"
 msgid "Invoice details"
 msgstr "Detalhes da fatura"
 
-#: src/routes/invoices/details.tsx:202
+#: src/atoms.tsx:323
+msgid "Invoice duplicated successfully"
+msgstr ""
+
+#: src/atoms.tsx:338
+msgid "Invoice duplication failed"
+msgstr ""
+
+#: src/atoms.tsx:286
+msgid "Invoice not found"
+msgstr ""
+
+#: src/routes/invoices/details.tsx:228
 msgid "Invoice number"
 msgstr "Número da fatura"
 
@@ -320,7 +356,7 @@ msgstr "Falha na atualização da fatura"
 msgid "Invoice updated successfully"
 msgstr "Fatura atualizada com sucesso"
 
-#: src/routes/invoices/index.tsx:72
+#: src/routes/invoices/index.tsx:124
 #: src/layouts/base.tsx:99
 msgid "Invoices"
 msgstr "Faturas"
@@ -343,12 +379,12 @@ msgid "Name"
 msgstr "Nome"
 
 #: src/routes/clients.tsx:59
-#: src/routes/invoices/details.tsx:187
+#: src/routes/invoices/details.tsx:213
 #: src/components/clients/form.tsx:82
 msgid "New client"
 msgstr "Novo cliente"
 
-#: src/routes/invoices/index.tsx:80
+#: src/routes/invoices/index.tsx:132
 msgid "New invoice"
 msgstr "Nova fatura"
 
@@ -368,13 +404,14 @@ msgstr "Nova taxa de imposto"
 msgid "Next invoice will use this number + 1"
 msgstr "A próxima fatura utilizará este número + 1"
 
-#: src/routes/invoices/preview.tsx:164
-#: src/routes/invoices/details.tsx:493
+#: src/routes/invoices/preview.tsx:179
+#: src/routes/invoices/index.tsx:107
+#: src/routes/invoices/details.tsx:525
 #: src/components/clients/form.tsx:109
 msgid "No"
 msgstr "Não"
 
-#: src/routes/invoices/details.tsx:254
+#: src/routes/invoices/details.tsx:280
 msgid "No line items"
 msgstr "Sem itens de linha"
 
@@ -386,7 +423,7 @@ msgstr "Não!"
 msgid "Notes"
 msgstr "Notas"
 
-#: src/routes/invoices/index.tsx:89
+#: src/routes/invoices/index.tsx:141
 msgid "Number"
 msgstr "Número"
 
@@ -398,20 +435,20 @@ msgstr "Número de dígitos"
 msgid "Organization"
 msgstr "Organização"
 
-#: src/atoms.tsx:327
+#: src/atoms.tsx:394
 msgid "Organization created"
 msgstr "Organização criada"
 
-#: src/atoms.tsx:341
+#: src/atoms.tsx:408
 msgid "Organization creation failed"
 msgstr "Falha na criação da organização"
 
-#: src/atoms.tsx:373
+#: src/atoms.tsx:440
 msgid "Organization deleted"
 msgstr "Organização eliminada"
 
-#: src/atoms.tsx:375
-#: src/atoms.tsx:379
+#: src/atoms.tsx:442
+#: src/atoms.tsx:446
 msgid "Organization deletion failed"
 msgstr "Falha na eliminação da organização"
 
@@ -420,11 +457,11 @@ msgstr "Falha na eliminação da organização"
 msgid "Organization details"
 msgstr "Detalhes da organização"
 
-#: src/atoms.tsx:343
+#: src/atoms.tsx:410
 msgid "Organization update failed"
 msgstr "Falha na atualização da organização"
 
-#: src/atoms.tsx:334
+#: src/atoms.tsx:401
 msgid "Organization updated successfully"
 msgstr "Organização atualizada com sucesso"
 
@@ -471,12 +508,12 @@ msgstr "Prefixo"
 msgid "Preview"
 msgstr "Pré-visualização"
 
-#: src/routes/invoices/details.tsx:308
+#: src/routes/invoices/details.tsx:334
 #: src/components/invoices/pdf.tsx:227
 msgid "Price"
 msgstr "Preço"
 
-#: src/routes/invoices/details.tsx:280
+#: src/routes/invoices/details.tsx:306
 #: src/components/invoices/pdf.tsx:224
 msgid "Qty."
 msgstr "Qtd."
@@ -507,7 +544,7 @@ msgstr "Restaure a sua base de dados a partir de um ficheiro de cópia de segura
 
 #: src/routes/settings/organization.tsx:103
 #: src/routes/settings/invoice.tsx:273
-#: src/routes/invoices/details.tsx:537
+#: src/routes/invoices/details.tsx:570
 #: src/components/tax-rates/form.tsx:38
 #: src/components/clients/form.tsx:84
 #: src/components/clients/form.tsx:134
@@ -515,11 +552,11 @@ msgid "Save"
 msgstr "Guardar"
 
 #: src/routes/clients.tsx:56
-#: src/routes/invoices/index.tsx:77
+#: src/routes/invoices/index.tsx:129
 msgid "Search text"
 msgstr "Texto de pesquisa"
 
-#: src/routes/invoices/details.tsx:159
+#: src/routes/invoices/details.tsx:185
 msgid "Select or create a client"
 msgstr "Selecionar ou criar um cliente"
 
@@ -547,11 +584,11 @@ msgstr "Mostrar variáveis"
 msgid "Start Number"
 msgstr "Número inicial"
 
-#: src/routes/invoices/index.tsx:123
+#: src/routes/invoices/index.tsx:175
 msgid "State"
 msgstr "Estado"
 
-#: src/routes/invoices/details.tsx:438
+#: src/routes/invoices/details.tsx:464
 #: src/components/invoices/pdf.tsx:252
 msgid "Subtotal"
 msgstr "Subtotal"
@@ -560,25 +597,25 @@ msgstr "Subtotal"
 msgid "Suffix"
 msgstr "Sufixo"
 
-#: src/routes/invoices/details.tsx:364
-#: src/routes/invoices/details.tsx:445
+#: src/routes/invoices/details.tsx:390
+#: src/routes/invoices/details.tsx:471
 #: src/components/invoices/pdf.tsx:263
 msgid "Tax"
 msgstr "Imposto"
 
-#: src/atoms.tsx:428
+#: src/atoms.tsx:495
 msgid "Tax rate created"
 msgstr "Taxa de imposto criada"
 
-#: src/atoms.tsx:455
+#: src/atoms.tsx:522
 msgid "Tax rate creation failed"
 msgstr "Falha na criação da taxa de imposto"
 
-#: src/atoms.tsx:457
+#: src/atoms.tsx:524
 msgid "Tax rate update failed"
 msgstr "Falha na atualização da taxa de imposto"
 
-#: src/atoms.tsx:445
+#: src/atoms.tsx:512
 msgid "Tax rate updated successfully"
 msgstr "Taxa de imposto atualizada com sucesso"
 
@@ -590,15 +627,15 @@ msgstr "Taxas de imposto"
 #: src/routes/settings/invoice.tsx:80
 #: src/routes/settings/invoice.tsx:156
 #: src/routes/settings/invoice.tsx:187
-#: src/routes/invoices/details.tsx:161
-#: src/routes/invoices/details.tsx:204
-#: src/routes/invoices/details.tsx:213
+#: src/routes/invoices/details.tsx:187
 #: src/routes/invoices/details.tsx:230
-#: src/routes/invoices/details.tsx:238
-#: src/routes/invoices/details.tsx:271
-#: src/routes/invoices/details.tsx:286
-#: src/routes/invoices/details.tsx:314
-#: src/routes/invoices/details.tsx:342
+#: src/routes/invoices/details.tsx:239
+#: src/routes/invoices/details.tsx:256
+#: src/routes/invoices/details.tsx:264
+#: src/routes/invoices/details.tsx:297
+#: src/routes/invoices/details.tsx:312
+#: src/routes/invoices/details.tsx:340
+#: src/routes/invoices/details.tsx:368
 msgid "This field is required!"
 msgstr "Este campo é obrigatório!"
 
@@ -606,9 +643,9 @@ msgstr "Este campo é obrigatório!"
 msgid "Time tracking"
 msgstr "Registo de tempo"
 
-#: src/routes/invoices/index.tsx:115
-#: src/routes/invoices/details.tsx:336
-#: src/routes/invoices/details.tsx:455
+#: src/routes/invoices/index.tsx:167
+#: src/routes/invoices/details.tsx:362
+#: src/routes/invoices/details.tsx:481
 #: src/components/invoices/pdf.tsx:230
 #: src/components/invoices/pdf.tsx:274
 msgid "Total"
@@ -630,7 +667,7 @@ msgstr "Número de IVA"
 msgid "VATIN"
 msgstr "NIF"
 
-#: src/routes/invoices/details.tsx:511
+#: src/routes/invoices/details.tsx:544
 msgid "View"
 msgstr "Ver"
 
@@ -649,8 +686,9 @@ msgid "Website"
 msgstr "Website"
 
 #: src/routes/settings/organization.tsx:108
-#: src/routes/invoices/preview.tsx:163
-#: src/routes/invoices/details.tsx:492
+#: src/routes/invoices/preview.tsx:178
+#: src/routes/invoices/index.tsx:106
+#: src/routes/invoices/details.tsx:524
 #: src/components/clients/form.tsx:108
 msgid "Yes"
 msgstr "Sim"

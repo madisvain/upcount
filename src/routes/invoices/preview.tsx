@@ -5,7 +5,7 @@ import { Page, Document, pdfjs } from "react-pdf";
 import { useSetAtom, useAtomValue } from "jotai";
 import { Button, Row, Col, Space, Layout, Popconfirm, theme } from "antd";
 import { useResizeObserver } from "usehooks-ts";
-import { DeleteOutlined, EditOutlined, FilePdfOutlined } from "@ant-design/icons";
+import { CopyOutlined, DeleteOutlined, EditOutlined, FilePdfOutlined } from "@ant-design/icons";
 import { Trans } from "@lingui/react/macro";
 import { t } from "@lingui/core/macro";
 import { useLingui } from "@lingui/react";
@@ -26,6 +26,7 @@ import {
   taxRatesAtom,
   setTaxRatesAtom,
   deleteInvoiceAtom,
+  duplicateInvoiceAtom,
 } from "src/atoms";
 import InvoicePDF from "src/components/invoices/pdf";
 
@@ -55,6 +56,7 @@ const InvoicePreview: React.FC = () => {
   const taxRates = useAtomValue(taxRatesAtom);
   const setTaxRates = useSetAtom(setTaxRatesAtom);
   const deleteInvoice = useSetAtom(deleteInvoiceAtom);
+  const duplicateInvoice = useSetAtom(duplicateInvoiceAtom);
 
   const ref = useRef<HTMLDivElement>(null);
   const [pageWidth, setPageWidth] = useState(0);
@@ -77,6 +79,13 @@ const InvoicePreview: React.FC = () => {
   const handleDelete = (id: string) => async () => {
     await deleteInvoice(id);
     navigate("/invoices");
+  };
+
+  const handleDuplicate = (id: string) => async () => {
+    const newInvoiceId = await duplicateInvoice(id);
+    if (newInvoiceId) {
+      navigate(`/invoices/${newInvoiceId}`);
+    }
   };
 
   const fitHorizontal = useMemo(() => {
@@ -155,19 +164,26 @@ const InvoicePreview: React.FC = () => {
               >
                 <Row align="middle" justify="space-between" style={{ height: 64 }}>
                   <Col>
-                    {id && (
-                      <Popconfirm
-                        title={t`Delete the invoice?`}
-                        description={t`Are you sure to delete this invoice?`}
-                        onConfirm={handleDelete(id)}
-                        okText={t`Yes`}
-                        cancelText={t`No`}
-                      >
-                        <Button type="dashed">
-                          <DeleteOutlined /> <Trans>Delete</Trans>
+                    <Space>
+                      {id && (
+                        <Button type="dashed" onClick={handleDuplicate(id)}>
+                          <CopyOutlined /> <Trans>Duplicate</Trans>
                         </Button>
-                      </Popconfirm>
-                    )}
+                      )}
+                      {id && (
+                        <Popconfirm
+                          title={t`Delete the invoice?`}
+                          description={t`Are you sure to delete this invoice?`}
+                          onConfirm={handleDelete(id)}
+                          okText={t`Yes`}
+                          cancelText={t`No`}
+                        >
+                          <Button type="dashed">
+                            <DeleteOutlined /> <Trans>Delete</Trans>
+                          </Button>
+                        </Popconfirm>
+                      )}
+                    </Space>
                   </Col>
                   <Col>
                     <Space>

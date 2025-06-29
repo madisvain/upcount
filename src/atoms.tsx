@@ -273,6 +273,73 @@ export const deleteInvoiceAtom = atom(null, async (get, set, invoiceId: string) 
   }
 });
 
+// Duplicate invoice
+export const duplicateInvoiceAtom = atom(null, async (get, set, invoiceId: string) => {
+  try {
+    // Fetch the original invoice with line items
+    const [originalInvoice, lineItems] = await Promise.all([
+      invoke<any>("get_invoice", { invoiceId }),
+      invoke<any[]>("get_invoice_line_items", { invoiceId }),
+    ]);
+
+    if (!originalInvoice) {
+      message.error(t`Invoice not found`);
+      return null;
+    }
+
+    // Generate new invoice number
+    const nextNumber = await get(nextInvoiceNumberAtom);
+    if (!nextNumber) {
+      message.error(t`Failed to generate invoice number`);
+      return null;
+    }
+
+    // Create new invoice data with duplicated information
+    const newInvoiceId = nanoid();
+    const currentDate = dayjs();
+    const duplicatedInvoice = {
+      id: newInvoiceId,
+      organizationId: get(organizationIdAtom),
+      number: nextNumber,
+      state: "draft", // Always start as draft
+      clientId: originalInvoice.clientId,
+      date: currentDate.valueOf(),
+      dueDate: originalInvoice.dueDate ? currentDate.add(dayjs(originalInvoice.dueDate).diff(dayjs(originalInvoice.date), 'day'), 'day').valueOf() : null,
+      currency: originalInvoice.currency,
+      total: originalInvoice.total,
+      taxTotal: originalInvoice.taxTotal,
+      subTotal: originalInvoice.subTotal,
+      customerNotes: originalInvoice.customerNotes,
+      lineItems: (lineItems || []).map((item: any) => ({
+        ...omit(item, ["id", "invoiceId", "createdAt"]),
+      })),
+    };
+
+    // Create the duplicated invoice
+    const createdInvoice = await invoke<any>("create_invoice", {
+      invoice: duplicatedInvoice,
+    });
+
+    message.success(t`Invoice duplicated successfully`);
+
+    // Update the invoices list
+    const invoices: any = get(invoicesAtom);
+    const invoiceWithUnits = {
+      ...createdInvoice,
+      total: centsToUnits(createdInvoice.total),
+      taxTotal: centsToUnits(createdInvoice.taxTotal),
+      subTotal: centsToUnits(createdInvoice.subTotal),
+    };
+    set(invoicesAtom, [invoiceWithUnits, ...invoices]);
+
+    return createdInvoice.id;
+  } catch (error) {
+    console.error("Failed to duplicate invoice:", error);
+    message.error(t`Invoice duplication failed`);
+    return null;
+  }
+});
+
 // Organizations
 export const organizationsAtom = atom<any[]>([]);
 export const setOrganizationsAtom = atom(null, async (_get, set) => {
