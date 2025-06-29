@@ -9,8 +9,7 @@
     "type-check": "tsc --noEmit",
     "lint": "tsc --noEmit && eslint . --report-unused-disable-directives --max-warnings 0",
     "preview": "vite preview",
-    "extract": "lingui extract",
-    "add-locale": "lingui add-locale"
+    "extract": "lingui extract"
   },
   "dependencies": {
     "@ant-design/icons": "6.0.0",

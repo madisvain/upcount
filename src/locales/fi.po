@@ -1,0 +1,656 @@
+msgid ""
+msgstr ""
+"POT-Creation-Date: 2025-06-29 15:39+0300\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: @lingui/cli\n"
+"Language: fi\n"
+
+#: src/routes/settings/invoice.tsx:223
+msgid "2-digit month"
+msgstr "2-numeroinen kuukausi"
+
+#: src/routes/settings/invoice.tsx:219
+msgid "2-digit year"
+msgstr "2-numeroinen vuosi"
+
+#: src/routes/settings/invoice.tsx:216
+msgid "4-digit year"
+msgstr "4-numeroinen vuosi"
+
+#: src/routes/invoices/details.tsx:398
+msgid "Add line item"
+msgstr "Lisää rivi"
+
+#: src/routes/clients.tsx:78
+#: src/routes/settings/organization.tsx:56
+#: src/components/clients/form.tsx:147
+msgid "Address"
+msgstr "Osoite"
+
+#: src/routes/settings/organization.tsx:106
+msgid "Are you sure delete this organization?"
+msgstr "Haluatko varmasti poistaa tämän organisaation?"
+
+#: src/routes/invoices/preview.tsx:161
+#: src/routes/invoices/details.tsx:490
+msgid "Are you sure to delete this invoice?"
+msgstr "Haluatko varmasti poistaa tämän laskun?"
+
+#: src/components/clients/form.tsx:99
+msgid "Are you sure you want to delete this client?"
+msgstr "Haluatko varmasti poistaa tämän asiakkaan?"
+
+#: src/routes/settings/backup.tsx:48
+msgid "Are you sure you want to restore from a backup? This will replace all current data and cannot be undone."
+msgstr "Haluatko varmasti palauttaa varmuuskopiosta? Tämä korvaa kaikki nykyiset tiedot eikä sitä voi perua."
+
+#: src/routes/settings/invoice.tsx:209
+msgid "Available variables:"
+msgstr "Saatavilla olevat muuttujat:"
+
+#: src/layouts/base.tsx:158
+msgid "Backup"
+msgstr "Varmuuskopio"
+
+#: src/routes/settings/backup.tsx:80
+msgid "Backup & restore"
+msgstr "Varmuuskopio & palautus"
+
+#: src/routes/settings/organization.tsx:71
+msgid "Bank name"
+msgstr "Pankin nimi"
+
+#: src/routes/settings/backup.tsx:50
+#: src/components/clients/form.tsx:127
+msgid "Cancel"
+msgstr "Peru"
+
+#: src/routes/settings/invoice.tsx:257
+msgid "Change"
+msgstr "Muuta"
+
+#: src/routes/time-tracking.tsx:17
+msgid "Check back soon for updates!"
+msgstr "Tarkista päivitykset pian!"
+
+#: src/routes/invoices/index.tsx:95
+msgid "Client"
+msgstr "Asiakas"
+
+#: src/atoms.tsx:76
+msgid "Client created"
+msgstr "Asiakas luotu"
+
+#: src/atoms.tsx:97
+msgid "Client creation failed"
+msgstr "Asiakkaan luonti epäonnistui"
+
+#: src/atoms.tsx:114
+msgid "Client deleted"
+msgstr "Asiakas poistettu"
+
+#: src/atoms.tsx:116
+#: src/atoms.tsx:120
+msgid "Client deletion failed"
+msgstr "Asiakkaan poisto epäonnistui"
+
+#: src/atoms.tsx:99
+msgid "Client update failed"
+msgstr "Asiakkaan päivitys epäonnistui"
+
+#: src/atoms.tsx:87
+msgid "Client updated successfully"
+msgstr "Asiakas päivitetty onnistuneesti"
+
+#: src/routes/clients.tsx:51
+#: src/layouts/base.tsx:108
+msgid "Clients"
+msgstr "Asiakkaat"
+
+#: src/routes/invoices/index.tsx:30
+msgid "Confirmed"
+msgstr "Vahvistettu"
+
+#: src/routes/settings/invoice.tsx:188
+msgid "Counter must be 0 or greater"
+msgstr "Laskurin on oltava 0 tai suurempi"
+
+#: src/routes/index.tsx:59
+msgid "Country"
+msgstr "Maa"
+
+#: src/routes/settings/backup.tsx:103
+msgid "Create a backup of your database to save all your invoices, clients, and settings. The backup file can be used to restore your data if needed."
+msgstr "Luo tietokannastasi varmuuskopio tallentaaksesi kaikki laskusi, asiakkaasi ja asetuksesi. Varmuuskopiotiedostoa voidaan käyttää tietojesi palauttamiseen tarvittaessa."
+
+#: src/routes/settings/backup.tsx:98
+msgid "Create Backup"
+msgstr "Luo varmuuskopio"
+
+#: src/routes/index.tsx:49
+msgid "Create your organization to get started"
+msgstr "Luo organisaatiosi aloittaaksesi"
+
+#: src/routes/index.tsx:68
+#: src/routes/settings/invoice.tsx:78
+#: src/routes/invoices/details.tsx:211
+msgid "Currency"
+msgstr "Valuutta"
+
+#: src/routes/invoices/details.tsx:409
+msgid "Customer note"
+msgstr "Asiakashuomautus"
+
+#: src/routes/settings/backup.tsx:35
+msgid "Database backup saved successfully to {backupPath}"
+msgstr "Tietokannan varmuuskopio tallennettu onnistuneesti sijaintiin {backupPath}"
+
+#: src/routes/settings/backup.tsx:60
+msgid "Database has been restored successfully. Please restart the application to see the changes."
+msgstr "Tietokanta on palautettu onnistuneesti. Käynnistä sovellus uudelleen nähdäksesi muutokset."
+
+#: src/routes/invoices/index.tsx:101
+#: src/components/invoices/pdf.tsx:199
+msgid "Date"
+msgstr "Päivämäärä"
+
+#: src/routes/settings/invoice.tsx:231
+msgid "Day of month"
+msgstr "Kuukauden päivä"
+
+#: src/routes/settings/invoice.tsx:93
+msgid "Decimal places"
+msgstr "Desimaalipaikat"
+
+#: src/routes/settings/tax-rates.tsx:68
+#: src/components/tax-rates/form.tsx:60
+msgid "Default"
+msgstr "Oletus"
+
+#: src/routes/settings/organization.tsx:112
+#: src/routes/invoices/preview.tsx:167
+#: src/routes/invoices/details.tsx:496
+#: src/components/clients/form.tsx:113
+msgid "Delete"
+msgstr "Poista"
+
+#: src/routes/invoices/preview.tsx:160
+#: src/routes/invoices/details.tsx:489
+msgid "Delete the invoice?"
+msgstr "Poistetaanko lasku?"
+
+#: src/routes/settings/tax-rates.tsx:53
+#: src/routes/invoices/details.tsx:257
+#: src/components/tax-rates/form.tsx:53
+#: src/components/invoices/pdf.tsx:221
+msgid "Description"
+msgstr "Kuvaus"
+
+#: src/routes/invoices/index.tsx:26
+#: src/components/invoices/state-select.tsx:21
+msgid "Draft"
+msgstr "Luonnos"
+
+#: src/routes/invoices/index.tsx:108
+#: src/routes/invoices/details.tsx:236
+#: src/components/invoices/pdf.tsx:202
+msgid "Due date"
+msgstr "Eräpäivä"
+
+#: src/routes/settings/invoice.tsx:96
+msgid "Due days"
+msgstr "Eräpäiviä"
+
+#: src/routes/settings/organization.tsx:59
+msgid "E-mail"
+msgstr "Sähköposti"
+
+#: src/components/clients/form.tsx:151
+msgid "E-mails"
+msgstr "Sähköpostit"
+
+#: src/routes/invoices/preview.tsx:181
+msgid "Edit"
+msgstr "Muokkaa"
+
+#: src/components/clients/form.tsx:82
+msgid "Edit client"
+msgstr "Muokkaa asiakasta"
+
+#: src/components/tax-rates/form.tsx:36
+msgid "Edit tax rate"
+msgstr "Muokkaa verokantaa"
+
+#: src/routes/clients.tsx:80
+msgid "Emails"
+msgstr "Sähköpostit"
+
+#: src/routes/settings/invoice.tsx:199
+msgid "Enter format to see preview"
+msgstr "Syötä muoto nähdäksesi esikatselun"
+
+#. placeholder {0}: String(error)
+#: src/routes/settings/backup.tsx:39
+msgid "Failed to backup database: {0}"
+msgstr "Tietokannan varmuuskopio epäonnistui: {0}"
+
+#: src/atoms.tsx:34
+msgid "Failed to fetch clients"
+msgstr "Asiakkaiden haku epäonnistui"
+
+#: src/atoms.tsx:140
+msgid "Failed to fetch invoices"
+msgstr "Laskujen haku epäonnistui"
+
+#: src/atoms.tsx:284
+msgid "Failed to fetch organizations"
+msgstr "Organisaatioiden haku epäonnistui"
+
+#: src/atoms.tsx:392
+msgid "Failed to fetch tax rates"
+msgstr "Verokantojen haku epäonnistui"
+
+#. placeholder {0}: String(error)
+#: src/routes/settings/backup.tsx:64
+msgid "Failed to restore database: {0}"
+msgstr "Tietokannan palautus epäonnistui: {0}"
+
+#: src/routes/index.tsx:77
+msgid "Get started"
+msgstr "Aloita"
+
+#: src/routes/settings/organization.tsx:78
+msgid "IBAN"
+msgstr "IBAN"
+
+#: src/layouts/base.tsx:140
+msgid "Invoice"
+msgstr "Lasku"
+
+#. placeholder {0}: invoice.number
+#: src/components/invoices/pdf.tsx:173
+msgid "Invoice #{0}"
+msgstr "Lasku #{0}"
+
+#: src/atoms.tsx:210
+msgid "Invoice created"
+msgstr "Lasku luotu"
+
+#: src/atoms.tsx:249
+msgid "Invoice creation failed"
+msgstr "Laskun luonti epäonnistui"
+
+#: src/atoms.tsx:266
+msgid "Invoice deleted"
+msgstr "Lasku poistettu"
+
+#: src/atoms.tsx:268
+#: src/atoms.tsx:272
+msgid "Invoice deletion failed"
+msgstr "Laskun poisto epäonnistui"
+
+#: src/routes/settings/invoice.tsx:73
+msgid "Invoice details"
+msgstr "Laskun tiedot"
+
+#: src/routes/invoices/details.tsx:202
+msgid "Invoice number"
+msgstr "Laskunumero"
+
+#: src/routes/settings/invoice.tsx:184
+msgid "Invoice Number Counter"
+msgstr "Laskunumeron laskuri"
+
+#: src/routes/settings/invoice.tsx:153
+msgid "Invoice Number Format"
+msgstr "Laskunumeron muoto"
+
+#: src/routes/settings/invoice.tsx:107
+#: src/routes/settings/invoice.tsx:146
+msgid "Invoice Numbering"
+msgstr "Laskunumerointi"
+
+#: src/atoms.tsx:251
+msgid "Invoice update failed"
+msgstr "Laskun päivitys epäonnistui"
+
+#: src/atoms.tsx:239
+msgid "Invoice updated successfully"
+msgstr "Lasku päivitetty onnistuneesti"
+
+#: src/routes/invoices/index.tsx:72
+#: src/layouts/base.tsx:99
+msgid "Invoices"
+msgstr "Laskut"
+
+#: src/routes/settings/invoice.tsx:242
+msgid "Logo"
+msgstr "Logo"
+
+#: src/routes/settings/invoice.tsx:227
+msgid "Month name"
+msgstr "Kuukauden nimi"
+
+#: src/routes/index.tsx:56
+#: src/routes/clients.tsx:69
+#: src/routes/settings/tax-rates.tsx:49
+#: src/routes/settings/organization.tsx:53
+#: src/components/tax-rates/form.tsx:50
+#: src/components/clients/form.tsx:144
+msgid "Name"
+msgstr "Nimi"
+
+#: src/routes/clients.tsx:59
+#: src/routes/invoices/details.tsx:187
+#: src/components/clients/form.tsx:82
+msgid "New client"
+msgstr "Uusi asiakas"
+
+#: src/routes/invoices/index.tsx:80
+msgid "New invoice"
+msgstr "Uusi lasku"
+
+#: src/layouts/base.tsx:214
+msgid "New organization"
+msgstr "Uusi organisaatio"
+
+#: src/routes/settings/tax-rates.tsx:40
+msgid "New tax"
+msgstr "Uusi vero"
+
+#: src/components/tax-rates/form.tsx:36
+msgid "New tax rate"
+msgstr "Uusi verokanta"
+
+#: src/routes/settings/invoice.tsx:191
+msgid "Next invoice will use this number + 1"
+msgstr "Seuraava lasku käyttää tätä numeroa + 1"
+
+#: src/routes/invoices/preview.tsx:164
+#: src/routes/invoices/details.tsx:493
+#: src/components/clients/form.tsx:109
+msgid "No"
+msgstr "Ei"
+
+#: src/routes/invoices/details.tsx:254
+msgid "No line items"
+msgstr "Ei rivikohteita"
+
+#: src/routes/settings/organization.tsx:109
+msgid "No!"
+msgstr "Ei!"
+
+#: src/routes/settings/invoice.tsx:102
+msgid "Notes"
+msgstr "Huomautukset"
+
+#: src/routes/invoices/index.tsx:89
+msgid "Number"
+msgstr "Numero"
+
+#: src/routes/settings/invoice.tsx:129
+msgid "Number of Digits"
+msgstr "Numeroiden määrä"
+
+#: src/layouts/base.tsx:131
+msgid "Organization"
+msgstr "Organisaatio"
+
+#: src/atoms.tsx:327
+msgid "Organization created"
+msgstr "Organisaatio luotu"
+
+#: src/atoms.tsx:341
+msgid "Organization creation failed"
+msgstr "Organisaation luonti epäonnistui"
+
+#: src/atoms.tsx:373
+msgid "Organization deleted"
+msgstr "Organisaatio poistettu"
+
+#: src/atoms.tsx:375
+#: src/atoms.tsx:379
+msgid "Organization deletion failed"
+msgstr "Organisaation poisto epäonnistui"
+
+#: src/routes/index.tsx:52
+#: src/routes/settings/organization.tsx:46
+msgid "Organization details"
+msgstr "Organisaation tiedot"
+
+#: src/atoms.tsx:343
+msgid "Organization update failed"
+msgstr "Organisaation päivitys epäonnistui"
+
+#: src/atoms.tsx:334
+msgid "Organization updated successfully"
+msgstr "Organisaatio päivitetty onnistuneesti"
+
+#: src/routes/time-tracking.tsx:14
+msgid "Our time tracking feature is currently being developed."
+msgstr "Ajanseurantaominaisuuttamme kehitetään parhaillaan."
+
+#: src/routes/settings/invoice.tsx:99
+#: src/components/invoices/pdf.tsx:206
+msgid "Overdue charge"
+msgstr "Viivästysmaksu"
+
+#: src/routes/invoices/index.tsx:34
+#: src/components/invoices/state-select.tsx:29
+msgid "Paid"
+msgstr "Maksettu"
+
+#: src/routes/settings/tax-rates.tsx:57
+#: src/components/tax-rates/form.tsx:56
+msgid "Percentage"
+msgstr "Prosentti"
+
+#: src/routes/clients.tsx:88
+#: src/routes/settings/organization.tsx:62
+#: src/components/clients/form.tsx:154
+msgid "Phone"
+msgstr "Puhelin"
+
+#: src/components/tax-rates/form.tsx:55
+msgid "Please input a percentage!"
+msgstr "Syötä prosenttimäärä!"
+
+#: src/routes/index.tsx:55
+#: src/components/tax-rates/form.tsx:49
+#: src/components/clients/form.tsx:143
+msgid "Please input name!"
+msgstr "Syötä nimi!"
+
+#: src/routes/settings/invoice.tsx:112
+msgid "Prefix"
+msgstr "Etuliite"
+
+#: src/routes/settings/invoice.tsx:197
+msgid "Preview"
+msgstr "Esikatselu"
+
+#: src/routes/invoices/details.tsx:308
+#: src/components/invoices/pdf.tsx:227
+msgid "Price"
+msgstr "Hinta"
+
+#: src/routes/invoices/details.tsx:280
+#: src/components/invoices/pdf.tsx:224
+msgid "Qty."
+msgstr "Määrä"
+
+#: src/routes/settings/organization.tsx:65
+msgid "Registration number"
+msgstr "Y-tunnus"
+
+#: src/routes/settings/backup.tsx:49
+msgid "Restore"
+msgstr "Palauta"
+
+#: src/routes/settings/backup.tsx:59
+msgid "Restore Complete"
+msgstr "Palautus valmis"
+
+#: src/routes/settings/backup.tsx:47
+msgid "Restore Database"
+msgstr "Palauta tietokanta"
+
+#: src/routes/settings/backup.tsx:124
+msgid "Restore from Backup"
+msgstr "Palauta varmuuskopiosta"
+
+#: src/routes/settings/backup.tsx:129
+msgid "Restore your database from a previously created backup file. This will replace all current data with the backup data."
+msgstr "Palauta tietokantasi aiemmin luodusta varmuuskopiotiedostosta. Tämä korvaa kaikki nykyiset tiedot varmuuskopion tiedoilla."
+
+#: src/routes/settings/organization.tsx:103
+#: src/routes/settings/invoice.tsx:273
+#: src/routes/invoices/details.tsx:537
+#: src/components/tax-rates/form.tsx:38
+#: src/components/clients/form.tsx:84
+#: src/components/clients/form.tsx:134
+msgid "Save"
+msgstr "Tallenna"
+
+#: src/routes/clients.tsx:56
+#: src/routes/invoices/index.tsx:77
+msgid "Search text"
+msgstr "Hakuteksti"
+
+#: src/routes/invoices/details.tsx:159
+msgid "Select or create a client"
+msgstr "Valitse tai luo asiakas"
+
+#: src/components/invoices/state-select.tsx:25
+msgid "Sent"
+msgstr "Lähetetty"
+
+#: src/routes/settings/invoice.tsx:117
+msgid "Separator"
+msgstr "Erotin"
+
+#: src/routes/settings/invoice.tsx:213
+msgid "Sequential number"
+msgstr "Juokseva numero"
+
+#: src/layouts/base.tsx:124
+msgid "Settings"
+msgstr "Asetukset"
+
+#: src/routes/settings/invoice.tsx:180
+msgid "Show variables"
+msgstr "Näytä muuttujat"
+
+#: src/routes/settings/invoice.tsx:124
+msgid "Start Number"
+msgstr "Aloitusnumero"
+
+#: src/routes/invoices/index.tsx:123
+msgid "State"
+msgstr "Tila"
+
+#: src/routes/invoices/details.tsx:438
+#: src/components/invoices/pdf.tsx:252
+msgid "Subtotal"
+msgstr "Välisumma"
+
+#: src/routes/settings/invoice.tsx:136
+msgid "Suffix"
+msgstr "Jälkiliite"
+
+#: src/routes/invoices/details.tsx:364
+#: src/routes/invoices/details.tsx:445
+#: src/components/invoices/pdf.tsx:263
+msgid "Tax"
+msgstr "Vero"
+
+#: src/atoms.tsx:428
+msgid "Tax rate created"
+msgstr "Verokanta luotu"
+
+#: src/atoms.tsx:455
+msgid "Tax rate creation failed"
+msgstr "Verokannan luonti epäonnistui"
+
+#: src/atoms.tsx:457
+msgid "Tax rate update failed"
+msgstr "Verokannan päivitys epäonnistui"
+
+#: src/atoms.tsx:445
+msgid "Tax rate updated successfully"
+msgstr "Verokanta päivitetty onnistuneesti"
+
+#: src/routes/settings/tax-rates.tsx:33
+#: src/layouts/base.tsx:149
+msgid "Tax rates"
+msgstr "Verokannat"
+
+#: src/routes/settings/invoice.tsx:80
+#: src/routes/settings/invoice.tsx:156
+#: src/routes/settings/invoice.tsx:187
+#: src/routes/invoices/details.tsx:161
+#: src/routes/invoices/details.tsx:204
+#: src/routes/invoices/details.tsx:213
+#: src/routes/invoices/details.tsx:230
+#: src/routes/invoices/details.tsx:238
+#: src/routes/invoices/details.tsx:271
+#: src/routes/invoices/details.tsx:286
+#: src/routes/invoices/details.tsx:314
+#: src/routes/invoices/details.tsx:342
+msgid "This field is required!"
+msgstr "Tämä kenttä on pakollinen!"
+
+#: src/layouts/base.tsx:117
+msgid "Time tracking"
+msgstr "Ajanseuranta"
+
+#: src/routes/invoices/index.tsx:115
+#: src/routes/invoices/details.tsx:336
+#: src/routes/invoices/details.tsx:455
+#: src/components/invoices/pdf.tsx:230
+#: src/components/invoices/pdf.tsx:274
+msgid "Total"
+msgstr "Yhteensä"
+
+#: src/routes/time-tracking.tsx:11
+msgid "Under Development"
+msgstr "Kehitteillä"
+
+#: src/routes/settings/invoice.tsx:257
+msgid "Upload"
+msgstr "Lataa"
+
+#: src/components/clients/form.tsx:157
+msgid "VAT Number"
+msgstr "ALV-numero"
+
+#: src/routes/clients.tsx:102
+msgid "VATIN"
+msgstr "ALV-tunnus"
+
+#: src/routes/invoices/details.tsx:511
+msgid "View"
+msgstr "Näytä"
+
+#: src/routes/invoices/index.tsx:38
+#: src/components/invoices/state-select.tsx:33
+msgid "Void"
+msgstr "Mitätöity"
+
+#: src/components/clients/form.tsx:102
+msgid "Warning: This will also delete {invoiceCount} related invoice(s)."
+msgstr "Varoitus: Tämä poistaa myös {invoiceCount} liittyvää laskua."
+
+#: src/routes/clients.tsx:104
+#: src/components/clients/form.tsx:160
+msgid "Website"
+msgstr "Verkkosivusto"
+
+#: src/routes/settings/organization.tsx:108
+#: src/routes/invoices/preview.tsx:163
+#: src/routes/invoices/details.tsx:492
+#: src/components/clients/form.tsx:108
+msgid "Yes"
+msgstr "Kyllä"

@@ -1,0 +1,656 @@
+msgid ""
+msgstr ""
+"POT-Creation-Date: 2025-06-29 15:39+0300\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: @lingui/cli\n"
+"Language: nl\n"
+
+#: src/routes/settings/invoice.tsx:223
+msgid "2-digit month"
+msgstr "2-cijferige maand"
+
+#: src/routes/settings/invoice.tsx:219
+msgid "2-digit year"
+msgstr "2-cijferig jaar"
+
+#: src/routes/settings/invoice.tsx:216
+msgid "4-digit year"
+msgstr "4-cijferig jaar"
+
+#: src/routes/invoices/details.tsx:398
+msgid "Add line item"
+msgstr "Regelitem toevoegen"
+
+#: src/routes/clients.tsx:78
+#: src/routes/settings/organization.tsx:56
+#: src/components/clients/form.tsx:147
+msgid "Address"
+msgstr "Adres"
+
+#: src/routes/settings/organization.tsx:106
+msgid "Are you sure delete this organization?"
+msgstr "Weet u zeker dat u deze organisatie wilt verwijderen?"
+
+#: src/routes/invoices/preview.tsx:161
+#: src/routes/invoices/details.tsx:490
+msgid "Are you sure to delete this invoice?"
+msgstr "Weet u zeker dat u deze factuur wilt verwijderen?"
+
+#: src/components/clients/form.tsx:99
+msgid "Are you sure you want to delete this client?"
+msgstr "Weet u zeker dat u deze klant wilt verwijderen?"
+
+#: src/routes/settings/backup.tsx:48
+msgid "Are you sure you want to restore from a backup? This will replace all current data and cannot be undone."
+msgstr "Weet u zeker dat u wilt herstellen vanuit een back-up? Dit vervangt alle huidige gegevens en kan niet ongedaan worden gemaakt."
+
+#: src/routes/settings/invoice.tsx:209
+msgid "Available variables:"
+msgstr "Beschikbare variabelen:"
+
+#: src/layouts/base.tsx:158
+msgid "Backup"
+msgstr "Back-up"
+
+#: src/routes/settings/backup.tsx:80
+msgid "Backup & restore"
+msgstr "Back-up & herstel"
+
+#: src/routes/settings/organization.tsx:71
+msgid "Bank name"
+msgstr "Banknaam"
+
+#: src/routes/settings/backup.tsx:50
+#: src/components/clients/form.tsx:127
+msgid "Cancel"
+msgstr "Annuleren"
+
+#: src/routes/settings/invoice.tsx:257
+msgid "Change"
+msgstr "Wijzigen"
+
+#: src/routes/time-tracking.tsx:17
+msgid "Check back soon for updates!"
+msgstr "Kom binnenkort terug voor updates!"
+
+#: src/routes/invoices/index.tsx:95
+msgid "Client"
+msgstr "Klant"
+
+#: src/atoms.tsx:76
+msgid "Client created"
+msgstr "Klant aangemaakt"
+
+#: src/atoms.tsx:97
+msgid "Client creation failed"
+msgstr "Aanmaken klant mislukt"
+
+#: src/atoms.tsx:114
+msgid "Client deleted"
+msgstr "Klant verwijderd"
+
+#: src/atoms.tsx:116
+#: src/atoms.tsx:120
+msgid "Client deletion failed"
+msgstr "Verwijderen klant mislukt"
+
+#: src/atoms.tsx:99
+msgid "Client update failed"
+msgstr "Bijwerken klant mislukt"
+
+#: src/atoms.tsx:87
+msgid "Client updated successfully"
+msgstr "Klant succesvol bijgewerkt"
+
+#: src/routes/clients.tsx:51
+#: src/layouts/base.tsx:108
+msgid "Clients"
+msgstr "Klanten"
+
+#: src/routes/invoices/index.tsx:30
+msgid "Confirmed"
+msgstr "Bevestigd"
+
+#: src/routes/settings/invoice.tsx:188
+msgid "Counter must be 0 or greater"
+msgstr "Teller moet 0 of hoger zijn"
+
+#: src/routes/index.tsx:59
+msgid "Country"
+msgstr "Land"
+
+#: src/routes/settings/backup.tsx:103
+msgid "Create a backup of your database to save all your invoices, clients, and settings. The backup file can be used to restore your data if needed."
+msgstr "Maak een back-up van uw database om al uw facturen, klanten en instellingen op te slaan. Het back-upbestand kan worden gebruikt om uw gegevens te herstellen indien nodig."
+
+#: src/routes/settings/backup.tsx:98
+msgid "Create Backup"
+msgstr "Back-up maken"
+
+#: src/routes/index.tsx:49
+msgid "Create your organization to get started"
+msgstr "Maak uw organisatie aan om te beginnen"
+
+#: src/routes/index.tsx:68
+#: src/routes/settings/invoice.tsx:78
+#: src/routes/invoices/details.tsx:211
+msgid "Currency"
+msgstr "Valuta"
+
+#: src/routes/invoices/details.tsx:409
+msgid "Customer note"
+msgstr "Klantnotitie"
+
+#: src/routes/settings/backup.tsx:35
+msgid "Database backup saved successfully to {backupPath}"
+msgstr "Database back-up succesvol opgeslagen naar {backupPath}"
+
+#: src/routes/settings/backup.tsx:60
+msgid "Database has been restored successfully. Please restart the application to see the changes."
+msgstr "Database is succesvol hersteld. Start de applicatie opnieuw om de wijzigingen te zien."
+
+#: src/routes/invoices/index.tsx:101
+#: src/components/invoices/pdf.tsx:199
+msgid "Date"
+msgstr "Datum"
+
+#: src/routes/settings/invoice.tsx:231
+msgid "Day of month"
+msgstr "Dag van de maand"
+
+#: src/routes/settings/invoice.tsx:93
+msgid "Decimal places"
+msgstr "Decimalen"
+
+#: src/routes/settings/tax-rates.tsx:68
+#: src/components/tax-rates/form.tsx:60
+msgid "Default"
+msgstr "Standaard"
+
+#: src/routes/settings/organization.tsx:112
+#: src/routes/invoices/preview.tsx:167
+#: src/routes/invoices/details.tsx:496
+#: src/components/clients/form.tsx:113
+msgid "Delete"
+msgstr "Verwijderen"
+
+#: src/routes/invoices/preview.tsx:160
+#: src/routes/invoices/details.tsx:489
+msgid "Delete the invoice?"
+msgstr "Factuur verwijderen?"
+
+#: src/routes/settings/tax-rates.tsx:53
+#: src/routes/invoices/details.tsx:257
+#: src/components/tax-rates/form.tsx:53
+#: src/components/invoices/pdf.tsx:221
+msgid "Description"
+msgstr "Omschrijving"
+
+#: src/routes/invoices/index.tsx:26
+#: src/components/invoices/state-select.tsx:21
+msgid "Draft"
+msgstr "Concept"
+
+#: src/routes/invoices/index.tsx:108
+#: src/routes/invoices/details.tsx:236
+#: src/components/invoices/pdf.tsx:202
+msgid "Due date"
+msgstr "Vervaldatum"
+
+#: src/routes/settings/invoice.tsx:96
+msgid "Due days"
+msgstr "Vervaldagen"
+
+#: src/routes/settings/organization.tsx:59
+msgid "E-mail"
+msgstr "E-mail"
+
+#: src/components/clients/form.tsx:151
+msgid "E-mails"
+msgstr "E-mails"
+
+#: src/routes/invoices/preview.tsx:181
+msgid "Edit"
+msgstr "Bewerken"
+
+#: src/components/clients/form.tsx:82
+msgid "Edit client"
+msgstr "Klant bewerken"
+
+#: src/components/tax-rates/form.tsx:36
+msgid "Edit tax rate"
+msgstr "Belastingtarief bewerken"
+
+#: src/routes/clients.tsx:80
+msgid "Emails"
+msgstr "E-mails"
+
+#: src/routes/settings/invoice.tsx:199
+msgid "Enter format to see preview"
+msgstr "Voer formaat in om voorvertoning te zien"
+
+#. placeholder {0}: String(error)
+#: src/routes/settings/backup.tsx:39
+msgid "Failed to backup database: {0}"
+msgstr "Back-up van database mislukt: {0}"
+
+#: src/atoms.tsx:34
+msgid "Failed to fetch clients"
+msgstr "Ophalen klanten mislukt"
+
+#: src/atoms.tsx:140
+msgid "Failed to fetch invoices"
+msgstr "Ophalen facturen mislukt"
+
+#: src/atoms.tsx:284
+msgid "Failed to fetch organizations"
+msgstr "Ophalen organisaties mislukt"
+
+#: src/atoms.tsx:392
+msgid "Failed to fetch tax rates"
+msgstr "Ophalen belastingtarieven mislukt"
+
+#. placeholder {0}: String(error)
+#: src/routes/settings/backup.tsx:64
+msgid "Failed to restore database: {0}"
+msgstr "Herstellen database mislukt: {0}"
+
+#: src/routes/index.tsx:77
+msgid "Get started"
+msgstr "Beginnen"
+
+#: src/routes/settings/organization.tsx:78
+msgid "IBAN"
+msgstr "IBAN"
+
+#: src/layouts/base.tsx:140
+msgid "Invoice"
+msgstr "Factuur"
+
+#. placeholder {0}: invoice.number
+#: src/components/invoices/pdf.tsx:173
+msgid "Invoice #{0}"
+msgstr "Factuur #{0}"
+
+#: src/atoms.tsx:210
+msgid "Invoice created"
+msgstr "Factuur aangemaakt"
+
+#: src/atoms.tsx:249
+msgid "Invoice creation failed"
+msgstr "Aanmaken factuur mislukt"
+
+#: src/atoms.tsx:266
+msgid "Invoice deleted"
+msgstr "Factuur verwijderd"
+
+#: src/atoms.tsx:268
+#: src/atoms.tsx:272
+msgid "Invoice deletion failed"
+msgstr "Verwijderen factuur mislukt"
+
+#: src/routes/settings/invoice.tsx:73
+msgid "Invoice details"
+msgstr "Factuurdetails"
+
+#: src/routes/invoices/details.tsx:202
+msgid "Invoice number"
+msgstr "Factuurnummer"
+
+#: src/routes/settings/invoice.tsx:184
+msgid "Invoice Number Counter"
+msgstr "Factuurnummer teller"
+
+#: src/routes/settings/invoice.tsx:153
+msgid "Invoice Number Format"
+msgstr "Factuurnummer formaat"
+
+#: src/routes/settings/invoice.tsx:107
+#: src/routes/settings/invoice.tsx:146
+msgid "Invoice Numbering"
+msgstr "Factuurnummering"
+
+#: src/atoms.tsx:251
+msgid "Invoice update failed"
+msgstr "Bijwerken factuur mislukt"
+
+#: src/atoms.tsx:239
+msgid "Invoice updated successfully"
+msgstr "Factuur succesvol bijgewerkt"
+
+#: src/routes/invoices/index.tsx:72
+#: src/layouts/base.tsx:99
+msgid "Invoices"
+msgstr "Facturen"
+
+#: src/routes/settings/invoice.tsx:242
+msgid "Logo"
+msgstr "Logo"
+
+#: src/routes/settings/invoice.tsx:227
+msgid "Month name"
+msgstr "Maandnaam"
+
+#: src/routes/index.tsx:56
+#: src/routes/clients.tsx:69
+#: src/routes/settings/tax-rates.tsx:49
+#: src/routes/settings/organization.tsx:53
+#: src/components/tax-rates/form.tsx:50
+#: src/components/clients/form.tsx:144
+msgid "Name"
+msgstr "Naam"
+
+#: src/routes/clients.tsx:59
+#: src/routes/invoices/details.tsx:187
+#: src/components/clients/form.tsx:82
+msgid "New client"
+msgstr "Nieuwe klant"
+
+#: src/routes/invoices/index.tsx:80
+msgid "New invoice"
+msgstr "Nieuwe factuur"
+
+#: src/layouts/base.tsx:214
+msgid "New organization"
+msgstr "Nieuwe organisatie"
+
+#: src/routes/settings/tax-rates.tsx:40
+msgid "New tax"
+msgstr "Nieuwe belasting"
+
+#: src/components/tax-rates/form.tsx:36
+msgid "New tax rate"
+msgstr "Nieuw belastingtarief"
+
+#: src/routes/settings/invoice.tsx:191
+msgid "Next invoice will use this number + 1"
+msgstr "Volgende factuur gebruikt dit nummer + 1"
+
+#: src/routes/invoices/preview.tsx:164
+#: src/routes/invoices/details.tsx:493
+#: src/components/clients/form.tsx:109
+msgid "No"
+msgstr "Nee"
+
+#: src/routes/invoices/details.tsx:254
+msgid "No line items"
+msgstr "Geen regelitems"
+
+#: src/routes/settings/organization.tsx:109
+msgid "No!"
+msgstr "Nee!"
+
+#: src/routes/settings/invoice.tsx:102
+msgid "Notes"
+msgstr "Notities"
+
+#: src/routes/invoices/index.tsx:89
+msgid "Number"
+msgstr "Nummer"
+
+#: src/routes/settings/invoice.tsx:129
+msgid "Number of Digits"
+msgstr "Aantal cijfers"
+
+#: src/layouts/base.tsx:131
+msgid "Organization"
+msgstr "Organisatie"
+
+#: src/atoms.tsx:327
+msgid "Organization created"
+msgstr "Organisatie aangemaakt"
+
+#: src/atoms.tsx:341
+msgid "Organization creation failed"
+msgstr "Aanmaken organisatie mislukt"
+
+#: src/atoms.tsx:373
+msgid "Organization deleted"
+msgstr "Organisatie verwijderd"
+
+#: src/atoms.tsx:375
+#: src/atoms.tsx:379
+msgid "Organization deletion failed"
+msgstr "Verwijderen organisatie mislukt"
+
+#: src/routes/index.tsx:52
+#: src/routes/settings/organization.tsx:46
+msgid "Organization details"
+msgstr "Organisatiedetails"
+
+#: src/atoms.tsx:343
+msgid "Organization update failed"
+msgstr "Bijwerken organisatie mislukt"
+
+#: src/atoms.tsx:334
+msgid "Organization updated successfully"
+msgstr "Organisatie succesvol bijgewerkt"
+
+#: src/routes/time-tracking.tsx:14
+msgid "Our time tracking feature is currently being developed."
+msgstr "Onze tijdregistratiefunctie wordt momenteel ontwikkeld."
+
+#: src/routes/settings/invoice.tsx:99
+#: src/components/invoices/pdf.tsx:206
+msgid "Overdue charge"
+msgstr "Achterstallige kosten"
+
+#: src/routes/invoices/index.tsx:34
+#: src/components/invoices/state-select.tsx:29
+msgid "Paid"
+msgstr "Betaald"
+
+#: src/routes/settings/tax-rates.tsx:57
+#: src/components/tax-rates/form.tsx:56
+msgid "Percentage"
+msgstr "Percentage"
+
+#: src/routes/clients.tsx:88
+#: src/routes/settings/organization.tsx:62
+#: src/components/clients/form.tsx:154
+msgid "Phone"
+msgstr "Telefoon"
+
+#: src/components/tax-rates/form.tsx:55
+msgid "Please input a percentage!"
+msgstr "Voer een percentage in!"
+
+#: src/routes/index.tsx:55
+#: src/components/tax-rates/form.tsx:49
+#: src/components/clients/form.tsx:143
+msgid "Please input name!"
+msgstr "Voer een naam in!"
+
+#: src/routes/settings/invoice.tsx:112
+msgid "Prefix"
+msgstr "Voorvoegsel"
+
+#: src/routes/settings/invoice.tsx:197
+msgid "Preview"
+msgstr "Voorvertoning"
+
+#: src/routes/invoices/details.tsx:308
+#: src/components/invoices/pdf.tsx:227
+msgid "Price"
+msgstr "Prijs"
+
+#: src/routes/invoices/details.tsx:280
+#: src/components/invoices/pdf.tsx:224
+msgid "Qty."
+msgstr "Aantal"
+
+#: src/routes/settings/organization.tsx:65
+msgid "Registration number"
+msgstr "Registratienummer"
+
+#: src/routes/settings/backup.tsx:49
+msgid "Restore"
+msgstr "Herstellen"
+
+#: src/routes/settings/backup.tsx:59
+msgid "Restore Complete"
+msgstr "Herstel voltooid"
+
+#: src/routes/settings/backup.tsx:47
+msgid "Restore Database"
+msgstr "Database herstellen"
+
+#: src/routes/settings/backup.tsx:124
+msgid "Restore from Backup"
+msgstr "Herstellen vanuit back-up"
+
+#: src/routes/settings/backup.tsx:129
+msgid "Restore your database from a previously created backup file. This will replace all current data with the backup data."
+msgstr "Herstel uw database vanuit een eerder gemaakt back-upbestand. Dit vervangt alle huidige gegevens met de back-upgegevens."
+
+#: src/routes/settings/organization.tsx:103
+#: src/routes/settings/invoice.tsx:273
+#: src/routes/invoices/details.tsx:537
+#: src/components/tax-rates/form.tsx:38
+#: src/components/clients/form.tsx:84
+#: src/components/clients/form.tsx:134
+msgid "Save"
+msgstr "Opslaan"
+
+#: src/routes/clients.tsx:56
+#: src/routes/invoices/index.tsx:77
+msgid "Search text"
+msgstr "Zoektekst"
+
+#: src/routes/invoices/details.tsx:159
+msgid "Select or create a client"
+msgstr "Selecteer of maak een klant aan"
+
+#: src/components/invoices/state-select.tsx:25
+msgid "Sent"
+msgstr "Verzonden"
+
+#: src/routes/settings/invoice.tsx:117
+msgid "Separator"
+msgstr "Scheidingsteken"
+
+#: src/routes/settings/invoice.tsx:213
+msgid "Sequential number"
+msgstr "Volgnummer"
+
+#: src/layouts/base.tsx:124
+msgid "Settings"
+msgstr "Instellingen"
+
+#: src/routes/settings/invoice.tsx:180
+msgid "Show variables"
+msgstr "Variabelen tonen"
+
+#: src/routes/settings/invoice.tsx:124
+msgid "Start Number"
+msgstr "Startnummer"
+
+#: src/routes/invoices/index.tsx:123
+msgid "State"
+msgstr "Status"
+
+#: src/routes/invoices/details.tsx:438
+#: src/components/invoices/pdf.tsx:252
+msgid "Subtotal"
+msgstr "Subtotaal"
+
+#: src/routes/settings/invoice.tsx:136
+msgid "Suffix"
+msgstr "Achtervoegsel"
+
+#: src/routes/invoices/details.tsx:364
+#: src/routes/invoices/details.tsx:445
+#: src/components/invoices/pdf.tsx:263
+msgid "Tax"
+msgstr "BTW"
+
+#: src/atoms.tsx:428
+msgid "Tax rate created"
+msgstr "Belastingtarief aangemaakt"
+
+#: src/atoms.tsx:455
+msgid "Tax rate creation failed"
+msgstr "Aanmaken belastingtarief mislukt"
+
+#: src/atoms.tsx:457
+msgid "Tax rate update failed"
+msgstr "Bijwerken belastingtarief mislukt"
+
+#: src/atoms.tsx:445
+msgid "Tax rate updated successfully"
+msgstr "Belastingtarief succesvol bijgewerkt"
+
+#: src/routes/settings/tax-rates.tsx:33
+#: src/layouts/base.tsx:149
+msgid "Tax rates"
+msgstr "Belastingtarieven"
+
+#: src/routes/settings/invoice.tsx:80
+#: src/routes/settings/invoice.tsx:156
+#: src/routes/settings/invoice.tsx:187
+#: src/routes/invoices/details.tsx:161
+#: src/routes/invoices/details.tsx:204
+#: src/routes/invoices/details.tsx:213
+#: src/routes/invoices/details.tsx:230
+#: src/routes/invoices/details.tsx:238
+#: src/routes/invoices/details.tsx:271
+#: src/routes/invoices/details.tsx:286
+#: src/routes/invoices/details.tsx:314
+#: src/routes/invoices/details.tsx:342
+msgid "This field is required!"
+msgstr "Dit veld is verplicht!"
+
+#: src/layouts/base.tsx:117
+msgid "Time tracking"
+msgstr "Tijdregistratie"
+
+#: src/routes/invoices/index.tsx:115
+#: src/routes/invoices/details.tsx:336
+#: src/routes/invoices/details.tsx:455
+#: src/components/invoices/pdf.tsx:230
+#: src/components/invoices/pdf.tsx:274
+msgid "Total"
+msgstr "Totaal"
+
+#: src/routes/time-tracking.tsx:11
+msgid "Under Development"
+msgstr "In ontwikkeling"
+
+#: src/routes/settings/invoice.tsx:257
+msgid "Upload"
+msgstr "Uploaden"
+
+#: src/components/clients/form.tsx:157
+msgid "VAT Number"
+msgstr "BTW-nummer"
+
+#: src/routes/clients.tsx:102
+msgid "VATIN"
+msgstr "BTW-ID"
+
+#: src/routes/invoices/details.tsx:511
+msgid "View"
+msgstr "Bekijken"
+
+#: src/routes/invoices/index.tsx:38
+#: src/components/invoices/state-select.tsx:33
+msgid "Void"
+msgstr "Nietig"
+
+#: src/components/clients/form.tsx:102
+msgid "Warning: This will also delete {invoiceCount} related invoice(s)."
+msgstr "Waarschuwing: Dit verwijdert ook {invoiceCount} gerelateerde factuur/facturen."
+
+#: src/routes/clients.tsx:104
+#: src/components/clients/form.tsx:160
+msgid "Website"
+msgstr "Website"
+
+#: src/routes/settings/organization.tsx:108
+#: src/routes/invoices/preview.tsx:163
+#: src/routes/invoices/details.tsx:492
+#: src/components/clients/form.tsx:108
+msgid "Yes"
+msgstr "Ja"

@@ -1,0 +1,656 @@
+msgid ""
+msgstr ""
+"POT-Creation-Date: 2025-06-29 15:39+0300\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: @lingui/cli\n"
+"Language: fr\n"
+
+#: src/routes/settings/invoice.tsx:223
+msgid "2-digit month"
+msgstr "Mois à 2 chiffres"
+
+#: src/routes/settings/invoice.tsx:219
+msgid "2-digit year"
+msgstr "Année à 2 chiffres"
+
+#: src/routes/settings/invoice.tsx:216
+msgid "4-digit year"
+msgstr "Année à 4 chiffres"
+
+#: src/routes/invoices/details.tsx:398
+msgid "Add line item"
+msgstr "Ajouter une ligne"
+
+#: src/routes/clients.tsx:78
+#: src/routes/settings/organization.tsx:56
+#: src/components/clients/form.tsx:147
+msgid "Address"
+msgstr "Adresse"
+
+#: src/routes/settings/organization.tsx:106
+msgid "Are you sure delete this organization?"
+msgstr "Êtes-vous sûr(e) de vouloir supprimer cette organisation ?"
+
+#: src/routes/invoices/preview.tsx:161
+#: src/routes/invoices/details.tsx:490
+msgid "Are you sure to delete this invoice?"
+msgstr "Êtes-vous sûr(e) de vouloir supprimer cette facture ?"
+
+#: src/components/clients/form.tsx:99
+msgid "Are you sure you want to delete this client?"
+msgstr "Êtes-vous sûr(e) de vouloir supprimer ce client ?"
+
+#: src/routes/settings/backup.tsx:48
+msgid "Are you sure you want to restore from a backup? This will replace all current data and cannot be undone."
+msgstr "Êtes-vous sûr(e) de vouloir restaurer à partir d'une sauvegarde ? Cela remplacera toutes les données actuelles et ne peut pas être annulé."
+
+#: src/routes/settings/invoice.tsx:209
+msgid "Available variables:"
+msgstr "Variables disponibles :"
+
+#: src/layouts/base.tsx:158
+msgid "Backup"
+msgstr "Sauvegarde"
+
+#: src/routes/settings/backup.tsx:80
+msgid "Backup & restore"
+msgstr "Sauvegarde et restauration"
+
+#: src/routes/settings/organization.tsx:71
+msgid "Bank name"
+msgstr "Nom de la banque"
+
+#: src/routes/settings/backup.tsx:50
+#: src/components/clients/form.tsx:127
+msgid "Cancel"
+msgstr "Annuler"
+
+#: src/routes/settings/invoice.tsx:257
+msgid "Change"
+msgstr "Modifier"
+
+#: src/routes/time-tracking.tsx:17
+msgid "Check back soon for updates!"
+msgstr "Revenez bientôt pour les mises à jour !"
+
+#: src/routes/invoices/index.tsx:95
+msgid "Client"
+msgstr "Client"
+
+#: src/atoms.tsx:76
+msgid "Client created"
+msgstr "Client créé"
+
+#: src/atoms.tsx:97
+msgid "Client creation failed"
+msgstr "Échec de la création du client"
+
+#: src/atoms.tsx:114
+msgid "Client deleted"
+msgstr "Client supprimé"
+
+#: src/atoms.tsx:116
+#: src/atoms.tsx:120
+msgid "Client deletion failed"
+msgstr "Échec de la suppression du client"
+
+#: src/atoms.tsx:99
+msgid "Client update failed"
+msgstr "Échec de la mise à jour du client"
+
+#: src/atoms.tsx:87
+msgid "Client updated successfully"
+msgstr "Client mis à jour avec succès"
+
+#: src/routes/clients.tsx:51
+#: src/layouts/base.tsx:108
+msgid "Clients"
+msgstr "Clients"
+
+#: src/routes/invoices/index.tsx:30
+msgid "Confirmed"
+msgstr "Confirmée"
+
+#: src/routes/settings/invoice.tsx:188
+msgid "Counter must be 0 or greater"
+msgstr "Le compteur doit être supérieur ou égal à 0"
+
+#: src/routes/index.tsx:59
+msgid "Country"
+msgstr "Pays"
+
+#: src/routes/settings/backup.tsx:103
+msgid "Create a backup of your database to save all your invoices, clients, and settings. The backup file can be used to restore your data if needed."
+msgstr "Créez une sauvegarde de votre base de données pour sauvegarder toutes vos factures, clients et paramètres. Le fichier de sauvegarde peut être utilisé pour restaurer vos données si nécessaire."
+
+#: src/routes/settings/backup.tsx:98
+msgid "Create Backup"
+msgstr "Créer une sauvegarde"
+
+#: src/routes/index.tsx:49
+msgid "Create your organization to get started"
+msgstr "Créez votre organisation pour commencer"
+
+#: src/routes/index.tsx:68
+#: src/routes/settings/invoice.tsx:78
+#: src/routes/invoices/details.tsx:211
+msgid "Currency"
+msgstr "Devise"
+
+#: src/routes/invoices/details.tsx:409
+msgid "Customer note"
+msgstr "Note client"
+
+#: src/routes/settings/backup.tsx:35
+msgid "Database backup saved successfully to {backupPath}"
+msgstr "Sauvegarde de la base de données enregistrée avec succès vers {backupPath}"
+
+#: src/routes/settings/backup.tsx:60
+msgid "Database has been restored successfully. Please restart the application to see the changes."
+msgstr "La base de données a été restaurée avec succès. Veuillez redémarrer l'application pour voir les modifications."
+
+#: src/routes/invoices/index.tsx:101
+#: src/components/invoices/pdf.tsx:199
+msgid "Date"
+msgstr "Date"
+
+#: src/routes/settings/invoice.tsx:231
+msgid "Day of month"
+msgstr "Jour du mois"
+
+#: src/routes/settings/invoice.tsx:93
+msgid "Decimal places"
+msgstr "Décimales"
+
+#: src/routes/settings/tax-rates.tsx:68
+#: src/components/tax-rates/form.tsx:60
+msgid "Default"
+msgstr "Par défaut"
+
+#: src/routes/settings/organization.tsx:112
+#: src/routes/invoices/preview.tsx:167
+#: src/routes/invoices/details.tsx:496
+#: src/components/clients/form.tsx:113
+msgid "Delete"
+msgstr "Supprimer"
+
+#: src/routes/invoices/preview.tsx:160
+#: src/routes/invoices/details.tsx:489
+msgid "Delete the invoice?"
+msgstr "Supprimer la facture ?"
+
+#: src/routes/settings/tax-rates.tsx:53
+#: src/routes/invoices/details.tsx:257
+#: src/components/tax-rates/form.tsx:53
+#: src/components/invoices/pdf.tsx:221
+msgid "Description"
+msgstr "Description"
+
+#: src/routes/invoices/index.tsx:26
+#: src/components/invoices/state-select.tsx:21
+msgid "Draft"
+msgstr "Brouillon"
+
+#: src/routes/invoices/index.tsx:108
+#: src/routes/invoices/details.tsx:236
+#: src/components/invoices/pdf.tsx:202
+msgid "Due date"
+msgstr "Date d'échéance"
+
+#: src/routes/settings/invoice.tsx:96
+msgid "Due days"
+msgstr "Jours d'échéance"
+
+#: src/routes/settings/organization.tsx:59
+msgid "E-mail"
+msgstr "E-mail"
+
+#: src/components/clients/form.tsx:151
+msgid "E-mails"
+msgstr "E-mails"
+
+#: src/routes/invoices/preview.tsx:181
+msgid "Edit"
+msgstr "Modifier"
+
+#: src/components/clients/form.tsx:82
+msgid "Edit client"
+msgstr "Modifier le client"
+
+#: src/components/tax-rates/form.tsx:36
+msgid "Edit tax rate"
+msgstr "Modifier le taux de taxe"
+
+#: src/routes/clients.tsx:80
+msgid "Emails"
+msgstr "E-mails"
+
+#: src/routes/settings/invoice.tsx:199
+msgid "Enter format to see preview"
+msgstr "Saisissez le format pour voir l'aperçu"
+
+#. placeholder {0}: String(error)
+#: src/routes/settings/backup.tsx:39
+msgid "Failed to backup database: {0}"
+msgstr "Échec de la sauvegarde de la base de données : {0}"
+
+#: src/atoms.tsx:34
+msgid "Failed to fetch clients"
+msgstr "Échec de la récupération des clients"
+
+#: src/atoms.tsx:140
+msgid "Failed to fetch invoices"
+msgstr "Échec de la récupération des factures"
+
+#: src/atoms.tsx:284
+msgid "Failed to fetch organizations"
+msgstr "Échec de la récupération des organisations"
+
+#: src/atoms.tsx:392
+msgid "Failed to fetch tax rates"
+msgstr "Échec de la récupération des taux de taxe"
+
+#. placeholder {0}: String(error)
+#: src/routes/settings/backup.tsx:64
+msgid "Failed to restore database: {0}"
+msgstr "Échec de la restauration de la base de données : {0}"
+
+#: src/routes/index.tsx:77
+msgid "Get started"
+msgstr "Commencer"
+
+#: src/routes/settings/organization.tsx:78
+msgid "IBAN"
+msgstr "IBAN"
+
+#: src/layouts/base.tsx:140
+msgid "Invoice"
+msgstr "Facture"
+
+#. placeholder {0}: invoice.number
+#: src/components/invoices/pdf.tsx:173
+msgid "Invoice #{0}"
+msgstr "Facture n°{0}"
+
+#: src/atoms.tsx:210
+msgid "Invoice created"
+msgstr "Facture créée"
+
+#: src/atoms.tsx:249
+msgid "Invoice creation failed"
+msgstr "Échec de la création de la facture"
+
+#: src/atoms.tsx:266
+msgid "Invoice deleted"
+msgstr "Facture supprimée"
+
+#: src/atoms.tsx:268
+#: src/atoms.tsx:272
+msgid "Invoice deletion failed"
+msgstr "Échec de la suppression de la facture"
+
+#: src/routes/settings/invoice.tsx:73
+msgid "Invoice details"
+msgstr "Détails de la facture"
+
+#: src/routes/invoices/details.tsx:202
+msgid "Invoice number"
+msgstr "Numéro de facture"
+
+#: src/routes/settings/invoice.tsx:184
+msgid "Invoice Number Counter"
+msgstr "Compteur de numéro de facture"
+
+#: src/routes/settings/invoice.tsx:153
+msgid "Invoice Number Format"
+msgstr "Format de numéro de facture"
+
+#: src/routes/settings/invoice.tsx:107
+#: src/routes/settings/invoice.tsx:146
+msgid "Invoice Numbering"
+msgstr "Numérotation des factures"
+
+#: src/atoms.tsx:251
+msgid "Invoice update failed"
+msgstr "Échec de la mise à jour de la facture"
+
+#: src/atoms.tsx:239
+msgid "Invoice updated successfully"
+msgstr "Facture mise à jour avec succès"
+
+#: src/routes/invoices/index.tsx:72
+#: src/layouts/base.tsx:99
+msgid "Invoices"
+msgstr "Factures"
+
+#: src/routes/settings/invoice.tsx:242
+msgid "Logo"
+msgstr "Logo"
+
+#: src/routes/settings/invoice.tsx:227
+msgid "Month name"
+msgstr "Nom du mois"
+
+#: src/routes/index.tsx:56
+#: src/routes/clients.tsx:69
+#: src/routes/settings/tax-rates.tsx:49
+#: src/routes/settings/organization.tsx:53
+#: src/components/tax-rates/form.tsx:50
+#: src/components/clients/form.tsx:144
+msgid "Name"
+msgstr "Nom"
+
+#: src/routes/clients.tsx:59
+#: src/routes/invoices/details.tsx:187
+#: src/components/clients/form.tsx:82
+msgid "New client"
+msgstr "Nouveau client"
+
+#: src/routes/invoices/index.tsx:80
+msgid "New invoice"
+msgstr "Nouvelle facture"
+
+#: src/layouts/base.tsx:214
+msgid "New organization"
+msgstr "Nouvelle organisation"
+
+#: src/routes/settings/tax-rates.tsx:40
+msgid "New tax"
+msgstr "Nouvelle taxe"
+
+#: src/components/tax-rates/form.tsx:36
+msgid "New tax rate"
+msgstr "Nouveau taux de taxe"
+
+#: src/routes/settings/invoice.tsx:191
+msgid "Next invoice will use this number + 1"
+msgstr "La prochaine facture utilisera ce numéro + 1"
+
+#: src/routes/invoices/preview.tsx:164
+#: src/routes/invoices/details.tsx:493
+#: src/components/clients/form.tsx:109
+msgid "No"
+msgstr "Non"
+
+#: src/routes/invoices/details.tsx:254
+msgid "No line items"
+msgstr "Aucune ligne d'article"
+
+#: src/routes/settings/organization.tsx:109
+msgid "No!"
+msgstr "Non !"
+
+#: src/routes/settings/invoice.tsx:102
+msgid "Notes"
+msgstr "Notes"
+
+#: src/routes/invoices/index.tsx:89
+msgid "Number"
+msgstr "Numéro"
+
+#: src/routes/settings/invoice.tsx:129
+msgid "Number of Digits"
+msgstr "Nombre de chiffres"
+
+#: src/layouts/base.tsx:131
+msgid "Organization"
+msgstr "Organisation"
+
+#: src/atoms.tsx:327
+msgid "Organization created"
+msgstr "Organisation créée"
+
+#: src/atoms.tsx:341
+msgid "Organization creation failed"
+msgstr "Échec de la création de l'organisation"
+
+#: src/atoms.tsx:373
+msgid "Organization deleted"
+msgstr "Organisation supprimée"
+
+#: src/atoms.tsx:375
+#: src/atoms.tsx:379
+msgid "Organization deletion failed"
+msgstr "Échec de la suppression de l'organisation"
+
+#: src/routes/index.tsx:52
+#: src/routes/settings/organization.tsx:46
+msgid "Organization details"
+msgstr "Détails de l'organisation"
+
+#: src/atoms.tsx:343
+msgid "Organization update failed"
+msgstr "Échec de la mise à jour de l'organisation"
+
+#: src/atoms.tsx:334
+msgid "Organization updated successfully"
+msgstr "Organisation mise à jour avec succès"
+
+#: src/routes/time-tracking.tsx:14
+msgid "Our time tracking feature is currently being developed."
+msgstr "Notre fonctionnalité de suivi du temps est actuellement en développement."
+
+#: src/routes/settings/invoice.tsx:99
+#: src/components/invoices/pdf.tsx:206
+msgid "Overdue charge"
+msgstr "Frais de retard"
+
+#: src/routes/invoices/index.tsx:34
+#: src/components/invoices/state-select.tsx:29
+msgid "Paid"
+msgstr "Payée"
+
+#: src/routes/settings/tax-rates.tsx:57
+#: src/components/tax-rates/form.tsx:56
+msgid "Percentage"
+msgstr "Pourcentage"
+
+#: src/routes/clients.tsx:88
+#: src/routes/settings/organization.tsx:62
+#: src/components/clients/form.tsx:154
+msgid "Phone"
+msgstr "Téléphone"
+
+#: src/components/tax-rates/form.tsx:55
+msgid "Please input a percentage!"
+msgstr "Veuillez saisir un pourcentage !"
+
+#: src/routes/index.tsx:55
+#: src/components/tax-rates/form.tsx:49
+#: src/components/clients/form.tsx:143
+msgid "Please input name!"
+msgstr "Veuillez saisir un nom !"
+
+#: src/routes/settings/invoice.tsx:112
+msgid "Prefix"
+msgstr "Préfixe"
+
+#: src/routes/settings/invoice.tsx:197
+msgid "Preview"
+msgstr "Aperçu"
+
+#: src/routes/invoices/details.tsx:308
+#: src/components/invoices/pdf.tsx:227
+msgid "Price"
+msgstr "Prix"
+
+#: src/routes/invoices/details.tsx:280
+#: src/components/invoices/pdf.tsx:224
+msgid "Qty."
+msgstr "Qté"
+
+#: src/routes/settings/organization.tsx:65
+msgid "Registration number"
+msgstr "Numéro d'enregistrement"
+
+#: src/routes/settings/backup.tsx:49
+msgid "Restore"
+msgstr "Restaurer"
+
+#: src/routes/settings/backup.tsx:59
+msgid "Restore Complete"
+msgstr "Restauration terminée"
+
+#: src/routes/settings/backup.tsx:47
+msgid "Restore Database"
+msgstr "Restaurer la base de données"
+
+#: src/routes/settings/backup.tsx:124
+msgid "Restore from Backup"
+msgstr "Restaurer à partir d'une sauvegarde"
+
+#: src/routes/settings/backup.tsx:129
+msgid "Restore your database from a previously created backup file. This will replace all current data with the backup data."
+msgstr "Restaurez votre base de données à partir d'un fichier de sauvegarde créé précédemment. Cela remplacera toutes les données actuelles par les données de sauvegarde."
+
+#: src/routes/settings/organization.tsx:103
+#: src/routes/settings/invoice.tsx:273
+#: src/routes/invoices/details.tsx:537
+#: src/components/tax-rates/form.tsx:38
+#: src/components/clients/form.tsx:84
+#: src/components/clients/form.tsx:134
+msgid "Save"
+msgstr "Enregistrer"
+
+#: src/routes/clients.tsx:56
+#: src/routes/invoices/index.tsx:77
+msgid "Search text"
+msgstr "Rechercher du texte"
+
+#: src/routes/invoices/details.tsx:159
+msgid "Select or create a client"
+msgstr "Sélectionner ou créer un client"
+
+#: src/components/invoices/state-select.tsx:25
+msgid "Sent"
+msgstr "Envoyée"
+
+#: src/routes/settings/invoice.tsx:117
+msgid "Separator"
+msgstr "Séparateur"
+
+#: src/routes/settings/invoice.tsx:213
+msgid "Sequential number"
+msgstr "Numéro séquentiel"
+
+#: src/layouts/base.tsx:124
+msgid "Settings"
+msgstr "Paramètres"
+
+#: src/routes/settings/invoice.tsx:180
+msgid "Show variables"
+msgstr "Afficher les variables"
+
+#: src/routes/settings/invoice.tsx:124
+msgid "Start Number"
+msgstr "Numéro de départ"
+
+#: src/routes/invoices/index.tsx:123
+msgid "State"
+msgstr "État"
+
+#: src/routes/invoices/details.tsx:438
+#: src/components/invoices/pdf.tsx:252
+msgid "Subtotal"
+msgstr "Sous-total"
+
+#: src/routes/settings/invoice.tsx:136
+msgid "Suffix"
+msgstr "Suffixe"
+
+#: src/routes/invoices/details.tsx:364
+#: src/routes/invoices/details.tsx:445
+#: src/components/invoices/pdf.tsx:263
+msgid "Tax"
+msgstr "Taxe"
+
+#: src/atoms.tsx:428
+msgid "Tax rate created"
+msgstr "Taux de taxe créé"
+
+#: src/atoms.tsx:455
+msgid "Tax rate creation failed"
+msgstr "Échec de la création du taux de taxe"
+
+#: src/atoms.tsx:457
+msgid "Tax rate update failed"
+msgstr "Échec de la mise à jour du taux de taxe"
+
+#: src/atoms.tsx:445
+msgid "Tax rate updated successfully"
+msgstr "Taux de taxe mis à jour avec succès"
+
+#: src/routes/settings/tax-rates.tsx:33
+#: src/layouts/base.tsx:149
+msgid "Tax rates"
+msgstr "Taux de taxe"
+
+#: src/routes/settings/invoice.tsx:80
+#: src/routes/settings/invoice.tsx:156
+#: src/routes/settings/invoice.tsx:187
+#: src/routes/invoices/details.tsx:161
+#: src/routes/invoices/details.tsx:204
+#: src/routes/invoices/details.tsx:213
+#: src/routes/invoices/details.tsx:230
+#: src/routes/invoices/details.tsx:238
+#: src/routes/invoices/details.tsx:271
+#: src/routes/invoices/details.tsx:286
+#: src/routes/invoices/details.tsx:314
+#: src/routes/invoices/details.tsx:342
+msgid "This field is required!"
+msgstr "Ce champ est obligatoire !"
+
+#: src/layouts/base.tsx:117
+msgid "Time tracking"
+msgstr "Suivi du temps"
+
+#: src/routes/invoices/index.tsx:115
+#: src/routes/invoices/details.tsx:336
+#: src/routes/invoices/details.tsx:455
+#: src/components/invoices/pdf.tsx:230
+#: src/components/invoices/pdf.tsx:274
+msgid "Total"
+msgstr "Total"
+
+#: src/routes/time-tracking.tsx:11
+msgid "Under Development"
+msgstr "En développement"
+
+#: src/routes/settings/invoice.tsx:257
+msgid "Upload"
+msgstr "Télécharger"
+
+#: src/components/clients/form.tsx:157
+msgid "VAT Number"
+msgstr "Numéro de TVA"
+
+#: src/routes/clients.tsx:102
+msgid "VATIN"
+msgstr "N° TVA"
+
+#: src/routes/invoices/details.tsx:511
+msgid "View"
+msgstr "Afficher"
+
+#: src/routes/invoices/index.tsx:38
+#: src/components/invoices/state-select.tsx:33
+msgid "Void"
+msgstr "Annulée"
+
+#: src/components/clients/form.tsx:102
+msgid "Warning: This will also delete {invoiceCount} related invoice(s)."
+msgstr "Attention : Cela supprimera également {invoiceCount} facture(s) associée(s)."
+
+#: src/routes/clients.tsx:104
+#: src/components/clients/form.tsx:160
+msgid "Website"
+msgstr "Site web"
+
+#: src/routes/settings/organization.tsx:108
+#: src/routes/invoices/preview.tsx:163
+#: src/routes/invoices/details.tsx:492
+#: src/components/clients/form.tsx:108
+msgid "Yes"
+msgstr "Oui"
