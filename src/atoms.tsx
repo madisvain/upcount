@@ -346,18 +346,15 @@ export const organizationAtom = atom(
   }
 );
 // Get next invoice number
-export const nextInvoiceNumberAtom = atom(
-  async (get) => {
-    const organization = await get(organizationAtom);
-    if (!organization) return null;
+export const nextInvoiceNumberAtom = atom(async (get) => {
+  const organization = await get(organizationAtom);
+  if (!organization) return null;
 
-    const format = organization.invoiceNumberFormat;
-    const counter = (organization.invoiceNumberCounter || 0) + 1;
-    
-    return generateInvoiceNumber(format, counter);
-  }
-);
+  const format = organization.invoiceNumberFormat;
+  const counter = (organization.invoiceNumberCounter || 0) + 1;
 
+  return generateInvoiceNumber(format, counter);
+});
 
 // Delete organization
 export const deleteOrganizationAtom = atom(null, async (get, set) => {
