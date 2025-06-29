@@ -724,6 +724,8 @@ export const timeEntryAtom = atom(
         // Update the time entries list
         const timeEntries: any = get(timeEntriesAtom);
         set(timeEntriesAtom, [createdTimeEntry, ...timeEntries]);
+        
+        return createdTimeEntry;
       } else {
         // Update
         const updateData = {
@@ -747,6 +749,8 @@ export const timeEntryAtom = atom(
         const timeEntries: any = get(timeEntriesAtom);
         const mergedTimeEntries: any = keyBy([...timeEntries, updatedTimeEntry], "id");
         set(timeEntriesAtom, orderBy(map(mergedTimeEntries), "startTime", "desc"));
+        
+        return updatedTimeEntry;
       }
     } catch (error) {
       console.error("Time entry operation failed:", error);
@@ -778,5 +782,5 @@ export const deleteTimeEntryAtom = atom(null, async (get, set, timeEntryId: stri
   }
 });
 
-// Running timer atom for tracking active timer
-export const runningTimerAtom = atom<string | null>(null);
+// Running timer atom for tracking active timer (persisted in localStorage)
+export const runningTimerAtom = atomWithStorage<string | null>("runningTimer", null);

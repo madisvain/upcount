@@ -175,7 +175,7 @@ const TimeTracking = () => {
   const clients = useAtomValue(clientsAtom);
   const setClients = useSetAtom(setClientsAtom);
   const setTimeEntry = useSetAtom(timeEntryAtom);
-  const setTimeEntryId = useSetAtom(timeEntryIdAtom);
+  const [timeEntryId, setTimeEntryId] = useAtom(timeEntryIdAtom);
   const updateTimeEntryDirectly = useSetAtom(updateTimeEntryDirectlyAtom);
   const [currentTime, setCurrentTime] = useState(dayjs());
 
@@ -225,10 +225,10 @@ const TimeTracking = () => {
     try {
       // Create the time entry
       setTimeEntryId(null); // Reset to create new
-      await setTimeEntry(newEntry);
+      const createdEntry = await setTimeEntry(newEntry);
 
-      // Set the running timer with start time
-      setRunningTimer(startTime.toString());
+      // Set the running timer with the created entry ID
+      setRunningTimer(createdEntry?.id || null);
 
       // Refresh the list to show the new entry
       setTimeEntries();
@@ -240,8 +240,8 @@ const TimeTracking = () => {
   const stopTimer = async () => {
     if (runningTimer) {
       try {
-        // Find the running timer entry
-        const runningEntry = timeEntries.find((entry) => entry.startTime === parseInt(runningTimer) && !entry.endTime);
+        // Find the running timer entry by ID
+        const runningEntry = timeEntries.find((entry) => entry.id === runningTimer);
 
         if (runningEntry) {
           const endTime = dayjs().valueOf();
@@ -351,7 +351,7 @@ const TimeTracking = () => {
       key: "duration",
       render: (seconds: number, record: any) => {
         // For running timers, calculate current duration dynamically
-        if (runningTimer && record.startTime === parseInt(runningTimer) && !record.endTime) {
+        if (runningTimer && record.id === runningTimer && !record.endTime) {
           const currentDuration = Math.max(0, Math.floor((currentTime.valueOf() - record.startTime) / 1000));
           return formatDuration(currentDuration);
         }

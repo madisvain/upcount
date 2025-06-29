@@ -5,16 +5,24 @@ import { useNavigate } from "react-router";
 import dayjs from "dayjs";
 import duration from "dayjs/plugin/duration";
 
-import { runningTimerAtom, timeEntriesAtom, timeEntryIdAtom } from "src/atoms";
+import { runningTimerAtom, timeEntryAtom, timeEntryIdAtom } from "src/atoms";
 
 dayjs.extend(duration);
 
 const Timer = () => {
   const runningTimer = useAtomValue(runningTimerAtom);
-  const timeEntries = useAtomValue(timeEntriesAtom);
+  const timeEntry = useAtomValue(timeEntryAtom);
   const setTimeEntryId = useSetAtom(timeEntryIdAtom);
   const [currentTime, setCurrentTime] = useState(dayjs());
   const navigate = useNavigate();
+
+
+  // Set the timeEntryId when runningTimer changes
+  useEffect(() => {
+    if (runningTimer) {
+      setTimeEntryId(runningTimer);
+    }
+  }, [runningTimer, setTimeEntryId]);
 
   // Update current time every second for running timer
   useEffect(() => {
@@ -40,18 +48,13 @@ const Timer = () => {
   }
 
   const handleClick = () => {
-    // Find the running timer entry
-    const runningEntry = timeEntries.find((entry) => entry.startTime === parseInt(runningTimer) && !entry.endTime);
-    
-    if (runningEntry) {
-      // Set the time entry ID to open the modal
-      setTimeEntryId(runningEntry.id);
+    if (timeEntry) {
       // Navigate to time-tracking page with modal state
-      navigate("/time-tracking", { 
-        state: { 
-          timeEntryModal: true, 
-          timeEntryId: runningEntry.id 
-        } 
+      navigate("/time-tracking", {
+        state: {
+          timeEntryModal: true,
+          timeEntryId: timeEntry.id,
+        },
       });
     } else {
       // Fallback to just navigate to time-tracking page
@@ -64,7 +67,9 @@ const Timer = () => {
       <Space>
         <Badge status="processing" color="red" />
         <span style={{ fontWeight: "bold", fontFamily: "monospace" }}>
-          {formatDuration(Math.max(0, Math.floor((currentTime.valueOf() - parseInt(runningTimer)) / 1000)))}
+          {timeEntry && timeEntry.startTime ? 
+            formatDuration(Math.max(0, Math.floor((currentTime.valueOf() - timeEntry.startTime.valueOf()) / 1000))) : 
+            "00:00:00"}
         </span>
       </Space>
     </Button>
