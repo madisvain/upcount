@@ -12,7 +12,14 @@ When asked to create release notes:
 
 2. **Review recent commits**
    ```bash
-   git log --oneline --no-merges [last-version]..HEAD
+   # First, find the latest release tag
+   git tag --sort=-version:refname | head -1
+   
+   # Then get commits since that tag (replace with actual tag)
+   git log --oneline --no-merges [LATEST_TAG]..HEAD
+   
+   # Example for this project:
+   git log --oneline --no-merges v2.0.0-beta.5..HEAD
    ```
 
 3. **Update CHANGELOG.md** following this exact format:

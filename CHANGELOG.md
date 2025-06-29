@@ -5,6 +5,21 @@ All notable changes to Upcount will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [Unreleased]
+
+### Added
+- Complete translations for 7 additional languages: German, Finnish, French, Dutch, Swedish, Ukrainian, and Portuguese
+- Enhanced language dropdown with flag emojis for better visual identification
+- Improved language selector UX with compact flag-only display in header
+
+### Changed
+- Language dropdown now auto-sizes to fit content properly without truncation
+- Updated README.md to reflect all 9 supported languages (English, German, Estonian, Finnish, French, Dutch, Portuguese, Swedish, Ukrainian)
+
+### Fixed
+- Language dropdown width issues resolved with proper Ant Design props
+- Removed invalid yarn add-locale command from documentation
+
 ## [2.0.0-beta.5] - 2025-06-29
 
 ### Added
