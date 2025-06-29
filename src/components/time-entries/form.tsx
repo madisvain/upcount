@@ -163,7 +163,6 @@ const TimeEntryForm = () => {
           <Form.Item 
             name="description" 
             label={<Trans>Description</Trans>}
-            rules={[{ required: true, message: t`Please input description!` }]}
           >
             <Input.TextArea rows={3} placeholder={t`What are you working on?`} />
           </Form.Item>

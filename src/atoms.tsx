@@ -634,6 +634,46 @@ export const setTimeEntriesAtom = atom(null, async (get, set) => {
   }
 });
 
+// Update time entry locally without refetching
+export const updateTimeEntryLocallyAtom = atom(null, (get, set, { id, updates }: { id: string, updates: any }) => {
+  const entries = get(timeEntriesAtom);
+  const updatedEntries = entries.map(entry => 
+    entry.id === id ? { ...entry, ...updates } : entry
+  );
+  set(timeEntriesAtom, updatedEntries);
+});
+
+// Direct update time entry without triggering fetches
+export const updateTimeEntryDirectlyAtom = atom(null, async (get, set, { id, updates }: { id: string, updates: any }) => {
+  const entry = get(timeEntriesAtom).find(e => e.id === id);
+  
+  if (!entry) return;
+  
+  try {
+    // Merge updates with existing entry
+    const updatedEntry = { ...entry, ...updates };
+    
+    // Prepare the update data for database
+    const updateData = {
+      ...updatedEntry,
+      // Convert dayjs back to timestamps if needed
+      startTime: updatedEntry.startTime instanceof dayjs ? updatedEntry.startTime.valueOf() : updatedEntry.startTime,
+      endTime: updatedEntry.endTime instanceof dayjs ? updatedEntry.endTime.valueOf() : updatedEntry.endTime,
+      tags: Array.isArray(updatedEntry.tags) ? JSON.stringify(updatedEntry.tags) : updatedEntry.tags,
+    };
+    
+    // Update in database
+    await invoke("update_time_entry", { timeEntryId: id, updates: updateData });
+    
+    // Update local state immediately
+    set(updateTimeEntryLocallyAtom, { id, updates });
+    
+  } catch (error) {
+    console.error("Failed to update time entry:", error);
+    message.error(t`Failed to update time entry`);
+  }
+});
+
 // Time Entry
 export const timeEntryIdAtom = atom<string | null>(null);
 export const timeEntryAtom = atom(

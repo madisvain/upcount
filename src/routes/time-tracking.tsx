@@ -1,6 +1,7 @@
-import { useEffect, useState } from "react";
+import React, { useEffect, useState, useContext, useRef } from "react";
 import { Link, useLocation } from "react-router";
-import { Button, Row, Col, Space, Input, Table, Typography, Tag, Popconfirm, Dropdown } from "antd";
+import { Button, Row, Col, Space, Input, Table, Typography, Tag, Popconfirm, Dropdown, Form } from "antd";
+import type { GetRef, InputRef } from "antd";
 import {
   PlayCircleOutlined,
   StopOutlined,
@@ -30,6 +31,7 @@ import {
   setClientsAtom,
   timeEntryAtom,
   timeEntryIdAtom,
+  updateTimeEntryDirectlyAtom,
 } from "src/atoms";
 import TimeEntryForm from "src/components/time-entries/form";
 
@@ -38,7 +40,102 @@ dayjs.extend(duration);
 const { Title } = Typography;
 const { Search } = Input;
 
+type FormInstance<T> = GetRef<typeof Form<T>>;
+const EditableContext = React.createContext<FormInstance<any> | null>(null);
+
 const searchAtom = atom<string>("");
+
+interface EditableRowProps {
+  index: number;
+}
+
+const EditableRow: React.FC<EditableRowProps> = ({ index, ...props }) => {
+  const [form] = Form.useForm();
+  return (
+    <Form form={form} component={false}>
+      <EditableContext.Provider value={form}>
+        <tr {...props} />
+      </EditableContext.Provider>
+    </Form>
+  );
+};
+
+interface EditableCellProps extends React.HTMLAttributes<HTMLElement> {
+  title: React.ReactNode;
+  editable: boolean;
+  dataIndex: string;
+  record: any;
+  handleSave: (record: any) => void;
+}
+
+const EditableCell: React.FC<React.PropsWithChildren<EditableCellProps>> = ({
+  title,
+  editable,
+  children,
+  dataIndex,
+  record,
+  handleSave,
+  ...restProps
+}) => {
+  const [editing, setEditing] = useState(false);
+  const [saving, setSaving] = useState(false);
+  const inputRef = useRef<InputRef>(null);
+  const form = useContext(EditableContext)!;
+
+  useEffect(() => {
+    if (editing) {
+      inputRef.current?.focus();
+    }
+  }, [editing]);
+
+  const toggleEdit = () => {
+    setEditing(!editing);
+    form.setFieldsValue({ [dataIndex]: record[dataIndex] });
+  };
+
+  const save = async (e?: React.FocusEvent | React.KeyboardEvent) => {
+    if (saving) return; // Prevent duplicate saves
+    
+    setSaving(true);
+    try {
+      const values = await form.validateFields();
+      toggleEdit();
+      handleSave({ ...record, ...values });
+    } catch (errInfo) {
+      console.log('Save failed:', errInfo);
+    } finally {
+      setSaving(false);
+    }
+  };
+
+  const handlePressEnter = (e: React.KeyboardEvent) => {
+    e.preventDefault();
+    save(e);
+  };
+
+  let childNode = children;
+
+  if (editable) {
+    childNode = editing ? (
+      <Form.Item
+        style={{ margin: 0 }}
+        name={dataIndex}
+      >
+        <Input ref={inputRef} onPressEnter={handlePressEnter} onBlur={save} />
+      </Form.Item>
+    ) : (
+      <div
+        className="editable-cell-value-wrap"
+        style={{ paddingInlineEnd: 24, cursor: "pointer" }}
+        onClick={toggleEdit}
+      >
+        {children}
+      </div>
+    );
+  }
+
+  return <td {...restProps}>{childNode}</td>;
+};
 
 const TimeTracking = () => {
   const location = useLocation();
@@ -53,6 +150,7 @@ const TimeTracking = () => {
   const setClients = useSetAtom(setClientsAtom);
   const setTimeEntry = useSetAtom(timeEntryAtom);
   const setTimeEntryId = useSetAtom(timeEntryIdAtom);
+  const updateTimeEntryDirectly = useSetAtom(updateTimeEntryDirectlyAtom);
   const [currentTime, setCurrentTime] = useState(dayjs());
 
   // Load data on mount
@@ -62,16 +160,6 @@ const TimeTracking = () => {
       setClients();
     }
   }, [location, setTimeEntries, setClients]);
-
-  // Search function
-  const searchTimeEntries = () => {
-    return filter(timeEntries, (entry: any) => {
-      return some(["description", "clientName"], (field) => {
-        const value = get(entry, field);
-        return includes(toString(value).toLowerCase(), search.toLowerCase());
-      });
-    });
-  };
 
   // Update current time every second for running timer
   useEffect(() => {
@@ -83,11 +171,22 @@ const TimeTracking = () => {
     }
   }, [runningTimer]);
 
+  // Search function
+  const searchTimeEntries = () => {
+    return filter(timeEntries, (entry: any) => {
+      return some(["description", "clientName"], (field) => {
+        const value = get(entry, field);
+        return includes(toString(value).toLowerCase(), search.toLowerCase());
+      });
+    });
+  };
+
+
   // Timer functionality
   const startTimer = async () => {
     const startTime = dayjs().valueOf();
     const newEntry = {
-      description: "New timer",
+      description: "",
       startTime,
       endTime: null,
       duration: 0,
@@ -141,30 +240,30 @@ const TimeTracking = () => {
     }
   };
 
-  // Get running entry for display
-  const runningEntry = runningTimer
-    ? timeEntries.find((entry) => entry.startTime === parseInt(runningTimer) && !entry.endTime)
-    : null;
 
   // Format duration
   const formatDuration = (seconds: number) => {
     const d = dayjs.duration(seconds, "seconds");
     const hours = Math.floor(d.asHours());
     const minutes = d.minutes();
-    return `${hours}:${minutes.toString().padStart(2, "0")}`;
+    const secs = d.seconds();
+    return `${hours}:${minutes.toString().padStart(2, "0")}:${secs.toString().padStart(2, "0")}`;
+  };
+
+  // Handle inline field update
+  const handleSave = async (row: any) => {
+    // Use direct update to avoid triggering fetches and re-renders
+    await updateTimeEntryDirectly({ id: row.id, updates: { description: row.description } });
   };
 
   // Table columns
-  const columns = [
+  const defaultColumns = [
     {
       title: <Trans>Description</Trans>,
       dataIndex: "description",
       key: "description",
-      render: (text: string, record: any) => (
-        <Link to="/time-tracking" state={{ timeEntryModal: true, timeEntryId: record.id }}>
-          {text}
-        </Link>
-      ),
+      editable: true,
+      render: (text: string) => text,
     },
     {
       title: <Trans>Client</Trans>,
@@ -188,7 +287,14 @@ const TimeTracking = () => {
       title: <Trans>Duration</Trans>,
       dataIndex: "duration",
       key: "duration",
-      render: (seconds: number) => formatDuration(seconds),
+      render: (seconds: number, record: any) => {
+        // For running timers, calculate current duration dynamically
+        if (runningTimer && record.startTime === parseInt(runningTimer) && !record.endTime) {
+          const currentDuration = Math.max(0, Math.floor((currentTime.valueOf() - record.startTime) / 1000));
+          return formatDuration(currentDuration);
+        }
+        return formatDuration(seconds);
+      },
     },
     {
       title: <Trans>Tags</Trans>,
@@ -276,6 +382,29 @@ const TimeTracking = () => {
     },
   ];
 
+  const components = {
+    body: {
+      row: EditableRow,
+      cell: EditableCell,
+    },
+  };
+
+  const columns = defaultColumns.map((col: any) => {
+    if (!col.editable) {
+      return col;
+    }
+    return {
+      ...col,
+      onCell: (record: any) => ({
+        record,
+        editable: col.editable,
+        dataIndex: col.dataIndex,
+        title: col.title,
+        handleSave,
+      }),
+    };
+  });
+
   return (
     <>
       <Row>
@@ -287,25 +416,6 @@ const TimeTracking = () => {
         </Col>
         <Col span={12} style={{ display: "flex", justifyContent: "flex-end" }}>
           <Space style={{ alignItems: "start" }}>
-            {runningTimer && (
-              <div
-                style={{
-                  background: "#f6ffed",
-                  border: "1px solid #b7eb8f",
-                  borderRadius: 6,
-                  padding: "8px 12px",
-                  display: "flex",
-                  alignItems: "center",
-                  gap: 8,
-                }}
-              >
-                <ClockCircleOutlined style={{ color: "#52c41a" }} />
-                <span style={{ fontWeight: "bold", color: "#389e0d" }}>
-                  {formatDuration(Math.floor((currentTime.valueOf() - parseInt(runningTimer)) / 1000))}
-                </span>
-                <span style={{ color: "#666" }}>{runningEntry ? runningEntry.description : "Running timer..."}</span>
-              </div>
-            )}
             <Search
               placeholder={t`Search time entries...`}
               value={search}
@@ -332,6 +442,7 @@ const TimeTracking = () => {
       <Row>
         <Col span={24}>
           <Table
+            components={components}
             columns={columns}
             dataSource={search ? searchTimeEntries() : timeEntries}
             rowKey="id"
