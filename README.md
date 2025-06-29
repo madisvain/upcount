@@ -49,6 +49,7 @@ Upcount is available for Mac, Linux & Windows and can be downloaded from Github 
 * 🇫🇮 Finnish
 * 🇫🇷 French
 * 🇳🇱 Dutch
+* 🇵🇹 Portuguese
 * 🇸🇪 Swedish
 * 🇺🇦 Ukrainian
 
@@ -77,8 +78,6 @@ For more generic product questions and feedback please email [hello@upcount.app]
 [<img alt="madisvain" src="https://avatars2.githubusercontent.com/u/727994?v=4&s=200" width="100">](https://github.com/madisvain) |[<img alt="stgeipel" src="https://avatars3.githubusercontent.com/u/46808966?v=4&s=200" width="100">](https://github.com/stgeipel) |[<img alt="KurtMar" src="https://avatars1.githubusercontent.com/u/10009649?v=4&s=200" width="100">](https://github.com/KurtMar) |
 :---:|:---:|:---:|
 [madisvain](https://github.com/madisvain)|[stgeipel](https://github.com/stgeipel)|[KurtMar](https://github.com/KurtMar)|
-
-Join Upcount [Slack workspace](https://join.slack.com/t/upcount/shared_invite/enQtOTY0Nzk5NTgzMjQ5LThlMWE3Y2YyNGY1MTc3M2Y1YmQ4YTdmZDYyNmJlYzBiNmQ0NTFhYjBkNzNjZjIwNWNlZDY2OTdiN2UwYzc3YWU) to join in on the discussion.
 
 ## License
 

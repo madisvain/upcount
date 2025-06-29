@@ -64,8 +64,8 @@ export default function BaseLayout() {
   const matchFn = match(`/*path`, { decode: decodeURIComponent });
   const matchResult = matchFn(location.pathname);
   if (matchResult && matchResult.params.path) {
-    const pathString = Array.isArray(matchResult.params.path) 
-      ? matchResult.params.path.join("/") 
+    const pathString = Array.isArray(matchResult.params.path)
+      ? matchResult.params.path.join("/")
       : matchResult.params.path;
     const pathArray = pathString.split("/");
     openKeys = pathArray[0] === "settings" ? ["settings"] : [];
@@ -231,21 +231,25 @@ export default function BaseLayout() {
                       dynamicActivate(value);
                     }}
                     value={i18n.locale}
+                    optionLabelProp="label"
                   >
                     {map(locales, (locale) => {
                       const languageMap: Record<string, string> = {
                         en: "🇬🇧 English",
-                        de: "🇩🇪 German", 
+                        de: "🇩🇪 German",
                         et: "🇪🇪 Estonian",
                         fi: "🇫🇮 Finnish",
                         fr: "🇫🇷 French",
                         nl: "🇳🇱 Dutch",
+                        pt: "🇵🇹 Portuguese",
                         sv: "🇸🇪 Swedish",
-                        uk: "🇺🇦 Ukrainian"
+                        uk: "🇺🇦 Ukrainian",
                       };
+                      const languageText = languageMap[locale] || toUpper(locale);
+                      const flagOnly = languageText.split(" ")[0];
                       return (
-                        <Option value={locale} key={locale}>
-                          {languageMap[locale] || toUpper(locale)}
+                        <Option value={locale} key={locale} label={flagOnly}>
+                          {languageText}
                         </Option>
                       );
                     })}

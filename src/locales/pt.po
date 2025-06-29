@@ -1,271 +1,265 @@
 msgid ""
 msgstr ""
-"POT-Creation-Date: 2025-06-29 16:46+0300\n"
+"POT-Creation-Date: 2025-06-29 16:58+0300\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "X-Generator: @lingui/cli\n"
-"Language: sv\n"
-"Project-Id-Version: \n"
-"Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: \n"
-"Last-Translator: \n"
-"Language-Team: \n"
-"Plural-Forms: \n"
+"Language: pt\n"
 
 #: src/routes/settings/invoice.tsx:223
 msgid "2-digit month"
-msgstr "2-siffrig månad"
+msgstr "Mês de 2 dígitos"
 
 #: src/routes/settings/invoice.tsx:219
 msgid "2-digit year"
-msgstr "2-siffrigt år"
+msgstr "Ano de 2 dígitos"
 
 #: src/routes/settings/invoice.tsx:216
 msgid "4-digit year"
-msgstr "4-siffrigt år"
+msgstr "Ano de 4 dígitos"
 
 #: src/routes/invoices/details.tsx:398
 msgid "Add line item"
-msgstr "Lägg till rad"
+msgstr "Adicionar item de linha"
 
 #: src/routes/clients.tsx:78
 #: src/routes/settings/organization.tsx:56
 #: src/components/clients/form.tsx:147
 msgid "Address"
-msgstr "Adress"
+msgstr "Morada"
 
 #: src/routes/settings/organization.tsx:106
 msgid "Are you sure delete this organization?"
-msgstr "Är du säker på att du vill ta bort denna organisation?"
+msgstr "Tem a certeza de que pretende eliminar esta organização?"
 
 #: src/routes/invoices/preview.tsx:161
 #: src/routes/invoices/details.tsx:490
 msgid "Are you sure to delete this invoice?"
-msgstr "Är du säker på att du vill ta bort denna faktura?"
+msgstr "Tem a certeza de que pretende eliminar esta fatura?"
 
 #: src/components/clients/form.tsx:99
 msgid "Are you sure you want to delete this client?"
-msgstr "Är du säker på att du vill ta bort denna kund?"
+msgstr "Tem a certeza de que pretende eliminar este cliente?"
 
 #: src/routes/settings/backup.tsx:48
 msgid "Are you sure you want to restore from a backup? This will replace all current data and cannot be undone."
-msgstr "Är du säker på att du vill återställa från en säkerhetskopia? Detta kommer att ersätta all nuvarande data och kan inte ångras."
+msgstr "Tem a certeza de que pretende restaurar a partir de uma cópia de segurança? Isto irá substituir todos os dados atuais e não pode ser revertido."
 
 #: src/routes/settings/invoice.tsx:209
 msgid "Available variables:"
-msgstr "Tillgängliga variabler:"
+msgstr "Variáveis disponíveis:"
 
 #: src/layouts/base.tsx:158
 msgid "Backup"
-msgstr "Säkerhetskopia"
+msgstr "Cópia de segurança"
 
 #: src/routes/settings/backup.tsx:80
 msgid "Backup & restore"
-msgstr "Säkerhetskopia & återställning"
+msgstr "Cópia de segurança e restauro"
 
 #: src/routes/settings/organization.tsx:71
 msgid "Bank name"
-msgstr "Banknamn"
+msgstr "Nome do banco"
 
 #: src/routes/settings/backup.tsx:50
 #: src/components/clients/form.tsx:127
 msgid "Cancel"
-msgstr "Avbryt"
+msgstr "Cancelar"
 
 #: src/routes/settings/invoice.tsx:257
 msgid "Change"
-msgstr "Ändra"
+msgstr "Alterar"
 
 #: src/routes/time-tracking.tsx:17
 msgid "Check back soon for updates!"
-msgstr "Kom tillbaka snart för uppdateringar!"
+msgstr "Volte em breve para atualizações!"
 
 #: src/routes/invoices/index.tsx:95
 msgid "Client"
-msgstr "Kund"
+msgstr "Cliente"
 
 #: src/atoms.tsx:76
 msgid "Client created"
-msgstr "Kund skapad"
+msgstr "Cliente criado"
 
 #: src/atoms.tsx:97
 msgid "Client creation failed"
-msgstr "Kunde inte skapa kund"
+msgstr "Falha na criação do cliente"
 
 #: src/atoms.tsx:114
 msgid "Client deleted"
-msgstr "Kund borttagen"
+msgstr "Cliente eliminado"
 
 #: src/atoms.tsx:116
 #: src/atoms.tsx:120
 msgid "Client deletion failed"
-msgstr "Kunde inte ta bort kund"
+msgstr "Falha na eliminação do cliente"
 
 #: src/atoms.tsx:99
 msgid "Client update failed"
-msgstr "Kunde inte uppdatera kund"
+msgstr "Falha na atualização do cliente"
 
 #: src/atoms.tsx:87
 msgid "Client updated successfully"
-msgstr "Kund uppdaterad framgångsrikt"
+msgstr "Cliente atualizado com sucesso"
 
 #: src/routes/clients.tsx:51
 #: src/layouts/base.tsx:108
 msgid "Clients"
-msgstr "Kunder"
+msgstr "Clientes"
 
 #: src/routes/invoices/index.tsx:30
 msgid "Confirmed"
-msgstr "Bekräftad"
+msgstr "Confirmado"
 
 #: src/routes/settings/invoice.tsx:188
 msgid "Counter must be 0 or greater"
-msgstr "Räknaren måste vara 0 eller större"
+msgstr "O contador deve ser 0 ou maior"
 
 #: src/routes/index.tsx:59
 msgid "Country"
-msgstr "Land"
+msgstr "País"
 
 #: src/routes/settings/backup.tsx:103
 msgid "Create a backup of your database to save all your invoices, clients, and settings. The backup file can be used to restore your data if needed."
-msgstr "Skapa en säkerhetskopia av din databas för att spara alla dina fakturor, kunder och inställningar. Säkerhetskopian kan användas för att återställa dina data vid behov."
+msgstr "Crie uma cópia de segurança da sua base de dados para guardar todas as suas faturas, clientes e definições. O ficheiro de cópia de segurança pode ser usado para restaurar os seus dados se necessário."
 
 #: src/routes/settings/backup.tsx:98
 msgid "Create Backup"
-msgstr "Skapa säkerhetskopia"
+msgstr "Criar cópia de segurança"
 
 #: src/routes/index.tsx:49
 msgid "Create your organization to get started"
-msgstr "Skapa din organisation för att komma igång"
+msgstr "Crie a sua organização para começar"
 
 #: src/routes/index.tsx:68
 #: src/routes/settings/invoice.tsx:78
 #: src/routes/invoices/details.tsx:211
 msgid "Currency"
-msgstr "Valuta"
+msgstr "Moeda"
 
 #: src/routes/invoices/details.tsx:409
 msgid "Customer note"
-msgstr "Kundanteckning"
+msgstr "Nota do cliente"
 
 #: src/routes/settings/backup.tsx:35
 msgid "Database backup saved successfully to {backupPath}"
-msgstr "Databas-säkerhetskopia sparad framgångsrikt till {backupPath}"
+msgstr "Cópia de segurança da base de dados guardada com sucesso em {backupPath}"
 
 #: src/routes/settings/backup.tsx:60
 msgid "Database has been restored successfully. Please restart the application to see the changes."
-msgstr "Databasen har återställts framgångsrikt. Starta om applikationen för att se ändringarna."
+msgstr "A base de dados foi restaurada com sucesso. Por favor, reinicie a aplicação para ver as alterações."
 
 #: src/routes/invoices/index.tsx:101
 #: src/components/invoices/pdf.tsx:199
 msgid "Date"
-msgstr "Datum"
+msgstr "Data"
 
 #: src/routes/settings/invoice.tsx:231
 msgid "Day of month"
-msgstr "Dag i månaden"
+msgstr "Dia do mês"
 
 #: src/routes/settings/invoice.tsx:93
 msgid "Decimal places"
-msgstr "Decimalplatser"
+msgstr "Casas decimais"
 
 #: src/routes/settings/tax-rates.tsx:68
 #: src/components/tax-rates/form.tsx:60
 msgid "Default"
-msgstr "Standard"
+msgstr "Predefinido"
 
 #: src/routes/settings/organization.tsx:112
 #: src/routes/invoices/preview.tsx:167
 #: src/routes/invoices/details.tsx:496
 #: src/components/clients/form.tsx:113
 msgid "Delete"
-msgstr "Ta bort"
+msgstr "Eliminar"
 
 #: src/routes/invoices/preview.tsx:160
 #: src/routes/invoices/details.tsx:489
 msgid "Delete the invoice?"
-msgstr "Ta bort fakturan?"
+msgstr "Eliminar a fatura?"
 
 #: src/routes/settings/tax-rates.tsx:53
 #: src/routes/invoices/details.tsx:257
 #: src/components/tax-rates/form.tsx:53
 #: src/components/invoices/pdf.tsx:221
 msgid "Description"
-msgstr "Beskrivning"
+msgstr "Descrição"
 
 #: src/routes/invoices/index.tsx:26
 #: src/components/invoices/state-select.tsx:21
 msgid "Draft"
-msgstr "Utkast"
+msgstr "Rascunho"
 
 #: src/routes/invoices/index.tsx:108
 #: src/routes/invoices/details.tsx:236
 #: src/components/invoices/pdf.tsx:202
 msgid "Due date"
-msgstr "Förfallodatum"
+msgstr "Data de vencimento"
 
 #: src/routes/settings/invoice.tsx:96
 msgid "Due days"
-msgstr "Förfallodagar"
+msgstr "Dias de vencimento"
 
 #: src/routes/settings/organization.tsx:59
 msgid "E-mail"
-msgstr "E-post"
+msgstr "E-mail"
 
 #: src/components/clients/form.tsx:151
 msgid "E-mails"
-msgstr "E-postadresser"
+msgstr "E-mails"
 
 #: src/routes/invoices/preview.tsx:181
 msgid "Edit"
-msgstr "Redigera"
+msgstr "Editar"
 
 #: src/components/clients/form.tsx:82
 msgid "Edit client"
-msgstr "Redigera kund"
+msgstr "Editar cliente"
 
 #: src/components/tax-rates/form.tsx:36
 msgid "Edit tax rate"
-msgstr "Redigera momssats"
+msgstr "Editar taxa de imposto"
 
 #: src/routes/clients.tsx:80
 msgid "Emails"
-msgstr "E-postadresser"
+msgstr "E-mails"
 
 #: src/routes/settings/invoice.tsx:199
 msgid "Enter format to see preview"
-msgstr "Ange format för att se förhandsvisning"
+msgstr "Introduza o formato para ver a pré-visualização"
 
 #. placeholder {0}: String(error)
 #: src/routes/settings/backup.tsx:39
 msgid "Failed to backup database: {0}"
-msgstr "Misslyckades att säkerhetskopiera databasen: {0}"
+msgstr "Falha na criação da cópia de segurança da base de dados: {0}"
 
 #: src/atoms.tsx:34
 msgid "Failed to fetch clients"
-msgstr "Misslyckades att hämta kunder"
+msgstr "Falha ao obter clientes"
 
 #: src/atoms.tsx:140
 msgid "Failed to fetch invoices"
-msgstr "Misslyckades att hämta fakturor"
+msgstr "Falha ao obter faturas"
 
 #: src/atoms.tsx:284
 msgid "Failed to fetch organizations"
-msgstr "Misslyckades att hämta organisationer"
+msgstr "Falha ao obter organizações"
 
 #: src/atoms.tsx:392
 msgid "Failed to fetch tax rates"
-msgstr "Misslyckades att hämta momssatser"
+msgstr "Falha ao obter taxas de imposto"
 
 #. placeholder {0}: String(error)
 #: src/routes/settings/backup.tsx:64
 msgid "Failed to restore database: {0}"
-msgstr "Misslyckades att återställa databasen: {0}"
+msgstr "Falha ao restaurar a base de dados: {0}"
 
 #: src/routes/index.tsx:77
 msgid "Get started"
-msgstr "Kom igång"
+msgstr "Começar"
 
 #: src/routes/settings/organization.tsx:78
 msgid "IBAN"
@@ -273,71 +267,71 @@ msgstr "IBAN"
 
 #: src/layouts/base.tsx:140
 msgid "Invoice"
-msgstr "Faktura"
+msgstr "Fatura"
 
 #. placeholder {0}: invoice.number
 #: src/components/invoices/pdf.tsx:173
 msgid "Invoice #{0}"
-msgstr "Faktura #{0}"
+msgstr "Fatura #{0}"
 
 #: src/atoms.tsx:210
 msgid "Invoice created"
-msgstr "Faktura skapad"
+msgstr "Fatura criada"
 
 #: src/atoms.tsx:249
 msgid "Invoice creation failed"
-msgstr "Kunde inte skapa faktura"
+msgstr "Falha na criação da fatura"
 
 #: src/atoms.tsx:266
 msgid "Invoice deleted"
-msgstr "Faktura borttagen"
+msgstr "Fatura eliminada"
 
 #: src/atoms.tsx:268
 #: src/atoms.tsx:272
 msgid "Invoice deletion failed"
-msgstr "Kunde inte ta bort faktura"
+msgstr "Falha na eliminação da fatura"
 
 #: src/routes/settings/invoice.tsx:73
 msgid "Invoice details"
-msgstr "Fakturadetaljer"
+msgstr "Detalhes da fatura"
 
 #: src/routes/invoices/details.tsx:202
 msgid "Invoice number"
-msgstr "Fakturanummer"
+msgstr "Número da fatura"
 
 #: src/routes/settings/invoice.tsx:184
 msgid "Invoice Number Counter"
-msgstr "Fakturanummer-räknare"
+msgstr "Contador do número da fatura"
 
 #: src/routes/settings/invoice.tsx:153
 msgid "Invoice Number Format"
-msgstr "Fakturanummer-format"
+msgstr "Formato do número da fatura"
 
 #: src/routes/settings/invoice.tsx:107
 #: src/routes/settings/invoice.tsx:146
 msgid "Invoice Numbering"
-msgstr "Fakturanumrering"
+msgstr "Numeração da fatura"
 
 #: src/atoms.tsx:251
 msgid "Invoice update failed"
-msgstr "Kunde inte uppdatera faktura"
+msgstr "Falha na atualização da fatura"
 
 #: src/atoms.tsx:239
 msgid "Invoice updated successfully"
-msgstr "Faktura uppdaterad framgångsrikt"
+msgstr "Fatura atualizada com sucesso"
 
 #: src/routes/invoices/index.tsx:72
 #: src/layouts/base.tsx:99
 msgid "Invoices"
-msgstr "Fakturor"
+msgstr "Faturas"
 
 #: src/routes/settings/invoice.tsx:242
 msgid "Logo"
-msgstr "Logotyp"
+msgstr "Logótipo"
 
 #: src/routes/settings/invoice.tsx:227
 msgid "Month name"
-msgstr "Månadsnamn"
+msgstr "Nome do mês"
 
 #: src/routes/index.tsx:56
 #: src/routes/clients.tsx:69
@@ -346,170 +340,170 @@ msgstr "Månadsnamn"
 #: src/components/tax-rates/form.tsx:50
 #: src/components/clients/form.tsx:144
 msgid "Name"
-msgstr "Namn"
+msgstr "Nome"
 
 #: src/routes/clients.tsx:59
 #: src/routes/invoices/details.tsx:187
 #: src/components/clients/form.tsx:82
 msgid "New client"
-msgstr "Ny kund"
+msgstr "Novo cliente"
 
 #: src/routes/invoices/index.tsx:80
 msgid "New invoice"
-msgstr "Ny faktura"
+msgstr "Nova fatura"
 
 #: src/layouts/base.tsx:214
 msgid "New organization"
-msgstr "Ny organisation"
+msgstr "Nova organização"
 
 #: src/routes/settings/tax-rates.tsx:40
 msgid "New tax"
-msgstr "Ny moms"
+msgstr "Novo imposto"
 
 #: src/components/tax-rates/form.tsx:36
 msgid "New tax rate"
-msgstr "Ny momssats"
+msgstr "Nova taxa de imposto"
 
 #: src/routes/settings/invoice.tsx:191
 msgid "Next invoice will use this number + 1"
-msgstr "Nästa faktura kommer använda detta nummer + 1"
+msgstr "A próxima fatura utilizará este número + 1"
 
 #: src/routes/invoices/preview.tsx:164
 #: src/routes/invoices/details.tsx:493
 #: src/components/clients/form.tsx:109
 msgid "No"
-msgstr "Nej"
+msgstr "Não"
 
 #: src/routes/invoices/details.tsx:254
 msgid "No line items"
-msgstr "Inga rader"
+msgstr "Sem itens de linha"
 
 #: src/routes/settings/organization.tsx:109
 msgid "No!"
-msgstr "Nej!"
+msgstr "Não!"
 
 #: src/routes/settings/invoice.tsx:102
 msgid "Notes"
-msgstr "Anteckningar"
+msgstr "Notas"
 
 #: src/routes/invoices/index.tsx:89
 msgid "Number"
-msgstr "Nummer"
+msgstr "Número"
 
 #: src/routes/settings/invoice.tsx:129
 msgid "Number of Digits"
-msgstr "Antal siffror"
+msgstr "Número de dígitos"
 
 #: src/layouts/base.tsx:131
 msgid "Organization"
-msgstr "Organisation"
+msgstr "Organização"
 
 #: src/atoms.tsx:327
 msgid "Organization created"
-msgstr "Organisation skapad"
+msgstr "Organização criada"
 
 #: src/atoms.tsx:341
 msgid "Organization creation failed"
-msgstr "Kunde inte skapa organisation"
+msgstr "Falha na criação da organização"
 
 #: src/atoms.tsx:373
 msgid "Organization deleted"
-msgstr "Organisation borttagen"
+msgstr "Organização eliminada"
 
 #: src/atoms.tsx:375
 #: src/atoms.tsx:379
 msgid "Organization deletion failed"
-msgstr "Kunde inte ta bort organisation"
+msgstr "Falha na eliminação da organização"
 
 #: src/routes/index.tsx:52
 #: src/routes/settings/organization.tsx:46
 msgid "Organization details"
-msgstr "Organisationsdetaljer"
+msgstr "Detalhes da organização"
 
 #: src/atoms.tsx:343
 msgid "Organization update failed"
-msgstr "Kunde inte uppdatera organisation"
+msgstr "Falha na atualização da organização"
 
 #: src/atoms.tsx:334
 msgid "Organization updated successfully"
-msgstr "Organisation uppdaterad framgångsrikt"
+msgstr "Organização atualizada com sucesso"
 
 #: src/routes/time-tracking.tsx:14
 msgid "Our time tracking feature is currently being developed."
-msgstr "Vår tidsrapporteringsfunktion utvecklas för närvarande."
+msgstr "A nossa funcionalidade de registo de tempo está atualmente em desenvolvimento."
 
 #: src/routes/settings/invoice.tsx:99
 #: src/components/invoices/pdf.tsx:206
 msgid "Overdue charge"
-msgstr "Förseningsavgift"
+msgstr "Taxa de atraso"
 
 #: src/routes/invoices/index.tsx:34
 #: src/components/invoices/state-select.tsx:29
 msgid "Paid"
-msgstr "Betald"
+msgstr "Pago"
 
 #: src/routes/settings/tax-rates.tsx:57
 #: src/components/tax-rates/form.tsx:56
 msgid "Percentage"
-msgstr "Procent"
+msgstr "Percentagem"
 
 #: src/routes/clients.tsx:88
 #: src/routes/settings/organization.tsx:62
 #: src/components/clients/form.tsx:154
 msgid "Phone"
-msgstr "Telefon"
+msgstr "Telefone"
 
 #: src/components/tax-rates/form.tsx:55
 msgid "Please input a percentage!"
-msgstr "Vänligen ange en procentsats!"
+msgstr "Por favor, introduza uma percentagem!"
 
 #: src/routes/index.tsx:55
 #: src/components/tax-rates/form.tsx:49
 #: src/components/clients/form.tsx:143
 msgid "Please input name!"
-msgstr "Vänligen ange namn!"
+msgstr "Por favor, introduza o nome!"
 
 #: src/routes/settings/invoice.tsx:112
 msgid "Prefix"
-msgstr "Prefix"
+msgstr "Prefixo"
 
 #: src/routes/settings/invoice.tsx:197
 msgid "Preview"
-msgstr "Förhandsvisning"
+msgstr "Pré-visualização"
 
 #: src/routes/invoices/details.tsx:308
 #: src/components/invoices/pdf.tsx:227
 msgid "Price"
-msgstr "Pris"
+msgstr "Preço"
 
 #: src/routes/invoices/details.tsx:280
 #: src/components/invoices/pdf.tsx:224
 msgid "Qty."
-msgstr "Antal"
+msgstr "Qtd."
 
 #: src/routes/settings/organization.tsx:65
 msgid "Registration number"
-msgstr "Organisationsnummer"
+msgstr "Número de registo"
 
 #: src/routes/settings/backup.tsx:49
 msgid "Restore"
-msgstr "Återställ"
+msgstr "Restaurar"
 
 #: src/routes/settings/backup.tsx:59
 msgid "Restore Complete"
-msgstr "Återställning slutförd"
+msgstr "Restauro concluído"
 
 #: src/routes/settings/backup.tsx:47
 msgid "Restore Database"
-msgstr "Återställ databas"
+msgstr "Restaurar base de dados"
 
 #: src/routes/settings/backup.tsx:124
 msgid "Restore from Backup"
-msgstr "Återställ från säkerhetskopia"
+msgstr "Restaurar a partir de cópia de segurança"
 
 #: src/routes/settings/backup.tsx:129
 msgid "Restore your database from a previously created backup file. This will replace all current data with the backup data."
-msgstr "Återställ din databas från en tidigare skapad säkerhetskopia. Detta kommer att ersätta all nuvarande data med säkerhetskopiedata."
+msgstr "Restaure a sua base de dados a partir de um ficheiro de cópia de segurança criado anteriormente. Isto irá substituir todos os dados atuais pelos dados da cópia de segurança."
 
 #: src/routes/settings/organization.tsx:103
 #: src/routes/settings/invoice.tsx:273
@@ -518,80 +512,80 @@ msgstr "Återställ din databas från en tidigare skapad säkerhetskopia. Detta 
 #: src/components/clients/form.tsx:84
 #: src/components/clients/form.tsx:134
 msgid "Save"
-msgstr "Spara"
+msgstr "Guardar"
 
 #: src/routes/clients.tsx:56
 #: src/routes/invoices/index.tsx:77
 msgid "Search text"
-msgstr "Sök text"
+msgstr "Texto de pesquisa"
 
 #: src/routes/invoices/details.tsx:159
 msgid "Select or create a client"
-msgstr "Välj eller skapa en kund"
+msgstr "Selecionar ou criar um cliente"
 
 #: src/components/invoices/state-select.tsx:25
 msgid "Sent"
-msgstr "Skickad"
+msgstr "Enviado"
 
 #: src/routes/settings/invoice.tsx:117
 msgid "Separator"
-msgstr "Separator"
+msgstr "Separador"
 
 #: src/routes/settings/invoice.tsx:213
 msgid "Sequential number"
-msgstr "Löpnummer"
+msgstr "Número sequencial"
 
 #: src/layouts/base.tsx:124
 msgid "Settings"
-msgstr "Inställningar"
+msgstr "Definições"
 
 #: src/routes/settings/invoice.tsx:180
 msgid "Show variables"
-msgstr "Visa variabler"
+msgstr "Mostrar variáveis"
 
 #: src/routes/settings/invoice.tsx:124
 msgid "Start Number"
-msgstr "Startnummer"
+msgstr "Número inicial"
 
 #: src/routes/invoices/index.tsx:123
 msgid "State"
-msgstr "Status"
+msgstr "Estado"
 
 #: src/routes/invoices/details.tsx:438
 #: src/components/invoices/pdf.tsx:252
 msgid "Subtotal"
-msgstr "Delsumma"
+msgstr "Subtotal"
 
 #: src/routes/settings/invoice.tsx:136
 msgid "Suffix"
-msgstr "Suffix"
+msgstr "Sufixo"
 
 #: src/routes/invoices/details.tsx:364
 #: src/routes/invoices/details.tsx:445
 #: src/components/invoices/pdf.tsx:263
 msgid "Tax"
-msgstr "Moms"
+msgstr "Imposto"
 
 #: src/atoms.tsx:428
 msgid "Tax rate created"
-msgstr "Momssats skapad"
+msgstr "Taxa de imposto criada"
 
 #: src/atoms.tsx:455
 msgid "Tax rate creation failed"
-msgstr "Kunde inte skapa momssats"
+msgstr "Falha na criação da taxa de imposto"
 
 #: src/atoms.tsx:457
 msgid "Tax rate update failed"
-msgstr "Kunde inte uppdatera momssats"
+msgstr "Falha na atualização da taxa de imposto"
 
 #: src/atoms.tsx:445
 msgid "Tax rate updated successfully"
-msgstr "Momssats uppdaterad framgångsrikt"
+msgstr "Taxa de imposto atualizada com sucesso"
 
 #: src/routes/settings/tax-rates.tsx:33
 #: src/layouts/base.tsx:149
 msgid "Tax rates"
-msgstr "Momssatser"
+msgstr "Taxas de imposto"
 
 #: src/routes/settings/invoice.tsx:80
 #: src/routes/settings/invoice.tsx:156
@@ -606,11 +600,11 @@ msgstr "Momssatser"
 #: src/routes/invoices/details.tsx:314
 #: src/routes/invoices/details.tsx:342
 msgid "This field is required!"
-msgstr "Detta fält är obligatoriskt!"
+msgstr "Este campo é obrigatório!"
 
 #: src/layouts/base.tsx:117
 msgid "Time tracking"
-msgstr "Tidsrapportering"
+msgstr "Registo de tempo"
 
 #: src/routes/invoices/index.tsx:115
 #: src/routes/invoices/details.tsx:336
@@ -618,45 +612,45 @@ msgstr "Tidsrapportering"
 #: src/components/invoices/pdf.tsx:230
 #: src/components/invoices/pdf.tsx:274
 msgid "Total"
-msgstr "Totalt"
+msgstr "Total"
 
 #: src/routes/time-tracking.tsx:11
 msgid "Under Development"
-msgstr "Under utveckling"
+msgstr "Em desenvolvimento"
 
 #: src/routes/settings/invoice.tsx:257
 msgid "Upload"
-msgstr "Ladda upp"
+msgstr "Carregar"
 
 #: src/components/clients/form.tsx:157
 msgid "VAT Number"
-msgstr "Momsregistreringsnummer"
+msgstr "Número de IVA"
 
 #: src/routes/clients.tsx:102
 msgid "VATIN"
-msgstr "Momsreg.nr"
+msgstr "NIF"
 
 #: src/routes/invoices/details.tsx:511
 msgid "View"
-msgstr "Visa"
+msgstr "Ver"
 
 #: src/routes/invoices/index.tsx:38
 #: src/components/invoices/state-select.tsx:33
 msgid "Void"
-msgstr "Ogiltig"
+msgstr "Anulado"
 
 #: src/components/clients/form.tsx:102
 msgid "Warning: This will also delete {invoiceCount} related invoice(s)."
-msgstr "Varning: Detta kommer också att ta bort {invoiceCount} relaterad(e) faktura(or)."
+msgstr "Aviso: Isto também eliminará {invoiceCount} fatura(s) relacionada(s)."
 
 #: src/routes/clients.tsx:104
 #: src/components/clients/form.tsx:160
 msgid "Website"
-msgstr "Webbplats"
+msgstr "Website"
 
 #: src/routes/settings/organization.tsx:108
 #: src/routes/invoices/preview.tsx:163
 #: src/routes/invoices/details.tsx:492
 #: src/components/clients/form.tsx:108
 msgid "Yes"
-msgstr "Ja"
+msgstr "Sim"
