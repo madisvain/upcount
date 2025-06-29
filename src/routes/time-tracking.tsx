@@ -376,21 +376,21 @@ const TimeTracking = () => {
         }
       },
     },
-    {
-      title: <Trans>Billable</Trans>,
-      dataIndex: "isBillable",
-      key: "isBillable",
-      render: (isBillable: number) => (
-        <Tag color={isBillable ? "green" : "orange"}>
-          {isBillable ? <Trans>Billable</Trans> : <Trans>Non-billable</Trans>}
-        </Tag>
-      ),
-      filters: [
-        { text: <Trans>Billable</Trans>, value: 1 },
-        { text: <Trans>Non-billable</Trans>, value: 0 },
-      ],
-      onFilter: (value: any, record: any) => record.isBillable === value,
-    },
+    // {
+    //   title: <Trans>Billable</Trans>,
+    //   dataIndex: "isBillable",
+    //   key: "isBillable",
+    //   render: (isBillable: number) => (
+    //     <Tag color={isBillable ? "green" : "orange"}>
+    //       {isBillable ? <Trans>Billable</Trans> : <Trans>Non-billable</Trans>}
+    //     </Tag>
+    //   ),
+    //   filters: [
+    //     { text: <Trans>Billable</Trans>, value: 1 },
+    //     { text: <Trans>Non-billable</Trans>, value: 0 },
+    //   ],
+    //   onFilter: (value: any, record: any) => record.isBillable === value,
+    // },
     {
       title: "",
       key: "actions",

@@ -208,7 +208,7 @@ const TimeEntryForm = () => {
             />
           </Form.Item>
 
-          <Row gutter={16}>
+          {/* <Row gutter={16}>
             <Col span={12}>
               <Form.Item name="isBillable" label={<Trans>Billable</Trans>} valuePropName="checked">
                 <Switch />
@@ -224,7 +224,7 @@ const TimeEntryForm = () => {
                 />
               </Form.Item>
             </Col>
-          </Row>
+          </Row> */}
 
           <Form.Item name="tags" label={<Trans>Tags</Trans>}>
             <TagSelector placeholder={t`Add or select tags`} style={{ width: '100%' }} />
