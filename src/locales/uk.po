@@ -73,6 +73,7 @@ msgstr "Резервне копіювання та відновлення"
 msgid "Bank name"
 msgstr "Назва банку"
 
+#: src/routes/index.tsx:92
 #: src/routes/settings/backup.tsx:50
 #: src/components/clients/form.tsx:127
 msgid "Cancel"
@@ -128,7 +129,7 @@ msgstr "Підтверджено"
 msgid "Counter must be 0 or greater"
 msgstr "Лічильник повинен бути 0 або більше"
 
-#: src/routes/index.tsx:59
+#: src/routes/index.tsx:69
 msgid "Country"
 msgstr "Країна"
 
@@ -140,11 +141,11 @@ msgstr "Створіть резервну копію бази даних, щоб
 msgid "Create Backup"
 msgstr "Створити резервну копію"
 
-#: src/routes/index.tsx:49
+#: src/routes/index.tsx:59
 msgid "Create your organization to get started"
 msgstr "Створіть свою організацію для початку роботи"
 
-#: src/routes/index.tsx:68
+#: src/routes/index.tsx:78
 #: src/routes/settings/invoice.tsx:78
 #: src/routes/invoices/details.tsx:237
 msgid "Currency"
@@ -281,7 +282,7 @@ msgstr ""
 msgid "Failed to restore database: {0}"
 msgstr "Помилка відновлення бази даних: {0}"
 
-#: src/routes/index.tsx:77
+#: src/routes/index.tsx:88
 msgid "Get started"
 msgstr "Розпочати"
 
@@ -369,7 +370,7 @@ msgstr "Логотип"
 msgid "Month name"
 msgstr "Назва місяця"
 
-#: src/routes/index.tsx:56
+#: src/routes/index.tsx:66
 #: src/routes/clients.tsx:69
 #: src/routes/settings/tax-rates.tsx:49
 #: src/routes/settings/organization.tsx:53
@@ -388,7 +389,7 @@ msgstr "Новий клієнт"
 msgid "New invoice"
 msgstr "Новий рахунок"
 
-#: src/layouts/base.tsx:214
+#: src/layouts/base.tsx:217
 msgid "New organization"
 msgstr "Нова організація"
 
@@ -452,7 +453,7 @@ msgstr "Організацію видалено"
 msgid "Organization deletion failed"
 msgstr "Помилка видалення організації"
 
-#: src/routes/index.tsx:52
+#: src/routes/index.tsx:62
 #: src/routes/settings/organization.tsx:46
 msgid "Organization details"
 msgstr "Деталі організації"
@@ -494,7 +495,7 @@ msgstr "Телефон"
 msgid "Please input a percentage!"
 msgstr "Будь ласка, введіть відсоток!"
 
-#: src/routes/index.tsx:55
+#: src/routes/index.tsx:65
 #: src/components/tax-rates/form.tsx:49
 #: src/components/clients/form.tsx:143
 msgid "Please input name!"

@@ -73,6 +73,7 @@ msgstr "Cópia de segurança e restauro"
 msgid "Bank name"
 msgstr "Nome do banco"
 
+#: src/routes/index.tsx:92
 #: src/routes/settings/backup.tsx:50
 #: src/components/clients/form.tsx:127
 msgid "Cancel"
@@ -128,7 +129,7 @@ msgstr "Confirmado"
 msgid "Counter must be 0 or greater"
 msgstr "O contador deve ser 0 ou maior"
 
-#: src/routes/index.tsx:59
+#: src/routes/index.tsx:69
 msgid "Country"
 msgstr "País"
 
@@ -140,11 +141,11 @@ msgstr "Crie uma cópia de segurança da sua base de dados para guardar todas as
 msgid "Create Backup"
 msgstr "Criar cópia de segurança"
 
-#: src/routes/index.tsx:49
+#: src/routes/index.tsx:59
 msgid "Create your organization to get started"
 msgstr "Crie a sua organização para começar"
 
-#: src/routes/index.tsx:68
+#: src/routes/index.tsx:78
 #: src/routes/settings/invoice.tsx:78
 #: src/routes/invoices/details.tsx:237
 msgid "Currency"
@@ -281,7 +282,7 @@ msgstr ""
 msgid "Failed to restore database: {0}"
 msgstr "Falha ao restaurar a base de dados: {0}"
 
-#: src/routes/index.tsx:77
+#: src/routes/index.tsx:88
 msgid "Get started"
 msgstr "Começar"
 
@@ -369,7 +370,7 @@ msgstr "Logótipo"
 msgid "Month name"
 msgstr "Nome do mês"
 
-#: src/routes/index.tsx:56
+#: src/routes/index.tsx:66
 #: src/routes/clients.tsx:69
 #: src/routes/settings/tax-rates.tsx:49
 #: src/routes/settings/organization.tsx:53
@@ -388,7 +389,7 @@ msgstr "Novo cliente"
 msgid "New invoice"
 msgstr "Nova fatura"
 
-#: src/layouts/base.tsx:214
+#: src/layouts/base.tsx:217
 msgid "New organization"
 msgstr "Nova organização"
 
@@ -452,7 +453,7 @@ msgstr "Organização eliminada"
 msgid "Organization deletion failed"
 msgstr "Falha na eliminação da organização"
 
-#: src/routes/index.tsx:52
+#: src/routes/index.tsx:62
 #: src/routes/settings/organization.tsx:46
 msgid "Organization details"
 msgstr "Detalhes da organização"
@@ -494,7 +495,7 @@ msgstr "Telefone"
 msgid "Please input a percentage!"
 msgstr "Por favor, introduza uma percentagem!"
 
-#: src/routes/index.tsx:55
+#: src/routes/index.tsx:65
 #: src/components/tax-rates/form.tsx:49
 #: src/components/clients/form.tsx:143
 msgid "Please input name!"

@@ -26,6 +26,7 @@ import take from "lodash/take";
 import toUpper from "lodash/toUpper";
 
 import { organizationsAtom, organizationIdAtom, organizationAtom, siderAtom, localeAtom } from "src/atoms";
+import { RESET } from "jotai/utils";
 import { dynamicActivate, locales } from "src/utils/lingui";
 import { useAutoUpdater } from "src/hooks/useAutoUpdater";
 
@@ -208,7 +209,10 @@ export default function BaseLayout() {
                             type="text"
                             block
                             icon={<PlusOutlined />}
-                            onClick={() => {}}
+                            onClick={() => {
+                              setOrganizationId(RESET);
+                              navigate("/");
+                            }}
                             style={{ textAlign: "left" }}
                           >
                             <Trans>New organization</Trans>

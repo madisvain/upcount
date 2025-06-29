@@ -77,6 +77,7 @@ msgstr "Varunda ja taasta"
 msgid "Bank name"
 msgstr "Panga nimi"
 
+#: src/routes/index.tsx:92
 #: src/routes/settings/backup.tsx:50
 #: src/components/clients/form.tsx:127
 msgid "Cancel"
@@ -143,7 +144,7 @@ msgstr "Kinnitatud"
 msgid "Counter must be 0 or greater"
 msgstr "Loendur peab olema 0 või suurem"
 
-#: src/routes/index.tsx:59
+#: src/routes/index.tsx:69
 msgid "Country"
 msgstr "Riik"
 
@@ -155,11 +156,11 @@ msgstr "Loo oma andmebaasist varukoopia, et salvestada kõik arved, kliendid ja 
 msgid "Create Backup"
 msgstr "Loo varukoopia"
 
-#: src/routes/index.tsx:49
+#: src/routes/index.tsx:59
 msgid "Create your organization to get started"
 msgstr "Loo oma ettevõte, et alustada"
 
-#: src/routes/index.tsx:68
+#: src/routes/index.tsx:78
 #: src/routes/settings/invoice.tsx:78
 #: src/routes/invoices/details.tsx:237
 msgid "Currency"
@@ -296,7 +297,7 @@ msgstr ""
 msgid "Failed to restore database: {0}"
 msgstr "Andmebaasi taastamine ebaõnnestus: {0}"
 
-#: src/routes/index.tsx:77
+#: src/routes/index.tsx:88
 msgid "Get started"
 msgstr "Alusta"
 
@@ -397,7 +398,7 @@ msgstr "Logo"
 msgid "Month name"
 msgstr "Kuu nimi"
 
-#: src/routes/index.tsx:56
+#: src/routes/index.tsx:66
 #: src/routes/clients.tsx:69
 #: src/routes/settings/tax-rates.tsx:49
 #: src/routes/settings/organization.tsx:53
@@ -416,7 +417,7 @@ msgstr "Uus klient"
 msgid "New invoice"
 msgstr "Uus arve"
 
-#: src/layouts/base.tsx:214
+#: src/layouts/base.tsx:217
 msgid "New organization"
 msgstr "Uus ettevõte"
 
@@ -480,7 +481,7 @@ msgstr "Ettevõte kustutatud"
 msgid "Organization deletion failed"
 msgstr "Organisatsiooni kustutamine ebaõnnestus"
 
-#: src/routes/index.tsx:52
+#: src/routes/index.tsx:62
 #: src/routes/settings/organization.tsx:46
 msgid "Organization details"
 msgstr "Organisatsiooni detailid"
@@ -526,7 +527,7 @@ msgstr "Telefon"
 msgid "Please input a percentage!"
 msgstr "Palun sisestage protsent!"
 
-#: src/routes/index.tsx:55
+#: src/routes/index.tsx:65
 #: src/components/tax-rates/form.tsx:49
 #: src/components/clients/form.tsx:143
 msgid "Please input name!"

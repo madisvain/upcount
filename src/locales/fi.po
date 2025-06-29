@@ -73,6 +73,7 @@ msgstr "Varmuuskopio & palautus"
 msgid "Bank name"
 msgstr "Pankin nimi"
 
+#: src/routes/index.tsx:92
 #: src/routes/settings/backup.tsx:50
 #: src/components/clients/form.tsx:127
 msgid "Cancel"
@@ -128,7 +129,7 @@ msgstr "Vahvistettu"
 msgid "Counter must be 0 or greater"
 msgstr "Laskurin on oltava 0 tai suurempi"
 
-#: src/routes/index.tsx:59
+#: src/routes/index.tsx:69
 msgid "Country"
 msgstr "Maa"
 
@@ -140,11 +141,11 @@ msgstr "Luo tietokannastasi varmuuskopio tallentaaksesi kaikki laskusi, asiakkaa
 msgid "Create Backup"
 msgstr "Luo varmuuskopio"
 
-#: src/routes/index.tsx:49
+#: src/routes/index.tsx:59
 msgid "Create your organization to get started"
 msgstr "Luo organisaatiosi aloittaaksesi"
 
-#: src/routes/index.tsx:68
+#: src/routes/index.tsx:78
 #: src/routes/settings/invoice.tsx:78
 #: src/routes/invoices/details.tsx:237
 msgid "Currency"
@@ -281,7 +282,7 @@ msgstr ""
 msgid "Failed to restore database: {0}"
 msgstr "Tietokannan palautus epäonnistui: {0}"
 
-#: src/routes/index.tsx:77
+#: src/routes/index.tsx:88
 msgid "Get started"
 msgstr "Aloita"
 
@@ -369,7 +370,7 @@ msgstr "Logo"
 msgid "Month name"
 msgstr "Kuukauden nimi"
 
-#: src/routes/index.tsx:56
+#: src/routes/index.tsx:66
 #: src/routes/clients.tsx:69
 #: src/routes/settings/tax-rates.tsx:49
 #: src/routes/settings/organization.tsx:53
@@ -388,7 +389,7 @@ msgstr "Uusi asiakas"
 msgid "New invoice"
 msgstr "Uusi lasku"
 
-#: src/layouts/base.tsx:214
+#: src/layouts/base.tsx:217
 msgid "New organization"
 msgstr "Uusi organisaatio"
 
@@ -452,7 +453,7 @@ msgstr "Organisaatio poistettu"
 msgid "Organization deletion failed"
 msgstr "Organisaation poisto epäonnistui"
 
-#: src/routes/index.tsx:52
+#: src/routes/index.tsx:62
 #: src/routes/settings/organization.tsx:46
 msgid "Organization details"
 msgstr "Organisaation tiedot"
@@ -494,7 +495,7 @@ msgstr "Puhelin"
 msgid "Please input a percentage!"
 msgstr "Syötä prosenttimäärä!"
 
-#: src/routes/index.tsx:55
+#: src/routes/index.tsx:65
 #: src/components/tax-rates/form.tsx:49
 #: src/components/clients/form.tsx:143
 msgid "Please input name!"

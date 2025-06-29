@@ -1,5 +1,5 @@
 import { useEffect } from "react";
-import { Form, Input, Select, Typography, Row, Col, Button } from "antd";
+import { Form, Input, Select, Typography, Row, Col, Button, Space } from "antd";
 import { atom, useAtom, useAtomValue, useSetAtom } from "jotai";
 import { useNavigate } from "react-router";
 import { Trans } from "@lingui/react/macro";
@@ -7,6 +7,7 @@ import { t } from "@lingui/core/macro";
 import compact from "lodash/compact";
 import map from "lodash/map";
 import uniq from "lodash/uniq";
+import first from "lodash/first";
 
 import { organizationAtom, organizationsAtom, organizationIdAtom } from "src/atoms";
 import { countries } from "src/utils/countries";
@@ -25,7 +26,9 @@ const Index = () => {
   const organizations = useAtomValue(organizationsAtom);
   const organizationId = useAtomValue(organizationIdAtom);
   const setOrganization = useSetAtom(organizationAtom);
+  const setOrganizationId = useSetAtom(organizationIdAtom);
   const [submitting, setSubmitting] = useAtom(submittingAtom);
+
 
   const handleSubmit = async (values: any) => {
     setSubmitting(true);
@@ -34,12 +37,21 @@ const Index = () => {
     setSubmitting(false);
   };
 
+  const handleCancel = () => {
+    // Activate the first organization to get user unstuck
+    const firstOrganization = first(organizations);
+    if (firstOrganization) {
+      setOrganizationId(firstOrganization.id);
+    }
+  };
+
+
   // Handle redirect to invoices when organization exists
   useEffect(() => {
-    if (organizationId && organizations.length > 0) {
+    if (organizationId) {
       navigate("/invoices");
     }
-  }, [organizationId, organizations.length, navigate]);
+  }, [organizationId, navigate]);
 
   return (
     <>
@@ -73,9 +85,16 @@ const Index = () => {
                 ))}
               </Select>
             </Form.Item>
-            <Button type="primary" htmlType="submit" disabled={submitting}>
-              <Trans>Get started</Trans>
-            </Button>
+            <Space>
+              <Button type="primary" htmlType="submit" disabled={submitting}>
+                <Trans>Get started</Trans>
+              </Button>
+              {organizations.length > 0 && (
+                <Button onClick={handleCancel} disabled={submitting}>
+                  <Trans>Cancel</Trans>
+                </Button>
+              )}
+            </Space>
           </Form>
         </Col>
       </Row>

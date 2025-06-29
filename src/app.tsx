@@ -8,8 +8,8 @@ if (import.meta.env.DEV) {
 import "dayjs/locale/en";
 import "dayjs/locale/et";
 
-import { useEffect, Suspense, lazy } from "react";
-import { BrowserRouter, Navigate, Route, Routes } from "react-router";
+import { useEffect, Suspense, lazy, useState } from "react";
+import { BrowserRouter, Navigate, Route, Routes, useNavigate, useLocation } from "react-router";
 import { ConfigProvider } from "antd";
 import { useAtom, useAtomValue, useSetAtom } from "jotai";
 import { i18n } from "@lingui/core";
@@ -48,7 +48,11 @@ const DevTools = lazy(() =>
     : Promise.resolve({ default: () => null })
 );
 
-const App = () => {
+const AppContent = () => {
+  const navigate = useNavigate();
+  const location = useLocation();
+  const [isOrganizationChanging, setIsOrganizationChanging] = useState(false);
+  
   // Load locale
   const locale = useAtomValue(localeAtom);
 
@@ -67,26 +71,52 @@ const App = () => {
 
   // Watch for organization changes
   useEffect(() => {
-    if (!find(organizations, { id: organizationId })) {
+    let isChanging = false;
+    
+    // If organizationId is null and we're not on the index page, redirect to index
+    if (organizationId === null && location.pathname !== "/") {
+      setIsOrganizationChanging(true);
+      navigate("/");
+      return;
+    }
+    
+    // Only auto-set if organizationId is not null and not found in organizations
+    if (organizationId !== null && !find(organizations, { id: organizationId })) {
+      isChanging = true;
+      setIsOrganizationChanging(true);
       const nextOrganization: any = first(organizations);
       setOrganizationId(organizations.length > 0 ? nextOrganization.id : null);
     }
-  }, [organizations, organizationId, setOrganizationId]);
+    
+    // Clear loading state after a short delay if we didn't change anything
+    if (!isChanging && isOrganizationChanging) {
+      setTimeout(() => setIsOrganizationChanging(false), 100);
+    }
+  }, [organizations, organizationId, setOrganizationId, navigate, location.pathname, isOrganizationChanging]);
+  
+  // Clear loading state when organizationId is stable
+  useEffect(() => {
+    if (isOrganizationChanging && organizationId !== null && find(organizations, { id: organizationId })) {
+      setIsOrganizationChanging(false);
+    }
+  }, [organizationId, organizations, isOrganizationChanging]);
 
   return (
     <Suspense fallback={<Loading />}>
-      <ConfigProvider
-        theme={{
-          token: {
-            borderRadius: 2,
-          },
-        }}
-      >
-        <Suspense fallback={null}>
-          <DevTools />
-        </Suspense>
-        <I18nProvider i18n={i18n}>
-          <BrowserRouter>
+      {isOrganizationChanging ? (
+        <Loading />
+      ) : (
+        <ConfigProvider
+          theme={{
+            token: {
+              borderRadius: 2,
+            },
+          }}
+        >
+          <Suspense fallback={null}>
+            <DevTools />
+          </Suspense>
+          <I18nProvider i18n={i18n}>
             <Routes>
               <Route path="/" element={<Index />} />
               <Route path="/invoices" element={<BaseLayout />}>
@@ -112,10 +142,18 @@ const App = () => {
                 <Route path="backup" element={<SettingsBackup />} />
               </Route>
             </Routes>
-          </BrowserRouter>
-        </I18nProvider>
-      </ConfigProvider>
+          </I18nProvider>
+        </ConfigProvider>
+      )}
     </Suspense>
+  );
+};
+
+const App = () => {
+  return (
+    <BrowserRouter>
+      <AppContent />
+    </BrowserRouter>
   );
 };
 
