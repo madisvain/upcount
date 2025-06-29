@@ -69,6 +69,16 @@ pub fn run() {
       commands::delete_tax_rate,
       commands::backup_database,
       commands::restore_database,
+      commands::get_tags,
+      commands::get_tag,
+      commands::create_tag,
+      commands::update_tag,
+      commands::delete_tag,
+      commands::get_time_entries,
+      commands::get_time_entry,
+      commands::create_time_entry,
+      commands::update_time_entry,
+      commands::delete_time_entry,
     ])
     .run(tauri::generate_context!())
     .map_err(|e| {
