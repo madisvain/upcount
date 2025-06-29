@@ -67,7 +67,6 @@ pub fn run() {
       commands::create_tax_rate,
       commands::update_tax_rate,
       commands::delete_tax_rate,
-      commands::get_next_invoice_number,
       commands::backup_database,
       commands::restore_database,
     ])

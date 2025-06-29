@@ -41,7 +41,7 @@ export const validateInvoiceFormat = (format: string): InvoiceFormatValidationRe
   };
 };
 
-export const generateInvoicePreview = (
+export const generateInvoiceNumber = (
   format: string, 
   counter: number = 1, 
   date: Date = new Date()

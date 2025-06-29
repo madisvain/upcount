@@ -165,6 +165,8 @@ pub struct UpdateOrganizationRequest {
     pub logo: Option<Vec<u8>>,
     #[serde(rename = "invoiceNumberFormat")]
     pub invoice_number_format: Option<String>,
+    #[serde(rename = "invoiceNumberCounter")]
+    pub invoice_number_counter: Option<i64>,
 }
 
 #[derive(Debug, Serialize, Deserialize, FromRow)]
@@ -521,6 +523,12 @@ impl Database {
             .await?;
         }
 
+        // Increment the invoice counter for the organization
+        sqlx::query("UPDATE organizations SET invoice_number_counter = invoice_number_counter + 1 WHERE id = ?")
+            .bind(&invoice.organization_id)
+            .execute(&mut *tx)
+            .await?;
+
         tx.commit().await?;
 
         self.get_invoice(&invoice.id).await?
@@ -706,7 +714,8 @@ impl Database {
                 overdue_charge = COALESCE(?, overdue_charge),
                 customerNotes = COALESCE(?, customerNotes),
                 logo = COALESCE(?, logo),
-                invoice_number_format = COALESCE(?, invoice_number_format)
+                invoice_number_format = COALESCE(?, invoice_number_format),
+                invoice_number_counter = COALESCE(?, invoice_number_counter)
             WHERE id = ?
             "#,
         )
@@ -727,6 +736,7 @@ impl Database {
         .bind(&updates.customer_notes)
         .bind(&updates.logo)
         .bind(&updates.invoice_number_format)
+        .bind(&updates.invoice_number_counter)
         .bind(organization_id)
         .execute(&self.pool)
         .await?;
@@ -828,44 +838,4 @@ impl Database {
         Ok(result.rows_affected() > 0)
     }
 
-    pub async fn generate_next_invoice_number(&self, organization_id: &str) -> Result<String, sqlx::Error> {
-        use chrono::{DateTime, Utc, Datelike};
-        
-        // Get organization settings
-        let org = self.get_organization(organization_id).await?
-            .ok_or_else(|| sqlx::Error::RowNotFound)?;
-
-        // Get format template or use default
-        let format_template = org.invoice_number_format
-            .unwrap_or_else(|| "INV-{year}-{number}".to_string());
-        
-        // Get current counter value
-        let current_counter = org.invoice_number_counter.unwrap_or(0);
-        let next_counter = current_counter + 1;
-        
-        // Get current date for template variables
-        let now: DateTime<Utc> = Utc::now();
-        
-        // Replace template variables with actual values
-        let mut invoice_number = format_template;
-        
-        // Replace {number} with zero-padded counter (5 digits by default)
-        invoice_number = invoice_number.replace("{number}", &format!("{:05}", next_counter));
-        
-        // Replace date variables
-        invoice_number = invoice_number.replace("{year}", &now.year().to_string());
-        invoice_number = invoice_number.replace("{y}", &format!("{:02}", now.year() % 100));
-        invoice_number = invoice_number.replace("{month}", &format!("{:02}", now.month()));
-        invoice_number = invoice_number.replace("{m}", &now.format("%b").to_string());
-        invoice_number = invoice_number.replace("{day}", &format!("{:02}", now.day()));
-        
-        // Update the counter in the database
-        sqlx::query("UPDATE organizations SET invoice_number_counter = ? WHERE id = ?")
-            .bind(next_counter)
-            .bind(organization_id)
-            .execute(&self.pool)
-            .await?;
-        
-        Ok(invoice_number)
-    }
 }

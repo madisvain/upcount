@@ -15,6 +15,7 @@ import { invoke } from "@tauri-apps/api/core";
 
 import { defaultLocale } from "src/utils/lingui";
 import { centsToUnits, unitsToCents } from "src/utils/currency";
+import { generateInvoiceNumber } from "src/utils/invoice";
 
 // Generic
 export const siderAtom = atomWithStorage("sider", false);
@@ -347,39 +348,16 @@ export const organizationAtom = atom(
 // Get next invoice number
 export const nextInvoiceNumberAtom = atom(
   async (get) => {
-    const organizationId = get(organizationIdAtom);
-    if (!organizationId) return null;
+    const organization = await get(organizationAtom);
+    if (!organization) return null;
 
-    try {
-      const nextNumber = await invoke<string>("get_next_invoice_number", { organizationId });
-      return nextNumber;
-    } catch (error) {
-      console.error("Failed to get next invoice number:", error);
-      return null;
-    }
+    const format = organization.invoiceNumberFormat;
+    const counter = (organization.invoiceNumberCounter || 0) + 1;
+    
+    return generateInvoiceNumber(format, counter);
   }
 );
 
-// Generate invoice number preview (for settings page)
-export const invoiceNumberPreviewAtom = atom((get) => {
-  const organization = get(organizationAtom);
-  if (!organization) return null;
-
-  const format = organization.invoiceNumberFormat || "INV-{year}-{number}";
-  const counter = (organization.invoiceNumberCounter || 0) + 1;
-  const now = new Date();
-
-  // Replace template variables with actual values
-  let preview = format;
-  preview = preview.replace("{number}", String(counter).padStart(5, "0"));
-  preview = preview.replace("{year}", now.getFullYear().toString());
-  preview = preview.replace("{y}", String(now.getFullYear() % 100).padStart(2, "0"));
-  preview = preview.replace("{month}", String(now.getMonth() + 1).padStart(2, "0"));
-  preview = preview.replace("{m}", now.toLocaleString("en", { month: "short" }));
-  preview = preview.replace("{day}", String(now.getDate()).padStart(2, "0"));
-
-  return preview;
-});
 
 // Delete organization
 export const deleteOrganizationAtom = atom(null, async (get, set) => {

@@ -15,7 +15,7 @@ const { Option } = Select;
 
 import { organizationAtom, setOrganizationsAtom } from "src/atoms";
 import { currencies, getCurrencySymbol } from "src/utils/currencies";
-import { validateInvoiceFormat, generateInvoicePreview } from "src/utils/invoice";
+import { validateInvoiceFormat, generateInvoiceNumber } from "src/utils/invoice";
 
 const submittingAtom = atom(false);
 
@@ -35,7 +35,7 @@ function SettingsInvoice() {
     if (!template) return "";
 
     const counter = (organization?.invoiceNumberCounter || 0) + 1;
-    return generateInvoicePreview(template, counter);
+    return generateInvoiceNumber(template, counter);
   };
 
   const invoiceNumberPreview = getPreview(invoiceFormat);
@@ -143,6 +143,19 @@ function SettingsInvoice() {
                 {showVariables ? <CaretDownOutlined /> : <CaretRightOutlined />}
                 <Trans>Show variables</Trans>
               </Button>
+              
+              <Form.Item
+                label={t`Invoice Number Counter`}
+                name="invoiceNumberCounter"
+                rules={[
+                  { required: true, message: t`This field is required!` },
+                  { type: 'number', min: 0, message: t`Counter must be 0 or greater` }
+                ]}
+                style={{ marginTop: 16 }}
+                help={t`Next invoice will use this number + 1`}
+              >
+                <InputNumber min={0} style={{ width: '100%' }} />
+              </Form.Item>
             </Col>
             <Col span={12}>
               <Form.Item label={t`Preview`}>
