@@ -13,7 +13,7 @@ const { Text } = Typography;
 const { TextArea } = Input;
 const { Option } = Select;
 
-import { organizationAtom, setOrganizationsAtom } from "src/atoms";
+import { organizationAtom, setOrganizationsAtom } from "src/atoms/organization";
 import { currencies, getCurrencySymbol } from "src/utils/currencies";
 import { validateInvoiceFormat, generateInvoiceNumber } from "src/utils/invoice";
 
@@ -35,15 +35,16 @@ function SettingsInvoice() {
     if (!template) return "";
 
     const counter = (organization?.invoiceNumberCounter || 0) + 1;
-    return generateInvoiceNumber(template, counter);
+    // Use a pseudo client code for preview
+    return generateInvoiceNumber(template, counter, new Date(), 'AB');
   };
 
   const invoiceNumberPreview = getPreview(invoiceFormat);
 
   const onSubmit = async (values: object) => {
     setSubmitting(true);
-    setOrganization(values);
-    setOrganizations();
+    await setOrganization(values);
+    await setOrganizations();
     setSubmitting(false);
   };
   // const onDelete = () => {};
@@ -230,6 +231,9 @@ function SettingsInvoice() {
                     <div>
                       <Text code>{"{day}"}</Text> - <Trans>Day of month</Trans> (
                       {String(new Date().getDate()).padStart(2, "0")})
+                    </div>
+                    <div>
+                      <Text code>{"{clientCode}"}</Text> - <Trans>Client code</Trans> (<Trans>e.g. AP, MS</Trans>)
                     </div>
                   </Space>
                 </div>

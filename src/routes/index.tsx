@@ -9,7 +9,7 @@ import map from "lodash/map";
 import uniq from "lodash/uniq";
 import first from "lodash/first";
 
-import { organizationAtom, organizationsAtom, organizationIdAtom } from "src/atoms";
+import { organizationAtom, organizationsAtom, organizationIdAtom } from "src/atoms/organization";
 import { countries } from "src/utils/countries";
 
 const { Title, Text } = Typography;

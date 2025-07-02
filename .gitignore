@@ -1,3 +1,8 @@
+# Environment variables
+.env
+.env.local
+.env.*.local
+
 # Locales
 src/locales/*.mo
 src/locales/*.js

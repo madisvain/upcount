@@ -6,7 +6,7 @@ import { t } from "@lingui/core/macro";
 import { useLingui } from "@lingui/react";
 import isEmpty from "lodash/isEmpty";
 
-import { organizationAtom, setOrganizationsAtom, deleteOrganizationAtom } from "src/atoms";
+import { organizationAtom, setOrganizationsAtom, deleteOrganizationAtom } from "src/atoms/organization";
 
 const { Title } = Typography;
 const { TextArea } = Input;

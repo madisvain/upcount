@@ -5,10 +5,14 @@ if (import.meta.env.DEV) {
   import("jotai-devtools/styles.css");
 }
 
+// Initialize Sentry for error tracking
+import { initSentry } from "src/utils/sentry";
+initSentry();
+
 import "dayjs/locale/en";
 import "dayjs/locale/et";
 
-import { useEffect, Suspense, lazy, useState } from "react";
+import { useEffect, useState } from "react";
 import { BrowserRouter, Navigate, Route, Routes, useNavigate, useLocation } from "react-router";
 import { ConfigProvider } from "antd";
 import { useAtom, useAtomValue, useSetAtom } from "jotai";
@@ -19,10 +23,10 @@ import first from "lodash/first";
 import find from "lodash/find";
 import localizedFormat from "dayjs/plugin/localizedFormat";
 
-import { localeAtom } from "src/atoms.tsx";
+import { localeAtom } from "src/atoms/generic";
 import { dynamicActivate } from "src/utils/lingui";
 
-import { organizationIdAtom, organizationsAtom, setOrganizationsAtom } from "src/atoms";
+import { organizationIdAtom, organizationsAtom, setOrganizationsAtom } from "src/atoms/organization";
 import BaseLayout from "src/layouts/base";
 import Clients from "src/routes/clients";
 import Index from "src/routes/index";
@@ -41,12 +45,8 @@ import TaxRateForm from "src/components/tax-rates/form.tsx";
 
 dayjs.extend(localizedFormat);
 
-// Lazy load DevTools for development only
-const DevTools = lazy(() =>
-  import.meta.env.DEV
-    ? import("jotai-devtools").then((module) => ({ default: module.DevTools }))
-    : Promise.resolve({ default: () => null })
-);
+// Import DevTools directly for development
+import { DevTools } from "jotai-devtools";
 
 const AppContent = () => {
   const navigate = useNavigate();
@@ -99,46 +99,42 @@ const AppContent = () => {
   }
 
   return (
-    <Suspense fallback={<div>Loading...</div>}>
-      <ConfigProvider
-        theme={{
-          token: {
-            borderRadius: 2,
-          },
-        }}
-      >
-        <Suspense fallback={null}>
-          <DevTools />
-        </Suspense>
-        <I18nProvider i18n={i18n}>
-          <Routes>
-            <Route path="/" element={<Index />} />
-            <Route path="/invoices" element={<BaseLayout />}>
-              <Route index element={<Invoices />} />
-              <Route path=":id" element={<InvoiceDetails />} />
-              <Route path=":id/preview" element={<InvoicePreview />} />
-              <Route path=":id/pdf" element={<InvoiceDetails />} />
+    <ConfigProvider
+      theme={{
+        token: {
+          borderRadius: 2,
+        },
+      }}
+    >
+      {import.meta.env.DEV && <DevTools />}
+      <I18nProvider i18n={i18n}>
+        <Routes>
+          <Route path="/" element={<Index />} />
+          <Route path="/invoices" element={<BaseLayout />}>
+            <Route index element={<Invoices />} />
+            <Route path=":id" element={<InvoiceDetails />} />
+            <Route path=":id/preview" element={<InvoicePreview />} />
+            <Route path=":id/pdf" element={<InvoiceDetails />} />
+          </Route>
+          <Route path="/clients" element={<BaseLayout />}>
+            <Route index element={<Clients />} />
+          </Route>
+          <Route path="/time-tracking" element={<BaseLayout />}>
+            <Route path="" element={<TimeTracking />} />
+          </Route>
+          <Route path="/settings" element={<BaseLayout />}>
+            <Route index element={<Navigate to="/invoices/organization" />} />
+            <Route path="invoice" element={<SettingsInvoice />} />
+            <Route path="organization" element={<SettingsOrganization />} />
+            <Route path="tax-rates" element={<SettingsTaxRates />}>
+              <Route path="new" element={<TaxRateForm />} />
+              <Route path=":id" element={<TaxRateForm />} />
             </Route>
-            <Route path="/clients" element={<BaseLayout />}>
-              <Route index element={<Clients />} />
-            </Route>
-            <Route path="/time-tracking" element={<BaseLayout />}>
-              <Route path="" element={<TimeTracking />} />
-            </Route>
-            <Route path="/settings" element={<BaseLayout />}>
-              <Route index element={<Navigate to="/invoices/organization" />} />
-              <Route path="invoice" element={<SettingsInvoice />} />
-              <Route path="organization" element={<SettingsOrganization />} />
-              <Route path="tax-rates" element={<SettingsTaxRates />}>
-                <Route path="new" element={<TaxRateForm />} />
-                <Route path=":id" element={<TaxRateForm />} />
-              </Route>
-              <Route path="backup" element={<SettingsBackup />} />
-            </Route>
-          </Routes>
-        </I18nProvider>
-      </ConfigProvider>
-    </Suspense>
+            <Route path="backup" element={<SettingsBackup />} />
+          </Route>
+        </Routes>
+      </I18nProvider>
+    </ConfigProvider>
   );
 };
 
