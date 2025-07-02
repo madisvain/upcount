@@ -10,6 +10,7 @@ import get from "lodash/get";
 import { invoke } from "@tauri-apps/api/core";
 
 import { clientIdAtom, clientAtom, deleteClientAtom } from "src/atoms";
+import { generateClientCode } from "src/utils/client";
 
 const submittingAtom = atom(false);
 
@@ -141,7 +142,19 @@ const ClientForm = () => {
       {(!clientId || !isEmpty(client)) && (
         <Form form={form} layout="vertical" onFinish={handleSubmit}>
           <Form.Item name="name" rules={[{ required: true, message: t`Please input name!` }]}>
-            <Input placeholder={t`Name`} />
+            <Input 
+              placeholder={t`Name`} 
+              onChange={(e) => {
+                // Only auto-generate code for new clients (no clientId)
+                if (!clientId) {
+                  const code = generateClientCode(e.target.value);
+                  form.setFieldValue('code', code);
+                }
+              }}
+            />
+          </Form.Item>
+          <Form.Item name="code" rules={[{ required: false }]}>
+            <Input placeholder={t`Code`} maxLength={10} />
           </Form.Item>
           <Form.Item name="address">
             <Input.TextArea rows={4} placeholder={t`Address`} />

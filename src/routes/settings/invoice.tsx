@@ -1,7 +1,7 @@
 import { Button, Col, Form, Input, InputNumber, Select, Space, Typography, Row, Upload, Divider } from "antd";
 import { atom, useAtom, useSetAtom } from "jotai";
 import { FileTextOutlined, UploadOutlined, CaretRightOutlined, CaretDownOutlined } from "@ant-design/icons";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Trans } from "@lingui/react/macro";
 import { t } from "@lingui/core/macro";
 import { useLingui } from "@lingui/react";
@@ -35,15 +35,16 @@ function SettingsInvoice() {
     if (!template) return "";
 
     const counter = (organization?.invoiceNumberCounter || 0) + 1;
-    return generateInvoiceNumber(template, counter);
+    // Use a pseudo client code for preview
+    return generateInvoiceNumber(template, counter, new Date(), 'AB');
   };
 
   const invoiceNumberPreview = getPreview(invoiceFormat);
 
   const onSubmit = async (values: object) => {
     setSubmitting(true);
-    setOrganization(values);
-    setOrganizations();
+    await setOrganization(values);
+    await setOrganizations();
     setSubmitting(false);
   };
   // const onDelete = () => {};
@@ -230,6 +231,9 @@ function SettingsInvoice() {
                     <div>
                       <Text code>{"{day}"}</Text> - <Trans>Day of month</Trans> (
                       {String(new Date().getDate()).padStart(2, "0")})
+                    </div>
+                    <div>
+                      <Text code>{"{clientCode}"}</Text> - <Trans>Client code</Trans> (<Trans>e.g. AP, MS</Trans>)
                     </div>
                   </Space>
                 </div>

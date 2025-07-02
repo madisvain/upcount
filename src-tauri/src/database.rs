@@ -9,6 +9,7 @@ pub struct Client {
     #[sqlx(rename = "organizationId")]
     pub organization_id: String,
     pub name: Option<String>,
+    pub code: Option<String>,
     pub address: Option<String>,
     pub emails: Option<String>,
     pub phone: Option<String>,
@@ -26,6 +27,7 @@ pub struct CreateClientRequest {
     #[serde(rename = "organizationId")]
     pub organization_id: String,
     pub name: Option<String>,
+    pub code: Option<String>,
     pub address: Option<String>,
     pub emails: Option<String>,
     pub phone: Option<String>,
@@ -262,6 +264,7 @@ pub struct UpdateInvoiceRequest {
 #[derive(Debug, Deserialize)]
 pub struct UpdateClientRequest {
     pub name: Option<String>,
+    pub code: Option<String>,
     pub address: Option<String>,
     pub emails: Option<String>,
     pub phone: Option<String>,
@@ -453,13 +456,14 @@ impl Database {
     pub async fn create_client(&self, client: CreateClientRequest) -> Result<Client, sqlx::Error> {
         sqlx::query(
             r#"
-            INSERT INTO clients (id, organizationId, name, address, emails, phone, website, registration_number, vatin)
-            VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)
+            INSERT INTO clients (id, organizationId, name, code, address, emails, phone, website, registration_number, vatin)
+            VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
             "#,
         )
         .bind(&client.id)
         .bind(&client.organization_id)
         .bind(&client.name)
+        .bind(&client.code)
         .bind(&client.address)
         .bind(&client.emails)
         .bind(&client.phone)
@@ -481,11 +485,12 @@ impl Database {
         sqlx::query(
             r#"
             UPDATE clients
-            SET name = ?, address = ?, emails = ?, phone = ?, website = ?, registration_number = ?, vatin = ?
+            SET name = ?, code = ?, address = ?, emails = ?, phone = ?, website = ?, registration_number = ?, vatin = ?
             WHERE id = ?
             "#,
         )
         .bind(&updates.name)
+        .bind(&updates.code)
         .bind(&updates.address)
         .bind(&updates.emails)
         .bind(&updates.phone)

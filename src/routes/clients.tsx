@@ -1,11 +1,11 @@
 import { useEffect } from "react";
 import { Link, Outlet, useLocation } from "react-router";
-import { Button, Col, Input, Space, Table, Typography, Row, Tag } from "antd";
+import { Button, Col, Input, Space, Table, Typography, Row, Tag, Tooltip } from "antd";
 import { atom, useAtom, useAtomValue, useSetAtom } from "jotai";
 import { Trans } from "@lingui/react/macro";
 import { t } from "@lingui/core/macro";
 import { useLingui } from "@lingui/react";
-import { PhoneOutlined, TeamOutlined } from "@ant-design/icons";
+import { PhoneOutlined, TeamOutlined, GlobalOutlined } from "@ant-design/icons";
 import isEmpty from "lodash/isEmpty";
 import filter from "lodash/filter";
 import get from "lodash/get";
@@ -35,10 +35,13 @@ const Clients = () => {
 
   const searchClients = () => {
     return filter(clients, (client: any) => {
-      return some(["name", "registration_number", "address", "emails", "phone", "vatin", "website"], (field) => {
-        const value = get(client, field);
-        return includes(toString(value).toLowerCase(), search.toLowerCase());
-      });
+      return some(
+        ["name", "code", "registration_number", "address", "emails", "phone", "vatin", "website"],
+        (field) => {
+          const value = get(client, field);
+          return includes(toString(value).toLowerCase(), search.toLowerCase());
+        }
+      );
     });
   };
 
@@ -104,11 +107,17 @@ const Clients = () => {
               title={<Trans>Website</Trans>}
               dataIndex="website"
               key="website"
-              render={(website) => (
-                <a href={website} target="_blank" rel="noreferrer noopener">
-                  {website}
-                </a>
-              )}
+              width={60}
+              align="center"
+              render={(website) =>
+                website ? (
+                  <Tooltip title={website}>
+                    <a href={website} target="_blank" rel="noreferrer noopener">
+                      <GlobalOutlined style={{ fontSize: 16 }} />
+                    </a>
+                  </Tooltip>
+                ) : null
+              }
             />
           </Table>
           <Outlet />

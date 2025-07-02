@@ -20,7 +20,7 @@ export const validateInvoiceFormat = (format: string): InvoiceFormatValidationRe
   }
 
   // Valid variables
-  const validVariables = ['{number}', '{year}', '{y}', '{month}', '{m}', '{day}'];
+  const validVariables = ['{number}', '{year}', '{y}', '{month}', '{m}', '{day}', '{clientCode}'];
   
   // Find all variables in the format
   const variablePattern = /\{([^}]+)\}/g;
@@ -44,7 +44,8 @@ export const validateInvoiceFormat = (format: string): InvoiceFormatValidationRe
 export const generateInvoiceNumber = (
   format: string, 
   counter: number = 1, 
-  date: Date = new Date()
+  date: Date = new Date(),
+  clientCode: string = ''
 ): string => {
   let preview = format;
   
@@ -57,6 +58,9 @@ export const generateInvoiceNumber = (
   preview = preview.replace('{month}', String(date.getMonth() + 1).padStart(2, '0'));
   preview = preview.replace('{m}', date.toLocaleString('en', { month: 'short' }));
   preview = preview.replace('{day}', String(date.getDate()).padStart(2, '0'));
+  
+  // Replace client code variable
+  preview = preview.replace('{clientCode}', clientCode);
   
   return preview;
 };

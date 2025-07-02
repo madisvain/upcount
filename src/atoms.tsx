@@ -19,10 +19,15 @@ import { generateInvoiceNumber } from "src/utils/invoice";
 
 // Generic
 export const siderAtom = atomWithStorage("sider", false);
+siderAtom.debugLabel = "siderAtom";
+
 export const localeAtom = atomWithStorage("locale", defaultLocale);
+localeAtom.debugLabel = "localeAtom";
 
 // Clients
 export const clientsAtom = atom<any[]>([]);
+clientsAtom.debugLabel = "clientsAtom";
+
 export const setClientsAtom = atom(null, async (get, set) => {
   const organizationId = get(organizationIdAtom);
   try {
@@ -34,9 +39,12 @@ export const setClientsAtom = atom(null, async (get, set) => {
     message.error(t`Failed to fetch clients`);
   }
 });
+setClientsAtom.debugLabel = "setClientsAtom";
 
 // Client
 export const clientIdAtom = atom<string | null>(null);
+clientIdAtom.debugLabel = "clientIdAtom";
+
 export const clientAtom = atom(
   async (get) => {
     const clientId = get(clientIdAtom);
@@ -353,6 +361,8 @@ export const setOrganizationsAtom = atom(null, async (_get, set) => {
 });
 // Organization
 export const organizationIdAtom = atomWithStorage<string | null>("organizationId", null, undefined, { getOnInit: true });
+organizationIdAtom.debugLabel = "organizationIdAtom";
+
 export const organizationAtom = atom(
   async (get) => {
     const organizationId = get(organizationIdAtom);
@@ -400,6 +410,10 @@ export const organizationAtom = atom(
         });
         message.success(t`Organization updated successfully`);
         set(setOrganizationsAtom);
+        
+        // Force refresh by temporarily clearing and resetting the organizationId
+        // This will trigger the organizationAtom getter to refetch
+        set(organizationIdAtom, null);
         set(organizationIdAtom, organizationId);
       }
     } catch (error) {
@@ -412,6 +426,8 @@ export const organizationAtom = atom(
     }
   }
 );
+organizationAtom.debugLabel = "organizationAtom";
+
 // Get next invoice number
 export const nextInvoiceNumberAtom = atom(async (get) => {
   const organization = await get(organizationAtom);

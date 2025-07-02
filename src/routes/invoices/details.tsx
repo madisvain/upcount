@@ -62,6 +62,7 @@ import {
 import ClientForm from "src/components/clients/form.tsx";
 import InvoicePDF from "src/components/invoices/pdf";
 import { currencies, getCurrencySymbol } from "src/utils/currencies";
+import { generateInvoiceNumber } from "src/utils/invoice";
 
 const { TextArea } = Input;
 const { Option } = Select;
@@ -195,6 +196,23 @@ const InvoiceDetails: React.FC = () => {
                         return includes(lowerCase(clientName), lowerCase(input));
                       }
                       return true;
+                    }}
+                    onChange={(clientId) => {
+                      if (isNew && organization?.invoiceNumberFormat?.includes('{clientCode}')) {
+                        // Find the selected client
+                        const selectedClient = clients.find((c: any) => c.id === clientId);
+                        const clientCode = selectedClient?.code || '';
+                        
+                        // Regenerate invoice number with client code
+                        const counter = (organization.invoiceNumberCounter || 0) + 1;
+                        const newNumber = generateInvoiceNumber(
+                          organization.invoiceNumberFormat,
+                          counter,
+                          new Date(),
+                          clientCode
+                        );
+                        form.setFieldsValue({ number: newNumber });
+                      }
                     }}
                     popupRender={(menu) => (
                       <>

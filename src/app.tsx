@@ -45,12 +45,8 @@ import TaxRateForm from "src/components/tax-rates/form.tsx";
 
 dayjs.extend(localizedFormat);
 
-// Lazy load DevTools for development only
-const DevTools = lazy(() =>
-  import.meta.env.DEV
-    ? import("jotai-devtools").then((module) => ({ default: module.DevTools }))
-    : Promise.resolve({ default: () => null })
-);
+// Import DevTools directly for development
+import { DevTools } from "jotai-devtools";
 
 const AppContent = () => {
   const navigate = useNavigate();
@@ -111,9 +107,7 @@ const AppContent = () => {
           },
         }}
       >
-        <Suspense fallback={null}>
-          <DevTools />
-        </Suspense>
+        {import.meta.env.DEV && <DevTools />}
         <I18nProvider i18n={i18n}>
           <Routes>
             <Route path="/" element={<Index />} />
