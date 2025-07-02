@@ -13,7 +13,7 @@ import includes from "lodash/includes";
 import some from "lodash/some";
 import toString from "lodash/toString";
 
-import { clientsAtom, setClientsAtom } from "src/atoms";
+import { clientsAtom, setClientsAtom } from "src/atoms/client";
 import ClientForm from "src/components/clients/form";
 
 const { Title } = Typography;

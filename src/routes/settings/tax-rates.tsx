@@ -6,7 +6,7 @@ import { CalculatorOutlined, CheckSquareOutlined } from "@ant-design/icons";
 import { Trans } from "@lingui/react/macro";
 import { useLingui } from "@lingui/react";
 
-import { taxRatesAtom, setTaxRatesAtom } from "src/atoms";
+import { taxRatesAtom, setTaxRatesAtom } from "src/atoms/tax-rate";
 
 const { Title } = Typography;
 

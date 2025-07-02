@@ -1,7 +1,7 @@
 import { Select, Tag as AntTag } from "antd";
 import { useAtomValue, useSetAtom } from "jotai";
-import { useEffect, useState } from "react";
-import { tagsAtom, setTagsAtom } from "src/atoms";
+import { useEffect } from "react";
+import { tagsAtom, setTagsAtom } from "src/atoms/time-tracking";
 
 interface TagSelectorProps {
   value?: string[];

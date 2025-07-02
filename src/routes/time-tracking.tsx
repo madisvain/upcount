@@ -1,7 +1,7 @@
 import React, { useEffect, useState, useContext, useRef } from "react";
 import { Link, useLocation, useNavigate } from "react-router";
 import { Button, Row, Col, Space, Input, Table, Typography, Tag, Popconfirm, Dropdown, Form, Select } from "antd";
-import type { GetRef, InputRef } from "antd";
+import type { GetRef } from "antd";
 import {
   PlayCircleOutlined,
   StopOutlined,
@@ -22,17 +22,16 @@ import includes from "lodash/includes";
 import some from "lodash/some";
 import toString from "lodash/toString";
 
+import { clientsAtom, setClientsAtom } from "src/atoms/client";
 import {
   timeEntriesAtom,
   setTimeEntriesAtom,
   deleteTimeEntryAtom,
   runningTimerAtom,
-  clientsAtom,
-  setClientsAtom,
   timeEntryAtom,
   timeEntryIdAtom,
   updateTimeEntryDirectlyAtom,
-} from "src/atoms";
+} from "src/atoms/time-tracking";
 import TimeEntryForm from "src/components/time-entries/form";
 import TimeRangeCell from "src/components/time-entries/time-range-cell";
 
@@ -46,11 +45,11 @@ const EditableContext = React.createContext<FormInstance<any> | null>(null);
 
 const searchAtom = atom<string>("");
 
-interface EditableRowProps {
+interface EditableRowProps extends React.HTMLAttributes<HTMLTableRowElement> {
   index: number;
 }
 
-const EditableRow: React.FC<EditableRowProps> = ({ index, ...props }) => {
+const EditableRow: React.FC<EditableRowProps> = ({ ...props }) => {
   const [form] = Form.useForm();
   return (
     <Form form={form} component={false}>
@@ -61,7 +60,7 @@ const EditableRow: React.FC<EditableRowProps> = ({ index, ...props }) => {
   );
 };
 
-interface EditableCellProps extends React.HTMLAttributes<HTMLElement> {
+interface EditableCellProps {
   title: React.ReactNode;
   editable: boolean;
   dataIndex: string;
@@ -72,20 +71,17 @@ interface EditableCellProps extends React.HTMLAttributes<HTMLElement> {
 }
 
 const EditableCell: React.FC<React.PropsWithChildren<EditableCellProps>> = ({
-  title,
   editable,
   children,
   dataIndex,
   record,
   handleSave,
-  inputType = 'text',
   options = [],
-  ...restProps
 }) => {
   const [editing, setEditing] = useState(false);
   const [saving, setSaving] = useState(false);
   const [selectOpen, setSelectOpen] = useState(false);
-  const inputRef = useRef<InputRef>(null);
+  const inputRef = useRef<any>(null);
   const form = useContext(EditableContext)!;
 
   useEffect(() => {
@@ -105,7 +101,7 @@ const EditableCell: React.FC<React.PropsWithChildren<EditableCellProps>> = ({
     form.setFieldsValue({ [dataIndex]: record[dataIndex] });
   };
 
-  const save = async (e?: React.FocusEvent | React.KeyboardEvent) => {
+  const save = async () => {
     if (saving) return; // Prevent duplicate saves
     
     setSaving(true);
@@ -122,7 +118,7 @@ const EditableCell: React.FC<React.PropsWithChildren<EditableCellProps>> = ({
 
   const handlePressEnter = (e: React.KeyboardEvent) => {
     e.preventDefault();
-    save(e);
+    save();
   };
 
   let childNode = children;
@@ -159,7 +155,7 @@ const EditableCell: React.FC<React.PropsWithChildren<EditableCellProps>> = ({
     );
   }
 
-  return <td {...restProps}>{childNode}</td>;
+  return <td>{childNode}</td>;
 };
 
 const TimeTracking = () => {
@@ -175,7 +171,7 @@ const TimeTracking = () => {
   const clients = useAtomValue(clientsAtom);
   const setClients = useSetAtom(setClientsAtom);
   const setTimeEntry = useSetAtom(timeEntryAtom);
-  const [timeEntryId, setTimeEntryId] = useAtom(timeEntryIdAtom);
+  const setTimeEntryId = useSetAtom(timeEntryIdAtom);
   const updateTimeEntryDirectly = useSetAtom(updateTimeEntryDirectlyAtom);
   const [currentTime, setCurrentTime] = useState(dayjs());
 
@@ -327,7 +323,7 @@ const TimeTracking = () => {
       key: "clientId",
       editable: true,
       inputType: 'select',
-      render: (clientId: string, record: any) => record.clientName || "-",
+      render: (_: string, record: any) => record.clientName || "-",
       filters: clients.map((client: any) => ({
         text: client.name,
         value: client.id,

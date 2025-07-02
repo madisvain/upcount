@@ -25,7 +25,8 @@ import map from "lodash/map";
 import take from "lodash/take";
 import toUpper from "lodash/toUpper";
 
-import { organizationsAtom, organizationIdAtom, organizationAtom, siderAtom, localeAtom } from "src/atoms";
+import { siderAtom, localeAtom } from "src/atoms/generic";
+import { organizationsAtom, organizationIdAtom, organizationAtom } from "src/atoms/organization";
 import Timer from "src/components/timer";
 import { RESET } from "jotai/utils";
 import { dynamicActivate, locales } from "src/utils/lingui";

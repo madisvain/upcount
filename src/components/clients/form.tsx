@@ -9,7 +9,7 @@ import isEmpty from "lodash/isEmpty";
 import get from "lodash/get";
 import { invoke } from "@tauri-apps/api/core";
 
-import { clientIdAtom, clientAtom, deleteClientAtom } from "src/atoms";
+import { clientIdAtom, clientAtom, deleteClientAtom } from "src/atoms/client";
 import { generateClientCode } from "src/utils/client";
 
 const submittingAtom = atom(false);

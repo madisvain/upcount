@@ -13,7 +13,8 @@ import includes from "lodash/includes";
 import some from "lodash/some";
 import toString from "lodash/toString";
 
-import { invoicesAtom, setInvoicesAtom, organizationAtom, duplicateInvoiceAtom, deleteInvoiceAtom } from "src/atoms";
+import { invoicesAtom, setInvoicesAtom, duplicateInvoiceAtom, deleteInvoiceAtom } from "src/atoms/invoice";
+import { organizationAtom } from "src/atoms/organization";
 import { getFormattedNumber } from "src/utils/currencies";
 import InvoiceStateSelect from "src/components/invoices/state-select";
 

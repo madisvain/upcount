@@ -5,7 +5,7 @@ import { Trans } from "@lingui/react/macro";
 import { t } from "@lingui/core/macro";
 import isEmpty from "lodash/isEmpty";
 
-import { taxRateIdAtom, taxRateAtom } from "src/atoms";
+import { taxRateIdAtom, taxRateAtom } from "src/atoms/tax-rate";
 
 const submittingAtom = atom(false);
 

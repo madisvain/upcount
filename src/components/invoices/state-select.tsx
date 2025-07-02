@@ -6,7 +6,7 @@ import capitalize from "lodash/capitalize";
 
 import type { MenuProps } from "antd";
 
-import { invoiceAtom, invoiceIdAtom } from "src/atoms";
+import { invoiceAtom, invoiceIdAtom } from "src/atoms/invoice";
 
 const stateColor = {
   draft: null,

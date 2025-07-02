@@ -12,7 +12,7 @@ initSentry();
 import "dayjs/locale/en";
 import "dayjs/locale/et";
 
-import { useEffect, Suspense, lazy, useState } from "react";
+import { useEffect, Suspense, useState } from "react";
 import { BrowserRouter, Navigate, Route, Routes, useNavigate, useLocation } from "react-router";
 import { ConfigProvider } from "antd";
 import { useAtom, useAtomValue, useSetAtom } from "jotai";
@@ -23,10 +23,10 @@ import first from "lodash/first";
 import find from "lodash/find";
 import localizedFormat from "dayjs/plugin/localizedFormat";
 
-import { localeAtom } from "src/atoms.tsx";
+import { localeAtom } from "src/atoms/generic";
 import { dynamicActivate } from "src/utils/lingui";
 
-import { organizationIdAtom, organizationsAtom, setOrganizationsAtom } from "src/atoms";
+import { organizationIdAtom, organizationsAtom, setOrganizationsAtom } from "src/atoms/organization";
 import BaseLayout from "src/layouts/base";
 import Clients from "src/routes/clients";
 import Index from "src/routes/index";

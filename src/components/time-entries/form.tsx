@@ -1,6 +1,6 @@
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import { useLocation, useNavigate } from "react-router";
-import { Form, Input, Modal, Select, Button, Popconfirm, DatePicker, InputNumber, Switch, Row, Col } from "antd";
+import { Form, Input, Modal, Select, Button, Popconfirm, DatePicker, InputNumber, Row, Col } from "antd";
 import { atom, useAtom, useSetAtom, useAtomValue } from "jotai";
 import { Trans } from "@lingui/react/macro";
 import { t } from "@lingui/core/macro";
@@ -9,14 +9,13 @@ import isEmpty from "lodash/isEmpty";
 import get from "lodash/get";
 import dayjs from "dayjs";
 
+import { clientsAtom } from "src/atoms/client";
 import { 
   timeEntryIdAtom, 
   timeEntryAtom, 
   deleteTimeEntryAtom,
-  clientsAtom,
-  tagsAtom,
   setTagsAtom
-} from "src/atoms";
+} from "src/atoms/time-tracking";
 import TagSelector from "src/components/tags/selector";
 
 const submittingAtom = atom(false);
@@ -31,7 +30,6 @@ const TimeEntryForm = () => {
   const [submitting, setSubmitting] = useAtom(submittingAtom);
   const deleteTimeEntry = useSetAtom(deleteTimeEntryAtom);
   const clients = useAtomValue(clientsAtom);
-  const tags = useAtomValue(tagsAtom);
   const setTags = useSetAtom(setTagsAtom);
 
   const isEditing = Boolean(timeEntryId);

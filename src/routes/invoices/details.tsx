@@ -47,18 +47,10 @@ import sum from "lodash/sum";
 import isNumber from "lodash/isNumber";
 import toNumber from "lodash/toNumber";
 
-import {
-  clientsAtom,
-  setClientsAtom,
-  invoiceIdAtom,
-  invoiceAtom,
-  organizationAtom,
-  taxRatesAtom,
-  setTaxRatesAtom,
-  deleteInvoiceAtom,
-  duplicateInvoiceAtom,
-  nextInvoiceNumberAtom,
-} from "src/atoms";
+import { clientsAtom, setClientsAtom } from "src/atoms/client";
+import { invoiceIdAtom, invoiceAtom, deleteInvoiceAtom, duplicateInvoiceAtom } from "src/atoms/invoice";
+import { organizationAtom, nextInvoiceNumberAtom } from "src/atoms/organization";
+import { taxRatesAtom, setTaxRatesAtom } from "src/atoms/tax-rate";
 import ClientForm from "src/components/clients/form.tsx";
 import InvoicePDF from "src/components/invoices/pdf";
 import { currencies, getCurrencySymbol } from "src/utils/currencies";

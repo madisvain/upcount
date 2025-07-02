@@ -5,7 +5,7 @@ import { useNavigate } from "react-router";
 import dayjs from "dayjs";
 import duration from "dayjs/plugin/duration";
 
-import { runningTimerAtom, timeEntryAtom, timeEntryIdAtom } from "src/atoms";
+import { runningTimerAtom, timeEntryAtom, timeEntryIdAtom } from "src/atoms/time-tracking";
 
 dayjs.extend(duration);
 

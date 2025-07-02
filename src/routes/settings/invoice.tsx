@@ -1,7 +1,7 @@
 import { Button, Col, Form, Input, InputNumber, Select, Space, Typography, Row, Upload, Divider } from "antd";
 import { atom, useAtom, useSetAtom } from "jotai";
 import { FileTextOutlined, UploadOutlined, CaretRightOutlined, CaretDownOutlined } from "@ant-design/icons";
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { Trans } from "@lingui/react/macro";
 import { t } from "@lingui/core/macro";
 import { useLingui } from "@lingui/react";
@@ -13,7 +13,7 @@ const { Text } = Typography;
 const { TextArea } = Input;
 const { Option } = Select;
 
-import { organizationAtom, setOrganizationsAtom } from "src/atoms";
+import { organizationAtom, setOrganizationsAtom } from "src/atoms/organization";
 import { currencies, getCurrencySymbol } from "src/utils/currencies";
 import { validateInvoiceFormat, generateInvoiceNumber } from "src/utils/invoice";
 
