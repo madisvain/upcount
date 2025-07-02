@@ -1,13 +1,13 @@
 
 # 📣 Version 2
 
-Happy to announce that I'm nearing the long overdue release of Upcount with improved functionality. The new version is a complete rewrite of the application with a focus on performance and stability.
+Happy to announce the ongoing development of Upcount with significantly improved functionality. The new version is a complete rewrite of the application with a focus on performance, stability, and new features.
 
 NB! It's not backwards compatible with Upcount version 1 and will require a new installation. The beta version is backward compatible with alpha releases.
 
-## 🚀 [Upcount 2.0.0-beta.1](https://github.com/madisvain/upcount/releases/latest)
+## 🚀 [Upcount 2.0.0-beta.6](https://github.com/madisvain/upcount/releases/latest)
 
-The beta version is now available on the main branch of the repository.
+The latest beta version includes major new features like **initial time tracking system**, **complete multi-language support**, and **invoice duplication**. The beta version is now available on the main branch of the repository.
 
 The new version is built with
 
@@ -35,10 +35,13 @@ Upcount is available for Mac, Linux & Windows and can be downloaded from Github 
 
 # Features
 * 🎯 Totally free & Open source
-* 🎭 Cross platform
-* ⚡️ Offline-first for privacy
+* 📄 Invoicing
+* ⏱️ Time tracking (beta)
+* 👥 Client management
 * 👾 Use your own logo
 * 🍭 Customizable settings
+* 🎭 Cross platform
+* ⚡️ Offline-first for privacy
 * 🌐 Internationalized
 * ©️ [GPLv3 License](https://github.com/madisvain/upcount/blob/main/LICENSE)
 

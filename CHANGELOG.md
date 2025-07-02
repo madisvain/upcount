@@ -7,6 +7,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [2.0.0-beta.6] - 2025-07-02
+
 ### Added
 - Complete time tracking feature with start/stop timer functionality
 - Global timer widget in header that persists across app navigation
@@ -17,6 +19,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Complete translations for 7 additional languages: German, Finnish, French, Dutch, Swedish, Ukrainian, and Portuguese
 - Enhanced language dropdown with flag emojis for better visual identification
 - Improved language selector UX with compact flag-only display in header
+- Client code field for invoice numbering and invoice organization
+- Jotai DevTools integration for better state debugging in development
 
 ### Changed
 - Time tracking interface with streamlined table columns (tags visible, billable temporarily hidden)
@@ -24,6 +28,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Language dropdown now auto-sizes to fit content properly without truncation
 - Organization switching preserves current page to eliminate navigation flicker
 - Updated README.md to reflect all 9 supported languages (English, German, Estonian, Finnish, French, Dutch, Portuguese, Swedish, Ukrainian)
+- Refactored atoms into organized directory structure for better code maintainability
+- Enhanced Sentry integration with frontend error tracking
 
 ### Fixed
 - Time entry edit button in actions dropdown now works without page refresh
@@ -31,6 +37,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Organization switching no longer causes UI flicker with improved loading states
 - Language dropdown width issues resolved with proper Ant Design props
 - Removed invalid yarn add-locale command from documentation
+- App loading issues after atom refactoring resolved
+- Language preference persistence now works correctly across app restarts
 
 ## [2.0.0-beta.5] - 2025-06-29
 
