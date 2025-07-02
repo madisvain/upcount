@@ -12,7 +12,7 @@ initSentry();
 import "dayjs/locale/en";
 import "dayjs/locale/et";
 
-import { useEffect, Suspense, useState } from "react";
+import { useEffect, useState } from "react";
 import { BrowserRouter, Navigate, Route, Routes, useNavigate, useLocation } from "react-router";
 import { ConfigProvider } from "antd";
 import { useAtom, useAtomValue, useSetAtom } from "jotai";
@@ -99,44 +99,42 @@ const AppContent = () => {
   }
 
   return (
-    <Suspense fallback={<div>Loading...</div>}>
-      <ConfigProvider
-        theme={{
-          token: {
-            borderRadius: 2,
-          },
-        }}
-      >
-        {import.meta.env.DEV && <DevTools />}
-        <I18nProvider i18n={i18n}>
-          <Routes>
-            <Route path="/" element={<Index />} />
-            <Route path="/invoices" element={<BaseLayout />}>
-              <Route index element={<Invoices />} />
-              <Route path=":id" element={<InvoiceDetails />} />
-              <Route path=":id/preview" element={<InvoicePreview />} />
-              <Route path=":id/pdf" element={<InvoiceDetails />} />
+    <ConfigProvider
+      theme={{
+        token: {
+          borderRadius: 2,
+        },
+      }}
+    >
+      {import.meta.env.DEV && <DevTools />}
+      <I18nProvider i18n={i18n}>
+        <Routes>
+          <Route path="/" element={<Index />} />
+          <Route path="/invoices" element={<BaseLayout />}>
+            <Route index element={<Invoices />} />
+            <Route path=":id" element={<InvoiceDetails />} />
+            <Route path=":id/preview" element={<InvoicePreview />} />
+            <Route path=":id/pdf" element={<InvoiceDetails />} />
+          </Route>
+          <Route path="/clients" element={<BaseLayout />}>
+            <Route index element={<Clients />} />
+          </Route>
+          <Route path="/time-tracking" element={<BaseLayout />}>
+            <Route path="" element={<TimeTracking />} />
+          </Route>
+          <Route path="/settings" element={<BaseLayout />}>
+            <Route index element={<Navigate to="/invoices/organization" />} />
+            <Route path="invoice" element={<SettingsInvoice />} />
+            <Route path="organization" element={<SettingsOrganization />} />
+            <Route path="tax-rates" element={<SettingsTaxRates />}>
+              <Route path="new" element={<TaxRateForm />} />
+              <Route path=":id" element={<TaxRateForm />} />
             </Route>
-            <Route path="/clients" element={<BaseLayout />}>
-              <Route index element={<Clients />} />
-            </Route>
-            <Route path="/time-tracking" element={<BaseLayout />}>
-              <Route path="" element={<TimeTracking />} />
-            </Route>
-            <Route path="/settings" element={<BaseLayout />}>
-              <Route index element={<Navigate to="/invoices/organization" />} />
-              <Route path="invoice" element={<SettingsInvoice />} />
-              <Route path="organization" element={<SettingsOrganization />} />
-              <Route path="tax-rates" element={<SettingsTaxRates />}>
-                <Route path="new" element={<TaxRateForm />} />
-                <Route path=":id" element={<TaxRateForm />} />
-              </Route>
-              <Route path="backup" element={<SettingsBackup />} />
-            </Route>
-          </Routes>
-        </I18nProvider>
-      </ConfigProvider>
-    </Suspense>
+            <Route path="backup" element={<SettingsBackup />} />
+          </Route>
+        </Routes>
+      </I18nProvider>
+    </ConfigProvider>
   );
 };
 

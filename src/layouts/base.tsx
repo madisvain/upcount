@@ -1,4 +1,3 @@
-import { Suspense } from "react";
 import { Outlet, Link, useLocation, useNavigate } from "react-router";
 import { Button, Divider, Layout, Menu, Select, Space, Row, Col, message, theme } from "antd";
 import { useAtom, useAtomValue, useSetAtom } from "jotai";
@@ -49,6 +48,7 @@ export default function BaseLayout() {
   const organizations = useAtomValue(organizationsAtom);
 
   // Organization
+  const organizationId = useAtomValue(organizationIdAtom);
   const setOrganizationId = useSetAtom(organizationIdAtom);
   const organization = useAtomValue(organizationAtom);
 
@@ -60,6 +60,19 @@ export default function BaseLayout() {
 
   // Auto-updater
   useAutoUpdater();
+
+  // If no organizationId is set, redirect to index page
+  if (!organizationId) {
+    navigate("/");
+    return null;
+  }
+
+  // If organizationId exists but organization is null (not found), clear the invalid ID and redirect
+  if (organizationId && organization === null) {
+    setOrganizationId(null);
+    navigate("/");
+    return null;
+  }
 
   // Active menu item detection
   let openKeys: string[] = [];
@@ -269,20 +282,18 @@ export default function BaseLayout() {
               </Col>
             </Row>
           </Header>
-          <Suspense fallback="loading">
-            <Content
-              style={{
-                margin: "24px 16px",
-                padding: 24,
-                minHeight: 280,
-                background: colorBgContainer,
-                borderRadius: borderRadiusLG,
-              }}
-            >
-              <Outlet />
-              {/*<SignOut />*/}
-            </Content>
-          </Suspense>
+          <Content
+            style={{
+              margin: "24px 16px",
+              padding: 24,
+              minHeight: 280,
+              background: colorBgContainer,
+              borderRadius: borderRadiusLG,
+            }}
+          >
+            <Outlet />
+            {/*<SignOut />*/}
+          </Content>
           <div id="footer" />
         </Layout>
         {contextHolder}
