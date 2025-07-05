@@ -55,6 +55,7 @@ import ClientForm from "src/components/clients/form.tsx";
 import InvoicePDF from "src/components/invoices/pdf";
 import { currencies, getCurrencySymbol } from "src/utils/currencies";
 import { generateInvoiceNumber } from "src/utils/invoice";
+import { multiplyDecimal, divideDecimal, calculateTax, addDecimal } from "src/utils/currency";
 
 const { TextArea } = Input;
 const { Option } = Select;
@@ -107,7 +108,7 @@ const InvoiceDetails: React.FC = () => {
     if (!isNew && invoice) {
       values = {
         ...invoice,
-        lineItems: map(invoice.lineItems, (item) => ({ ...item, total: item.quantity * item.unitPrice })),
+        lineItems: map(invoice.lineItems, (item) => ({ ...item, total: multiplyDecimal(item.quantity, item.unitPrice) })),
       };
     }
     return values;
@@ -121,7 +122,7 @@ const InvoiceDetails: React.FC = () => {
     if (!isNew && invoice) {
       const newValues = {
         ...invoice,
-        lineItems: map(invoice.lineItems, (item) => ({ ...item, total: item.quantity * item.unitPrice })),
+        lineItems: map(invoice.lineItems, (item) => ({ ...item, total: multiplyDecimal(item.quantity, item.unitPrice) })),
       };
       form.resetFields();
       form.setFieldsValue(newValues);
@@ -158,11 +159,11 @@ const InvoiceDetails: React.FC = () => {
       filter(lineItems, (item) => isNumber(get(item, "total")) && get(item, "taxRate")),
       (item) => {
         const taxRate: any = find(taxRates, { id: get(item, "taxRate") });
-        return (item.total * taxRate.percentage) / 100;
+        return taxRate?.percentage ? calculateTax(item.total, taxRate.percentage) : 0;
       }
     )
   );
-  const total = subTotal + taxTotal;
+  const total = addDecimal(subTotal, taxTotal);
 
   if (!organization) return null;
   if (!isNew && !invoice) return null;
@@ -196,7 +197,7 @@ const InvoiceDetails: React.FC = () => {
                         const clientCode = selectedClient?.code || '';
                         
                         // Regenerate invoice number with client code
-                        const counter = (organization.invoiceNumberCounter || 0) + 1;
+                        const counter = addDecimal((organization.invoiceNumberCounter || 0), 1);
                         const newNumber = generateInvoiceNumber(
                           organization.invoiceNumberFormat,
                           counter,
@@ -330,9 +331,9 @@ const InvoiceDetails: React.FC = () => {
                                   value = toNumber(value);
                                   if (value) {
                                     if (!unitPrice && total) {
-                                      form.setFieldValue(["lineItems", field.key, "unitPrice"], total / value);
+                                      form.setFieldValue(["lineItems", field.key, "unitPrice"], divideDecimal(total, value));
                                     } else {
-                                      form.setFieldValue(["lineItems", field.key, "total"], value * unitPrice);
+                                      form.setFieldValue(["lineItems", field.key, "total"], multiplyDecimal(value, unitPrice));
                                     }
                                   }
                                 }}
@@ -358,9 +359,9 @@ const InvoiceDetails: React.FC = () => {
                                   value = toNumber(value);
                                   if (value) {
                                     if (!quantity && total) {
-                                      form.setFieldValue(["lineItems", field.key, "quantity"], total / value);
+                                      form.setFieldValue(["lineItems", field.key, "quantity"], divideDecimal(total, value));
                                     } else {
-                                      form.setFieldValue(["lineItems", field.key, "total"], quantity * value);
+                                      form.setFieldValue(["lineItems", field.key, "total"], multiplyDecimal(quantity, value));
                                     }
                                   }
                                 }}
@@ -386,9 +387,9 @@ const InvoiceDetails: React.FC = () => {
                                   value = toNumber(value);
                                   if (value) {
                                     if (!quantity && unitPrice) {
-                                      form.setFieldValue(["lineItems", field.key, "quantity"], value / unitPrice);
+                                      form.setFieldValue(["lineItems", field.key, "quantity"], divideDecimal(value, unitPrice));
                                     } else {
-                                      form.setFieldValue(["lineItems", field.key, "unitPrice"], value / quantity);
+                                      form.setFieldValue(["lineItems", field.key, "unitPrice"], divideDecimal(value, quantity));
                                     }
                                   }
                                 }}
@@ -415,7 +416,7 @@ const InvoiceDetails: React.FC = () => {
                                 style={{ position: "absolute", top: 20, right: -20 }}
                               />
                               <Form.Item name={[field.name, "taxRate"]} noStyle>
-                                <Select style={{ width: "100%" }}>
+                                <Select style={{ width: "100%" }} allowClear placeholder="Select tax rate">
                                   {map(taxRates, (rate: any) => {
                                     return (
                                       <Option value={rate.id} key={rate.id}>

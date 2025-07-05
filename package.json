@@ -24,6 +24,7 @@
     "@tauri-apps/plugin-updater": "^2.9.0",
     "antd": "5.26.1",
     "axios": "1.10.0",
+    "decimal.js": "^10.5.0",
     "jotai": "2.12.5",
     "jotai-devtools": "0.12.0",
     "lodash": "^4.17.21",

@@ -11,7 +11,7 @@ import map from "lodash/map";
 import reject from "lodash/reject";
 import { invoke } from "@tauri-apps/api/core";
 
-import { centsToUnits, unitsToCents } from "src/utils/currency";
+import { centsToUnits, unitsToCents, multiplyDecimal } from "src/utils/currency";
 import { organizationIdAtom, nextInvoiceNumberAtom } from "./organization";
 
 // Invoices
@@ -60,7 +60,7 @@ export const invoiceAtom = atom(
         lineItems: (lineItems || []).map((item: any) => ({
           ...item,
           unitPrice: centsToUnits(item.unitPrice),
-          total: centsToUnits(item.quantity * item.unitPrice),
+          total: centsToUnits(multiplyDecimal(item.quantity, item.unitPrice)),
         })),
       };
     } catch (error) {
