@@ -97,11 +97,29 @@ When releasing a version:
    # Check if release exists
    gh release view vX.X.X --repo madisvain/upcount
    
-   # If it exists, update the release notes
+   # Create release notes file with download badges + changelog content
+   # Use Write tool to create release-notes.md with:
+   # 1. Download badges at top (replace vX.X.X with actual version)
+   # 2. Complete changelog content for that version
+   
+   # Then update the GitHub release
    gh release edit vX.X.X --repo madisvain/upcount --notes-file release-notes.md
    ```
    
-   Where `release-notes.md` contains the changelog section for that version.
+   **GitHub Release Notes Format**:
+   ```markdown
+   [![This version downloads](https://img.shields.io/github/downloads/madisvain/upcount/vX.X.X/total?label=This%20version%20downloads)](https://github.com/madisvain/upcount/releases/tag/vX.X.X)
+   [![Total downloads](https://img.shields.io/github/downloads/madisvain/upcount/total?label=Total%20downloads)](https://github.com/madisvain/upcount/releases)
+
+   [Copy the exact changelog content for this version from CHANGELOG.md]
+   ```
+   
+   **Important**: 
+   - Replace `vX.X.X` with the actual version number in badge URLs
+   - Include download badges only in GitHub releases, not in CHANGELOG.md
+   - Use Write tool to create the release notes file with proper formatting
+   - Copy the complete changelog content for that version (all applicable sections)
+   - Clean up the temporary release notes file after updating the release
 
 ## Good Examples
 

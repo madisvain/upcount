@@ -7,6 +7,19 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [2.0.0-beta.7] - 2025-07-05
+
+### Added
+- Ability to clear/unset tax rates on invoice line items with new clear button
+- Precise decimal arithmetic using decimal.js library for all financial calculations
+
+### Fixed
+- Floating-point precision errors in invoice calculations (e.g. 0.1234 × 1000 now correctly shows 123.4 instead of 123.39999999999999)
+- Tax calculations now use precise percentage calculations instead of floating-point arithmetic
+- Invoice total calculations (subtotal + tax) now use precise decimal addition
+- Form field calculations for quantity, price, and total now maintain precision during updates
+- Added safety checks for missing tax rate percentages to prevent calculation errors
+
 ## [2.0.0-beta.6] - 2025-07-02
 
 ### Added
