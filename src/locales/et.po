@@ -13,15 +13,15 @@ msgstr ""
 "Plural-Forms: \n"
 "X-Generator: Poedit 3.4.4\n"
 
-#: src/routes/settings/invoice.tsx:223
+#: src/routes/settings/invoice.tsx:224
 msgid "2-digit month"
 msgstr "2-kohaline kuu"
 
-#: src/routes/settings/invoice.tsx:219
+#: src/routes/settings/invoice.tsx:220
 msgid "2-digit year"
 msgstr "2-kohaline aasta"
 
-#: src/routes/settings/invoice.tsx:216
+#: src/routes/settings/invoice.tsx:217
 msgid "4-digit year"
 msgstr "4-kohaline aasta"
 
@@ -29,13 +29,17 @@ msgstr "4-kohaline aasta"
 #~ msgid "Actions"
 #~ msgstr ""
 
-#: src/routes/invoices/details.tsx:424
+#: src/routes/invoices/details.tsx:434
 msgid "Add line item"
 msgstr "Lisa rida"
 
-#: src/routes/clients.tsx:78
+#: src/components/time-entries/form.tsx:228
+msgid "Add or select tags"
+msgstr ""
+
+#: src/routes/clients.tsx:81
 #: src/routes/settings/organization.tsx:56
-#: src/components/clients/form.tsx:147
+#: src/components/clients/form.tsx:160
 msgid "Address"
 msgstr "Aadress"
 
@@ -43,15 +47,23 @@ msgstr "Aadress"
 msgid "Are you sure delete this organization?"
 msgstr "Kas olete kindel, et kustutate selle organisatsiooni?"
 
-#: src/routes/invoices/preview.tsx:176
-#: src/routes/invoices/index.tsx:101
-#: src/routes/invoices/details.tsx:522
+#: src/routes/invoices/preview.tsx:169
+#: src/routes/invoices/index.tsx:102
+#: src/routes/invoices/details.tsx:532
 msgid "Are you sure to delete this invoice?"
 msgstr "Kas olete kindel, et soovite selle arve kustutada?"
 
-#: src/components/clients/form.tsx:99
+#: src/routes/time-tracking.tsx:421
+msgid "Are you sure to delete this time entry?"
+msgstr ""
+
+#: src/components/clients/form.tsx:100
 msgid "Are you sure you want to delete this client?"
 msgstr "Kas oled kindel, et soovid selle kliendi kustutada?"
+
+#: src/components/time-entries/form.tsx:121
+msgid "Are you sure you want to delete this time entry?"
+msgstr ""
 
 #: src/routes/settings/backup.tsx:48
 msgid "Are you sure you want to restore from a backup? This will replace all current data and cannot be undone."
@@ -61,11 +73,11 @@ msgstr "Kas oled kindel, et soovid taastada varukoopiast? See asendab kõik prae
 #~ msgid "Available variables"
 #~ msgstr ""
 
-#: src/routes/settings/invoice.tsx:209
+#: src/routes/settings/invoice.tsx:210
 msgid "Available variables:"
 msgstr "Saadaolevad muutujad:"
 
-#: src/layouts/base.tsx:158
+#: src/layouts/base.tsx:177
 msgid "Backup"
 msgstr "Varukoopia"
 
@@ -77,38 +89,46 @@ msgstr "Varunda ja taasta"
 msgid "Bank name"
 msgstr "Panga nimi"
 
-#: src/routes/index.tsx:92
+#: src/routes/index.tsx:94
 #: src/routes/settings/backup.tsx:50
-#: src/components/clients/form.tsx:127
+#: src/components/time-entries/time-range-cell.tsx:82
+#: src/components/time-entries/form.tsx:141
+#: src/components/clients/form.tsx:128
 msgid "Cancel"
 msgstr "Tühista"
 
-#: src/routes/settings/invoice.tsx:257
+#: src/routes/settings/invoice.tsx:261
 msgid "Change"
 msgstr "Muuda"
 
 #: src/routes/time-tracking.tsx:17
-msgid "Check back soon for updates!"
-msgstr "Vaata varsti tagasi!"
+#~ msgid "Check back soon for updates!"
+#~ msgstr "Vaata varsti tagasi!"
 
-#: src/routes/invoices/index.tsx:147
+#: src/routes/time-tracking.tsx:321
+#: src/routes/invoices/index.tsx:148
+#: src/components/time-entries/form.tsx:164
 msgid "Client"
 msgstr "Klient"
 
-#: src/atoms.tsx:76
+#: src/routes/settings/invoice.tsx:236
+msgid "Client code"
+msgstr ""
+
+#: src/atoms/client.ts:71
 msgid "Client created"
 msgstr "Klient loodud"
 
-#: src/atoms.tsx:97
+#: src/atoms/client.ts:92
 msgid "Client creation failed"
 msgstr "Kliendi loomine ebaõnnestus"
 
-#: src/atoms.tsx:114
+#: src/atoms/client.ts:109
 msgid "Client deleted"
 msgstr "Klient kustutatud"
 
-#: src/atoms.tsx:116
-#: src/atoms.tsx:120
+#: src/atoms/client.ts:111
+#: src/atoms/client.ts:115
 msgid "Client deletion failed"
 msgstr "Kliendi kustutamine ebaõnnestus"
 
@@ -118,7 +138,7 @@ msgstr "Kliendi kustutamine ebaõnnestus"
 #~ msgid "Client has been updated"
 #~ msgstr "Klient on uuendatud"
 
-#: src/atoms.tsx:99
+#: src/atoms/client.ts:94
 msgid "Client update failed"
 msgstr "Kliendi uuendamine ebaõnnestus"
 
@@ -127,24 +147,28 @@ msgstr "Kliendi uuendamine ebaõnnestus"
 #~ msgid "Client updated failed"
 #~ msgstr "Kliendi uuendamine ebaõnnestus"
 
-#: src/atoms.tsx:87
+#: src/atoms/client.ts:82
 msgid "Client updated successfully"
 msgstr "Kliendi uuendamine edukas"
 
-#: src/routes/clients.tsx:51
-#: src/layouts/base.tsx:108
+#: src/routes/clients.tsx:54
+#: src/layouts/base.tsx:127
 msgid "Clients"
 msgstr "Kliendid"
 
-#: src/routes/invoices/index.tsx:30
+#: src/components/clients/form.tsx:157
+msgid "Code"
+msgstr ""
+
+#: src/routes/invoices/index.tsx:31
 msgid "Confirmed"
 msgstr "Kinnitatud"
 
-#: src/routes/settings/invoice.tsx:188
+#: src/routes/settings/invoice.tsx:189
 msgid "Counter must be 0 or greater"
 msgstr "Loendur peab olema 0 või suurem"
 
-#: src/routes/index.tsx:69
+#: src/routes/index.tsx:71
 msgid "Country"
 msgstr "Riik"
 
@@ -156,17 +180,17 @@ msgstr "Loo oma andmebaasist varukoopia, et salvestada kõik arved, kliendid ja 
 msgid "Create Backup"
 msgstr "Loo varukoopia"
 
-#: src/routes/index.tsx:59
+#: src/routes/index.tsx:61
 msgid "Create your organization to get started"
 msgstr "Loo oma ettevõte, et alustada"
 
-#: src/routes/index.tsx:78
-#: src/routes/settings/invoice.tsx:78
-#: src/routes/invoices/details.tsx:237
+#: src/routes/index.tsx:80
+#: src/routes/settings/invoice.tsx:79
+#: src/routes/invoices/details.tsx:247
 msgid "Currency"
 msgstr "Valuuta"
 
-#: src/routes/invoices/details.tsx:435
+#: src/routes/invoices/details.tsx:445
 msgid "Customer note"
 msgstr "Kliendi märkus"
 
@@ -178,16 +202,17 @@ msgstr "Andmebaasi varukoopia salvestatud edukalt asukohta {backupPath}"
 msgid "Database has been restored successfully. Please restart the application to see the changes."
 msgstr "Andmebaas on edukalt taastatud. Muudatuste nägemiseks palun taaskäivita rakendus."
 
-#: src/routes/invoices/index.tsx:153
+#: src/routes/invoices/index.tsx:154
+#: src/components/time-entries/time-range-cell.tsx:75
 #: src/components/invoices/pdf.tsx:199
 msgid "Date"
 msgstr "Kuupäaev"
 
-#: src/routes/settings/invoice.tsx:231
+#: src/routes/settings/invoice.tsx:232
 msgid "Day of month"
 msgstr "Kuu päev"
 
-#: src/routes/settings/invoice.tsx:93
+#: src/routes/settings/invoice.tsx:94
 msgid "Decimal places"
 msgstr "Komakohad"
 
@@ -196,62 +221,87 @@ msgstr "Komakohad"
 msgid "Default"
 msgstr "Vaikimisi"
 
+#: src/routes/time-tracking.tsx:430
 #: src/routes/settings/organization.tsx:112
-#: src/routes/invoices/preview.tsx:182
-#: src/routes/invoices/index.tsx:110
-#: src/routes/invoices/details.tsx:528
-#: src/components/clients/form.tsx:113
+#: src/routes/invoices/preview.tsx:175
+#: src/routes/invoices/index.tsx:111
+#: src/routes/invoices/details.tsx:538
+#: src/components/time-entries/form.tsx:128
+#: src/components/clients/form.tsx:114
 msgid "Delete"
 msgstr "Kustuta"
 
-#: src/routes/invoices/preview.tsx:175
-#: src/routes/invoices/index.tsx:100
-#: src/routes/invoices/details.tsx:521
+#: src/routes/invoices/preview.tsx:168
+#: src/routes/invoices/index.tsx:101
+#: src/routes/invoices/details.tsx:531
 msgid "Delete the invoice?"
 msgstr "Soovite arve kustutada?"
 
+#: src/routes/time-tracking.tsx:420
+msgid "Delete the time entry?"
+msgstr ""
+
+#: src/routes/time-tracking.tsx:314
 #: src/routes/settings/tax-rates.tsx:53
-#: src/routes/invoices/details.tsx:283
+#: src/routes/invoices/details.tsx:293
+#: src/components/time-entries/form.tsx:159
 #: src/components/tax-rates/form.tsx:53
 #: src/components/invoices/pdf.tsx:221
 msgid "Description"
 msgstr "Kirjeldus"
 
-#: src/routes/invoices/index.tsx:26
+#: src/routes/invoices/index.tsx:27
 #: src/components/invoices/state-select.tsx:21
 msgid "Draft"
 msgstr "Mustand"
 
-#: src/routes/invoices/index.tsx:160
-#: src/routes/invoices/details.tsx:262
+#: src/routes/invoices/index.tsx:161
+#: src/routes/invoices/details.tsx:272
 #: src/components/invoices/pdf.tsx:202
 msgid "Due date"
 msgstr "Tähtaeg"
 
-#: src/routes/settings/invoice.tsx:96
+#: src/routes/settings/invoice.tsx:97
 msgid "Due days"
 msgstr "Tähtaeg"
 
-#: src/routes/invoices/preview.tsx:170
-#: src/routes/invoices/index.tsx:89
-#: src/routes/invoices/details.tsx:516
+#: src/routes/invoices/preview.tsx:163
+#: src/routes/invoices/index.tsx:90
+#: src/routes/invoices/details.tsx:526
 msgid "Duplicate"
+msgstr ""
+
+#: src/routes/time-tracking.tsx:345
+msgid "Duration"
+msgstr ""
+
+#: src/components/time-entries/form.tsx:201
+msgid "Duration (seconds)"
+msgstr ""
+
+#: src/components/time-entries/form.tsx:205
+msgid "Duration in seconds"
 msgstr ""
 
 #: src/routes/settings/organization.tsx:59
 msgid "E-mail"
 msgstr "E-post"
 
-#: src/components/clients/form.tsx:151
+#: src/components/clients/form.tsx:164
 msgid "E-mails"
 msgstr "E-posti aadressid"
 
-#: src/routes/invoices/preview.tsx:197
-#: src/routes/invoices/index.tsx:83
+#: src/routes/settings/invoice.tsx:236
+msgid "e.g. AP, MS"
+msgstr ""
+
+#: src/routes/time-tracking.tsx:400
+#: src/routes/invoices/preview.tsx:190
+#: src/routes/invoices/index.tsx:84
 msgid "Edit"
 msgstr "Muuda"
 
-#: src/components/clients/form.tsx:82
+#: src/components/clients/form.tsx:83
 msgid "Edit client"
 msgstr "Muuda klienti"
 
@@ -259,11 +309,20 @@ msgstr "Muuda klienti"
 msgid "Edit tax rate"
 msgstr "Muuda maksumäära"
 
-#: src/routes/clients.tsx:80
+#: src/components/time-entries/form.tsx:107
+msgid "Edit Time Entry"
+msgstr ""
+
+#: src/routes/clients.tsx:83
 msgid "Emails"
 msgstr "E-posti aadressid"
 
-#: src/routes/settings/invoice.tsx:199
+#: src/components/time-entries/time-range-cell.tsx:68
+#: src/components/time-entries/form.tsx:190
+msgid "End Time"
+msgstr ""
+
+#: src/routes/settings/invoice.tsx:200
 msgid "Enter format to see preview"
 msgstr "Sisesta formaat eelvaate nägemiseks"
 
@@ -272,23 +331,31 @@ msgstr "Sisesta formaat eelvaate nägemiseks"
 msgid "Failed to backup database: {0}"
 msgstr "Andmebaasi varundamine ebaõnnestus: {0}"
 
-#: src/atoms.tsx:34
+#: src/atoms/client.ts:26
 msgid "Failed to fetch clients"
 msgstr "Klientide laadimine ebaõnnestus"
 
-#: src/atoms.tsx:140
+#: src/atoms/invoice.ts:33
 msgid "Failed to fetch invoices"
 msgstr "Arvete laadimine ebaõnnestus"
 
-#: src/atoms.tsx:351
+#: src/atoms/organization.ts:21
 msgid "Failed to fetch organizations"
 msgstr "Organisatsioonide laadimine ebaõnnestus"
 
-#: src/atoms.tsx:459
+#: src/atoms/time-tracking.ts:25
+msgid "Failed to fetch tags"
+msgstr ""
+
+#: src/atoms/tax-rate.ts:21
 msgid "Failed to fetch tax rates"
 msgstr "Maksude laadimine ebaõnnestus"
 
-#: src/atoms.tsx:293
+#: src/atoms/time-tracking.ts:117
+msgid "Failed to fetch time entries"
+msgstr ""
+
+#: src/atoms/invoice.ts:186
 msgid "Failed to generate invoice number"
 msgstr ""
 
@@ -297,7 +364,11 @@ msgstr ""
 msgid "Failed to restore database: {0}"
 msgstr "Andmebaasi taastamine ebaõnnestus: {0}"
 
-#: src/routes/index.tsx:88
+#: src/atoms/time-tracking.ts:157
+msgid "Failed to update time entry"
+msgstr ""
+
+#: src/routes/index.tsx:90
 msgid "Get started"
 msgstr "Alusta"
 
@@ -305,7 +376,7 @@ msgstr "Alusta"
 msgid "IBAN"
 msgstr "IBAN"
 
-#: src/layouts/base.tsx:140
+#: src/layouts/base.tsx:159
 msgid "Invoice"
 msgstr "Arve"
 
@@ -314,32 +385,32 @@ msgstr "Arve"
 msgid "Invoice #{0}"
 msgstr "Arve #{0}"
 
-#: src/atoms.tsx:210
+#: src/atoms/invoice.ts:103
 msgid "Invoice created"
 msgstr "Arve loodud"
 
-#: src/atoms.tsx:249
+#: src/atoms/invoice.ts:142
 msgid "Invoice creation failed"
 msgstr "Arve loomine ebaõnnestus"
 
-#: src/atoms.tsx:266
+#: src/atoms/invoice.ts:159
 msgid "Invoice deleted"
 msgstr "Arve kustutatud"
 
-#: src/atoms.tsx:268
-#: src/atoms.tsx:272
+#: src/atoms/invoice.ts:161
+#: src/atoms/invoice.ts:165
 msgid "Invoice deletion failed"
 msgstr "Arve kustutamine ebaõnnestus"
 
-#: src/routes/settings/invoice.tsx:73
+#: src/routes/settings/invoice.tsx:74
 msgid "Invoice details"
 msgstr "Arve detailid"
 
-#: src/atoms.tsx:323
+#: src/atoms/invoice.ts:216
 msgid "Invoice duplicated successfully"
 msgstr ""
 
-#: src/atoms.tsx:338
+#: src/atoms/invoice.ts:231
 msgid "Invoice duplication failed"
 msgstr ""
 
@@ -352,28 +423,28 @@ msgstr ""
 #~ msgid "Invoice has been updated"
 #~ msgstr "Arve on uuendatud"
 
-#: src/atoms.tsx:286
+#: src/atoms/invoice.ts:179
 msgid "Invoice not found"
 msgstr ""
 
-#: src/routes/invoices/details.tsx:228
+#: src/routes/invoices/details.tsx:238
 msgid "Invoice number"
 msgstr "Arve number"
 
-#: src/routes/settings/invoice.tsx:184
+#: src/routes/settings/invoice.tsx:185
 msgid "Invoice Number Counter"
 msgstr "Arve numbri loendur"
 
-#: src/routes/settings/invoice.tsx:153
+#: src/routes/settings/invoice.tsx:154
 msgid "Invoice Number Format"
 msgstr "Arve numbri formaat"
 
-#: src/routes/settings/invoice.tsx:107
-#: src/routes/settings/invoice.tsx:146
+#: src/routes/settings/invoice.tsx:108
+#: src/routes/settings/invoice.tsx:147
 msgid "Invoice Numbering"
 msgstr "Arve numbrid"
 
-#: src/atoms.tsx:251
+#: src/atoms/invoice.ts:144
 msgid "Invoice update failed"
 msgstr "Arve uuendamine ebaõnnestus"
 
@@ -381,43 +452,47 @@ msgstr "Arve uuendamine ebaõnnestus"
 #~ msgid "Invoice updated failed"
 #~ msgstr "Arve uuendamine ebaõnnestus"
 
-#: src/atoms.tsx:239
+#: src/atoms/invoice.ts:132
 msgid "Invoice updated successfully"
 msgstr "Arve uuendamine õnnestus"
 
-#: src/routes/invoices/index.tsx:124
-#: src/layouts/base.tsx:99
+#: src/routes/invoices/index.tsx:125
+#: src/layouts/base.tsx:118
 msgid "Invoices"
 msgstr "Arved"
 
-#: src/routes/settings/invoice.tsx:242
+#: src/routes/settings/invoice.tsx:246
 msgid "Logo"
 msgstr "Logo"
 
-#: src/routes/settings/invoice.tsx:227
+#: src/routes/settings/invoice.tsx:228
 msgid "Month name"
 msgstr "Kuu nimi"
 
-#: src/routes/index.tsx:66
-#: src/routes/clients.tsx:69
+#: src/routes/index.tsx:68
+#: src/routes/clients.tsx:72
 #: src/routes/settings/tax-rates.tsx:49
 #: src/routes/settings/organization.tsx:53
 #: src/components/tax-rates/form.tsx:50
-#: src/components/clients/form.tsx:144
+#: src/components/clients/form.tsx:146
 msgid "Name"
 msgstr "Nimi"
 
-#: src/routes/clients.tsx:59
-#: src/routes/invoices/details.tsx:213
-#: src/components/clients/form.tsx:82
+#: src/routes/clients.tsx:62
+#: src/routes/invoices/details.tsx:223
+#: src/components/clients/form.tsx:83
 msgid "New client"
 msgstr "Uus klient"
 
-#: src/routes/invoices/index.tsx:132
+#: src/routes/time-tracking.tsx:511
+msgid "New Entry"
+msgstr ""
+
+#: src/routes/invoices/index.tsx:133
 msgid "New invoice"
 msgstr "Uus arve"
 
-#: src/layouts/base.tsx:217
+#: src/layouts/base.tsx:237
 msgid "New organization"
 msgstr "Uus ettevõte"
 
@@ -429,18 +504,24 @@ msgstr "Uus maksumäär"
 msgid "New tax rate"
 msgstr "Uus maksumäär"
 
-#: src/routes/settings/invoice.tsx:191
+#: src/components/time-entries/form.tsx:107
+msgid "New Time Entry"
+msgstr ""
+
+#: src/routes/settings/invoice.tsx:192
 msgid "Next invoice will use this number + 1"
 msgstr "Järgmine arve kasutab seda numbrit + 1"
 
-#: src/routes/invoices/preview.tsx:179
-#: src/routes/invoices/index.tsx:107
-#: src/routes/invoices/details.tsx:525
-#: src/components/clients/form.tsx:109
+#: src/routes/time-tracking.tsx:427
+#: src/routes/invoices/preview.tsx:172
+#: src/routes/invoices/index.tsx:108
+#: src/routes/invoices/details.tsx:535
+#: src/components/time-entries/form.tsx:124
+#: src/components/clients/form.tsx:110
 msgid "No"
 msgstr "Ei"
 
-#: src/routes/invoices/details.tsx:280
+#: src/routes/invoices/details.tsx:290
 msgid "No line items"
 msgstr "Arve read puuduvad"
 
@@ -448,45 +529,45 @@ msgstr "Arve read puuduvad"
 msgid "No!"
 msgstr "Ei!"
 
-#: src/routes/settings/invoice.tsx:102
+#: src/routes/settings/invoice.tsx:103
 msgid "Notes"
 msgstr "Märkused"
 
-#: src/routes/invoices/index.tsx:141
+#: src/routes/invoices/index.tsx:142
 msgid "Number"
 msgstr "Number"
 
-#: src/routes/settings/invoice.tsx:129
+#: src/routes/settings/invoice.tsx:130
 msgid "Number of Digits"
 msgstr "Numbrikohtade arv"
 
-#: src/layouts/base.tsx:131
+#: src/layouts/base.tsx:150
 msgid "Organization"
 msgstr "Organisatsioon"
 
-#: src/atoms.tsx:394
+#: src/atoms/organization.ts:67
 msgid "Organization created"
 msgstr "Ettevõte loodud"
 
-#: src/atoms.tsx:408
+#: src/atoms/organization.ts:85
 msgid "Organization creation failed"
 msgstr "Ettevõtte loomine ebaõnnestus"
 
-#: src/atoms.tsx:440
+#: src/atoms/organization.ts:119
 msgid "Organization deleted"
 msgstr "Ettevõte kustutatud"
 
-#: src/atoms.tsx:442
-#: src/atoms.tsx:446
+#: src/atoms/organization.ts:121
+#: src/atoms/organization.ts:125
 msgid "Organization deletion failed"
 msgstr "Organisatsiooni kustutamine ebaõnnestus"
 
-#: src/routes/index.tsx:62
+#: src/routes/index.tsx:64
 #: src/routes/settings/organization.tsx:46
 msgid "Organization details"
 msgstr "Organisatsiooni detailid"
 
-#: src/atoms.tsx:410
+#: src/atoms/organization.ts:87
 msgid "Organization update failed"
 msgstr "Organisatsiooni uuendamine ebaõnnestus"
 
@@ -494,20 +575,20 @@ msgstr "Organisatsiooni uuendamine ebaõnnestus"
 #~ msgid "Organization updated failed"
 #~ msgstr "Ettevõtte uuendamine ebaõnnestus"
 
-#: src/atoms.tsx:401
+#: src/atoms/organization.ts:74
 msgid "Organization updated successfully"
 msgstr "Ettevõtte uuendamine edukas"
 
 #: src/routes/time-tracking.tsx:14
-msgid "Our time tracking feature is currently being developed."
-msgstr "Ajaarvestuse võimalus on hetkel arenduses."
+#~ msgid "Our time tracking feature is currently being developed."
+#~ msgstr "Ajaarvestuse võimalus on hetkel arenduses."
 
-#: src/routes/settings/invoice.tsx:99
+#: src/routes/settings/invoice.tsx:100
 #: src/components/invoices/pdf.tsx:206
 msgid "Overdue charge"
 msgstr "Viivis"
 
-#: src/routes/invoices/index.tsx:34
+#: src/routes/invoices/index.tsx:35
 #: src/components/invoices/state-select.tsx:29
 msgid "Paid"
 msgstr "Makstud"
@@ -517,9 +598,9 @@ msgstr "Makstud"
 msgid "Percentage"
 msgstr "Protsent"
 
-#: src/routes/clients.tsx:88
+#: src/routes/clients.tsx:91
 #: src/routes/settings/organization.tsx:62
-#: src/components/clients/form.tsx:154
+#: src/components/clients/form.tsx:167
 msgid "Phone"
 msgstr "Telefon"
 
@@ -527,26 +608,30 @@ msgstr "Telefon"
 msgid "Please input a percentage!"
 msgstr "Palun sisestage protsent!"
 
-#: src/routes/index.tsx:65
+#: src/routes/index.tsx:67
 #: src/components/tax-rates/form.tsx:49
-#: src/components/clients/form.tsx:143
+#: src/components/clients/form.tsx:144
 msgid "Please input name!"
 msgstr "Palun sisestage nimi!"
 
-#: src/routes/settings/invoice.tsx:112
+#: src/components/time-entries/form.tsx:179
+msgid "Please select start time!"
+msgstr ""
+
+#: src/routes/settings/invoice.tsx:113
 msgid "Prefix"
 msgstr "Eesliide"
 
-#: src/routes/settings/invoice.tsx:197
+#: src/routes/settings/invoice.tsx:198
 msgid "Preview"
 msgstr "Eelvaade"
 
-#: src/routes/invoices/details.tsx:334
+#: src/routes/invoices/details.tsx:344
 #: src/components/invoices/pdf.tsx:227
 msgid "Price"
 msgstr "Hind"
 
-#: src/routes/invoices/details.tsx:306
+#: src/routes/invoices/details.tsx:316
 #: src/components/invoices/pdf.tsx:224
 msgid "Qty."
 msgstr "Kogus"
@@ -576,11 +661,14 @@ msgid "Restore your database from a previously created backup file. This will re
 msgstr "Taasta oma andmebaas varem loodud varukoopia failist. See asendab kõik praegused andmed varukoopia andmetega."
 
 #: src/routes/settings/organization.tsx:103
-#: src/routes/settings/invoice.tsx:273
-#: src/routes/invoices/details.tsx:570
+#: src/routes/settings/invoice.tsx:277
+#: src/routes/invoices/details.tsx:580
+#: src/components/time-entries/time-range-cell.tsx:85
+#: src/components/time-entries/form.tsx:109
+#: src/components/time-entries/form.tsx:148
 #: src/components/tax-rates/form.tsx:38
-#: src/components/clients/form.tsx:84
-#: src/components/clients/form.tsx:134
+#: src/components/clients/form.tsx:85
+#: src/components/clients/form.tsx:135
 msgid "Save"
 msgstr "Salvesta"
 
@@ -588,12 +676,20 @@ msgstr "Salvesta"
 #~ msgid "Save tax rate"
 #~ msgstr ""
 
-#: src/routes/clients.tsx:56
-#: src/routes/invoices/index.tsx:129
+#: src/routes/clients.tsx:59
+#: src/routes/invoices/index.tsx:130
 msgid "Search text"
 msgstr "Otsingu sisu"
 
-#: src/routes/invoices/details.tsx:185
+#: src/routes/time-tracking.tsx:495
+msgid "Search time entries..."
+msgstr ""
+
+#: src/components/time-entries/form.tsx:165
+msgid "Select client (optional)"
+msgstr ""
+
+#: src/routes/invoices/details.tsx:178
 msgid "Select or create a client"
 msgstr "Vali või loo klient"
 
@@ -601,131 +697,213 @@ msgstr "Vali või loo klient"
 msgid "Sent"
 msgstr "Saadetud"
 
-#: src/routes/settings/invoice.tsx:117
+#: src/routes/settings/invoice.tsx:118
 msgid "Separator"
 msgstr "Eraldaja"
 
-#: src/routes/settings/invoice.tsx:213
+#: src/routes/settings/invoice.tsx:214
 msgid "Sequential number"
 msgstr "Järjestikune number"
 
-#: src/layouts/base.tsx:124
+#: src/layouts/base.tsx:143
 msgid "Settings"
 msgstr "Seaded"
 
-#: src/routes/settings/invoice.tsx:180
+#: src/routes/settings/invoice.tsx:181
 msgid "Show variables"
 msgstr "Näita muutujaid"
 
-#: src/routes/settings/invoice.tsx:124
+#: src/routes/settings/invoice.tsx:125
 msgid "Start Number"
 msgstr "Algnumber"
 
-#: src/routes/invoices/index.tsx:175
+#: src/components/time-entries/time-range-cell.tsx:63
+#: src/components/time-entries/form.tsx:178
+msgid "Start Time"
+msgstr ""
+
+#: src/routes/time-tracking.tsx:506
+msgid "Start Timer"
+msgstr ""
+
+#: src/routes/invoices/index.tsx:176
 msgid "State"
 msgstr "Staatus"
 
-#: src/routes/invoices/details.tsx:464
+#: src/routes/time-tracking.tsx:502
+msgid "Stop Timer"
+msgstr ""
+
+#: src/routes/invoices/details.tsx:474
 #: src/components/invoices/pdf.tsx:252
 msgid "Subtotal"
 msgstr "Vahesumma"
 
-#: src/routes/settings/invoice.tsx:136
+#: src/routes/settings/invoice.tsx:137
 msgid "Suffix"
 msgstr "Järelliide"
 
-#: src/routes/invoices/details.tsx:390
-#: src/routes/invoices/details.tsx:471
+#: src/atoms/time-tracking.ts:60
+msgid "Tag created"
+msgstr ""
+
+#: src/atoms/time-tracking.ts:81
+msgid "Tag creation failed"
+msgstr ""
+
+#: src/atoms/time-tracking.ts:98
+msgid "Tag deleted"
+msgstr ""
+
+#: src/atoms/time-tracking.ts:100
+#: src/atoms/time-tracking.ts:104
+msgid "Tag deletion failed"
+msgstr ""
+
+#: src/atoms/time-tracking.ts:83
+msgid "Tag update failed"
+msgstr ""
+
+#: src/atoms/time-tracking.ts:71
+msgid "Tag updated successfully"
+msgstr ""
+
+#: src/routes/time-tracking.tsx:358
+#: src/components/time-entries/form.tsx:227
+msgid "Tags"
+msgstr ""
+
+#: src/routes/invoices/details.tsx:400
+#: src/routes/invoices/details.tsx:481
 #: src/components/invoices/pdf.tsx:263
 msgid "Tax"
 msgstr "Maks"
 
-#: src/atoms.tsx:495
+#: src/atoms/tax-rate.ts:58
 msgid "Tax rate created"
 msgstr "Maksude määr loodud"
 
-#: src/atoms.tsx:522
+#: src/atoms/tax-rate.ts:85
 msgid "Tax rate creation failed"
 msgstr "Maksude määra loomine ebaõnnestus"
 
-#: src/atoms.tsx:524
+#: src/atoms/tax-rate.ts:87
 msgid "Tax rate update failed"
 msgstr "Maksude määra uuendamine ebaõnnestus"
 
-#: src/atoms.tsx:512
+#: src/atoms/tax-rate.ts:75
 msgid "Tax rate updated successfully"
 msgstr "Maksude määr edukalt uuendatud"
 
 #: src/routes/settings/tax-rates.tsx:33
-#: src/layouts/base.tsx:149
+#: src/layouts/base.tsx:168
 msgid "Tax rates"
 msgstr "Maksud"
 
-#: src/routes/settings/invoice.tsx:80
-#: src/routes/settings/invoice.tsx:156
-#: src/routes/settings/invoice.tsx:187
-#: src/routes/invoices/details.tsx:187
-#: src/routes/invoices/details.tsx:230
-#: src/routes/invoices/details.tsx:239
-#: src/routes/invoices/details.tsx:256
-#: src/routes/invoices/details.tsx:264
-#: src/routes/invoices/details.tsx:297
-#: src/routes/invoices/details.tsx:312
-#: src/routes/invoices/details.tsx:340
-#: src/routes/invoices/details.tsx:368
+#: src/routes/settings/invoice.tsx:81
+#: src/routes/settings/invoice.tsx:157
+#: src/routes/settings/invoice.tsx:188
+#: src/routes/invoices/details.tsx:180
+#: src/routes/invoices/details.tsx:240
+#: src/routes/invoices/details.tsx:249
+#: src/routes/invoices/details.tsx:266
+#: src/routes/invoices/details.tsx:274
+#: src/routes/invoices/details.tsx:307
+#: src/routes/invoices/details.tsx:322
+#: src/routes/invoices/details.tsx:350
+#: src/routes/invoices/details.tsx:378
 msgid "This field is required!"
 msgstr "See väli on kohustuslik!"
 
-#: src/layouts/base.tsx:117
+#: src/atoms/time-tracking.ts:206
+msgid "Time entry created"
+msgstr ""
+
+#: src/atoms/time-tracking.ts:242
+msgid "Time entry creation failed"
+msgstr ""
+
+#: src/atoms/time-tracking.ts:259
+msgid "Time entry deleted"
+msgstr ""
+
+#: src/atoms/time-tracking.ts:261
+#: src/atoms/time-tracking.ts:265
+msgid "Time entry deletion failed"
+msgstr ""
+
+#: src/atoms/time-tracking.ts:244
+msgid "Time entry update failed"
+msgstr ""
+
+#: src/atoms/time-tracking.ts:230
+msgid "Time entry updated successfully"
+msgstr ""
+
+#: src/routes/time-tracking.tsx:334
+msgid "Time Range"
+msgstr ""
+
+#: src/layouts/base.tsx:136
 msgid "Time tracking"
 msgstr "Ajaarvestus"
 
-#: src/routes/invoices/index.tsx:167
-#: src/routes/invoices/details.tsx:362
-#: src/routes/invoices/details.tsx:481
+#: src/routes/time-tracking.tsx:489
+msgid "Time Tracking"
+msgstr ""
+
+#: src/routes/invoices/index.tsx:168
+#: src/routes/invoices/details.tsx:372
+#: src/routes/invoices/details.tsx:491
 #: src/components/invoices/pdf.tsx:230
 #: src/components/invoices/pdf.tsx:274
 msgid "Total"
 msgstr "Summa"
 
 #: src/routes/time-tracking.tsx:11
-msgid "Under Development"
-msgstr "Arenduses"
+#~ msgid "Under Development"
+#~ msgstr "Arenduses"
 
-#: src/routes/settings/invoice.tsx:257
+#: src/routes/settings/invoice.tsx:261
 msgid "Upload"
 msgstr "Lae üles"
 
-#: src/components/clients/form.tsx:157
+#: src/components/clients/form.tsx:170
 msgid "VAT Number"
 msgstr "KMKR number"
 
-#: src/routes/clients.tsx:102
+#: src/routes/clients.tsx:105
 msgid "VATIN"
 msgstr "KMKR"
 
-#: src/routes/invoices/details.tsx:544
+#: src/routes/invoices/details.tsx:554
 msgid "View"
 msgstr "Vaata"
 
-#: src/routes/invoices/index.tsx:38
+#: src/routes/invoices/index.tsx:39
 #: src/components/invoices/state-select.tsx:33
 msgid "Void"
 msgstr "Tühista"
 
-#: src/components/clients/form.tsx:102
+#: src/components/clients/form.tsx:103
 msgid "Warning: This will also delete {invoiceCount} related invoice(s)."
 msgstr "Hoiatus: See kustutab ka {invoiceCount} seotud arve(t)."
 
-#: src/routes/clients.tsx:104
-#: src/components/clients/form.tsx:160
+#: src/routes/clients.tsx:107
+#: src/components/clients/form.tsx:173
 msgid "Website"
 msgstr "Koduleht"
 
+#: src/components/time-entries/form.tsx:161
+msgid "What are you working on?"
+msgstr ""
+
+#: src/routes/time-tracking.tsx:426
 #: src/routes/settings/organization.tsx:108
-#: src/routes/invoices/preview.tsx:178
-#: src/routes/invoices/index.tsx:106
-#: src/routes/invoices/details.tsx:524
-#: src/components/clients/form.tsx:108
+#: src/routes/invoices/preview.tsx:171
+#: src/routes/invoices/index.tsx:107
+#: src/routes/invoices/details.tsx:534
+#: src/components/time-entries/form.tsx:123
+#: src/components/clients/form.tsx:109
 msgid "Yes"
 msgstr "Jah"
