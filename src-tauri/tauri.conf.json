@@ -14,7 +14,7 @@
       {
         "label": "main",
         "fullscreen": false,
-        "height": 801,
+        "height": 800,
         "resizable": true,
         "title": "Upcount",
         "width": 1000
