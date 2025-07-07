@@ -35,7 +35,7 @@ msgstr "Lägg till rad"
 
 #: src/components/time-entries/form.tsx:228
 msgid "Add or select tags"
-msgstr ""
+msgstr "Lägg till eller välj taggar"
 
 #: src/routes/clients.tsx:81
 #: src/routes/settings/organization.tsx:56
@@ -55,7 +55,7 @@ msgstr "Är du säker på att du vill ta bort denna faktura?"
 
 #: src/routes/time-tracking.tsx:421
 msgid "Are you sure to delete this time entry?"
-msgstr ""
+msgstr "Är du säker på att du vill ta bort denna tidsregistrering?"
 
 #: src/components/clients/form.tsx:100
 msgid "Are you sure you want to delete this client?"
@@ -63,7 +63,7 @@ msgstr "Är du säker på att du vill ta bort denna kund?"
 
 #: src/components/time-entries/form.tsx:121
 msgid "Are you sure you want to delete this time entry?"
-msgstr ""
+msgstr "Är du säker på att du vill ta bort denna tidsregistrering?"
 
 #: src/routes/settings/backup.tsx:48
 msgid "Are you sure you want to restore from a backup? This will replace all current data and cannot be undone."
@@ -109,7 +109,7 @@ msgstr "Kund"
 
 #: src/routes/settings/invoice.tsx:236
 msgid "Client code"
-msgstr ""
+msgstr "Kundkod"
 
 #: src/atoms/client.ts:72
 msgid "Client created"
@@ -143,7 +143,7 @@ msgstr "Kunder"
 
 #: src/components/clients/form.tsx:157
 msgid "Code"
-msgstr ""
+msgstr "Kod"
 
 #: src/routes/invoices/index.tsx:31
 msgid "Confirmed"
@@ -224,7 +224,7 @@ msgstr "Ta bort fakturan?"
 
 #: src/routes/time-tracking.tsx:420
 msgid "Delete the time entry?"
-msgstr ""
+msgstr "Ta bort tidsregistreringen?"
 
 #: src/routes/time-tracking.tsx:314
 #: src/routes/settings/tax-rates.tsx:53
@@ -255,19 +255,19 @@ msgstr "Förfallodagar"
 #: src/routes/invoices/index.tsx:90
 #: src/routes/invoices/details.tsx:527
 msgid "Duplicate"
-msgstr ""
+msgstr "Duplicera"
 
 #: src/routes/time-tracking.tsx:345
 msgid "Duration"
-msgstr ""
+msgstr "Varaktighet"
 
 #: src/components/time-entries/form.tsx:201
 msgid "Duration (seconds)"
-msgstr ""
+msgstr "Varaktighet (sekunder)"
 
 #: src/components/time-entries/form.tsx:205
 msgid "Duration in seconds"
-msgstr ""
+msgstr "Varaktighet i sekunder"
 
 #: src/routes/settings/organization.tsx:59
 msgid "E-mail"
@@ -279,7 +279,7 @@ msgstr "E-postadresser"
 
 #: src/routes/settings/invoice.tsx:236
 msgid "e.g. AP, MS"
-msgstr ""
+msgstr "t.ex. AP, MS"
 
 #: src/routes/time-tracking.tsx:400
 #: src/routes/invoices/preview.tsx:190
@@ -297,7 +297,7 @@ msgstr "Redigera momssats"
 
 #: src/components/time-entries/form.tsx:107
 msgid "Edit Time Entry"
-msgstr ""
+msgstr "Redigera tidsregistrering"
 
 #: src/routes/clients.tsx:83
 msgid "Emails"
@@ -306,7 +306,7 @@ msgstr "E-postadresser"
 #: src/components/time-entries/time-range-cell.tsx:68
 #: src/components/time-entries/form.tsx:190
 msgid "End Time"
-msgstr ""
+msgstr "Sluttid"
 
 #: src/routes/settings/invoice.tsx:200
 msgid "Enter format to see preview"
@@ -331,7 +331,7 @@ msgstr "Misslyckades att hämta organisationer"
 
 #: src/atoms/time-tracking.ts:25
 msgid "Failed to fetch tags"
-msgstr ""
+msgstr "Misslyckades att hämta taggar"
 
 #: src/atoms/tax-rate.ts:21
 msgid "Failed to fetch tax rates"
@@ -339,11 +339,11 @@ msgstr "Misslyckades att hämta momssatser"
 
 #: src/atoms/time-tracking.ts:118
 msgid "Failed to fetch time entries"
-msgstr ""
+msgstr "Misslyckades att hämta tidsregistreringar"
 
 #: src/atoms/invoice.ts:187
 msgid "Failed to generate invoice number"
-msgstr ""
+msgstr "Misslyckades att generera fakturanummer"
 
 #. placeholder {0}: String(error)
 #: src/routes/settings/backup.tsx:64
@@ -352,7 +352,7 @@ msgstr "Misslyckades att återställa databasen: {0}"
 
 #: src/atoms/time-tracking.ts:159
 msgid "Failed to update time entry"
-msgstr ""
+msgstr "Misslyckades att uppdatera tidsregistrering"
 
 #: src/routes/index.tsx:90
 msgid "Get started"
@@ -394,15 +394,15 @@ msgstr "Fakturadetaljer"
 
 #: src/atoms/invoice.ts:217
 msgid "Invoice duplicated successfully"
-msgstr ""
+msgstr "Faktura duplicerad framgångsrikt"
 
 #: src/atoms/invoice.ts:232
 msgid "Invoice duplication failed"
-msgstr ""
+msgstr "Fakturaduplicering misslyckades"
 
 #: src/atoms/invoice.ts:180
 msgid "Invoice not found"
-msgstr ""
+msgstr "Faktura hittades inte"
 
 #: src/routes/invoices/details.tsx:239
 msgid "Invoice number"
@@ -459,7 +459,7 @@ msgstr "Ny kund"
 
 #: src/routes/time-tracking.tsx:511
 msgid "New Entry"
-msgstr ""
+msgstr "Ny registrering"
 
 #: src/routes/invoices/index.tsx:133
 msgid "New invoice"
@@ -479,7 +479,7 @@ msgstr "Ny momssats"
 
 #: src/components/time-entries/form.tsx:107
 msgid "New Time Entry"
-msgstr ""
+msgstr "Ny tidsregistrering"
 
 #: src/routes/settings/invoice.tsx:192
 msgid "Next invoice will use this number + 1"
@@ -586,7 +586,7 @@ msgstr "Vänligen ange namn!"
 
 #: src/components/time-entries/form.tsx:179
 msgid "Please select start time!"
-msgstr ""
+msgstr "Vänligen välj starttid!"
 
 #: src/routes/settings/invoice.tsx:113
 msgid "Prefix"
@@ -649,11 +649,11 @@ msgstr "Sök text"
 
 #: src/routes/time-tracking.tsx:495
 msgid "Search time entries..."
-msgstr ""
+msgstr "Sök tidsregistreringar..."
 
 #: src/components/time-entries/form.tsx:165
 msgid "Select client (optional)"
-msgstr ""
+msgstr "Välj kund (valfritt)"
 
 #: src/routes/invoices/details.tsx:179
 msgid "Select or create a client"
@@ -687,11 +687,11 @@ msgstr "Startnummer"
 #: src/components/time-entries/time-range-cell.tsx:63
 #: src/components/time-entries/form.tsx:178
 msgid "Start Time"
-msgstr ""
+msgstr "Starttid"
 
 #: src/routes/time-tracking.tsx:506
 msgid "Start Timer"
-msgstr ""
+msgstr "Starta timer"
 
 #: src/routes/invoices/index.tsx:176
 msgid "State"
@@ -699,7 +699,7 @@ msgstr "Status"
 
 #: src/routes/time-tracking.tsx:502
 msgid "Stop Timer"
-msgstr ""
+msgstr "Stoppa timer"
 
 #: src/routes/invoices/details.tsx:475
 #: src/components/invoices/pdf.tsx:252
@@ -712,33 +712,33 @@ msgstr "Suffix"
 
 #: src/atoms/time-tracking.ts:61
 msgid "Tag created"
-msgstr ""
+msgstr "Tagg skapad"
 
 #: src/atoms/time-tracking.ts:82
 msgid "Tag creation failed"
-msgstr ""
+msgstr "Kunde inte skapa tagg"
 
 #: src/atoms/time-tracking.ts:99
 msgid "Tag deleted"
-msgstr ""
+msgstr "Tagg borttagen"
 
 #: src/atoms/time-tracking.ts:101
 #: src/atoms/time-tracking.ts:105
 msgid "Tag deletion failed"
-msgstr ""
+msgstr "Kunde inte ta bort tagg"
 
 #: src/atoms/time-tracking.ts:84
 msgid "Tag update failed"
-msgstr ""
+msgstr "Kunde inte uppdatera tagg"
 
 #: src/atoms/time-tracking.ts:72
 msgid "Tag updated successfully"
-msgstr ""
+msgstr "Tagg uppdaterad framgångsrikt"
 
 #: src/routes/time-tracking.tsx:358
 #: src/components/time-entries/form.tsx:227
 msgid "Tags"
-msgstr ""
+msgstr "Taggar"
 
 #: src/routes/invoices/details.tsx:401
 #: src/routes/invoices/details.tsx:482
@@ -784,32 +784,32 @@ msgstr "Detta fält är obligatoriskt!"
 
 #: src/atoms/time-tracking.ts:208
 msgid "Time entry created"
-msgstr ""
+msgstr "Tidsregistrering skapad"
 
 #: src/atoms/time-tracking.ts:244
 msgid "Time entry creation failed"
-msgstr ""
+msgstr "Kunde inte skapa tidsregistrering"
 
 #: src/atoms/time-tracking.ts:261
 msgid "Time entry deleted"
-msgstr ""
+msgstr "Tidsregistrering borttagen"
 
 #: src/atoms/time-tracking.ts:263
 #: src/atoms/time-tracking.ts:267
 msgid "Time entry deletion failed"
-msgstr ""
+msgstr "Kunde inte ta bort tidsregistrering"
 
 #: src/atoms/time-tracking.ts:246
 msgid "Time entry update failed"
-msgstr ""
+msgstr "Kunde inte uppdatera tidsregistrering"
 
 #: src/atoms/time-tracking.ts:232
 msgid "Time entry updated successfully"
-msgstr ""
+msgstr "Tidsregistrering uppdaterad framgångsrikt"
 
 #: src/routes/time-tracking.tsx:334
 msgid "Time Range"
-msgstr ""
+msgstr "Tidsintervall"
 
 #: src/layouts/base.tsx:136
 msgid "Time tracking"
@@ -817,7 +817,7 @@ msgstr "Tidsrapportering"
 
 #: src/routes/time-tracking.tsx:489
 msgid "Time Tracking"
-msgstr ""
+msgstr "Tidsrapportering"
 
 #: src/routes/invoices/index.tsx:168
 #: src/routes/invoices/details.tsx:373
@@ -864,7 +864,7 @@ msgstr "Webbplats"
 
 #: src/components/time-entries/form.tsx:161
 msgid "What are you working on?"
-msgstr ""
+msgstr "Vad arbetar du med?"
 
 #: src/routes/time-tracking.tsx:426
 #: src/routes/settings/organization.tsx:108

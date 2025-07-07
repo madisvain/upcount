@@ -35,7 +35,7 @@ msgstr "Lisa rida"
 
 #: src/components/time-entries/form.tsx:228
 msgid "Add or select tags"
-msgstr ""
+msgstr "Lisa või vali sildid"
 
 #: src/routes/clients.tsx:81
 #: src/routes/settings/organization.tsx:56
@@ -55,7 +55,7 @@ msgstr "Kas olete kindel, et soovite selle arve kustutada?"
 
 #: src/routes/time-tracking.tsx:421
 msgid "Are you sure to delete this time entry?"
-msgstr ""
+msgstr "Kas oled kindel, et soovid selle ajakirje kustutada?"
 
 #: src/components/clients/form.tsx:100
 msgid "Are you sure you want to delete this client?"
@@ -63,7 +63,7 @@ msgstr "Kas oled kindel, et soovid selle kliendi kustutada?"
 
 #: src/components/time-entries/form.tsx:121
 msgid "Are you sure you want to delete this time entry?"
-msgstr ""
+msgstr "Kas oled kindel, et soovid selle ajakirje kustutada?"
 
 #: src/routes/settings/backup.tsx:48
 msgid "Are you sure you want to restore from a backup? This will replace all current data and cannot be undone."
@@ -113,7 +113,7 @@ msgstr "Klient"
 
 #: src/routes/settings/invoice.tsx:236
 msgid "Client code"
-msgstr ""
+msgstr "Kliendi kood"
 
 #: src/atoms/client.ts:72
 msgid "Client created"
@@ -158,7 +158,7 @@ msgstr "Kliendid"
 
 #: src/components/clients/form.tsx:157
 msgid "Code"
-msgstr ""
+msgstr "Kood"
 
 #: src/routes/invoices/index.tsx:31
 msgid "Confirmed"
@@ -239,7 +239,7 @@ msgstr "Soovite arve kustutada?"
 
 #: src/routes/time-tracking.tsx:420
 msgid "Delete the time entry?"
-msgstr ""
+msgstr "Kustuta ajakirje?"
 
 #: src/routes/time-tracking.tsx:314
 #: src/routes/settings/tax-rates.tsx:53
@@ -270,19 +270,19 @@ msgstr "Tähtaeg"
 #: src/routes/invoices/index.tsx:90
 #: src/routes/invoices/details.tsx:527
 msgid "Duplicate"
-msgstr ""
+msgstr "Dubleeri"
 
 #: src/routes/time-tracking.tsx:345
 msgid "Duration"
-msgstr ""
+msgstr "Kestus"
 
 #: src/components/time-entries/form.tsx:201
 msgid "Duration (seconds)"
-msgstr ""
+msgstr "Kestus (sekundites)"
 
 #: src/components/time-entries/form.tsx:205
 msgid "Duration in seconds"
-msgstr ""
+msgstr "Kestus sekundites"
 
 #: src/routes/settings/organization.tsx:59
 msgid "E-mail"
@@ -294,7 +294,7 @@ msgstr "E-posti aadressid"
 
 #: src/routes/settings/invoice.tsx:236
 msgid "e.g. AP, MS"
-msgstr ""
+msgstr "nt. AP, MS"
 
 #: src/routes/time-tracking.tsx:400
 #: src/routes/invoices/preview.tsx:190
@@ -312,7 +312,7 @@ msgstr "Muuda maksumäära"
 
 #: src/components/time-entries/form.tsx:107
 msgid "Edit Time Entry"
-msgstr ""
+msgstr "Muuda ajakirjet"
 
 #: src/routes/clients.tsx:83
 msgid "Emails"
@@ -321,7 +321,7 @@ msgstr "E-posti aadressid"
 #: src/components/time-entries/time-range-cell.tsx:68
 #: src/components/time-entries/form.tsx:190
 msgid "End Time"
-msgstr ""
+msgstr "Lõppkellaaeg"
 
 #: src/routes/settings/invoice.tsx:200
 msgid "Enter format to see preview"
@@ -346,7 +346,7 @@ msgstr "Organisatsioonide laadimine ebaõnnestus"
 
 #: src/atoms/time-tracking.ts:25
 msgid "Failed to fetch tags"
-msgstr ""
+msgstr "Siltide laadimine ebaõnnestus"
 
 #: src/atoms/tax-rate.ts:21
 msgid "Failed to fetch tax rates"
@@ -354,11 +354,11 @@ msgstr "Maksude laadimine ebaõnnestus"
 
 #: src/atoms/time-tracking.ts:118
 msgid "Failed to fetch time entries"
-msgstr ""
+msgstr "Ajakirjete laadimine ebaõnnestus"
 
 #: src/atoms/invoice.ts:187
 msgid "Failed to generate invoice number"
-msgstr ""
+msgstr "Arve numbri genereerimine ebaõnnestus"
 
 #. placeholder {0}: String(error)
 #: src/routes/settings/backup.tsx:64
@@ -367,7 +367,7 @@ msgstr "Andmebaasi taastamine ebaõnnestus: {0}"
 
 #: src/atoms/time-tracking.ts:159
 msgid "Failed to update time entry"
-msgstr ""
+msgstr "Ajakirje uuendamine ebaõnnestus"
 
 #: src/routes/index.tsx:90
 msgid "Get started"
@@ -409,11 +409,11 @@ msgstr "Arve detailid"
 
 #: src/atoms/invoice.ts:217
 msgid "Invoice duplicated successfully"
-msgstr ""
+msgstr "Arve edukalt dubleeritud"
 
 #: src/atoms/invoice.ts:232
 msgid "Invoice duplication failed"
-msgstr ""
+msgstr "Arve dubleerimine ebaõnnestus"
 
 #~ msgid "Invoice has been created"
 #~ msgstr "Arve on loodud"
@@ -426,7 +426,7 @@ msgstr ""
 
 #: src/atoms/invoice.ts:180
 msgid "Invoice not found"
-msgstr ""
+msgstr "Arvet ei leitud"
 
 #: src/routes/invoices/details.tsx:239
 msgid "Invoice number"
@@ -487,7 +487,7 @@ msgstr "Uus klient"
 
 #: src/routes/time-tracking.tsx:511
 msgid "New Entry"
-msgstr ""
+msgstr "Uus kirje"
 
 #: src/routes/invoices/index.tsx:133
 msgid "New invoice"
@@ -507,7 +507,7 @@ msgstr "Uus maksumäär"
 
 #: src/components/time-entries/form.tsx:107
 msgid "New Time Entry"
-msgstr ""
+msgstr "Uus ajakirje"
 
 #: src/routes/settings/invoice.tsx:192
 msgid "Next invoice will use this number + 1"
@@ -618,7 +618,7 @@ msgstr "Palun sisestage nimi!"
 
 #: src/components/time-entries/form.tsx:179
 msgid "Please select start time!"
-msgstr ""
+msgstr "Palun vali alguskellaaeg!"
 
 #: src/routes/settings/invoice.tsx:113
 msgid "Prefix"
@@ -685,11 +685,11 @@ msgstr "Otsingu sisu"
 
 #: src/routes/time-tracking.tsx:495
 msgid "Search time entries..."
-msgstr ""
+msgstr "Otsi ajakirjeid..."
 
 #: src/components/time-entries/form.tsx:165
 msgid "Select client (optional)"
-msgstr ""
+msgstr "Vali klient (valikuline)"
 
 #: src/routes/invoices/details.tsx:179
 msgid "Select or create a client"
@@ -723,11 +723,11 @@ msgstr "Algnumber"
 #: src/components/time-entries/time-range-cell.tsx:63
 #: src/components/time-entries/form.tsx:178
 msgid "Start Time"
-msgstr ""
+msgstr "Alguskellaaeg"
 
 #: src/routes/time-tracking.tsx:506
 msgid "Start Timer"
-msgstr ""
+msgstr "Käivita taimer"
 
 #: src/routes/invoices/index.tsx:176
 msgid "State"
@@ -735,7 +735,7 @@ msgstr "Staatus"
 
 #: src/routes/time-tracking.tsx:502
 msgid "Stop Timer"
-msgstr ""
+msgstr "Peata taimer"
 
 #: src/routes/invoices/details.tsx:475
 #: src/components/invoices/pdf.tsx:252
@@ -748,33 +748,33 @@ msgstr "Järelliide"
 
 #: src/atoms/time-tracking.ts:61
 msgid "Tag created"
-msgstr ""
+msgstr "Silt loodud"
 
 #: src/atoms/time-tracking.ts:82
 msgid "Tag creation failed"
-msgstr ""
+msgstr "Sildi loomine ebaõnnestus"
 
 #: src/atoms/time-tracking.ts:99
 msgid "Tag deleted"
-msgstr ""
+msgstr "Silt kustutatud"
 
 #: src/atoms/time-tracking.ts:101
 #: src/atoms/time-tracking.ts:105
 msgid "Tag deletion failed"
-msgstr ""
+msgstr "Sildi kustutamine ebaõnnestus"
 
 #: src/atoms/time-tracking.ts:84
 msgid "Tag update failed"
-msgstr ""
+msgstr "Sildi uuendamine ebaõnnestus"
 
 #: src/atoms/time-tracking.ts:72
 msgid "Tag updated successfully"
-msgstr ""
+msgstr "Silt edukalt uuendatud"
 
 #: src/routes/time-tracking.tsx:358
 #: src/components/time-entries/form.tsx:227
 msgid "Tags"
-msgstr ""
+msgstr "Sildid"
 
 #: src/routes/invoices/details.tsx:401
 #: src/routes/invoices/details.tsx:482
@@ -820,32 +820,32 @@ msgstr "See väli on kohustuslik!"
 
 #: src/atoms/time-tracking.ts:208
 msgid "Time entry created"
-msgstr ""
+msgstr "Ajakirje loodud"
 
 #: src/atoms/time-tracking.ts:244
 msgid "Time entry creation failed"
-msgstr ""
+msgstr "Ajakirje loomine ebaõnnestus"
 
 #: src/atoms/time-tracking.ts:261
 msgid "Time entry deleted"
-msgstr ""
+msgstr "Ajakirje kustutatud"
 
 #: src/atoms/time-tracking.ts:263
 #: src/atoms/time-tracking.ts:267
 msgid "Time entry deletion failed"
-msgstr ""
+msgstr "Ajakirje kustutamine ebaõnnestus"
 
 #: src/atoms/time-tracking.ts:246
 msgid "Time entry update failed"
-msgstr ""
+msgstr "Ajakirje uuendamine ebaõnnestus"
 
 #: src/atoms/time-tracking.ts:232
 msgid "Time entry updated successfully"
-msgstr ""
+msgstr "Ajakirje edukalt uuendatud"
 
 #: src/routes/time-tracking.tsx:334
 msgid "Time Range"
-msgstr ""
+msgstr "Ajavahemik"
 
 #: src/layouts/base.tsx:136
 msgid "Time tracking"
@@ -853,7 +853,7 @@ msgstr "Ajaarvestus"
 
 #: src/routes/time-tracking.tsx:489
 msgid "Time Tracking"
-msgstr ""
+msgstr "Ajaarvestus"
 
 #: src/routes/invoices/index.tsx:168
 #: src/routes/invoices/details.tsx:373
@@ -900,7 +900,7 @@ msgstr "Koduleht"
 
 #: src/components/time-entries/form.tsx:161
 msgid "What are you working on?"
-msgstr ""
+msgstr "Millega tegeled?"
 
 #: src/routes/time-tracking.tsx:426
 #: src/routes/settings/organization.tsx:108
