@@ -19,6 +19,7 @@ export const setTaxRatesAtom = atom(null, async (get, set) => {
   } catch (error) {
     console.error("Failed to fetch tax rates:", error);
     message.error(t`Failed to fetch tax rates`);
+    set(taxRatesAtom, []);
   }
 });
 

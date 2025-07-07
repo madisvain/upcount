@@ -31,6 +31,7 @@ export const setInvoicesAtom = atom(null, async (get, set) => {
   } catch (error) {
     console.error("Failed to fetch invoices:", error);
     message.error(t`Failed to fetch invoices`);
+    set(invoicesAtom, []);
   }
 });
 

@@ -1,8 +1,7 @@
 import { Dropdown, Space, Tag } from "antd";
 import { useSetAtom } from "jotai";
 import { MoreOutlined } from "@ant-design/icons";
-import { t } from "@lingui/core/macro";
-import capitalize from "lodash/capitalize";
+import { Trans } from "@lingui/react/macro";
 
 import type { MenuProps } from "antd";
 
@@ -15,25 +14,6 @@ const stateColor = {
   void: "volcano",
 };
 
-const items: MenuProps["items"] = [
-  {
-    key: "draft",
-    label: t`Draft`,
-  },
-  {
-    key: "sent",
-    label: t`Sent`,
-  },
-  {
-    key: "paid",
-    label: t`Paid`,
-  },
-  {
-    key: "void",
-    label: t`Void`,
-  },
-];
-
 const InvoiceStateSelect = ({ invoice }: { invoice: any }) => {
   const setInvoiceId = useSetAtom(invoiceIdAtom);
   const setInvoice = useSetAtom(invoiceAtom);
@@ -43,6 +23,25 @@ const InvoiceStateSelect = ({ invoice }: { invoice: any }) => {
     await setInvoice({ state: toState });
     setInvoiceId(null);
   };
+
+  const items: MenuProps["items"] = [
+    {
+      key: "draft",
+      label: <Trans>Draft</Trans>,
+    },
+    {
+      key: "sent",
+      label: <Trans>Sent</Trans>,
+    },
+    {
+      key: "paid",
+      label: <Trans>Paid</Trans>,
+    },
+    {
+      key: "void",
+      label: <Trans>Void</Trans>,
+    },
+  ];
 
   return (
     <Dropdown
@@ -58,7 +57,17 @@ const InvoiceStateSelect = ({ invoice }: { invoice: any }) => {
       {/* @ts-expect-error - TODO: stateColor ts definition */}
       <Tag color={stateColor[invoice.state]} style={{ marginInlineEnd: 0, cursor: "pointer" }}>
         <Space size={4} style={{ fontSize: 12 }}>
-          {capitalize(invoice.state)}
+          {invoice.state === "draft" ? (
+            <Trans>Draft</Trans>
+          ) : invoice.state === "sent" ? (
+            <Trans>Sent</Trans>
+          ) : invoice.state === "paid" ? (
+            <Trans>Paid</Trans>
+          ) : invoice.state === "void" ? (
+            <Trans>Void</Trans>
+          ) : (
+            invoice.state
+          )}
           <MoreOutlined />
         </Space>
       </Tag>

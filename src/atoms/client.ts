@@ -24,6 +24,7 @@ export const setClientsAtom = atom(null, async (get, set) => {
   } catch (error) {
     console.error("Failed to fetch clients:", error);
     message.error(t`Failed to fetch clients`);
+    set(clientsAtom, []);
   }
 });
 setClientsAtom.debugLabel = "setClientsAtom";

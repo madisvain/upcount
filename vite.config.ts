@@ -1,6 +1,7 @@
 import { defineConfig } from "vite";
 import react from "@vitejs/plugin-react";
 import { lingui } from "@lingui/vite-plugin";
+import { sentryVitePlugin } from "@sentry/vite-plugin";
 
 // https://vitejs.dev/config/
 export default defineConfig({
@@ -12,14 +13,18 @@ export default defineConfig({
       },
     }),
     lingui(),
+    sentryVitePlugin({
+      org: "konstruktor",
+      project: "upcount-react",
+    }),
   ],
   optimizeDeps: {
-    include: ['pdfjs-dist'],
+    include: ["pdfjs-dist"],
   },
   css: {
     preprocessorOptions: {
       scss: {
-        api: 'modern-compiler',
+        api: "modern-compiler",
       },
     },
   },
@@ -48,6 +53,6 @@ export default defineConfig({
     // don't minify for debug builds
     minify: !process.env.TAURI_DEBUG ? "esbuild" : false,
     // produce sourcemaps for debug builds
-    sourcemap: !!process.env.TAURI_DEBUG,
+    sourcemap: true,
   },
 });

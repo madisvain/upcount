@@ -19,6 +19,7 @@ export const setOrganizationsAtom = atom(null, async (_get, set) => {
   } catch (error) {
     console.error("Failed to fetch organizations:", error);
     message.error(t`Failed to fetch organizations`);
+    set(organizationsAtom, []);
   }
 });
 

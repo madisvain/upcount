@@ -23,6 +23,7 @@ export const setTagsAtom = atom(null, async (get, set) => {
   } catch (error) {
     console.error("Failed to fetch tags:", error);
     message.error(t`Failed to fetch tags`);
+    set(tagsAtom, []);
   }
 });
 
@@ -115,6 +116,7 @@ export const setTimeEntriesAtom = atom(null, async (get, set) => {
   } catch (error) {
     console.error("Failed to fetch time entries:", error);
     message.error(t`Failed to fetch time entries`);
+    set(timeEntriesAtom, []);
   }
 });
 
