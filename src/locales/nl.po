@@ -25,10 +25,6 @@ msgstr "2-cijferig jaar"
 msgid "4-digit year"
 msgstr "4-cijferig jaar"
 
-#: src/routes/invoices/index.tsx:149
-#~ msgid "Actions"
-#~ msgstr ""
-
 #: src/routes/invoices/details.tsx:435
 msgid "Add line item"
 msgstr "Regelitem toevoegen"
@@ -96,10 +92,6 @@ msgstr "Annuleren"
 #: src/routes/settings/invoice.tsx:261
 msgid "Change"
 msgstr "Wijzigen"
-
-#: src/routes/time-tracking.tsx:17
-#~ msgid "Check back soon for updates!"
-#~ msgstr "Kom binnenkort terug voor updates!"
 
 #: src/routes/time-tracking.tsx:321
 #: src/routes/invoices/index.tsx:148
@@ -548,10 +540,6 @@ msgstr "Bijwerken organisatie mislukt"
 msgid "Organization updated successfully"
 msgstr "Organisatie succesvol bijgewerkt"
 
-#: src/routes/time-tracking.tsx:14
-#~ msgid "Our time tracking feature is currently being developed."
-#~ msgstr "Onze tijdregistratiefunctie wordt momenteel ontwikkeld."
-
 #: src/routes/settings/invoice.tsx:100
 #: src/components/invoices/pdf.tsx:206
 msgid "Overdue charge"
@@ -826,10 +814,6 @@ msgstr "Tijdregistratie"
 #: src/components/invoices/pdf.tsx:274
 msgid "Total"
 msgstr "Totaal"
-
-#: src/routes/time-tracking.tsx:11
-#~ msgid "Under Development"
-#~ msgstr "In ontwikkeling"
 
 #: src/routes/settings/invoice.tsx:261
 msgid "Upload"

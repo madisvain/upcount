@@ -25,10 +25,6 @@ msgstr "2-kohaline aasta"
 msgid "4-digit year"
 msgstr "4-kohaline aasta"
 
-#: src/routes/invoices/index.tsx:149
-#~ msgid "Actions"
-#~ msgstr ""
-
 #: src/routes/invoices/details.tsx:435
 msgid "Add line item"
 msgstr "Lisa rida"
@@ -69,10 +65,6 @@ msgstr "Kas oled kindel, et soovid selle ajakirje kustutada?"
 msgid "Are you sure you want to restore from a backup? This will replace all current data and cannot be undone."
 msgstr "Kas oled kindel, et soovid taastada varukoopiast? See asendab kõik praegused andmed ja seda ei saa tagasi võtta."
 
-#: src/routes/settings/invoice.tsx:100
-#~ msgid "Available variables"
-#~ msgstr ""
-
 #: src/routes/settings/invoice.tsx:210
 msgid "Available variables:"
 msgstr "Saadaolevad muutujad:"
@@ -101,10 +93,6 @@ msgstr "Tühista"
 msgid "Change"
 msgstr "Muuda"
 
-#: src/routes/time-tracking.tsx:17
-#~ msgid "Check back soon for updates!"
-#~ msgstr "Vaata varsti tagasi!"
-
 #: src/routes/time-tracking.tsx:321
 #: src/routes/invoices/index.tsx:148
 #: src/components/time-entries/form.tsx:164
@@ -132,20 +120,9 @@ msgstr "Klient kustutatud"
 msgid "Client deletion failed"
 msgstr "Kliendi kustutamine ebaõnnestus"
 
-#~ msgid "Client has been created"
-#~ msgstr "Klient on loodud"
-
-#~ msgid "Client has been updated"
-#~ msgstr "Klient on uuendatud"
-
 #: src/atoms/client.ts:95
 msgid "Client update failed"
 msgstr "Kliendi uuendamine ebaõnnestus"
-
-#: src/atoms.tsx:99
-#: src/atoms.tsx:431
-#~ msgid "Client updated failed"
-#~ msgstr "Kliendi uuendamine ebaõnnestus"
 
 #: src/atoms/client.ts:83
 msgid "Client updated successfully"
@@ -415,15 +392,6 @@ msgstr "Arve edukalt dubleeritud"
 msgid "Invoice duplication failed"
 msgstr "Arve dubleerimine ebaõnnestus"
 
-#~ msgid "Invoice has been created"
-#~ msgstr "Arve on loodud"
-
-#~ msgid "Invoice has been deleted"
-#~ msgstr "Arve on kustutatud"
-
-#~ msgid "Invoice has been updated"
-#~ msgstr "Arve on uuendatud"
-
 #: src/atoms/invoice.ts:180
 msgid "Invoice not found"
 msgstr "Arvet ei leitud"
@@ -448,10 +416,6 @@ msgstr "Arve numbrid"
 #: src/atoms/invoice.ts:145
 msgid "Invoice update failed"
 msgstr "Arve uuendamine ebaõnnestus"
-
-#: src/atoms.tsx:264
-#~ msgid "Invoice updated failed"
-#~ msgstr "Arve uuendamine ebaõnnestus"
 
 #: src/atoms/invoice.ts:133
 msgid "Invoice updated successfully"
@@ -572,17 +536,9 @@ msgstr "Organisatsiooni detailid"
 msgid "Organization update failed"
 msgstr "Organisatsiooni uuendamine ebaõnnestus"
 
-#: src/atoms.tsx:342
-#~ msgid "Organization updated failed"
-#~ msgstr "Ettevõtte uuendamine ebaõnnestus"
-
 #: src/atoms/organization.ts:75
 msgid "Organization updated successfully"
 msgstr "Ettevõtte uuendamine edukas"
-
-#: src/routes/time-tracking.tsx:14
-#~ msgid "Our time tracking feature is currently being developed."
-#~ msgstr "Ajaarvestuse võimalus on hetkel arenduses."
 
 #: src/routes/settings/invoice.tsx:100
 #: src/components/invoices/pdf.tsx:206
@@ -673,10 +629,6 @@ msgstr "Taasta oma andmebaas varem loodud varukoopia failist. See asendab kõik 
 #: src/components/clients/form.tsx:135
 msgid "Save"
 msgstr "Salvesta"
-
-#: src/components/tax-rates/form.tsx:37
-#~ msgid "Save tax rate"
-#~ msgstr ""
 
 #: src/routes/clients.tsx:59
 #: src/routes/invoices/index.tsx:130
@@ -862,10 +814,6 @@ msgstr "Ajaarvestus"
 #: src/components/invoices/pdf.tsx:274
 msgid "Total"
 msgstr "Summa"
-
-#: src/routes/time-tracking.tsx:11
-#~ msgid "Under Development"
-#~ msgstr "Arenduses"
 
 #: src/routes/settings/invoice.tsx:261
 msgid "Upload"

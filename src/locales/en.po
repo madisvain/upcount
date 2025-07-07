@@ -25,10 +25,6 @@ msgstr ""
 msgid "4-digit year"
 msgstr ""
 
-#: src/routes/invoices/index.tsx:149
-#~ msgid "Actions"
-#~ msgstr ""
-
 #: src/routes/invoices/details.tsx:435
 msgid "Add line item"
 msgstr ""
@@ -69,10 +65,6 @@ msgstr ""
 msgid "Are you sure you want to restore from a backup? This will replace all current data and cannot be undone."
 msgstr ""
 
-#: src/routes/settings/invoice.tsx:100
-#~ msgid "Available variables"
-#~ msgstr ""
-
 #: src/routes/settings/invoice.tsx:210
 msgid "Available variables:"
 msgstr ""
@@ -101,10 +93,6 @@ msgstr ""
 msgid "Change"
 msgstr ""
 
-#: src/routes/time-tracking.tsx:17
-#~ msgid "Check back soon for updates!"
-#~ msgstr ""
-
 #: src/routes/time-tracking.tsx:321
 #: src/routes/invoices/index.tsx:148
 #: src/components/time-entries/form.tsx:164
@@ -132,22 +120,9 @@ msgstr ""
 msgid "Client deletion failed"
 msgstr ""
 
-#: src/components/clients/form.tsx:39
-#~ msgid "Client has been created"
-#~ msgstr ""
-
-#: src/components/clients/form.tsx:32
-#~ msgid "Client has been updated"
-#~ msgstr ""
-
 #: src/atoms/client.ts:95
 msgid "Client update failed"
 msgstr ""
-
-#: src/atoms.tsx:99
-#: src/atoms.tsx:431
-#~ msgid "Client updated failed"
-#~ msgstr ""
 
 #: src/atoms/client.ts:83
 msgid "Client updated successfully"
@@ -417,18 +392,6 @@ msgstr ""
 msgid "Invoice duplication failed"
 msgstr ""
 
-#: src/routes/invoices/details.tsx:124
-#~ msgid "Invoice has been created"
-#~ msgstr ""
-
-#: src/routes/invoices/details.tsx:157
-#~ msgid "Invoice has been deleted"
-#~ msgstr ""
-
-#: src/routes/invoices/details.tsx:150
-#~ msgid "Invoice has been updated"
-#~ msgstr ""
-
 #: src/atoms/invoice.ts:180
 msgid "Invoice not found"
 msgstr ""
@@ -453,10 +416,6 @@ msgstr ""
 #: src/atoms/invoice.ts:145
 msgid "Invoice update failed"
 msgstr ""
-
-#: src/atoms.tsx:264
-#~ msgid "Invoice updated failed"
-#~ msgstr ""
 
 #: src/atoms/invoice.ts:133
 msgid "Invoice updated successfully"
@@ -573,30 +532,13 @@ msgstr ""
 msgid "Organization details"
 msgstr ""
 
-#: src/routes/settings/invoice.tsx:31
-#: src/routes/settings/organization.tsx:35
-#~ msgid "Organization details have been updated"
-#~ msgstr ""
-
-#: src/components/organizations/form.tsx:39
-#~ msgid "Organization has been created"
-#~ msgstr ""
-
 #: src/atoms/organization.ts:88
 msgid "Organization update failed"
 msgstr ""
 
-#: src/atoms.tsx:342
-#~ msgid "Organization updated failed"
-#~ msgstr ""
-
 #: src/atoms/organization.ts:75
 msgid "Organization updated successfully"
 msgstr ""
-
-#: src/routes/time-tracking.tsx:14
-#~ msgid "Our time tracking feature is currently being developed."
-#~ msgstr ""
 
 #: src/routes/settings/invoice.tsx:100
 #: src/components/invoices/pdf.tsx:206
@@ -688,18 +630,6 @@ msgstr ""
 msgid "Save"
 msgstr ""
 
-#: src/components/clients/form.tsx:46
-#~ msgid "Save client"
-#~ msgstr ""
-
-#: src/components/organizations/form.tsx:54
-#~ msgid "Save organization"
-#~ msgstr ""
-
-#: src/components/tax-rates/form.tsx:37
-#~ msgid "Save tax rate"
-#~ msgstr ""
-
 #: src/routes/clients.tsx:59
 #: src/routes/invoices/index.tsx:130
 msgid "Search text"
@@ -768,10 +698,6 @@ msgstr ""
 msgid "Suffix"
 msgstr ""
 
-#: src/routes/invoices/index.tsx:101
-#~ msgid "Sum"
-#~ msgstr ""
-
 #: src/atoms/time-tracking.ts:61
 msgid "Tag created"
 msgstr ""
@@ -815,14 +741,6 @@ msgstr ""
 #: src/atoms/tax-rate.ts:86
 msgid "Tax rate creation failed"
 msgstr ""
-
-#: src/components/tax-rates/form.tsx:37
-#~ msgid "Tax rate has been created"
-#~ msgstr ""
-
-#: src/components/tax-rates/form.tsx:30
-#~ msgid "Tax rate has been updated"
-#~ msgstr ""
 
 #: src/atoms/tax-rate.ts:88
 msgid "Tax rate update failed"
@@ -897,10 +815,6 @@ msgstr ""
 msgid "Total"
 msgstr ""
 
-#: src/routes/time-tracking.tsx:11
-#~ msgid "Under Development"
-#~ msgstr ""
-
 #: src/routes/settings/invoice.tsx:261
 msgid "Upload"
 msgstr ""
@@ -945,7 +859,3 @@ msgstr ""
 #: src/components/clients/form.tsx:109
 msgid "Yes"
 msgstr ""
-
-#: src/components/organizations/form.tsx:48
-#~ msgid "Your organization details"
-#~ msgstr ""

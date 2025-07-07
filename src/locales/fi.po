@@ -25,10 +25,6 @@ msgstr "2-numeroinen vuosi"
 msgid "4-digit year"
 msgstr "4-numeroinen vuosi"
 
-#: src/routes/invoices/index.tsx:149
-#~ msgid "Actions"
-#~ msgstr ""
-
 #: src/routes/invoices/details.tsx:435
 msgid "Add line item"
 msgstr "Lisää rivi"
@@ -96,10 +92,6 @@ msgstr "Peru"
 #: src/routes/settings/invoice.tsx:261
 msgid "Change"
 msgstr "Muuta"
-
-#: src/routes/time-tracking.tsx:17
-#~ msgid "Check back soon for updates!"
-#~ msgstr "Tarkista päivitykset pian!"
 
 #: src/routes/time-tracking.tsx:321
 #: src/routes/invoices/index.tsx:148
@@ -548,10 +540,6 @@ msgstr "Organisaation päivitys epäonnistui"
 msgid "Organization updated successfully"
 msgstr "Organisaatio päivitetty onnistuneesti"
 
-#: src/routes/time-tracking.tsx:14
-#~ msgid "Our time tracking feature is currently being developed."
-#~ msgstr "Ajanseurantaominaisuuttamme kehitetään parhaillaan."
-
 #: src/routes/settings/invoice.tsx:100
 #: src/components/invoices/pdf.tsx:206
 msgid "Overdue charge"
@@ -826,10 +814,6 @@ msgstr "Ajanseuranta"
 #: src/components/invoices/pdf.tsx:274
 msgid "Total"
 msgstr "Yhteensä"
-
-#: src/routes/time-tracking.tsx:11
-#~ msgid "Under Development"
-#~ msgstr "Kehitteillä"
 
 #: src/routes/settings/invoice.tsx:261
 msgid "Upload"
