@@ -16,6 +16,7 @@ export default defineConfig({
     sentryVitePlugin({
       org: "konstruktor",
       project: "upcount-react",
+      telemetry: false,
     }),
   ],
   optimizeDeps: {
