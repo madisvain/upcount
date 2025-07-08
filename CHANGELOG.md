@@ -7,6 +7,17 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Added
+- Complete translations for all supported languages achieving 100% coverage (184/184 strings)
+
+### Changed
+- Disabled Sentry telemetry for enhanced privacy
+- Cleaned up obsolete translation entries across all locale files for better maintainability
+
+### Fixed
+- JavaScript heap out of memory errors in GitHub Actions macOS builds by increasing Node.js memory allocation to 4GB
+- Invoice state translations now display correctly in invoice list view using proper Trans components
+
 ## [2.0.0-beta.7] - 2025-07-05
 
 ### Added
