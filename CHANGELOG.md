@@ -7,6 +7,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [2.0.0-beta.8] - 2025-07-08
+
 ### Added
 - Complete translations for all supported languages achieving 100% coverage (184/184 strings)
 
