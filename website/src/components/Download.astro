@@ -1,0 +1,104 @@
+---
+export interface Props {
+  os?: 'mac' | 'windows' | 'linux' | 'unix';
+  version: string;
+  small?: boolean;
+}
+
+const { os: propsOs, version, small = false } = Astro.props;
+
+// Detect OS if not provided
+let os = propsOs;
+if (!os && typeof window !== 'undefined') {
+  if (navigator.appVersion.indexOf('Win') !== -1) {
+    os = 'windows';
+  } else if (navigator.appVersion.indexOf('Mac') !== -1) {
+    os = 'mac';
+  } else if (navigator.appVersion.indexOf('X11') !== -1) {
+    os = 'unix';
+  } else if (navigator.appVersion.indexOf('Linux') !== -1) {
+    os = 'linux';
+  }
+}
+
+const v = version ? version.substr(1) : null;
+
+let href = 'https://github.com/madisvain/upcount/releases';
+let icon = '';
+let iconDark = '';
+let altText = 'Download';
+
+if (os === 'windows') {
+  href = `https://github.com/madisvain/upcount/releases/download/${version}/Upcount-${v}.exe`;
+  icon = '/windows.svg';
+  iconDark = '/windows-dark.svg';
+  altText = 'Windows';
+} else if (os === 'mac') {
+  href = `https://github.com/madisvain/upcount/releases/download/${version}/Upcount-${v}.dmg`;
+  icon = '/apple.svg';
+  iconDark = '/apple-dark.svg';
+  altText = 'Mac';
+} else if (os === 'linux' || os === 'unix') {
+  href = `https://github.com/madisvain/upcount/releases/download/${version}/upcount_${v}_amd64.deb`;
+  icon = '/linux.svg';
+  iconDark = '/linux-dark.svg';
+  altText = 'Linux';
+}
+---
+
+<a
+  href={href}
+  class={`btn btn-outline-dark ${small ? 'btn-sm' : ''}`.trim()}
+  target={!os ? "_blank" : undefined}
+  data-os={os}
+>
+  Download
+  {icon && (
+    <>
+      <img src={iconDark} class="img-fluid ml-1 mb-1 icon-dark" alt={altText} />
+      <img src={icon} class="img-fluid ml-1 mb-1 icon-light" alt={altText} />
+    </>
+  )}
+</a>
+
+<style>
+  .btn:hover .icon-dark {
+    display: none;
+  }
+  .btn:hover .icon-light {
+    display: inline-block;
+  }
+  .btn .icon-dark {
+    display: inline-block;
+  }
+  .btn .icon-light {
+    display: none;
+  }
+</style>
+
+<script>
+  // Client-side OS detection for default download button
+  document.addEventListener('DOMContentLoaded', () => {
+    const downloadBtn = document.querySelector('a[data-os=""]');
+    if (downloadBtn) {
+      let detectedOs = '';
+      if (navigator.appVersion.indexOf('Win') !== -1) {
+        detectedOs = 'windows';
+      } else if (navigator.appVersion.indexOf('Mac') !== -1) {
+        detectedOs = 'mac';
+      } else if (navigator.appVersion.indexOf('X11') !== -1 || navigator.appVersion.indexOf('Linux') !== -1) {
+        detectedOs = 'linux';
+      }
+      
+      if (detectedOs) {
+        downloadBtn.setAttribute('data-os', detectedOs);
+        // Update href based on detected OS
+        const version = downloadBtn.href.match(/releases$/);
+        if (version) {
+          // This would need the version passed through data attribute
+          // For now, keep the generic releases link
+        }
+      }
+    }
+  });
+</script>

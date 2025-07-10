@@ -1,0 +1,122 @@
+---
+import Layout from '../layouts/main.astro';
+import Download from '../components/Download.astro';
+
+const version = "v2.0.0-beta.8";
+---
+
+<Layout title="Upcount - Invoicing for freelancers & small businesses">
+  <header>
+    <nav class="navbar navbar-expand">
+      <span class="navbar-brand h1">
+        <img src="/logo.svg" class="img-fluid" alt="Logo" />
+      </span>
+      <ul class="navbar-nav ml-auto">
+        <li class="nav-item mr-2 mt-1">
+          <Download small={true} version={version} />
+        </li>
+        <li class="nav-item">
+          <a href="https://github.com/madisvain/upcount" target="_blank">
+            <img src="/github.svg" class="img-fluid" alt="Logo" />
+          </a>
+        </li>
+      </ul>
+    </nav>
+  </header>
+
+  {/* Landing & Download */}
+  <div class="container">
+    <div class="row" style="margin-top: 40px">
+      <div class="col">
+        <h1 class="text-center">Invoicing for freelancers & small businesses</h1>
+        <ul class="list-inline text-center mt-4">
+          <li class="list-inline-item">
+            <Download os="mac" version={version} />
+          </li>
+          <li class="list-inline-item">
+            <Download os="windows" version={version} />
+          </li>
+          <li class="list-inline-item">
+            <Download os="linux" version={version} />
+          </li>
+        </ul>
+        <p class="text-center">
+          <small>Upcount is free to download and use and is available for Windows, Mac and Linux.</small>
+        </p>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-8 offset-md-2">
+        <figure class="figure">
+          <img src="/illustration.svg" class="figure-img img-fluid" alt="Illustration" />
+          <figcaption class="figure-caption text-right">
+            <blockquote class="blockquote">
+              <p class="mb-0">"Cats will outsmart dogs every time."</p>
+              <footer class="blockquote-footer">John Grogan</footer>
+            </blockquote>
+          </figcaption>
+        </figure>
+      </div>
+    </div>
+  </div>
+
+  {/* Screenshots */}
+  <div class="container">
+    <div id="invoices-list" class="row" style="margin-top: 80px">
+      <div class="col-sm-6 order-sm-last">
+        <h2 class="mt-4 mb-4">Keep invoices in check</h2>
+        <p>
+          Upcount is a beautifully-simple desktop app designed to help manage your invoicing. Easily keep track of
+          invoice payments, overdue invoices via invoice states.
+        </p>
+        <ul class="list-unstyled mt-2">
+          <li>
+            <span class="badge badge-secondary">Draft</span>
+          </li>
+          <li>
+            <span class="badge badge-primary">Confirmed</span>
+          </li>
+          <li>
+            <span class="badge badge-success">Paid</span>
+          </li>
+          <li>
+            <span class="badge badge-warning">Overdue</span>
+          </li>
+          <li>
+            <span class="badge badge-danger">Void</span>
+          </li>
+        </ul>
+      </div>
+      <div class="col-sm-6">
+        <img src="screenshots/invoices.png" class="img-fluid" alt="Invoices list" />
+      </div>
+    </div>
+    <div id="user-experience" class="row" style="margin-top: 80px">
+      <div class="col-sm-6">
+        <h2 class="mt-4 mb-4 text-right">Clean user experience</h2>
+        <p class="text-right">
+          Easy to understand and use invoice creation interface.
+          <br />
+          <i>What you see is what you get.</i>
+        </p>
+      </div>
+      <div class="col-sm-6">
+        <img src="screenshots/invoice-edit.png" class="img-fluid" alt="Invoice editing" />
+      </div>
+    </div>
+    <div id="configurable" class="row" style="margin-top: 80px">
+      <div class="col-sm-6 order-sm-last">
+        <h2 class="mt-4 mb-4">Configurable options</h2>
+        <p>Customize the invoices according to your needs and preferences.</p>
+        <ul class="list-unstyled mt-2">
+          <li>Upload your company logo</li>
+          <li>Set payment terms & overdue charges</li>
+          <li>Set up tax rates</li>
+        </ul>
+      </div>
+      <div class="col-sm-6">
+        <img src="screenshots/settings.png" class="img-fluid" alt="Invoice settings" />
+      </div>
+    </div>
+  </div>
+</Layout>
