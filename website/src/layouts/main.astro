@@ -40,7 +40,15 @@ const version = "v2.0.0-beta.8";
     <meta property="twitter:image" content={image} />
     
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-    <link href="https://fonts.googleapis.com/css?family=Lato:400,700&display=swap" rel="stylesheet" />
+    
+    <!-- Preconnect to Google Fonts domain for faster DNS resolution -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    
+    <!-- Load Google Fonts asynchronously to prevent render blocking -->
+    <link rel="preload" href="https://fonts.googleapis.com/css?family=Lato:400,700&display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'" />
+    <noscript><link href="https://fonts.googleapis.com/css?family=Lato:400,700&display=swap" rel="stylesheet" /></noscript>
+    
     <title>{title}</title>
     <script src="https://analytics.ahrefs.com/analytics.js" data-key="9xJFNyrMjojzfd+xlDBqsg" async></script>
   </head>
