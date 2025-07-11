@@ -21,7 +21,10 @@ const changelogReleasedOnly = changelogWithoutHeader.replace(
 const changelogHtml = marked.parse(changelogReleasedOnly);
 ---
 
-<Layout title="Upcount - Changelog">
+<Layout 
+  title="Upcount Changelog - Latest Updates & Release Notes"
+  description="See what's new in Upcount invoicing app. Latest features, bug fixes, and improvements for freelancers and small businesses."
+>
   <div class="max-w-4xl mx-auto px-4 py-8">
     <h1 class="text-4xl font-bold mb-8">Changelog</h1>
     <article class="prose prose-lg max-w-none" set:html={changelogHtml} />

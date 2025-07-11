@@ -2,7 +2,20 @@
 import "../styles/global.css";
 import Download from "../components/Download.astro";
 
-const { title } = Astro.props;
+export interface Props {
+  title: string;
+  description?: string;
+  image?: string;
+  url?: string;
+}
+
+const { 
+  title, 
+  description = "Free invoicing and time tracking app for freelancers and small businesses. Download for Mac and Linux.",
+  image = "https://www.upcount.app/og-image.png",
+  url = "https://www.upcount.app" + Astro.url.pathname
+} = Astro.props;
+
 const version = "v2.0.0-beta.8";
 ---
 
@@ -10,6 +23,22 @@ const version = "v2.0.0-beta.8";
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width" />
+    <meta name="description" content={description} />
+    
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content={url} />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:image" content={image} />
+    
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image" />
+    <meta property="twitter:url" content={url} />
+    <meta property="twitter:title" content={title} />
+    <meta property="twitter:description" content={description} />
+    <meta property="twitter:image" content={image} />
+    
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <link href="https://fonts.googleapis.com/css?family=Lato:400,700&display=swap" rel="stylesheet" />
     <title>{title}</title>
@@ -19,7 +48,7 @@ const version = "v2.0.0-beta.8";
     <header>
       <nav class="flex items-center justify-between px-4 py-2">
         <a href="/" class="flex items-center text-2xl font-bold text-white">
-          <img src="/logo.svg" class="w-auto h-6" alt="Logo" />
+          <img src="/logo.svg" class="w-auto h-6" alt="Upcount - Invoicing Software" />
         </a>
         <ul class="flex items-center space-x-4">
           <li>
@@ -32,7 +61,7 @@ const version = "v2.0.0-beta.8";
           </li>
           <li>
             <a href="https://github.com/madisvain/upcount" target="_blank">
-              <img src="/github.svg" class="w-auto h-6" alt="Logo" />
+              <img src="/github.svg" class="w-auto h-6" alt="Upcount GitHub Repository" />
             </a>
           </li>
         </ul>
