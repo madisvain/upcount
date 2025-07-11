@@ -1,58 +1,48 @@
 ---
-import Layout from '../layouts/main.astro';
-import Download from '../components/Download.astro';
+import Layout from "../layouts/main.astro";
+import Download from "../components/Download.astro";
 
-const version = "v2.0.0-beta.8";
 ---
 
 <Layout title="Upcount - Invoicing for freelancers & small businesses">
-  <header>
-    <nav class="navbar navbar-expand">
-      <span class="navbar-brand h1">
-        <img src="/logo.svg" class="img-fluid" alt="Logo" />
-      </span>
-      <ul class="navbar-nav ml-auto">
-        <li class="nav-item mr-2 mt-1">
-          <Download small={true} version={version} />
-        </li>
-        <li class="nav-item">
-          <a href="https://github.com/madisvain/upcount" target="_blank">
-            <img src="/github.svg" class="img-fluid" alt="Logo" />
-          </a>
-        </li>
-      </ul>
-    </nav>
-  </header>
-
   {/* Landing & Download */}
-  <div class="container">
-    <div class="row" style="margin-top: 40px">
-      <div class="col">
-        <h1 class="text-center">Invoicing for freelancers & small businesses</h1>
-        <ul class="list-inline text-center mt-4">
-          <li class="list-inline-item">
-            <Download os="mac" version={version} />
+  <div class="max-w-6xl mx-auto px-4">
+    <div class="mt-10">
+      <div class="w-full">
+        <h1 class="text-center text-4xl font-bold mb-6">
+          Best free invoicing & time tracking<br /> for freelancers
+        </h1>
+        <ul class="flex justify-center space-x-4 mt-6">
+          <li>
+            <Download platform="mac-m1" />
           </li>
-          <li class="list-inline-item">
-            <Download os="windows" version={version} />
+          <li>
+            <Download platform="mac-intel" />
           </li>
-          <li class="list-inline-item">
-            <Download os="linux" version={version} />
+          <!--
+          <li>
+            <Download platform="windows" />
+          </li>
+          -->
+          <li>
+            <Download platform="linux" />
           </li>
         </ul>
-        <p class="text-center">
-          <small>Upcount is free to download and use and is available for Windows, Mac and Linux.</small>
+        <p class="text-center mt-4">
+          Upcount is <strong>free</strong> to use and is available for Mac and Linux.
+          <br />
+          <small>Windows version is coming soon!</small>
         </p>
       </div>
     </div>
-    <div class="row">
-      <div class="col-md-8 offset-md-2">
-        <figure class="figure">
-          <img src="/illustration.svg" class="figure-img img-fluid" alt="Illustration" />
-          <figcaption class="figure-caption text-right">
-            <blockquote class="blockquote">
+    <div class="flex justify-center mt-8">
+      <div class="w-full max-w-4xl">
+        <figure class="text-center">
+          <img src="/illustration.svg" class="w-full max-w-2xl mx-auto" alt="Illustration" />
+          <figcaption class="text-right mt-4">
+            <blockquote class="pl-4 italic">
               <p class="mb-0">"Cats will outsmart dogs every time."</p>
-              <footer class="blockquote-footer">John Grogan</footer>
+              <footer class="text-gray-600 text-sm mt-2">John Grogan</footer>
             </blockquote>
           </figcaption>
         </figure>
@@ -61,61 +51,82 @@ const version = "v2.0.0-beta.8";
   </div>
 
   {/* Screenshots */}
-  <div class="container">
-    <div id="invoices-list" class="row" style="margin-top: 80px">
-      <div class="col-sm-6 order-sm-last">
-        <h2 class="mt-4 mb-4">Keep invoices in check</h2>
-        <p>
+  <div class="max-w-6xl mx-auto px-4">
+    <div id="invoices-list" class="grid md:grid-cols-2 gap-8 items-center mt-40">
+      <div class="md:order-last">
+        <h2 class="text-3xl font-bold mb-4">Keep invoices in check</h2>
+        <p class="text-gray-700 mb-4">
           Upcount is a beautifully-simple desktop app designed to help manage your invoicing. Easily keep track of
           invoice payments, overdue invoices via invoice states.
         </p>
-        <ul class="list-unstyled mt-2">
+        <ul class="space-y-2">
           <li>
-            <span class="badge badge-secondary">Draft</span>
+            <span class="inline-block px-3 py-1 text-sm bg-gray-500 text-white rounded-full">Draft</span>
           </li>
           <li>
-            <span class="badge badge-primary">Confirmed</span>
+            <span class="inline-block px-3 py-1 text-sm bg-blue-500 text-white rounded-full">Confirmed</span>
           </li>
           <li>
-            <span class="badge badge-success">Paid</span>
+            <span class="inline-block px-3 py-1 text-sm bg-green-500 text-white rounded-full">Paid</span>
           </li>
           <li>
-            <span class="badge badge-warning">Overdue</span>
+            <span class="inline-block px-3 py-1 text-sm bg-yellow-500 text-white rounded-full">Overdue</span>
           </li>
           <li>
-            <span class="badge badge-danger">Void</span>
+            <span class="inline-block px-3 py-1 text-sm bg-red-500 text-white rounded-full">Void</span>
           </li>
         </ul>
       </div>
-      <div class="col-sm-6">
-        <img src="screenshots/invoices.png" class="img-fluid" alt="Invoices list" />
+      <div>
+        <img src="screenshots/invoices.png" class="w-full rounded-lg" alt="Invoices list" />
       </div>
     </div>
-    <div id="user-experience" class="row" style="margin-top: 80px">
-      <div class="col-sm-6">
-        <h2 class="mt-4 mb-4 text-right">Clean user experience</h2>
-        <p class="text-right">
+    <div id="timetracking" class="grid md:grid-cols-2 gap-8 items-center mt-40">
+      <div>
+        <h2 class="text-3xl font-bold mb-4">
+          Time tracking
+          <span class="inline-block px-3 py-1 text-sm bg-blue-500 text-white rounded-full align-top">
+            <small>BETA</small>
+          </span>
+        </h2>
+        <p class="text-gray-700 mb-4">Track time spent on projects and automatically convert to invoices.</p>
+        <ul class="space-y-2 text-gray-700">
+          <li>• Simple start/stop timer</li>
+          <li>• Project-based time tracking</li>
+          <li>• Tag time entries for better organization</li>
+          <li>• Convert tracked hours to invoice line items</li>
+          <li>• Export time reports</li>
+        </ul>
+      </div>
+      <div class="h-64 flex items-center justify-center">
+        <img src="screenshots/timetracking.png" class="w-full rounded-lg" alt="Time tracking" />
+      </div>
+    </div>
+    <div id="user-experience" class="grid md:grid-cols-2 gap-8 items-center mt-20">
+      <div>
+        <img src="screenshots/invoice-edit.png" class="w-full rounded-lg" alt="Invoice editing" />
+      </div>
+      <div class="text-right">
+        <h2 class="text-3xl font-bold mb-4">Interactive and clear invoice form</h2>
+        <p class="text-gray-700">
           Easy to understand and use invoice creation interface.
           <br />
           <i>What you see is what you get.</i>
         </p>
       </div>
-      <div class="col-sm-6">
-        <img src="screenshots/invoice-edit.png" class="img-fluid" alt="Invoice editing" />
-      </div>
     </div>
-    <div id="configurable" class="row" style="margin-top: 80px">
-      <div class="col-sm-6 order-sm-last">
-        <h2 class="mt-4 mb-4">Configurable options</h2>
-        <p>Customize the invoices according to your needs and preferences.</p>
-        <ul class="list-unstyled mt-2">
-          <li>Upload your company logo</li>
-          <li>Set payment terms & overdue charges</li>
-          <li>Set up tax rates</li>
+    <div id="configurable" class="grid md:grid-cols-2 gap-8 items-center mt-20">
+      <div>
+        <h2 class="text-3xl font-bold mb-4">Configurable invoicing options</h2>
+        <p class="text-gray-700 mb-4">Customize the invoices according to your needs and preferences.</p>
+        <ul class="space-y-2 text-gray-700">
+          <li>• Upload your company logo</li>
+          <li>• Set payment terms & overdue charges</li>
+          <li>• Set up tax rates</li>
         </ul>
       </div>
-      <div class="col-sm-6">
-        <img src="screenshots/settings.png" class="img-fluid" alt="Invoice settings" />
+      <div>
+        <img src="screenshots/settings.png" class="w-full rounded-lg" alt="Invoice settings" />
       </div>
     </div>
   </div>

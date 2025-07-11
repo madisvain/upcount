@@ -1,15 +1,8 @@
 @import 'tailwindcss';
+@plugin '@tailwindcss/typography';
 
 body {
   color: #222;
   font-family: 'Lato', sans-serif;
   background-color: #f2f5f6;
-}
-
-nav.navbar-dark {
-  background-color: #333f51;
-}
-
-.blockquote {
-  font-size: 0.8rem;
 }

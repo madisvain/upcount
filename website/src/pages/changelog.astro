@@ -1,0 +1,29 @@
+---
+import Layout from "../layouts/main.astro";
+import fs from "fs";
+import path from "path";
+import { marked } from "marked";
+
+// Read the CHANGELOG.md file
+const changelogPath = path.join(process.cwd(), "..", "CHANGELOG.md");
+const changelogContent = fs.readFileSync(changelogPath, "utf-8");
+
+// Remove the header section (everything before "## [Unreleased]")
+const changelogWithoutHeader = changelogContent.replace(/^# Changelog[\s\S]*?(?=## \[Unreleased\])/, "");
+
+// Remove the Unreleased section
+const changelogReleasedOnly = changelogWithoutHeader.replace(
+  /## \[Unreleased\][\s\S]*?(?=## \[[\d.]+(?:-[\w.]+)?\]|$)/,
+  ""
+);
+
+// Convert markdown to HTML using marked.parse()
+const changelogHtml = marked.parse(changelogReleasedOnly);
+---
+
+<Layout title="Upcount - Changelog">
+  <div class="max-w-4xl mx-auto px-4 py-8">
+    <h1 class="text-4xl font-bold mb-8">Changelog</h1>
+    <article class="prose prose-lg max-w-none" set:html={changelogHtml} />
+  </div>
+</Layout>
