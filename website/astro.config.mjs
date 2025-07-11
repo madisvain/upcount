@@ -8,8 +8,8 @@ export default defineConfig({
   site: "https://www.upcount.app",
   integrations: [sitemap()],
   build: {
-    // Inline CSS for critical above-the-fold styles
-    inlineStylesheets: "auto",
+    // Always inline CSS to prevent render blocking
+    inlineStylesheets: "always",
   },
   vite: {
     plugins: [tailwindcss()],

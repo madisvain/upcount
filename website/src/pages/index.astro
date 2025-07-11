@@ -1,10 +1,9 @@
 ---
 import Layout from "../layouts/main.astro";
 import Download from "../components/Download.astro";
-
 ---
 
-<Layout 
+<Layout
   title="Upcount - Best Free Invoicing & Time Tracking for Freelancers"
   description="Free invoicing and time tracking desktop app for freelancers and small businesses. Easy invoice management, project time tracking, and PDF generation. Download for Mac and Linux."
 >
@@ -41,7 +40,13 @@ import Download from "../components/Download.astro";
     <div class="flex justify-center mt-8">
       <div class="w-full max-w-4xl">
         <figure class="text-center">
-          <img src="/illustration.svg" class="w-full max-w-2xl mx-auto" alt="Upcount invoicing app interface showcase with invoice management features" />
+          <img
+            src="/illustration.svg"
+            class="w-full max-w-2xl mx-auto"
+            alt="Upcount invoicing app interface showcase with invoice management features"
+            fetchpriority="high"
+            loading="eager"
+          />
           <figcaption class="text-right mt-4">
             <blockquote class="pl-4 italic">
               <p class="mb-0">"Cats will outsmart dogs every time."</p>
@@ -81,7 +86,11 @@ import Download from "../components/Download.astro";
         </ul>
       </div>
       <div>
-        <img src="screenshots/invoices.png" class="w-full rounded-lg" alt="Upcount invoice list view showing draft, confirmed, paid, overdue and void invoice statuses" />
+        <img
+          src="screenshots/invoices.webp"
+          class="w-full rounded-lg"
+          alt="Upcount invoice list view showing draft, confirmed, paid, overdue and void invoice statuses"
+        />
       </div>
     </div>
     <div id="timetracking" class="grid md:grid-cols-2 gap-8 items-center mt-40">
@@ -102,12 +111,12 @@ import Download from "../components/Download.astro";
         </ul>
       </div>
       <div class="h-64 flex items-center justify-center">
-        <img src="screenshots/timetracking.png" class="w-full rounded-lg" alt="Upcount time tracking interface with project-based timer and time entry management" />
+        <img src="screenshots/timetracking.webp" class="w-full rounded-lg" alt="Time tracking" />
       </div>
     </div>
     <div id="user-experience" class="grid md:grid-cols-2 gap-8 items-center mt-20">
       <div>
-        <img src="screenshots/invoice-edit.png" class="w-full rounded-lg" alt="Upcount invoice creation and editing form with interactive fields and live preview" />
+        <img src="screenshots/invoice-edit.webp" class="w-full rounded-lg" alt="Invoice editing" />
       </div>
       <div class="text-right">
         <h2 class="text-3xl font-bold mb-4">Interactive and clear invoice form</h2>
@@ -129,7 +138,7 @@ import Download from "../components/Download.astro";
         </ul>
       </div>
       <div>
-        <img src="screenshots/settings.png" class="w-full rounded-lg" alt="Upcount settings panel with company logo upload, payment terms, and tax rate configuration" />
+        <img src="screenshots/settings.webp" class="w-full rounded-lg" alt="Invoice settings" />
       </div>
     </div>
   </div>
