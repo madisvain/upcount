@@ -1,0 +1,5 @@
+name = "upcount-website"
+compatibility_date = "2025-07-11"
+
+# Cloudflare Pages project configuration
+# pages_build_output_dir is automatically detected from your build output
