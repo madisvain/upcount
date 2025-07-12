@@ -9,11 +9,11 @@ export interface Props {
   url?: string;
 }
 
-const { 
-  title, 
+const {
+  title,
   description = "Free invoicing and time tracking app for freelancers and small businesses. Download for Mac and Linux.",
   image = "https://www.upcount.app/og-image.png",
-  url = "https://www.upcount.app" + Astro.url.pathname
+  url = "https://www.upcount.app" + Astro.url.pathname,
 } = Astro.props;
 
 const version = "v2.0.0-beta.8";
@@ -24,34 +24,41 @@ const version = "v2.0.0-beta.8";
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width" />
     <meta name="description" content={description} />
-    
+
     <!-- Open Graph / Facebook -->
     <meta property="og:type" content="website" />
     <meta property="og:url" content={url} />
     <meta property="og:title" content={title} />
     <meta property="og:description" content={description} />
     <meta property="og:image" content={image} />
-    
+
     <!-- Twitter -->
     <meta property="twitter:card" content="summary_large_image" />
     <meta property="twitter:url" content={url} />
     <meta property="twitter:title" content={title} />
     <meta property="twitter:description" content={description} />
     <meta property="twitter:image" content={image} />
-    
+
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-    
+
     <!-- Preload LCP image for faster loading -->
     <link rel="preload" href="/illustration.svg" as="image" />
-    
+
     <!-- Preconnect to Google Fonts domain for faster DNS resolution -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    
+
     <!-- Load Google Fonts asynchronously to prevent render blocking -->
-    <link rel="preload" href="https://fonts.googleapis.com/css?family=Lato:400,700&display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'" />
-    <noscript><link href="https://fonts.googleapis.com/css?family=Lato:400,700&display=swap" rel="stylesheet" /></noscript>
-    
+    <link
+      rel="preload"
+      href="https://fonts.googleapis.com/css?family=Lato:400,700&display=swap"
+      as="style"
+      onload="this.onload=null;this.rel='stylesheet'"
+    />
+    <noscript
+      ><link href="https://fonts.googleapis.com/css?family=Lato:400,700&display=swap" rel="stylesheet" /></noscript
+    >
+
     <title>{title}</title>
     <script src="https://analytics.ahrefs.com/analytics.js" data-key="9xJFNyrMjojzfd+xlDBqsg" async></script>
   </head>
@@ -59,13 +66,11 @@ const version = "v2.0.0-beta.8";
     <header>
       <nav class="flex items-center justify-between px-4 py-2">
         <a href="/" class="flex items-center text-2xl font-bold text-white">
-          <img src="/logo.svg" class="w-auto h-6" alt="Upcount - Invoicing Software" />
+          <img src="/logo.svg" width="90" height="24" alt="Upcount - Invoicing Software" />
         </a>
         <ul class="flex items-center space-x-4">
           <li>
-            <a href="/changelog" class="text-gray-700 hover:text-gray-900 font-medium">
-              Changelog
-            </a>
+            <a href="/changelog" class="text-gray-700 hover:text-gray-900 font-medium"> Changelog </a>
           </li>
           <li class="mt-1">
             <Download small={true} version={version} />
