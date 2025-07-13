@@ -1,10 +1,9 @@
 import { useState, useMemo } from "react";
-import { Card, Col, Row, Typography, Select, DatePicker, Table, Statistic, Button, Space, Input } from "antd";
-import { ClockCircleOutlined, StopOutlined, PlayCircleOutlined } from "@ant-design/icons";
+import { Card, Col, Row, Typography, Select, DatePicker, Table, Statistic, Button, Space } from "antd";
+import { ClockCircleOutlined } from "@ant-design/icons";
 import { Trans } from "@lingui/react/macro";
 import { t } from "@lingui/core/macro";
 import { useAtomValue } from "jotai";
-import { Link } from "react-router";
 import dayjs from "dayjs";
 import duration from "dayjs/plugin/duration";
 import isoWeek from "dayjs/plugin/isoWeek";
@@ -35,9 +34,14 @@ export default function TimeTrackingReports() {
   const [selectedClient, setSelectedClient] = useState<string>("all");
   const [groupByOption, setGroupByOption] = useState<"client" | "date" | "week">("client");
 
-  // Filter entries by date range and client
+  // Filter entries by date range and client, excluding active tracking entries
   const filteredEntries = useMemo(() => {
     return filter(timeEntries, (entry) => {
+      // Exclude entries that are still active (no end time)
+      if (!entry.endTime) {
+        return false;
+      }
+      
       const entryDate = dayjs(entry.startTime);
       const inDateRange = entryDate.isAfter(dateRange[0]) && entryDate.isBefore(dateRange[1]);
       const matchesClient = selectedClient === "all" || entry.clientId === selectedClient;
@@ -95,7 +99,7 @@ export default function TimeTrackingReports() {
           formattedDuration: formatDuration(totalSeconds),
         };
       }),
-      groupByOption === "date" ? "key" : [(item) => -item.duration]
+      groupByOption === "date" ? [(item) => -dayjs(item.key).valueOf()] : [(item) => -item.duration]
     );
   }, [filteredEntries, groupByOption, clients]);
 
@@ -148,11 +152,9 @@ export default function TimeTrackingReports() {
         </Col>
         <Col span={12} style={{ display: "flex", justifyContent: "flex-end" }}>
           <Space style={{ alignItems: "start" }}>
-            <Link to="/time-tracking" state={{ timeEntryModal: true }}>
-              <Button type="default" style={{ marginBottom: 10 }}>
-                <Trans>Export</Trans>
-              </Button>
-            </Link>
+            <Button type="default" style={{ marginBottom: 10 }} disabled>
+              <Trans>Export</Trans>
+            </Button>
           </Space>
         </Col>
       </Row>
@@ -201,11 +203,7 @@ export default function TimeTrackingReports() {
       <Row gutter={[16, 16]} style={{ marginBottom: 24 }}>
         <Col xs={24} sm={12} md={6}>
           <Card>
-            <Statistic
-              title={<Trans>Total time</Trans>}
-              value={formatDuration(totalDuration)}
-              valueStyle={{ color: "#1890ff" }}
-            />
+            <Statistic title={<Trans>Total time</Trans>} value={formatDuration(totalDuration)} />
           </Card>
         </Col>
         <Col xs={24} sm={12} md={6}>
