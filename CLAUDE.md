@@ -39,7 +39,7 @@ yarn extract
 ## File Structure
 - `src/routes/` - Main application pages
 - `src/components/` - Reusable React components
-- `src/atoms.tsx` - Jotai state atoms and database operations
+- `src/atoms/` - Jotai state atoms and database operations
 - `src/layouts/base.tsx` - Main application layout
 - `src/utils/` - Utility functions including lingui.tsx for i18n
 - `src-tauri/` - Rust backend code and SQLite migrations

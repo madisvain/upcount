@@ -1,34 +1,36 @@
-import { useEffect, useState, useMemo } from "react";
+import { useEffect, useState } from "react";
 import { Badge, Button, Space } from "antd";
-import { useAtomValue, useSetAtom } from "jotai";
+import { useAtomValue } from "jotai";
+import { atom } from "jotai";
 import { useNavigate } from "react-router";
 import dayjs from "dayjs";
 import duration from "dayjs/plugin/duration";
+import { invoke } from "@tauri-apps/api/core";
 
-import { runningTimerAtom, timeEntriesAtom, timeEntryIdAtom } from "src/atoms/time-tracking";
+import { runningTimerAtom } from "src/atoms/time-tracking";
 
 dayjs.extend(duration);
 
+// Dedicated atom for the timer component that fetches based on runningTimerAtom
+const timerEntryAtom = atom(async (get) => {
+  const runningTimerId = get(runningTimerAtom);
+  if (!runningTimerId) return null;
+
+  try {
+    const timeEntry = await invoke<any>("get_time_entry", { timeEntryId: runningTimerId });
+    if (!timeEntry) return null;
+    return timeEntry;
+  } catch (error) {
+    console.error("Failed to fetch timer entry:", error);
+    return null;
+  }
+});
+
 const Timer = () => {
   const runningTimer = useAtomValue(runningTimerAtom);
-  const timeEntries = useAtomValue(timeEntriesAtom);
-  const setTimeEntryId = useSetAtom(timeEntryIdAtom);
+  const timeEntry = useAtomValue(timerEntryAtom);
   const [currentTime, setCurrentTime] = useState(dayjs());
   const navigate = useNavigate();
-
-  // Get the running time entry from the entries list
-  const timeEntry = useMemo(() => {
-    if (!runningTimer) return null;
-    return timeEntries.find(entry => entry.id === runningTimer);
-  }, [runningTimer, timeEntries]);
-
-
-  // Set the timeEntryId when runningTimer changes
-  useEffect(() => {
-    if (runningTimer) {
-      setTimeEntryId(runningTimer);
-    }
-  }, [runningTimer, setTimeEntryId]);
 
   // Update current time every second for running timer
   useEffect(() => {

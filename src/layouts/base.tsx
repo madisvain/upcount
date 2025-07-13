@@ -15,6 +15,7 @@ import {
   DatabaseOutlined,
   ClockCircleOutlined,
   BarChartOutlined,
+  ProjectOutlined,
 } from "@ant-design/icons";
 import { Trans } from "@lingui/react/macro";
 import { useLingui } from "@lingui/react";
@@ -130,6 +131,15 @@ export default function BaseLayout() {
                   </Link>
                 ),
                 key: "clients",
+              },
+              {
+                icon: <ProjectOutlined />,
+                label: (
+                  <Link to="/projects">
+                    <Trans>Projects</Trans>
+                  </Link>
+                ),
+                key: "projects",
               },
               {
                 icon: <FieldTimeOutlined />,

@@ -18,3 +18,6 @@ export * from "./tax-rate";
 
 // Time tracking atoms
 export * from "./time-tracking";
+
+// Project atoms
+export * from "./project";

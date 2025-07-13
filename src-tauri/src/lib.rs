@@ -79,6 +79,10 @@ pub fn run() {
       commands::create_time_entry,
       commands::update_time_entry,
       commands::delete_time_entry,
+      commands::get_projects,
+      commands::get_project,
+      commands::create_project,
+      commands::update_project,
     ])
     .run(tauri::generate_context!())
     .map_err(|e| {

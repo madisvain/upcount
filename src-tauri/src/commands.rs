@@ -4,7 +4,8 @@ use crate::database::{
     Organization, CreateOrganizationRequest, UpdateOrganizationRequest,
     TaxRate, CreateTaxRateRequest, UpdateTaxRateRequest,
     Tag, CreateTagRequest, UpdateTagRequest,
-    TimeEntry, CreateTimeEntryRequest, UpdateTimeEntryRequest
+    TimeEntry, CreateTimeEntryRequest, UpdateTimeEntryRequest,
+    Project, CreateProjectRequest, UpdateProjectRequest
 };
 use tauri::{AppHandle, Manager, State};
 use chrono::{DateTime, Utc};
@@ -406,4 +407,43 @@ pub async fn delete_time_entry(time_entry_id: String, db: State<'_, Database>) -
     db.delete_time_entry(&time_entry_id)
         .await
         .map_err(|e| handle_db_error(e, "delete_time_entry"))
+}
+
+// Project commands
+#[tauri::command]
+pub async fn get_projects(
+    organization_id: String,
+    db: State<'_, Database>,
+) -> Result<Vec<Project>, String> {
+    db.get_projects(&organization_id)
+        .await
+        .map_err(|e| handle_db_error(e, "get_projects"))
+}
+
+#[tauri::command]
+pub async fn get_project(project_id: String, db: State<'_, Database>) -> Result<Option<Project>, String> {
+    db.get_project(&project_id)
+        .await
+        .map_err(|e| handle_db_error(e, "get_project"))
+}
+
+#[tauri::command]
+pub async fn create_project(
+    project: CreateProjectRequest,
+    db: State<'_, Database>,
+) -> Result<Project, String> {
+    db.create_project(project)
+        .await
+        .map_err(|e| handle_db_error(e, "create_project"))
+}
+
+#[tauri::command]
+pub async fn update_project(
+    project_id: String,
+    updates: UpdateProjectRequest,
+    db: State<'_, Database>,
+) -> Result<Project, String> {
+    db.update_project(&project_id, updates)
+        .await
+        .map_err(|e| handle_db_error(e, "update_project"))
 }

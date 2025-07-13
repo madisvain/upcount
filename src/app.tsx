@@ -29,6 +29,7 @@ import { dynamicActivate } from "src/utils/lingui";
 import { organizationIdAtom, organizationsAtom, setOrganizationsAtom } from "src/atoms/organization";
 import BaseLayout from "src/layouts/base";
 import Clients from "src/routes/clients";
+import Projects from "src/routes/projects";
 import Index from "src/routes/index";
 import Invoices from "src/routes/invoices";
 import InvoiceDetails from "src/routes/invoices/details.tsx";
@@ -119,6 +120,9 @@ const AppContent = () => {
           </Route>
           <Route path="/clients" element={<BaseLayout />}>
             <Route index element={<Clients />} />
+          </Route>
+          <Route path="/projects" element={<BaseLayout />}>
+            <Route index element={<Projects />} />
           </Route>
           <Route path="/time-tracking" element={<BaseLayout />}>
             <Route path="" element={<TimeTracking />} />
