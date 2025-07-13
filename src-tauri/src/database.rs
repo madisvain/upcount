@@ -382,6 +382,9 @@ pub struct Project {
     #[serde(rename = "clientId")]
     #[sqlx(rename = "clientId")]
     pub client_id: Option<String>,
+    #[serde(rename = "clientName")]
+    #[sqlx(rename = "clientName")]
+    pub client_name: Option<String>,
     #[serde(rename = "startDate")]
     #[sqlx(rename = "startDate")]
     pub start_date: Option<i64>,
@@ -1139,7 +1142,11 @@ impl Database {
     // Project methods
     pub async fn get_projects(&self, organization_id: &str) -> Result<Vec<Project>, sqlx::Error> {
         let projects = sqlx::query_as::<_, Project>(
-            "SELECT * FROM projects WHERE organizationId = ? ORDER BY name ASC"
+            "SELECT p.id, p.organizationId, p.name, p.clientId, c.name as clientName, p.startDate, p.endDate, p.archivedAt, p.createdAt 
+             FROM projects p 
+             LEFT JOIN clients c ON p.clientId = c.id 
+             WHERE p.organizationId = ? 
+             ORDER BY p.name ASC"
         )
         .bind(organization_id)
         .fetch_all(&self.pool)

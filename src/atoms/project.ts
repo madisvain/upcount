@@ -13,6 +13,7 @@ export interface Project {
   organizationId: string;
   name: string;
   clientId?: string;
+  clientName?: string;
   startDate?: number;
   endDate?: number;
   archivedAt?: number;

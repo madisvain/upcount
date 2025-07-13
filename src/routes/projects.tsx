@@ -1,6 +1,6 @@
 import { useEffect } from "react";
 import { Link, Outlet, useLocation, useNavigate } from "react-router";
-import { Button, Col, Input, Space, Table, Typography, Row, Tag, Checkbox } from "antd";
+import { Button, Col, Input, Space, Table, Typography, Row, Checkbox } from "antd";
 import { atom, useAtom, useAtomValue, useSetAtom } from "jotai";
 import { Trans } from "@lingui/react/macro";
 import { t } from "@lingui/core/macro";
@@ -11,14 +11,9 @@ import get from "lodash/get";
 import includes from "lodash/includes";
 import some from "lodash/some";
 import toString from "lodash/toString";
-import keyBy from "lodash/keyBy";
 import dayjs from "dayjs";
 
-import { 
-  projectsAtom,
-  setProjectsAtom
-} from "src/atoms/project";
-import { clientsAtom } from "src/atoms/client";
+import { projectsAtom, setProjectsAtom } from "src/atoms/project";
 import ProjectForm from "src/components/projects/form";
 
 const { Title } = Typography;
@@ -30,8 +25,6 @@ const Projects = () => {
   const location = useLocation();
   const navigate = useNavigate();
   const projects = useAtomValue(projectsAtom);
-  const clients = useAtomValue(clientsAtom);
-  const clientsById = keyBy(clients, 'id');
   const setProjects = useSetAtom(setProjectsAtom);
   const [search, setSearch] = useAtom(searchAtom);
 
@@ -43,14 +36,10 @@ const Projects = () => {
 
   const searchProjects = () => {
     return filter(projects, (project: any) => {
-      const client = clientsById[project.clientId];
-      return some(
-        ["name"],
-        (field) => {
-          const value = get(project, field);
-          return includes(toString(value).toLowerCase(), search.toLowerCase());
-        }
-      ) || (client && includes(toString(client.name).toLowerCase(), search.toLowerCase()));
+      return some(["name", "clientName"], (field) => {
+        const value = get(project, field);
+        return includes(toString(value).toLowerCase(), search.toLowerCase());
+      });
     });
   };
 
@@ -68,11 +57,7 @@ const Projects = () => {
       dataIndex: "name",
       key: "name",
       render: (text: string, record: any) => (
-        <Button 
-          type="link" 
-          onClick={() => handleEditProject(record.id)}
-          style={{ padding: 0, height: "auto" }}
-        >
+        <Button type="link" onClick={() => handleEditProject(record.id)} style={{ padding: 0, height: "auto" }}>
           {text}
         </Button>
       ),
@@ -81,11 +66,10 @@ const Projects = () => {
       title: <Trans>Client</Trans>,
       dataIndex: "clientId",
       key: "client",
-      render: (clientId: string) => {
-        const client = clientsById[clientId];
-        return client ? (
+      render: (clientId: string, record: any) => {
+        return record.clientName ? (
           <Link to={`/clients`} state={{ clientModal: true, clientId }}>
-            {client.name}
+            {record.clientName}
           </Link>
         ) : (
           <span style={{ color: "#999" }}>
@@ -100,7 +84,7 @@ const Projects = () => {
       render: (record: any) => {
         const startDate = record.startDate ? dayjs.unix(record.startDate).format("MMM D, YYYY") : null;
         const endDate = record.endDate ? dayjs.unix(record.endDate).format("MMM D, YYYY") : null;
-        
+
         if (startDate && endDate) {
           return `${startDate} - ${endDate}`;
         } else if (startDate) {
@@ -118,12 +102,23 @@ const Projects = () => {
       width: 80,
       align: "center" as const,
       render: (record: any) => {
-        return (
-          <Checkbox 
-            checked={!!record.archivedAt} 
-            disabled 
-          />
-        );
+        return <Checkbox checked={!!record.archivedAt} disabled />;
+      },
+      filters: [
+        { text: <Trans>Active</Trans>, value: "active" },
+        { text: <Trans>Archived</Trans>, value: "archived" },
+      ],
+      filterMultiple: false,
+      filterResetToDefaultFilteredValue: true,
+      defaultFilteredValue: ["active"],
+      onFilter: (value: any, record: any) => {
+        const isArchived = !!record.archivedAt;
+        if (value === "active") {
+          return !isArchived;
+        } else if (value === "archived") {
+          return isArchived;
+        }
+        return false;
       },
     },
   ];
