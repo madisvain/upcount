@@ -36,7 +36,7 @@ function SettingsInvoice() {
 
     const counter = (organization?.invoiceNumberCounter || 0) + 1;
     // Use a pseudo client code for preview
-    return generateInvoiceNumber(template, counter, new Date(), 'AB');
+    return generateInvoiceNumber(template, counter, new Date(), "AB");
   };
 
   const invoiceNumberPreview = getPreview(invoiceFormat);
@@ -58,13 +58,9 @@ function SettingsInvoice() {
     reader.readAsDataURL(data.file);
   };
 
-  console.log("Organization settings:", organization);
-  console.log("Organization invoiceNumberFormat:", organization?.invoiceNumberFormat);
-  console.log("Form values:", form.getFieldsValue());
-
   return (
-    !isEmpty(organization) && (
-      <>
+    <>
+      {!isEmpty(organization) && (
         <Form form={form} layout="vertical" onFinish={onSubmit} initialValues={organization}>
           <Row>
             <Col span={12}>
@@ -180,18 +176,18 @@ function SettingsInvoice() {
                 {showVariables ? <CaretDownOutlined /> : <CaretRightOutlined />}
                 <Trans>Show variables</Trans>
               </Button>
-              
+
               <Form.Item
                 label={t`Invoice Number Counter`}
                 name="invoiceNumberCounter"
                 rules={[
                   { required: true, message: t`This field is required!` },
-                  { type: 'number', min: 0, message: t`Counter must be 0 or greater` }
+                  { type: "number", min: 0, message: t`Counter must be 0 or greater` },
                 ]}
                 style={{ marginTop: 16 }}
                 help={t`Next invoice will use this number + 1`}
               >
-                <InputNumber min={0} style={{ width: '100%' }} />
+                <InputNumber min={0} style={{ width: "100%" }} />
               </Form.Item>
             </Col>
             <Col span={12}>
@@ -279,8 +275,8 @@ function SettingsInvoice() {
             </Col>
           </Row>
         </Form>
-      </>
-    )
+      )}
+    </>
   );
 }
 
