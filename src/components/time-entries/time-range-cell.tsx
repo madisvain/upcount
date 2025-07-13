@@ -12,6 +12,9 @@ const TimeRangeCell: React.FC<TimeRangeCellProps> = ({ record, handleSave }) => 
   const [open, setOpen] = useState(false);
   const [form] = Form.useForm();
 
+  // Generate unique form name to avoid conflicts
+  const formName = `time-range-${record.id}`;
+
   const formatTimeRange = (startTime: number, endTime?: number) => {
     const start = dayjs(startTime);
     if (!endTime) {
@@ -50,6 +53,7 @@ const TimeRangeCell: React.FC<TimeRangeCellProps> = ({ record, handleSave }) => 
     <div style={{ width: 280 }}>
       <Form
         form={form}
+        name={formName}
         layout="vertical"
         onFinish={handleSubmit}
         initialValues={{
