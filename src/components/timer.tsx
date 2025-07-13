@@ -1,20 +1,26 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, useMemo } from "react";
 import { Badge, Button, Space } from "antd";
 import { useAtomValue, useSetAtom } from "jotai";
 import { useNavigate } from "react-router";
 import dayjs from "dayjs";
 import duration from "dayjs/plugin/duration";
 
-import { runningTimerAtom, timeEntryAtom, timeEntryIdAtom } from "src/atoms/time-tracking";
+import { runningTimerAtom, timeEntriesAtom, timeEntryIdAtom } from "src/atoms/time-tracking";
 
 dayjs.extend(duration);
 
 const Timer = () => {
   const runningTimer = useAtomValue(runningTimerAtom);
-  const timeEntry = useAtomValue(timeEntryAtom);
+  const timeEntries = useAtomValue(timeEntriesAtom);
   const setTimeEntryId = useSetAtom(timeEntryIdAtom);
   const [currentTime, setCurrentTime] = useState(dayjs());
   const navigate = useNavigate();
+
+  // Get the running time entry from the entries list
+  const timeEntry = useMemo(() => {
+    if (!runningTimer) return null;
+    return timeEntries.find(entry => entry.id === runningTimer);
+  }, [runningTimer, timeEntries]);
 
 
   // Set the timeEntryId when runningTimer changes
@@ -68,7 +74,7 @@ const Timer = () => {
         <Badge status="processing" color="red" />
         <span style={{ fontWeight: "bold", fontFamily: "monospace" }}>
           {timeEntry && timeEntry.startTime ? 
-            formatDuration(Math.max(0, Math.floor((currentTime.valueOf() - timeEntry.startTime.valueOf()) / 1000))) : 
+            formatDuration(Math.max(0, Math.floor((currentTime.valueOf() - (typeof timeEntry.startTime === 'number' ? timeEntry.startTime : dayjs(timeEntry.startTime).valueOf())) / 1000))) : 
             "00:00:00"}
         </span>
       </Space>

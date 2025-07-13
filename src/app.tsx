@@ -37,7 +37,8 @@ import SettingsInvoice from "src/routes/settings/invoice";
 import SettingsOrganization from "src/routes/settings/organization";
 import SettingsTaxRates from "src/routes/settings/tax-rates";
 import SettingsBackup from "src/routes/settings/backup";
-import TimeTracking from "src/routes/time-tracking";
+import TimeTracking from "src/routes/time-tracking/index";
+import TimeTrackingReports from "src/routes/time-tracking/reports";
 
 // Components
 import Loading from "src/components/loading";
@@ -121,6 +122,7 @@ const AppContent = () => {
           </Route>
           <Route path="/time-tracking" element={<BaseLayout />}>
             <Route path="" element={<TimeTracking />} />
+            <Route path="reports" element={<TimeTrackingReports />} />
           </Route>
           <Route path="/settings" element={<BaseLayout />}>
             <Route index element={<Navigate to="/invoices/organization" />} />

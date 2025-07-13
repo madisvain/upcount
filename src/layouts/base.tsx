@@ -13,6 +13,8 @@ import {
   PlusOutlined,
   FieldTimeOutlined,
   DatabaseOutlined,
+  ClockCircleOutlined,
+  BarChartOutlined,
 } from "@ant-design/icons";
 import { Trans } from "@lingui/react/macro";
 import { useLingui } from "@lingui/react";
@@ -131,12 +133,28 @@ export default function BaseLayout() {
               },
               {
                 icon: <FieldTimeOutlined />,
-                label: (
-                  <Link to="/time-tracking">
-                    <Trans>Time tracking</Trans>
-                  </Link>
-                ),
+                label: <Trans>Time tracking</Trans>,
                 key: "time-tracking",
+                children: [
+                  {
+                    icon: <ClockCircleOutlined />,
+                    label: (
+                      <Link to="/time-tracking">
+                        <Trans>Timer</Trans>
+                      </Link>
+                    ),
+                    key: "time-tracking.timer",
+                  },
+                  {
+                    icon: <BarChartOutlined />,
+                    label: (
+                      <Link to="/time-tracking/reports">
+                        <Trans>Reports</Trans>
+                      </Link>
+                    ),
+                    key: "time-tracking.reports",
+                  },
+                ],
               },
               {
                 icon: <SettingOutlined />,
