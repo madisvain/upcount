@@ -1,4 +1,4 @@
-use crate::database::{
+use crate::db::{
     Client, CreateClientRequest, Database, UpdateClientRequest,
     Invoice, InvoiceLineItem, CreateInvoiceRequest, UpdateInvoiceRequest,
     Organization, CreateOrganizationRequest, UpdateOrganizationRequest,

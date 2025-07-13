@@ -2,7 +2,7 @@
 #![cfg_attr(not(debug_assertions), windows_subsystem = "windows")]
 
 mod commands;
-mod database;
+mod db;
 
 use tauri::Manager;
 
@@ -36,7 +36,7 @@ pub fn run() {
       println!("Initializing database at: {}", db_url);
       
       let db = tauri::async_runtime::block_on(async move {
-        database::Database::new(&db_url).await
+        db::Database::new(&db_url).await
           .map_err(|e| format!("Failed to initialize database at '{}': {}", db_url, e))
       })?;
       
