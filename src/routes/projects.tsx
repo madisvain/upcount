@@ -68,20 +68,13 @@ const Projects = () => {
       dataIndex: "name",
       key: "name",
       render: (text: string, record: any) => (
-        <Space>
-          <Button 
-            type="link" 
-            onClick={() => handleEditProject(record.id)}
-            style={{ padding: 0, height: "auto" }}
-          >
-            {text}
-          </Button>
-          {record.archivedAt && (
-            <Tag color="orange">
-              <Trans>Archived</Trans>
-            </Tag>
-          )}
-        </Space>
+        <Button 
+          type="link" 
+          onClick={() => handleEditProject(record.id)}
+          style={{ padding: 0, height: "auto" }}
+        >
+          {text}
+        </Button>
       ),
     },
     {
@@ -122,14 +115,14 @@ const Projects = () => {
     {
       title: <Trans>Archived</Trans>,
       key: "archived",
+      width: 80,
+      align: "center" as const,
       render: (record: any) => {
         return (
-          <div style={{ textAlign: "center" }}>
-            <Checkbox 
-              checked={!!record.archivedAt} 
-              disabled 
-            />
-          </div>
+          <Checkbox 
+            checked={!!record.archivedAt} 
+            disabled 
+          />
         );
       },
     },

@@ -23,6 +23,7 @@ import some from "lodash/some";
 import toString from "lodash/toString";
 
 import { clientsAtom, setClientsAtom } from "src/atoms/client";
+import { projectsAtom, setProjectsAtom } from "src/atoms/project";
 import {
   timeEntriesAtom,
   setTimeEntriesAtom,
@@ -87,8 +88,8 @@ const EditableCell: React.FC<React.PropsWithChildren<EditableCellProps>> = ({
   useEffect(() => {
     if (editing) {
       inputRef.current?.focus();
-      // Auto-open dropdown for client field
-      if (dataIndex === 'clientId') {
+      // Auto-open dropdown for select fields
+      if (dataIndex === 'clientId' || dataIndex === 'projectId') {
         setSelectOpen(true);
       }
     } else {
@@ -140,6 +141,17 @@ const EditableCell: React.FC<React.PropsWithChildren<EditableCellProps>> = ({
             allowClear
             placeholder="Select client"
           />
+        ) : dataIndex === 'projectId' ? (
+          <Select
+            ref={inputRef}
+            open={selectOpen}
+            onOpenChange={setSelectOpen}
+            onBlur={save}
+            onChange={save}
+            options={options}
+            allowClear
+            placeholder="Select project"
+          />
         ) : (
           <Input ref={inputRef} onPressEnter={handlePressEnter} onBlur={save} />
         )}
@@ -170,6 +182,8 @@ const TimeTracking = () => {
   const [runningTimer, setRunningTimer] = useAtom(runningTimerAtom);
   const clients = useAtomValue(clientsAtom);
   const setClients = useSetAtom(setClientsAtom);
+  const projects = useAtomValue(projectsAtom);
+  const setProjects = useSetAtom(setProjectsAtom);
   const setTimeEntry = useSetAtom(timeEntryAtom);
   const setTimeEntryId = useSetAtom(timeEntryIdAtom);
   const updateTimeEntryDirectly = useSetAtom(updateTimeEntryDirectlyAtom);
@@ -180,8 +194,9 @@ const TimeTracking = () => {
     if (location.pathname === "/time-tracking") {
       setTimeEntries();
       setClients();
+      setProjects();
     }
-  }, [location, setTimeEntries, setClients]);
+  }, [location, setTimeEntries, setClients, setProjects]);
 
   // Update current time every second for running timer
   useEffect(() => {
@@ -196,7 +211,7 @@ const TimeTracking = () => {
   // Search function
   const searchTimeEntries = () => {
     return filter(timeEntries, (entry: any) => {
-      return some(["description", "clientName"], (field) => {
+      return some(["description", "clientName", "projectName"], (field) => {
         const value = get(entry, field);
         return includes(toString(value).toLowerCase(), search.toLowerCase());
       });
@@ -213,6 +228,7 @@ const TimeTracking = () => {
       endTime: null,
       duration: 0,
       clientId: null,
+      projectId: null,
       tags: [],
       isBillable: true,
       hourlyRate: null,
@@ -288,6 +304,30 @@ const TimeTracking = () => {
       // Also update the clientName for display
       const client = clients.find(c => c.id === row.clientId);
       updates.clientName = client?.name || null;
+      
+      // If client is changed, check if current project belongs to this client
+      if (row.projectId) {
+        const currentProject = projects.find(p => p.id === row.projectId);
+        if (currentProject && currentProject.clientId !== row.clientId) {
+          // Clear project if it doesn't belong to the new client
+          updates.projectId = null;
+          updates.projectName = null;
+        }
+      }
+    }
+    
+    if (row.projectId !== original?.projectId) {
+      updates.projectId = row.projectId;
+      // Also update the projectName for display
+      const project = projects.find(p => p.id === row.projectId);
+      updates.projectName = project?.name || null;
+      
+      // Auto-select client when project is selected
+      if (row.projectId && project?.clientId && row.clientId !== project.clientId) {
+        updates.clientId = project.clientId;
+        const client = clients.find(c => c.id === project.clientId);
+        updates.clientName = client?.name || null;
+      }
     }
 
     // Handle time range updates
@@ -330,6 +370,19 @@ const TimeTracking = () => {
         value: client.id,
       })),
       onFilter: (value: any, record: any) => record.clientId === value,
+    },
+    {
+      title: <Trans>Project</Trans>,
+      dataIndex: "projectId",
+      key: "projectId",
+      editable: true,
+      inputType: 'select',
+      render: (_: string, record: any) => record.projectName || "-",
+      filters: projects.map((project: any) => ({
+        text: project.name,
+        value: project.id,
+      })),
+      onFilter: (value: any, record: any) => record.projectId === value,
     },
     {
       title: <Trans>Time Range</Trans>,
@@ -464,6 +517,11 @@ const TimeTracking = () => {
       options = clients.map((client: any) => ({
         value: client.id,
         label: client.name,
+      }));
+    } else if (col.inputType === 'select' && col.dataIndex === 'projectId') {
+      options = projects.map((project: any) => ({
+        value: project.id,
+        label: project.name,
       }));
     }
     

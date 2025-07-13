@@ -10,6 +10,7 @@ import get from "lodash/get";
 import dayjs from "dayjs";
 
 import { clientsAtom } from "src/atoms/client";
+import { projectsAtom } from "src/atoms/project";
 import { 
   timeEntryIdAtom, 
   timeEntryAtom, 
@@ -30,6 +31,7 @@ const TimeEntryForm = () => {
   const [submitting, setSubmitting] = useAtom(submittingAtom);
   const deleteTimeEntry = useSetAtom(deleteTimeEntryAtom);
   const clients = useAtomValue(clientsAtom);
+  const projects = useAtomValue(projectsAtom);
   const setTags = useSetAtom(setTagsAtom);
 
   const isEditing = Boolean(timeEntryId);
@@ -161,15 +163,55 @@ const TimeEntryForm = () => {
             <Input.TextArea rows={3} placeholder={t`What are you working on?`} />
           </Form.Item>
 
-          <Form.Item name="clientId" label={<Trans>Client</Trans>}>
-            <Select placeholder={t`Select client (optional)`} allowClear>
-              {clients.map((client: any) => (
-                <Select.Option key={client.id} value={client.id}>
-                  {client.name}
-                </Select.Option>
-              ))}
-            </Select>
-          </Form.Item>
+          <Row gutter={16}>
+            <Col span={12}>
+              <Form.Item name="clientId" label={<Trans>Client</Trans>}>
+                <Select 
+                  placeholder={t`Select client (optional)`} 
+                  allowClear
+                  onChange={(clientId) => {
+                    // If client is changed, check if current project belongs to this client
+                    const currentProjectId = form.getFieldValue('projectId');
+                    if (currentProjectId) {
+                      const currentProject = projects.find(p => p.id === currentProjectId);
+                      if (currentProject && currentProject.clientId !== clientId) {
+                        // Clear project if it doesn't belong to the new client
+                        form.setFieldValue('projectId', null);
+                      }
+                    }
+                  }}
+                >
+                  {clients.map((client: any) => (
+                    <Select.Option key={client.id} value={client.id}>
+                      {client.name}
+                    </Select.Option>
+                  ))}
+                </Select>
+              </Form.Item>
+            </Col>
+            <Col span={12}>
+              <Form.Item name="projectId" label={<Trans>Project</Trans>}>
+                <Select 
+                  placeholder={t`Select project (optional)`} 
+                  allowClear
+                  onChange={(projectId) => {
+                    if (projectId) {
+                      const selectedProject = projects.find(p => p.id === projectId);
+                      if (selectedProject?.clientId) {
+                        form.setFieldValue('clientId', selectedProject.clientId);
+                      }
+                    }
+                  }}
+                >
+                  {projects.map((project: any) => (
+                    <Select.Option key={project.id} value={project.id}>
+                      {project.name}
+                    </Select.Option>
+                  ))}
+                </Select>
+              </Form.Item>
+            </Col>
+          </Row>
 
           <Row gutter={16}>
             <Col span={12}>
