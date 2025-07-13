@@ -243,12 +243,13 @@ const TimeTracking = () => {
           const endTime = dayjs().valueOf();
           const duration = Math.floor((endTime - runningEntry.startTime) / 1000);
 
-          // Update the entry with end time and duration
-          setTimeEntryId(runningEntry.id);
-          await setTimeEntry({
-            ...runningEntry,
-            endTime,
-            duration,
+          // Update the entry directly without triggering the form
+          await updateTimeEntryDirectly({
+            id: runningEntry.id,
+            updates: {
+              endTime,
+              duration,
+            }
           });
 
           // Refresh the list
