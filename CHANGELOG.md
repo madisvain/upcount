@@ -7,6 +7,31 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [2.0.0-beta.9] - 2025-07-14
+
+### Added
+- Complete project management system with create, edit, archive, and search functionality
+- Project association to time tracking entries with intelligent client/project selection
+- Time tracking reports page with filtering, grouping, and export capabilities
+- Project status management (Active/Archived) with visual indicators
+- Complete translations for all missing strings (400+ new translations across 8 languages)
+- Comprehensive SEO improvements for the new Astro-based website
+- Platform-specific download links and sitemap integration for better discoverability
+
+### Changed
+- Refactored database.rs into modular structure using modern Rust 2018+ patterns
+- Improved time tracking reports with enhanced filtering and user interface
+- Optimized website performance by fixing render blocking requests and LCP image loading
+- Enhanced navigation with dedicated reports section
+- Updated default window height for better user experience
+
+### Fixed
+- Projects page client display now properly fetches and shows client names using SQL JOIN
+- TimeEntryForm suspension error when stopping timer resolved
+- Form conflicts in TimeRangeCell component eliminated
+- Memory allocation issues in development builds
+- Invoice settings component cleanup and optimization
+
 ## [2.0.0-beta.8] - 2025-07-08
 
 ### Added

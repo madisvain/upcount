@@ -5,9 +5,9 @@ Happy to announce the ongoing development of Upcount with significantly improved
 
 NB! It's not backwards compatible with Upcount version 1 and will require a new installation. The beta version is backward compatible with alpha releases.
 
-## 🚀 [Upcount 2.0.0-beta.6](https://github.com/madisvain/upcount/releases/latest)
+## 🚀 [Upcount 2.0.0-beta.9](https://github.com/madisvain/upcount/releases/latest)
 
-The latest beta version includes major new features like **initial time tracking system**, **complete multi-language support**, and **invoice duplication**. The beta version is now available on the main branch of the repository.
+The latest beta version includes major new features like **complete project management system**, **advanced time tracking with reports**, **comprehensive multi-language support**, and **invoice duplication**. The beta version is now available on the main branch of the repository.
 
 The new version is built with
 
@@ -35,14 +35,16 @@ Upcount is available for Mac, Linux & Windows and can be downloaded from Github 
 
 # Features
 * 🎯 Totally free & Open source
-* 📄 Invoicing
-* ⏱️ Time tracking (beta)
+* 📄 Invoicing with automatic numbering
+* ⏱️ Complete time tracking with timer and reports
+* 📊 Project management with status tracking
 * 👥 Client management
 * 👾 Use your own logo
 * 🍭 Customizable settings
 * 🎭 Cross platform
 * ⚡️ Offline-first for privacy
-* 🌐 Internationalized
+* 🌐 Internationalized (9 languages)
+* 💾 Backup and restore functionality
 * ©️ [GPLv3 License](https://github.com/madisvain/upcount/blob/main/LICENSE)
 
 # Languages
@@ -61,11 +63,10 @@ If you are interested in adding a language translation to Upcount [please open a
 For developers the following commands are needed to add a language.
 
 ```shell
-npm run add-locale de
-npm run extract
+yarn extract
 ```
 
-_`de` must be replaced with the language code you are adding._
+Then manually create the new locale file by copying an existing .po file in the locales folder and translating the strings.
 
 The translations are stored in .po files under [locales](https://github.com/madisvain/upcount/tree/main/src/locales) folder. A cross platform app named [POEdit](https://poedit.net/) could be used for translating them.
 
