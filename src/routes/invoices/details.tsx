@@ -101,7 +101,7 @@ const InvoiceDetails: React.FC = () => {
       currency: organization.currency,
       date: dayjs(),
       dueDate: organization.due_days ? dayjs().add(organization.due_days, "day") : null,
-      lineItems: [{ quantity: 1, taxRate: get(find(taxRates, { default: 1 }), "id") }],
+      lineItems: [{ quantity: 1, taxRate: get(find(taxRates, { isDefault: 1 }), "id") }],
       customerNotes: organization.customerNotes,
       number: isNew ? nextInvoiceNumber : undefined,
     };
@@ -431,7 +431,12 @@ const InvoiceDetails: React.FC = () => {
                         />
                       </Table>
                       <Form.Item style={{ marginTop: 16 }}>
-                        <Button type="default" size="small" onClick={() => add()} icon={<PlusOutlined />}>
+                        <Button 
+                          type="default" 
+                          size="small" 
+                          onClick={() => add({ quantity: 1, taxRate: get(find(taxRates, { isDefault: 1 }), "id") })} 
+                          icon={<PlusOutlined />}
+                        >
                           <Trans>Add line item</Trans>
                         </Button>
                       </Form.Item>

@@ -68,6 +68,22 @@ impl Database {
     }
 
     pub async fn create_tax_rate(&self, tax_rate: CreateTaxRateRequest) -> Result<TaxRate, sqlx::Error> {
+        let mut tx = self.pool.begin().await?;
+
+        // If this tax rate is being set as default, unset all others for this organization
+        if tax_rate.is_default == Some(1) {
+            sqlx::query(
+                r#"
+                UPDATE taxRates
+                SET isDefault = 0
+                WHERE organizationId = ? AND isDefault = 1
+                "#,
+            )
+            .bind(&tax_rate.organization_id)
+            .execute(&mut *tx)
+            .await?;
+        }
+
         sqlx::query(
             r#"
             INSERT INTO taxRates (id, organizationId, name, description, percentage, isDefault)
@@ -80,8 +96,10 @@ impl Database {
         .bind(&tax_rate.description)
         .bind(&tax_rate.percentage)
         .bind(&tax_rate.is_default)
-        .execute(&self.pool)
+        .execute(&mut *tx)
         .await?;
+
+        tx.commit().await?;
 
         self.get_tax_rate(&tax_rate.id).await?
             .ok_or_else(|| sqlx::Error::RowNotFound)
@@ -92,6 +110,33 @@ impl Database {
         tax_rate_id: &str,
         updates: UpdateTaxRateRequest,
     ) -> Result<TaxRate, sqlx::Error> {
+        let mut tx = self.pool.begin().await?;
+
+        // If this tax rate is being set as default, first get its organization ID
+        // and unset all others for this organization
+        if updates.is_default == Some(1) {
+            // Get the organization ID for this tax rate
+            let tax_rate_row = sqlx::query_as::<_, TaxRate>(
+                "SELECT * FROM taxRates WHERE id = ? LIMIT 1"
+            )
+            .bind(tax_rate_id)
+            .fetch_optional(&mut *tx)
+            .await?
+            .ok_or_else(|| sqlx::Error::RowNotFound)?;
+            
+            sqlx::query(
+                r#"
+                UPDATE taxRates
+                SET isDefault = 0
+                WHERE organizationId = ? AND id != ? AND isDefault = 1
+                "#,
+            )
+            .bind(&tax_rate_row.organization_id)
+            .bind(tax_rate_id)
+            .execute(&mut *tx)
+            .await?;
+        }
+
         sqlx::query(
             r#"
             UPDATE taxRates
@@ -107,8 +152,10 @@ impl Database {
         .bind(&updates.percentage)
         .bind(&updates.is_default)
         .bind(tax_rate_id)
-        .execute(&self.pool)
+        .execute(&mut *tx)
         .await?;
+
+        tx.commit().await?;
 
         self.get_tax_rate(tax_rate_id).await?
             .ok_or_else(|| sqlx::Error::RowNotFound)

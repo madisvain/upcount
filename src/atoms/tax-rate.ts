@@ -48,6 +48,8 @@ export const taxRateAtom = atom(
           ...newValues,
           id: nanoid(),
           organizationId: get(organizationIdAtom),
+          // Convert percentage string to number
+          percentage: parseFloat(newValues.percentage),
           // Convert boolean to integer for isDefault
           isDefault: typeof newValues.isDefault === "boolean" ? (newValues.isDefault ? 1 : 0) : newValues.isDefault,
         };
@@ -65,6 +67,8 @@ export const taxRateAtom = atom(
         // Update
         const updateData = {
           ...newValues,
+          // Convert percentage string to number if present
+          percentage: newValues.percentage ? parseFloat(newValues.percentage) : undefined,
           // Convert boolean to integer for isDefault
           isDefault: typeof newValues.isDefault === "boolean" ? (newValues.isDefault ? 1 : 0) : newValues.isDefault,
         };
