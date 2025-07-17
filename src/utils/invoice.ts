@@ -49,8 +49,8 @@ export const generateInvoiceNumber = (
 ): string => {
   let preview = format;
   
-  // Replace {number} with zero-padded counter (5 digits)
-  preview = preview.replace('{number}', String(counter).padStart(5, '0'));
+  // Replace {number} with counter (no padding)
+  preview = preview.replace('{number}', String(counter));
   
   // Replace date variables
   preview = preview.replace('{year}', date.getFullYear().toString());
