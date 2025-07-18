@@ -99,42 +99,6 @@ function SettingsInvoice() {
               <Form.Item label={t`Notes`} name="customerNotes">
                 <TextArea rows={4} />
               </Form.Item>
-
-              <Divider orientation="left">
-                <Trans>Invoice Numbering</Trans>
-              </Divider>
-
-              <Row gutter={16}>
-                <Col span={12}>
-                  <Form.Item label={t`Prefix`} name="invoiceNumberPrefix">
-                    <Input placeholder="INV" />
-                  </Form.Item>
-                </Col>
-                <Col span={12}>
-                  <Form.Item label={t`Separator`} name="invoiceNumberSeparator">
-                    <Input placeholder="-" />
-                  </Form.Item>
-                </Col>
-              </Row>
-              <Row gutter={16}>
-                <Col span={12}>
-                  <Form.Item label={t`Start Number`} name="invoiceNumberStart">
-                    <InputNumber min={1} placeholder="1" style={{ width: "100%" }} />
-                  </Form.Item>
-                </Col>
-                <Col span={12}>
-                  <Form.Item label={t`Number of Digits`} name="invoiceNumberDigits">
-                    <InputNumber min={1} max={10} placeholder="4" style={{ width: "100%" }} />
-                  </Form.Item>
-                </Col>
-              </Row>
-              <Row>
-                <Col span={24}>
-                  <Form.Item label={t`Suffix`} name="invoiceNumberSuffix">
-                    <Input placeholder="" />
-                  </Form.Item>
-                </Col>
-              </Row>
             </Col>
           </Row>
           <Row gutter={24}>
@@ -167,40 +131,18 @@ function SettingsInvoice() {
               >
                 <Input />
               </Form.Item>
+            </Col>
+            <Col span={12}>
               <Button
                 type="link"
                 size="small"
                 onClick={() => setShowVariables(!showVariables)}
-                style={{ marginTop: 4, padding: 0, height: "auto" }}
+                style={{ marginTop: 4, padding: 0, height: "auto", gap: 2 }}
               >
                 {showVariables ? <CaretDownOutlined /> : <CaretRightOutlined />}
                 <Trans>Show variables</Trans>
               </Button>
-
-              <Form.Item
-                label={t`Invoice Number Counter`}
-                name="invoiceNumberCounter"
-                rules={[
-                  { required: true, message: t`This field is required!` },
-                  { type: "number", min: 0, message: t`Counter must be 0 or greater` },
-                ]}
-                style={{ marginTop: 16 }}
-                help={t`Next invoice will use this number + 1`}
-              >
-                <InputNumber min={0} style={{ width: "100%" }} />
-              </Form.Item>
-            </Col>
-            <Col span={12}>
-              <Form.Item label={t`Preview`}>
-                <Text code style={{ fontSize: "16px" }}>
-                  {invoiceNumberPreview || t`Enter format to see preview`}
-                </Text>
-              </Form.Item>
-            </Col>
-          </Row>
-          {showVariables && (
-            <Row gutter={24}>
-              <Col span={24}>
+              {showVariables && (
                 <div style={{ marginBottom: 16, padding: "12px 16px", backgroundColor: "#f5f5f5", borderRadius: 4 }}>
                   <Text strong style={{ display: "block", marginBottom: 8 }}>
                     <Trans>Available variables:</Trans>
@@ -233,10 +175,32 @@ function SettingsInvoice() {
                     </div>
                   </Space>
                 </div>
-              </Col>
-            </Row>
-          )}
-          <Row gutter={16}>
+              )}
+            </Col>
+          </Row>
+          <Row gutter={24}>
+            <Col span={12}>
+              <Form.Item
+                label={t`Invoice Number Counter`}
+                name="invoiceNumberCounter"
+                rules={[
+                  { required: true, message: t`This field is required!` },
+                  { type: "number", min: 0, message: t`Counter must be 0 or greater` },
+                ]}
+                help={t`Next invoice will use this number + 1`}
+              >
+                <InputNumber min={0} style={{ width: "100%" }} />
+              </Form.Item>
+            </Col>
+            <Col span={12}>
+              <Form.Item label={t`Preview`}>
+                <Text code style={{ fontSize: "16px" }}>
+                  {invoiceNumberPreview || t`Enter format to see preview`}
+                </Text>
+              </Form.Item>
+            </Col>
+          </Row>
+          <Row gutter={16} style={{ marginTop: 24 }}>
             <Col span={24}>
               <Divider orientation="left">
                 <Trans>Logo</Trans>

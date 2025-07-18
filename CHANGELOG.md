@@ -7,6 +7,16 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [2.0.0-beta.10] - 2025-07-17
+
+### Fixed
+- Tax rate creation now properly converts percentage strings to numbers before database storage
+- Default tax rate selection automatically applies to new invoices and line items
+- Only one tax rate can be marked as default per organization through transaction support
+
+### Changed
+- Improved tax rate field handling in invoice forms for better data consistency
+
 ## [2.0.0-beta.9] - 2025-07-14
 
 ### Added
