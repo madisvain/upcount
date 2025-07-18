@@ -7,6 +7,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Changed
+- Invoice numbers now display without zero-padding (e.g., "1" instead of "00001")
+- Cleaned up invoice settings UI by removing obsolete prefix/suffix fields in favor of flexible format templates
+
 ## [2.0.0-beta.10] - 2025-07-17
 
 ### Fixed
