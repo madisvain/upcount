@@ -7,6 +7,14 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Fixed
+- Invoice number generation error when no format is configured (prevents "null is not an object" error)
+- Sentry sourcemap uploads in CI/CD builds by adding authentication token to GitHub Actions workflow
+
+### Changed
+- Invoice number generation now returns empty string instead of crashing when format is not configured
+- Enhanced Sentry integration with release tracking and explicit sourcemap configuration
+
 ## [2.0.0-beta.11] - 2025-07-18
 
 ### Changed
