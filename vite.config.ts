@@ -17,6 +17,13 @@ export default defineConfig({
       org: "konstruktor",
       project: "upcount-react",
       telemetry: false,
+      release: {
+        name: process.env.GITHUB_SHA || "development",
+      },
+      sourcemaps: {
+        assets: "./dist/**",
+        ignore: ["node_modules"],
+      },
     }),
   ],
   optimizeDeps: {

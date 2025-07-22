@@ -47,6 +47,11 @@ export const generateInvoiceNumber = (
   date: Date = new Date(),
   clientCode: string = ''
 ): string => {
+  // Add null safety check
+  if (!format) {
+    return '';
+  }
+  
   let preview = format;
   
   // Replace {number} with counter (no padding)

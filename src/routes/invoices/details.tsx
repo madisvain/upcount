@@ -103,7 +103,7 @@ const InvoiceDetails: React.FC = () => {
       dueDate: organization.due_days ? dayjs().add(organization.due_days, "day") : null,
       lineItems: [{ quantity: 1, taxRate: get(find(taxRates, { isDefault: 1 }), "id") }],
       customerNotes: organization.customerNotes,
-      number: isNew ? nextInvoiceNumber : undefined,
+      number: isNew ? (nextInvoiceNumber || '') : undefined,
     };
     if (!isNew && invoice) {
       values = {
@@ -198,12 +198,14 @@ const InvoiceDetails: React.FC = () => {
                         
                         // Regenerate invoice number with client code
                         const counter = addDecimal((organization.invoiceNumberCounter || 0), 1);
-                        const newNumber = generateInvoiceNumber(
-                          organization.invoiceNumberFormat,
-                          counter,
-                          new Date(),
-                          clientCode
-                        );
+                        const newNumber = organization.invoiceNumberFormat 
+                          ? generateInvoiceNumber(
+                              organization.invoiceNumberFormat,
+                              counter,
+                              new Date(),
+                              clientCode
+                            )
+                          : '';
                         form.setFieldsValue({ number: newNumber });
                       }
                     }}

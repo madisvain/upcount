@@ -98,8 +98,11 @@ export const nextInvoiceNumberAtom = atom(async (get) => {
   if (!organization) return null;
 
   const format = organization.invoiceNumberFormat;
+  if (!format) {
+    return null;
+  }
+  
   const counter = (organization.invoiceNumberCounter || 0) + 1;
-
   return generateInvoiceNumber(format, counter);
 });
 
