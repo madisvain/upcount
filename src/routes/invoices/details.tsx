@@ -70,7 +70,7 @@ const InvoiceDetails: React.FC = () => {
     token: { colorBgContainer },
   } = theme.useToken();
   const organization = useAtomValue(organizationAtom);
-  const setInvoiceId = useSetAtom(invoiceIdAtom);
+  const [invoiceId, setInvoiceId] = useAtom(invoiceIdAtom);
   const [invoice, setInvoice] = useAtom(invoiceAtom);
   const clients = useAtomValue(clientsAtom);
   const setClients = useSetAtom(setClientsAtom);
@@ -95,6 +95,13 @@ const InvoiceDetails: React.FC = () => {
       setInvoiceId(null);
     };
   }, [id, isNew, setClients, setInvoiceId, setTaxRates]);
+
+  // Navigate to the new invoice after successful creation
+  useEffect(() => {
+    if (isNew && invoiceId) {
+      navigate(`/invoices/${invoiceId}`);
+    }
+  }, [isNew, invoiceId, navigate]);
 
   const getInitialValues = () => {
     let values = {
@@ -131,7 +138,7 @@ const InvoiceDetails: React.FC = () => {
 
   const handleSubmit = async (values: any) => {
     setSubmitting(true);
-    setInvoice({ ...values, subTotal, taxTotal, total });
+    await setInvoice({ ...values, subTotal, taxTotal, total });
     setSubmitting(false);
   };
 
