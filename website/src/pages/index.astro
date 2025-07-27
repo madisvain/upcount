@@ -1,6 +1,12 @@
 ---
 import Layout from "../layouts/main.astro";
 import Download from "../components/Download.astro";
+import { getLatestRelease } from "../utils/version";
+
+const releaseData = await getLatestRelease();
+if (!releaseData) {
+  throw new Error('Failed to fetch latest release data from GitHub');
+}
 ---
 
 <Layout
@@ -16,18 +22,18 @@ import Download from "../components/Download.astro";
         </h1>
         <ul class="flex justify-center space-x-4 mt-6">
           <li>
-            <Download platform="mac-m1" />
+            <Download platform="mac-m1" releaseData={releaseData} />
           </li>
           <li>
-            <Download platform="mac-intel" />
+            <Download platform="mac-intel" releaseData={releaseData} />
           </li>
           <!--
           <li>
-            <Download platform="windows" />
+            <Download platform="windows" releaseData={releaseData} />
           </li>
           -->
           <li>
-            <Download platform="linux" />
+            <Download platform="linux" releaseData={releaseData} />
           </li>
         </ul>
         <p class="text-center mt-4">

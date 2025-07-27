@@ -1,78 +1,63 @@
 ---
+import type { ReleaseData, Asset } from "../utils/version";
+
 export interface Props {
-  platform?: 'mac-m1' | 'mac-intel' | 'windows' | 'linux';
+  platform?: "mac-m1" | "mac-intel" | "windows" | "linux";
   small?: boolean;
+  releaseData?: ReleaseData | null;
 }
 
-const { platform, small = false } = Astro.props;
-
-// Fetch latest release data at build time
-interface Asset {
-  name: string;
-  browser_download_url: string;
-}
-
-interface ReleaseData {
-  assets: Asset[];
-}
-
-let releaseData: ReleaseData | null = null;
-try {
-  const response = await fetch('https://api.github.com/repos/madisvain/upcount/releases/latest');
-  if (response.ok) {
-    releaseData = await response.json() as ReleaseData;
-  }
-} catch (error) {
-  console.warn('Failed to fetch latest release data:', error);
-}
+const { platform, releaseData, small = false } = Astro.props;
 
 // Generate download URLs and metadata
-let href = 'https://github.com/madisvain/upcount/releases';
-let icon = '';
-let iconDark = '';
-let altText = 'Download';
+let href = "https://github.com/madisvain/upcount/releases";
+let icon = "";
+let iconDark = "";
+let altText = "Download";
 
 if (releaseData && releaseData.assets && platform) {
-  if (platform === 'mac-m1') {
-    const asset = releaseData.assets.find((a: Asset) => a.name.includes('aarch64') && a.name.includes('.tar.gz'));
+  if (platform === "mac-m1") {
+    const asset = releaseData.assets.find((a: Asset) => a.name.includes("aarch64") && a.name.includes(".tar.gz"));
     href = asset ? asset.browser_download_url : href;
-    icon = '/apple.svg';
-    iconDark = '/apple-dark.svg';
-    altText = 'Mac (ARM)';
-  } else if (platform === 'mac-intel') {
-    const asset = releaseData.assets.find((a: Asset) => a.name.includes('x64') && a.name.includes('.tar.gz'));
+    icon = "/apple.svg";
+    iconDark = "/apple-dark.svg";
+    altText = "Mac (ARM)";
+  } else if (platform === "mac-intel") {
+    const asset = releaseData.assets.find((a: Asset) => a.name.includes("x64") && a.name.includes(".tar.gz"));
     href = asset ? asset.browser_download_url : href;
-    icon = '/apple.svg';
-    iconDark = '/apple-dark.svg';
-    altText = 'Mac (Intel)';
-  } else if (platform === 'windows') {
-    const asset = releaseData.assets.find((a: Asset) => a.name.endsWith('.exe'));
+    icon = "/apple.svg";
+    iconDark = "/apple-dark.svg";
+    altText = "Mac (Intel)";
+  } else if (platform === "windows") {
+    const asset = releaseData.assets.find((a: Asset) => a.name.endsWith(".exe"));
     href = asset ? asset.browser_download_url : href;
-    icon = '/windows.svg';
-    iconDark = '/windows-dark.svg';
-    altText = 'Windows';
-  } else if (platform === 'linux') {
-    const asset = releaseData.assets.find((a: Asset) => a.name.includes('AppImage'));
+    icon = "/windows.svg";
+    iconDark = "/windows-dark.svg";
+    altText = "Windows";
+  } else if (platform === "linux") {
+    const asset = releaseData.assets.find((a: Asset) => a.name.includes("AppImage"));
     href = asset ? asset.browser_download_url : href;
-    icon = '/linux.svg';
-    iconDark = '/linux-dark.svg';
-    altText = 'Linux';
+    icon = "/linux.svg";
+    iconDark = "/linux-dark.svg";
+    altText = "Linux";
   }
 }
 ---
 
 <a
   href={href}
-  class={`inline-flex items-center px-4 py-2 border border-gray-800 text-gray-800 font-medium rounded-md hover:bg-gray-800 hover:text-white transition-colors ${small ? 'px-3 py-1 text-sm' : ''}`.trim()}
+  class={`inline-flex items-center px-4 py-2 border border-gray-800 text-gray-800 font-medium rounded-md hover:bg-gray-800 hover:text-white transition-colors ${small ? "px-3 py-1 text-sm" : ""}`.trim()}
   target="_blank"
 >
-  {altText || 'Download'}
-  {icon && (
-    <>
-      <img src={iconDark} class="w-4 h-4 ml-2 icon-dark" alt={altText} />
-      <img src={icon} class="w-4 h-4 ml-2 icon-light" alt={altText} />
-    </>
-  )}
+  {altText || "Download"}
+  {
+    icon && (
+      <>
+        <img src={iconDark} class="w-4 h-4 ml-2 icon-dark" alt={altText} />
+        <img src={icon} class="w-4 h-4 ml-2 icon-light" alt={altText} />
+      </>
+    )
+  }
 </a>
 
 <style>
@@ -89,4 +74,3 @@ if (releaseData && releaseData.assets && platform) {
     display: none;
   }
 </style>
-
