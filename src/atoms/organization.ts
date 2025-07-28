@@ -24,7 +24,9 @@ export const setOrganizationsAtom = atom(null, async (_get, set) => {
 });
 
 // Organization
-export const organizationIdAtom = atomWithStorage<string | null>("organizationId", null, undefined, { getOnInit: true });
+export const organizationIdAtom = atomWithStorage<string | null>("organizationId", null, undefined, {
+  getOnInit: true,
+});
 organizationIdAtom.debugLabel = "organizationIdAtom";
 
 export const organizationAtom = atom(
@@ -54,9 +56,15 @@ export const organizationAtom = atom(
 
     try {
       if (!organizationId) {
-        // Insert
+        // Insert - provide defaults for fields not set by user
         const organizationData = {
-          ...newValues,
+          currency: "EUR",
+          minimum_fraction_digits: 2,
+          due_days: 7,
+          overdue_charge: 1,
+          invoiceNumberFormat: "INV-{number}",
+          invoiceNumberCounter: 0,
+          ...newValues, // User values override defaults
           id: nanoid(),
         };
 
@@ -74,7 +82,7 @@ export const organizationAtom = atom(
         });
         message.success(t`Organization updated successfully`);
         set(setOrganizationsAtom);
-        
+
         // Force refresh by temporarily clearing and resetting the organizationId
         // This will trigger the organizationAtom getter to refetch
         set(organizationIdAtom, null);
@@ -101,7 +109,7 @@ export const nextInvoiceNumberAtom = atom(async (get) => {
   if (!format) {
     return null;
   }
-  
+
   const counter = (organization.invoiceNumberCounter || 0) + 1;
   return generateInvoiceNumber(format, counter);
 });

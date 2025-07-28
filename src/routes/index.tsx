@@ -11,6 +11,7 @@ import first from "lodash/first";
 
 import { organizationAtom, organizationsAtom, organizationIdAtom } from "src/atoms/organization";
 import { countries } from "src/utils/countries";
+import { set } from "lodash";
 
 const { Title, Text } = Typography;
 
@@ -24,14 +25,14 @@ const Index = () => {
 
   // Atoms
   const organizations = useAtomValue(organizationsAtom);
-  const organizationId = useAtomValue(organizationIdAtom);
   const setOrganization = useSetAtom(organizationAtom);
-  const setOrganizationId = useSetAtom(organizationIdAtom);
+  const [organizationId, setOrganizationId] = useAtom(organizationIdAtom);
   const [submitting, setSubmitting] = useAtom(submittingAtom);
 
   const handleSubmit = async (values: any) => {
     setSubmitting(true);
     setOrganization(values);
+    setOrganizationId(organizationId);
     navigate("/settings/organization");
     setSubmitting(false);
   };
@@ -41,16 +42,9 @@ const Index = () => {
     const firstOrganization = first(organizations);
     if (firstOrganization) {
       setOrganizationId(firstOrganization.id);
-    }
-  };
-
-  // Handle redirect to invoices when organization exists
-  useEffect(() => {
-    console.log("organizationId:", organizationId);
-    if (organizationId) {
       navigate("/invoices");
     }
-  }, [organizationId, navigate]);
+  };
 
   return (
     <>
