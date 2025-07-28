@@ -26,6 +26,7 @@ import join from "lodash/join";
 import map from "lodash/map";
 import take from "lodash/take";
 import toUpper from "lodash/toUpper";
+import { startTransition } from "react";
 
 import { siderAtom, localeAtom } from "src/atoms/generic";
 import { organizationsAtom, organizationIdAtom, organizationAtom } from "src/atoms/organization";
@@ -257,8 +258,10 @@ export default function BaseLayout() {
                             block
                             icon={<PlusOutlined />}
                             onClick={() => {
-                              setOrganizationId(RESET);
-                              navigate("/");
+                              startTransition(() => {
+                                setOrganizationId(RESET);
+                                navigate("/");
+                              });
                             }}
                             style={{ textAlign: "left" }}
                           >
