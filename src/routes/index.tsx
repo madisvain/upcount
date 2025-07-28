@@ -29,7 +29,6 @@ const Index = () => {
   const setOrganizationId = useSetAtom(organizationIdAtom);
   const [submitting, setSubmitting] = useAtom(submittingAtom);
 
-
   const handleSubmit = async (values: any) => {
     setSubmitting(true);
     setOrganization(values);
@@ -45,9 +44,9 @@ const Index = () => {
     }
   };
 
-
   // Handle redirect to invoices when organization exists
   useEffect(() => {
+    console.log("organizationId:", organizationId);
     if (organizationId) {
       navigate("/invoices");
     }

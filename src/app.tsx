@@ -19,14 +19,12 @@ import { useAtom, useAtomValue, useSetAtom } from "jotai";
 import { i18n } from "@lingui/core";
 import { I18nProvider } from "@lingui/react";
 import dayjs from "dayjs";
-import first from "lodash/first";
-import find from "lodash/find";
 import localizedFormat from "dayjs/plugin/localizedFormat";
 
 import { localeAtom } from "src/atoms/generic";
 import { dynamicActivate } from "src/utils/lingui";
 
-import { organizationIdAtom, organizationsAtom, setOrganizationsAtom } from "src/atoms/organization";
+import { organizationIdAtom, setOrganizationsAtom } from "src/atoms/organization";
 import BaseLayout from "src/layouts/base";
 import Clients from "src/routes/clients";
 import Projects from "src/routes/projects";
@@ -63,8 +61,7 @@ const AppContent = () => {
   }, [locale]);
 
   // Organizations
-  const [organizationId, setOrganizationId] = useAtom(organizationIdAtom);
-  const organizations = useAtomValue(organizationsAtom);
+  const organizationId = useAtomValue(organizationIdAtom);
   const setOrganizations = useSetAtom(setOrganizationsAtom);
 
   useEffect(() => {
@@ -76,24 +73,16 @@ const AppContent = () => {
     const timer = setTimeout(() => {
       setIsInitialLoading(false);
     }, 100);
-    
+
     return () => clearTimeout(timer);
   }, []);
 
-  // Watch for organization changes
+  // Redirect to index if no organization is selected and we're not already there
   useEffect(() => {
-    // If organizationId is null and we're not on the index page, redirect to index
     if (organizationId === null && location.pathname !== "/") {
       navigate("/");
-      return;
     }
-
-    // Only auto-set if organizationId is not null and not found in organizations
-    if (organizationId !== null && organizations.length > 0 && !find(organizations, { id: organizationId })) {
-      const nextOrganization: any = first(organizations);
-      setOrganizationId(nextOrganization.id);
-    }
-  }, [organizations, organizationId, setOrganizationId, navigate, location.pathname]);
+  }, [organizationId, navigate, location.pathname]);
 
   // Show loading spinner briefly to prevent CSS flicker
   if (isInitialLoading) {
