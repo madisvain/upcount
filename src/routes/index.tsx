@@ -89,7 +89,7 @@ const Index = () => {
               <Button type="primary" htmlType="submit" disabled={submitting}>
                 <Trans>Get started</Trans>
               </Button>
-              {organizations.length > 0 && (
+              {organizations.length > 0 && !submitting && (
                 <Button onClick={handleCancel} disabled={submitting}>
                   <Trans>Cancel</Trans>
                 </Button>
