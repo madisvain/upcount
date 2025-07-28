@@ -100,7 +100,7 @@ const AppContent = () => {
       {import.meta.env.DEV && <DevTools />}
       <I18nProvider i18n={i18n}>
         <Routes>
-          <Route path="/" element={organizationId ? <Navigate to="/invoices" replace /> : <Index />} />
+          <Route path="/" element={<Index />} />
           <Route path="/invoices" element={<BaseLayout />}>
             <Route index element={<Invoices />} />
             <Route path=":id" element={<InvoiceDetails />} />

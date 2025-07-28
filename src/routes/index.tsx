@@ -32,7 +32,8 @@ const Index = () => {
   const handleSubmit = async (values: any) => {
     setSubmitting(true);
     await setOrganization(values);
-    navigate("/settings/organization");
+    // Navigate immediately after creation before route re-render
+    navigate("/settings/organization", { replace: true });
     setSubmitting(false);
   };
 
@@ -44,6 +45,13 @@ const Index = () => {
       navigate("/invoices");
     }
   };
+
+  // Redirect to invoices if organization exists (but not during form submission)
+  useEffect(() => {
+    if (organizationId && !submitting) {
+      navigate("/invoices");
+    }
+  }, [organizationId, navigate, submitting]);
 
   return (
     <>
