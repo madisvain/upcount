@@ -31,8 +31,7 @@ const Index = () => {
 
   const handleSubmit = async (values: any) => {
     setSubmitting(true);
-    setOrganization(values);
-    setOrganizationId(organizationId);
+    await setOrganization(values);
     navigate("/settings/organization");
     setSubmitting(false);
   };
