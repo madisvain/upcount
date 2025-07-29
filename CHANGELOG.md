@@ -7,6 +7,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [2.0.0-beta.14] - 2025-07-29
+
 ### Fixed
 - Endless redirect loop when navigating to organization creation page without an existing organization
 - Organization search functionality in the header selector now properly filters by organization name
