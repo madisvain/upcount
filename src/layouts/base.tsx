@@ -243,6 +243,13 @@ export default function BaseLayout() {
                   {!isEmpty(organizations) && (
                     <Select
                       showSearch={organizations.length > 5 ? true : false}
+                      filterOption={(input, option) => {
+                        if (!option) return false;
+                        // Get the organization name from the option
+                        const organizations = option as any;
+                        const orgName = organizations?.children;
+                        return orgName ? String(orgName).toLowerCase().includes(input.toLowerCase()) : false;
+                      }}
                       style={{ width: 200 }}
                       defaultValue={organization.id}
                       onSelect={(value) => {

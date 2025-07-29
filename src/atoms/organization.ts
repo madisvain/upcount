@@ -129,6 +129,9 @@ export const deleteOrganizationAtom = atom(null, async (get, set) => {
       const nextOrganization: any = first(organizations);
       set(organizationIdAtom, organizations.length > 0 ? nextOrganization.id : null);
       message.success(t`Organization deleted`);
+      
+      // Reload the page to refresh with the new organization
+      window.location.reload();
     } else {
       message.error(t`Organization deletion failed`);
     }
