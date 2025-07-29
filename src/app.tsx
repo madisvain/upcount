@@ -15,7 +15,7 @@ import "dayjs/locale/et";
 import { useEffect, useState } from "react";
 import { BrowserRouter, Navigate, Route, Routes, useNavigate, useLocation } from "react-router";
 import { ConfigProvider } from "antd";
-import { useAtom, useAtomValue, useSetAtom } from "jotai";
+import { useAtomValue, useSetAtom } from "jotai";
 import { i18n } from "@lingui/core";
 import { I18nProvider } from "@lingui/react";
 import dayjs from "dayjs";
