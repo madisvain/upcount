@@ -26,12 +26,10 @@ import join from "lodash/join";
 import map from "lodash/map";
 import take from "lodash/take";
 import toUpper from "lodash/toUpper";
-import { startTransition } from "react";
 
 import { siderAtom, localeAtom } from "src/atoms/generic";
 import { organizationsAtom, organizationIdAtom, organizationAtom } from "src/atoms/organization";
 import Timer from "src/components/timer";
-import { RESET } from "jotai/utils";
 import { dynamicActivate, locales } from "src/utils/lingui";
 import { useAutoUpdater } from "src/hooks/useAutoUpdater";
 
@@ -265,10 +263,7 @@ export default function BaseLayout() {
                             block
                             icon={<PlusOutlined />}
                             onClick={() => {
-                              startTransition(() => {
-                                setOrganizationId(RESET);
-                                navigate("/");
-                              });
+                              navigate("/organizations/new");
                             }}
                             style={{ textAlign: "left" }}
                           >

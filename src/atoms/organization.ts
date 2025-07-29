@@ -12,14 +12,18 @@ import { generateInvoiceNumber } from "src/utils/invoice";
 
 // Organizations
 export const organizationsAtom = atom<any[]>([]);
+export const organizationsLoadedAtom = atom<boolean>(false);
+
 export const setOrganizationsAtom = atom(null, async (_get, set) => {
   try {
     const response = await invoke<any[]>("get_organizations");
     set(organizationsAtom, response);
+    set(organizationsLoadedAtom, true);
   } catch (error) {
     console.error("Failed to fetch organizations:", error);
     message.error(t`Failed to fetch organizations`);
     set(organizationsAtom, []);
+    set(organizationsLoadedAtom, true);
   }
 });
 

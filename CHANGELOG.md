@@ -7,6 +7,28 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Fixed
+- Endless redirect loop when navigating to organization creation page without an existing organization
+- Organization search functionality in the header selector now properly filters by organization name
+- Organization deletion now automatically activates the next available organization
+
+## [2.0.0-beta.13] - 2025-07-29
+
+### Added
+- Website version now fetched dynamically and rebuilds on releases for accurate version display
+- Default values for organization creation to streamline setup process
+
+### Changed
+- Updated axios dependency from 1.10.0 to 1.11.0 for improved security and performance
+- Enhanced organization creation workflow with better validation and redirect logic
+- Improved form submission UX by hiding cancel button during submission to prevent accidental cancellations
+- Invoice creation now navigates to the new invoice URL after successful creation
+
+### Fixed
+- Organization creation redirect now properly navigates to invoices page when organization already exists
+- React suspension error when creating new organizations resolved with improved state management
+- TypeScript lint error from unused useAtom import cleaned up
+
 ## [2.0.0-beta.12] - 2025-07-22
 
 ### Fixed
