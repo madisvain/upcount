@@ -11,7 +11,6 @@ import first from "lodash/first";
 
 import { organizationAtom, organizationsAtom, organizationIdAtom } from "src/atoms/organization";
 import { countries } from "src/utils/countries";
-import { set } from "lodash";
 
 const { Title, Text } = Typography;
 
