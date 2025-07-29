@@ -38,6 +38,7 @@ import SettingsTaxRates from "src/routes/settings/tax-rates";
 import SettingsBackup from "src/routes/settings/backup";
 import TimeTracking from "src/routes/time-tracking/index";
 import TimeTrackingReports from "src/routes/time-tracking/reports";
+import NewOrganization from "src/routes/organizations/new";
 
 // Components
 import Loading from "src/components/loading";
@@ -77,9 +78,12 @@ const AppContent = () => {
     return () => clearTimeout(timer);
   }, []);
 
-  // Redirect to index if no organization is selected and we're not already there
+  // Redirect to index if no organization is selected and we're not on an allowed path
   useEffect(() => {
-    if (organizationId === null && location.pathname !== "/") {
+    const allowedPathsWithoutOrg = ["/", "/organizations/new"];
+    const isAllowedPath = allowedPathsWithoutOrg.includes(location.pathname);
+    
+    if (organizationId === null && !isAllowedPath) {
       navigate("/");
     }
   }, [organizationId, navigate, location.pathname]);
@@ -101,6 +105,7 @@ const AppContent = () => {
       <I18nProvider i18n={i18n}>
         <Routes>
           <Route path="/" element={<Index />} />
+          <Route path="/organizations/new" element={<NewOrganization />} />
           <Route path="/invoices" element={<BaseLayout />}>
             <Route index element={<Invoices />} />
             <Route path=":id" element={<InvoiceDetails />} />
