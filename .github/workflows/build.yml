@@ -21,8 +21,8 @@ jobs:
             args: "--target x86_64-apple-darwin"
           - platform: "ubuntu-22.04"
             args: ""
-          # - platform: "windows-latest"
-          #   args: ""
+          - platform: "windows-latest"
+            args: ""
 
     runs-on: ${{ matrix.settings.platform }}
     steps:
@@ -65,6 +65,7 @@ jobs:
       - uses: tauri-apps/tauri-action@v0
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          # Apple signing
           APPLE_CERTIFICATE: ${{ secrets.APPLE_CERTIFICATE }}
           APPLE_CERTIFICATE_PASSWORD: ${{ secrets.APPLE_CERTIFICATE_PASSWORD }}
           APPLE_SIGNING_IDENTITY: ${{ secrets.APPLE_SIGNING_IDENTITY }}
@@ -72,8 +73,10 @@ jobs:
           APPLE_API_KEY_VALUE: ${{ secrets.APPLE_API_KEY_VALUE }}
           APPLE_API_KEY_PATH: ${{ github.workspace }}/apple-api-key.p8
           APPLE_API_ISSUER: ${{ secrets.APPLE_API_ISSUER }}
+          # Tauri updater signing
           TAURI_SIGNING_PRIVATE_KEY_PASSWORD: ${{ secrets.TAURI_KEY_PASSWORD }}
           TAURI_SIGNING_PRIVATE_KEY: ${{ secrets.TAURI_PRIVATE_KEY }}
+          # Build configuration
           NODE_OPTIONS: "--max-old-space-size=4096"
           SENTRY_AUTH_TOKEN: ${{ secrets.SENTRY_AUTH_TOKEN }}
 
