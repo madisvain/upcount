@@ -12,6 +12,7 @@
     "extract": "lingui extract"
   },
   "dependencies": {
+    "@ai-sdk/anthropic": "^2.0.0",
     "@ant-design/icons": "6.0.0",
     "@lingui/macro": "^5.0.0",
     "@lingui/react": "^5.0.0",
@@ -19,9 +20,11 @@
     "@sentry/react": "^9.33.0",
     "@tauri-apps/plugin-dialog": "^2.2.2",
     "@tauri-apps/plugin-fs": "^2.3.0",
+    "@tauri-apps/plugin-opener": "^2.4.0",
     "@tauri-apps/plugin-process": "^2.3.0",
     "@tauri-apps/plugin-sql": "^2.2.1",
     "@tauri-apps/plugin-updater": "^2.9.0",
+    "ai": "^5.0.0",
     "antd": "5.26.1",
     "axios": "1.11.0",
     "decimal.js": "^10.5.0",
@@ -34,7 +37,8 @@
     "react-dom": "^18",
     "react-pdf": "^9.2.1",
     "react-router": "^7.6.2",
-    "usehooks-ts": "3.1.1"
+    "usehooks-ts": "3.1.1",
+    "zod": "^4.0.14"
   },
   "devDependencies": {
     "@eslint/js": "^9.29.0",
@@ -42,7 +46,7 @@
     "@lingui/cli": "^5.0.0",
     "@lingui/vite-plugin": "^5.0.0",
     "@sentry/vite-plugin": "^3.5.0",
-    "@tauri-apps/cli": "^2.0.0",
+    "@tauri-apps/cli": "^2.7.1",
     "@types/react": "18.3.23",
     "@types/react-dom": "18.3.7",
     "@typescript-eslint/eslint-plugin": "^8.34.1",

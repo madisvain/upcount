@@ -36,6 +36,7 @@ import SettingsInvoice from "src/routes/settings/invoice";
 import SettingsOrganization from "src/routes/settings/organization";
 import SettingsTaxRates from "src/routes/settings/tax-rates";
 import SettingsBackup from "src/routes/settings/backup";
+import SettingsAI from "src/routes/settings/ai";
 import TimeTracking from "src/routes/time-tracking/index";
 import TimeTrackingReports from "src/routes/time-tracking/reports";
 import NewOrganization from "src/routes/organizations/new";
@@ -131,6 +132,7 @@ const AppContent = () => {
               <Route path=":id" element={<TaxRateForm />} />
             </Route>
             <Route path="backup" element={<SettingsBackup />} />
+            <Route path="ai" element={<SettingsAI />} />
           </Route>
         </Routes>
       </I18nProvider>

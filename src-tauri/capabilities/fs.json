@@ -1,0 +1,11 @@
+{
+  "$schema": "../gen/schemas/desktop-schema.json",
+  "identifier": "fs-capability",
+  "description": "File system capabilities",
+  "windows": ["main"],
+  "permissions": [
+    "fs:default",
+    "fs:allow-read-file",
+    "fs:allow-write-file"
+  ]
+}

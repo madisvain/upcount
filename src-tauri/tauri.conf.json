@@ -23,26 +23,12 @@
     "security": {
       "csp": null,
       "capabilities": [
-        {
-          "identifier": "default",
-          "description": "Default capabilities for the application",
-          "windows": ["main"],
-          "permissions": [
-            "core:default",
-            "core:webview:default",
-            "core:webview:allow-internal-toggle-devtools",
-            "dialog:default",
-            "dialog:allow-ask",
-            "dialog:allow-message",
-            "fs:default",
-            "fs:allow-read-file",
-            "fs:allow-write-file",
-            "updater:default",
-            "updater:allow-check",
-            "updater:allow-download-and-install",
-            "process:allow-restart"
-          ]
-        }
+        "core-capability",
+        "dialog-capability",
+        "fs-capability",
+        "updater-capability",
+        "process-capability",
+        "opener-capability"
       ]
     }
   },

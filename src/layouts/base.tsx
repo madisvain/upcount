@@ -16,6 +16,7 @@ import {
   ClockCircleOutlined,
   BarChartOutlined,
   ProjectOutlined,
+  RobotOutlined,
 } from "@ant-design/icons";
 import { Trans } from "@lingui/react/macro";
 import { useLingui } from "@lingui/react";
@@ -205,6 +206,15 @@ export default function BaseLayout() {
                       </Link>
                     ),
                     key: "settings.backup",
+                  },
+                  {
+                    icon: <RobotOutlined />,
+                    label: (
+                      <Link to="/settings/ai">
+                        <Trans>AI</Trans>
+                      </Link>
+                    ),
+                    key: "settings.ai",
                   },
                 ],
               },

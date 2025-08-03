@@ -1,0 +1,10 @@
+{
+  "$schema": "../gen/schemas/desktop-schema.json",
+  "identifier": "opener-capability",
+  "description": "Capability for opening external URLs",
+  "windows": ["main"],
+  "permissions": [
+    "opener:default",
+    "opener:allow-open-url"
+  ]
+}

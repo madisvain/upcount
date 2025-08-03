@@ -13,6 +13,7 @@ pub fn run() {
     .plugin(tauri_plugin_dialog::init())
     .plugin(tauri_plugin_process::init())
     .plugin(tauri_plugin_fs::init())
+    .plugin(tauri_plugin_opener::init())
     .setup(|app| {
       // Get the app data directory for the database with fallback options
       let app_dir = app.path().app_data_dir()

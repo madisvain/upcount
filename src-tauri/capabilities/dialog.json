@@ -1,0 +1,11 @@
+{
+  "$schema": "../gen/schemas/desktop-schema.json",
+  "identifier": "dialog-capability",
+  "description": "Dialog capabilities",
+  "windows": ["main"],
+  "permissions": [
+    "dialog:default",
+    "dialog:allow-ask",
+    "dialog:allow-message"
+  ]
+}
