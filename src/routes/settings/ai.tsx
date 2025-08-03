@@ -35,12 +35,21 @@ function SettingsAI() {
       </Row>
       <Row>
         <Col xs={24} xl={12}>
-          <Alert
-            description={t`Configure your Anthropic API key to enable AI-powered features in your invoicing workflow.`}
-            type="info"
-            showIcon
-            style={{ marginBottom: 24 }}
-          />
+          {apiKey ? (
+            <Alert
+              description={t`Your Anthropic API key is configured and AI features are enabled.`}
+              type="success"
+              showIcon
+              style={{ marginBottom: 24 }}
+            />
+          ) : (
+            <Alert
+              description={t`Configure your Anthropic API key to enable AI-powered features in your invoicing workflow.`}
+              type="info"
+              showIcon
+              style={{ marginBottom: 24 }}
+            />
+          )}
 
           <div style={{ position: "relative" }}>
             <Form.Item label={t`Anthropic API Key`} name="anthropic_api_key">
@@ -48,7 +57,7 @@ function SettingsAI() {
             </Form.Item>
             <span style={{ position: "absolute", top: "0", right: "0", fontSize: "14px", color: "#666" }}>
               <Trans>Get your API key from</Trans>{" "}
-              <a 
+              <a
                 href="#"
                 onClick={async (e) => {
                   e.preventDefault();
@@ -70,16 +79,6 @@ function SettingsAI() {
           </Row>
         </Col>
       </Row>
-
-      {apiKey && (
-        <Alert
-          message={t`API Key Configured`}
-          description={t`Your Anthropic API key is configured and AI features are enabled.`}
-          type="success"
-          showIcon
-          style={{ marginTop: 24 }}
-        />
-      )}
     </Form>
   );
 }

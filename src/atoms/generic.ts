@@ -7,3 +7,6 @@ siderAtom.debugLabel = "siderAtom";
 
 export const localeAtom = atomWithStorage("locale", defaultLocale);
 localeAtom.debugLabel = "localeAtom";
+
+export const aiDrawerAtom = atomWithStorage("aiDrawer", false);
+aiDrawerAtom.debugLabel = "aiDrawerAtom";

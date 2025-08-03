@@ -28,7 +28,8 @@
         "fs-capability",
         "updater-capability",
         "process-capability",
-        "opener-capability"
+        "opener-capability",
+        "http-capability"
       ]
     }
   },
