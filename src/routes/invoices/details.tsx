@@ -51,6 +51,7 @@ import { clientsAtom, setClientsAtom } from "src/atoms/client";
 import { invoiceIdAtom, invoiceAtom, deleteInvoiceAtom, duplicateInvoiceAtom } from "src/atoms/invoice";
 import { organizationAtom, nextInvoiceNumberAtom } from "src/atoms/organization";
 import { taxRatesAtom, setTaxRatesAtom } from "src/atoms/tax-rate";
+import { aiInvoiceDataAtom } from "src/atoms/ai";
 import ClientForm from "src/components/clients/form.tsx";
 import InvoicePDF from "src/components/invoices/pdf";
 import { currencies, getCurrencySymbol } from "src/utils/currencies";
@@ -79,6 +80,7 @@ const InvoiceDetails: React.FC = () => {
   const deleteInvoice = useSetAtom(deleteInvoiceAtom);
   const duplicateInvoice = useSetAtom(duplicateInvoiceAtom);
   const nextInvoiceNumber = useAtomValue(nextInvoiceNumberAtom);
+  const [aiInvoiceData, setAiInvoiceData] = useAtom(aiInvoiceDataAtom);
   const [, setSubmitting] = useState(false);
 
   const isNew = id === "new";
@@ -112,6 +114,24 @@ const InvoiceDetails: React.FC = () => {
       customerNotes: organization.customerNotes,
       number: isNew ? (nextInvoiceNumber || '') : undefined,
     };
+    
+    // Check for AI-generated invoice data
+    if (isNew && aiInvoiceData) {
+      values = {
+        ...values,
+        ...aiInvoiceData,
+        // Ensure dates are dayjs objects
+        date: aiInvoiceData.date ? dayjs(aiInvoiceData.date) : values.date,
+        dueDate: aiInvoiceData.dueDate ? dayjs(aiInvoiceData.dueDate) : values.dueDate,
+        // Ensure lineItems have taxRate field name (not taxRateId) and calculate totals
+        lineItems: aiInvoiceData.lineItems.map((item: any) => ({
+          ...item,
+          taxRate: item.taxRateId || item.taxRate || get(find(taxRates, { isDefault: 1 }), "id"),
+          total: multiplyDecimal(item.quantity, item.unitPrice),
+        })),
+      };
+    }
+    
     if (!isNew && invoice) {
       values = {
         ...invoice,
@@ -123,6 +143,43 @@ const InvoiceDetails: React.FC = () => {
 
   const initialValues = getInitialValues();
   const [form] = Form.useForm();
+
+  // Update form when AI invoice data changes
+  useEffect(() => {
+    if (isNew && aiInvoiceData && clients.length > 0) {
+      // Get current form values to preserve non-updated fields
+      const currentValues = form.getFieldsValue();
+      
+      // Validate that clientId exists in the clients list
+      const clientExists = clients.some((client: any) => client.id === aiInvoiceData.clientId);
+      if (!clientExists && aiInvoiceData.clientId) {
+        console.warn(`Client with ID ${aiInvoiceData.clientId} not found in clients list`);
+      }
+      
+      // Merge AI data with current values
+      const updatedValues = {
+        ...currentValues,
+        ...aiInvoiceData,
+        // Only set clientId if it exists in the clients list
+        clientId: clientExists ? aiInvoiceData.clientId : currentValues.clientId,
+        // Ensure dates are dayjs objects
+        date: aiInvoiceData.date ? dayjs(aiInvoiceData.date) : currentValues.date,
+        dueDate: aiInvoiceData.dueDate ? dayjs(aiInvoiceData.dueDate) : currentValues.dueDate,
+        // Ensure lineItems have taxRate field name and calculate totals
+        lineItems: aiInvoiceData.lineItems ? aiInvoiceData.lineItems.map((item: any) => ({
+          ...item,
+          taxRate: item.taxRateId || item.taxRate || get(find(taxRates, { isDefault: 1 }), "id"),
+          total: multiplyDecimal(item.quantity, item.unitPrice),
+        })) : currentValues.lineItems,
+      };
+      
+      // Update form with new values
+      form.setFieldsValue(updatedValues);
+      
+      // Clear the atom after applying updates
+      setAiInvoiceData(null);
+    }
+  }, [isNew, aiInvoiceData, setAiInvoiceData, form, taxRates, clients]);
 
   // Reset form when invoice data changes (e.g., after duplication)
   useEffect(() => {
