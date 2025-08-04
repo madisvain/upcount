@@ -51,6 +51,7 @@ import { clientsAtom, setClientsAtom } from "src/atoms/client";
 import { invoiceIdAtom, invoiceAtom, deleteInvoiceAtom, duplicateInvoiceAtom } from "src/atoms/invoice";
 import { organizationAtom, nextInvoiceNumberAtom } from "src/atoms/organization";
 import { taxRatesAtom, setTaxRatesAtom } from "src/atoms/tax-rate";
+import { aiInvoiceDataAtom } from "src/atoms/ai";
 import ClientForm from "src/components/clients/form.tsx";
 import InvoicePDF from "src/components/invoices/pdf";
 import { currencies, getCurrencySymbol } from "src/utils/currencies";
@@ -79,6 +80,7 @@ const InvoiceDetails: React.FC = () => {
   const deleteInvoice = useSetAtom(deleteInvoiceAtom);
   const duplicateInvoice = useSetAtom(duplicateInvoiceAtom);
   const nextInvoiceNumber = useAtomValue(nextInvoiceNumberAtom);
+  const [aiInvoiceData, setAiInvoiceData] = useAtom(aiInvoiceDataAtom);
   const [, setSubmitting] = useState(false);
 
   const isNew = id === "new";
@@ -112,6 +114,24 @@ const InvoiceDetails: React.FC = () => {
       customerNotes: organization.customerNotes,
       number: isNew ? (nextInvoiceNumber || '') : undefined,
     };
+    
+    // Check for AI-generated invoice data
+    if (isNew && aiInvoiceData) {
+      values = {
+        ...values,
+        ...aiInvoiceData,
+        // Ensure dates are dayjs objects
+        date: aiInvoiceData.date ? dayjs(aiInvoiceData.date) : values.date,
+        dueDate: aiInvoiceData.dueDate ? dayjs(aiInvoiceData.dueDate) : values.dueDate,
+        // Ensure lineItems have taxRate field name (not taxRateId) and calculate totals
+        lineItems: aiInvoiceData.lineItems.map((item: any) => ({
+          ...item,
+          taxRate: item.taxRateId || item.taxRate || get(find(taxRates, { isDefault: 1 }), "id"),
+          total: multiplyDecimal(item.quantity, item.unitPrice),
+        })),
+      };
+    }
+    
     if (!isNew && invoice) {
       values = {
         ...invoice,
@@ -123,6 +143,14 @@ const InvoiceDetails: React.FC = () => {
 
   const initialValues = getInitialValues();
   const [form] = Form.useForm();
+
+  // Clear AI invoice data after using it
+  useEffect(() => {
+    if (isNew && aiInvoiceData) {
+      // Clear the atom after the form has been initialized
+      setAiInvoiceData(null);
+    }
+  }, [isNew, aiInvoiceData, setAiInvoiceData]);
 
   // Reset form when invoice data changes (e.g., after duplication)
   useEffect(() => {

@@ -9,12 +9,12 @@ import {
 } from "@ant-design/icons";
 import { Trans } from "@lingui/react/macro";
 import { t } from "@lingui/core/macro";
-import { useAtom, useAtomValue } from "jotai";
+import { useAtom, useAtomValue, useSetAtom } from "jotai";
 import { aiDrawerAtom } from "src/atoms/generic";
-import { anthropicApiKeyAtom } from "src/atoms/ai";
-import { useState } from "react";
+import { anthropicApiKeyAtom, aiInvoiceDataAtom } from "src/atoms/ai";
+import { useState, ReactNode } from "react";
 import { createAnthropic } from "@ai-sdk/anthropic";
-import { generateText, stepCountIs } from "ai";
+import { streamText, stepCountIs, ToolInvocation } from "ai";
 import { Link, useNavigate } from "react-router";
 import { fetch } from "@tauri-apps/plugin-http";
 import { open as openDialog } from "@tauri-apps/plugin-dialog";
@@ -28,6 +28,7 @@ import { unitsToCents } from "src/utils/currency";
 import { taxRatesAtom } from "src/atoms/tax-rate";
 import { tool } from "ai";
 import { z } from "zod";
+import { AI_ASSISTANT_SYSTEM_PROMPT } from "src/utils/ai";
 
 const { TextArea } = Input;
 const { Text } = Typography;
@@ -43,11 +44,13 @@ interface Message {
   role: "user" | "assistant";
   content: string;
   attachments?: FileAttachment[];
+  toolInvocations?: ToolInvocation[];
 }
 
 export default function AiDrawer() {
   const [open, setOpen] = useAtom(aiDrawerAtom);
   const apiKey = useAtomValue(anthropicApiKeyAtom);
+  const setAiInvoiceData = useSetAtom(aiInvoiceDataAtom);
   const [messages, setMessages] = useState<Message[]>([]);
   const [input, setInput] = useState("");
   const [isLoading, setIsLoading] = useState(false);
@@ -88,10 +91,13 @@ export default function AiDrawer() {
   // Define tools using AI SDK format
   const tools = {
     create_invoice: tool({
-      description: "Create a new invoice in the system",
+      description: "Create a new invoice",
       inputSchema: z.object({
         clientId: z.string().describe("The ID of the client for this invoice"),
+        clientName: z.string().describe("The name of the client"),
         currency: z.string().describe("Currency code (e.g., USD, EUR)"),
+        hourlyRate: z.number().optional().describe("Hourly rate if applicable"),
+        period: z.string().optional().describe("Billing period"),
         date: z.string().optional().describe("Invoice date in ISO format"),
         dueDate: z.string().optional().describe("Due date in ISO format"),
         lineItems: z
@@ -111,28 +117,17 @@ export default function AiDrawer() {
           // Find default tax rate if needed
           const defaultTaxRate = taxRates.find((t: any) => t.isDefault);
 
-          // Prepare line items
-          const lineItemsWithTotals = (args.lineItems || []).map((item: any) => ({
-            ...item,
-            taxRateId: item.taxRateId || defaultTaxRate?.id,
-            unitPrice: unitsToCents(item.unitPrice),
-          }));
-
-          const invoiceNumber = organization?.invoiceNumberPrefix
-            ? `${organization.invoiceNumberPrefix}${(organization.invoiceNumberCounter || 0) + 1}`
-            : `${(organization?.invoiceNumberCounter || 0) + 1}`;
-
-          // Calculate totals (backend requires these fields)
+          // Calculate totals
           let subTotal = 0;
           let taxTotal = 0;
-
-          lineItemsWithTotals.forEach((item: any) => {
-            // unitPrice is already in cents after unitsToCents conversion
-            const itemTotal = (item.quantity * item.unitPrice) / 100; // Convert back to units for calculation
+          
+          args.lineItems.forEach((item: any) => {
+            const itemTotal = item.quantity * item.unitPrice;
             subTotal += itemTotal;
-
-            if (item.taxRateId) {
-              const taxRate = taxRates.find((t: any) => t.id === item.taxRateId);
+            
+            const taxRateId = item.taxRateId || defaultTaxRate?.id;
+            if (taxRateId) {
+              const taxRate = taxRates.find((t: any) => t.id === taxRateId);
               if (taxRate && taxRate.rate) {
                 const itemTax = (itemTotal * taxRate.rate) / 100;
                 taxTotal += itemTax;
@@ -142,50 +137,32 @@ export default function AiDrawer() {
 
           const total = subTotal + taxTotal;
 
-          // Use organization defaults
-          const invoiceDate = args.date ? dayjs(args.date).valueOf() : dayjs().valueOf();
-          const defaultCurrency = args.currency || organization?.currency || "USD";
-
-          // Calculate due date based on due_days setting
-          let dueDate = null;
-          if (args.dueDate) {
-            dueDate = dayjs(args.dueDate).valueOf();
-          } else if (organization?.due_days) {
-            dueDate = dayjs(invoiceDate).add(organization.due_days, "days").valueOf();
-          } else {
-            // Default to 30 days if not set
-            dueDate = dayjs(invoiceDate).add(30, "days").valueOf();
-          }
-
-          const invoiceData = {
-            id: nanoid(),
-            organizationId,
-            number: invoiceNumber,
-            state: "draft",
+          // Navigate to the new invoice form with pre-filled data
+          // Store the form data in sessionStorage to be used by the invoice form
+          const formData = {
             clientId: args.clientId,
-            date: invoiceDate,
-            dueDate: dueDate,
-            currency: defaultCurrency,
-            total: unitsToCents(total),
-            taxTotal: unitsToCents(taxTotal),
-            subTotal: unitsToCents(subTotal),
-            customerNotes: args.customerNotes || "",
-            lineItems: lineItemsWithTotals,
+            currency: args.currency || organization?.currency || "USD",
+            date: args.date ? dayjs(args.date) : dayjs(),
+            dueDate: args.dueDate ? dayjs(args.dueDate) : organization?.due_days ? dayjs().add(organization.due_days, "day") : null,
+            lineItems: args.lineItems.map((item: any) => ({
+              description: item.description,
+              quantity: item.quantity,
+              unitPrice: item.unitPrice,
+              taxRateId: item.taxRateId || defaultTaxRate?.id,
+            })),
+            customerNotes: args.customerNotes || organization?.customerNotes || "",
           };
 
-          const createdInvoice = await invoke<any>("create_invoice", {
-            invoice: invoiceData,
-          });
-
-          // Navigate to the new invoice
-          navigate(`/invoices/${createdInvoice.id}`);
+          // Store in atom to be picked up by the invoice form
+          setAiInvoiceData(formData);
+          
+          // Navigate to new invoice form
+          navigate('/invoices/new');
           setOpen(false);
 
           return {
             success: true,
-            invoiceId: createdInvoice.id,
-            invoiceNumber: createdInvoice.number,
-            message: `Invoice ${createdInvoice.number} created successfully!`,
+            message: "Opening new invoice form with your data. Please review and click Save to create the invoice.",
           };
         } catch (error) {
           console.error("Failed to create invoice:", error);
@@ -261,7 +238,7 @@ export default function AiDrawer() {
         },
       });
 
-      const result = await generateText({
+      const result = streamText({
         model: anthropic("claude-sonnet-4-20250514"),
         messages: [
           ...messages.map((msg) => ({
@@ -284,20 +261,72 @@ export default function AiDrawer() {
           },
         ],
         tools,
-        stopWhen: stepCountIs(5), // Enable multi-step generation (max 5 steps)
-        system:
-          "You are a helpful AI assistant for an invoicing application. You have access to tools that can create invoices and list clients. When a user asks to create an invoice, follow these steps EXACTLY:\n\n1. Call list_clients to show available options\n2. Ask for the hourly rate (currency and payment terms use organization defaults)\n3. MANDATORY: Show a detailed summary with:\n   - Client name\n   - Total hours\n   - Hourly rate\n   - Line items description\n   - Subtotal calculation\n   - Tax amount (if applicable)\n   - Total amount\n   - Currency\n   - Invoice date and due date\n4. MANDATORY: Ask 'Do you want me to create this invoice?' or similar confirmation question\n5. WAIT for user's explicit confirmation (yes/proceed/confirm/create it)\n6. ONLY create the invoice after receiving explicit confirmation\n\nNEVER skip the confirmation step. NEVER create an invoice without showing the summary and getting confirmation first.",
+        stopWhen: stepCountIs(5),
+        system: AI_ASSISTANT_SYSTEM_PROMPT,
       });
 
-      // According to AI SDK docs, result.text contains the complete response including tool results
-
+      // Create assistant message to track streaming
       const assistantMessage: Message = {
         id: (Date.now() + 1).toString(),
         role: "assistant",
-        content: result.text || "I'm processing your request...",
+        content: "",
+        toolInvocations: [],
       };
 
       setMessages((prev) => [...prev, assistantMessage]);
+
+      // Collect the text content
+      let fullText = "";
+      for await (const text of result.textStream) {
+        fullText += text;
+        setMessages((prev) => {
+          const newMessages = [...prev];
+          const lastMessage = newMessages[newMessages.length - 1];
+          if (lastMessage.role === "assistant") {
+            lastMessage.content = fullText;
+          }
+          return newMessages;
+        });
+      }
+
+      // Get the final result with tool invocations
+      const finalResult = await result;
+      console.log("Final result:", finalResult);
+      
+      // Check for tool results in steps
+      if (finalResult.steps && finalResult.steps.length > 0) {
+        const toolInvocations: any[] = [];
+        
+        for (const step of finalResult.steps) {
+          if (step.toolCalls && step.toolCalls.length > 0) {
+            for (let i = 0; i < step.toolCalls.length; i++) {
+              const toolCall = step.toolCalls[i];
+              const toolResult = step.toolResults?.[i];
+              
+              if (toolCall.toolName === "create_invoice") {
+                toolInvocations.push({
+                  state: "result",
+                  toolCallId: toolCall.toolCallId || `tool-${i}`,
+                  toolName: toolCall.toolName,
+                  args: toolCall.args,
+                  result: toolResult?.result || toolResult,
+                });
+              }
+            }
+          }
+        }
+        
+        if (toolInvocations.length > 0) {
+          setMessages((prev) => {
+            const newMessages = [...prev];
+            const lastMessage = newMessages[newMessages.length - 1];
+            if (lastMessage.role === "assistant") {
+              lastMessage.toolInvocations = toolInvocations;
+            }
+            return newMessages;
+          });
+        }
+      }
     } catch (err: any) {
       console.error("Chat error:", err);
       setError(err.message || "An error occurred while processing your request.");
@@ -441,6 +470,7 @@ export default function AiDrawer() {
                   {message.role === "assistant" ? <Trans>AI Assistant</Trans> : <Trans>You</Trans>}
                 </Text>
                 <Text style={{ whiteSpace: "pre-wrap" }}>{message.content}</Text>
+                
                 {message.attachments && message.attachments.length > 0 && (
                   <div style={{ marginTop: 8 }}>
                     <Space size={4} wrap>
