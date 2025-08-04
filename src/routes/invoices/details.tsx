@@ -146,14 +146,22 @@ const InvoiceDetails: React.FC = () => {
 
   // Update form when AI invoice data changes
   useEffect(() => {
-    if (isNew && aiInvoiceData) {
+    if (isNew && aiInvoiceData && clients.length > 0) {
       // Get current form values to preserve non-updated fields
       const currentValues = form.getFieldsValue();
+      
+      // Validate that clientId exists in the clients list
+      const clientExists = clients.some((client: any) => client.id === aiInvoiceData.clientId);
+      if (!clientExists && aiInvoiceData.clientId) {
+        console.warn(`Client with ID ${aiInvoiceData.clientId} not found in clients list`);
+      }
       
       // Merge AI data with current values
       const updatedValues = {
         ...currentValues,
         ...aiInvoiceData,
+        // Only set clientId if it exists in the clients list
+        clientId: clientExists ? aiInvoiceData.clientId : currentValues.clientId,
         // Ensure dates are dayjs objects
         date: aiInvoiceData.date ? dayjs(aiInvoiceData.date) : currentValues.date,
         dueDate: aiInvoiceData.dueDate ? dayjs(aiInvoiceData.dueDate) : currentValues.dueDate,
@@ -171,7 +179,7 @@ const InvoiceDetails: React.FC = () => {
       // Clear the atom after applying updates
       setAiInvoiceData(null);
     }
-  }, [isNew, aiInvoiceData, setAiInvoiceData, form, taxRates]);
+  }, [isNew, aiInvoiceData, setAiInvoiceData, form, taxRates, clients]);
 
   // Reset form when invoice data changes (e.g., after duplication)
   useEffect(() => {

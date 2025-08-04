@@ -12,19 +12,17 @@ import { t } from "@lingui/core/macro";
 import { useAtom, useAtomValue, useSetAtom } from "jotai";
 import { aiDrawerAtom } from "src/atoms/generic";
 import { anthropicApiKeyAtom, aiInvoiceDataAtom } from "src/atoms/ai";
-import { useState, ReactNode } from "react";
+import { useState } from "react";
 import { createAnthropic } from "@ai-sdk/anthropic";
-import { streamText, stepCountIs, ToolInvocation } from "ai";
+import { streamText, stepCountIs } from "ai";
 import { Link, useNavigate, useLocation } from "react-router";
 import { fetch } from "@tauri-apps/plugin-http";
 import { open as openDialog } from "@tauri-apps/plugin-dialog";
 import { readTextFile } from "@tauri-apps/plugin-fs";
 import { invoke } from "@tauri-apps/api/core";
 import omit from "lodash/omit";
-import { nanoid } from "nanoid";
 import dayjs from "dayjs";
 import { organizationIdAtom, organizationAtom } from "src/atoms/organization";
-import { unitsToCents } from "src/utils/currency";
 import { taxRatesAtom } from "src/atoms/tax-rate";
 import { tool } from "ai";
 import { z } from "zod";
@@ -44,7 +42,7 @@ interface Message {
   role: "user" | "assistant";
   content: string;
   attachments?: FileAttachment[];
-  toolInvocations?: ToolInvocation[];
+  toolInvocations?: any[];
 }
 
 export default function AiDrawer() {
@@ -118,25 +116,16 @@ export default function AiDrawer() {
           // Find default tax rate if needed
           const defaultTaxRate = taxRates.find((t: any) => t.isDefault);
 
-          // Calculate totals
-          let subTotal = 0;
-          let taxTotal = 0;
-
+          // Tax rate validation for line items
           args.lineItems.forEach((item: any) => {
-            const itemTotal = item.quantity * item.unitPrice;
-            subTotal += itemTotal;
-
             const taxRateId = item.taxRateId || defaultTaxRate?.id;
             if (taxRateId) {
               const taxRate = taxRates.find((t: any) => t.id === taxRateId);
-              if (taxRate && taxRate.rate) {
-                const itemTax = (itemTotal * taxRate.rate) / 100;
-                taxTotal += itemTax;
+              if (!taxRate) {
+                console.warn(`Tax rate ${taxRateId} not found`);
               }
             }
           });
-
-          const total = subTotal + taxTotal;
 
           // Prepare the form data
           const formData = {
@@ -234,7 +223,7 @@ export default function AiDrawer() {
     try {
       const anthropic = createAnthropic({
         apiKey: apiKey,
-        fetch: async (input: string | URL | Request, init?: RequestInit): Promise<Response> => {
+        fetch: async (input: string | URL | Request, init?: any): Promise<Response> => {
           const url = typeof input === "string" ? input : input instanceof URL ? input.toString() : input.url;
 
           const headers = {
@@ -304,10 +293,10 @@ export default function AiDrawer() {
       }
 
       // Get the final result with tool invocations
-      const finalResult = await result;
+      const finalResult = result;
 
       // Check for tool results in steps
-      if (finalResult.steps && finalResult.steps.length > 0) {
+      if (finalResult.steps && Array.isArray(finalResult.steps) && finalResult.steps.length > 0) {
         const toolInvocations: any[] = [];
 
         for (const step of finalResult.steps) {
