@@ -7,6 +7,18 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Added
+- AI-powered invoice assistant with Claude integration for intelligent invoice creation
+- Invoice creation through AI conversation with automatic form pre-filling
+- AI settings page for configuring Anthropic API key
+- Support for attaching images and documents to AI conversations for context
+- Real-time invoice form updates based on AI suggestions
+- Windows builds now available through GitHub Actions CI/CD pipeline
+
+### Changed
+- AI invoice creation workflow refactored to use form pre-filling for better user control
+- Enhanced AI assistant with file attachment capabilities for improved context understanding
+
 ## [2.0.0-beta.14] - 2025-07-29
 
 ### Fixed
