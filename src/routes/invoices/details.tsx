@@ -144,13 +144,34 @@ const InvoiceDetails: React.FC = () => {
   const initialValues = getInitialValues();
   const [form] = Form.useForm();
 
-  // Clear AI invoice data after using it
+  // Update form when AI invoice data changes
   useEffect(() => {
     if (isNew && aiInvoiceData) {
-      // Clear the atom after the form has been initialized
+      // Get current form values to preserve non-updated fields
+      const currentValues = form.getFieldsValue();
+      
+      // Merge AI data with current values
+      const updatedValues = {
+        ...currentValues,
+        ...aiInvoiceData,
+        // Ensure dates are dayjs objects
+        date: aiInvoiceData.date ? dayjs(aiInvoiceData.date) : currentValues.date,
+        dueDate: aiInvoiceData.dueDate ? dayjs(aiInvoiceData.dueDate) : currentValues.dueDate,
+        // Ensure lineItems have taxRate field name and calculate totals
+        lineItems: aiInvoiceData.lineItems ? aiInvoiceData.lineItems.map((item: any) => ({
+          ...item,
+          taxRate: item.taxRateId || item.taxRate || get(find(taxRates, { isDefault: 1 }), "id"),
+          total: multiplyDecimal(item.quantity, item.unitPrice),
+        })) : currentValues.lineItems,
+      };
+      
+      // Update form with new values
+      form.setFieldsValue(updatedValues);
+      
+      // Clear the atom after applying updates
       setAiInvoiceData(null);
     }
-  }, [isNew, aiInvoiceData, setAiInvoiceData]);
+  }, [isNew, aiInvoiceData, setAiInvoiceData, form, taxRates]);
 
   // Reset form when invoice data changes (e.g., after duplication)
   useEffect(() => {

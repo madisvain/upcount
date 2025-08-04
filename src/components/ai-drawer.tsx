@@ -15,7 +15,7 @@ import { anthropicApiKeyAtom, aiInvoiceDataAtom } from "src/atoms/ai";
 import { useState, ReactNode } from "react";
 import { createAnthropic } from "@ai-sdk/anthropic";
 import { streamText, stepCountIs, ToolInvocation } from "ai";
-import { Link, useNavigate } from "react-router";
+import { Link, useNavigate, useLocation } from "react-router";
 import { fetch } from "@tauri-apps/plugin-http";
 import { open as openDialog } from "@tauri-apps/plugin-dialog";
 import { readTextFile } from "@tauri-apps/plugin-fs";
@@ -58,6 +58,7 @@ export default function AiDrawer() {
   const [attachments, setAttachments] = useState<FileAttachment[]>([]);
 
   const navigate = useNavigate();
+  const location = useLocation();
   const organizationId = useAtomValue(organizationIdAtom);
   const organization = useAtomValue(organizationAtom);
   const taxRates = useAtomValue(taxRatesAtom);
@@ -120,11 +121,11 @@ export default function AiDrawer() {
           // Calculate totals
           let subTotal = 0;
           let taxTotal = 0;
-          
+
           args.lineItems.forEach((item: any) => {
             const itemTotal = item.quantity * item.unitPrice;
             subTotal += itemTotal;
-            
+
             const taxRateId = item.taxRateId || defaultTaxRate?.id;
             if (taxRateId) {
               const taxRate = taxRates.find((t: any) => t.id === taxRateId);
@@ -137,13 +138,16 @@ export default function AiDrawer() {
 
           const total = subTotal + taxTotal;
 
-          // Navigate to the new invoice form with pre-filled data
-          // Store the form data in sessionStorage to be used by the invoice form
+          // Prepare the form data
           const formData = {
             clientId: args.clientId,
             currency: args.currency || organization?.currency || "USD",
             date: args.date ? dayjs(args.date) : dayjs(),
-            dueDate: args.dueDate ? dayjs(args.dueDate) : organization?.due_days ? dayjs().add(organization.due_days, "day") : null,
+            dueDate: args.dueDate
+              ? dayjs(args.dueDate)
+              : organization?.due_days
+              ? dayjs().add(organization.due_days, "day")
+              : null,
             lineItems: args.lineItems.map((item: any) => ({
               description: item.description,
               quantity: item.quantity,
@@ -153,17 +157,27 @@ export default function AiDrawer() {
             customerNotes: args.customerNotes || organization?.customerNotes || "",
           };
 
+          // Check if we're already on the new invoice page
+          const isOnNewInvoicePage = location.pathname === "/invoices/new";
+
           // Store in atom to be picked up by the invoice form
           setAiInvoiceData(formData);
-          
-          // Navigate to new invoice form
-          navigate('/invoices/new');
-          setOpen(false);
 
-          return {
-            success: true,
-            message: "Opening new invoice form with your data. Please review and click Save to create the invoice.",
-          };
+          if (!isOnNewInvoicePage) {
+            // Navigate to new invoice form if not already there
+            navigate("/invoices/new");
+            setOpen(false);
+            return {
+              success: true,
+              message: "Opening new invoice form with your data. Please review and click Save to create the invoice.",
+            };
+          } else {
+            // If already on the page, just update the form
+            return {
+              success: true,
+              message: "Invoice form updated with new data.",
+            };
+          }
         } catch (error) {
           console.error("Failed to create invoice:", error);
           return {
@@ -291,18 +305,17 @@ export default function AiDrawer() {
 
       // Get the final result with tool invocations
       const finalResult = await result;
-      console.log("Final result:", finalResult);
-      
+
       // Check for tool results in steps
       if (finalResult.steps && finalResult.steps.length > 0) {
         const toolInvocations: any[] = [];
-        
+
         for (const step of finalResult.steps) {
           if (step.toolCalls && step.toolCalls.length > 0) {
             for (let i = 0; i < step.toolCalls.length; i++) {
               const toolCall = step.toolCalls[i];
               const toolResult = step.toolResults?.[i];
-              
+
               if (toolCall.toolName === "create_invoice") {
                 toolInvocations.push({
                   state: "result",
@@ -315,7 +328,7 @@ export default function AiDrawer() {
             }
           }
         }
-        
+
         if (toolInvocations.length > 0) {
           setMessages((prev) => {
             const newMessages = [...prev];
@@ -470,7 +483,7 @@ export default function AiDrawer() {
                   {message.role === "assistant" ? <Trans>AI Assistant</Trans> : <Trans>You</Trans>}
                 </Text>
                 <Text style={{ whiteSpace: "pre-wrap" }}>{message.content}</Text>
-                
+
                 {message.attachments && message.attachments.length > 0 && (
                   <div style={{ marginTop: 8 }}>
                     <Space size={4} wrap>
