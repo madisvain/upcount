@@ -78,7 +78,10 @@ impl Database {
 
     pub async fn get_project(&self, project_id: &str) -> Result<Option<Project>, sqlx::Error> {
         let project = sqlx::query_as::<_, Project>(
-            "SELECT * FROM projects WHERE id = ?"
+            "SELECT p.id, p.organizationId, p.name, p.clientId, c.name as clientName, p.startDate, p.endDate, p.archivedAt, p.createdAt 
+             FROM projects p 
+             LEFT JOIN clients c ON p.clientId = c.id 
+             WHERE p.id = ?"
         )
         .bind(project_id)
         .fetch_optional(&self.pool)

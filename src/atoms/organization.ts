@@ -65,8 +65,8 @@ export const organizationAtom = atom(
           currency: "EUR",
           minimum_fraction_digits: 2,
           due_days: 7,
-          overdue_charge: 1,
-          invoiceNumberFormat: "INV-{number}",
+          overdueCharge: 0,
+          invoiceNumberFormat: "#{number}",
           invoiceNumberCounter: 0,
           ...newValues, // User values override defaults
           id: nanoid(),
@@ -133,7 +133,7 @@ export const deleteOrganizationAtom = atom(null, async (get, set) => {
       const nextOrganization: any = first(organizations);
       set(organizationIdAtom, organizations.length > 0 ? nextOrganization.id : null);
       message.success(t`Organization deleted`);
-      
+
       // Reload the page to refresh with the new organization
       window.location.reload();
     } else {

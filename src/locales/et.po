@@ -275,7 +275,7 @@ msgstr "Andmebaas on edukalt taastatud. Muudatuste nägemiseks palun taaskäivit
 #: src/routes/invoices/index.tsx:154
 #: src/routes/time-tracking/reports.tsx:108
 msgid "Date"
-msgstr "Kuupäaev"
+msgstr "Kuupäev"
 
 #: src/routes/settings/invoice.tsx:170
 msgid "Day of month"

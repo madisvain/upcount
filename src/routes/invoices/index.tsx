@@ -139,7 +139,7 @@ const Invoices = () => {
 
       <Table dataSource={search ? searchInvoices() : invoices} pagination={false} rowKey="id">
         <Table.Column
-          title={<Trans>Number</Trans>}
+          title="#"
           dataIndex="number"
           sorter={(a: any, b: any) => (a.number < b.nuber ? -1 : a.number === b.number ? 0 : 1)}
           render={(number, invoice: any) => <Link to={`/invoices/${invoice.id}`}>{number}</Link>}

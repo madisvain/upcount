@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, useMemo } from "react";
 import { createPortal } from "react-dom";
 import { useLocation, useNavigate, useParams, Link } from "react-router";
 import {
@@ -54,7 +54,7 @@ import { taxRatesAtom, setTaxRatesAtom } from "src/atoms/tax-rate";
 import { aiInvoiceDataAtom } from "src/atoms/ai";
 import ClientForm from "src/components/clients/form.tsx";
 import InvoicePDF from "src/components/invoices/pdf";
-import { currencies, getCurrencySymbol } from "src/utils/currencies";
+import { currencies } from "src/utils/currencies";
 import { generateInvoiceNumber } from "src/utils/invoice";
 import { multiplyDecimal, divideDecimal, calculateTax, addDecimal } from "src/utils/currency";
 
@@ -112,9 +112,10 @@ const InvoiceDetails: React.FC = () => {
       dueDate: organization.due_days ? dayjs().add(organization.due_days, "day") : null,
       lineItems: [{ quantity: 1, taxRate: get(find(taxRates, { isDefault: 1 }), "id") }],
       customerNotes: organization.customerNotes,
-      number: isNew ? (nextInvoiceNumber || '') : undefined,
+      overdueCharge: organization.overdueCharge || 0,
+      number: isNew ? nextInvoiceNumber || "" : undefined,
     };
-    
+
     // Check for AI-generated invoice data
     if (isNew && aiInvoiceData) {
       values = {
@@ -131,11 +132,14 @@ const InvoiceDetails: React.FC = () => {
         })),
       };
     }
-    
+
     if (!isNew && invoice) {
       values = {
         ...invoice,
-        lineItems: map(invoice.lineItems, (item) => ({ ...item, total: multiplyDecimal(item.quantity, item.unitPrice) })),
+        lineItems: map(invoice.lineItems, (item) => ({
+          ...item,
+          total: multiplyDecimal(item.quantity, item.unitPrice),
+        })),
       };
     }
     return values;
@@ -149,13 +153,13 @@ const InvoiceDetails: React.FC = () => {
     if (isNew && aiInvoiceData && clients.length > 0) {
       // Get current form values to preserve non-updated fields
       const currentValues = form.getFieldsValue();
-      
+
       // Validate that clientId exists in the clients list
       const clientExists = clients.some((client: any) => client.id === aiInvoiceData.clientId);
       if (!clientExists && aiInvoiceData.clientId) {
         console.warn(`Client with ID ${aiInvoiceData.clientId} not found in clients list`);
       }
-      
+
       // Merge AI data with current values
       const updatedValues = {
         ...currentValues,
@@ -166,16 +170,18 @@ const InvoiceDetails: React.FC = () => {
         date: aiInvoiceData.date ? dayjs(aiInvoiceData.date) : currentValues.date,
         dueDate: aiInvoiceData.dueDate ? dayjs(aiInvoiceData.dueDate) : currentValues.dueDate,
         // Ensure lineItems have taxRate field name and calculate totals
-        lineItems: aiInvoiceData.lineItems ? aiInvoiceData.lineItems.map((item: any) => ({
-          ...item,
-          taxRate: item.taxRateId || item.taxRate || get(find(taxRates, { isDefault: 1 }), "id"),
-          total: multiplyDecimal(item.quantity, item.unitPrice),
-        })) : currentValues.lineItems,
+        lineItems: aiInvoiceData.lineItems
+          ? aiInvoiceData.lineItems.map((item: any) => ({
+              ...item,
+              taxRate: item.taxRateId || item.taxRate || get(find(taxRates, { isDefault: 1 }), "id"),
+              total: multiplyDecimal(item.quantity, item.unitPrice),
+            }))
+          : currentValues.lineItems,
       };
-      
+
       // Update form with new values
       form.setFieldsValue(updatedValues);
-      
+
       // Clear the atom after applying updates
       setAiInvoiceData(null);
     }
@@ -186,7 +192,10 @@ const InvoiceDetails: React.FC = () => {
     if (!isNew && invoice) {
       const newValues = {
         ...invoice,
-        lineItems: map(invoice.lineItems, (item) => ({ ...item, total: multiplyDecimal(item.quantity, item.unitPrice) })),
+        lineItems: map(invoice.lineItems, (item) => ({
+          ...item,
+          total: multiplyDecimal(item.quantity, item.unitPrice),
+        })),
       };
       form.resetFields();
       form.setFieldsValue(newValues);
@@ -218,15 +227,38 @@ const InvoiceDetails: React.FC = () => {
       "total"
     )
   );
-  const taxTotal = sum(
-    map(
-      filter(lineItems, (item) => isNumber(get(item, "total")) && get(item, "taxRate")),
-      (item) => {
-        const taxRate: any = find(taxRates, { id: get(item, "taxRate") });
-        return taxRate?.percentage ? calculateTax(item.total, taxRate.percentage) : 0;
-      }
-    )
-  );
+  // Group line items by tax rate and calculate tax for each group
+  const taxGroups = useMemo(() => {
+    const groups: { [key: string]: { taxRate: any; items: any[]; subtotal: number; tax: number } } = {};
+
+    if (lineItems && Array.isArray(lineItems)) {
+      lineItems.forEach((item: any) => {
+        if (isNumber(get(item, "total")) && get(item, "taxRate")) {
+          const taxRateId = get(item, "taxRate");
+          const taxRate = find(taxRates, { id: taxRateId });
+
+          if (!groups[taxRateId]) {
+            groups[taxRateId] = {
+              taxRate,
+              items: [],
+              subtotal: 0,
+              tax: 0,
+            };
+          }
+
+          groups[taxRateId].items.push(item);
+          groups[taxRateId].subtotal = addDecimal(groups[taxRateId].subtotal, item.total);
+          groups[taxRateId].tax = taxRate?.percentage
+            ? calculateTax(groups[taxRateId].subtotal, taxRate.percentage)
+            : 0;
+        }
+      });
+    }
+
+    return Object.values(groups);
+  }, [lineItems, taxRates]);
+
+  const taxTotal = sum(map(taxGroups, "tax"));
   const total = addDecimal(subTotal, taxTotal);
 
   if (!organization) return null;
@@ -255,21 +287,16 @@ const InvoiceDetails: React.FC = () => {
                       return true;
                     }}
                     onChange={(clientId) => {
-                      if (isNew && organization?.invoiceNumberFormat?.includes('{clientCode}')) {
+                      if (isNew && organization?.invoiceNumberFormat?.includes("{clientCode}")) {
                         // Find the selected client
                         const selectedClient = clients.find((c: any) => c.id === clientId);
-                        const clientCode = selectedClient?.code || '';
-                        
+                        const clientCode = selectedClient?.code || "";
+
                         // Regenerate invoice number with client code
-                        const counter = addDecimal((organization.invoiceNumberCounter || 0), 1);
-                        const newNumber = organization.invoiceNumberFormat 
-                          ? generateInvoiceNumber(
-                              organization.invoiceNumberFormat,
-                              counter,
-                              new Date(),
-                              clientCode
-                            )
-                          : '';
+                        const counter = addDecimal(organization.invoiceNumberCounter || 0, 1);
+                        const newNumber = organization.invoiceNumberFormat
+                          ? generateInvoiceNumber(organization.invoiceNumberFormat, counter, new Date(), clientCode)
+                          : "";
                         form.setFieldsValue({ number: newNumber });
                       }
                     }}
@@ -317,10 +344,9 @@ const InvoiceDetails: React.FC = () => {
                 >
                   <Select>
                     {map(currencies, (currency) => {
-                      const symbol = getCurrencySymbol(i18n.locale, currency);
                       return (
                         <Option value={currency} key={currency}>
-                          {`${currency} ${currency !== symbol ? symbol : ""}`}
+                          {currency}
                         </Option>
                       );
                     })}
@@ -397,9 +423,15 @@ const InvoiceDetails: React.FC = () => {
                                   value = toNumber(value);
                                   if (value) {
                                     if (!unitPrice && total) {
-                                      form.setFieldValue(["lineItems", field.key, "unitPrice"], divideDecimal(total, value));
+                                      form.setFieldValue(
+                                        ["lineItems", field.key, "unitPrice"],
+                                        divideDecimal(total, value)
+                                      );
                                     } else {
-                                      form.setFieldValue(["lineItems", field.key, "total"], multiplyDecimal(value, unitPrice));
+                                      form.setFieldValue(
+                                        ["lineItems", field.key, "total"],
+                                        multiplyDecimal(value, unitPrice)
+                                      );
                                     }
                                   }
                                 }}
@@ -425,37 +457,15 @@ const InvoiceDetails: React.FC = () => {
                                   value = toNumber(value);
                                   if (value) {
                                     if (!quantity && total) {
-                                      form.setFieldValue(["lineItems", field.key, "quantity"], divideDecimal(total, value));
+                                      form.setFieldValue(
+                                        ["lineItems", field.key, "quantity"],
+                                        divideDecimal(total, value)
+                                      );
                                     } else {
-                                      form.setFieldValue(["lineItems", field.key, "total"], multiplyDecimal(quantity, value));
-                                    }
-                                  }
-                                }}
-                              />
-                            </Form.Item>
-                          )}
-                        />
-                        <Table.Column
-                          title={t`Total`}
-                          key="total"
-                          width={120}
-                          render={(field) => (
-                            <Form.Item
-                              name={[field.name, "total"]}
-                              rules={[{ required: true, message: t`This field is required!` }]}
-                              noStyle
-                            >
-                              <InputNumber
-                                onChange={(value) => {
-                                  const unitPrice = form.getFieldValue(["lineItems", field.key, "unitPrice"]);
-                                  const quantity = form.getFieldValue(["lineItems", field.key, "quantity"]);
-
-                                  value = toNumber(value);
-                                  if (value) {
-                                    if (!quantity && unitPrice) {
-                                      form.setFieldValue(["lineItems", field.key, "quantity"], divideDecimal(value, unitPrice));
-                                    } else {
-                                      form.setFieldValue(["lineItems", field.key, "unitPrice"], divideDecimal(value, quantity));
+                                      form.setFieldValue(
+                                        ["lineItems", field.key, "total"],
+                                        multiplyDecimal(quantity, value)
+                                      );
                                     }
                                   }
                                 }}
@@ -466,6 +476,24 @@ const InvoiceDetails: React.FC = () => {
                         <Table.Column
                           title={t`Tax`}
                           key="taxRate"
+                          width={120}
+                          render={(field) => (
+                            <Form.Item name={[field.name, "taxRate"]} noStyle>
+                              <Select style={{ width: "100%" }} allowClear placeholder="Select tax">
+                                {map(taxRates, (rate: any) => {
+                                  return (
+                                    <Option value={rate.id} key={rate.id}>
+                                      {rate.name} {rate.percentage}%
+                                    </Option>
+                                  );
+                                })}
+                              </Select>
+                            </Form.Item>
+                          )}
+                        />
+                        <Table.Column
+                          title={t`Total`}
+                          key="total"
                           width={120}
                           onCell={() => {
                             return {
@@ -481,26 +509,42 @@ const InvoiceDetails: React.FC = () => {
                                 onClick={() => remove(field.name)}
                                 style={{ position: "absolute", top: 20, right: -20 }}
                               />
-                              <Form.Item name={[field.name, "taxRate"]} noStyle>
-                                <Select style={{ width: "100%" }} allowClear placeholder="Select tax rate">
-                                  {map(taxRates, (rate: any) => {
-                                    return (
-                                      <Option value={rate.id} key={rate.id}>
-                                        {rate.name}
-                                      </Option>
-                                    );
-                                  })}
-                                </Select>
+                              <Form.Item
+                                name={[field.name, "total"]}
+                                rules={[{ required: true, message: t`This field is required!` }]}
+                                noStyle
+                              >
+                                <InputNumber
+                                  onChange={(value) => {
+                                    const unitPrice = form.getFieldValue(["lineItems", field.key, "unitPrice"]);
+                                    const quantity = form.getFieldValue(["lineItems", field.key, "quantity"]);
+
+                                    value = toNumber(value);
+                                    if (value) {
+                                      if (!quantity && unitPrice) {
+                                        form.setFieldValue(
+                                          ["lineItems", field.key, "quantity"],
+                                          divideDecimal(value, unitPrice)
+                                        );
+                                      } else {
+                                        form.setFieldValue(
+                                          ["lineItems", field.key, "unitPrice"],
+                                          divideDecimal(value, quantity)
+                                        );
+                                      }
+                                    }
+                                  }}
+                                />
                               </Form.Item>
                             </>
                           )}
                         />
                       </Table>
                       <Form.Item style={{ marginTop: 16 }}>
-                        <Button 
-                          type="default" 
-                          size="small" 
-                          onClick={() => add({ quantity: 1, taxRate: get(find(taxRates, { isDefault: 1 }), "id") })} 
+                        <Button
+                          type="default"
+                          size="small"
+                          onClick={() => add({ quantity: 1, taxRate: get(find(taxRates, { isDefault: 1 }), "id") })}
                           icon={<PlusOutlined />}
                         >
                           <Trans>Add line item</Trans>
@@ -540,7 +584,7 @@ const InvoiceDetails: React.FC = () => {
                       fontWeight: 500,
                       fontSize: 15,
                       lineHeight: 1.4,
-                    }
+                    },
                   }}
                 >
                   <Descriptions.Item label={<Trans>Subtotal</Trans>}>
@@ -550,13 +594,28 @@ const InvoiceDetails: React.FC = () => {
                       minimumFractionDigits: organization.minimum_fraction_digits,
                     }).format(subTotal)}
                   </Descriptions.Item>
-                  <Descriptions.Item label={<Trans>Tax</Trans>}>
-                    {Intl.NumberFormat(i18n.locale, {
-                      style: "currency",
-                      currency: organization.currency,
-                      minimumFractionDigits: organization.minimum_fraction_digits,
-                    }).format(taxTotal)}
-                  </Descriptions.Item>
+                  {taxGroups.length > 0 ? (
+                    taxGroups.map((group) => (
+                      <Descriptions.Item
+                        key={group.taxRate?.id}
+                        label={`${group.taxRate?.name || "Tax"} ${group.taxRate?.percentage || 0}%`}
+                      >
+                        {Intl.NumberFormat(i18n.locale, {
+                          style: "currency",
+                          currency: organization.currency,
+                          minimumFractionDigits: organization.minimum_fraction_digits,
+                        }).format(group.tax)}
+                      </Descriptions.Item>
+                    ))
+                  ) : (
+                    <Descriptions.Item label={<Trans>Tax</Trans>}>
+                      {Intl.NumberFormat(i18n.locale, {
+                        style: "currency",
+                        currency: organization.currency,
+                        minimumFractionDigits: organization.minimum_fraction_digits,
+                      }).format(0)}
+                    </Descriptions.Item>
+                  )}
                   <Descriptions.Item
                     label={
                       <strong>
@@ -638,6 +697,7 @@ const InvoiceDetails: React.FC = () => {
                                   invoice={invoice}
                                   client={find(clients, { id: invoice.clientId })}
                                   organization={organization}
+                                  taxRates={taxRates}
                                   i18n={i18n}
                                 />
                               ).toBlob();
