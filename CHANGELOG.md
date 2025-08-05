@@ -7,6 +7,14 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [2.0.0-beta.16] - 2025-08-05
+
+### Fixed
+- Updated translation extraction to include all new AI-related strings
+- Fixed missing translations across all supported languages (21 strings per language)
+
+## [2.0.0-beta.15] - 2025-08-05
+
 ### Added
 - AI-powered invoice assistant with Claude integration for intelligent invoice creation
 - Invoice creation through AI conversation with automatic form pre-filling
@@ -18,6 +26,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Changed
 - AI invoice creation workflow refactored to use form pre-filling for better user control
 - Enhanced AI assistant with file attachment capabilities for improved context understanding
+
+### Fixed
+- TypeScript and ESLint errors in AI assistant implementation
+- AI client selection validation to prevent setting invalid client IDs in invoice forms
 
 ## [2.0.0-beta.14] - 2025-07-29
 
