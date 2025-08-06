@@ -41,7 +41,7 @@ msgstr "Actief"
 msgid "Add a new organization to your account"
 msgstr "Voeg een nieuwe organisatie toe aan uw account"
 
-#: src/routes/invoices/details.tsx:556
+#: src/routes/invoices/details.tsx:572
 msgid "Add line item"
 msgstr "Regelitem toevoegen"
 
@@ -98,7 +98,7 @@ msgstr "Gearchiveerd"
 msgid "Are you sure delete this organization?"
 msgstr "Weet u zeker dat u deze organisatie wilt verwijderen?"
 
-#: src/routes/invoices/details.tsx:669
+#: src/routes/invoices/details.tsx:685
 #: src/routes/invoices/index.tsx:102
 #: src/routes/invoices/preview.tsx:171
 msgid "Are you sure to delete this invoice?"
@@ -258,9 +258,13 @@ msgstr "Organisatie aanmaken"
 msgid "Currency"
 msgstr "Valuta"
 
-#: src/routes/invoices/details.tsx:567
+#: src/routes/invoices/details.tsx:583
 msgid "Customer note"
 msgstr "Klantnotitie"
+
+#: src/routes/invoices/details.tsx:382
+msgid "Daily %"
+msgstr ""
 
 #: src/routes/time-tracking/reports.tsx:225
 msgid "Daily average"
@@ -274,7 +278,7 @@ msgstr "Database back-up succesvol opgeslagen naar {backupPath}"
 msgid "Database has been restored successfully. Please restart the application to see the changes."
 msgstr "Database is succesvol hersteld. Start de applicatie opnieuw om de wijzigingen te zien."
 
-#: src/components/invoices/pdf.tsx:246
+#: src/components/invoices/pdf.tsx:260
 #: src/components/time-entries/time-range-cell.tsx:79
 #: src/routes/invoices/index.tsx:154
 #: src/routes/time-tracking/reports.tsx:108
@@ -296,7 +300,7 @@ msgstr "Standaard"
 
 #: src/components/clients/form.tsx:114
 #: src/components/time-entries/form.tsx:130
-#: src/routes/invoices/details.tsx:675
+#: src/routes/invoices/details.tsx:691
 #: src/routes/invoices/index.tsx:111
 #: src/routes/invoices/preview.tsx:177
 #: src/routes/settings/organization.tsx:112
@@ -304,7 +308,7 @@ msgstr "Standaard"
 msgid "Delete"
 msgstr "Verwijderen"
 
-#: src/routes/invoices/details.tsx:668
+#: src/routes/invoices/details.tsx:684
 #: src/routes/invoices/index.tsx:101
 #: src/routes/invoices/preview.tsx:170
 msgid "Delete the invoice?"
@@ -314,10 +318,10 @@ msgstr "Factuur verwijderen?"
 msgid "Delete the time entry?"
 msgstr "Tijditem verwijderen?"
 
-#: src/components/invoices/pdf.tsx:270
+#: src/components/invoices/pdf.tsx:284
 #: src/components/tax-rates/form.tsx:61
 #: src/components/time-entries/form.tsx:161
-#: src/routes/invoices/details.tsx:392
+#: src/routes/invoices/details.tsx:408
 #: src/routes/settings/tax-rates.tsx:53
 #: src/routes/time-tracking/index.tsx:355
 msgid "Description"
@@ -329,7 +333,7 @@ msgstr "Omschrijving"
 msgid "Draft"
 msgstr "Concept"
 
-#: src/components/invoices/pdf.tsx:249
+#: src/components/invoices/pdf.tsx:263
 #: src/routes/invoices/details.tsx:371
 #: src/routes/invoices/index.tsx:161
 msgid "Due date"
@@ -339,7 +343,7 @@ msgstr "Vervaldatum"
 msgid "Due days"
 msgstr "Vervaldagen"
 
-#: src/routes/invoices/details.tsx:663
+#: src/routes/invoices/details.tsx:679
 #: src/routes/invoices/index.tsx:90
 #: src/routes/invoices/preview.tsx:165
 msgid "Duplicate"
@@ -617,7 +621,7 @@ msgstr "Nieuwe invoer"
 msgid "New invoice"
 msgstr "Nieuwe factuur"
 
-#: src/layouts/base.tsx:289
+#: src/layouts/base.tsx:286
 msgid "New organization"
 msgstr "Nieuwe organisatie"
 
@@ -649,7 +653,7 @@ msgstr "Volgende factuur gebruikt dit nummer + 1"
 #: src/components/clients/form.tsx:110
 #: src/components/projects/form.tsx:136
 #: src/components/time-entries/form.tsx:126
-#: src/routes/invoices/details.tsx:672
+#: src/routes/invoices/details.tsx:688
 #: src/routes/invoices/index.tsx:108
 #: src/routes/invoices/preview.tsx:174
 #: src/routes/time-tracking/index.tsx:481
@@ -664,7 +668,7 @@ msgstr "Geen klant"
 msgid "No client assigned"
 msgstr "Geen klant toegewezen"
 
-#: src/routes/invoices/details.tsx:389
+#: src/routes/invoices/details.tsx:405
 msgid "No line items"
 msgstr "Geen regelitems"
 
@@ -721,7 +725,8 @@ msgstr "Bijwerken organisatie mislukt"
 msgid "Organization updated successfully"
 msgstr "Organisatie succesvol bijgewerkt"
 
-#: src/components/invoices/pdf.tsx:253
+#: src/components/invoices/pdf.tsx:267
+#: src/routes/invoices/details.tsx:380
 #: src/routes/settings/invoice.tsx:105
 msgid "Overdue charge"
 msgstr "Achterstallige kosten"
@@ -777,8 +782,8 @@ msgstr "Upload een PNG- of JPEG-afbeelding"
 msgid "Preview"
 msgstr "Voorvertoning"
 
-#: src/components/invoices/pdf.tsx:276
-#: src/routes/invoices/details.tsx:449
+#: src/components/invoices/pdf.tsx:290
+#: src/routes/invoices/details.tsx:465
 msgid "Price"
 msgstr "Prijs"
 
@@ -812,8 +817,8 @@ msgstr "Project succesvol bijgewerkt"
 msgid "Projects"
 msgstr "Projecten"
 
-#: src/components/invoices/pdf.tsx:273
-#: src/routes/invoices/details.tsx:415
+#: src/components/invoices/pdf.tsx:287
+#: src/routes/invoices/details.tsx:431
 msgid "Qty."
 msgstr "Aantal"
 
@@ -852,7 +857,7 @@ msgstr "Herstel uw database vanuit een eerder gemaakt back-upbestand. Dit vervan
 #: src/components/time-entries/form.tsx:111
 #: src/components/time-entries/form.tsx:150
 #: src/components/time-entries/time-range-cell.tsx:89
-#: src/routes/invoices/details.tsx:718
+#: src/routes/invoices/details.tsx:734
 #: src/routes/settings/invoice.tsx:250
 #: src/routes/settings/organization.tsx:103
 msgid "Save"
@@ -949,8 +954,8 @@ msgstr "Status"
 msgid "Stop Timer"
 msgstr "Timer stoppen"
 
-#: src/components/invoices/pdf.tsx:320
-#: src/routes/invoices/details.tsx:596
+#: src/components/invoices/pdf.tsx:334
+#: src/routes/invoices/details.tsx:612
 msgid "Subtotal"
 msgstr "Subtotaal"
 
@@ -988,16 +993,16 @@ msgstr "Tag succesvol bijgewerkt"
 msgid "Tags"
 msgstr "Tags"
 
-#: src/routes/invoices/details.tsx:617
+#: src/routes/invoices/details.tsx:633
 msgid "Tax"
 msgstr "BTW"
 
-#: src/components/invoices/pdf.tsx:279
-#: src/routes/invoices/details.tsx:483
+#: src/components/invoices/pdf.tsx:293
+#: src/routes/invoices/details.tsx:499
 msgid "Tax %"
 msgstr "BTW %"
 
-#: src/components/invoices/pdf.tsx:332
+#: src/components/invoices/pdf.tsx:346
 msgid "Tax 0%"
 msgstr "BTW 0%"
 
@@ -1027,10 +1032,10 @@ msgstr "Belastingtarieven"
 #: src/routes/invoices/details.tsx:349
 #: src/routes/invoices/details.tsx:365
 #: src/routes/invoices/details.tsx:373
-#: src/routes/invoices/details.tsx:406
-#: src/routes/invoices/details.tsx:421
-#: src/routes/invoices/details.tsx:455
-#: src/routes/invoices/details.tsx:520
+#: src/routes/invoices/details.tsx:422
+#: src/routes/invoices/details.tsx:437
+#: src/routes/invoices/details.tsx:471
+#: src/routes/invoices/details.tsx:536
 #: src/routes/settings/invoice.tsx:86
 #: src/routes/settings/invoice.tsx:126
 #: src/routes/settings/invoice.tsx:196
@@ -1086,10 +1091,10 @@ msgstr "Timer"
 msgid "to use the AI assistant."
 msgstr "om de AI-assistent te gebruiken."
 
-#: src/components/invoices/pdf.tsx:282
-#: src/components/invoices/pdf.tsx:356
-#: src/routes/invoices/details.tsx:501
-#: src/routes/invoices/details.tsx:628
+#: src/components/invoices/pdf.tsx:296
+#: src/components/invoices/pdf.tsx:370
+#: src/routes/invoices/details.tsx:517
+#: src/routes/invoices/details.tsx:644
 #: src/routes/invoices/index.tsx:168
 #: src/routes/time-tracking/reports.tsx:246
 msgid "Total"
@@ -1124,7 +1129,7 @@ msgstr "BTW-nummer"
 msgid "VATIN"
 msgstr "BTW-ID"
 
-#: src/routes/invoices/details.tsx:691
+#: src/routes/invoices/details.tsx:707
 msgid "View"
 msgstr "Bekijken"
 
@@ -1159,7 +1164,7 @@ msgstr "Waaraan werk je?"
 #: src/components/clients/form.tsx:109
 #: src/components/projects/form.tsx:135
 #: src/components/time-entries/form.tsx:125
-#: src/routes/invoices/details.tsx:671
+#: src/routes/invoices/details.tsx:687
 #: src/routes/invoices/index.tsx:107
 #: src/routes/invoices/preview.tsx:173
 #: src/routes/settings/organization.tsx:108

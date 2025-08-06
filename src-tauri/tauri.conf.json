@@ -1,7 +1,7 @@
 {
   "$schema": "../node_modules/@tauri-apps/cli/schema.json",
   "productName": "Upcount",
-  "version": "2.0.0-beta.17",
+  "version": "2.0.0-beta.18",
   "identifier": "com.upcount.dev",
   "build": {
     "beforeBuildCommand": "yarn build",

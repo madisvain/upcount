@@ -273,21 +273,20 @@ export default function BaseLayout() {
                       setOrganizationId(value);
                       window.location.reload();
                     }}
-                    popupRender={(menu) => (
+                    dropdownRender={(menu) => (
                       <>
                         {menu}
                         <Divider style={{ margin: "8px 0" }} />
-                        <Button
-                          type="text"
-                          block
-                          icon={<PlusOutlined />}
-                          onClick={() => {
-                            navigate("/organizations/new");
-                          }}
-                          style={{ textAlign: "left" }}
-                        >
-                          <Trans>New organization</Trans>
-                        </Button>
+                        <Menu
+                          onClick={() => navigate("/organizations/new")}
+                          items={[
+                            {
+                              key: "new-org",
+                              icon: <PlusOutlined />,
+                              label: <Trans>New organization</Trans>,
+                            },
+                          ]}
+                        />
                       </>
                     )}
                   >

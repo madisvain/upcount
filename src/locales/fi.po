@@ -41,7 +41,7 @@ msgstr "Aktiivinen"
 msgid "Add a new organization to your account"
 msgstr "Lisää uusi organisaatio tiliisi"
 
-#: src/routes/invoices/details.tsx:556
+#: src/routes/invoices/details.tsx:572
 msgid "Add line item"
 msgstr "Lisää rivi"
 
@@ -98,7 +98,7 @@ msgstr "Arkistoitu"
 msgid "Are you sure delete this organization?"
 msgstr "Haluatko varmasti poistaa tämän organisaation?"
 
-#: src/routes/invoices/details.tsx:669
+#: src/routes/invoices/details.tsx:685
 #: src/routes/invoices/index.tsx:102
 #: src/routes/invoices/preview.tsx:171
 msgid "Are you sure to delete this invoice?"
@@ -258,9 +258,13 @@ msgstr "Luo organisaatio"
 msgid "Currency"
 msgstr "Valuutta"
 
-#: src/routes/invoices/details.tsx:567
+#: src/routes/invoices/details.tsx:583
 msgid "Customer note"
 msgstr "Asiakashuomautus"
+
+#: src/routes/invoices/details.tsx:382
+msgid "Daily %"
+msgstr ""
 
 #: src/routes/time-tracking/reports.tsx:225
 msgid "Daily average"
@@ -274,7 +278,7 @@ msgstr "Tietokannan varmuuskopio tallennettu onnistuneesti sijaintiin {backupPat
 msgid "Database has been restored successfully. Please restart the application to see the changes."
 msgstr "Tietokanta on palautettu onnistuneesti. Käynnistä sovellus uudelleen nähdäksesi muutokset."
 
-#: src/components/invoices/pdf.tsx:246
+#: src/components/invoices/pdf.tsx:260
 #: src/components/time-entries/time-range-cell.tsx:79
 #: src/routes/invoices/index.tsx:154
 #: src/routes/time-tracking/reports.tsx:108
@@ -296,7 +300,7 @@ msgstr "Oletus"
 
 #: src/components/clients/form.tsx:114
 #: src/components/time-entries/form.tsx:130
-#: src/routes/invoices/details.tsx:675
+#: src/routes/invoices/details.tsx:691
 #: src/routes/invoices/index.tsx:111
 #: src/routes/invoices/preview.tsx:177
 #: src/routes/settings/organization.tsx:112
@@ -304,7 +308,7 @@ msgstr "Oletus"
 msgid "Delete"
 msgstr "Poista"
 
-#: src/routes/invoices/details.tsx:668
+#: src/routes/invoices/details.tsx:684
 #: src/routes/invoices/index.tsx:101
 #: src/routes/invoices/preview.tsx:170
 msgid "Delete the invoice?"
@@ -314,10 +318,10 @@ msgstr "Poistetaanko lasku?"
 msgid "Delete the time entry?"
 msgstr "Poistetaanko aikakirjaus?"
 
-#: src/components/invoices/pdf.tsx:270
+#: src/components/invoices/pdf.tsx:284
 #: src/components/tax-rates/form.tsx:61
 #: src/components/time-entries/form.tsx:161
-#: src/routes/invoices/details.tsx:392
+#: src/routes/invoices/details.tsx:408
 #: src/routes/settings/tax-rates.tsx:53
 #: src/routes/time-tracking/index.tsx:355
 msgid "Description"
@@ -329,7 +333,7 @@ msgstr "Kuvaus"
 msgid "Draft"
 msgstr "Luonnos"
 
-#: src/components/invoices/pdf.tsx:249
+#: src/components/invoices/pdf.tsx:263
 #: src/routes/invoices/details.tsx:371
 #: src/routes/invoices/index.tsx:161
 msgid "Due date"
@@ -339,7 +343,7 @@ msgstr "Eräpäivä"
 msgid "Due days"
 msgstr "Eräpäiviä"
 
-#: src/routes/invoices/details.tsx:663
+#: src/routes/invoices/details.tsx:679
 #: src/routes/invoices/index.tsx:90
 #: src/routes/invoices/preview.tsx:165
 msgid "Duplicate"
@@ -617,7 +621,7 @@ msgstr "Uusi kirjaus"
 msgid "New invoice"
 msgstr "Uusi lasku"
 
-#: src/layouts/base.tsx:289
+#: src/layouts/base.tsx:286
 msgid "New organization"
 msgstr "Uusi organisaatio"
 
@@ -649,7 +653,7 @@ msgstr "Seuraava lasku käyttää tätä numeroa + 1"
 #: src/components/clients/form.tsx:110
 #: src/components/projects/form.tsx:136
 #: src/components/time-entries/form.tsx:126
-#: src/routes/invoices/details.tsx:672
+#: src/routes/invoices/details.tsx:688
 #: src/routes/invoices/index.tsx:108
 #: src/routes/invoices/preview.tsx:174
 #: src/routes/time-tracking/index.tsx:481
@@ -664,7 +668,7 @@ msgstr "Ei asiakasta"
 msgid "No client assigned"
 msgstr "Ei määritettyä asiakasta"
 
-#: src/routes/invoices/details.tsx:389
+#: src/routes/invoices/details.tsx:405
 msgid "No line items"
 msgstr "Ei rivikohteita"
 
@@ -721,7 +725,8 @@ msgstr "Organisaation päivitys epäonnistui"
 msgid "Organization updated successfully"
 msgstr "Organisaatio päivitetty onnistuneesti"
 
-#: src/components/invoices/pdf.tsx:253
+#: src/components/invoices/pdf.tsx:267
+#: src/routes/invoices/details.tsx:380
 #: src/routes/settings/invoice.tsx:105
 msgid "Overdue charge"
 msgstr "Viivästysmaksu"
@@ -777,8 +782,8 @@ msgstr "Lataa PNG- tai JPEG-kuva"
 msgid "Preview"
 msgstr "Esikatselu"
 
-#: src/components/invoices/pdf.tsx:276
-#: src/routes/invoices/details.tsx:449
+#: src/components/invoices/pdf.tsx:290
+#: src/routes/invoices/details.tsx:465
 msgid "Price"
 msgstr "Hinta"
 
@@ -812,8 +817,8 @@ msgstr "Projekti päivitetty onnistuneesti"
 msgid "Projects"
 msgstr "Projektit"
 
-#: src/components/invoices/pdf.tsx:273
-#: src/routes/invoices/details.tsx:415
+#: src/components/invoices/pdf.tsx:287
+#: src/routes/invoices/details.tsx:431
 msgid "Qty."
 msgstr "Määrä"
 
@@ -852,7 +857,7 @@ msgstr "Palauta tietokantasi aiemmin luodusta varmuuskopiotiedostosta. Tämä ko
 #: src/components/time-entries/form.tsx:111
 #: src/components/time-entries/form.tsx:150
 #: src/components/time-entries/time-range-cell.tsx:89
-#: src/routes/invoices/details.tsx:718
+#: src/routes/invoices/details.tsx:734
 #: src/routes/settings/invoice.tsx:250
 #: src/routes/settings/organization.tsx:103
 msgid "Save"
@@ -949,8 +954,8 @@ msgstr "Tila"
 msgid "Stop Timer"
 msgstr "Pysäytä ajastin"
 
-#: src/components/invoices/pdf.tsx:320
-#: src/routes/invoices/details.tsx:596
+#: src/components/invoices/pdf.tsx:334
+#: src/routes/invoices/details.tsx:612
 msgid "Subtotal"
 msgstr "Välisumma"
 
@@ -988,16 +993,16 @@ msgstr "Tunniste päivitetty onnistuneesti"
 msgid "Tags"
 msgstr "Tunnisteet"
 
-#: src/routes/invoices/details.tsx:617
+#: src/routes/invoices/details.tsx:633
 msgid "Tax"
 msgstr "Vero"
 
-#: src/components/invoices/pdf.tsx:279
-#: src/routes/invoices/details.tsx:483
+#: src/components/invoices/pdf.tsx:293
+#: src/routes/invoices/details.tsx:499
 msgid "Tax %"
 msgstr "Vero %"
 
-#: src/components/invoices/pdf.tsx:332
+#: src/components/invoices/pdf.tsx:346
 msgid "Tax 0%"
 msgstr "Vero 0%"
 
@@ -1027,10 +1032,10 @@ msgstr "Verokannat"
 #: src/routes/invoices/details.tsx:349
 #: src/routes/invoices/details.tsx:365
 #: src/routes/invoices/details.tsx:373
-#: src/routes/invoices/details.tsx:406
-#: src/routes/invoices/details.tsx:421
-#: src/routes/invoices/details.tsx:455
-#: src/routes/invoices/details.tsx:520
+#: src/routes/invoices/details.tsx:422
+#: src/routes/invoices/details.tsx:437
+#: src/routes/invoices/details.tsx:471
+#: src/routes/invoices/details.tsx:536
 #: src/routes/settings/invoice.tsx:86
 #: src/routes/settings/invoice.tsx:126
 #: src/routes/settings/invoice.tsx:196
@@ -1086,10 +1091,10 @@ msgstr "Ajastin"
 msgid "to use the AI assistant."
 msgstr "käyttääksesi AI-assistenttia."
 
-#: src/components/invoices/pdf.tsx:282
-#: src/components/invoices/pdf.tsx:356
-#: src/routes/invoices/details.tsx:501
-#: src/routes/invoices/details.tsx:628
+#: src/components/invoices/pdf.tsx:296
+#: src/components/invoices/pdf.tsx:370
+#: src/routes/invoices/details.tsx:517
+#: src/routes/invoices/details.tsx:644
 #: src/routes/invoices/index.tsx:168
 #: src/routes/time-tracking/reports.tsx:246
 msgid "Total"
@@ -1124,7 +1129,7 @@ msgstr "ALV-numero"
 msgid "VATIN"
 msgstr "ALV-tunnus"
 
-#: src/routes/invoices/details.tsx:691
+#: src/routes/invoices/details.tsx:707
 msgid "View"
 msgstr "Näytä"
 
@@ -1159,7 +1164,7 @@ msgstr "Mitä teet parhaillaan?"
 #: src/components/clients/form.tsx:109
 #: src/components/projects/form.tsx:135
 #: src/components/time-entries/form.tsx:125
-#: src/routes/invoices/details.tsx:671
+#: src/routes/invoices/details.tsx:687
 #: src/routes/invoices/index.tsx:107
 #: src/routes/invoices/preview.tsx:173
 #: src/routes/settings/organization.tsx:108
