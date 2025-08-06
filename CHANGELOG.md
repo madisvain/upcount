@@ -7,6 +7,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [2.0.0-beta.18] - 2025-08-06
+
 ### Added
 - Daily overdue charge percentage field to invoice details form with help text
 - Support for configuring daily overdue charges on invoices
