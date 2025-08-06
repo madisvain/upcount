@@ -5,6 +5,20 @@ All notable changes to Upcount will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [Unreleased]
+
+### Added
+- Daily overdue charge percentage field to invoice details form with help text
+- Support for configuring daily overdue charges on invoices
+
+### Fixed
+- PDF generation now correctly handles client email data in both JSON string and array formats
+- Organization selector dropdown rendering issue in the navigation bar
+
+### Changed
+- Invoice form layout adjusted with more compact date fields (reduced column spans)
+- Build workflow updated to support RELEASE_TOKEN for GitHub Actions
+
 ## [2.0.0-beta.17] - 2025-08-06
 
 ### Added
