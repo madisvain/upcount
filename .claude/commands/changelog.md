@@ -1,28 +1,28 @@
 # Changelog Management
 
-You are helping maintain release notes for Upcount, a cross-platform invoicing application, following the Keep a Changelog format (https://keepachangelog.com/en/1.1.0/).
+You are helping maintain the CHANGELOG.md for Upcount, a cross-platform invoicing application, following the Keep a Changelog format (https://keepachangelog.com/en/1.1.0/).
 
 ## Workflow
 
-When asked to create release notes:
+When asked to update the changelog:
 
-1. **Accept version parameter** (optional)
-   - If version provided (e.g., "v1.2.0" or "1.2.0"): Create a new release
-   - If no version provided: Update the "Unreleased" section only
-
-2. **Review recent commits**
+1. **Always start from the latest release**
    ```bash
-   # First, find the latest release tag
+   # Find the latest release tag
    git tag --sort=-version:refname | head -1
    
-   # Then get commits since that tag (replace with actual tag)
+   # Get all commits since that tag
    git log --oneline --no-merges [LATEST_TAG]..HEAD
    
-   # Example for this project:
-   git log --oneline --no-merges v2.0.0-beta.5..HEAD
+   # Also check uncommitted changes
+   git status --short
+   git diff --stat HEAD
+   
+   # Check current version in tauri.conf.json to determine next version
+   cat src-tauri/tauri.conf.json | grep '"version"'
    ```
 
-3. **Update CHANGELOG.md** following this exact format:
+2. **Update CHANGELOG.md** following this exact format:
    ```markdown
    # Changelog
    All notable changes to this project will be documented in this file.
@@ -30,29 +30,28 @@ When asked to create release notes:
    The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
    and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
-   ## [Unreleased]
-
-   ## [X.X.X] - YYYY-MM-DD
+   ## [2.0.0-beta.20] - Unreleased
    ### Added
    - New features
 
    ### Changed
    - Changes in existing functionality
 
-   ### Deprecated
-   - Soon-to-be removed features
-
-   ### Removed
-   - Now removed features
-
    ### Fixed
    - Bug fixes
 
-   ### Security
-   - Vulnerability fixes
+   ## [2.0.0-beta.19] - 2025-08-06
+   ### Added
+   - Previous release features
    ```
+   
+   **Important Rules**: 
+   - If the top version says "Unreleased", ADD to that existing version
+   - Only create a new version number when the previous one has a date (meaning it was released)
+   - The date will be set manually when releasing - you should always use "Unreleased"
+   - Check tauri.conf.json for the current version to determine the next version number when needed
 
-4. **Categories** (use only if applicable):
+3. **Categories** (use only if applicable):
    - **Added**: New features, capabilities, or endpoints
    - **Changed**: Changes to existing functionality
    - **Deprecated**: Features that will be removed in future versions
@@ -60,7 +59,7 @@ When asked to create release notes:
    - **Fixed**: Bug fixes
    - **Security**: Fixes for vulnerabilities
 
-5. **Guidelines**:
+4. **Guidelines**:
    - Write for humans, not machines
    - Use clear, user-friendly language
    - Focus on what changed from the user's perspective
@@ -71,61 +70,25 @@ When asked to create release notes:
    - Omit empty sections
    - Most recent version at the top
    - Date format: YYYY-MM-DD (ISO 8601)
+   - Always check both committed and uncommitted changes since last release
 
-6. **Version links** (at bottom of file):
+5. **Version links** (at bottom of file):
    ```markdown
-   [unreleased]: https://github.com/username/upcount/compare/vX.X.X...HEAD
-   [X.X.X]: https://github.com/username/upcount/compare/vX.X.X-1...vX.X.X
+   [unreleased]: https://github.com/madisvain/upcount/compare/vX.X.X...HEAD
+   [X.X.X]: https://github.com/madisvain/upcount/compare/vX.X.X-1...vX.X.X
    ```
 
-## Example Commands
+## Example Usage
 
-- `Create release notes for v1.2.0` → Move Unreleased to new version section
-- `Update release notes` → Add changes to Unreleased section only
-- `Prepare changelog for 2.0.0` → Major version release
-
-## Release Process
-
-When releasing a version:
-1. Move all "Unreleased" entries to the new version section
-2. Add the version number and today's date
-3. Clear the "Unreleased" section (keep the heading)
-4. Update comparison links at the bottom
-5. Commit with message: "Release version X.X.X"
-6. **Update GitHub Release** (if release exists):
-   ```bash
-   # Check if release exists
-   gh release view vX.X.X --repo madisvain/upcount
-   
-   # Create release notes file with download badges + changelog content
-   # Use Write tool to create release-notes.md with:
-   # 1. Download badges at top (replace vX.X.X with actual version)
-   # 2. Complete changelog content for that version
-   
-   # Then update the GitHub release
-   gh release edit vX.X.X --repo madisvain/upcount --notes-file release-notes.md
-   ```
-   
-   **GitHub Release Notes Format**:
-   ```markdown
-   [![This version downloads](https://img.shields.io/github/downloads/madisvain/upcount/vX.X.X/total?label=This%20version%20downloads)](https://github.com/madisvain/upcount/releases/tag/vX.X.X)
-   [![Total downloads](https://img.shields.io/github/downloads/madisvain/upcount/total?label=Total%20downloads)](https://github.com/madisvain/upcount/releases)
-
-   [Copy the exact changelog content for this version from CHANGELOG.md]
-   ```
-   
-   **Important**: 
-   - Replace `vX.X.X` with the actual version number in badge URLs
-   - Include download badges only in GitHub releases, not in CHANGELOG.md
-   - Use Write tool to create the release notes file with proper formatting
-   - Copy the complete changelog content for that version (all applicable sections)
-   - Clean up the temporary release notes file after updating the release
+- `Update changelog` → Review all changes since last release and update CHANGELOG.md
+- `Update release notes` → Same as above
+- `/changelog` → Review and update based on recent changes
 
 ## Good Examples
 
-### Unreleased Section Update
+### Current Development Version
 ```markdown
-## [Unreleased]
+## [2.0.0-beta.20] - Unreleased
 ### Added
 - Export invoices to CSV format for accounting software integration
 - Dark mode support for better visibility in low-light conditions
@@ -136,9 +99,9 @@ When releasing a version:
 - Currency symbols now display correctly for all supported currencies
 ```
 
-### Version Release
+### Released Version
 ```markdown
-## [1.2.0] - 2025-06-29
+## [2.0.0-beta.19] - 2025-08-06
 ### Added
 - Multi-language support for invoices (English, Spanish, French, German)
 - Automatic tax calculation based on client location
