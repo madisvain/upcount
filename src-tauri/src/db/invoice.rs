@@ -108,6 +108,8 @@ pub struct UpdateInvoiceRequest {
     pub currency: Option<String>,
     #[serde(rename = "customerNotes")]
     pub customer_notes: Option<String>,
+    #[serde(rename = "overdueCharge")]
+    pub overdue_charge: Option<f64>,
     pub total: Option<i64>,  // Stored as cents
     #[serde(rename = "taxTotal")]
     pub tax_total: Option<i64>,  // Stored as cents
@@ -251,6 +253,7 @@ impl Database {
                 dueDate = COALESCE(?, dueDate),
                 currency = COALESCE(?, currency),
                 customerNotes = COALESCE(?, customerNotes),
+                overdueCharge = COALESCE(?, overdueCharge),
                 total = COALESCE(?, total),
                 taxTotal = COALESCE(?, taxTotal),
                 subTotal = COALESCE(?, subTotal)
@@ -264,6 +267,7 @@ impl Database {
         .bind(&updates.due_date)
         .bind(&updates.currency)
         .bind(&updates.customer_notes)
+        .bind(&updates.overdue_charge)
         .bind(&updates.total)
         .bind(&updates.tax_total)
         .bind(&updates.sub_total)
@@ -301,6 +305,29 @@ impl Database {
 
         tx.commit().await?;
 
+        self.get_invoice(invoice_id).await?
+            .ok_or_else(|| sqlx::Error::RowNotFound)
+    }
+
+    pub async fn update_invoice_state(
+        &self,
+        invoice_id: &str,
+        state: &str,
+    ) -> Result<Invoice, sqlx::Error> {
+        // Update only the state field
+        sqlx::query(
+            r#"
+            UPDATE invoices
+            SET state = ?
+            WHERE id = ?
+            "#,
+        )
+        .bind(state)
+        .bind(invoice_id)
+        .execute(&self.pool)
+        .await?;
+
+        // Return the updated invoice
         self.get_invoice(invoice_id).await?
             .ok_or_else(|| sqlx::Error::RowNotFound)
     }

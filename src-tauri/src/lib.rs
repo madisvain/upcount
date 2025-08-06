@@ -58,6 +58,7 @@ pub fn run() {
       commands::get_invoice_line_items,
       commands::create_invoice,
       commands::update_invoice,
+      commands::update_invoice_state,
       commands::delete_invoice,
       commands::get_organizations,
       commands::get_organization,

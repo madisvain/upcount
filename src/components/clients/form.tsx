@@ -1,6 +1,6 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, startTransition } from "react";
 import { useLocation, useNavigate } from "react-router";
-import { Form, Input, Modal, Select, Button, Popconfirm } from "antd";
+import { Form, Input, Modal, Select, Button, Popconfirm, Spin } from "antd";
 import { atom, useAtom, useSetAtom } from "jotai";
 import { Trans } from "@lingui/react/macro";
 import { t } from "@lingui/core/macro";
@@ -24,11 +24,14 @@ const ClientForm = () => {
   const [submitting, setSubmitting] = useAtom(submittingAtom);
   const deleteClient = useSetAtom(deleteClientAtom);
   const [invoiceCount, setInvoiceCount] = useState<number | null>(null);
+  const [loading, setLoading] = useState(false);
 
   const handleSubmit = async (values: any) => {
     setSubmitting(true);
     await setClient(values);
-    setClientId(null);
+    startTransition(() => {
+      setClientId(null);
+    });
     navigate(location.pathname, { state: { clientModal: false } });
     form.resetFields();
     setSubmitting(false);
@@ -38,7 +41,9 @@ const ClientForm = () => {
     if (clientId) {
       setSubmitting(true);
       await deleteClient(clientId);
-      setClientId(null);
+      startTransition(() => {
+        setClientId(null);
+      });
       navigate(location.pathname, { state: { clientModal: false } });
       form.resetFields();
       setSubmitting(false);
@@ -47,18 +52,29 @@ const ClientForm = () => {
 
   useEffect(() => {
     if (get(location, "state.clientId")) {
-      setClientId(get(location, "state.clientId"));
+      startTransition(() => {
+        setClientId(get(location, "state.clientId"));
+      });
     } else {
       form.resetFields();
-      setClientId(null);
+      startTransition(() => {
+        setClientId(null);
+      });
     }
   }, [location, form, setClientId]);
 
   useEffect(() => {
+    if (clientId) {
+      setLoading(true);
+    }
     if (client) {
       form.setFieldsValue(client);
+      setLoading(false);
+    } else if (clientId) {
+      // Client is still loading or failed to load
+      setLoading(false);
     }
-  }, [client, form]);
+  }, [client, clientId, form]);
 
   useEffect(() => {
     if (clientId) {
@@ -86,7 +102,9 @@ const ClientForm = () => {
       onOk={() => form.submit()}
       confirmLoading={submitting}
       onCancel={() => {
-        setClientId(null);
+        startTransition(() => {
+          setClientId(null);
+        });
         form.resetFields();
         navigate(location.pathname, { state: { clientModal: false } });
       }}
@@ -119,7 +137,9 @@ const ClientForm = () => {
           <div>
             <Button
               onClick={() => {
-                setClientId(null);
+                startTransition(() => {
+                  setClientId(null);
+                });
                 form.resetFields();
                 navigate(location.pathname, { state: { clientModal: false } });
               }}
@@ -139,7 +159,11 @@ const ClientForm = () => {
       ]}
       forceRender={true}
     >
-      {(!clientId || !isEmpty(client)) && (
+      {loading ? (
+        <div style={{ textAlign: 'center', padding: '40px 0' }}>
+          <Spin size="large" />
+        </div>
+      ) : (!clientId || !isEmpty(client)) && (
         <Form form={form} layout="vertical" onFinish={handleSubmit}>
           <Form.Item name="name" rules={[{ required: true, message: t`Please input name!` }]}>
             <Input 

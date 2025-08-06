@@ -51,14 +51,14 @@ function SettingsInvoice() {
 
   const onLogoUpload = (data: any) => {
     const file = data.file;
-    
+
     // Validate file type
-    const validTypes = ['image/png', 'image/jpeg', 'image/jpg'];
+    const validTypes = ["image/png", "image/jpeg", "image/jpg"];
     if (!validTypes.includes(file.type)) {
       message.error(t`Please upload a PNG or JPEG image`);
       return;
     }
-    
+
     const reader = new FileReader();
     reader.onload = function () {
       const base64data = reader.result;
@@ -103,7 +103,13 @@ function SettingsInvoice() {
                 <InputNumber min={0} />
               </Form.Item>
               <Form.Item label={t`Overdue charge`} help={<Trans>% per day</Trans>} name="overdueCharge">
-                <InputNumber min={0} />
+                <InputNumber
+                  min={0}
+                  step={0.01}
+                  formatter={(value) => `${value} %`}
+                  parser={(value) => value?.replace("%", "") as any}
+                  placeholder="0%"
+                />
               </Form.Item>
               <Form.Item label={t`Notes`} name="customerNotes">
                 <TextArea rows={4} />
@@ -225,9 +231,9 @@ function SettingsInvoice() {
                     />
                   )}
                   <br />
-                  <Upload 
-                    accept="image/png,image/jpeg,image/jpg" 
-                    showUploadList={false} 
+                  <Upload
+                    accept="image/png,image/jpeg,image/jpg"
+                    showUploadList={false}
                     customRequest={(data) => onLogoUpload(data)}
                   >
                     <Button>

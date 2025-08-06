@@ -236,7 +236,7 @@ const InvoicePDF = ({
                   emailsArray = typeof client.emails === 'string' 
                     ? JSON.parse(client.emails) 
                     : client.emails;
-                } catch (e) {
+                } catch {
                   // If parsing fails, treat as empty array
                   emailsArray = [];
                 }

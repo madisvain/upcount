@@ -5,7 +5,7 @@ import { Trans } from "@lingui/react/macro";
 
 import type { MenuProps } from "antd";
 
-import { invoiceAtom, invoiceIdAtom } from "src/atoms/invoice";
+import { updateInvoiceStateAtom } from "src/atoms/invoice";
 
 const stateColor = {
   draft: null,
@@ -15,13 +15,10 @@ const stateColor = {
 };
 
 const InvoiceStateSelect = ({ invoice }: { invoice: any }) => {
-  const setInvoiceId = useSetAtom(invoiceIdAtom);
-  const setInvoice = useSetAtom(invoiceAtom);
+  const updateInvoiceState = useSetAtom(updateInvoiceStateAtom);
 
   const changeState = async (toState: string) => {
-    setInvoiceId(invoice.id);
-    await setInvoice({ state: toState });
-    setInvoiceId(null);
+    await updateInvoiceState({ invoiceId: invoice.id, state: toState });
   };
 
   const items: MenuProps["items"] = [

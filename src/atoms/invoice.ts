@@ -90,6 +90,7 @@ export const invoiceAtom = atom(
           total: unitsToCents(invoice.total),
           taxTotal: unitsToCents(invoice.taxTotal),
           subTotal: unitsToCents(invoice.subTotal),
+          overdueCharge: invoice.overdueCharge,
           lineItems: lineItems.map((item: any) => ({
             ...omit(item, ["id", "total"]),
             unitPrice: unitsToCents(item.unitPrice),
@@ -124,6 +125,7 @@ export const invoiceAtom = atom(
           total: invoice.total ? unitsToCents(invoice.total) : undefined,
           taxTotal: invoice.taxTotal ? unitsToCents(invoice.taxTotal) : undefined,
           subTotal: invoice.subTotal ? unitsToCents(invoice.subTotal) : undefined,
+          overdueCharge: invoice.overdueCharge,
           lineItems: lineItems
             ? lineItems.map((item: any) => ({
                 ...omit(item, ["id", "total"]),
@@ -171,6 +173,32 @@ export const deleteInvoiceAtom = atom(null, async (get, set, invoiceId: string) 
   } catch (error) {
     console.error("Failed to delete invoice:", error);
     message.error(t`Invoice deletion failed`);
+  }
+});
+
+// Update invoice state only
+export const updateInvoiceStateAtom = atom(null, async (get, set, { invoiceId, state }: { invoiceId: string; state: string }) => {
+  try {
+    const updatedInvoice = await invoke<any>("update_invoice_state", {
+      invoiceId,
+      state,
+    });
+
+    message.success(t`Invoice state updated`);
+
+    // Update the invoices list
+    const invoices: any = get(invoicesAtom);
+    const invoiceWithUnits = {
+      ...updatedInvoice,
+      total: centsToUnits(updatedInvoice.total),
+      taxTotal: centsToUnits(updatedInvoice.taxTotal),
+      subTotal: centsToUnits(updatedInvoice.subTotal),
+    };
+    const mergedInvoices: any = keyBy([...invoices, invoiceWithUnits], "id");
+    set(invoicesAtom, orderBy(map(mergedInvoices), "date", "desc"));
+  } catch (error) {
+    console.error("Failed to update invoice state:", error);
+    message.error(t`Failed to update invoice state`);
   }
 });
 

@@ -117,6 +117,17 @@ pub async fn update_invoice(
 }
 
 #[tauri::command]
+pub async fn update_invoice_state(
+    invoice_id: String,
+    state: String,
+    db: State<'_, Database>,
+) -> Result<Invoice, String> {
+    db.update_invoice_state(&invoice_id, &state)
+        .await
+        .map_err(|e| handle_db_error(e, "update_invoice_state"))
+}
+
+#[tauri::command]
 pub async fn delete_invoice(invoice_id: String, db: State<'_, Database>) -> Result<bool, String> {
     db.delete_invoice(&invoice_id)
         .await

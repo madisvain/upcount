@@ -209,7 +209,7 @@ const InvoiceDetails: React.FC = () => {
       subTotal,
       taxTotal,
       total,
-      overdueCharge: organization?.overdueCharge || 0,
+      overdueCharge: values.overdueCharge,
     });
     setSubmitting(false);
   };
@@ -376,16 +376,17 @@ const InvoiceDetails: React.FC = () => {
                 </Form.Item>
               </Col>
               <Col span={4}>
-                <Form.Item 
-                  label={t`Overdue charge`} 
-                  name="overdueCharge" 
-                  help={<span style={{ fontSize: '12px', display: 'block', textAlign: 'right' }}>{t`Daily %`}</span>}
+                <Form.Item
+                  label={t`Overdue charge`}
+                  name="overdueCharge"
+                  help={<span style={{ fontSize: "12px", display: "block", textAlign: "right" }}>{t`Daily %`}</span>}
                 >
                   <InputNumber
                     style={{ width: "100%" }}
                     min={0}
                     max={100}
-                    formatter={(value) => `${value}%`}
+                    step={0.01}
+                    formatter={(value) => `${value} %`}
                     parser={(value) => value?.replace("%", "") as any}
                     placeholder="0%"
                   />

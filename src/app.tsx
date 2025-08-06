@@ -12,9 +12,11 @@ initSentry();
 import "dayjs/locale/en";
 import "dayjs/locale/et";
 
-import { useEffect, useState } from "react";
+import { useEffect, useState, useMemo } from "react";
 import { BrowserRouter, Navigate, Route, Routes, useNavigate, useLocation } from "react-router";
 import { ConfigProvider } from "antd";
+import enUS from "antd/locale/en_US";
+import etEE from "antd/locale/et_EE";
 import { useAtomValue, useSetAtom } from "jotai";
 import { i18n } from "@lingui/core";
 import { I18nProvider } from "@lingui/react";
@@ -58,6 +60,17 @@ const AppContent = () => {
   // Load locale
   const locale = useAtomValue(localeAtom);
 
+  // Map locale to Ant Design locale
+  const antdLocale = useMemo(() => {
+    switch (locale) {
+      case "et":
+        return etEE;
+      case "en":
+      default:
+        return enUS;
+    }
+  }, [locale]);
+
   useEffect(() => {
     dynamicActivate(locale);
   }, [locale]);
@@ -96,6 +109,7 @@ const AppContent = () => {
 
   return (
     <ConfigProvider
+      locale={antdLocale}
       theme={{
         token: {
           borderRadius: 2,
