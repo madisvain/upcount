@@ -1,27 +1,14 @@
 
-# 📣 Version 2
-
-Happy to announce the ongoing development of Upcount with significantly improved functionality. The new version is a complete rewrite of the application with a focus on performance, stability, and new features.
-
-NB! It's not backwards compatible with Upcount version 1 and will require a new installation. The beta version is backward compatible with alpha releases.
-
-## 🚀 [Upcount 2.0.0-beta.9](https://github.com/madisvain/upcount/releases/latest)
-
-The latest beta version includes major new features like **complete project management system**, **advanced time tracking with reports**, **comprehensive multi-language support**, and **invoice duplication**. The beta version is now available on the main branch of the repository.
-
-The new version is built with
-
-* [Tauri](https://tauri.app/)
-* [SQLite](https://www.sqlite.org/index.html)
-* [React](https://reactjs.org/)
-* [Ant Design](https://ant.design/)
-
-I'd be happy to receive feedback on this new version and any feature requests you might have. Please open an issue on Github or email me at [madisvain@gmail.com](mailto:madisvain@gmail.com).
-
-
-# Upcount invoicing app
+# Upcount invoicing & time tracking app
 
 ![Github actions](https://github.com/madisvain/upcount/workflows/publish/badge.svg) ![GitHub release (latest by date including pre-releases)](https://img.shields.io/github/v/release/madisvain/upcount?include_prereleases) ![GitHub](https://img.shields.io/github/license/madisvain/upcount)
+
+
+## 🔒 Local-First & Privacy Focused
+
+**Your data belongs to you.** Upcount is designed to work completely offline - no internet connection required. All your invoices, clients, and business data are stored locally on your computer in an SQLite database. No cloud servers, no subscriptions, no data mining. You own and control all your data.
+
+Built with [Tauri](https://tauri.app/), [SQLite](https://www.sqlite.org/index.html), [React](https://reactjs.org/), and [Ant Design](https://ant.design/)
 
 ![Invoice list](https://www.upcount.app/screenshots/invoices.png)
 [Invoice editing](https://www.upcount.app/screenshots/invoice-edit.png)
