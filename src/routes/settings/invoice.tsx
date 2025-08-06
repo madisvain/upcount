@@ -102,7 +102,7 @@ function SettingsInvoice() {
               <Form.Item label={t`Due days`} name="due_days">
                 <InputNumber min={0} />
               </Form.Item>
-              <Form.Item label={t`Overdue charge`} help={<Trans>% per day</Trans>} name="overdue_charge">
+              <Form.Item label={t`Overdue charge`} help={<Trans>% per day</Trans>} name="overdueCharge">
                 <InputNumber min={0} />
               </Form.Item>
               <Form.Item label={t`Notes`} name="customerNotes">

@@ -50,7 +50,7 @@ Font.register({
 const styles = StyleSheet.create({
   container: {
     flexDirection: "column",
-    padding: 30,
+    padding: 50,
     fontSize: 10,
   },
   title: {
@@ -111,6 +111,12 @@ const styles = StyleSheet.create({
     fontSize: 8,
     padding: 8,
   },
+  tableColFirst: {
+    paddingLeft: 0,
+  },
+  tableColLast: {
+    paddingRight: 0,
+  },
   tableHeader: {
     fontWeight: "medium",
   },
@@ -154,10 +160,10 @@ const styles = StyleSheet.create({
   footer: {
     position: "absolute",
     bottom: 30,
-    left: 30,
-    right: 30,
+    left: 50,
+    right: 50,
     borderTopStyle: "solid",
-    borderTopWidth: 1,
+    borderTopWidth: 0.5,
     borderTopColor: "#868686",
     paddingTop: 8,
     flexDirection: "row",
@@ -183,9 +189,9 @@ const InvoicePDF = ({
     const groups: { [key: string]: { taxRate: any; items: any[]; subtotal: number; tax: number } } = {};
 
     invoice.lineItems?.forEach((item: any) => {
-      if (item.total && item.taxRate) {
-        const taxRateId = item.taxRate;
-        const taxRate = taxRates?.find((rate: any) => rate.id === taxRateId);
+      if (item.total) {
+        const taxRateId = item.taxRate || "no-tax";
+        const taxRate = item.taxRate ? taxRates?.find((rate: any) => rate.id === taxRateId) : null;
 
         if (!groups[taxRateId]) {
           groups[taxRateId] = {
@@ -222,15 +228,15 @@ const InvoicePDF = ({
           <View style={styles.row}>
             <View style={styles.column}>
               <Text style={[styles.subtitle]}>{client.name}</Text>
-              <Text style={styles.text}>{client.address}</Text>
-              {client.emails && client.emails.length > 0 && <Text style={styles.text}>{client.emails[0]}</Text>}
-              <Text style={styles.text}>{client.website}</Text>
+              <Text style={styles.smallText}>{client.address}</Text>
+              {client.emails && client.emails.length > 0 && <Text style={styles.smallText}>{client.emails[0]}</Text>}
+              <Text style={styles.smallText}>{client.website}</Text>
             </View>
             <View style={[styles.column, { textAlign: "right" }]}>
               <Text style={[styles.subtitle]}>{organization.name}</Text>
-              <Text style={styles.text}>{organization.address}</Text>
-              <Text style={styles.text}>{organization.email}</Text>
-              <Text style={styles.text}>{organization.website}</Text>
+              <Text style={styles.smallText}>{organization.address}</Text>
+              <Text style={styles.smallText}>{organization.email}</Text>
+              <Text style={styles.smallText}>{organization.website}</Text>
             </View>
           </View>
 
@@ -251,13 +257,15 @@ const InvoicePDF = ({
             <View>
               <Text style={[styles.smallText, { marginBottom: 8 }]}>{dayjs(invoice.date).format("L")}</Text>
               <Text style={[styles.smallText, { marginBottom: 8 }]}>{dayjs(invoice.dueDate).format("L")}</Text>
-              {invoice.overdueCharge && <Text style={[styles.smallText, { marginBottom: 8 }]}>{invoice.overdueCharge}%</Text>}
+              {invoice.overdueCharge && (
+                <Text style={[styles.smallText, { marginBottom: 8 }]}>{invoice.overdueCharge}%</Text>
+              )}
             </View>
           </View>
 
           <View style={styles.table}>
             <View style={[styles.tableRow, styles.tableRowBordered, styles.tableRowBorderedBold, styles.tableHeader]}>
-              <Text style={[styles.tableCol, styles.lineItemNumber]}>#</Text>
+              <Text style={[styles.tableCol, styles.tableColFirst, styles.lineItemNumber]}>#</Text>
               <Text style={[styles.tableCol, styles.lineItemDescription]}>
                 <Trans>Description</Trans>
               </Text>
@@ -268,9 +276,9 @@ const InvoicePDF = ({
                 <Trans>Price</Trans>
               </Text>
               <Text style={[styles.tableCol, styles.lineItemTax]}>
-                <Trans>Tax</Trans>
+                <Trans>Tax %</Trans>
               </Text>
-              <Text style={[styles.tableCol, styles.lineItemTotal]}>
+              <Text style={[styles.tableCol, styles.tableColLast, styles.lineItemTotal]}>
                 <Trans>Total</Trans>
               </Text>
             </View>
@@ -280,16 +288,20 @@ const InvoicePDF = ({
               return (
                 <View
                   key={lineItem.id}
-                  style={[styles.tableRow, styles.tableRowBordered, ...(isLastItem ? [styles.tableRowBorderedBold] : [])]}
+                  style={[
+                    styles.tableRow,
+                    styles.tableRowBordered,
+                    ...(isLastItem ? [styles.tableRowBorderedBold] : []),
+                  ]}
                 >
-                  <Text style={[styles.tableCol, styles.lineItemNumber]}>{index + 1}</Text>
+                  <Text style={[styles.tableCol, styles.tableColFirst, styles.lineItemNumber]}>{index + 1}</Text>
                   <Text style={[styles.tableCol, styles.lineItemDescription]}>{lineItem.description}</Text>
                   <Text style={[styles.tableCol, styles.lineItemQuantity]}>{lineItem.quantity}</Text>
                   <Text style={[styles.tableCol, styles.lineItemUnitPrice]}>
                     {getFormattedNumber(lineItem.unitPrice, invoice.currency, i18n.locale, organization)}
                   </Text>
                   <Text style={[styles.tableCol, styles.lineItemTax]}>{taxRate ? `${taxRate.percentage}%` : ""}</Text>
-                  <Text style={[styles.tableCol, styles.lineItemTotal]}>
+                  <Text style={[styles.tableCol, styles.tableColLast, styles.lineItemTotal]}>
                     {getFormattedNumber(lineItem.total, invoice.currency, i18n.locale, organization)}
                   </Text>
                 </View>
@@ -302,7 +314,7 @@ const InvoicePDF = ({
               {invoice.customerNotes && <Text style={styles.notes}>{invoice.customerNotes}</Text>}
             </View>
             <View style={{ width: "40%" }}>
-              <View style={{ paddingHorizontal: 8 }}>
+              <View>
                 <View style={{ flexDirection: "row", justifyContent: "space-between", paddingVertical: 4 }}>
                   <Text style={[styles.smallText, styles.nowrap]}>
                     <Trans>Subtotal</Trans>
@@ -311,30 +323,19 @@ const InvoicePDF = ({
                     {getFormattedNumber(invoice.subTotal, invoice.currency, i18n.locale, organization)}
                   </Text>
                 </View>
-                {taxGroups.length > 0 ? (
-                  taxGroups.map((group, index) => (
-                    <View
-                      key={`tax-${index}`}
-                      style={{ flexDirection: "row", justifyContent: "space-between", paddingVertical: 4 }}
-                    >
-                      <Text style={[styles.smallText, styles.nowrap]}>
-                        {group.taxRate?.name || <Trans>Tax</Trans>} {group.taxRate?.percentage || 0}%
-                      </Text>
-                      <Text style={[styles.smallText]}>
-                        {getFormattedNumber(group.tax, invoice.currency, i18n.locale, organization)}
-                      </Text>
-                    </View>
-                  ))
-                ) : (
-                  <View style={{ flexDirection: "row", justifyContent: "space-between", paddingVertical: 4 }}>
+                {taxGroups.map((group, index) => (
+                  <View
+                    key={`tax-${index}`}
+                    style={{ flexDirection: "row", justifyContent: "space-between", paddingVertical: 4 }}
+                  >
                     <Text style={[styles.smallText, styles.nowrap]}>
-                      <Trans>Tax</Trans>
+                      {group.taxRate ? `${group.taxRate.name} ${group.taxRate.percentage}%` : <Trans>Tax 0%</Trans>}
                     </Text>
                     <Text style={[styles.smallText]}>
-                      {getFormattedNumber(0, invoice.currency, i18n.locale, organization)}
+                      {getFormattedNumber(group.tax, invoice.currency, i18n.locale, organization)}
                     </Text>
                   </View>
-                )}
+                ))}
               </View>
               <View
                 style={{
@@ -343,7 +344,14 @@ const InvoicePDF = ({
                   marginTop: 8,
                 }}
               >
-                <View style={{ flexDirection: "row", justifyContent: "space-between", paddingVertical: 4, paddingTop: 8, paddingHorizontal: 8 }}>
+                <View
+                  style={{
+                    flexDirection: "row",
+                    justifyContent: "space-between",
+                    paddingVertical: 4,
+                    paddingTop: 8,
+                  }}
+                >
                   <Text style={[styles.smallText, styles.bold, styles.nowrap]}>
                     <Trans>Total</Trans>
                   </Text>

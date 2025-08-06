@@ -204,7 +204,13 @@ const InvoiceDetails: React.FC = () => {
 
   const handleSubmit = async (values: any) => {
     setSubmitting(true);
-    await setInvoice({ ...values, subTotal, taxTotal, total });
+    await setInvoice({
+      ...values,
+      subTotal,
+      taxTotal,
+      total,
+      overdueCharge: organization?.overdueCharge || 0,
+    });
     setSubmitting(false);
   };
 
@@ -474,7 +480,7 @@ const InvoiceDetails: React.FC = () => {
                           )}
                         />
                         <Table.Column
-                          title={t`Tax`}
+                          title={t`Tax %`}
                           key="taxRate"
                           width={120}
                           render={(field) => (

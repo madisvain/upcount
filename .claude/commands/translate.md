@@ -13,13 +13,23 @@ The translation system uses:
 
 When asked to update translations:
 
-1. **Identify locale files**
+1. **Extract and analyze current translation status**
+   ```bash
+   yarn extract
+   ```
+   This command will:
+   - Extract all translatable strings from the source code
+   - Update catalog files with new messages
+   - Show a table with total count and missing translations for each language
+   - Identify which languages need translation updates
+
+2. **Identify locale files**
    ```bash
    ls src/locales/*.po | grep -v en.po
    ```
 
-2. **Analyze missing translations**
-   For each locale file (excluding en.po):
+3. **Analyze missing translations**
+   For each locale file that has missing translations (excluding en.po):
    ```bash
    # Count empty translations
    grep -c 'msgstr ""' src/locales/et.po
@@ -28,21 +38,24 @@ When asked to update translations:
    grep -B1 'msgstr ""' src/locales/et.po | head -20
    ```
 
-3. **Extract missing translations**
+4. **Extract missing translations**
    Read the locale file and identify all entries where `msgstr ""` (empty translation).
    For each missing translation, note:
    - The msgid (source text in English)
    - The file location comment (shows where it's used)
    - Any context that might help with translation
 
-4. **Translate missing strings**
+5. **Translate missing strings**
    - Translate each msgid to the target language
    - Maintain the tone and style appropriate for a business/invoicing application
    - Keep translations concise and professional
    - Preserve any formatting or placeholders in the original text
 
-5. **Update the .po file**
+6. **Update the .po file**
    Fill in the empty msgstr fields with appropriate translations.
+
+7. **Verify completeness**
+   Run `yarn extract` again to confirm all translations are complete and the "Missing" column shows 0 for all languages.
 
 ## Translation Guidelines
 
