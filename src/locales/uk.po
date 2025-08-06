@@ -17,15 +17,19 @@ msgstr ""
 msgid "%"
 msgstr "%"
 
-#: src/routes/settings/invoice.tsx:162
+#: src/routes/settings/invoice.tsx:105
+msgid "% per day"
+msgstr "% на день"
+
+#: src/routes/settings/invoice.tsx:171
 msgid "2-digit month"
 msgstr "2-значний місяць"
 
-#: src/routes/settings/invoice.tsx:158
+#: src/routes/settings/invoice.tsx:167
 msgid "2-digit year"
 msgstr "2-значний рік"
 
-#: src/routes/settings/invoice.tsx:155
+#: src/routes/settings/invoice.tsx:164
 msgid "4-digit year"
 msgstr "4-значний рік"
 
@@ -37,7 +41,7 @@ msgstr "Активні"
 msgid "Add a new organization to your account"
 msgstr "Додати нову організацію до вашого облікового запису"
 
-#: src/routes/invoices/details.tsx:506
+#: src/routes/invoices/details.tsx:556
 msgid "Add line item"
 msgstr "Додати позицію"
 
@@ -94,9 +98,9 @@ msgstr "Архівні"
 msgid "Are you sure delete this organization?"
 msgstr "Ви впевнені, що хочете видалити цю організацію?"
 
-#: src/routes/invoices/details.tsx:604
+#: src/routes/invoices/details.tsx:669
 #: src/routes/invoices/index.tsx:102
-#: src/routes/invoices/preview.tsx:169
+#: src/routes/invoices/preview.tsx:171
 msgid "Are you sure to delete this invoice?"
 msgstr "Ви впевнені, що хочете видалити цей рахунок?"
 
@@ -128,7 +132,7 @@ msgstr "Ти впевнений, що хочеш розархівувати це
 msgid "Ask me about invoicing, clients, or general questions..."
 msgstr "Запитайте мене про виставлення рахунків, клієнтів або загальні питання..."
 
-#: src/routes/settings/invoice.tsx:148
+#: src/routes/settings/invoice.tsx:157
 msgid "Available variables:"
 msgstr "Доступні змінні:"
 
@@ -157,7 +161,7 @@ msgstr "Назва банку"
 msgid "Cancel"
 msgstr "Скасувати"
 
-#: src/routes/settings/invoice.tsx:221
+#: src/routes/settings/invoice.tsx:234
 msgid "Change"
 msgstr "Змінити"
 
@@ -174,7 +178,7 @@ msgstr "Очистити чат"
 msgid "Client"
 msgstr "Клієнт"
 
-#: src/routes/settings/invoice.tsx:174
+#: src/routes/settings/invoice.tsx:183
 msgid "Client code"
 msgstr "Код клієнта"
 
@@ -220,7 +224,7 @@ msgstr "Налаштуйте ваш API-ключ Anthropic, щоб увімкн�
 msgid "Confirmed"
 msgstr "Підтверджено"
 
-#: src/routes/settings/invoice.tsx:188
+#: src/routes/settings/invoice.tsx:197
 msgid "Counter must be 0 or greater"
 msgstr "Лічильник повинен бути 0 або більше"
 
@@ -248,13 +252,13 @@ msgstr "Створити організацію"
 #~ msgid "Create your organization to get started"
 #~ msgstr "Створіть свою організацію для початку роботи"
 
-#: src/routes/invoices/details.tsx:314
+#: src/routes/invoices/details.tsx:347
 #: src/routes/organizations/new.tsx:72
-#: src/routes/settings/invoice.tsx:75
+#: src/routes/settings/invoice.tsx:84
 msgid "Currency"
 msgstr "Валюта"
 
-#: src/routes/invoices/details.tsx:517
+#: src/routes/invoices/details.tsx:567
 msgid "Customer note"
 msgstr "Примітка клієнта"
 
@@ -270,39 +274,39 @@ msgstr "Резервну копію бази даних успішно збер�
 msgid "Database has been restored successfully. Please restart the application to see the changes."
 msgstr "Базу даних успішно відновлено. Будь ласка, перезапустіть програму, щоб побачити зміни."
 
-#: src/components/invoices/pdf.tsx:199
+#: src/components/invoices/pdf.tsx:246
 #: src/components/time-entries/time-range-cell.tsx:79
 #: src/routes/invoices/index.tsx:154
 #: src/routes/time-tracking/reports.tsx:108
 msgid "Date"
 msgstr "Дата"
 
-#: src/routes/settings/invoice.tsx:170
+#: src/routes/settings/invoice.tsx:179
 msgid "Day of month"
 msgstr "День місяця"
 
-#: src/routes/settings/invoice.tsx:90
+#: src/routes/settings/invoice.tsx:99
 msgid "Decimal places"
 msgstr "Десяткові розряди"
 
-#: src/components/tax-rates/form.tsx:60
+#: src/components/tax-rates/form.tsx:68
 #: src/routes/settings/tax-rates.tsx:68
 msgid "Default"
 msgstr "За замовчуванням"
 
 #: src/components/clients/form.tsx:114
 #: src/components/time-entries/form.tsx:130
-#: src/routes/invoices/details.tsx:610
+#: src/routes/invoices/details.tsx:675
 #: src/routes/invoices/index.tsx:111
-#: src/routes/invoices/preview.tsx:175
+#: src/routes/invoices/preview.tsx:177
 #: src/routes/settings/organization.tsx:112
 #: src/routes/time-tracking/index.tsx:484
 msgid "Delete"
 msgstr "Видалити"
 
-#: src/routes/invoices/details.tsx:603
+#: src/routes/invoices/details.tsx:668
 #: src/routes/invoices/index.tsx:101
-#: src/routes/invoices/preview.tsx:168
+#: src/routes/invoices/preview.tsx:170
 msgid "Delete the invoice?"
 msgstr "Видалити рахунок?"
 
@@ -310,10 +314,10 @@ msgstr "Видалити рахунок?"
 msgid "Delete the time entry?"
 msgstr "Видалити запис часу?"
 
-#: src/components/invoices/pdf.tsx:221
-#: src/components/tax-rates/form.tsx:53
+#: src/components/invoices/pdf.tsx:270
+#: src/components/tax-rates/form.tsx:61
 #: src/components/time-entries/form.tsx:161
-#: src/routes/invoices/details.tsx:360
+#: src/routes/invoices/details.tsx:392
 #: src/routes/settings/tax-rates.tsx:53
 #: src/routes/time-tracking/index.tsx:355
 msgid "Description"
@@ -325,19 +329,19 @@ msgstr "Опис"
 msgid "Draft"
 msgstr "Чернетка"
 
-#: src/components/invoices/pdf.tsx:202
-#: src/routes/invoices/details.tsx:339
+#: src/components/invoices/pdf.tsx:249
+#: src/routes/invoices/details.tsx:371
 #: src/routes/invoices/index.tsx:161
 msgid "Due date"
 msgstr "Термін оплати"
 
-#: src/routes/settings/invoice.tsx:93
+#: src/routes/settings/invoice.tsx:102
 msgid "Due days"
 msgstr "Дні до оплати"
 
-#: src/routes/invoices/details.tsx:598
+#: src/routes/invoices/details.tsx:663
 #: src/routes/invoices/index.tsx:90
-#: src/routes/invoices/preview.tsx:163
+#: src/routes/invoices/preview.tsx:165
 msgid "Duplicate"
 msgstr "Дублювати"
 
@@ -361,12 +365,12 @@ msgstr "Електронна пошта"
 msgid "E-mails"
 msgstr "Електронні пошти"
 
-#: src/routes/settings/invoice.tsx:174
+#: src/routes/settings/invoice.tsx:183
 msgid "e.g. AP, MS"
 msgstr "напр. АП, МС"
 
 #: src/routes/invoices/index.tsx:84
-#: src/routes/invoices/preview.tsx:190
+#: src/routes/invoices/preview.tsx:192
 #: src/routes/time-tracking/index.tsx:454
 msgid "Edit"
 msgstr "Редагувати"
@@ -379,7 +383,7 @@ msgstr "Редагувати клієнта"
 msgid "Edit Project"
 msgstr "Редагувати проект"
 
-#: src/components/tax-rates/form.tsx:36
+#: src/components/tax-rates/form.tsx:43
 msgid "Edit tax rate"
 msgstr "Редагувати податкову ставку"
 
@@ -400,7 +404,7 @@ msgstr "Дата закінчення"
 msgid "End Time"
 msgstr "Час закінчення"
 
-#: src/routes/settings/invoice.tsx:198
+#: src/routes/settings/invoice.tsx:207
 msgid "Enter format to see preview"
 msgstr "Введіть формат для перегляду"
 
@@ -461,7 +465,7 @@ msgstr "Помилка завантаження податкових ставо�
 msgid "Failed to fetch time entries"
 msgstr "Помилка завантаження записів часу"
 
-#: src/atoms/invoice.ts:187
+#: src/atoms/invoice.ts:194
 msgid "Failed to generate invoice number"
 msgstr "Помилка генерації номеру рахунку"
 
@@ -511,64 +515,68 @@ msgid "Invoice"
 msgstr "Рахунок"
 
 #. placeholder {0}: invoice.number
+#: src/components/invoices/pdf.tsx:220
+msgid "Invoice {0}"
+msgstr "Рахунок {0}"
+
 #: src/components/invoices/pdf.tsx:173
-msgid "Invoice #{0}"
-msgstr "Рахунок №{0}"
+#~ msgid "Invoice #{0}"
+#~ msgstr "Рахунок №{0}"
 
 #: src/atoms/invoice.ts:104
 msgid "Invoice created"
 msgstr "Рахунок створено"
 
-#: src/atoms/invoice.ts:143
+#: src/atoms/invoice.ts:150
 msgid "Invoice creation failed"
 msgstr "Помилка створення рахунку"
 
-#: src/atoms/invoice.ts:160
+#: src/atoms/invoice.ts:167
 msgid "Invoice deleted"
 msgstr "Рахунок видалено"
 
-#: src/atoms/invoice.ts:162
-#: src/atoms/invoice.ts:166
+#: src/atoms/invoice.ts:169
+#: src/atoms/invoice.ts:173
 msgid "Invoice deletion failed"
 msgstr "Помилка видалення рахунку"
 
-#: src/routes/settings/invoice.tsx:70
+#: src/routes/settings/invoice.tsx:79
 msgid "Invoice details"
 msgstr "Деталі рахунку"
 
-#: src/atoms/invoice.ts:217
+#: src/atoms/invoice.ts:225
 msgid "Invoice duplicated successfully"
 msgstr "Рахунок успішно дубльовано"
 
-#: src/atoms/invoice.ts:232
+#: src/atoms/invoice.ts:247
 msgid "Invoice duplication failed"
 msgstr "Помилка дублювання рахунку"
 
-#: src/atoms/invoice.ts:180
+#: src/atoms/invoice.ts:187
 msgid "Invoice not found"
 msgstr "Рахунок не знайдено"
 
-#: src/routes/invoices/details.tsx:305
+#: src/routes/invoices/details.tsx:338
 msgid "Invoice number"
 msgstr "Номер рахунку"
 
-#: src/routes/settings/invoice.tsx:184
+#: src/routes/settings/invoice.tsx:193
 msgid "Invoice Number Counter"
 msgstr "Лічильник номерів рахунків"
 
-#: src/routes/settings/invoice.tsx:114
+#: src/routes/settings/invoice.tsx:123
 msgid "Invoice Number Format"
 msgstr "Формат номеру рахунку"
 
-#: src/routes/settings/invoice.tsx:107
+#: src/routes/settings/invoice.tsx:116
 msgid "Invoice Numbering"
 msgstr "Нумерація рахунків"
 
-#: src/atoms/invoice.ts:145
+#: src/atoms/invoice.ts:152
 msgid "Invoice update failed"
 msgstr "Помилка оновлення рахунку"
 
-#: src/atoms/invoice.ts:133
+#: src/atoms/invoice.ts:140
 msgid "Invoice updated successfully"
 msgstr "Рахунок успішно оновлено"
 
@@ -577,16 +585,16 @@ msgstr "Рахунок успішно оновлено"
 msgid "Invoices"
 msgstr "Рахунки"
 
-#: src/routes/settings/invoice.tsx:206
+#: src/routes/settings/invoice.tsx:215
 msgid "Logo"
 msgstr "Логотип"
 
-#: src/routes/settings/invoice.tsx:166
+#: src/routes/settings/invoice.tsx:175
 msgid "Month name"
 msgstr "Назва місяця"
 
 #: src/components/clients/form.tsx:146
-#: src/components/tax-rates/form.tsx:50
+#: src/components/tax-rates/form.tsx:58
 #: src/routes/clients.tsx:72
 #: src/routes/organizations/new.tsx:56
 #: src/routes/projects.tsx:56
@@ -597,7 +605,7 @@ msgstr "Назва"
 
 #: src/components/clients/form.tsx:83
 #: src/routes/clients.tsx:62
-#: src/routes/invoices/details.tsx:290
+#: src/routes/invoices/details.tsx:323
 msgid "New client"
 msgstr "Новий клієнт"
 
@@ -626,7 +634,7 @@ msgstr "Новий проект"
 msgid "New tax"
 msgstr "Новий податок"
 
-#: src/components/tax-rates/form.tsx:36
+#: src/components/tax-rates/form.tsx:43
 msgid "New tax rate"
 msgstr "Нова податкова ставка"
 
@@ -634,16 +642,16 @@ msgstr "Нова податкова ставка"
 msgid "New Time Entry"
 msgstr "Новий запис часу"
 
-#: src/routes/settings/invoice.tsx:190
+#: src/routes/settings/invoice.tsx:199
 msgid "Next invoice will use this number + 1"
 msgstr "Наступний рахунок використовуватиме цей номер + 1"
 
 #: src/components/clients/form.tsx:110
 #: src/components/projects/form.tsx:136
 #: src/components/time-entries/form.tsx:126
-#: src/routes/invoices/details.tsx:607
+#: src/routes/invoices/details.tsx:672
 #: src/routes/invoices/index.tsx:108
-#: src/routes/invoices/preview.tsx:172
+#: src/routes/invoices/preview.tsx:174
 #: src/routes/time-tracking/index.tsx:481
 msgid "No"
 msgstr "Ні"
@@ -656,7 +664,7 @@ msgstr "Без клієнта"
 msgid "No client assigned"
 msgstr "Клієнт не призначений"
 
-#: src/routes/invoices/details.tsx:357
+#: src/routes/invoices/details.tsx:389
 msgid "No line items"
 msgstr "Немає позицій"
 
@@ -668,13 +676,13 @@ msgstr "Проекти не знайдені"
 msgid "No!"
 msgstr "Ні!"
 
-#: src/routes/settings/invoice.tsx:99
+#: src/routes/settings/invoice.tsx:108
 msgid "Notes"
 msgstr "Примітки"
 
 #: src/routes/invoices/index.tsx:142
-msgid "Number"
-msgstr "Номер"
+#~ msgid "Number"
+#~ msgstr "Номер"
 
 #: src/routes/settings/invoice.tsx:126
 #~ msgid "Number of Digits"
@@ -684,20 +692,20 @@ msgstr "Номер"
 msgid "Organization"
 msgstr "Організація"
 
-#: src/atoms/organization.ts:80
+#: src/atoms/organization.ts:89
 msgid "Organization created"
 msgstr "Організацію створено"
 
-#: src/atoms/organization.ts:98
+#: src/atoms/organization.ts:107
 msgid "Organization creation failed"
 msgstr "Помилка створення організації"
 
-#: src/atoms/organization.ts:135
+#: src/atoms/organization.ts:144
 msgid "Organization deleted"
 msgstr "Організацію видалено"
 
-#: src/atoms/organization.ts:140
-#: src/atoms/organization.ts:144
+#: src/atoms/organization.ts:149
+#: src/atoms/organization.ts:153
 msgid "Organization deletion failed"
 msgstr "Помилка видалення організації"
 
@@ -705,16 +713,16 @@ msgstr "Помилка видалення організації"
 msgid "Organization details"
 msgstr "Деталі організації"
 
-#: src/atoms/organization.ts:100
+#: src/atoms/organization.ts:109
 msgid "Organization update failed"
 msgstr "Помилка оновлення організації"
 
-#: src/atoms/organization.ts:87
+#: src/atoms/organization.ts:96
 msgid "Organization updated successfully"
 msgstr "Організацію успішно оновлено"
 
-#: src/components/invoices/pdf.tsx:206
-#: src/routes/settings/invoice.tsx:96
+#: src/components/invoices/pdf.tsx:253
+#: src/routes/settings/invoice.tsx:105
 msgid "Overdue charge"
 msgstr "Штраф за прострочення"
 
@@ -724,7 +732,7 @@ msgstr "Штраф за прострочення"
 msgid "Paid"
 msgstr "Оплачено"
 
-#: src/components/tax-rates/form.tsx:56
+#: src/components/tax-rates/form.tsx:64
 #: src/routes/settings/tax-rates.tsx:57
 msgid "Percentage"
 msgstr "Відсоток"
@@ -743,12 +751,12 @@ msgstr "Будь ласка, налаштуйте ваш API-ключ Anthropic 
 msgid "Please enter a project name"
 msgstr "Будь ласка, введи назву проекту"
 
-#: src/components/tax-rates/form.tsx:55
+#: src/components/tax-rates/form.tsx:63
 msgid "Please input a percentage!"
 msgstr "Будь ласка, введіть відсоток!"
 
 #: src/components/clients/form.tsx:144
-#: src/components/tax-rates/form.tsx:49
+#: src/components/tax-rates/form.tsx:57
 #: src/routes/organizations/new.tsx:55
 msgid "Please input name!"
 msgstr "Будь ласка, введіть назву!"
@@ -757,16 +765,20 @@ msgstr "Будь ласка, введіть назву!"
 msgid "Please select start time!"
 msgstr "Будь ласка, виберіть час початку!"
 
+#: src/routes/settings/invoice.tsx:58
+msgid "Please upload a PNG or JPEG image"
+msgstr "Будь ласка, завантажте PNG або JPEG зображення"
+
 #: src/routes/settings/invoice.tsx:109
 #~ msgid "Prefix"
 #~ msgstr "Префікс"
 
-#: src/routes/settings/invoice.tsx:196
+#: src/routes/settings/invoice.tsx:205
 msgid "Preview"
 msgstr "Попередній перегляд"
 
-#: src/components/invoices/pdf.tsx:227
-#: src/routes/invoices/details.tsx:411
+#: src/components/invoices/pdf.tsx:276
+#: src/routes/invoices/details.tsx:449
 msgid "Price"
 msgstr "Ціна"
 
@@ -800,8 +812,8 @@ msgstr "Проект успішно оновлено"
 msgid "Projects"
 msgstr "Проекти"
 
-#: src/components/invoices/pdf.tsx:224
-#: src/routes/invoices/details.tsx:383
+#: src/components/invoices/pdf.tsx:273
+#: src/routes/invoices/details.tsx:415
 msgid "Qty."
 msgstr "Кільк."
 
@@ -836,12 +848,12 @@ msgstr "Відновіть базу даних з раніше створено�
 
 #: src/components/clients/form.tsx:85
 #: src/components/clients/form.tsx:135
-#: src/components/tax-rates/form.tsx:38
+#: src/components/tax-rates/form.tsx:45
 #: src/components/time-entries/form.tsx:111
 #: src/components/time-entries/form.tsx:150
 #: src/components/time-entries/time-range-cell.tsx:89
-#: src/routes/invoices/details.tsx:652
-#: src/routes/settings/invoice.tsx:237
+#: src/routes/invoices/details.tsx:718
+#: src/routes/settings/invoice.tsx:250
 #: src/routes/settings/organization.tsx:103
 msgid "Save"
 msgstr "Зберегти"
@@ -875,7 +887,7 @@ msgstr "Вибери клієнта"
 msgid "Select client (optional)"
 msgstr "Вибрати клієнта (необов'язково)"
 
-#: src/routes/invoices/details.tsx:243
+#: src/routes/invoices/details.tsx:281
 msgid "Select or create a client"
 msgstr "Виберіть або створіть клієнта"
 
@@ -892,7 +904,7 @@ msgstr "Відправлено"
 #~ msgid "Separator"
 #~ msgstr "Роздільник"
 
-#: src/routes/settings/invoice.tsx:152
+#: src/routes/settings/invoice.tsx:161
 msgid "Sequential number"
 msgstr "Послідовний номер"
 
@@ -904,7 +916,7 @@ msgstr "Налаштування"
 msgid "Settings → AI"
 msgstr "Налаштування → ШІ"
 
-#: src/routes/settings/invoice.tsx:143
+#: src/routes/settings/invoice.tsx:152
 msgid "Show variables"
 msgstr "Показати змінні"
 
@@ -937,8 +949,8 @@ msgstr "Статус"
 msgid "Stop Timer"
 msgstr "Зупинити таймер"
 
-#: src/components/invoices/pdf.tsx:252
-#: src/routes/invoices/details.tsx:546
+#: src/components/invoices/pdf.tsx:320
+#: src/routes/invoices/details.tsx:596
 msgid "Subtotal"
 msgstr "Проміжна сума"
 
@@ -976,11 +988,18 @@ msgstr "Тег успішно оновлено"
 msgid "Tags"
 msgstr "Теги"
 
-#: src/components/invoices/pdf.tsx:263
-#: src/routes/invoices/details.tsx:467
-#: src/routes/invoices/details.tsx:553
+#: src/routes/invoices/details.tsx:617
 msgid "Tax"
 msgstr "Податок"
+
+#: src/components/invoices/pdf.tsx:279
+#: src/routes/invoices/details.tsx:483
+msgid "Tax %"
+msgstr "Податок %"
+
+#: src/components/invoices/pdf.tsx:332
+msgid "Tax 0%"
+msgstr "Податок 0%"
 
 #: src/atoms/tax-rate.ts:61
 msgid "Tax rate created"
@@ -1003,18 +1022,18 @@ msgstr "Податкову ставку успішно оновлено"
 msgid "Tax rates"
 msgstr "Податкові ставки"
 
-#: src/routes/invoices/details.tsx:245
-#: src/routes/invoices/details.tsx:307
-#: src/routes/invoices/details.tsx:316
-#: src/routes/invoices/details.tsx:333
-#: src/routes/invoices/details.tsx:341
-#: src/routes/invoices/details.tsx:374
-#: src/routes/invoices/details.tsx:389
-#: src/routes/invoices/details.tsx:417
-#: src/routes/invoices/details.tsx:445
-#: src/routes/settings/invoice.tsx:77
-#: src/routes/settings/invoice.tsx:117
-#: src/routes/settings/invoice.tsx:187
+#: src/routes/invoices/details.tsx:283
+#: src/routes/invoices/details.tsx:340
+#: src/routes/invoices/details.tsx:349
+#: src/routes/invoices/details.tsx:365
+#: src/routes/invoices/details.tsx:373
+#: src/routes/invoices/details.tsx:406
+#: src/routes/invoices/details.tsx:421
+#: src/routes/invoices/details.tsx:455
+#: src/routes/invoices/details.tsx:520
+#: src/routes/settings/invoice.tsx:86
+#: src/routes/settings/invoice.tsx:126
+#: src/routes/settings/invoice.tsx:196
 msgid "This field is required!"
 msgstr "Це поле обов'язкове!"
 
@@ -1067,10 +1086,10 @@ msgstr "Таймер"
 msgid "to use the AI assistant."
 msgstr "щоб використовувати помічника ШІ."
 
-#: src/components/invoices/pdf.tsx:230
-#: src/components/invoices/pdf.tsx:274
-#: src/routes/invoices/details.tsx:439
-#: src/routes/invoices/details.tsx:563
+#: src/components/invoices/pdf.tsx:282
+#: src/components/invoices/pdf.tsx:356
+#: src/routes/invoices/details.tsx:501
+#: src/routes/invoices/details.tsx:628
 #: src/routes/invoices/index.tsx:168
 #: src/routes/time-tracking/reports.tsx:246
 msgid "Total"
@@ -1093,7 +1112,7 @@ msgstr "Розархівувати"
 msgid "Update"
 msgstr "Оновити"
 
-#: src/routes/settings/invoice.tsx:221
+#: src/routes/settings/invoice.tsx:234
 msgid "Upload"
 msgstr "Завантажити"
 
@@ -1105,7 +1124,7 @@ msgstr "Номер ПДВ"
 msgid "VATIN"
 msgstr "Номер ПДВ"
 
-#: src/routes/invoices/details.tsx:626
+#: src/routes/invoices/details.tsx:691
 msgid "View"
 msgstr "Переглянути"
 
@@ -1140,9 +1159,9 @@ msgstr "Над чим ви працюєте?"
 #: src/components/clients/form.tsx:109
 #: src/components/projects/form.tsx:135
 #: src/components/time-entries/form.tsx:125
-#: src/routes/invoices/details.tsx:606
+#: src/routes/invoices/details.tsx:671
 #: src/routes/invoices/index.tsx:107
-#: src/routes/invoices/preview.tsx:171
+#: src/routes/invoices/preview.tsx:173
 #: src/routes/settings/organization.tsx:108
 #: src/routes/time-tracking/index.tsx:480
 msgid "Yes"

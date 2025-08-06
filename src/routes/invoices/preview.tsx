@@ -106,6 +106,7 @@ const InvoicePreview: React.FC = () => {
                     invoice={invoice}
                     client={client}
                     organization={organization}
+                    taxRates={taxRates}
                     i18n={i18n}
                   />
                 }
@@ -136,6 +137,7 @@ const InvoicePreview: React.FC = () => {
                   invoice={invoice}
                   client={client}
                   organization={organization}
+                  taxRates={taxRates}
                   i18n={i18n}
                 />
               </PDFViewer>
@@ -197,6 +199,7 @@ const InvoicePreview: React.FC = () => {
                               invoice={invoice}
                               client={client}
                               organization={organization}
+                              taxRates={taxRates}
                               i18n={i18n}
                             />
                           ).toBlob();

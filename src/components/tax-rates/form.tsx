@@ -1,3 +1,4 @@
+import { useEffect } from "react";
 import { useParams, useNavigate } from "react-router";
 import { Checkbox, Form, Input, Modal } from "antd";
 import { atom, useAtom, useSetAtom } from "jotai";
@@ -22,14 +23,20 @@ const TaxRateForm = () => {
   const handleSubmit = async (values: any) => {
     setSubmitting(true);
     setTaxRate(values);
+    form.resetFields();
     setTaxRateId(null);
     navigate("/settings/tax-rates");
     setSubmitting(false);
   };
 
-  if (id) {
-    setTaxRateId(id);
-  }
+  useEffect(() => {
+    if (id) {
+      setTaxRateId(id);
+    } else {
+      // Clear form when opening for new tax rate
+      form.resetFields();
+    }
+  }, [id, form, setTaxRateId]);
 
   return (
     <Modal
@@ -39,6 +46,7 @@ const TaxRateForm = () => {
       onOk={() => form.submit()}
       confirmLoading={submitting}
       onCancel={() => {
+        form.resetFields();
         setTaxRateId(null);
         navigate("/settings/tax-rates");
       }}

@@ -19,6 +19,8 @@ pub struct Organization {
     pub currency: Option<String>,
     pub minimum_fraction_digits: Option<i64>,
     pub due_days: Option<i64>,
+    #[serde(rename = "overdueCharge")]
+    #[sqlx(rename = "overdueCharge")]
     pub overdue_charge: Option<f64>,
     #[serde(rename = "customerNotes")]
     #[sqlx(rename = "customerNotes")]
@@ -51,6 +53,7 @@ pub struct CreateOrganizationRequest {
     pub currency: Option<String>,
     pub minimum_fraction_digits: Option<i64>,
     pub due_days: Option<i64>,
+    #[serde(rename = "overdueCharge")]
     pub overdue_charge: Option<f64>,
     #[serde(rename = "customerNotes")]
     pub customer_notes: Option<String>,
@@ -74,6 +77,7 @@ pub struct UpdateOrganizationRequest {
     pub currency: Option<String>,
     pub minimum_fraction_digits: Option<i64>,
     pub due_days: Option<i64>,
+    #[serde(rename = "overdueCharge")]
     pub overdue_charge: Option<f64>,
     #[serde(rename = "customerNotes")]
     pub customer_notes: Option<String>,
@@ -117,7 +121,7 @@ impl Database {
             INSERT INTO organizations (
                 id, name, country, address, email, phone, website, 
                 registration_number, vatin, bank_name, iban, currency,
-                minimum_fraction_digits, due_days, overdue_charge, 
+                minimum_fraction_digits, due_days, overdueCharge, 
                 customerNotes, logo, invoice_number_format
             )
             VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
@@ -169,7 +173,7 @@ impl Database {
                 currency = COALESCE(?, currency),
                 minimum_fraction_digits = COALESCE(?, minimum_fraction_digits),
                 due_days = COALESCE(?, due_days),
-                overdue_charge = COALESCE(?, overdue_charge),
+                overdueCharge = COALESCE(?, overdueCharge),
                 customerNotes = COALESCE(?, customerNotes),
                 logo = COALESCE(?, logo),
                 invoice_number_format = COALESCE(?, invoice_number_format),

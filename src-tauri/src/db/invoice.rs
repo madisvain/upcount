@@ -22,6 +22,9 @@ pub struct Invoice {
     #[serde(rename = "customerNotes")]
     #[sqlx(rename = "customerNotes")]
     pub customer_notes: Option<String>,
+    #[serde(rename = "overdueCharge")]
+    #[sqlx(rename = "overdueCharge")]
+    pub overdue_charge: Option<f64>,
     pub total: i64,  // Stored as cents
     #[serde(rename = "taxTotal")]
     #[sqlx(rename = "taxTotal")]
@@ -72,6 +75,8 @@ pub struct CreateInvoiceRequest {
     pub currency: String,
     #[serde(rename = "customerNotes")]
     pub customer_notes: Option<String>,
+    #[serde(rename = "overdueCharge")]
+    pub overdue_charge: Option<f64>,
     pub total: i64,  // Stored as cents
     #[serde(rename = "taxTotal")]
     pub tax_total: i64,  // Stored as cents
@@ -176,9 +181,9 @@ impl Database {
             r#"
             INSERT INTO invoices (
                 id, organizationId, number, state, clientId, date, dueDate, 
-                currency, customerNotes, total, taxTotal, subTotal
+                currency, customerNotes, overdueCharge, total, taxTotal, subTotal
             )
-            VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+            VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
             "#,
         )
         .bind(&invoice.id)
@@ -190,6 +195,7 @@ impl Database {
         .bind(&invoice.due_date)
         .bind(&invoice.currency)
         .bind(&invoice.customer_notes)
+        .bind(&invoice.overdue_charge)
         .bind(&invoice.total)
         .bind(&invoice.tax_total)
         .bind(&invoice.sub_total)

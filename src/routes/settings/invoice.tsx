@@ -1,4 +1,4 @@
-import { Button, Col, Form, Input, InputNumber, Select, Space, Typography, Row, Upload, Divider } from "antd";
+import { Button, Col, Form, Input, InputNumber, Select, Space, Typography, Row, Upload, Divider, message } from "antd";
 import { atom, useAtom, useSetAtom } from "jotai";
 import { FileTextOutlined, UploadOutlined, CaretRightOutlined, CaretDownOutlined } from "@ant-design/icons";
 import { useState } from "react";
@@ -50,12 +50,21 @@ function SettingsInvoice() {
   // const onDelete = () => {};
 
   const onLogoUpload = (data: any) => {
+    const file = data.file;
+    
+    // Validate file type
+    const validTypes = ['image/png', 'image/jpeg', 'image/jpg'];
+    if (!validTypes.includes(file.type)) {
+      message.error(t`Please upload a PNG or JPEG image`);
+      return;
+    }
+    
     const reader = new FileReader();
     reader.onload = function () {
       const base64data = reader.result;
       setOrganization({ ...organization, logo: base64data });
     };
-    reader.readAsDataURL(data.file);
+    reader.readAsDataURL(file);
   };
 
   return (
@@ -93,7 +102,7 @@ function SettingsInvoice() {
               <Form.Item label={t`Due days`} name="due_days">
                 <InputNumber min={0} />
               </Form.Item>
-              <Form.Item label={t`Overdue charge`} name="overdue_charge">
+              <Form.Item label={t`Overdue charge`} help={<Trans>% per day</Trans>} name="overdueCharge">
                 <InputNumber min={0} />
               </Form.Item>
               <Form.Item label={t`Notes`} name="customerNotes">
@@ -216,7 +225,11 @@ function SettingsInvoice() {
                     />
                   )}
                   <br />
-                  <Upload accept="image/*" showUploadList={false} customRequest={(data) => onLogoUpload(data)}>
+                  <Upload 
+                    accept="image/png,image/jpeg,image/jpg" 
+                    showUploadList={false} 
+                    customRequest={(data) => onLogoUpload(data)}
+                  >
                     <Button>
                       <UploadOutlined /> {organization.logo ? t`Change` : t`Upload`}
                     </Button>
