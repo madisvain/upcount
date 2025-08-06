@@ -361,18 +361,34 @@ const InvoiceDetails: React.FC = () => {
               </Col>
             </Row>
             <Row gutter={24}>
-              <Col span={6} offset={12}>
+              <Col span={4} offset={12}>
                 <Form.Item label="Date" name="date" rules={[{ required: true, message: t`This field is required!` }]}>
                   <DatePicker style={{ width: "100%" }} />
                 </Form.Item>
               </Col>
-              <Col span={6}>
+              <Col span={4}>
                 <Form.Item
                   label={t`Due date`}
                   name="dueDate"
                   rules={[{ required: true, message: t`This field is required!` }]}
                 >
                   <DatePicker style={{ width: "100%" }} />
+                </Form.Item>
+              </Col>
+              <Col span={4}>
+                <Form.Item 
+                  label={t`Overdue charge`} 
+                  name="overdueCharge" 
+                  help={<span style={{ fontSize: '12px', display: 'block', textAlign: 'right' }}>{t`Daily %`}</span>}
+                >
+                  <InputNumber
+                    style={{ width: "100%" }}
+                    min={0}
+                    max={100}
+                    formatter={(value) => `${value}%`}
+                    parser={(value) => value?.replace("%", "") as any}
+                    placeholder="0%"
+                  />
                 </Form.Item>
               </Col>
             </Row>

@@ -229,7 +229,21 @@ const InvoicePDF = ({
             <View style={styles.column}>
               <Text style={[styles.subtitle]}>{client.name}</Text>
               <Text style={styles.smallText}>{client.address}</Text>
-              {client.emails && client.emails.length > 0 && <Text style={styles.smallText}>{client.emails[0]}</Text>}
+              {client.emails && (() => {
+                // Handle both string (JSON) and array formats
+                let emailsArray: string[] = [];
+                try {
+                  emailsArray = typeof client.emails === 'string' 
+                    ? JSON.parse(client.emails) 
+                    : client.emails;
+                } catch (e) {
+                  // If parsing fails, treat as empty array
+                  emailsArray = [];
+                }
+                return emailsArray.length > 0 && emailsArray[0] 
+                  ? <Text style={styles.smallText}>{emailsArray[0]}</Text> 
+                  : null;
+              })()}
               <Text style={styles.smallText}>{client.website}</Text>
             </View>
             <View style={[styles.column, { textAlign: "right" }]}>
