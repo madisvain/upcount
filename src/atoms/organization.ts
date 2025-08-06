@@ -59,6 +59,15 @@ export const organizationAtom = atom(
     const organizationId = get(organizationIdAtom);
 
     try {
+      // Convert logo from data URL to byte array if present
+      let processedValues = { ...newValues };
+      if (processedValues.logo && typeof processedValues.logo === 'string') {
+        // Always convert to byte array since Rust expects Vec<u8>
+        const encoder = new TextEncoder();
+        const bytes = encoder.encode(processedValues.logo);
+        processedValues.logo = Array.from(bytes);
+      }
+
       if (!organizationId) {
         // Insert - provide defaults for fields not set by user
         const organizationData = {
@@ -68,7 +77,7 @@ export const organizationAtom = atom(
           overdueCharge: 0,
           invoiceNumberFormat: "#{number}",
           invoiceNumberCounter: 0,
-          ...newValues, // User values override defaults
+          ...processedValues, // User values override defaults
           id: nanoid(),
         };
 
@@ -82,7 +91,7 @@ export const organizationAtom = atom(
         // Update
         await invoke<any>("update_organization", {
           organizationId,
-          updates: newValues,
+          updates: processedValues,
         });
         message.success(t`Organization updated successfully`);
         set(setOrganizationsAtom);

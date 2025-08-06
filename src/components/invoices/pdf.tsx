@@ -114,9 +114,6 @@ const styles = StyleSheet.create({
   tableHeader: {
     fontWeight: "medium",
   },
-  nowrap: {
-    whiteSpace: "nowrap",
-  },
 
   /* Line items */
   lineItemNumber: {

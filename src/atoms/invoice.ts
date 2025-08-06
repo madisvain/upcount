@@ -106,6 +106,13 @@ export const invoiceAtom = atom(
         // Update the invoices list
         const invoices: any = get(invoicesAtom);
         set(invoicesAtom, [createdInvoice, ...invoices]);
+
+        // Force refresh organization data to get updated invoice counter
+        const currentOrgId = get(organizationIdAtom);
+        if (currentOrgId) {
+          set(organizationIdAtom, null);
+          set(organizationIdAtom, currentOrgId);
+        }
       } else {
         // Update
         const updateData = {
@@ -225,6 +232,13 @@ export const duplicateInvoiceAtom = atom(null, async (get, set, invoiceId: strin
       subTotal: centsToUnits(createdInvoice.subTotal),
     };
     set(invoicesAtom, [invoiceWithUnits, ...invoices]);
+
+    // Force refresh organization data to get updated invoice counter
+    const currentOrgId = get(organizationIdAtom);
+    if (currentOrgId) {
+      set(organizationIdAtom, null);
+      set(organizationIdAtom, currentOrgId);
+    }
 
     return createdInvoice.id;
   } catch (error) {
