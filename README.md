@@ -66,9 +66,9 @@ For more generic product questions and feedback please email [hello@upcount.app]
 
 ## Contributors
 
-[<img alt="madisvain" src="https://avatars2.githubusercontent.com/u/727994?v=4&s=200" width="100">](https://github.com/madisvain) |[<img alt="stgeipel" src="https://avatars3.githubusercontent.com/u/46808966?v=4&s=200" width="100">](https://github.com/stgeipel) |[<img alt="KurtMar" src="https://avatars1.githubusercontent.com/u/10009649?v=4&s=200" width="100">](https://github.com/KurtMar) |
-:---:|:---:|:---:|
-[madisvain](https://github.com/madisvain)|[stgeipel](https://github.com/stgeipel)|[KurtMar](https://github.com/KurtMar)|
+[<img alt="madisvain" src="https://avatars.githubusercontent.com/u/727994?v=4&s=100" width="100">](https://github.com/madisvain) |[<img alt="stgeipel" src="https://avatars.githubusercontent.com/u/46808966?v=4&s=100" width="100">](https://github.com/stgeipel) |[<img alt="koen860" src="https://avatars.githubusercontent.com/u/1337450?v=4&s=100" width="100">](https://github.com/koen860) |[<img alt="KurtMar" src="https://avatars.githubusercontent.com/u/10009649?v=4&s=100" width="100">](https://github.com/KurtMar) |[<img alt="hrenard" src="https://avatars.githubusercontent.com/u/7594435?v=4&s=100" width="100">](https://github.com/hrenard) |
+:---:|:---:|:---:|:---:|:---:|
+[madisvain](https://github.com/madisvain)|[stgeipel](https://github.com/stgeipel)|[koen860](https://github.com/koen860)|[KurtMar](https://github.com/KurtMar)|[hrenard](https://github.com/hrenard)|
 
 ## License
 
