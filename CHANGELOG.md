@@ -5,7 +5,22 @@ All notable changes to Upcount will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
-## [Unreleased]
+## [2.0.0-beta.17] - 2025-08-06
+
+### Added
+- Overdue charge functionality for invoices with configurable percentage rate per day
+- Complete translations for all 7 supported languages (German, Finnish, French, Dutch, Portuguese, Swedish, Ukrainian)
+- Improved translation workflow with `yarn extract` integration for better status tracking
+
+### Fixed
+- Invoice counter not updating when creating new invoices
+- Logo upload validation now properly shows error messages for unsupported file types
+- Tax calculations in invoice PDFs now correctly group items by tax rate
+- Missing translation strings for tax percentage headers and overdue charges
+
+### Changed
+- Enhanced invoice PDF generation with better tax grouping and subtotal calculations
+- Translation workflow documentation updated to include extraction step first
 
 ### Removed
 - Windows platform support temporarily disabled in GitHub Actions build workflow
