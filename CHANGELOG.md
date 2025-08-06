@@ -5,7 +5,24 @@ All notable changes to Upcount will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
-## [Unreleased]
+## [2.0.0-beta.19] - 2025-08-06
+
+### Added
+- New command to update invoice state independently without modifying other fields
+- Ant Design locale configuration for proper date picker and component translations
+- Loading spinner indicator when client modal is fetching data
+- Improved invoice state management with dedicated state update function
+
+### Changed
+- Client form now uses React's startTransition for smoother state updates
+- Invoice state dropdown now uses optimized state-only update instead of full invoice update
+- Overdue charge input in settings now displays percentage symbol with proper formatting
+- Enhanced client form with better loading states and error handling
+
+### Fixed
+- Invoice overdue charge field now properly saves when creating or updating invoices (backend fix)
+- Client modal data loading race conditions resolved with proper loading states
+- Invoice state changes now more efficient and reliable
 
 ## [2.0.0-beta.18] - 2025-08-06
 
