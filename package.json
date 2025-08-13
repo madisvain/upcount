@@ -28,6 +28,7 @@
     "ai": "^5.0.0",
     "antd": "5.26.1",
     "axios": "1.11.0",
+    "crisp-sdk-web": "^1.0.25",
     "decimal.js": "^10.5.0",
     "jotai": "2.12.5",
     "jotai-devtools": "0.12.0",

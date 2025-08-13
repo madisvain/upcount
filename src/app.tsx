@@ -9,6 +9,11 @@ if (import.meta.env.DEV) {
 import { initSentry } from "src/utils/sentry";
 initSentry();
 
+// Initialize Crisp chat
+import { Crisp, ChatboxPosition } from "crisp-sdk-web";
+Crisp.configure("e9d5ef12-b75b-4b52-b4ff-0fc844904260");
+Crisp.setPosition(ChatboxPosition.Left);
+
 import "dayjs/locale/en";
 import "dayjs/locale/et";
 
