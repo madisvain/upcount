@@ -158,13 +158,13 @@ export default function AiDrawer() {
             setOpen(false);
             return {
               success: true,
-              message: "Opening new invoice form with your data. Please review and click Save to create the invoice.",
+              message: t`Opening new invoice form with your data. Please review and click Save to create the invoice.`,
             };
           } else {
             // If already on the page, just update the form
             return {
               success: true,
-              message: "Invoice form updated with new data.",
+              message: t`Invoice form updated with new data.`,
             };
           }
         } catch (error) {

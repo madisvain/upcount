@@ -1,3 +1,4 @@
+import { useState } from "react";
 import { Outlet, Link, useLocation, useNavigate } from "react-router";
 import { Button, Divider, Layout, Menu, Select, Space, Row, Col, message, theme } from "antd";
 import { useAtom, useAtomValue, useSetAtom } from "jotai";
@@ -17,6 +18,7 @@ import {
   BarChartOutlined,
   ProjectOutlined,
   RobotOutlined,
+  CommentOutlined,
 } from "@ant-design/icons";
 import { Trans } from "@lingui/react/macro";
 import { useLingui } from "@lingui/react";
@@ -32,6 +34,7 @@ import { siderAtom, localeAtom, aiDrawerAtom } from "src/atoms/generic";
 import { organizationsAtom, organizationIdAtom, organizationAtom } from "src/atoms/organization";
 import Timer from "src/components/timer";
 import AiDrawer from "src/components/ai-drawer";
+import FeedbackModal from "src/components/feedback-modal";
 import { dynamicActivate, locales } from "src/utils/lingui";
 import { useAutoUpdater } from "src/hooks/useAutoUpdater";
 
@@ -47,6 +50,9 @@ export default function BaseLayout() {
   const {
     token: { colorBgContainer, borderRadiusLG },
   } = theme.useToken();
+  
+  // Feedback modal state
+  const [feedbackModalOpen, setFeedbackModalOpen] = useState(false);
 
   // Organizations
   const organizations = useAtomValue(organizationsAtom);
@@ -226,6 +232,24 @@ export default function BaseLayout() {
             },
           ]}
         />
+        <div style={{ position: 'absolute', bottom: 0, width: '100%', padding: '16px' }}>
+          <Button
+            type="text"
+            icon={<CommentOutlined />}
+            onClick={(e) => {
+              // Blur the button to remove focus after click
+              e.currentTarget.blur();
+              setFeedbackModalOpen(true);
+            }}
+            style={{ 
+              width: '100%', 
+              color: 'rgba(255, 255, 255, 0.65)',
+              textAlign: 'left'
+            }}
+          >
+            {!siderCollapsed && <Trans>Feedback</Trans>}
+          </Button>
+        </div>
       </Sider>
       <Layout style={{ width: "100%", marginLeft: siderCollapsed ? 80 : 200, transition: "all 0.2s" }}>
         <Header
@@ -348,6 +372,10 @@ export default function BaseLayout() {
         <div id="footer" />
       </Layout>
       <AiDrawer />
+      <FeedbackModal 
+        open={feedbackModalOpen}
+        onClose={() => setFeedbackModalOpen(false)}
+      />
       {contextHolder}
     </Layout>
   );

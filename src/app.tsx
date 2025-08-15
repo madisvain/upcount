@@ -1,7 +1,7 @@
 import "src/styles/base.scss";
 
 // Import devtools styles for development
-if (import.meta.env.DEV) {
+if (import.meta.env.DEV && import.meta.env.VITE_JOTAI_DEVTOOLS_ENABLED === 'true') {
   import("jotai-devtools/styles.css");
 }
 
@@ -12,7 +12,7 @@ initSentry();
 import "dayjs/locale/en";
 import "dayjs/locale/et";
 
-import { useEffect, useState, useMemo } from "react";
+import { useEffect, useState, useMemo, lazy, Suspense } from "react";
 import { BrowserRouter, Navigate, Route, Routes, useNavigate, useLocation } from "react-router";
 import { ConfigProvider } from "antd";
 import enUS from "antd/locale/en_US";
@@ -49,8 +49,10 @@ import TaxRateForm from "src/components/tax-rates/form.tsx";
 
 dayjs.extend(localizedFormat);
 
-// Import DevTools directly for development
-import { DevTools } from "jotai-devtools";
+// Lazy load DevTools for development
+const DevTools = import.meta.env.DEV && import.meta.env.VITE_JOTAI_DEVTOOLS_ENABLED === 'true'
+  ? lazy(() => import("jotai-devtools").then(module => ({ default: module.DevTools })))
+  : () => null;
 
 const AppContent = () => {
   const navigate = useNavigate();
@@ -116,7 +118,11 @@ const AppContent = () => {
         },
       }}
     >
-      {import.meta.env.DEV && <DevTools />}
+      {import.meta.env.DEV && import.meta.env.VITE_JOTAI_DEVTOOLS_ENABLED === 'true' && (
+        <Suspense fallback={null}>
+          <DevTools />
+        </Suspense>
+      )}
       <I18nProvider i18n={i18n}>
         <Routes>
           <Route path="/" element={<Index />} />

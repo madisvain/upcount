@@ -5,6 +5,17 @@ All notable changes to Upcount will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [2.0.0-beta.20] - Unreleased
+
+### Added
+- User feedback modal integrated with Sentry for collecting bug reports and feature requests
+- Feedback button in the sidebar navigation for easy access to submit feedback
+- Complete translations for feedback modal across all 8 supported languages (German, Estonian, Finnish, French, Dutch, Portuguese, Swedish, Ukrainian)
+
+### Changed
+- Updated all language translation files with 17 new strings for feedback and AI features
+- Enhanced Sentry integration to support user feedback collection
+
 ## [2.0.0-beta.19] - 2025-08-06
 
 ### Added
