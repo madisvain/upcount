@@ -335,7 +335,8 @@ export default function BaseLayout() {
                 >
                   {map(locales, (locale) => {
                     const languageMap: Record<string, string> = {
-                      en: "🇬🇧 English",
+                      en: "🇺🇸 English (US)",
+                      "en-GB": "🇬🇧 English (UK)",
                       de: "🇩🇪 German",
                       et: "🇪🇪 Estonian",
                       fi: "🇫🇮 Finnish",

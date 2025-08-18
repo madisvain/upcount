@@ -10,6 +10,7 @@ import { initSentry } from "src/utils/sentry";
 initSentry();
 
 import "dayjs/locale/en";
+import "dayjs/locale/en-gb";
 import "dayjs/locale/et";
 import "dayjs/locale/de";
 import "dayjs/locale/fi";
@@ -23,6 +24,7 @@ import { useEffect, useState, useMemo, lazy, Suspense } from "react";
 import { BrowserRouter, Navigate, Route, Routes, useNavigate, useLocation } from "react-router";
 import { ConfigProvider } from "antd";
 import enUS from "antd/locale/en_US";
+import enGB from "antd/locale/en_GB";
 import etEE from "antd/locale/et_EE";
 import deDE from "antd/locale/de_DE";
 import fiFI from "antd/locale/fi_FI";
@@ -107,6 +109,9 @@ const AppContent = () => {
         break;
       case "uk":
         baseLocale = ukUA;
+        break;
+      case "en-GB":
+        baseLocale = enGB;
         break;
       case "en":
       default:

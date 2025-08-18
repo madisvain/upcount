@@ -13,7 +13,7 @@ msgstr ""
 "Language-Team: \n"
 "Plural-Forms: \n"
 
-#: src/routes/time-tracking/reports.tsx:133
+#: src/routes/time-tracking/reports.tsx:136
 msgid "%"
 msgstr "%"
 
@@ -33,7 +33,7 @@ msgstr "Ano de 2 dígitos"
 msgid "4-digit year"
 msgstr "Ano de 4 dígitos"
 
-#: src/routes/projects.tsx:108
+#: src/routes/projects.tsx:110
 msgid "Active"
 msgstr "Ativo"
 
@@ -41,17 +41,17 @@ msgstr "Ativo"
 msgid "Add a new organization to your account"
 msgstr "Adicionar uma nova organização à sua conta"
 
-#: src/routes/invoices/details.tsx:573
+#: src/routes/invoices/details.tsx:575
 msgid "Add line item"
 msgstr "Adicionar item de linha"
 
-#: src/components/time-entries/form.tsx:270
+#: src/components/time-entries/form.tsx:272
 msgid "Add or select tags"
 msgstr "Adicionar ou selecionar tags"
 
 #: src/components/clients/form.tsx:184
 #: src/routes/clients.tsx:81
-#: src/routes/settings/organization.tsx:56
+#: src/routes/settings/organization.tsx:67
 msgid "Address"
 msgstr "Morada"
 
@@ -69,7 +69,7 @@ msgstr "Assistente IA"
 msgid "AI Configuration"
 msgstr "Configuração IA"
 
-#: src/routes/time-tracking/reports.tsx:179
+#: src/routes/time-tracking/reports.tsx:182
 msgid "All clients"
 msgstr "Todos os clientes"
 
@@ -85,21 +85,21 @@ msgstr "Chave API obrigatória"
 msgid "API key saved successfully"
 msgstr "Chave API guardada com sucesso"
 
-#: src/components/projects/form.tsx:143
+#: src/components/projects/form.tsx:145
 msgid "Archive"
 msgstr "Arquivar"
 
-#: src/routes/projects.tsx:100
-#: src/routes/projects.tsx:109
+#: src/routes/projects.tsx:102
+#: src/routes/projects.tsx:111
 msgid "Archived"
 msgstr "Arquivado"
 
-#: src/routes/settings/organization.tsx:106
+#: src/routes/settings/organization.tsx:141
 msgid "Are you sure delete this organization?"
 msgstr "Tem a certeza de que pretende eliminar esta organização?"
 
-#: src/routes/invoices/details.tsx:686
-#: src/routes/invoices/index.tsx:102
+#: src/routes/invoices/details.tsx:688
+#: src/routes/invoices/index.tsx:104
 #: src/routes/invoices/preview.tsx:171
 msgid "Are you sure to delete this invoice?"
 msgstr "Tem a certeza de que pretende eliminar esta fatura?"
@@ -108,7 +108,7 @@ msgstr "Tem a certeza de que pretende eliminar esta fatura?"
 msgid "Are you sure to delete this time entry?"
 msgstr "Tem a certeza de que pretende eliminar esta entrada de tempo?"
 
-#: src/components/projects/form.tsx:132
+#: src/components/projects/form.tsx:134
 msgid "Are you sure you want to archive this project?"
 msgstr "Tem certeza de que deseja arquivar este projeto?"
 
@@ -116,7 +116,7 @@ msgstr "Tem certeza de que deseja arquivar este projeto?"
 msgid "Are you sure you want to delete this client?"
 msgstr "Tem a certeza de que pretende eliminar este cliente?"
 
-#: src/components/time-entries/form.tsx:123
+#: src/components/time-entries/form.tsx:125
 msgid "Are you sure you want to delete this time entry?"
 msgstr "Tem a certeza de que pretende eliminar esta entrada de tempo?"
 
@@ -124,7 +124,7 @@ msgstr "Tem a certeza de que pretende eliminar esta entrada de tempo?"
 msgid "Are you sure you want to restore from a backup? This will replace all current data and cannot be undone."
 msgstr "Tem a certeza de que pretende restaurar a partir de uma cópia de segurança? Isto irá substituir todos os dados atuais e não pode ser revertido."
 
-#: src/components/projects/form.tsx:131
+#: src/components/projects/form.tsx:133
 msgid "Are you sure you want to unarchive this project?"
 msgstr "Tem certeza de que deseja desarquivar este projeto?"
 
@@ -136,7 +136,7 @@ msgstr "Pergunte-me sobre faturação, clientes ou questões gerais..."
 msgid "Available variables:"
 msgstr "Variáveis disponíveis:"
 
-#: src/routes/time-tracking/reports.tsx:217
+#: src/routes/time-tracking/reports.tsx:220
 msgid "Average per entry"
 msgstr "Média por entrada"
 
@@ -148,15 +148,15 @@ msgstr "Cópia de segurança"
 msgid "Backup & restore"
 msgstr "Cópia de segurança e restauro"
 
-#: src/routes/settings/organization.tsx:71
+#: src/routes/settings/organization.tsx:82
 msgid "Bank name"
 msgstr "Nome do banco"
 
 #: src/components/clients/form.tsx:148
 #: src/components/feedback-modal.tsx:54
-#: src/components/projects/form.tsx:153
-#: src/components/time-entries/form.tsx:143
-#: src/components/time-entries/time-range-cell.tsx:86
+#: src/components/projects/form.tsx:155
+#: src/components/time-entries/form.tsx:145
+#: src/components/time-entries/time-range-cell.tsx:88
 #: src/routes/organizations/new.tsx:88
 #: src/routes/settings/backup.tsx:50
 msgid "Cancel"
@@ -170,12 +170,12 @@ msgstr "Alterar"
 msgid "Clear chat"
 msgstr "Limpar conversa"
 
-#: src/components/projects/form.tsx:179
-#: src/components/time-entries/form.tsx:168
-#: src/routes/invoices/index.tsx:148
-#: src/routes/projects.tsx:66
+#: src/components/projects/form.tsx:181
+#: src/components/time-entries/form.tsx:170
+#: src/routes/invoices/index.tsx:150
+#: src/routes/projects.tsx:68
 #: src/routes/time-tracking/index.tsx:362
-#: src/routes/time-tracking/reports.tsx:108
+#: src/routes/time-tracking/reports.tsx:111
 msgid "Client"
 msgstr "Cliente"
 
@@ -221,7 +221,7 @@ msgstr "Código"
 msgid "Configure your Anthropic API key to enable AI-powered features in your invoicing workflow."
 msgstr "Configure a sua chave API Anthropic para ativar funcionalidades com IA no seu fluxo de faturação."
 
-#: src/routes/invoices/index.tsx:31
+#: src/routes/invoices/index.tsx:32
 msgid "Confirmed"
 msgstr "Confirmado"
 
@@ -230,10 +230,11 @@ msgid "Counter must be 0 or greater"
 msgstr "O contador deve ser 0 ou maior"
 
 #: src/routes/organizations/new.tsx:61
+#: src/routes/settings/organization.tsx:58
 msgid "Country"
 msgstr "País"
 
-#: src/components/projects/form.tsx:160
+#: src/components/projects/form.tsx:162
 msgid "Create"
 msgstr "Criar"
 
@@ -253,21 +254,21 @@ msgstr "Criar organização"
 #~ msgid "Create your organization to get started"
 #~ msgstr "Crie a sua organização para começar"
 
-#: src/routes/invoices/details.tsx:347
+#: src/routes/invoices/details.tsx:349
 #: src/routes/organizations/new.tsx:72
 #: src/routes/settings/invoice.tsx:84
 msgid "Currency"
 msgstr "Moeda"
 
-#: src/routes/invoices/details.tsx:584
+#: src/routes/invoices/details.tsx:586
 msgid "Customer note"
 msgstr "Nota do cliente"
 
-#: src/routes/invoices/details.tsx:382
+#: src/routes/invoices/details.tsx:384
 msgid "Daily %"
 msgstr "Diário %"
 
-#: src/routes/time-tracking/reports.tsx:225
+#: src/routes/time-tracking/reports.tsx:228
 msgid "Daily average"
 msgstr "Média diária"
 
@@ -279,12 +280,20 @@ msgstr "Cópia de segurança da base de dados guardada com sucesso em {backupPat
 msgid "Database has been restored successfully. Please restart the application to see the changes."
 msgstr "A base de dados foi restaurada com sucesso. Por favor, reinicie a aplicação para ver as alterações."
 
-#: src/components/invoices/pdf.tsx:260
-#: src/components/time-entries/time-range-cell.tsx:79
-#: src/routes/invoices/index.tsx:154
-#: src/routes/time-tracking/reports.tsx:108
+#: src/components/invoices/pdf.tsx:261
+#: src/components/time-entries/time-range-cell.tsx:81
+#: src/routes/invoices/index.tsx:156
+#: src/routes/time-tracking/reports.tsx:111
 msgid "Date"
 msgstr "Data"
+
+#: src/routes/settings/organization.tsx:121
+msgid "Date format"
+msgstr ""
+
+#: src/routes/settings/organization.tsx:113
+msgid "Date Formatting"
+msgstr ""
 
 #: src/routes/settings/invoice.tsx:185
 msgid "Day of month"
@@ -300,17 +309,17 @@ msgid "Default"
 msgstr "Predefinido"
 
 #: src/components/clients/form.tsx:132
-#: src/components/time-entries/form.tsx:130
-#: src/routes/invoices/details.tsx:692
-#: src/routes/invoices/index.tsx:111
+#: src/components/time-entries/form.tsx:132
+#: src/routes/invoices/details.tsx:694
+#: src/routes/invoices/index.tsx:113
 #: src/routes/invoices/preview.tsx:177
-#: src/routes/settings/organization.tsx:112
+#: src/routes/settings/organization.tsx:147
 #: src/routes/time-tracking/index.tsx:484
 msgid "Delete"
 msgstr "Eliminar"
 
-#: src/routes/invoices/details.tsx:685
-#: src/routes/invoices/index.tsx:101
+#: src/routes/invoices/details.tsx:687
+#: src/routes/invoices/index.tsx:103
 #: src/routes/invoices/preview.tsx:170
 msgid "Delete the invoice?"
 msgstr "Eliminar a fatura?"
@@ -319,10 +328,10 @@ msgstr "Eliminar a fatura?"
 msgid "Delete the time entry?"
 msgstr "Eliminar a entrada de tempo?"
 
-#: src/components/invoices/pdf.tsx:284
+#: src/components/invoices/pdf.tsx:285
 #: src/components/tax-rates/form.tsx:61
-#: src/components/time-entries/form.tsx:161
-#: src/routes/invoices/details.tsx:409
+#: src/components/time-entries/form.tsx:163
+#: src/routes/invoices/details.tsx:411
 #: src/routes/settings/tax-rates.tsx:53
 #: src/routes/time-tracking/index.tsx:355
 msgid "Description"
@@ -330,13 +339,13 @@ msgstr "Descrição"
 
 #: src/components/invoices/state-select.tsx:27
 #: src/components/invoices/state-select.tsx:58
-#: src/routes/invoices/index.tsx:27
+#: src/routes/invoices/index.tsx:28
 msgid "Draft"
 msgstr "Rascunho"
 
-#: src/components/invoices/pdf.tsx:263
-#: src/routes/invoices/details.tsx:371
-#: src/routes/invoices/index.tsx:161
+#: src/components/invoices/pdf.tsx:264
+#: src/routes/invoices/details.tsx:373
+#: src/routes/invoices/index.tsx:163
 msgid "Due date"
 msgstr "Data de vencimento"
 
@@ -344,8 +353,8 @@ msgstr "Data de vencimento"
 msgid "Due days"
 msgstr "Dias de vencimento"
 
-#: src/routes/invoices/details.tsx:680
-#: src/routes/invoices/index.tsx:90
+#: src/routes/invoices/details.tsx:682
+#: src/routes/invoices/index.tsx:92
 #: src/routes/invoices/preview.tsx:165
 msgid "Duplicate"
 msgstr "Duplicar"
@@ -354,15 +363,15 @@ msgstr "Duplicar"
 msgid "Duration"
 msgstr "Duração"
 
-#: src/components/time-entries/form.tsx:243
+#: src/components/time-entries/form.tsx:245
 msgid "Duration (seconds)"
 msgstr "Duração (segundos)"
 
-#: src/components/time-entries/form.tsx:247
+#: src/components/time-entries/form.tsx:249
 msgid "Duration in seconds"
 msgstr "Duração em segundos"
 
-#: src/routes/settings/organization.tsx:59
+#: src/routes/settings/organization.tsx:70
 msgid "E-mail"
 msgstr "E-mail"
 
@@ -374,7 +383,7 @@ msgstr "E-mails"
 msgid "e.g. AP, MS"
 msgstr "ex: AP, MS"
 
-#: src/routes/invoices/index.tsx:84
+#: src/routes/invoices/index.tsx:86
 #: src/routes/invoices/preview.tsx:192
 #: src/routes/time-tracking/index.tsx:454
 msgid "Edit"
@@ -384,7 +393,7 @@ msgstr "Editar"
 msgid "Edit client"
 msgstr "Editar cliente"
 
-#: src/components/projects/form.tsx:121
+#: src/components/projects/form.tsx:123
 msgid "Edit Project"
 msgstr "Editar Projeto"
 
@@ -392,7 +401,7 @@ msgstr "Editar Projeto"
 msgid "Edit tax rate"
 msgstr "Editar taxa de imposto"
 
-#: src/components/time-entries/form.tsx:109
+#: src/components/time-entries/form.tsx:111
 msgid "Edit Time Entry"
 msgstr "Editar Entrada de Tempo"
 
@@ -404,12 +413,12 @@ msgstr "E-mail"
 msgid "Emails"
 msgstr "E-mails"
 
-#: src/components/projects/form.tsx:204
+#: src/components/projects/form.tsx:206
 msgid "End Date"
 msgstr "Data de Fim"
 
-#: src/components/time-entries/form.tsx:232
-#: src/components/time-entries/time-range-cell.tsx:72
+#: src/components/time-entries/form.tsx:234
+#: src/components/time-entries/time-range-cell.tsx:74
 msgid "End Time"
 msgstr "Hora de Fim"
 
@@ -417,11 +426,11 @@ msgstr "Hora de Fim"
 msgid "Enter format to see preview"
 msgstr "Introduza o formato para ver a pré-visualização"
 
-#: src/components/projects/form.tsx:174
+#: src/components/projects/form.tsx:176
 msgid "Enter project name"
 msgstr "Digite o nome do projeto"
 
-#: src/routes/time-tracking/reports.tsx:119
+#: src/routes/time-tracking/reports.tsx:122
 msgid "Entries"
 msgstr "Entradas"
 
@@ -429,7 +438,7 @@ msgstr "Entradas"
 msgid "Error"
 msgstr "Erro"
 
-#: src/routes/time-tracking/reports.tsx:156
+#: src/routes/time-tracking/reports.tsx:159
 msgid "Export"
 msgstr "Exportar"
 
@@ -519,19 +528,19 @@ msgstr "Feedback enviado com sucesso!"
 msgid "Get your API key from"
 msgstr "Obtenha a sua chave API de"
 
-#: src/routes/time-tracking/reports.tsx:191
+#: src/routes/time-tracking/reports.tsx:194
 msgid "Group by client"
 msgstr "Agrupar por cliente"
 
-#: src/routes/time-tracking/reports.tsx:194
+#: src/routes/time-tracking/reports.tsx:197
 msgid "Group by date"
 msgstr "Agrupar por data"
 
-#: src/routes/time-tracking/reports.tsx:197
+#: src/routes/time-tracking/reports.tsx:200
 msgid "Group by week"
 msgstr "Agrupar por semana"
 
-#: src/routes/settings/organization.tsx:78
+#: src/routes/settings/organization.tsx:89
 msgid "IBAN"
 msgstr "IBAN"
 
@@ -540,7 +549,7 @@ msgid "Invoice"
 msgstr "Fatura"
 
 #. placeholder {0}: invoice.number
-#: src/components/invoices/pdf.tsx:220
+#: src/components/invoices/pdf.tsx:221
 msgid "Invoice {0}"
 msgstr "Fatura {0}"
 
@@ -585,7 +594,7 @@ msgstr "Formulário de fatura atualizado com novos dados."
 msgid "Invoice not found"
 msgstr "Fatura não encontrada"
 
-#: src/routes/invoices/details.tsx:338
+#: src/routes/invoices/details.tsx:340
 msgid "Invoice number"
 msgstr "Número da fatura"
 
@@ -614,7 +623,7 @@ msgid "Invoice updated successfully"
 msgstr "Fatura atualizada com sucesso"
 
 #: src/layouts/base.tsx:133
-#: src/routes/invoices/index.tsx:125
+#: src/routes/invoices/index.tsx:127
 msgid "Invoices"
 msgstr "Faturas"
 
@@ -635,15 +644,15 @@ msgstr "Nome do mês"
 #: src/components/tax-rates/form.tsx:58
 #: src/routes/clients.tsx:72
 #: src/routes/organizations/new.tsx:56
-#: src/routes/projects.tsx:56
-#: src/routes/settings/organization.tsx:53
+#: src/routes/projects.tsx:58
+#: src/routes/settings/organization.tsx:55
 #: src/routes/settings/tax-rates.tsx:49
 msgid "Name"
 msgstr "Nome"
 
 #: src/components/clients/form.tsx:99
 #: src/routes/clients.tsx:62
-#: src/routes/invoices/details.tsx:323
+#: src/routes/invoices/details.tsx:325
 msgid "New client"
 msgstr "Novo cliente"
 
@@ -651,7 +660,7 @@ msgstr "Novo cliente"
 msgid "New Entry"
 msgstr "Nova Entrada"
 
-#: src/routes/invoices/index.tsx:133
+#: src/routes/invoices/index.tsx:135
 msgid "New invoice"
 msgstr "Nova fatura"
 
@@ -663,8 +672,8 @@ msgstr "Nova organização"
 msgid "New Organization"
 msgstr "Nova organização"
 
-#: src/components/projects/form.tsx:121
-#: src/routes/projects.tsx:146
+#: src/components/projects/form.tsx:123
+#: src/routes/projects.tsx:148
 msgid "New Project"
 msgstr "Novo Projeto"
 
@@ -676,7 +685,7 @@ msgstr "Novo imposto"
 msgid "New tax rate"
 msgstr "Nova taxa de imposto"
 
-#: src/components/time-entries/form.tsx:109
+#: src/components/time-entries/form.tsx:111
 msgid "New Time Entry"
 msgstr "Nova Entrada de Tempo"
 
@@ -685,32 +694,32 @@ msgid "Next invoice will use this number + 1"
 msgstr "A próxima fatura utilizará este número + 1"
 
 #: src/components/clients/form.tsx:128
-#: src/components/projects/form.tsx:136
-#: src/components/time-entries/form.tsx:126
-#: src/routes/invoices/details.tsx:689
-#: src/routes/invoices/index.tsx:108
+#: src/components/projects/form.tsx:138
+#: src/components/time-entries/form.tsx:128
+#: src/routes/invoices/details.tsx:691
+#: src/routes/invoices/index.tsx:110
 #: src/routes/invoices/preview.tsx:174
 #: src/routes/time-tracking/index.tsx:481
 msgid "No"
 msgstr "Não"
 
-#: src/routes/time-tracking/reports.tsx:87
+#: src/routes/time-tracking/reports.tsx:90
 msgid "No client"
 msgstr "Sem cliente"
 
-#: src/routes/projects.tsx:76
+#: src/routes/projects.tsx:78
 msgid "No client assigned"
 msgstr "Nenhum cliente atribuído"
 
-#: src/routes/invoices/details.tsx:406
+#: src/routes/invoices/details.tsx:408
 msgid "No line items"
 msgstr "Sem itens de linha"
 
-#: src/routes/projects.tsx:158
+#: src/routes/projects.tsx:160
 msgid "No projects found"
 msgstr "Nenhum projeto encontrado"
 
-#: src/routes/settings/organization.tsx:109
+#: src/routes/settings/organization.tsx:144
 msgid "No!"
 msgstr "Não!"
 
@@ -751,7 +760,7 @@ msgstr "Organização eliminada"
 msgid "Organization deletion failed"
 msgstr "Falha na eliminação da organização"
 
-#: src/routes/settings/organization.tsx:46
+#: src/routes/settings/organization.tsx:48
 msgid "Organization details"
 msgstr "Detalhes da organização"
 
@@ -763,15 +772,15 @@ msgstr "Falha na atualização da organização"
 msgid "Organization updated successfully"
 msgstr "Organização atualizada com sucesso"
 
-#: src/components/invoices/pdf.tsx:267
-#: src/routes/invoices/details.tsx:380
+#: src/components/invoices/pdf.tsx:268
+#: src/routes/invoices/details.tsx:382
 #: src/routes/settings/invoice.tsx:105
 msgid "Overdue charge"
 msgstr "Taxa de atraso"
 
 #: src/components/invoices/state-select.tsx:35
 #: src/components/invoices/state-select.tsx:62
-#: src/routes/invoices/index.tsx:35
+#: src/routes/invoices/index.tsx:36
 msgid "Paid"
 msgstr "Pago"
 
@@ -782,7 +791,7 @@ msgstr "Percentagem"
 
 #: src/components/clients/form.tsx:191
 #: src/routes/clients.tsx:91
-#: src/routes/settings/organization.tsx:62
+#: src/routes/settings/organization.tsx:73
 msgid "Phone"
 msgstr "Telefone"
 
@@ -790,7 +799,7 @@ msgstr "Telefone"
 msgid "Please configure your Anthropic API key in"
 msgstr "Por favor configure a sua chave API Anthropic em"
 
-#: src/components/projects/form.tsx:172
+#: src/components/projects/form.tsx:174
 msgid "Please enter a project name"
 msgstr "Por favor, digite o nome do projeto"
 
@@ -812,7 +821,7 @@ msgstr "Por favor, introduza uma percentagem!"
 msgid "Please input name!"
 msgstr "Por favor, introduza o nome!"
 
-#: src/components/time-entries/form.tsx:221
+#: src/components/time-entries/form.tsx:223
 msgid "Please select start time!"
 msgstr "Por favor, selecione a hora de início!"
 
@@ -828,12 +837,12 @@ msgstr "Por favor, carregue uma imagem PNG ou JPEG"
 msgid "Preview"
 msgstr "Pré-visualização"
 
-#: src/components/invoices/pdf.tsx:290
-#: src/routes/invoices/details.tsx:466
+#: src/components/invoices/pdf.tsx:291
+#: src/routes/invoices/details.tsx:468
 msgid "Price"
 msgstr "Preço"
 
-#: src/components/time-entries/form.tsx:193
+#: src/components/time-entries/form.tsx:195
 #: src/routes/time-tracking/index.tsx:375
 msgid "Project"
 msgstr "Projeto"
@@ -846,7 +855,7 @@ msgstr "Projeto arquivado com sucesso"
 msgid "Project created successfully"
 msgstr "Projeto criado com sucesso"
 
-#: src/components/projects/form.tsx:171
+#: src/components/projects/form.tsx:173
 msgid "Project Name"
 msgstr "Nome do Projeto"
 
@@ -859,21 +868,21 @@ msgid "Project updated successfully"
 msgstr "Projeto atualizado com sucesso"
 
 #: src/layouts/base.tsx:151
-#: src/routes/projects.tsx:134
+#: src/routes/projects.tsx:136
 msgid "Projects"
 msgstr "Projetos"
 
-#: src/components/invoices/pdf.tsx:287
-#: src/routes/invoices/details.tsx:432
+#: src/components/invoices/pdf.tsx:288
+#: src/routes/invoices/details.tsx:434
 msgid "Qty."
 msgstr "Qtd."
 
-#: src/routes/settings/organization.tsx:65
+#: src/routes/settings/organization.tsx:76
 msgid "Registration number"
 msgstr "Número de registo"
 
 #: src/layouts/base.tsx:174
-#: src/routes/time-tracking/reports.tsx:150
+#: src/routes/time-tracking/reports.tsx:153
 msgid "Reports"
 msgstr "Relatórios"
 
@@ -900,12 +909,12 @@ msgstr "Restaure a sua base de dados a partir de um ficheiro de cópia de segura
 #: src/components/clients/form.tsx:101
 #: src/components/clients/form.tsx:155
 #: src/components/tax-rates/form.tsx:45
-#: src/components/time-entries/form.tsx:111
-#: src/components/time-entries/form.tsx:150
-#: src/components/time-entries/time-range-cell.tsx:89
-#: src/routes/invoices/details.tsx:735
+#: src/components/time-entries/form.tsx:113
+#: src/components/time-entries/form.tsx:152
+#: src/components/time-entries/time-range-cell.tsx:91
+#: src/routes/invoices/details.tsx:737
 #: src/routes/settings/invoice.tsx:256
-#: src/routes/settings/organization.tsx:103
+#: src/routes/settings/organization.tsx:138
 msgid "Save"
 msgstr "Guardar"
 
@@ -913,12 +922,12 @@ msgstr "Guardar"
 msgid "Save Configuration"
 msgstr "Guardar configuração"
 
-#: src/routes/projects.tsx:140
+#: src/routes/projects.tsx:142
 msgid "Search projects..."
 msgstr "Pesquisar projetos..."
 
 #: src/routes/clients.tsx:59
-#: src/routes/invoices/index.tsx:130
+#: src/routes/invoices/index.tsx:132
 msgid "Search text"
 msgstr "Texto de pesquisa"
 
@@ -926,23 +935,31 @@ msgstr "Texto de pesquisa"
 msgid "Search time entries..."
 msgstr "Pesquisar entradas de tempo..."
 
-#: src/components/projects/form.tsx:182
+#: src/components/projects/form.tsx:184
 msgid "Select a client (optional)"
 msgstr "Selecionar um cliente (opcional)"
 
-#: src/routes/time-tracking/reports.tsx:176
+#: src/routes/time-tracking/reports.tsx:179
 msgid "Select client"
 msgstr "Selecionar cliente"
 
-#: src/components/time-entries/form.tsx:170
+#: src/components/time-entries/form.tsx:172
 msgid "Select client (optional)"
 msgstr "Selecionar cliente (opcional)"
 
-#: src/routes/invoices/details.tsx:281
+#: src/routes/settings/organization.tsx:59
+msgid "Select country"
+msgstr ""
+
+#: src/routes/settings/organization.tsx:122
+msgid "Select date format"
+msgstr ""
+
+#: src/routes/invoices/details.tsx:283
 msgid "Select or create a client"
 msgstr "Selecionar ou criar um cliente"
 
-#: src/components/time-entries/form.tsx:195
+#: src/components/time-entries/form.tsx:197
 msgid "Select project (optional)"
 msgstr "Selecionar projeto (opcional)"
 
@@ -983,7 +1000,7 @@ msgstr "Mostrar variáveis"
 msgid "Start a conversation with your AI assistant"
 msgstr "Inicie uma conversa com o seu assistente IA"
 
-#: src/components/projects/form.tsx:197
+#: src/components/projects/form.tsx:199
 msgid "Start Date"
 msgstr "Data de Início"
 
@@ -991,8 +1008,8 @@ msgstr "Data de Início"
 #~ msgid "Start Number"
 #~ msgstr "Número inicial"
 
-#: src/components/time-entries/form.tsx:220
-#: src/components/time-entries/time-range-cell.tsx:67
+#: src/components/time-entries/form.tsx:222
+#: src/components/time-entries/time-range-cell.tsx:69
 msgid "Start Time"
 msgstr "Hora de Início"
 
@@ -1000,7 +1017,7 @@ msgstr "Hora de Início"
 msgid "Start Timer"
 msgstr "Iniciar Cronómetro"
 
-#: src/routes/invoices/index.tsx:176
+#: src/routes/invoices/index.tsx:178
 msgid "State"
 msgstr "Estado"
 
@@ -1008,8 +1025,8 @@ msgstr "Estado"
 msgid "Stop Timer"
 msgstr "Parar Cronómetro"
 
-#: src/components/invoices/pdf.tsx:334
-#: src/routes/invoices/details.tsx:613
+#: src/components/invoices/pdf.tsx:335
+#: src/routes/invoices/details.tsx:615
 msgid "Subtotal"
 msgstr "Subtotal"
 
@@ -1042,21 +1059,21 @@ msgstr "Falha na atualização da tag"
 msgid "Tag updated successfully"
 msgstr "Tag atualizada com sucesso"
 
-#: src/components/time-entries/form.tsx:269
+#: src/components/time-entries/form.tsx:271
 #: src/routes/time-tracking/index.tsx:412
 msgid "Tags"
 msgstr "Tags"
 
-#: src/routes/invoices/details.tsx:634
+#: src/routes/invoices/details.tsx:636
 msgid "Tax"
 msgstr "Imposto"
 
-#: src/components/invoices/pdf.tsx:293
-#: src/routes/invoices/details.tsx:500
+#: src/components/invoices/pdf.tsx:294
+#: src/routes/invoices/details.tsx:502
 msgid "Tax %"
 msgstr "Imposto %"
 
-#: src/components/invoices/pdf.tsx:346
+#: src/components/invoices/pdf.tsx:347
 msgid "Tax 0%"
 msgstr "Imposto 0%"
 
@@ -1085,15 +1102,15 @@ msgstr "Taxas de imposto"
 msgid "Tell us what you think, report a bug, or suggest an improvement..."
 msgstr "Diga-nos o que pensa, reporte um erro ou sugira uma melhoria..."
 
-#: src/routes/invoices/details.tsx:283
-#: src/routes/invoices/details.tsx:340
-#: src/routes/invoices/details.tsx:349
-#: src/routes/invoices/details.tsx:365
-#: src/routes/invoices/details.tsx:373
-#: src/routes/invoices/details.tsx:423
-#: src/routes/invoices/details.tsx:438
-#: src/routes/invoices/details.tsx:472
-#: src/routes/invoices/details.tsx:537
+#: src/routes/invoices/details.tsx:285
+#: src/routes/invoices/details.tsx:342
+#: src/routes/invoices/details.tsx:351
+#: src/routes/invoices/details.tsx:367
+#: src/routes/invoices/details.tsx:375
+#: src/routes/invoices/details.tsx:425
+#: src/routes/invoices/details.tsx:440
+#: src/routes/invoices/details.tsx:474
+#: src/routes/invoices/details.tsx:539
 #: src/routes/settings/invoice.tsx:86
 #: src/routes/settings/invoice.tsx:132
 #: src/routes/settings/invoice.tsx:202
@@ -1137,7 +1154,7 @@ msgstr "Registo de tempo"
 msgid "Time Tracking"
 msgstr "Registo de Tempo"
 
-#: src/routes/projects.tsx:82
+#: src/routes/projects.tsx:84
 msgid "Timeframe"
 msgstr "Período"
 
@@ -1149,29 +1166,29 @@ msgstr "Cronômetro"
 msgid "to use the AI assistant."
 msgstr "para usar o assistente IA."
 
-#: src/components/invoices/pdf.tsx:296
-#: src/components/invoices/pdf.tsx:370
-#: src/routes/invoices/details.tsx:518
-#: src/routes/invoices/details.tsx:645
-#: src/routes/invoices/index.tsx:168
-#: src/routes/time-tracking/reports.tsx:246
+#: src/components/invoices/pdf.tsx:297
+#: src/components/invoices/pdf.tsx:371
+#: src/routes/invoices/details.tsx:520
+#: src/routes/invoices/details.tsx:647
+#: src/routes/invoices/index.tsx:170
+#: src/routes/time-tracking/reports.tsx:249
 msgid "Total"
 msgstr "Total"
 
-#: src/routes/time-tracking/reports.tsx:211
+#: src/routes/time-tracking/reports.tsx:214
 msgid "Total entries"
 msgstr "Total de entradas"
 
-#: src/routes/time-tracking/reports.tsx:126
-#: src/routes/time-tracking/reports.tsx:206
+#: src/routes/time-tracking/reports.tsx:129
+#: src/routes/time-tracking/reports.tsx:209
 msgid "Total time"
 msgstr "Tempo total"
 
-#: src/components/projects/form.tsx:143
+#: src/components/projects/form.tsx:145
 msgid "Unarchive"
 msgstr "Desarquivar"
 
-#: src/components/projects/form.tsx:160
+#: src/components/projects/form.tsx:162
 msgid "Update"
 msgstr "Atualizar"
 
@@ -1187,13 +1204,13 @@ msgstr "Número de IVA"
 msgid "VATIN"
 msgstr "NIF"
 
-#: src/routes/invoices/details.tsx:708
+#: src/routes/invoices/details.tsx:710
 msgid "View"
 msgstr "Ver"
 
 #: src/components/invoices/state-select.tsx:39
 #: src/components/invoices/state-select.tsx:64
-#: src/routes/invoices/index.tsx:39
+#: src/routes/invoices/index.tsx:40
 msgid "Void"
 msgstr "Anulado"
 
@@ -1206,26 +1223,26 @@ msgstr "Aviso: Isto também eliminará {invoiceCount} fatura(s) relacionada(s)."
 msgid "Website"
 msgstr "Website"
 
-#: src/routes/time-tracking/reports.tsx:108
+#: src/routes/time-tracking/reports.tsx:111
 msgid "Week"
 msgstr "Semana"
 
 #. placeholder {0}: startOfWeek.format("MMM D")
-#: src/routes/time-tracking/reports.tsx:91
+#: src/routes/time-tracking/reports.tsx:94
 msgid "Week {week} ({0})"
 msgstr "Semana {week} ({0})"
 
-#: src/components/time-entries/form.tsx:163
+#: src/components/time-entries/form.tsx:165
 msgid "What are you working on?"
 msgstr "No que está a trabalhar?"
 
 #: src/components/clients/form.tsx:127
-#: src/components/projects/form.tsx:135
-#: src/components/time-entries/form.tsx:125
-#: src/routes/invoices/details.tsx:688
-#: src/routes/invoices/index.tsx:107
+#: src/components/projects/form.tsx:137
+#: src/components/time-entries/form.tsx:127
+#: src/routes/invoices/details.tsx:690
+#: src/routes/invoices/index.tsx:109
 #: src/routes/invoices/preview.tsx:173
-#: src/routes/settings/organization.tsx:108
+#: src/routes/settings/organization.tsx:143
 #: src/routes/time-tracking/index.tsx:480
 msgid "Yes"
 msgstr "Sim"

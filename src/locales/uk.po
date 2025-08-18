@@ -13,7 +13,7 @@ msgstr ""
 "Language-Team: \n"
 "Plural-Forms: \n"
 
-#: src/routes/time-tracking/reports.tsx:133
+#: src/routes/time-tracking/reports.tsx:136
 msgid "%"
 msgstr "%"
 
@@ -33,7 +33,7 @@ msgstr "2-значний рік"
 msgid "4-digit year"
 msgstr "4-значний рік"
 
-#: src/routes/projects.tsx:108
+#: src/routes/projects.tsx:110
 msgid "Active"
 msgstr "Активні"
 
@@ -41,17 +41,17 @@ msgstr "Активні"
 msgid "Add a new organization to your account"
 msgstr "Додати нову організацію до вашого облікового запису"
 
-#: src/routes/invoices/details.tsx:573
+#: src/routes/invoices/details.tsx:575
 msgid "Add line item"
 msgstr "Додати позицію"
 
-#: src/components/time-entries/form.tsx:270
+#: src/components/time-entries/form.tsx:272
 msgid "Add or select tags"
 msgstr "Додати або вибрати теги"
 
 #: src/components/clients/form.tsx:184
 #: src/routes/clients.tsx:81
-#: src/routes/settings/organization.tsx:56
+#: src/routes/settings/organization.tsx:67
 msgid "Address"
 msgstr "Адреса"
 
@@ -69,7 +69,7 @@ msgstr "Помічник ШІ"
 msgid "AI Configuration"
 msgstr "Налаштування ШІ"
 
-#: src/routes/time-tracking/reports.tsx:179
+#: src/routes/time-tracking/reports.tsx:182
 msgid "All clients"
 msgstr "Усі клієнти"
 
@@ -85,21 +85,21 @@ msgstr "API-ключ обов'язковий"
 msgid "API key saved successfully"
 msgstr "API-ключ успішно збережено"
 
-#: src/components/projects/form.tsx:143
+#: src/components/projects/form.tsx:145
 msgid "Archive"
 msgstr "Архівувати"
 
-#: src/routes/projects.tsx:100
-#: src/routes/projects.tsx:109
+#: src/routes/projects.tsx:102
+#: src/routes/projects.tsx:111
 msgid "Archived"
 msgstr "Архівні"
 
-#: src/routes/settings/organization.tsx:106
+#: src/routes/settings/organization.tsx:141
 msgid "Are you sure delete this organization?"
 msgstr "Ви впевнені, що хочете видалити цю організацію?"
 
-#: src/routes/invoices/details.tsx:686
-#: src/routes/invoices/index.tsx:102
+#: src/routes/invoices/details.tsx:688
+#: src/routes/invoices/index.tsx:104
 #: src/routes/invoices/preview.tsx:171
 msgid "Are you sure to delete this invoice?"
 msgstr "Ви впевнені, що хочете видалити цей рахунок?"
@@ -108,7 +108,7 @@ msgstr "Ви впевнені, що хочете видалити цей рах�
 msgid "Are you sure to delete this time entry?"
 msgstr "Ви впевнені, що хочете видалити цей запис часу?"
 
-#: src/components/projects/form.tsx:132
+#: src/components/projects/form.tsx:134
 msgid "Are you sure you want to archive this project?"
 msgstr "Ти впевнений, що хочеш архівувати цей проект?"
 
@@ -116,7 +116,7 @@ msgstr "Ти впевнений, що хочеш архівувати цей п�
 msgid "Are you sure you want to delete this client?"
 msgstr "Ви впевнені, що хочете видалити цього клієнта?"
 
-#: src/components/time-entries/form.tsx:123
+#: src/components/time-entries/form.tsx:125
 msgid "Are you sure you want to delete this time entry?"
 msgstr "Ви впевнені, що хочете видалити цей запис часу?"
 
@@ -124,7 +124,7 @@ msgstr "Ви впевнені, що хочете видалити цей зап�
 msgid "Are you sure you want to restore from a backup? This will replace all current data and cannot be undone."
 msgstr "Ви впевнені, що хочете відновити з резервної копії? Це замінить всі поточні дані і не може бути скасовано."
 
-#: src/components/projects/form.tsx:131
+#: src/components/projects/form.tsx:133
 msgid "Are you sure you want to unarchive this project?"
 msgstr "Ти впевнений, що хочеш розархівувати цей проект?"
 
@@ -136,7 +136,7 @@ msgstr "Запитайте мене про виставлення рахункі
 msgid "Available variables:"
 msgstr "Доступні змінні:"
 
-#: src/routes/time-tracking/reports.tsx:217
+#: src/routes/time-tracking/reports.tsx:220
 msgid "Average per entry"
 msgstr "Середнє за запис"
 
@@ -148,15 +148,15 @@ msgstr "Резервне копіювання"
 msgid "Backup & restore"
 msgstr "Резервне копіювання та відновлення"
 
-#: src/routes/settings/organization.tsx:71
+#: src/routes/settings/organization.tsx:82
 msgid "Bank name"
 msgstr "Назва банку"
 
 #: src/components/clients/form.tsx:148
 #: src/components/feedback-modal.tsx:54
-#: src/components/projects/form.tsx:153
-#: src/components/time-entries/form.tsx:143
-#: src/components/time-entries/time-range-cell.tsx:86
+#: src/components/projects/form.tsx:155
+#: src/components/time-entries/form.tsx:145
+#: src/components/time-entries/time-range-cell.tsx:88
 #: src/routes/organizations/new.tsx:88
 #: src/routes/settings/backup.tsx:50
 msgid "Cancel"
@@ -170,12 +170,12 @@ msgstr "Змінити"
 msgid "Clear chat"
 msgstr "Очистити чат"
 
-#: src/components/projects/form.tsx:179
-#: src/components/time-entries/form.tsx:168
-#: src/routes/invoices/index.tsx:148
-#: src/routes/projects.tsx:66
+#: src/components/projects/form.tsx:181
+#: src/components/time-entries/form.tsx:170
+#: src/routes/invoices/index.tsx:150
+#: src/routes/projects.tsx:68
 #: src/routes/time-tracking/index.tsx:362
-#: src/routes/time-tracking/reports.tsx:108
+#: src/routes/time-tracking/reports.tsx:111
 msgid "Client"
 msgstr "Клієнт"
 
@@ -221,7 +221,7 @@ msgstr "Код"
 msgid "Configure your Anthropic API key to enable AI-powered features in your invoicing workflow."
 msgstr "Налаштуйте ваш API-ключ Anthropic, щоб увімкнути функції на основі ШІ у вашому робочому процесі виставлення рахунків."
 
-#: src/routes/invoices/index.tsx:31
+#: src/routes/invoices/index.tsx:32
 msgid "Confirmed"
 msgstr "Підтверджено"
 
@@ -230,10 +230,11 @@ msgid "Counter must be 0 or greater"
 msgstr "Лічильник повинен бути 0 або більше"
 
 #: src/routes/organizations/new.tsx:61
+#: src/routes/settings/organization.tsx:58
 msgid "Country"
 msgstr "Країна"
 
-#: src/components/projects/form.tsx:160
+#: src/components/projects/form.tsx:162
 msgid "Create"
 msgstr "Створити"
 
@@ -253,21 +254,21 @@ msgstr "Створити організацію"
 #~ msgid "Create your organization to get started"
 #~ msgstr "Створіть свою організацію для початку роботи"
 
-#: src/routes/invoices/details.tsx:347
+#: src/routes/invoices/details.tsx:349
 #: src/routes/organizations/new.tsx:72
 #: src/routes/settings/invoice.tsx:84
 msgid "Currency"
 msgstr "Валюта"
 
-#: src/routes/invoices/details.tsx:584
+#: src/routes/invoices/details.tsx:586
 msgid "Customer note"
 msgstr "Примітка клієнта"
 
-#: src/routes/invoices/details.tsx:382
+#: src/routes/invoices/details.tsx:384
 msgid "Daily %"
 msgstr "Щоденно %"
 
-#: src/routes/time-tracking/reports.tsx:225
+#: src/routes/time-tracking/reports.tsx:228
 msgid "Daily average"
 msgstr "Щоденне середнє"
 
@@ -279,12 +280,20 @@ msgstr "Резервну копію бази даних успішно збер�
 msgid "Database has been restored successfully. Please restart the application to see the changes."
 msgstr "Базу даних успішно відновлено. Будь ласка, перезапустіть програму, щоб побачити зміни."
 
-#: src/components/invoices/pdf.tsx:260
-#: src/components/time-entries/time-range-cell.tsx:79
-#: src/routes/invoices/index.tsx:154
-#: src/routes/time-tracking/reports.tsx:108
+#: src/components/invoices/pdf.tsx:261
+#: src/components/time-entries/time-range-cell.tsx:81
+#: src/routes/invoices/index.tsx:156
+#: src/routes/time-tracking/reports.tsx:111
 msgid "Date"
 msgstr "Дата"
+
+#: src/routes/settings/organization.tsx:121
+msgid "Date format"
+msgstr ""
+
+#: src/routes/settings/organization.tsx:113
+msgid "Date Formatting"
+msgstr ""
 
 #: src/routes/settings/invoice.tsx:185
 msgid "Day of month"
@@ -300,17 +309,17 @@ msgid "Default"
 msgstr "За замовчуванням"
 
 #: src/components/clients/form.tsx:132
-#: src/components/time-entries/form.tsx:130
-#: src/routes/invoices/details.tsx:692
-#: src/routes/invoices/index.tsx:111
+#: src/components/time-entries/form.tsx:132
+#: src/routes/invoices/details.tsx:694
+#: src/routes/invoices/index.tsx:113
 #: src/routes/invoices/preview.tsx:177
-#: src/routes/settings/organization.tsx:112
+#: src/routes/settings/organization.tsx:147
 #: src/routes/time-tracking/index.tsx:484
 msgid "Delete"
 msgstr "Видалити"
 
-#: src/routes/invoices/details.tsx:685
-#: src/routes/invoices/index.tsx:101
+#: src/routes/invoices/details.tsx:687
+#: src/routes/invoices/index.tsx:103
 #: src/routes/invoices/preview.tsx:170
 msgid "Delete the invoice?"
 msgstr "Видалити рахунок?"
@@ -319,10 +328,10 @@ msgstr "Видалити рахунок?"
 msgid "Delete the time entry?"
 msgstr "Видалити запис часу?"
 
-#: src/components/invoices/pdf.tsx:284
+#: src/components/invoices/pdf.tsx:285
 #: src/components/tax-rates/form.tsx:61
-#: src/components/time-entries/form.tsx:161
-#: src/routes/invoices/details.tsx:409
+#: src/components/time-entries/form.tsx:163
+#: src/routes/invoices/details.tsx:411
 #: src/routes/settings/tax-rates.tsx:53
 #: src/routes/time-tracking/index.tsx:355
 msgid "Description"
@@ -330,13 +339,13 @@ msgstr "Опис"
 
 #: src/components/invoices/state-select.tsx:27
 #: src/components/invoices/state-select.tsx:58
-#: src/routes/invoices/index.tsx:27
+#: src/routes/invoices/index.tsx:28
 msgid "Draft"
 msgstr "Чернетка"
 
-#: src/components/invoices/pdf.tsx:263
-#: src/routes/invoices/details.tsx:371
-#: src/routes/invoices/index.tsx:161
+#: src/components/invoices/pdf.tsx:264
+#: src/routes/invoices/details.tsx:373
+#: src/routes/invoices/index.tsx:163
 msgid "Due date"
 msgstr "Термін оплати"
 
@@ -344,8 +353,8 @@ msgstr "Термін оплати"
 msgid "Due days"
 msgstr "Дні до оплати"
 
-#: src/routes/invoices/details.tsx:680
-#: src/routes/invoices/index.tsx:90
+#: src/routes/invoices/details.tsx:682
+#: src/routes/invoices/index.tsx:92
 #: src/routes/invoices/preview.tsx:165
 msgid "Duplicate"
 msgstr "Дублювати"
@@ -354,15 +363,15 @@ msgstr "Дублювати"
 msgid "Duration"
 msgstr "Тривалість"
 
-#: src/components/time-entries/form.tsx:243
+#: src/components/time-entries/form.tsx:245
 msgid "Duration (seconds)"
 msgstr "Тривалість (секунди)"
 
-#: src/components/time-entries/form.tsx:247
+#: src/components/time-entries/form.tsx:249
 msgid "Duration in seconds"
 msgstr "Тривалість у секундах"
 
-#: src/routes/settings/organization.tsx:59
+#: src/routes/settings/organization.tsx:70
 msgid "E-mail"
 msgstr "Електронна пошта"
 
@@ -374,7 +383,7 @@ msgstr "Електронні пошти"
 msgid "e.g. AP, MS"
 msgstr "напр. АП, МС"
 
-#: src/routes/invoices/index.tsx:84
+#: src/routes/invoices/index.tsx:86
 #: src/routes/invoices/preview.tsx:192
 #: src/routes/time-tracking/index.tsx:454
 msgid "Edit"
@@ -384,7 +393,7 @@ msgstr "Редагувати"
 msgid "Edit client"
 msgstr "Редагувати клієнта"
 
-#: src/components/projects/form.tsx:121
+#: src/components/projects/form.tsx:123
 msgid "Edit Project"
 msgstr "Редагувати проект"
 
@@ -392,7 +401,7 @@ msgstr "Редагувати проект"
 msgid "Edit tax rate"
 msgstr "Редагувати податкову ставку"
 
-#: src/components/time-entries/form.tsx:109
+#: src/components/time-entries/form.tsx:111
 msgid "Edit Time Entry"
 msgstr "Редагувати запис часу"
 
@@ -404,12 +413,12 @@ msgstr "Електронна пошта"
 msgid "Emails"
 msgstr "Електронні пошти"
 
-#: src/components/projects/form.tsx:204
+#: src/components/projects/form.tsx:206
 msgid "End Date"
 msgstr "Дата закінчення"
 
-#: src/components/time-entries/form.tsx:232
-#: src/components/time-entries/time-range-cell.tsx:72
+#: src/components/time-entries/form.tsx:234
+#: src/components/time-entries/time-range-cell.tsx:74
 msgid "End Time"
 msgstr "Час закінчення"
 
@@ -417,11 +426,11 @@ msgstr "Час закінчення"
 msgid "Enter format to see preview"
 msgstr "Введіть формат для перегляду"
 
-#: src/components/projects/form.tsx:174
+#: src/components/projects/form.tsx:176
 msgid "Enter project name"
 msgstr "Введи назву проекту"
 
-#: src/routes/time-tracking/reports.tsx:119
+#: src/routes/time-tracking/reports.tsx:122
 msgid "Entries"
 msgstr "Записи"
 
@@ -429,7 +438,7 @@ msgstr "Записи"
 msgid "Error"
 msgstr "Помилка"
 
-#: src/routes/time-tracking/reports.tsx:156
+#: src/routes/time-tracking/reports.tsx:159
 msgid "Export"
 msgstr "Експорт"
 
@@ -519,19 +528,19 @@ msgstr "Відгук успішно надіслано!"
 msgid "Get your API key from"
 msgstr "Отримайте ваш API-ключ з"
 
-#: src/routes/time-tracking/reports.tsx:191
+#: src/routes/time-tracking/reports.tsx:194
 msgid "Group by client"
 msgstr "Групувати за клієнтом"
 
-#: src/routes/time-tracking/reports.tsx:194
+#: src/routes/time-tracking/reports.tsx:197
 msgid "Group by date"
 msgstr "Групувати за датою"
 
-#: src/routes/time-tracking/reports.tsx:197
+#: src/routes/time-tracking/reports.tsx:200
 msgid "Group by week"
 msgstr "Групувати за тижнем"
 
-#: src/routes/settings/organization.tsx:78
+#: src/routes/settings/organization.tsx:89
 msgid "IBAN"
 msgstr "IBAN"
 
@@ -540,7 +549,7 @@ msgid "Invoice"
 msgstr "Рахунок"
 
 #. placeholder {0}: invoice.number
-#: src/components/invoices/pdf.tsx:220
+#: src/components/invoices/pdf.tsx:221
 msgid "Invoice {0}"
 msgstr "Рахунок {0}"
 
@@ -585,7 +594,7 @@ msgstr "Форма рахунку оновлена новими даними."
 msgid "Invoice not found"
 msgstr "Рахунок не знайдено"
 
-#: src/routes/invoices/details.tsx:338
+#: src/routes/invoices/details.tsx:340
 msgid "Invoice number"
 msgstr "Номер рахунку"
 
@@ -614,7 +623,7 @@ msgid "Invoice updated successfully"
 msgstr "Рахунок успішно оновлено"
 
 #: src/layouts/base.tsx:133
-#: src/routes/invoices/index.tsx:125
+#: src/routes/invoices/index.tsx:127
 msgid "Invoices"
 msgstr "Рахунки"
 
@@ -635,15 +644,15 @@ msgstr "Назва місяця"
 #: src/components/tax-rates/form.tsx:58
 #: src/routes/clients.tsx:72
 #: src/routes/organizations/new.tsx:56
-#: src/routes/projects.tsx:56
-#: src/routes/settings/organization.tsx:53
+#: src/routes/projects.tsx:58
+#: src/routes/settings/organization.tsx:55
 #: src/routes/settings/tax-rates.tsx:49
 msgid "Name"
 msgstr "Назва"
 
 #: src/components/clients/form.tsx:99
 #: src/routes/clients.tsx:62
-#: src/routes/invoices/details.tsx:323
+#: src/routes/invoices/details.tsx:325
 msgid "New client"
 msgstr "Новий клієнт"
 
@@ -651,7 +660,7 @@ msgstr "Новий клієнт"
 msgid "New Entry"
 msgstr "Новий запис"
 
-#: src/routes/invoices/index.tsx:133
+#: src/routes/invoices/index.tsx:135
 msgid "New invoice"
 msgstr "Новий рахунок"
 
@@ -663,8 +672,8 @@ msgstr "Нова організація"
 msgid "New Organization"
 msgstr "Нова організація"
 
-#: src/components/projects/form.tsx:121
-#: src/routes/projects.tsx:146
+#: src/components/projects/form.tsx:123
+#: src/routes/projects.tsx:148
 msgid "New Project"
 msgstr "Новий проект"
 
@@ -676,7 +685,7 @@ msgstr "Новий податок"
 msgid "New tax rate"
 msgstr "Нова податкова ставка"
 
-#: src/components/time-entries/form.tsx:109
+#: src/components/time-entries/form.tsx:111
 msgid "New Time Entry"
 msgstr "Новий запис часу"
 
@@ -685,32 +694,32 @@ msgid "Next invoice will use this number + 1"
 msgstr "Наступний рахунок використовуватиме цей номер + 1"
 
 #: src/components/clients/form.tsx:128
-#: src/components/projects/form.tsx:136
-#: src/components/time-entries/form.tsx:126
-#: src/routes/invoices/details.tsx:689
-#: src/routes/invoices/index.tsx:108
+#: src/components/projects/form.tsx:138
+#: src/components/time-entries/form.tsx:128
+#: src/routes/invoices/details.tsx:691
+#: src/routes/invoices/index.tsx:110
 #: src/routes/invoices/preview.tsx:174
 #: src/routes/time-tracking/index.tsx:481
 msgid "No"
 msgstr "Ні"
 
-#: src/routes/time-tracking/reports.tsx:87
+#: src/routes/time-tracking/reports.tsx:90
 msgid "No client"
 msgstr "Без клієнта"
 
-#: src/routes/projects.tsx:76
+#: src/routes/projects.tsx:78
 msgid "No client assigned"
 msgstr "Клієнт не призначений"
 
-#: src/routes/invoices/details.tsx:406
+#: src/routes/invoices/details.tsx:408
 msgid "No line items"
 msgstr "Немає позицій"
 
-#: src/routes/projects.tsx:158
+#: src/routes/projects.tsx:160
 msgid "No projects found"
 msgstr "Проекти не знайдені"
 
-#: src/routes/settings/organization.tsx:109
+#: src/routes/settings/organization.tsx:144
 msgid "No!"
 msgstr "Ні!"
 
@@ -751,7 +760,7 @@ msgstr "Організацію видалено"
 msgid "Organization deletion failed"
 msgstr "Помилка видалення організації"
 
-#: src/routes/settings/organization.tsx:46
+#: src/routes/settings/organization.tsx:48
 msgid "Organization details"
 msgstr "Деталі організації"
 
@@ -763,15 +772,15 @@ msgstr "Помилка оновлення організації"
 msgid "Organization updated successfully"
 msgstr "Організацію успішно оновлено"
 
-#: src/components/invoices/pdf.tsx:267
-#: src/routes/invoices/details.tsx:380
+#: src/components/invoices/pdf.tsx:268
+#: src/routes/invoices/details.tsx:382
 #: src/routes/settings/invoice.tsx:105
 msgid "Overdue charge"
 msgstr "Штраф за прострочення"
 
 #: src/components/invoices/state-select.tsx:35
 #: src/components/invoices/state-select.tsx:62
-#: src/routes/invoices/index.tsx:35
+#: src/routes/invoices/index.tsx:36
 msgid "Paid"
 msgstr "Оплачено"
 
@@ -782,7 +791,7 @@ msgstr "Відсоток"
 
 #: src/components/clients/form.tsx:191
 #: src/routes/clients.tsx:91
-#: src/routes/settings/organization.tsx:62
+#: src/routes/settings/organization.tsx:73
 msgid "Phone"
 msgstr "Телефон"
 
@@ -790,7 +799,7 @@ msgstr "Телефон"
 msgid "Please configure your Anthropic API key in"
 msgstr "Будь ласка, налаштуйте ваш API-ключ Anthropic в"
 
-#: src/components/projects/form.tsx:172
+#: src/components/projects/form.tsx:174
 msgid "Please enter a project name"
 msgstr "Будь ласка, введи назву проекту"
 
@@ -812,7 +821,7 @@ msgstr "Будь ласка, введіть відсоток!"
 msgid "Please input name!"
 msgstr "Будь ласка, введіть назву!"
 
-#: src/components/time-entries/form.tsx:221
+#: src/components/time-entries/form.tsx:223
 msgid "Please select start time!"
 msgstr "Будь ласка, виберіть час початку!"
 
@@ -828,12 +837,12 @@ msgstr "Будь ласка, завантажте PNG або JPEG зображе
 msgid "Preview"
 msgstr "Попередній перегляд"
 
-#: src/components/invoices/pdf.tsx:290
-#: src/routes/invoices/details.tsx:466
+#: src/components/invoices/pdf.tsx:291
+#: src/routes/invoices/details.tsx:468
 msgid "Price"
 msgstr "Ціна"
 
-#: src/components/time-entries/form.tsx:193
+#: src/components/time-entries/form.tsx:195
 #: src/routes/time-tracking/index.tsx:375
 msgid "Project"
 msgstr "Проект"
@@ -846,7 +855,7 @@ msgstr "Проект успішно архівовано"
 msgid "Project created successfully"
 msgstr "Проект успішно створено"
 
-#: src/components/projects/form.tsx:171
+#: src/components/projects/form.tsx:173
 msgid "Project Name"
 msgstr "Назва проекту"
 
@@ -859,21 +868,21 @@ msgid "Project updated successfully"
 msgstr "Проект успішно оновлено"
 
 #: src/layouts/base.tsx:151
-#: src/routes/projects.tsx:134
+#: src/routes/projects.tsx:136
 msgid "Projects"
 msgstr "Проекти"
 
-#: src/components/invoices/pdf.tsx:287
-#: src/routes/invoices/details.tsx:432
+#: src/components/invoices/pdf.tsx:288
+#: src/routes/invoices/details.tsx:434
 msgid "Qty."
 msgstr "Кільк."
 
-#: src/routes/settings/organization.tsx:65
+#: src/routes/settings/organization.tsx:76
 msgid "Registration number"
 msgstr "Реєстраційний номер"
 
 #: src/layouts/base.tsx:174
-#: src/routes/time-tracking/reports.tsx:150
+#: src/routes/time-tracking/reports.tsx:153
 msgid "Reports"
 msgstr "Звіти"
 
@@ -900,12 +909,12 @@ msgstr "Відновіть базу даних з раніше створено�
 #: src/components/clients/form.tsx:101
 #: src/components/clients/form.tsx:155
 #: src/components/tax-rates/form.tsx:45
-#: src/components/time-entries/form.tsx:111
-#: src/components/time-entries/form.tsx:150
-#: src/components/time-entries/time-range-cell.tsx:89
-#: src/routes/invoices/details.tsx:735
+#: src/components/time-entries/form.tsx:113
+#: src/components/time-entries/form.tsx:152
+#: src/components/time-entries/time-range-cell.tsx:91
+#: src/routes/invoices/details.tsx:737
 #: src/routes/settings/invoice.tsx:256
-#: src/routes/settings/organization.tsx:103
+#: src/routes/settings/organization.tsx:138
 msgid "Save"
 msgstr "Зберегти"
 
@@ -913,12 +922,12 @@ msgstr "Зберегти"
 msgid "Save Configuration"
 msgstr "Зберегти налаштування"
 
-#: src/routes/projects.tsx:140
+#: src/routes/projects.tsx:142
 msgid "Search projects..."
 msgstr "Пошук проектів..."
 
 #: src/routes/clients.tsx:59
-#: src/routes/invoices/index.tsx:130
+#: src/routes/invoices/index.tsx:132
 msgid "Search text"
 msgstr "Пошук"
 
@@ -926,23 +935,31 @@ msgstr "Пошук"
 msgid "Search time entries..."
 msgstr "Пошук записів часу..."
 
-#: src/components/projects/form.tsx:182
+#: src/components/projects/form.tsx:184
 msgid "Select a client (optional)"
 msgstr "Вибери клієнта (необов'язково)"
 
-#: src/routes/time-tracking/reports.tsx:176
+#: src/routes/time-tracking/reports.tsx:179
 msgid "Select client"
 msgstr "Вибери клієнта"
 
-#: src/components/time-entries/form.tsx:170
+#: src/components/time-entries/form.tsx:172
 msgid "Select client (optional)"
 msgstr "Вибрати клієнта (необов'язково)"
 
-#: src/routes/invoices/details.tsx:281
+#: src/routes/settings/organization.tsx:59
+msgid "Select country"
+msgstr ""
+
+#: src/routes/settings/organization.tsx:122
+msgid "Select date format"
+msgstr ""
+
+#: src/routes/invoices/details.tsx:283
 msgid "Select or create a client"
 msgstr "Виберіть або створіть клієнта"
 
-#: src/components/time-entries/form.tsx:195
+#: src/components/time-entries/form.tsx:197
 msgid "Select project (optional)"
 msgstr "Вибери проект (необов'язково)"
 
@@ -983,7 +1000,7 @@ msgstr "Показати змінні"
 msgid "Start a conversation with your AI assistant"
 msgstr "Почати розмову з вашим помічником ШІ"
 
-#: src/components/projects/form.tsx:197
+#: src/components/projects/form.tsx:199
 msgid "Start Date"
 msgstr "Дата початку"
 
@@ -991,8 +1008,8 @@ msgstr "Дата початку"
 #~ msgid "Start Number"
 #~ msgstr "Початковий номер"
 
-#: src/components/time-entries/form.tsx:220
-#: src/components/time-entries/time-range-cell.tsx:67
+#: src/components/time-entries/form.tsx:222
+#: src/components/time-entries/time-range-cell.tsx:69
 msgid "Start Time"
 msgstr "Час початку"
 
@@ -1000,7 +1017,7 @@ msgstr "Час початку"
 msgid "Start Timer"
 msgstr "Запустити таймер"
 
-#: src/routes/invoices/index.tsx:176
+#: src/routes/invoices/index.tsx:178
 msgid "State"
 msgstr "Статус"
 
@@ -1008,8 +1025,8 @@ msgstr "Статус"
 msgid "Stop Timer"
 msgstr "Зупинити таймер"
 
-#: src/components/invoices/pdf.tsx:334
-#: src/routes/invoices/details.tsx:613
+#: src/components/invoices/pdf.tsx:335
+#: src/routes/invoices/details.tsx:615
 msgid "Subtotal"
 msgstr "Проміжна сума"
 
@@ -1042,21 +1059,21 @@ msgstr "Помилка оновлення тегу"
 msgid "Tag updated successfully"
 msgstr "Тег успішно оновлено"
 
-#: src/components/time-entries/form.tsx:269
+#: src/components/time-entries/form.tsx:271
 #: src/routes/time-tracking/index.tsx:412
 msgid "Tags"
 msgstr "Теги"
 
-#: src/routes/invoices/details.tsx:634
+#: src/routes/invoices/details.tsx:636
 msgid "Tax"
 msgstr "Податок"
 
-#: src/components/invoices/pdf.tsx:293
-#: src/routes/invoices/details.tsx:500
+#: src/components/invoices/pdf.tsx:294
+#: src/routes/invoices/details.tsx:502
 msgid "Tax %"
 msgstr "Податок %"
 
-#: src/components/invoices/pdf.tsx:346
+#: src/components/invoices/pdf.tsx:347
 msgid "Tax 0%"
 msgstr "Податок 0%"
 
@@ -1085,15 +1102,15 @@ msgstr "Податкові ставки"
 msgid "Tell us what you think, report a bug, or suggest an improvement..."
 msgstr "Розкажіть, що ви думаєте, повідомте про помилку або запропонуйте покращення..."
 
-#: src/routes/invoices/details.tsx:283
-#: src/routes/invoices/details.tsx:340
-#: src/routes/invoices/details.tsx:349
-#: src/routes/invoices/details.tsx:365
-#: src/routes/invoices/details.tsx:373
-#: src/routes/invoices/details.tsx:423
-#: src/routes/invoices/details.tsx:438
-#: src/routes/invoices/details.tsx:472
-#: src/routes/invoices/details.tsx:537
+#: src/routes/invoices/details.tsx:285
+#: src/routes/invoices/details.tsx:342
+#: src/routes/invoices/details.tsx:351
+#: src/routes/invoices/details.tsx:367
+#: src/routes/invoices/details.tsx:375
+#: src/routes/invoices/details.tsx:425
+#: src/routes/invoices/details.tsx:440
+#: src/routes/invoices/details.tsx:474
+#: src/routes/invoices/details.tsx:539
 #: src/routes/settings/invoice.tsx:86
 #: src/routes/settings/invoice.tsx:132
 #: src/routes/settings/invoice.tsx:202
@@ -1137,7 +1154,7 @@ msgstr "Відстеження часу"
 msgid "Time Tracking"
 msgstr "Відстеження часу"
 
-#: src/routes/projects.tsx:82
+#: src/routes/projects.tsx:84
 msgid "Timeframe"
 msgstr "Часовий діапазон"
 
@@ -1149,29 +1166,29 @@ msgstr "Таймер"
 msgid "to use the AI assistant."
 msgstr "щоб використовувати помічника ШІ."
 
-#: src/components/invoices/pdf.tsx:296
-#: src/components/invoices/pdf.tsx:370
-#: src/routes/invoices/details.tsx:518
-#: src/routes/invoices/details.tsx:645
-#: src/routes/invoices/index.tsx:168
-#: src/routes/time-tracking/reports.tsx:246
+#: src/components/invoices/pdf.tsx:297
+#: src/components/invoices/pdf.tsx:371
+#: src/routes/invoices/details.tsx:520
+#: src/routes/invoices/details.tsx:647
+#: src/routes/invoices/index.tsx:170
+#: src/routes/time-tracking/reports.tsx:249
 msgid "Total"
 msgstr "Загалом"
 
-#: src/routes/time-tracking/reports.tsx:211
+#: src/routes/time-tracking/reports.tsx:214
 msgid "Total entries"
 msgstr "Всього записів"
 
-#: src/routes/time-tracking/reports.tsx:126
-#: src/routes/time-tracking/reports.tsx:206
+#: src/routes/time-tracking/reports.tsx:129
+#: src/routes/time-tracking/reports.tsx:209
 msgid "Total time"
 msgstr "Загальний час"
 
-#: src/components/projects/form.tsx:143
+#: src/components/projects/form.tsx:145
 msgid "Unarchive"
 msgstr "Розархівувати"
 
-#: src/components/projects/form.tsx:160
+#: src/components/projects/form.tsx:162
 msgid "Update"
 msgstr "Оновити"
 
@@ -1187,13 +1204,13 @@ msgstr "Номер ПДВ"
 msgid "VATIN"
 msgstr "Номер ПДВ"
 
-#: src/routes/invoices/details.tsx:708
+#: src/routes/invoices/details.tsx:710
 msgid "View"
 msgstr "Переглянути"
 
 #: src/components/invoices/state-select.tsx:39
 #: src/components/invoices/state-select.tsx:64
-#: src/routes/invoices/index.tsx:39
+#: src/routes/invoices/index.tsx:40
 msgid "Void"
 msgstr "Скасовано"
 
@@ -1206,26 +1223,26 @@ msgstr "Попередження: Це також видалить {invoiceCount
 msgid "Website"
 msgstr "Веб-сайт"
 
-#: src/routes/time-tracking/reports.tsx:108
+#: src/routes/time-tracking/reports.tsx:111
 msgid "Week"
 msgstr "Тиждень"
 
 #. placeholder {0}: startOfWeek.format("MMM D")
-#: src/routes/time-tracking/reports.tsx:91
+#: src/routes/time-tracking/reports.tsx:94
 msgid "Week {week} ({0})"
 msgstr "Тиждень {week} ({0})"
 
-#: src/components/time-entries/form.tsx:163
+#: src/components/time-entries/form.tsx:165
 msgid "What are you working on?"
 msgstr "Над чим ви працюєте?"
 
 #: src/components/clients/form.tsx:127
-#: src/components/projects/form.tsx:135
-#: src/components/time-entries/form.tsx:125
-#: src/routes/invoices/details.tsx:688
-#: src/routes/invoices/index.tsx:107
+#: src/components/projects/form.tsx:137
+#: src/components/time-entries/form.tsx:127
+#: src/routes/invoices/details.tsx:690
+#: src/routes/invoices/index.tsx:109
 #: src/routes/invoices/preview.tsx:173
-#: src/routes/settings/organization.tsx:108
+#: src/routes/settings/organization.tsx:143
 #: src/routes/time-tracking/index.tsx:480
 msgid "Yes"
 msgstr "Так"
