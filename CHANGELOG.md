@@ -5,7 +5,23 @@ All notable changes to Upcount will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
-## [2.0.0-beta.20] - Unreleased
+## [2.0.0-beta.21] - Unreleased
+
+### Added
+- UK English locale (en-GB) with proper regional formatting - calendar weeks start on Monday for European users
+- Country field in organization settings to specify company location
+- Date format customization per organization with multiple format options (DD/MM/YYYY, MM/DD/YYYY, YYYY-MM-DD, etc.)
+- Version tracking in Sentry error reports for better debugging
+
+### Changed
+- Language selector now displays both US (🇺🇸) and UK (🇬🇧) English options
+- Date formatting throughout the application now respects organization preferences
+
+### Fixed
+- Replaced deprecated Ant Design dropdownRender with popupRender API
+- Invoice line item calculations no longer error with undefined decimal values
+
+## [2.0.0-beta.20] - 2025-08-06
 
 ### Added
 - User feedback modal integrated with Sentry for collecting bug reports and feature requests
