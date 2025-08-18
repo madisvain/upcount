@@ -15,6 +15,7 @@ import filter from "lodash/filter";
 
 import { timeEntriesAtom } from "src/atoms/time-tracking";
 import { clientsAtom } from "src/atoms/client";
+import { useDateFormatter, useDatePickerFormat } from "src/utils/date";
 
 dayjs.extend(duration);
 dayjs.extend(isoWeek);
@@ -26,6 +27,8 @@ const { RangePicker } = DatePicker;
 export default function TimeTrackingReports() {
   const timeEntries = useAtomValue(timeEntriesAtom);
   const clients = useAtomValue(clientsAtom);
+  const formatDate = useDateFormatter();
+  const dateFormat = useDatePickerFormat();
 
   const [dateRange, setDateRange] = useState<[dayjs.Dayjs, dayjs.Dayjs]>([
     dayjs().startOf("month"),
@@ -110,7 +113,7 @@ export default function TimeTrackingReports() {
       key: "name",
       render: (text: string, record: any) => {
         if (groupByOption === "date") {
-          return dayjs(record.key).format("LL");
+          return formatDate(record.key, true);
         }
         return text;
       },
@@ -165,7 +168,7 @@ export default function TimeTrackingReports() {
             value={dateRange}
             onChange={(dates) => dates && setDateRange([dates[0]!, dates[1]!])}
             style={{ width: "100%" }}
-            format="YYYY-MM-DD"
+            format={dateFormat}
           />
         </Col>
         <Col xs={24} sm={12} md={8}>

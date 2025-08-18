@@ -50,7 +50,7 @@ export default function BaseLayout() {
   const {
     token: { colorBgContainer, borderRadiusLG },
   } = theme.useToken();
-  
+
   // Feedback modal state
   const [feedbackModalOpen, setFeedbackModalOpen] = useState(false);
 
@@ -232,7 +232,7 @@ export default function BaseLayout() {
             },
           ]}
         />
-        <div style={{ position: 'absolute', bottom: 0, width: '100%', padding: '16px' }}>
+        <div style={{ position: "absolute", bottom: 0, width: "100%", padding: "16px" }}>
           <Button
             type="text"
             icon={<CommentOutlined />}
@@ -241,10 +241,10 @@ export default function BaseLayout() {
               e.currentTarget.blur();
               setFeedbackModalOpen(true);
             }}
-            style={{ 
-              width: '100%', 
-              color: 'rgba(255, 255, 255, 0.65)',
-              textAlign: 'left'
+            style={{
+              width: "100%",
+              color: "rgba(255, 255, 255, 0.65)",
+              textAlign: "left",
             }}
           >
             {!siderCollapsed && <Trans>Feedback</Trans>}
@@ -373,10 +373,7 @@ export default function BaseLayout() {
         <div id="footer" />
       </Layout>
       <AiDrawer />
-      <FeedbackModal 
-        open={feedbackModalOpen}
-        onClose={() => setFeedbackModalOpen(false)}
-      />
+      <FeedbackModal open={feedbackModalOpen} onClose={() => setFeedbackModalOpen(false)} />
       {contextHolder}
     </Layout>
   );

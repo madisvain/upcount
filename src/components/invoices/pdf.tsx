@@ -1,9 +1,9 @@
 import { Trans } from "@lingui/react/macro";
 import { I18nProvider } from "@lingui/react";
 import { Document, Font, Page, Text, View, StyleSheet, Image } from "@react-pdf/renderer";
-import dayjs from "dayjs";
 
 import { getFormattedNumber } from "src/utils/currencies";
+import { formatDate } from "src/utils/date";
 
 Font.register({
   family: "Montserrat",
@@ -184,6 +184,7 @@ const InvoicePDF = ({
   taxRates: any;
   i18n: any;
 }) => {
+  const dateFormat = organization?.date_format;
   // Group line items by tax rate and calculate tax for each group
   const taxGroups = (() => {
     const groups: { [key: string]: { taxRate: any; items: any[]; subtotal: number; tax: number } } = {};
@@ -269,8 +270,8 @@ const InvoicePDF = ({
               )}
             </View>
             <View>
-              <Text style={[styles.smallText, { marginBottom: 8 }]}>{dayjs(invoice.date).format("L")}</Text>
-              <Text style={[styles.smallText, { marginBottom: 8 }]}>{dayjs(invoice.dueDate).format("L")}</Text>
+              <Text style={[styles.smallText, { marginBottom: 8 }]}>{formatDate(invoice.date, dateFormat)}</Text>
+              <Text style={[styles.smallText, { marginBottom: 8 }]}>{formatDate(invoice.dueDate, dateFormat)}</Text>
               {invoice.overdueCharge && (
                 <Text style={[styles.smallText, { marginBottom: 8 }]}>{invoice.overdueCharge}%</Text>
               )}

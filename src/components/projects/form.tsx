@@ -15,6 +15,7 @@ import {
   unarchiveProjectAtom
 } from "src/atoms/project";
 import { clientsAtom, setClientsAtom } from "src/atoms/client";
+import { useDatePickerFormat } from "src/utils/date";
 
 const submittingAtom = atom(false);
 const projectIdAtom = atom<string | null>(null);
@@ -23,6 +24,7 @@ const ProjectForm = () => {
   const location = useLocation();
   const navigate = useNavigate();
   const [form] = Form.useForm();
+  const dateFormat = useDatePickerFormat();
 
   const [projectId, setProjectId] = useAtom(projectIdAtom);
   const [projects] = useAtom(projectsAtom);
@@ -196,14 +198,14 @@ const ProjectForm = () => {
           name="startDate"
           label={<Trans>Start Date</Trans>}
         >
-          <DatePicker style={{ width: "100%" }} />
+          <DatePicker style={{ width: "100%" }} format={dateFormat} />
         </Form.Item>
 
         <Form.Item
           name="endDate"
           label={<Trans>End Date</Trans>}
         >
-          <DatePicker style={{ width: "100%" }} />
+          <DatePicker style={{ width: "100%" }} format={dateFormat} />
         </Form.Item>
       </Form>
     </Modal>

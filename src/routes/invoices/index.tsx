@@ -16,6 +16,7 @@ import toString from "lodash/toString";
 import { invoicesAtom, setInvoicesAtom, duplicateInvoiceAtom, deleteInvoiceAtom } from "src/atoms/invoice";
 import { organizationAtom } from "src/atoms/organization";
 import { getFormattedNumber } from "src/utils/currencies";
+import { useDateFormatter } from "src/utils/date";
 import InvoiceStateSelect from "src/components/invoices/state-select";
 
 const { Title } = Typography;
@@ -44,6 +45,7 @@ const stateFilter = [
 const Invoices = () => {
   const { i18n } = useLingui();
   const navigate = useNavigate();
+  const formatDate = useDateFormatter();
 
   const organization = useAtomValue(organizationAtom);
   const invoices = useAtomValue(invoicesAtom);
@@ -155,14 +157,14 @@ const Invoices = () => {
           dataIndex="date"
           key="date"
           sorter={(a: any, b: any) => dayjs(a.date).valueOf() - dayjs(b.date).valueOf()}
-          render={(date) => (date ? dayjs(date).format("L") : "-")}
+          render={(date) => (date ? formatDate(date) : "-")}
         />
         <Table.Column
           title={<Trans>Due date</Trans>}
           dataIndex="dueDate"
           key="dueDate"
           sorter={(a: any, b: any) => dayjs(a.dueDate).valueOf() - dayjs(b.dueDate).valueOf()}
-          render={(date) => (date ? dayjs(date).format("L") : "-")}
+          render={(date) => (date ? formatDate(date) : "-")}
         />
         <Table.Column
           title={<Trans>Total</Trans>}

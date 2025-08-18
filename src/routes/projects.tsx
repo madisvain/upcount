@@ -14,6 +14,7 @@ import toString from "lodash/toString";
 import dayjs from "dayjs";
 
 import { projectsAtom, setProjectsAtom } from "src/atoms/project";
+import { useDateFormatter } from "src/utils/date";
 import ProjectForm from "src/components/projects/form";
 
 const { Title } = Typography;
@@ -24,6 +25,7 @@ const Projects = () => {
   useLingui();
   const location = useLocation();
   const navigate = useNavigate();
+  const formatDate = useDateFormatter();
   const projects = useAtomValue(projectsAtom);
   const setProjects = useSetAtom(setProjectsAtom);
   const [search, setSearch] = useAtom(searchAtom);
@@ -82,8 +84,8 @@ const Projects = () => {
       title: <Trans>Timeframe</Trans>,
       key: "timeframe",
       render: (record: any) => {
-        const startDate = record.startDate ? dayjs.unix(record.startDate).format("MMM D, YYYY") : null;
-        const endDate = record.endDate ? dayjs.unix(record.endDate).format("MMM D, YYYY") : null;
+        const startDate = record.startDate ? formatDate(dayjs.unix(record.startDate)) : null;
+        const endDate = record.endDate ? formatDate(dayjs.unix(record.endDate)) : null;
 
         if (startDate && endDate) {
           return `${startDate} - ${endDate}`;

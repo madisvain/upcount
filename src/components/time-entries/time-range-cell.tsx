@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { Button, Row, Col, Form, Popover, TimePicker, DatePicker } from "antd";
 import { Trans } from "@lingui/react/macro";
 import dayjs from "dayjs";
+import { useDatePickerFormat } from "src/utils/date";
 
 interface TimeRangeCellProps {
   record: any;
@@ -11,6 +12,7 @@ interface TimeRangeCellProps {
 const TimeRangeCell: React.FC<TimeRangeCellProps> = ({ record, handleSave }) => {
   const [open, setOpen] = useState(false);
   const [form] = Form.useForm();
+  const dateFormat = useDatePickerFormat();
 
   // Generate unique form name to avoid conflicts
   const formName = `time-range-${record.id}`;
@@ -77,7 +79,7 @@ const TimeRangeCell: React.FC<TimeRangeCellProps> = ({ record, handleSave }) => 
         <Row>
           <Col span={24}>
             <Form.Item name="date" label={<Trans>Date</Trans>}>
-              <DatePicker style={{ width: "100%" }} />
+              <DatePicker style={{ width: "100%" }} format={dateFormat} />
             </Form.Item>
           </Col>
         </Row>

@@ -17,6 +17,7 @@ import {
   deleteTimeEntryAtom,
   setTagsAtom
 } from "src/atoms/time-tracking";
+import { useDateTimePickerFormat } from "src/utils/date";
 import TagSelector from "src/components/tags/selector";
 
 const submittingAtom = atom(false);
@@ -25,6 +26,7 @@ const TimeEntryForm = () => {
   const location = useLocation();
   const navigate = useNavigate();
   const [form] = Form.useForm();
+  const dateTimeFormat = useDateTimePickerFormat();
 
   const [timeEntryId, setTimeEntryId] = useAtom(timeEntryIdAtom);
   const [timeEntry, setTimeEntry] = useAtom(timeEntryAtom);
@@ -222,7 +224,7 @@ const TimeEntryForm = () => {
               >
                 <DatePicker 
                   showTime 
-                  format="YYYY-MM-DD HH:mm"
+                  format={dateTimeFormat}
                   style={{ width: '100%' }}
                   onChange={calculateDuration}
                 />
@@ -232,7 +234,7 @@ const TimeEntryForm = () => {
               <Form.Item name="endTime" label={<Trans>End Time</Trans>}>
                 <DatePicker 
                   showTime 
-                  format="YYYY-MM-DD HH:mm"
+                  format={dateTimeFormat}
                   style={{ width: '100%' }}
                   onChange={calculateDuration}
                 />

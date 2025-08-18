@@ -48,6 +48,7 @@ import isNumber from "lodash/isNumber";
 import toNumber from "lodash/toNumber";
 
 import { clientsAtom, setClientsAtom } from "src/atoms/client";
+import { useDatePickerFormat } from "src/utils/date";
 import { invoiceIdAtom, invoiceAtom, deleteInvoiceAtom, duplicateInvoiceAtom } from "src/atoms/invoice";
 import { organizationAtom, nextInvoiceNumberAtom } from "src/atoms/organization";
 import { taxRatesAtom, setTaxRatesAtom } from "src/atoms/tax-rate";
@@ -82,6 +83,7 @@ const InvoiceDetails: React.FC = () => {
   const nextInvoiceNumber = useAtomValue(nextInvoiceNumberAtom);
   const [aiInvoiceData, setAiInvoiceData] = useAtom(aiInvoiceDataAtom);
   const [, setSubmitting] = useState(false);
+  const dateFormat = useDatePickerFormat();
 
   const isNew = id === "new";
 
@@ -363,7 +365,7 @@ const InvoiceDetails: React.FC = () => {
             <Row gutter={24}>
               <Col span={4} offset={12}>
                 <Form.Item label="Date" name="date" rules={[{ required: true, message: t`This field is required!` }]}>
-                  <DatePicker style={{ width: "100%" }} />
+                  <DatePicker style={{ width: "100%" }} format={dateFormat} />
                 </Form.Item>
               </Col>
               <Col span={4}>
@@ -372,7 +374,7 @@ const InvoiceDetails: React.FC = () => {
                   name="dueDate"
                   rules={[{ required: true, message: t`This field is required!` }]}
                 >
-                  <DatePicker style={{ width: "100%" }} />
+                  <DatePicker style={{ width: "100%" }} format={dateFormat} />
                 </Form.Item>
               </Col>
               <Col span={4}>

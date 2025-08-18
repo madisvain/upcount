@@ -1,4 +1,4 @@
-import { Button, Col, Form, Input, Popconfirm, Space, Typography, Row } from "antd";
+import { Button, Col, Form, Input, Popconfirm, Space, Typography, Row, Select, Divider } from "antd";
 import { atom, useAtom, useSetAtom } from "jotai";
 import { HomeOutlined } from "@ant-design/icons";
 import { Trans } from "@lingui/react/macro";
@@ -7,6 +7,7 @@ import { useLingui } from "@lingui/react";
 import isEmpty from "lodash/isEmpty";
 
 import { organizationAtom, setOrganizationsAtom, deleteOrganizationAtom } from "src/atoms/organization";
+import { DATE_FORMATS, type DateFormatKey, getDateFormatLabel } from "src/utils/date";
 
 const { Title } = Typography;
 const { TextArea } = Input;
@@ -91,6 +92,30 @@ function SettingsInvoice() {
                 <Col span={24}>
                   <Form.Item label={`Website`} name="website">
                     <Input />
+                  </Form.Item>
+                </Col>
+              </Row>
+            </Col>
+          </Row>
+          <Row gutter={24}>
+            <Col span={24}>
+              <Divider orientation="left">
+                <Trans>Date Formatting</Trans>
+              </Divider>
+            </Col>
+          </Row>
+          <Row>
+            <Col span={12}>
+              <Row gutter={16}>
+                <Col span={24}>
+                  <Form.Item label={t`Date format`} name="date_format">
+                    <Select placeholder={t`Select date format`}>
+                      {Object.keys(DATE_FORMATS).map((key) => (
+                        <Select.Option key={key} value={key === "AUTO" ? null : DATE_FORMATS[key as DateFormatKey]}>
+                          {getDateFormatLabel(key as DateFormatKey)}
+                        </Select.Option>
+                      ))}
+                    </Select>
                   </Form.Item>
                 </Col>
               </Row>

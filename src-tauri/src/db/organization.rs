@@ -35,6 +35,7 @@ pub struct Organization {
     #[serde(rename = "invoiceNumberCounter")]
     #[sqlx(rename = "invoice_number_counter")]
     pub invoice_number_counter: Option<i64>,
+    pub date_format: Option<String>,
 }
 
 #[derive(Debug, Deserialize)]
@@ -60,6 +61,7 @@ pub struct CreateOrganizationRequest {
     pub logo: Option<Vec<u8>>,
     #[serde(rename = "invoiceNumberFormat")]
     pub invoice_number_format: Option<String>,
+    pub date_format: Option<String>,
 }
 
 #[derive(Debug, Deserialize)]
@@ -86,6 +88,7 @@ pub struct UpdateOrganizationRequest {
     pub invoice_number_format: Option<String>,
     #[serde(rename = "invoiceNumberCounter")]
     pub invoice_number_counter: Option<i64>,
+    pub date_format: Option<String>,
 }
 
 impl Database {
@@ -122,9 +125,9 @@ impl Database {
                 id, name, country, address, email, phone, website, 
                 registration_number, vatin, bank_name, iban, currency,
                 minimum_fraction_digits, due_days, overdueCharge, 
-                customerNotes, logo, invoice_number_format
+                customerNotes, logo, invoice_number_format, date_format
             )
-            VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+            VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
             "#,
         )
         .bind(&organization.id)
@@ -145,6 +148,7 @@ impl Database {
         .bind(&organization.customer_notes)
         .bind(&organization.logo)
         .bind(&organization.invoice_number_format)
+        .bind(&organization.date_format)
         .execute(&self.pool)
         .await?;
 
@@ -177,7 +181,8 @@ impl Database {
                 customerNotes = COALESCE(?, customerNotes),
                 logo = COALESCE(?, logo),
                 invoice_number_format = COALESCE(?, invoice_number_format),
-                invoice_number_counter = COALESCE(?, invoice_number_counter)
+                invoice_number_counter = COALESCE(?, invoice_number_counter),
+                date_format = COALESCE(?, date_format)
             WHERE id = ?
             "#,
         )
@@ -199,6 +204,7 @@ impl Database {
         .bind(&updates.logo)
         .bind(&updates.invoice_number_format)
         .bind(&updates.invoice_number_counter)
+        .bind(&updates.date_format)
         .bind(organization_id)
         .execute(&self.pool)
         .await?;
