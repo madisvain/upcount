@@ -8,6 +8,7 @@ import isEmpty from "lodash/isEmpty";
 
 import { organizationAtom, setOrganizationsAtom, deleteOrganizationAtom } from "src/atoms/organization";
 import { DATE_FORMATS, type DateFormatKey, getDateFormatLabel } from "src/utils/date";
+import { countries } from "src/utils/countries";
 
 const { Title } = Typography;
 const { TextArea } = Input;
@@ -53,6 +54,15 @@ function SettingsInvoice() {
             <Col span={12}>
               <Form.Item label={t`Name`} name="name" rules={[{ required: true, message: "This field is required!" }]}>
                 <Input />
+              </Form.Item>
+              <Form.Item label={t`Country`} name="country">
+                <Select placeholder={t`Select country`} showSearch>
+                  {countries.map((country) => (
+                    <Select.Option key={country.name} value={country.name}>
+                      {country.name}
+                    </Select.Option>
+                  ))}
+                </Select>
               </Form.Item>
               <Form.Item label={t`Address`} name="address">
                 <TextArea rows={4} />
