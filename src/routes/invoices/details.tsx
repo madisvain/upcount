@@ -450,7 +450,7 @@ const InvoiceDetails: React.FC = () => {
                                         ["lineItems", field.key, "unitPrice"],
                                         divideDecimal(total, value)
                                       );
-                                    } else {
+                                    } else if (unitPrice) {
                                       form.setFieldValue(
                                         ["lineItems", field.key, "total"],
                                         multiplyDecimal(value, unitPrice)
@@ -484,7 +484,7 @@ const InvoiceDetails: React.FC = () => {
                                         ["lineItems", field.key, "quantity"],
                                         divideDecimal(total, value)
                                       );
-                                    } else {
+                                    } else if (quantity) {
                                       form.setFieldValue(
                                         ["lineItems", field.key, "total"],
                                         multiplyDecimal(quantity, value)
@@ -549,7 +549,7 @@ const InvoiceDetails: React.FC = () => {
                                           ["lineItems", field.key, "quantity"],
                                           divideDecimal(value, unitPrice)
                                         );
-                                      } else {
+                                      } else if (quantity) {
                                         form.setFieldValue(
                                           ["lineItems", field.key, "unitPrice"],
                                           divideDecimal(value, quantity)
