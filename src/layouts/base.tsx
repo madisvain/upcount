@@ -297,7 +297,7 @@ export default function BaseLayout() {
                       setOrganizationId(value);
                       window.location.reload();
                     }}
-                    dropdownRender={(menu) => (
+                    popupRender={(menu) => (
                       <>
                         {menu}
                         <Divider style={{ margin: "8px 0" }} />
@@ -308,6 +308,7 @@ export default function BaseLayout() {
                               key: "new-org",
                               icon: <PlusOutlined />,
                               label: <Trans>New organization</Trans>,
+                              style: { height: 32, lineHeight: "32px" },
                             },
                           ]}
                         />
