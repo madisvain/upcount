@@ -49,6 +49,7 @@ if (releaseData && releaseData.assets && platform) {
   class={`inline-flex items-center px-4 py-2 border border-gray-800 text-gray-800 font-medium rounded-md hover:bg-gray-800 hover:text-white transition-colors ${small ? "px-3 py-1 text-sm" : ""}`.trim()}
   target="_blank"
 >
+  {altText || "Download"}
   {
     icon && (
       <>
