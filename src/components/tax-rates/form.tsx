@@ -1,7 +1,8 @@
 import { useEffect } from "react";
 import { useParams, useNavigate } from "react-router";
 import { Checkbox, Form, Input, Modal } from "antd";
-import { atom, useAtom, useSetAtom } from "jotai";
+import { atom, useAtom, useSetAtom, useAtomValue } from "jotai";
+import { loadable } from "jotai/utils";
 import { Trans } from "@lingui/react/macro";
 import { t } from "@lingui/core/macro";
 import isEmpty from "lodash/isEmpty";
@@ -9,6 +10,7 @@ import isEmpty from "lodash/isEmpty";
 import { taxRateIdAtom, taxRateAtom } from "src/atoms/tax-rate";
 
 const submittingAtom = atom(false);
+const loadableTaxRateAtom = loadable(taxRateAtom);
 
 const TaxRateForm = () => {
   const navigate = useNavigate();
@@ -17,7 +19,8 @@ const TaxRateForm = () => {
   const [form] = Form.useForm();
 
   const setTaxRateId = useSetAtom(taxRateIdAtom);
-  const [taxRate, setTaxRate] = useAtom(taxRateAtom);
+  const taxRate = useAtomValue(loadableTaxRateAtom);
+  const setTaxRate = useSetAtom(taxRateAtom);
   const [submitting, setSubmitting] = useAtom(submittingAtom);
 
   const handleSubmit = async (values: any) => {
@@ -52,8 +55,13 @@ const TaxRateForm = () => {
       }}
       forceRender={true}
     >
-      {(!id || !isEmpty(taxRate)) && (
-        <Form form={form} layout="vertical" onFinish={handleSubmit} initialValues={taxRate}>
+      {(!id || (taxRate.state === "hasData" && !isEmpty(taxRate.data))) && (
+        <Form
+          form={form}
+          layout="vertical"
+          onFinish={handleSubmit}
+          initialValues={taxRate.state === "hasData" ? taxRate.data : undefined}
+        >
           <Form.Item name="name" rules={[{ required: true, message: t`Please input name!` }]}>
             <Input placeholder={t`Name`} />
           </Form.Item>
