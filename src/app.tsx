@@ -99,7 +99,7 @@ const AppContent = () => {
       case "fr":
         baseLocale = frFR;
         break;
-      case "gr":
+      case "el":
         baseLocale = elGR;
         break;
       case "nl":

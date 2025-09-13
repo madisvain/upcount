@@ -41,7 +41,7 @@ msgstr "Aktiv"
 msgid "Add a new organization to your account"
 msgstr "Fügen Sie Ihrem Konto eine neue Organisation hinzu"
 
-#: src/routes/invoices/details.tsx:575
+#: src/routes/invoices/details.tsx:766
 msgid "Add line item"
 msgstr "Position hinzufügen"
 
@@ -98,9 +98,8 @@ msgstr "Archiviert"
 msgid "Are you sure delete this organization?"
 msgstr "Sind Sie sicher, dass Sie diese Organisation löschen möchten?"
 
-#: src/routes/invoices/details.tsx:688
+#: src/routes/invoices/details.tsx:879
 #: src/routes/invoices/index.tsx:104
-#: src/routes/invoices/preview.tsx:171
 msgid "Are you sure to delete this invoice?"
 msgstr "Sind Sie sicher, dass Sie diese Rechnung löschen möchten?"
 
@@ -254,17 +253,17 @@ msgstr "Organisation erstellen"
 #~ msgid "Create your organization to get started"
 #~ msgstr "Erstellen Sie Ihre Organisation, um zu beginnen"
 
-#: src/routes/invoices/details.tsx:349
+#: src/routes/invoices/details.tsx:540
 #: src/routes/organizations/new.tsx:72
 #: src/routes/settings/invoice.tsx:84
 msgid "Currency"
 msgstr "Währung"
 
-#: src/routes/invoices/details.tsx:586
+#: src/routes/invoices/details.tsx:777
 msgid "Customer note"
 msgstr "Kundennotiz"
 
-#: src/routes/invoices/details.tsx:384
+#: src/routes/invoices/details.tsx:575
 msgid "Daily %"
 msgstr "Täglich %"
 
@@ -303,24 +302,22 @@ msgstr "Tag des Monats"
 msgid "Decimal places"
 msgstr "Dezimalstellen"
 
-#: src/components/tax-rates/form.tsx:68
+#: src/components/tax-rates/form.tsx:76
 #: src/routes/settings/tax-rates.tsx:68
 msgid "Default"
 msgstr "Standard"
 
 #: src/components/clients/form.tsx:132
 #: src/components/time-entries/form.tsx:132
-#: src/routes/invoices/details.tsx:694
+#: src/routes/invoices/details.tsx:885
 #: src/routes/invoices/index.tsx:113
-#: src/routes/invoices/preview.tsx:177
 #: src/routes/settings/organization.tsx:147
 #: src/routes/time-tracking/index.tsx:484
 msgid "Delete"
 msgstr "Löschen"
 
-#: src/routes/invoices/details.tsx:687
+#: src/routes/invoices/details.tsx:878
 #: src/routes/invoices/index.tsx:103
-#: src/routes/invoices/preview.tsx:170
 msgid "Delete the invoice?"
 msgstr "Rechnung löschen?"
 
@@ -329,9 +326,9 @@ msgid "Delete the time entry?"
 msgstr "Zeiteintrag löschen?"
 
 #: src/components/invoices/pdf.tsx:285
-#: src/components/tax-rates/form.tsx:61
+#: src/components/tax-rates/form.tsx:69
 #: src/components/time-entries/form.tsx:163
-#: src/routes/invoices/details.tsx:411
+#: src/routes/invoices/details.tsx:602
 #: src/routes/settings/tax-rates.tsx:53
 #: src/routes/time-tracking/index.tsx:355
 msgid "Description"
@@ -344,7 +341,7 @@ msgid "Draft"
 msgstr "Entwurf"
 
 #: src/components/invoices/pdf.tsx:264
-#: src/routes/invoices/details.tsx:373
+#: src/routes/invoices/details.tsx:564
 #: src/routes/invoices/index.tsx:163
 msgid "Due date"
 msgstr "Fälligkeitsdatum"
@@ -353,9 +350,8 @@ msgstr "Fälligkeitsdatum"
 msgid "Due days"
 msgstr "Fälligkeitstage"
 
-#: src/routes/invoices/details.tsx:682
+#: src/routes/invoices/details.tsx:873
 #: src/routes/invoices/index.tsx:92
-#: src/routes/invoices/preview.tsx:165
 msgid "Duplicate"
 msgstr "Duplizieren"
 
@@ -383,8 +379,8 @@ msgstr "E-Mails"
 msgid "e.g. AP, MS"
 msgstr "z.B. AP, MS"
 
+#: src/routes/invoices/details.tsx:902
 #: src/routes/invoices/index.tsx:86
-#: src/routes/invoices/preview.tsx:192
 #: src/routes/time-tracking/index.tsx:454
 msgid "Edit"
 msgstr "Bearbeiten"
@@ -397,7 +393,7 @@ msgstr "Kunde bearbeiten"
 msgid "Edit Project"
 msgstr "Projekt bearbeiten"
 
-#: src/components/tax-rates/form.tsx:43
+#: src/components/tax-rates/form.tsx:46
 msgid "Edit tax rate"
 msgstr "Steuersatz bearbeiten"
 
@@ -594,7 +590,7 @@ msgstr "Rechnungsformular mit neuen Daten aktualisiert."
 msgid "Invoice not found"
 msgstr "Rechnung nicht gefunden"
 
-#: src/routes/invoices/details.tsx:340
+#: src/routes/invoices/details.tsx:531
 msgid "Invoice number"
 msgstr "Rechnungsnummer"
 
@@ -641,7 +637,7 @@ msgstr "Monatsname"
 
 #: src/components/clients/form.tsx:170
 #: src/components/feedback-modal.tsx:64
-#: src/components/tax-rates/form.tsx:58
+#: src/components/tax-rates/form.tsx:66
 #: src/routes/clients.tsx:72
 #: src/routes/organizations/new.tsx:56
 #: src/routes/projects.tsx:58
@@ -652,7 +648,7 @@ msgstr "Name"
 
 #: src/components/clients/form.tsx:99
 #: src/routes/clients.tsx:62
-#: src/routes/invoices/details.tsx:325
+#: src/routes/invoices/details.tsx:516
 msgid "New client"
 msgstr "Neuer Kunde"
 
@@ -681,7 +677,7 @@ msgstr "Neues Projekt"
 msgid "New tax"
 msgstr "Neue Steuer"
 
-#: src/components/tax-rates/form.tsx:43
+#: src/components/tax-rates/form.tsx:46
 msgid "New tax rate"
 msgstr "Neuer Steuersatz"
 
@@ -696,9 +692,8 @@ msgstr "Nächste Rechnung verwendet diese Nummer + 1"
 #: src/components/clients/form.tsx:128
 #: src/components/projects/form.tsx:138
 #: src/components/time-entries/form.tsx:128
-#: src/routes/invoices/details.tsx:691
+#: src/routes/invoices/details.tsx:882
 #: src/routes/invoices/index.tsx:110
-#: src/routes/invoices/preview.tsx:174
 #: src/routes/time-tracking/index.tsx:481
 msgid "No"
 msgstr "Nein"
@@ -711,7 +706,7 @@ msgstr "Kein Kunde"
 msgid "No client assigned"
 msgstr "Kein Kunde zugewiesen"
 
-#: src/routes/invoices/details.tsx:408
+#: src/routes/invoices/details.tsx:599
 msgid "No line items"
 msgstr "Keine Positionen"
 
@@ -773,7 +768,7 @@ msgid "Organization updated successfully"
 msgstr "Organisation erfolgreich aktualisiert"
 
 #: src/components/invoices/pdf.tsx:268
-#: src/routes/invoices/details.tsx:382
+#: src/routes/invoices/details.tsx:573
 #: src/routes/settings/invoice.tsx:105
 msgid "Overdue charge"
 msgstr "Verzögerungszüschlag"
@@ -784,7 +779,7 @@ msgstr "Verzögerungszüschlag"
 msgid "Paid"
 msgstr "Bezahlt"
 
-#: src/components/tax-rates/form.tsx:64
+#: src/components/tax-rates/form.tsx:72
 #: src/routes/settings/tax-rates.tsx:57
 msgid "Percentage"
 msgstr "Prozentsatz"
@@ -811,12 +806,12 @@ msgstr "Bitte geben Sie eine gültige E-Mail-Adresse ein"
 msgid "Please enter your feedback"
 msgstr "Bitte geben Sie Ihr Feedback ein"
 
-#: src/components/tax-rates/form.tsx:63
+#: src/components/tax-rates/form.tsx:71
 msgid "Please input a percentage!"
 msgstr "Bitte geben Sie einen Prozentsatz ein!"
 
 #: src/components/clients/form.tsx:168
-#: src/components/tax-rates/form.tsx:57
+#: src/components/tax-rates/form.tsx:65
 #: src/routes/organizations/new.tsx:55
 msgid "Please input name!"
 msgstr "Bitte geben Sie einen Namen ein!"
@@ -838,7 +833,7 @@ msgid "Preview"
 msgstr "Vorschau"
 
 #: src/components/invoices/pdf.tsx:291
-#: src/routes/invoices/details.tsx:468
+#: src/routes/invoices/details.tsx:659
 msgid "Price"
 msgstr "Preis"
 
@@ -873,7 +868,7 @@ msgid "Projects"
 msgstr "Projekte"
 
 #: src/components/invoices/pdf.tsx:288
-#: src/routes/invoices/details.tsx:434
+#: src/routes/invoices/details.tsx:625
 msgid "Qty."
 msgstr "Menge"
 
@@ -908,11 +903,11 @@ msgstr "Stellen Sie Ihre Datenbank aus einer zuvor erstellten Sicherungsdatei wi
 
 #: src/components/clients/form.tsx:101
 #: src/components/clients/form.tsx:155
-#: src/components/tax-rates/form.tsx:45
+#: src/components/tax-rates/form.tsx:48
 #: src/components/time-entries/form.tsx:113
 #: src/components/time-entries/form.tsx:152
 #: src/components/time-entries/time-range-cell.tsx:91
-#: src/routes/invoices/details.tsx:737
+#: src/routes/invoices/details.tsx:928
 #: src/routes/settings/invoice.tsx:256
 #: src/routes/settings/organization.tsx:138
 msgid "Save"
@@ -955,7 +950,7 @@ msgstr ""
 msgid "Select date format"
 msgstr ""
 
-#: src/routes/invoices/details.tsx:283
+#: src/routes/invoices/details.tsx:474
 msgid "Select or create a client"
 msgstr "Kunde auswählen oder erstellen"
 
@@ -1026,7 +1021,7 @@ msgid "Stop Timer"
 msgstr "Timer stoppen"
 
 #: src/components/invoices/pdf.tsx:335
-#: src/routes/invoices/details.tsx:615
+#: src/routes/invoices/details.tsx:806
 msgid "Subtotal"
 msgstr "Zwischensumme"
 
@@ -1064,12 +1059,12 @@ msgstr "Tag erfolgreich aktualisiert"
 msgid "Tags"
 msgstr "Tags"
 
-#: src/routes/invoices/details.tsx:636
+#: src/routes/invoices/details.tsx:827
 msgid "Tax"
 msgstr "Steuer"
 
 #: src/components/invoices/pdf.tsx:294
-#: src/routes/invoices/details.tsx:502
+#: src/routes/invoices/details.tsx:693
 msgid "Tax %"
 msgstr "Steuer %"
 
@@ -1102,15 +1097,15 @@ msgstr "Steuersätze"
 msgid "Tell us what you think, report a bug, or suggest an improvement..."
 msgstr "Teilen Sie uns Ihre Meinung mit, melden Sie einen Fehler oder schlagen Sie eine Verbesserung vor..."
 
-#: src/routes/invoices/details.tsx:285
-#: src/routes/invoices/details.tsx:342
-#: src/routes/invoices/details.tsx:351
-#: src/routes/invoices/details.tsx:367
-#: src/routes/invoices/details.tsx:375
-#: src/routes/invoices/details.tsx:425
-#: src/routes/invoices/details.tsx:440
-#: src/routes/invoices/details.tsx:474
-#: src/routes/invoices/details.tsx:539
+#: src/routes/invoices/details.tsx:476
+#: src/routes/invoices/details.tsx:533
+#: src/routes/invoices/details.tsx:542
+#: src/routes/invoices/details.tsx:558
+#: src/routes/invoices/details.tsx:566
+#: src/routes/invoices/details.tsx:616
+#: src/routes/invoices/details.tsx:631
+#: src/routes/invoices/details.tsx:665
+#: src/routes/invoices/details.tsx:730
 #: src/routes/settings/invoice.tsx:86
 #: src/routes/settings/invoice.tsx:132
 #: src/routes/settings/invoice.tsx:202
@@ -1168,8 +1163,8 @@ msgstr "um den KI-Assistenten zu nutzen."
 
 #: src/components/invoices/pdf.tsx:297
 #: src/components/invoices/pdf.tsx:371
-#: src/routes/invoices/details.tsx:520
-#: src/routes/invoices/details.tsx:647
+#: src/routes/invoices/details.tsx:711
+#: src/routes/invoices/details.tsx:838
 #: src/routes/invoices/index.tsx:170
 #: src/routes/time-tracking/reports.tsx:249
 msgid "Total"
@@ -1204,7 +1199,7 @@ msgstr "USt-IdNr."
 msgid "VATIN"
 msgstr "USt-IdNr."
 
-#: src/routes/invoices/details.tsx:710
+#: src/routes/invoices/details.tsx:906
 msgid "View"
 msgstr "Anzeigen"
 
@@ -1239,9 +1234,8 @@ msgstr "Woran arbeiten Sie?"
 #: src/components/clients/form.tsx:127
 #: src/components/projects/form.tsx:137
 #: src/components/time-entries/form.tsx:127
-#: src/routes/invoices/details.tsx:690
+#: src/routes/invoices/details.tsx:881
 #: src/routes/invoices/index.tsx:109
-#: src/routes/invoices/preview.tsx:173
 #: src/routes/settings/organization.tsx:143
 #: src/routes/time-tracking/index.tsx:480
 msgid "Yes"

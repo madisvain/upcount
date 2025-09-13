@@ -29,7 +29,6 @@ export async function dynamicActivate(locale: string) {
 
   // Map locales to dayjs locale codes
   const dayjsLocaleMap: Record<string, string> = {
-    gr: 'el', // Greek uses 'el' in dayjs
     'en-GB': 'en-gb', // Ensure correct casing
   };
 
