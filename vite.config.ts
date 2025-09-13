@@ -39,6 +39,9 @@ export default defineConfig({
   resolve: {
     alias: [{ find: "src", replacement: "/src" }],
   },
+  define: {
+    global: 'globalThis',
+  },
   // prevent vite from obscuring rust errors
   clearScreen: false,
   // Tauri expects a fixed port, fail if that port is not available
