@@ -1,0 +1,1291 @@
+msgid ""
+msgstr ""
+"POT-Creation-Date: 2025-06-29 15:39+0300\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: PO File Editor https://pofile.net/free-po-editor\n"
+"Language: gr\n"
+"Project-Id-Version: \n"
+"Report-Msgid-Bugs-To: \n"
+"PO-Revision-Date: 2025-09-07 14:04+0300\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#: src/routes/time-tracking/reports.tsx:136
+msgid "%"
+msgstr "%"
+
+#: src/routes/settings/invoice.tsx:105
+msgid "% per day"
+msgstr "% ανά ημέρα"
+
+#: src/routes/settings/invoice.tsx:177
+msgid "2-digit month"
+msgstr "Μήνας 2 ψηφίων"
+
+#: src/routes/settings/invoice.tsx:173
+msgid "2-digit year"
+msgstr "Έτος 2 ψηφίων"
+
+#: src/routes/settings/invoice.tsx:170
+msgid "4-digit year"
+msgstr "Έτος 4 ψηφίων"
+
+#: src/routes/projects.tsx:110
+msgid "Active"
+msgstr "Ενεργός"
+
+#: src/routes/organizations/new.tsx:49
+msgid "Add a new organization to your account"
+msgstr "Προσθήκη νέου οργανισμού στον λογαριασμό σας"
+
+#: src/routes/invoices/details.tsx:575
+msgid "Add line item"
+msgstr "Προσθήκη στοιχείου γραμμής"
+
+#: src/components/time-entries/form.tsx:272
+msgid "Add or select tags"
+msgstr "Προσθήκη ή επιλογή ετικετών"
+
+#: src/components/clients/form.tsx:184
+#: src/routes/clients.tsx:81
+#: src/routes/settings/organization.tsx:67
+msgid "Address"
+msgstr "Διεύθυνση"
+
+#: src/layouts/base.tsx:226
+msgid "AI"
+msgstr "ΤΝ"
+
+#: src/components/ai-drawer.tsx:346
+#: src/components/ai-drawer.tsx:378
+#: src/components/ai-drawer.tsx:472
+msgid "AI Assistant"
+msgstr "Βοηθός Τεχνητής Νοημοσύνης"
+
+#: src/routes/settings/ai.tsx:31
+msgid "AI Configuration"
+msgstr "Ρύθμιση Τεχνητής Νοημοσύνης"
+
+#: src/routes/time-tracking/reports.tsx:182
+msgid "All clients"
+msgstr "Όλοι οι πελάτες"
+
+#: src/routes/settings/ai.tsx:55
+msgid "Anthropic API Key"
+msgstr "Κλειδί API Anthropic"
+
+#: src/components/ai-drawer.tsx:355
+msgid "API Key Required"
+msgstr "Απαιτείται Κλειδί API"
+
+#: src/routes/settings/ai.tsx:21
+msgid "API key saved successfully"
+msgstr "Το κλειδί API αποθηκεύτηκε επιτυχώς"
+
+#: src/components/projects/form.tsx:145
+msgid "Archive"
+msgstr "Αρχειοθέτηση"
+
+#: src/routes/projects.tsx:102
+#: src/routes/projects.tsx:111
+msgid "Archived"
+msgstr "Αρχειοθετημένο"
+
+#: src/routes/settings/organization.tsx:141
+msgid "Are you sure delete this organization?"
+msgstr "Είστε σίγουροι ότι θέλετε να διαγράψετε αυτόν τον οργανισμό;"
+
+#: src/routes/invoices/details.tsx:688
+#: src/routes/invoices/index.tsx:104
+#: src/routes/invoices/preview.tsx:171
+msgid "Are you sure to delete this invoice?"
+msgstr "Είστε σίγουροι ότι θέλετε να διαγράψετε αυτό το τιμολόγιο;"
+
+#: src/routes/time-tracking/index.tsx:475
+msgid "Are you sure to delete this time entry?"
+msgstr "Είστε σίγουροι ότι θέλετε να διαγράψετε αυτή την καταχώριση χρόνου;"
+
+#: src/components/projects/form.tsx:134
+msgid "Are you sure you want to archive this project?"
+msgstr "Είστε σίγουροι ότι θέλετε να αρχειοθετήσετε αυτό το έργο;"
+
+#: src/components/clients/form.tsx:118
+msgid "Are you sure you want to delete this client?"
+msgstr "Είστε σίγουροι ότι θέλετε να διαγράψετε αυτόν τον πελάτη;"
+
+#: src/components/time-entries/form.tsx:125
+msgid "Are you sure you want to delete this time entry?"
+msgstr "Είστε σίγουροι ότι θέλετε να διαγράψετε αυτή την καταχώριση χρόνου;"
+
+#: src/routes/settings/backup.tsx:48
+msgid ""
+"Are you sure you want to restore from a backup? This will replace all "
+"current data and cannot be undone."
+msgstr ""
+"Είστε σίγουροι ότι θέλετε να επαναφέρετε από αντίγραφο ασφαλείας; Αυτό θα "
+"αντικαταστήσει όλα τα τρέχοντα δεδομένα και δεν μπορεί να αναιρεθεί."
+
+#: src/components/projects/form.tsx:133
+msgid "Are you sure you want to unarchive this project?"
+msgstr "Είστε σίγουροι ότι θέλετε να επαναφέρετε αυτό το έργο από το αρχείο;"
+
+#: src/components/ai-drawer.tsx:420
+msgid "Ask me about invoicing, clients, or general questions..."
+msgstr "Ρωτήστε με για τιμολόγηση, πελάτες ή γενικές ερωτήσεις..."
+
+#: src/routes/settings/invoice.tsx:163
+msgid "Available variables:"
+msgstr "Διαθέσιμες μεταβλητές:"
+
+#: src/routes/time-tracking/reports.tsx:220
+msgid "Average per entry"
+msgstr "Μέσος όρος ανά καταχώριση"
+
+#: src/layouts/base.tsx:217
+msgid "Backup"
+msgstr "Αντίγραφο Ασφαλείας"
+
+#: src/routes/settings/backup.tsx:80
+msgid "Backup & restore"
+msgstr "Αντίγραφο Ασφαλείας & Επαναφορά"
+
+#: src/routes/settings/organization.tsx:82
+msgid "Bank name"
+msgstr "Όνομα Τράπεζας"
+
+#: src/components/clients/form.tsx:148
+#: src/components/feedback-modal.tsx:54
+#: src/components/projects/form.tsx:155
+#: src/components/time-entries/form.tsx:145
+#: src/components/time-entries/time-range-cell.tsx:88
+#: src/routes/organizations/new.tsx:88
+#: src/routes/settings/backup.tsx:50
+msgid "Cancel"
+msgstr "Ακύρωση"
+
+#: src/routes/settings/invoice.tsx:240
+msgid "Change"
+msgstr "Αλλαγή"
+
+#: src/components/ai-drawer.tsx:388
+msgid "Clear chat"
+msgstr "Καθαρισμός συνομιλίας"
+
+#: src/components/projects/form.tsx:181
+#: src/components/time-entries/form.tsx:170
+#: src/routes/invoices/index.tsx:150
+#: src/routes/projects.tsx:68
+#: src/routes/time-tracking/index.tsx:362
+#: src/routes/time-tracking/reports.tsx:111
+msgid "Client"
+msgstr "Πελάτης"
+
+#: src/routes/settings/invoice.tsx:189
+msgid "Client code"
+msgstr "Κωδικός Πελάτη"
+
+#: src/atoms/client.ts:72
+msgid "Client created"
+msgstr "Ο πελάτης δημιουργήθηκε"
+
+#: src/atoms/client.ts:93
+msgid "Client creation failed"
+msgstr "Η δημιουργία πελάτη απέτυχε"
+
+#: src/atoms/client.ts:110
+msgid "Client deleted"
+msgstr "Ο πελάτης διαγράφηκε"
+
+#: src/atoms/client.ts:112
+#: src/atoms/client.ts:116
+msgid "Client deletion failed"
+msgstr "Η διαγραφή πελάτη απέτυχε"
+
+#: src/atoms/client.ts:95
+msgid "Client update failed"
+msgstr "Η ενημέρωση πελάτη απέτυχε"
+
+#: src/atoms/client.ts:83
+msgid "Client updated successfully"
+msgstr "Ο πελάτης ενημερώθηκε επιτυχώς"
+
+#: src/layouts/base.tsx:142
+#: src/routes/clients.tsx:54
+msgid "Clients"
+msgstr "Πελάτες"
+
+#: src/components/clients/form.tsx:181
+msgid "Code"
+msgstr "Κωδικός"
+
+#: src/routes/settings/ai.tsx:47
+msgid ""
+"Configure your Anthropic API key to enable AI-powered features in your "
+"invoicing workflow."
+msgstr ""
+"Ρυθμίστε το κλειδί API Anthropic για να ενεργοποιήσετε λειτουργίες που "
+"υποστηρίζονται από Τεχνητή Νοημοσύνη στη ροή εργασιών τιμολόγησης."
+
+#: src/routes/invoices/index.tsx:32
+msgid "Confirmed"
+msgstr "Επιβεβαιωμένο"
+
+#: src/routes/settings/invoice.tsx:203
+msgid "Counter must be 0 or greater"
+msgstr "Ο μετρητής πρέπει να είναι 0 ή μεγαλύτερος"
+
+#: src/routes/organizations/new.tsx:61
+#: src/routes/settings/organization.tsx:58
+msgid "Country"
+msgstr "Χώρα"
+
+#: src/components/projects/form.tsx:162
+msgid "Create"
+msgstr "Δημιουργία"
+
+#: src/routes/settings/backup.tsx:103
+msgid ""
+"Create a backup of your database to save all your invoices, clients, and "
+"settings. The backup file can be used to restore your data if needed."
+msgstr ""
+"Δημιουργήστε αντίγραφο ασφαλείας της βάσης δεδομένων σας για να "
+"αποθηκεύσετε όλα τα τιμολόγια, τους πελάτες και τις ρυθμίσεις σας. Το "
+"αρχείο αντιγράφου ασφαλείας μπορεί να χρησιμοποιηθεί για την επαναφορά των "
+"δεδομένων σας αν χρειαστεί."
+
+#: src/routes/settings/backup.tsx:98
+msgid "Create Backup"
+msgstr "Δημιουργία Αντιγράφου Ασφαλείας"
+
+#: src/routes/organizations/new.tsx:84
+msgid "Create Organization"
+msgstr "Δημιουργία Οργανισμού"
+
+#: src/routes/invoices/details.tsx:349
+#: src/routes/organizations/new.tsx:72
+#: src/routes/settings/invoice.tsx:84
+msgid "Currency"
+msgstr "Νόμισμα"
+
+#: src/routes/invoices/details.tsx:586
+msgid "Customer note"
+msgstr "Σημείωση Πελάτη"
+
+#: src/routes/invoices/details.tsx:384
+msgid "Daily %"
+msgstr "Ημερήσιο %"
+
+#: src/routes/time-tracking/reports.tsx:228
+msgid "Daily average"
+msgstr "Ημερήσιος μέσος όρος"
+
+#: src/routes/settings/backup.tsx:35
+msgid "Database backup saved successfully to {backupPath}"
+msgstr "Το αντίγραφο ασφαλείας της βάσης δεδομένων αποθηκεύτηκε επιτυχώς στη θέση {backupPath}"
+
+#: src/routes/settings/backup.tsx:60
+msgid ""
+"Database has been restored successfully. Please restart the application to "
+"see the changes."
+msgstr ""
+"Η βάση δεδομένων επαναφέρθηκε επιτυχώς. Παρακαλώ επανεκκινήστε την "
+"εφαρμογή για να δείτε τις αλλαγές."
+
+#: src/components/invoices/pdf.tsx:261
+#: src/components/time-entries/time-range-cell.tsx:81
+#: src/routes/invoices/index.tsx:156
+#: src/routes/time-tracking/reports.tsx:111
+msgid "Date"
+msgstr "Ημερομηνία"
+
+#: src/routes/settings/organization.tsx:121
+msgid "Date format"
+msgstr "Μορφή ημερομηνίας"
+
+#: src/routes/settings/organization.tsx:113
+msgid "Date Formatting"
+msgstr "Μορφοποίηση ημερομηνίας"
+
+#: src/routes/settings/invoice.tsx:185
+msgid "Day of month"
+msgstr "Ημέρα του μήνα"
+
+#: src/routes/settings/invoice.tsx:99
+msgid "Decimal places"
+msgstr "Δεκαδικά ψηφία"
+
+#: src/components/tax-rates/form.tsx:68
+#: src/routes/settings/tax-rates.tsx:68
+msgid "Default"
+msgstr "Προεπιλογή"
+
+#: src/components/clients/form.tsx:132
+#: src/components/time-entries/form.tsx:132
+#: src/routes/invoices/details.tsx:694
+#: src/routes/invoices/index.tsx:113
+#: src/routes/invoices/preview.tsx:177
+#: src/routes/settings/organization.tsx:147
+#: src/routes/time-tracking/index.tsx:484
+msgid "Delete"
+msgstr "Διαγραφή"
+
+#: src/routes/invoices/details.tsx:687
+#: src/routes/invoices/index.tsx:103
+#: src/routes/invoices/preview.tsx:170
+msgid "Delete the invoice?"
+msgstr "Διαγραφή του τιμολογίου;"
+
+#: src/routes/time-tracking/index.tsx:474
+msgid "Delete the time entry?"
+msgstr "Διαγραφή της καταχώρισης χρόνου;"
+
+#: src/components/invoices/pdf.tsx:285
+#: src/components/tax-rates/form.tsx:61
+#: src/components/time-entries/form.tsx:163
+#: src/routes/invoices/details.tsx:411
+#: src/routes/settings/tax-rates.tsx:53
+#: src/routes/time-tracking/index.tsx:355
+msgid "Description"
+msgstr "Περιγραφή"
+
+#: src/components/invoices/state-select.tsx:27
+#: src/components/invoices/state-select.tsx:58
+#: src/routes/invoices/index.tsx:28
+msgid "Draft"
+msgstr "Πρόχειρο"
+
+#: src/components/invoices/pdf.tsx:264
+#: src/routes/invoices/details.tsx:373
+#: src/routes/invoices/index.tsx:163
+msgid "Due date"
+msgstr "Ημερομηνία λήξης"
+
+#: src/routes/settings/invoice.tsx:102
+msgid "Due days"
+msgstr "Ημέρες λήξης"
+
+#: src/routes/invoices/details.tsx:682
+#: src/routes/invoices/index.tsx:92
+#: src/routes/invoices/preview.tsx:165
+msgid "Duplicate"
+msgstr "Αντιγραφή"
+
+#: src/routes/time-tracking/index.tsx:399
+msgid "Duration"
+msgstr "Διάρκεια"
+
+#: src/components/time-entries/form.tsx:245
+msgid "Duration (seconds)"
+msgstr "Διάρκεια (δευτερόλεπτα)"
+
+#: src/components/time-entries/form.tsx:249
+msgid "Duration in seconds"
+msgstr "Διάρκεια σε δευτερόλεπτα"
+
+#: src/routes/settings/organization.tsx:70
+msgid "E-mail"
+msgstr "Ηλεκτρονικό Ταχυδρομείο"
+
+#: src/components/clients/form.tsx:188
+msgid "E-mails"
+msgstr "Ηλεκτρονικά Ταχυδρομεία"
+
+#: src/routes/settings/invoice.tsx:189
+msgid "e.g. AP, MS"
+msgstr "π.χ. AP, MS"
+
+#: src/routes/invoices/index.tsx:86
+#: src/routes/invoices/preview.tsx:192
+#: src/routes/time-tracking/index.tsx:454
+msgid "Edit"
+msgstr "Επεξεργασία"
+
+#: src/components/clients/form.tsx:99
+msgid "Edit client"
+msgstr "Επεξεργασία πελάτη"
+
+#: src/components/projects/form.tsx:123
+msgid "Edit Project"
+msgstr "Επεξεργασία έργου"
+
+#: src/components/tax-rates/form.tsx:43
+msgid "Edit tax rate"
+msgstr "Επεξεργασία φορολογικού συντελεστή"
+
+#: src/components/time-entries/form.tsx:111
+msgid "Edit Time Entry"
+msgstr "Επεξεργασία καταχώρισης χρόνου"
+
+#: src/components/feedback-modal.tsx:71
+msgid "Email"
+msgstr "Ηλεκτρονικό Ταχυδρομείο"
+
+#: src/routes/clients.tsx:83
+msgid "Emails"
+msgstr "Ηλεκτρονικά Ταχυδρομεία"
+
+#: src/components/projects/form.tsx:206
+msgid "End Date"
+msgstr "Ημερομηνία Λήξης"
+
+#: src/components/time-entries/form.tsx:234
+#: src/components/time-entries/time-range-cell.tsx:74
+msgid "End Time"
+msgstr "Ώρα Λήξης"
+
+#: src/routes/settings/invoice.tsx:213
+msgid "Enter format to see preview"
+msgstr "Εισαγάγετε τη μορφή για να δείτε την προεπισκόπηση"
+
+#: src/components/projects/form.tsx:176
+msgid "Enter project name"
+msgstr "Εισαγάγετε το όνομα του έργου"
+
+#: src/routes/time-tracking/reports.tsx:122
+msgid "Entries"
+msgstr "Καταχωρίσεις"
+
+#: src/components/ai-drawer.tsx:444
+msgid "Error"
+msgstr "Σφάλμα"
+
+#: src/routes/time-tracking/reports.tsx:159
+msgid "Export"
+msgstr "Εξαγωγή"
+
+#: src/atoms/project.ts:111
+msgid "Failed to archive project"
+msgstr "Αποτυχία αρχειοθέτησης έργου"
+
+#: src/routes/settings/backup.tsx:39
+#. placeholder {0}: String(error)
+msgid "Failed to backup database: {0}"
+msgstr "Αποτυχία δημιουργίας αντιγράφου ασφαλείας της βάσης δεδομένων: {0}"
+
+#: src/atoms/project.ts:68
+msgid "Failed to create project"
+msgstr "Αποτυχία δημιουργίας έργου"
+
+#: src/atoms/client.ts:26
+msgid "Failed to fetch clients"
+msgstr "Αποτυχία ανάκτησης πελατών"
+
+#: src/atoms/invoice.ts:33
+msgid "Failed to fetch invoices"
+msgstr "Αποτυχία ανάκτησης τιμολογίων"
+
+#: src/atoms/organization.ts:24
+msgid "Failed to fetch organizations"
+msgstr "Αποτυχία ανάκτησης οργανισμών"
+
+#: src/atoms/project.ts:34
+msgid "Failed to fetch projects"
+msgstr "Αποτυχία ανάκτησης έργων"
+
+#: src/atoms/time-tracking.ts:25
+msgid "Failed to fetch tags"
+msgstr "Αποτυχία ανάκτησης ετικετών"
+
+#: src/atoms/tax-rate.ts:21
+msgid "Failed to fetch tax rates"
+msgstr "Αποτυχία ανάκτησης φορολογικών συντελεστών"
+
+#: src/atoms/time-tracking.ts:118
+msgid "Failed to fetch time entries"
+msgstr "Αποτυχία ανάκτησης καταχωρίσεων χρόνου"
+
+#: src/atoms/invoice.ts:222
+msgid "Failed to generate invoice number"
+msgstr "Αποτυχία δημιουργίας αριθμού τιμολογίου"
+
+#: src/routes/settings/backup.tsx:64
+#. placeholder {0}: String(error)
+msgid "Failed to restore database: {0}"
+msgstr "Αποτυχία επαναφοράς της βάσης δεδομένων: {0}"
+
+#: src/components/feedback-modal.tsx:35
+msgid "Failed to send feedback. Please try again."
+msgstr "Αποτυχία αποστολής σχολίων. Παρακαλώ προσπαθήστε ξανά."
+
+#: src/atoms/project.ts:132
+msgid "Failed to unarchive project"
+msgstr "Αποτυχία επαναφοράς έργου από το αρχείο"
+
+#: src/atoms/invoice.ts:201
+msgid "Failed to update invoice state"
+msgstr "Αποτυχία ενημέρωσης της κατάστασης του τιμολογίου"
+
+#: src/atoms/project.ts:89
+msgid "Failed to update project"
+msgstr "Αποτυχία ενημέρωσης έργου"
+
+#: src/atoms/time-tracking.ts:159
+msgid "Failed to update time entry"
+msgstr "Αποτυχία ενημέρωσης καταχώρισης χρόνου"
+
+#: src/layouts/base.tsx:250
+msgid "Feedback"
+msgstr "Σχόλια"
+
+#: src/components/feedback-modal.tsx:30
+msgid "Feedback sent successfully!"
+msgstr "Τα σχόλια στάλθηκαν επιτυχώς!"
+
+#: src/routes/settings/ai.tsx:59
+msgid "Get your API key from"
+msgstr "Λάβετε το κλειδί API σας από"
+
+#: src/routes/time-tracking/reports.tsx:194
+msgid "Group by client"
+msgstr "Ομαδοποίηση ανά πελάτη"
+
+#: src/routes/time-tracking/reports.tsx:197
+msgid "Group by date"
+msgstr "Ομαδοποίηση ανά ημερομηνία"
+
+#: src/routes/time-tracking/reports.tsx:200
+msgid "Group by week"
+msgstr "Ομαδοποίηση ανά εβδομάδα"
+
+#: src/routes/settings/organization.tsx:89
+msgid "IBAN"
+msgstr "IBAN"
+
+#: src/layouts/base.tsx:199
+msgid "Invoice"
+msgstr "Τιμολόγιο"
+
+#: src/components/invoices/pdf.tsx:221
+#. placeholder {0}: invoice.number
+msgid "Invoice {0}"
+msgstr "Τιμολόγιο {0}"
+
+#: src/atoms/invoice.ts:105
+msgid "Invoice created"
+msgstr "Το τιμολόγιο δημιουργήθηκε"
+
+#: src/atoms/invoice.ts:152
+msgid "Invoice creation failed"
+msgstr "Η δημιουργία τιμολογίου απέτυχε"
+
+#: src/atoms/invoice.ts:169
+msgid "Invoice deleted"
+msgstr "Το τιμολόγιο διαγράφηκε"
+
+#: src/atoms/invoice.ts:171
+#: src/atoms/invoice.ts:175
+msgid "Invoice deletion failed"
+msgstr "Η διαγραφή τιμολογίου απέτυχε"
+
+#: src/routes/settings/invoice.tsx:79
+msgid "Invoice details"
+msgstr "Λεπτομέρειες τιμολογίου"
+
+#: src/atoms/invoice.ts:253
+msgid "Invoice duplicated successfully"
+msgstr "Το τιμολόγιο αντιγράφηκε επιτυχώς"
+
+#: src/atoms/invoice.ts:275
+msgid "Invoice duplication failed"
+msgstr "Η αντιγραφή τιμολογίου απέτυχε"
+
+#: src/components/ai-drawer.tsx:167
+msgid "Invoice form updated with new data."
+msgstr "Η φόρμα τιμολογίου ενημερώθηκε με νέα δεδομένα."
+
+#: src/atoms/invoice.ts:215
+msgid "Invoice not found"
+msgstr "Το τιμολόγιο δεν βρέθηκε"
+
+#: src/routes/invoices/details.tsx:340
+msgid "Invoice number"
+msgstr "Αριθμός τιμολογίου"
+
+#: src/routes/settings/invoice.tsx:199
+msgid "Invoice Number Counter"
+msgstr "Μετρητής Αριθμού Τιμολογίου"
+
+#: src/routes/settings/invoice.tsx:129
+msgid "Invoice Number Format"
+msgstr "Μορφή Αριθμού Τιμολογίου"
+
+#: src/routes/settings/invoice.tsx:122
+msgid "Invoice Numbering"
+msgstr "Αρίθμηση Τιμολογίων"
+
+#: src/atoms/invoice.ts:187
+msgid "Invoice state updated"
+msgstr "Η κατάσταση του τιμολογίου ενημερώθηκε"
+
+#: src/atoms/invoice.ts:154
+msgid "Invoice update failed"
+msgstr "Η ενημέρωση του τιμολογίου απέτυχε"
+
+#: src/atoms/invoice.ts:142
+msgid "Invoice updated successfully"
+msgstr "Το τιμολόγιο ενημερώθηκε επιτυχώς"
+
+#: src/layouts/base.tsx:133
+#: src/routes/invoices/index.tsx:127
+msgid "Invoices"
+msgstr "Τιμολόγια"
+
+#: src/routes/settings/invoice.tsx:221
+msgid "Logo"
+msgstr "Λογότυπο"
+
+#: src/components/feedback-modal.tsx:84
+msgid "Message"
+msgstr "Μήνυμα"
+
+#: src/routes/settings/invoice.tsx:181
+msgid "Month name"
+msgstr "Όνομα μήνα"
+
+#: src/components/clients/form.tsx:170
+#: src/components/feedback-modal.tsx:64
+#: src/components/tax-rates/form.tsx:58
+#: src/routes/clients.tsx:72
+#: src/routes/organizations/new.tsx:56
+#: src/routes/projects.tsx:58
+#: src/routes/settings/organization.tsx:55
+#: src/routes/settings/tax-rates.tsx:49
+msgid "Name"
+msgstr "Όνομα"
+
+#: src/components/clients/form.tsx:99
+#: src/routes/clients.tsx:62
+#: src/routes/invoices/details.tsx:325
+msgid "New client"
+msgstr "Νέος πελάτης"
+
+#: src/routes/time-tracking/index.tsx:570
+msgid "New Entry"
+msgstr "Νέα Καταχώριση"
+
+#: src/routes/invoices/index.tsx:135
+msgid "New invoice"
+msgstr "Νέο τιμολόγιο"
+
+#: src/layouts/base.tsx:310
+msgid "New organization"
+msgstr "Νέος οργανισμός"
+
+#: src/routes/organizations/new.tsx:52
+msgid "New Organization"
+msgstr "Νέος Οργανισμός"
+
+#: src/components/projects/form.tsx:123
+#: src/routes/projects.tsx:148
+msgid "New Project"
+msgstr "Νέο Έργο"
+
+#: src/routes/settings/tax-rates.tsx:40
+msgid "New tax"
+msgstr "Νέος φόρος"
+
+#: src/components/tax-rates/form.tsx:43
+msgid "New tax rate"
+msgstr "Νέος φορολογικός συντελεστής"
+
+#: src/components/time-entries/form.tsx:111
+msgid "New Time Entry"
+msgstr "Νέα Καταχώριση Χρόνου"
+
+#: src/routes/settings/invoice.tsx:205
+msgid "Next invoice will use this number + 1"
+msgstr "Το επόμενο τιμολόγιο θα χρησιμοποιήσει αυτόν τον αριθμό + 1"
+
+#: src/components/clients/form.tsx:128
+#: src/components/projects/form.tsx:138
+#: src/components/time-entries/form.tsx:128
+#: src/routes/invoices/details.tsx:691
+#: src/routes/invoices/index.tsx:110
+#: src/routes/invoices/preview.tsx:174
+#: src/routes/time-tracking/index.tsx:481
+msgid "No"
+msgstr "Όχι"
+
+#: src/routes/time-tracking/reports.tsx:90
+msgid "No client"
+msgstr "Κανένας πελάτης"
+
+#: src/routes/projects.tsx:78
+msgid "No client assigned"
+msgstr "Δεν έχει εκχωρηθεί πελάτης"
+
+#: src/routes/invoices/details.tsx:408
+msgid "No line items"
+msgstr "Κανένα στοιχείο γραμμής"
+
+#: src/routes/projects.tsx:160
+msgid "No projects found"
+msgstr "Δεν βρέθηκαν έργα"
+
+#: src/routes/settings/organization.tsx:144
+msgid "No!"
+msgstr "Όχι!"
+
+#: src/routes/settings/invoice.tsx:114
+msgid "Notes"
+msgstr "Σημειώσεις"
+
+#: src/components/ai-drawer.tsx:161
+msgid ""
+"Opening new invoice form with your data. Please review and click Save to "
+"create the invoice."
+msgstr ""
+"’νοιγμα νέας φόρμας τιμολογίου με τα δεδομένα σας. Παρακαλώ ελέγξτε και "
+"κάντε κλικ στο Αποθήκευση για να δημιουργήσετε το τιμολόγιο."
+
+#: src/layouts/base.tsx:190
+msgid "Organization"
+msgstr "Οργανισμός"
+
+#: src/atoms/organization.ts:89
+msgid "Organization created"
+msgstr "Ο οργανισμός δημιουργήθηκε"
+
+#: src/atoms/organization.ts:107
+msgid "Organization creation failed"
+msgstr "Η δημιουργία οργανισμού απέτυχε"
+
+#: src/atoms/organization.ts:144
+msgid "Organization deleted"
+msgstr "Ο οργανισμός διαγράφηκε"
+
+#: src/atoms/organization.ts:149
+#: src/atoms/organization.ts:153
+msgid "Organization deletion failed"
+msgstr "Η διαγραφή οργανισμού απέτυχε"
+
+#: src/routes/settings/organization.tsx:48
+msgid "Organization details"
+msgstr "Λεπτομέρειες οργανισμού"
+
+#: src/atoms/organization.ts:109
+msgid "Organization update failed"
+msgstr "Η ενημέρωση οργανισμού απέτυχε"
+
+#: src/atoms/organization.ts:96
+msgid "Organization updated successfully"
+msgstr "Ο οργανισμός ενημερώθηκε επιτυχώς"
+
+#: src/components/invoices/pdf.tsx:268
+#: src/routes/invoices/details.tsx:382
+#: src/routes/settings/invoice.tsx:105
+msgid "Overdue charge"
+msgstr "Χρέωση καθυστέρησης"
+
+#: src/components/invoices/state-select.tsx:35
+#: src/components/invoices/state-select.tsx:62
+#: src/routes/invoices/index.tsx:36
+msgid "Paid"
+msgstr "Πληρωμένο"
+
+#: src/components/tax-rates/form.tsx:64
+#: src/routes/settings/tax-rates.tsx:57
+msgid "Percentage"
+msgstr "Ποσοστό"
+
+#: src/components/clients/form.tsx:191
+#: src/routes/clients.tsx:91
+#: src/routes/settings/organization.tsx:73
+msgid "Phone"
+msgstr "Τηλέφωνο"
+
+#: src/components/ai-drawer.tsx:358
+msgid "Please configure your Anthropic API key in"
+msgstr "Παρακαλώ ρυθμίστε το κλειδί API Anthropic στο"
+
+#: src/components/projects/form.tsx:174
+msgid "Please enter a project name"
+msgstr "Παρακαλώ εισαγάγετε το όνομα του έργου"
+
+#: src/components/feedback-modal.tsx:75
+msgid "Please enter a valid email address"
+msgstr "Παρακαλώ εισαγάγετε μια έγκυρη διεύθυνση ηλεκτρονικού ταχυδρομείου"
+
+#: src/components/feedback-modal.tsx:88
+msgid "Please enter your feedback"
+msgstr "Παρακαλώ εισαγάγετε τα σχόλιά σας"
+
+#: src/components/tax-rates/form.tsx:63
+msgid "Please input a percentage!"
+msgstr "Παρακαλώ εισαγάγετε ένα ποσοστό!"
+
+#: src/components/clients/form.tsx:168
+#: src/components/tax-rates/form.tsx:57
+#: src/routes/organizations/new.tsx:55
+msgid "Please input name!"
+msgstr "Παρακαλώ εισαγάγετε όνομα!"
+
+#: src/components/time-entries/form.tsx:223
+msgid "Please select start time!"
+msgstr "Παρακαλώ επιλέξτε ώρα έναρξης!"
+
+#: src/routes/settings/invoice.tsx:58
+msgid "Please upload a PNG or JPEG image"
+msgstr "Παρακαλώ ανεβάστε μια εικόνα PNG ή JPEG"
+
+#: src/routes/settings/invoice.tsx:211
+msgid "Preview"
+msgstr "Προεπισκόπηση"
+
+#: src/components/invoices/pdf.tsx:291
+#: src/routes/invoices/details.tsx:468
+msgid "Price"
+msgstr "Τιμή"
+
+#: src/components/time-entries/form.tsx:195
+#: src/routes/time-tracking/index.tsx:375
+msgid "Project"
+msgstr "Έργο"
+
+#: src/atoms/project.ts:108
+msgid "Project archived successfully"
+msgstr "Το έργο αρχειοθετήθηκε επιτυχώς"
+
+#: src/atoms/project.ts:64
+msgid "Project created successfully"
+msgstr "Το έργο δημιουργήθηκε επιτυχώς"
+
+#: src/components/projects/form.tsx:173
+msgid "Project Name"
+msgstr "Όνομα Έργου"
+
+#: src/atoms/project.ts:129
+msgid "Project unarchived successfully"
+msgstr "Το έργο επαναφέρθηκε από το αρχείο επιτυχώς"
+
+#: src/atoms/project.ts:86
+msgid "Project updated successfully"
+msgstr "Το έργο ενημερώθηκε επιτυχώς"
+
+#: src/layouts/base.tsx:151
+#: src/routes/projects.tsx:136
+msgid "Projects"
+msgstr "Έργα"
+
+#: src/components/invoices/pdf.tsx:288
+#: src/routes/invoices/details.tsx:434
+msgid "Qty."
+msgstr "Ποσότητα"
+
+#: src/routes/settings/organization.tsx:76
+msgid "Registration number"
+msgstr "Αριθμός Μητρώου"
+
+#: src/layouts/base.tsx:174
+#: src/routes/time-tracking/reports.tsx:153
+msgid "Reports"
+msgstr "Αναφορές"
+
+#: src/routes/settings/backup.tsx:49
+msgid "Restore"
+msgstr "Επαναφορά"
+
+#: src/routes/settings/backup.tsx:59
+msgid "Restore Complete"
+msgstr "Η Επαναφορά Ολοκληρώθηκε"
+
+#: src/routes/settings/backup.tsx:47
+msgid "Restore Database"
+msgstr "Επαναφορά Βάσης Δεδομένων"
+
+#: src/routes/settings/backup.tsx:124
+msgid "Restore from Backup"
+msgstr "Επαναφορά από Αντίγραφο Ασφαλείας"
+
+#: src/routes/settings/backup.tsx:129
+msgid ""
+"Restore your database from a previously created backup file. This will "
+"replace all current data with the backup data."
+msgstr ""
+"Επαναφέρετε τη βάση δεδομένων σας από ένα προηγουμένως δημιουργημένο αρχείο "
+"αντιγράφου ασφαλείας. Αυτό θα αντικαταστήσει όλα τα τρέχοντα δεδομένα με "
+"τα δεδομένα του αντιγράφου ασφαλείας."
+
+#: src/components/clients/form.tsx:101
+#: src/components/clients/form.tsx:155
+#: src/components/tax-rates/form.tsx:45
+#: src/components/time-entries/form.tsx:113
+#: src/components/time-entries/form.tsx:152
+#: src/components/time-entries/time-range-cell.tsx:91
+#: src/routes/invoices/details.tsx:737
+#: src/routes/settings/invoice.tsx:256
+#: src/routes/settings/organization.tsx:138
+msgid "Save"
+msgstr "Αποθήκευση"
+
+#: src/routes/settings/ai.tsx:76
+msgid "Save Configuration"
+msgstr "Αποθήκευση Ρύθμισης"
+
+#: src/routes/projects.tsx:142
+msgid "Search projects..."
+msgstr "Αναζήτηση έργων..."
+
+#: src/routes/clients.tsx:59
+#: src/routes/invoices/index.tsx:132
+msgid "Search text"
+msgstr "Κείμενο αναζήτησης"
+
+#: src/routes/time-tracking/index.tsx:554
+msgid "Search time entries..."
+msgstr "Αναζήτηση καταχωρίσεων χρόνου..."
+
+#: src/components/projects/form.tsx:184
+msgid "Select a client (optional)"
+msgstr "Επιλέξτε πελάτη (προαιρετικό)"
+
+#: src/routes/time-tracking/reports.tsx:179
+msgid "Select client"
+msgstr "Επιλέξτε πελάτη"
+
+#: src/components/time-entries/form.tsx:172
+msgid "Select client (optional)"
+msgstr "Επιλέξτε πελάτη (προαιρετικό)"
+
+#: src/routes/settings/organization.tsx:59
+msgid "Select country"
+msgstr "Επιλέξτε χώρα"
+
+#: src/routes/settings/organization.tsx:122
+msgid "Select date format"
+msgstr "Επιλέξτε μορφή ημερομηνίας"
+
+#: src/routes/invoices/details.tsx:283
+msgid "Select or create a client"
+msgstr "Επιλέξτε ή δημιουργήστε έναν πελάτη"
+
+#: src/components/time-entries/form.tsx:197
+msgid "Select project (optional)"
+msgstr "Επιλέξτε έργο (προαιρετικό)"
+
+#: src/components/feedback-modal.tsx:53
+msgid "Send"
+msgstr "Αποστολή"
+
+#: src/components/feedback-modal.tsx:48
+msgid "Send Feedback"
+msgstr "Αποστολή Σχολίων"
+
+#: src/components/invoices/state-select.tsx:31
+#: src/components/invoices/state-select.tsx:60
+msgid "Sent"
+msgstr "Απεσταλμένο"
+
+#: src/routes/settings/invoice.tsx:167
+msgid "Sequential number"
+msgstr "Αύξων αριθμός"
+
+#: src/layouts/base.tsx:183
+msgid "Settings"
+msgstr "Ρυθμίσεις"
+
+#: src/components/ai-drawer.tsx:360
+msgid "Settings > AI"
+msgstr "Ρυθμίσεις > ΤΝ"
+
+#: src/routes/settings/invoice.tsx:158
+msgid "Show variables"
+msgstr "Εμφάνιση μεταβλητών"
+
+#: src/components/ai-drawer.tsx:496
+msgid "Start a conversation with your AI assistant"
+msgstr "Ξεκινήστε μια συνομιλία με τον βοηθό Τεχνητής Νοημοσύνης σας"
+
+#: src/components/projects/form.tsx:199
+msgid "Start Date"
+msgstr "Ημερομηνία Έναρξης"
+
+#: src/components/time-entries/form.tsx:222
+#: src/components/time-entries/time-range-cell.tsx:69
+msgid "Start Time"
+msgstr "Ώρα Έναρξης"
+
+#: src/routes/time-tracking/index.tsx:565
+msgid "Start Timer"
+msgstr "Έναρξη Χρονομέτρη"
+
+#: src/routes/invoices/index.tsx:178
+msgid "State"
+msgstr "Κατάσταση"
+
+#: src/routes/time-tracking/index.tsx:561
+msgid "Stop Timer"
+msgstr "Διακοπή Χρονομέτρη"
+
+#: src/components/invoices/pdf.tsx:335
+#: src/routes/invoices/details.tsx:615
+msgid "Subtotal"
+msgstr "Υποσύνολο"
+
+#: src/atoms/time-tracking.ts:61
+msgid "Tag created"
+msgstr "Η ετικέτα δημιουργήθηκε"
+
+#: src/atoms/time-tracking.ts:82
+msgid "Tag creation failed"
+msgstr "Η δημιουργία ετικέτας απέτυχε"
+
+#: src/atoms/time-tracking.ts:99
+msgid "Tag deleted"
+msgstr "Η ετικέτα διαγράφηκε"
+
+#: src/atoms/time-tracking.ts:101
+#: src/atoms/time-tracking.ts:105
+msgid "Tag deletion failed"
+msgstr "Η διαγραφή ετικέτας απέτυχε"
+
+#: src/atoms/time-tracking.ts:84
+msgid "Tag update failed"
+msgstr "Η ενημέρωση ετικέτας απέτυχε"
+
+#: src/atoms/time-tracking.ts:72
+msgid "Tag updated successfully"
+msgstr "Η ετικέτα ενημερώθηκε επιτυχώς"
+
+#: src/components/time-entries/form.tsx:271
+#: src/routes/time-tracking/index.tsx:412
+msgid "Tags"
+msgstr "Ετικέτες"
+
+#: src/routes/invoices/details.tsx:636
+msgid "Tax"
+msgstr "Φόρος"
+
+#: src/components/invoices/pdf.tsx:294
+#: src/routes/invoices/details.tsx:502
+msgid "Tax %"
+msgstr "Φόρος %"
+
+#: src/components/invoices/pdf.tsx:347
+msgid "Tax 0%"
+msgstr "Φόρος 0%"
+
+#: src/atoms/tax-rate.ts:61
+msgid "Tax rate created"
+msgstr "Ο φορολογικός συντελεστής δημιουργήθηκε"
+
+#: src/atoms/tax-rate.ts:90
+msgid "Tax rate creation failed"
+msgstr "Η δημιουργία φορολογικού συντελεστή απέτυχε"
+
+#: src/atoms/tax-rate.ts:92
+msgid "Tax rate update failed"
+msgstr "Η ενημέρωση φορολογικού συντελεστή απέτυχε"
+
+#: src/atoms/tax-rate.ts:80
+msgid "Tax rate updated successfully"
+msgstr "Ο φορολογικός συντελεστής ενημερώθηκε επιτυχώς"
+
+#: src/layouts/base.tsx:208
+#: src/routes/settings/tax-rates.tsx:33
+msgid "Tax rates"
+msgstr "Φορολογικοί συντελεστές"
+
+#: src/components/feedback-modal.tsx:94
+msgid "Tell us what you think, report a bug, or suggest an improvement..."
+msgstr "Πείτε μας τη γνώμη σας, αναφέρετε ένα σφάλμα ή προτείνετε μια βελτίωση..."
+
+#: src/routes/invoices/details.tsx:285
+#: src/routes/invoices/details.tsx:342
+#: src/routes/invoices/details.tsx:351
+#: src/routes/invoices/details.tsx:367
+#: src/routes/invoices/details.tsx:375
+#: src/routes/invoices/details.tsx:425
+#: src/routes/invoices/details.tsx:440
+#: src/routes/invoices/details.tsx:474
+#: src/routes/invoices/details.tsx:539
+#: src/routes/settings/invoice.tsx:86
+#: src/routes/settings/invoice.tsx:132
+#: src/routes/settings/invoice.tsx:202
+msgid "This field is required!"
+msgstr "Αυτό το πεδίο είναι υποχρεωτικό!"
+
+#: src/atoms/time-tracking.ts:208
+msgid "Time entry created"
+msgstr "Η καταχώριση χρόνου δημιουργήθηκε"
+
+#: src/atoms/time-tracking.ts:244
+msgid "Time entry creation failed"
+msgstr "Η δημιουργία καταχώρισης χρόνου απέτυχε"
+
+#: src/atoms/time-tracking.ts:261
+msgid "Time entry deleted"
+msgstr "Η καταχώριση χρόνου διαγράφηκε"
+
+#: src/atoms/time-tracking.ts:263
+#: src/atoms/time-tracking.ts:267
+msgid "Time entry deletion failed"
+msgstr "Η διαγραφή καταχώρισης χρόνου απέτυχε"
+
+#: src/atoms/time-tracking.ts:246
+msgid "Time entry update failed"
+msgstr "Η ενημέρωση καταχώρισης χρόνου απέτυχε"
+
+#: src/atoms/time-tracking.ts:232
+msgid "Time entry updated successfully"
+msgstr "Η καταχώριση χρόνου ενημερώθηκε επιτυχώς"
+
+#: src/routes/time-tracking/index.tsx:388
+msgid "Time Range"
+msgstr "Χρονικό Εύρος"
+
+#: src/layouts/base.tsx:158
+msgid "Time tracking"
+msgstr "Παρακολούθηση Χρόνου"
+
+#: src/routes/time-tracking/index.tsx:548
+msgid "Time Tracking"
+msgstr "Παρακολούθηση Χρόνου"
+
+#: src/routes/projects.tsx:84
+msgid "Timeframe"
+msgstr "Χρονικό Πλαίσιο"
+
+#: src/layouts/base.tsx:165
+msgid "Timer"
+msgstr "Χρονόμετρο"
+
+#: src/components/ai-drawer.tsx:362
+msgid "to use the AI assistant."
+msgstr "για να χρησιμοποιήσετε τον βοηθό Τεχνητής Νοημοσύνης."
+
+#: src/components/invoices/pdf.tsx:297
+#: src/components/invoices/pdf.tsx:371
+#: src/routes/invoices/details.tsx:520
+#: src/routes/invoices/details.tsx:647
+#: src/routes/invoices/index.tsx:170
+#: src/routes/time-tracking/reports.tsx:249
+msgid "Total"
+msgstr "Σύνολο"
+
+#: src/routes/time-tracking/reports.tsx:214
+msgid "Total entries"
+msgstr "Συνολικές καταχωρίσεις"
+
+#: src/routes/time-tracking/reports.tsx:129
+#: src/routes/time-tracking/reports.tsx:209
+msgid "Total time"
+msgstr "Συνολικός χρόνος"
+
+#: src/components/projects/form.tsx:145
+msgid "Unarchive"
+msgstr "Επαναφορά από αρχείο"
+
+#: src/components/projects/form.tsx:162
+msgid "Update"
+msgstr "Ενημέρωση"
+
+#: src/routes/settings/invoice.tsx:240
+msgid "Upload"
+msgstr "Ανέβασμα"
+
+#: src/components/clients/form.tsx:194
+msgid "VAT Number"
+msgstr "Αριθμός ΦΠΑ"
+
+#: src/routes/clients.tsx:105
+msgid "VATIN"
+msgstr "Αριθμός ΦΠΑ"
+
+#: src/routes/invoices/details.tsx:710
+msgid "View"
+msgstr "Προβολή"
+
+#: src/components/invoices/state-select.tsx:39
+#: src/components/invoices/state-select.tsx:64
+#: src/routes/invoices/index.tsx:40
+msgid "Void"
+msgstr "Ακυρωμένο"
+
+#: src/components/clients/form.tsx:121
+msgid "Warning: This will also delete {invoiceCount} related invoice(s)."
+msgstr "Προειδοποίηση: Αυτό θα διαγράψει επίσης {invoiceCount} σχετικό(ά) τιμολόγιο(α)."
+
+#: src/components/clients/form.tsx:197
+#: src/routes/clients.tsx:107
+msgid "Website"
+msgstr "Ιστοσελίδα"
+
+#: src/routes/time-tracking/reports.tsx:111
+msgid "Week"
+msgstr "Εβδομάδα"
+
+#: src/routes/time-tracking/reports.tsx:94
+#. placeholder {0}: startOfWeek.format("MMM D")
+msgid "Week {week} ({0})"
+msgstr "Εβδομάδα {week} ({0})"
+
+#: src/components/time-entries/form.tsx:165
+msgid "What are you working on?"
+msgstr "Σε τι εργάζεστε;"
+
+#: src/components/clients/form.tsx:127
+#: src/components/projects/form.tsx:137
+#: src/components/time-entries/form.tsx:127
+#: src/routes/invoices/details.tsx:690
+#: src/routes/invoices/index.tsx:109
+#: src/routes/invoices/preview.tsx:173
+#: src/routes/settings/organization.tsx:143
+#: src/routes/time-tracking/index.tsx:480
+msgid "Yes"
+msgstr "Ναι"
+
+#: src/components/ai-drawer.tsx:472
+msgid "You"
+msgstr "Εσείς"
+
+#: src/routes/settings/ai.tsx:40
+msgid "Your Anthropic API key is configured and AI features are enabled."
+msgstr "Το κλειδί API Anthropic σας έχει ρυθμιστεί και οι λειτουργίες Τεχνητής Νοημοσύνης είναι ενεργοποιημένες."
+
+#: src/components/feedback-modal.tsx:66
+msgid "Your name (optional)"
+msgstr "Το όνομά σας (προαιρετικό)"
+
+#: src/components/feedback-modal.tsx:79
+msgid "your.email@example.com (optional)"
+msgstr "to.email@sas@example.com (προαιρετικό)"
+
+#: src/routes/index.tsx:61
+#~ msgid "Create your organization to get started"
+#~ msgstr "Δημιουργήστε τον οργανισμό σας για να ξεκινήσετε"
+
+#: src/routes/index.tsx:90
+#~ msgid "Get started"
+#~ msgstr "Ξεκινήστε"
+
+#: src/components/invoices/pdf.tsx:173
+#~ msgid "Invoice #{0}"
+#~ msgstr "Τιμολόγιο #{0}"
+
+#: src/routes/invoices/index.tsx:142
+#~ msgid "Number"
+#~ msgstr "Αριθμός"
+
+#: src/routes/settings/invoice.tsx:126
+#~ msgid "Number of Digits"
+#~ msgstr "Αριθμός Ψηφίων"
+
+#: src/routes/settings/invoice.tsx:109
+#~ msgid "Prefix"
+#~ msgstr "Πρόθεμα"
+
+#: src/routes/settings/invoice.tsx:114
+#~ msgid "Separator"
+#~ msgstr "Διαχωριστικό"
+
+#: src/routes/settings/invoice.tsx:121
+#~ msgid "Start Number"
+#~ msgstr "Αριθμός Έναρξης"
+
+#: src/routes/settings/invoice.tsx:133
+#~ msgid "Suffix"
+#~ msgstr "Επίθημα"

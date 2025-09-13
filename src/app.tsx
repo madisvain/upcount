@@ -15,6 +15,7 @@ import "dayjs/locale/et";
 import "dayjs/locale/de";
 import "dayjs/locale/fi";
 import "dayjs/locale/fr";
+import "dayjs/locale/gr";
 import "dayjs/locale/nl";
 import "dayjs/locale/pt";
 import "dayjs/locale/sv";
@@ -29,6 +30,7 @@ import etEE from "antd/locale/et_EE";
 import deDE from "antd/locale/de_DE";
 import fiFI from "antd/locale/fi_FI";
 import frFR from "antd/locale/fr_FR";
+import elGR from "antd/locale/el_GR";
 import nlNL from "antd/locale/nl_NL";
 import ptPT from "antd/locale/pt_PT";
 import svSE from "antd/locale/sv_SE";
@@ -96,6 +98,9 @@ const AppContent = () => {
         break;
       case "fr":
         baseLocale = frFR;
+        break;
+      case "gr":
+        baseLocale = elGR;
         break;
       case "nl":
         baseLocale = nlNL;
