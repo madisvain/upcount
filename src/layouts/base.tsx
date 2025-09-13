@@ -341,6 +341,7 @@ export default function BaseLayout() {
                       et: "🇪🇪 Estonian",
                       fi: "🇫🇮 Finnish",
                       fr: "🇫🇷 French",
+                      gr: "🇬🇷 Greek",
                       nl: "🇳🇱 Dutch",
                       pt: "🇵🇹 Portuguese",
                       sv: "🇸🇪 Swedish",
