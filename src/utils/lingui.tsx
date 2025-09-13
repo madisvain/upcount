@@ -26,5 +26,13 @@ export async function dynamicActivate(locale: string) {
   const { messages } = await import(`../locales/${locale}.po`);
   i18n.load(locale, messages);
   i18n.activate(locale);
-  dayjs.locale(locale);
+
+  // Map locales to dayjs locale codes
+  const dayjsLocaleMap: Record<string, string> = {
+    gr: 'el', // Greek uses 'el' in dayjs
+    'en-GB': 'en-gb', // Ensure correct casing
+  };
+
+  const dayjsLocale = dayjsLocaleMap[locale] || locale;
+  dayjs.locale(dayjsLocale);
 }
