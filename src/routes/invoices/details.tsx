@@ -89,7 +89,6 @@ const PDFPreview: React.FC<{ createPDFDocument: () => React.ReactElement | null 
     if (node) {
       const measureWidth = () => {
         const width = node.offsetWidth;
-        console.log("Container element width:", width, node);
         setContainerWidth(width - 40); // subtract some padding
       };
 

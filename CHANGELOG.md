@@ -5,7 +5,21 @@ All notable changes to Upcount will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
-## [2.0.0-beta.21] - Unreleased
+## [2.0.0-beta.22] - Unreleased
+
+### Added
+- Greek (Ελληνικά) locale support with complete translation and proper date formatting
+- In-place PDF preview functionality for invoice editing workflow
+
+### Changed
+- Improved accessibility with better color contrast for invoice status badges and download links
+- Optimized Largest Contentful Paint (LCP) performance by fixing fetchpriority attribute
+
+### Fixed
+- React Suspense error in tax rates form that could occur during synchronous input
+- Promise.withResolvers compatibility issues in older JavaScript environments
+
+## [2.0.0-beta.21] - 2025-08-18
 
 ### Added
 - UK English locale (en-GB) with proper regional formatting - calendar weeks start on Monday for European users

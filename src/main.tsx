@@ -1,3 +1,14 @@
+// Type declaration for Promise.withResolvers
+declare global {
+  interface PromiseConstructor {
+    withResolvers<T>(): {
+      promise: Promise<T>;
+      resolve: (value: T | PromiseLike<T>) => void;
+      reject: (reason?: any) => void;
+    };
+  }
+}
+
 // Polyfill for Promise.withResolvers for older JavaScript environments
 if (!Promise.withResolvers) {
   Promise.withResolvers = function<T>() {
