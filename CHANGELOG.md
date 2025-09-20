@@ -5,7 +5,16 @@ All notable changes to Upcount will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
-## [2.0.0-beta.22] - Unreleased
+## [2.0.0-beta.23] - Unreleased
+
+### Added
+- Drag and drop functionality for reordering invoice line items using the MoreOutlined (⋯) icon
+
+### Changed
+- Enhanced invoice line items table with better column width optimization (Qty column reduced to 80px)
+- Improved input field consistency with full-width styling across all numeric columns
+
+## [2.0.0-beta.22] - 2025-09-14
 
 ### Added
 - Greek (Ελληνικά) locale support with complete translation and proper date formatting
