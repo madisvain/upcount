@@ -8,6 +8,7 @@ import {
   Form,
   Input,
   InputNumber,
+  Table,
   Row,
   Col,
   Select,
@@ -94,153 +95,55 @@ const { TextArea } = Input;
 const { Option } = Select;
 const { Footer } = Layout;
 
-// Sortable row component for drag and drop
-const SortableRow: React.FC<{
-  id: string;
-  field: any;
-  form: any;
-  taxRates: any[];
-  remove: (index: number) => void;
-}> = ({ id, field, form, taxRates, remove }) => {
+// Drag handle component that works with the table cell
+const DragHandleCell: React.FC<{
+  children: React.ReactNode;
+  rowKey: string;
+}> = ({ children, rowKey }) => {
   const {
     attributes,
     listeners,
+  } = useSortable({
+    id: rowKey,
+  });
+
+  return (
+    <>
+      <MoreOutlined
+        {...attributes}
+        {...listeners}
+        style={{ position: "absolute", top: 20, left: -20, cursor: 'move', color: '#999' }}
+      />
+      {children}
+    </>
+  );
+};
+
+// Sortable row component for Ant Design Table
+const SortableRow: React.FC<{
+  children: React.ReactNode;
+  'data-row-key': string;
+  [key: string]: any;
+}> = ({ children, ...props }) => {
+  const {
     setNodeRef,
     transform,
     transition,
     isDragging,
-  } = useSortable({ id });
+  } = useSortable({
+    id: props['data-row-key'],
+  });
 
-  const style = {
+  const style: React.CSSProperties = {
+    ...props.style,
     transform: CSS.Transform.toString(transform),
     transition,
     opacity: isDragging ? 0.5 : 1,
   };
 
   return (
-    <tr ref={setNodeRef} style={style}>
-      <td style={{ paddingLeft: 0, position: 'relative' }}>
-        <MoreOutlined
-          {...attributes}
-          {...listeners}
-          style={{
-            position: "absolute",
-            top: 20,
-            left: -20,
-            cursor: 'move',
-            color: '#999',
-          }}
-        />
-        <Form.Item
-          name={[field.name, "description"]}
-          rules={[{ required: true, message: t`This field is required!` }]}
-          noStyle
-        >
-          <TextArea rows={4} autoSize />
-        </Form.Item>
-      </td>
-      <td>
-        <Form.Item
-          name={[field.name, "quantity"]}
-          rules={[{ required: true, message: t`This field is required!` }]}
-          noStyle
-        >
-          <InputNumber
-            onChange={(value) => {
-              const total = form.getFieldValue(["lineItems", field.key, "total"]);
-              const unitPrice = form.getFieldValue(["lineItems", field.key, "unitPrice"]);
-
-              value = toNumber(value);
-              if (value) {
-                if (!unitPrice && total) {
-                  form.setFieldValue(
-                    ["lineItems", field.key, "unitPrice"],
-                    divideDecimal(total, value)
-                  );
-                } else if (unitPrice) {
-                  form.setFieldValue(
-                    ["lineItems", field.key, "total"],
-                    multiplyDecimal(value, unitPrice)
-                  );
-                }
-              }
-            }}
-          />
-        </Form.Item>
-      </td>
-      <td>
-        <Form.Item
-          name={[field.name, "unitPrice"]}
-          rules={[{ required: true, message: t`This field is required!` }]}
-          noStyle
-        >
-          <InputNumber
-            onChange={(value) => {
-              const total = form.getFieldValue(["lineItems", field.key, "total"]);
-              const quantity = form.getFieldValue(["lineItems", field.key, "quantity"]);
-
-              value = toNumber(value);
-              if (value) {
-                if (!quantity && total) {
-                  form.setFieldValue(
-                    ["lineItems", field.key, "quantity"],
-                    divideDecimal(total, value)
-                  );
-                } else if (quantity) {
-                  form.setFieldValue(
-                    ["lineItems", field.key, "total"],
-                    multiplyDecimal(quantity, value)
-                  );
-                }
-              }
-            }}
-          />
-        </Form.Item>
-      </td>
-      <td>
-        <Form.Item name={[field.name, "taxRate"]} noStyle>
-          <Select style={{ width: "100%" }} allowClear placeholder="Select tax">
-            {map(taxRates, (rate: any) => (
-              <Option value={rate.id} key={rate.id}>
-                {rate.name} {rate.percentage}%
-              </Option>
-            ))}
-          </Select>
-        </Form.Item>
-      </td>
-      <td style={{ position: "relative", paddingRight: 0 }}>
-        <DeleteOutlined
-          onClick={() => remove(field.name)}
-          style={{ position: "absolute", top: 20, right: -20 }}
-        />
-        <Form.Item
-          name={[field.name, "total"]}
-          rules={[{ required: true, message: t`This field is required!` }]}
-          noStyle
-        >
-          <InputNumber
-            onChange={(value) => {
-              const unitPrice = form.getFieldValue(["lineItems", field.key, "unitPrice"]);
-              const quantity = form.getFieldValue(["lineItems", field.key, "quantity"]);
-
-              value = toNumber(value);
-              if (value) {
-                if (!quantity && unitPrice) {
-                  form.setFieldValue(
-                    ["lineItems", field.key, "quantity"],
-                    divideDecimal(value, unitPrice)
-                  );
-                } else if (quantity) {
-                  form.setFieldValue(
-                    ["lineItems", field.key, "unitPrice"],
-                    divideDecimal(value, quantity)
-                  );
-                }
-              }
-            }}
-          />
-        </Form.Item>
-      </td>
+    <tr {...props} ref={setNodeRef} style={style}>
+      {children}
     </tr>
   );
 };
@@ -564,10 +467,10 @@ const InvoiceDetails: React.FC = () => {
 
     if (active.id !== over?.id) {
       const lineItems = form.getFieldValue('lineItems') || [];
-      const oldIndex = lineItems.findIndex((_: any, index: number) => `item-${index}` === active.id);
-      const newIndex = lineItems.findIndex((_: any, index: number) => `item-${index}` === over?.id);
+      const oldIndex = parseInt(active.id as string);
+      const newIndex = parseInt(over?.id as string);
 
-      if (oldIndex !== -1 && newIndex !== -1) {
+      if (oldIndex !== newIndex && !isNaN(oldIndex) && !isNaN(newIndex)) {
         const newLineItems = arrayMove(lineItems, oldIndex, newIndex);
         form.setFieldValue('lineItems', newLineItems);
       }
@@ -794,49 +697,181 @@ const InvoiceDetails: React.FC = () => {
                         onDragEnd={handleDragEnd}
                       >
                         <SortableContext
-                          items={fields.map((_, index) => `item-${index}`)}
+                          items={fields.map((_, index) => index.toString())}
                           strategy={verticalListSortingStrategy}
                         >
-                          <table style={{ width: '100%', borderCollapse: 'collapse' }}>
-                            <thead>
-                              <tr>
-                                <th style={{ textAlign: 'left', padding: '8px 12px', borderBottom: '1px solid #f0f0f0' }}>
-                                  {t`Description`}
-                                </th>
-                                <th style={{ textAlign: 'left', padding: '8px 12px', borderBottom: '1px solid #f0f0f0', width: '120px' }}>
-                                  {t`Qty.`}
-                                </th>
-                                <th style={{ textAlign: 'left', padding: '8px 12px', borderBottom: '1px solid #f0f0f0', width: '120px' }}>
-                                  {t`Price`}
-                                </th>
-                                <th style={{ textAlign: 'left', padding: '8px 12px', borderBottom: '1px solid #f0f0f0', width: '120px' }}>
-                                  {t`Tax %`}
-                                </th>
-                                <th style={{ textAlign: 'left', padding: '8px 12px', borderBottom: '1px solid #f0f0f0', width: '120px' }}>
-                                  {t`Total`}
-                                </th>
-                              </tr>
-                            </thead>
-                            <tbody>
-                              {fields.map((field, index) => (
-                                <SortableRow
-                                  key={field.key}
-                                  id={`item-${index}`}
-                                  field={field}
-                                  form={form}
-                                  taxRates={taxRates}
-                                  remove={remove}
-                                />
-                              ))}
-                              {fields.length === 0 && (
-                                <tr>
-                                  <td colSpan={5} style={{ textAlign: 'center', padding: '40px', color: '#999' }}>
-                                    {t`No line items`}
-                                  </td>
-                                </tr>
+                          <Table
+                            dataSource={fields.map((field, index) => ({ ...field, index }))}
+                            pagination={false}
+                            size="middle"
+                            locale={{ emptyText: t`No line items` }}
+                            rowKey={(record) => record.index.toString()}
+                            components={{
+                              body: {
+                                row: SortableRow,
+                              },
+                            }}
+                          >
+                            <Table.Column
+                              title={t`Description`}
+                              key="description"
+                              onCell={() => {
+                                return {
+                                  style: {
+                                    paddingLeft: 0,
+                                  },
+                                };
+                              }}
+                              render={(field, record) => (
+                                <DragHandleCell rowKey={record.index.toString()}>
+                                  <Form.Item
+                                    name={[field.name, "description"]}
+                                    rules={[{ required: true, message: t`This field is required!` }]}
+                                    noStyle
+                                  >
+                                    <TextArea rows={4} autoSize />
+                                  </Form.Item>
+                                </DragHandleCell>
                               )}
-                            </tbody>
-                          </table>
+                            />
+                            <Table.Column
+                              title={t`Qty.`}
+                              key="quantity"
+                              width={80}
+                              render={(field) => (
+                                <Form.Item
+                                  name={[field.name, "quantity"]}
+                                  rules={[{ required: true, message: t`This field is required!` }]}
+                                  noStyle
+                                >
+                                  <InputNumber
+                                    style={{ width: "100%" }}
+                                    onChange={(value) => {
+                                      const total = form.getFieldValue(["lineItems", field.key, "total"]);
+                                      const unitPrice = form.getFieldValue(["lineItems", field.key, "unitPrice"]);
+
+                                      value = toNumber(value);
+                                      if (value) {
+                                        if (!unitPrice && total) {
+                                          form.setFieldValue(
+                                            ["lineItems", field.key, "unitPrice"],
+                                            divideDecimal(total, value)
+                                          );
+                                        } else if (unitPrice) {
+                                          form.setFieldValue(
+                                            ["lineItems", field.key, "total"],
+                                            multiplyDecimal(value, unitPrice)
+                                          );
+                                        }
+                                      }
+                                    }}
+                                  />
+                                </Form.Item>
+                              )}
+                            />
+                            <Table.Column
+                              title={t`Price`}
+                              key="unitPrice"
+                              width={120}
+                              render={(field) => (
+                                <Form.Item
+                                  name={[field.name, "unitPrice"]}
+                                  rules={[{ required: true, message: t`This field is required!` }]}
+                                  noStyle
+                                >
+                                  <InputNumber
+                                    style={{ width: "100%" }}
+                                    onChange={(value) => {
+                                      const total = form.getFieldValue(["lineItems", field.key, "total"]);
+                                      const quantity = form.getFieldValue(["lineItems", field.key, "quantity"]);
+
+                                      value = toNumber(value);
+                                      if (value) {
+                                        if (!quantity && total) {
+                                          form.setFieldValue(
+                                            ["lineItems", field.key, "quantity"],
+                                            divideDecimal(total, value)
+                                          );
+                                        } else if (quantity) {
+                                          form.setFieldValue(
+                                            ["lineItems", field.key, "total"],
+                                            multiplyDecimal(quantity, value)
+                                          );
+                                        }
+                                      }
+                                    }}
+                                  />
+                                </Form.Item>
+                              )}
+                            />
+                            <Table.Column
+                              title={t`Tax %`}
+                              key="taxRate"
+                              width={120}
+                              render={(field) => (
+                                <Form.Item name={[field.name, "taxRate"]} noStyle>
+                                  <Select style={{ width: "100%" }} allowClear placeholder="Select tax">
+                                    {map(taxRates, (rate: any) => {
+                                      return (
+                                        <Option value={rate.id} key={rate.id}>
+                                          {rate.name} {rate.percentage}%
+                                        </Option>
+                                      );
+                                    })}
+                                  </Select>
+                                </Form.Item>
+                              )}
+                            />
+                            <Table.Column
+                              title={t`Total`}
+                              key="total"
+                              width={120}
+                              onCell={() => {
+                                return {
+                                  style: {
+                                    position: "relative",
+                                    paddingRight: 0,
+                                  },
+                                };
+                              }}
+                              render={(field) => (
+                                <>
+                                  <DeleteOutlined
+                                    onClick={() => remove(field.name)}
+                                    style={{ position: "absolute", top: 20, right: -20 }}
+                                  />
+                                  <Form.Item
+                                    name={[field.name, "total"]}
+                                    rules={[{ required: true, message: t`This field is required!` }]}
+                                    noStyle
+                                  >
+                                    <InputNumber
+                                      style={{ width: "100%" }}
+                                      onChange={(value) => {
+                                        const unitPrice = form.getFieldValue(["lineItems", field.key, "unitPrice"]);
+                                        const quantity = form.getFieldValue(["lineItems", field.key, "quantity"]);
+
+                                        value = toNumber(value);
+                                        if (value) {
+                                          if (!quantity && unitPrice) {
+                                            form.setFieldValue(
+                                              ["lineItems", field.key, "quantity"],
+                                              divideDecimal(value, unitPrice)
+                                            );
+                                          } else if (quantity) {
+                                            form.setFieldValue(
+                                              ["lineItems", field.key, "unitPrice"],
+                                              divideDecimal(value, quantity)
+                                            );
+                                          }
+                                        }
+                                      }}
+                                    />
+                                  </Form.Item>
+                                </>
+                              )}
+                            />
+                          </Table>
                         </SortableContext>
                       </DndContext>
                       <Form.Item style={{ marginTop: 16 }}>
