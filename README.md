@@ -30,7 +30,7 @@ Upcount is available for Mac, Linux & Windows and can be downloaded from Github 
 * 🍭 Customizable settings
 * 🎭 Cross platform
 * ⚡️ Offline-first for privacy
-* 🌐 Internationalized (9 languages)
+* 🌐 Internationalized (10 languages)
 * 💾 Backup and restore functionality
 * ©️ [GPLv3 License](https://github.com/madisvain/upcount/blob/main/LICENSE)
 
@@ -40,6 +40,7 @@ Upcount is available for Mac, Linux & Windows and can be downloaded from Github 
 * 🇪🇪 Estonian
 * 🇫🇮 Finnish
 * 🇫🇷 French
+* 🇬🇷 Greek
 * 🇳🇱 Dutch
 * 🇵🇹 Portuguese
 * 🇸🇪 Swedish
