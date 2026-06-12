@@ -24,6 +24,8 @@ export function DeleteInvoice(arg1:string):Promise<boolean>;
 
 export function DeleteOrganization(arg1:string):Promise<boolean>;
 
+export function DeleteProject(arg1:string):Promise<boolean>;
+
 export function DeleteTag(arg1:string):Promise<boolean>;
 
 export function DeleteTaxRate(arg1:string):Promise<boolean>;

@@ -46,6 +46,10 @@ export function DeleteOrganization(arg1) {
   return window['go']['main']['App']['DeleteOrganization'](arg1);
 }
 
+export function DeleteProject(arg1) {
+  return window['go']['main']['App']['DeleteProject'](arg1);
+}
+
 export function DeleteTag(arg1) {
   return window['go']['main']['App']['DeleteTag'](arg1);
 }

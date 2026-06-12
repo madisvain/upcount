@@ -327,6 +327,7 @@ export namespace db {
 	    quantity: number;
 	    unitPrice: number;
 	    taxRate?: string;
+	    position: number;
 	    createdAt?: string;
 	
 	    static createFrom(source: any = {}) {
@@ -341,6 +342,7 @@ export namespace db {
 	        this.quantity = source["quantity"];
 	        this.unitPrice = source["unitPrice"];
 	        this.taxRate = source["taxRate"];
+	        this.position = source["position"];
 	        this.createdAt = source["createdAt"];
 	    }
 	}
