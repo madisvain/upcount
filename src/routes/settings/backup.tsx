@@ -78,6 +78,7 @@ function SettingsBackup() {
             styles={{ body: { flex: 1 } }}
             actions={[
               <Button
+                key="backup"
                 type="primary"
                 icon={<CloudDownloadOutlined />}
                 loading={backing}
@@ -103,6 +104,7 @@ function SettingsBackup() {
             styles={{ body: { flex: 1 } }}
             actions={[
               <Button
+                key="restore"
                 type="default"
                 icon={<CloudUploadOutlined />}
                 loading={restoring}
