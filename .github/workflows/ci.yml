@@ -1,0 +1,45 @@
+name: "ci"
+
+on:
+  push:
+    branches: ["**"]
+  pull_request:
+
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Setup Go
+        uses: actions/setup-go@v5
+        with:
+          go-version-file: go.mod
+          cache-dependency-path: go.sum
+
+      - name: Setup pnpm
+        uses: pnpm/action-setup@v4
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: lts/*
+          cache: "pnpm"
+
+      - name: Install frontend dependencies
+        run: pnpm install --frozen-lockfile
+
+      - name: TypeScript type-check + lint
+        run: pnpm lint
+
+      - name: Go vet
+        run: go vet ./...
+
+      - name: Go test
+        run: go test ./...
+
+      - name: Go build (skip frontend — dist not needed for vet/test)
+        run: |
+          mkdir -p dist
+          echo '<!doctype html><html><body></body></html>' > dist/index.html
+          go build ./...

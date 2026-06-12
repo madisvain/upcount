@@ -20,6 +20,8 @@ jobs:
             args: "-platform darwin/amd64"
           - platform: "ubuntu-24.04"
             args: "-platform linux/amd64"
+          - platform: "windows-latest"
+            args: "-platform windows/amd64"
 
     runs-on: ${{ matrix.settings.platform }}
     steps:
@@ -34,13 +36,11 @@ jobs:
       - name: Setup Go
         uses: actions/setup-go@v5
         with:
-          go-version: '1.21'
+          go-version-file: go.mod
           cache-dependency-path: go.sum
 
       - name: Setup pnpm
         uses: pnpm/action-setup@v4
-        with:
-          version: 10
 
       - name: Setup Node
         uses: actions/setup-node@v4
@@ -73,4 +73,11 @@ jobs:
         uses: actions/upload-artifact@v4
         with:
           name: fatura-linux-amd64
+          path: build/bin/
+
+      - name: Upload Windows artifact
+        if: matrix.settings.platform == 'windows-latest'
+        uses: actions/upload-artifact@v4
+        with:
+          name: fatura-windows-amd64
           path: build/bin/
