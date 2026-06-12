@@ -33,6 +33,7 @@ type InvoiceLineItem struct {
 	Quantity    float64  `db:"quantity"    json:"quantity"`
 	UnitPrice   int64    `db:"unitPrice"   json:"unitPrice"`
 	TaxRate     *string  `db:"taxRate"     json:"taxRate"`
+	Position    int      `db:"position"    json:"position"`
 	CreatedAt   *string  `db:"createdAt"   json:"createdAt"`
 }
 
@@ -113,7 +114,7 @@ func (d *Database) GetInvoice(invoiceID string) (*Invoice, error) {
 func (d *Database) GetInvoiceLineItems(invoiceID string) ([]InvoiceLineItem, error) {
 	items := []InvoiceLineItem{}
 	err := d.DB.Select(&items,
-		`SELECT * FROM invoiceLineItems WHERE invoiceId = ? ORDER BY createdAt ASC`,
+		`SELECT * FROM invoiceLineItems WHERE invoiceId = ? ORDER BY position ASC, createdAt ASC`,
 		invoiceID,
 	)
 	if err != nil {
@@ -142,12 +143,12 @@ func (d *Database) CreateInvoice(req CreateInvoiceRequest) (*Invoice, error) {
 		return nil, fmt.Errorf("create_invoice insert: %w", err)
 	}
 
-	for _, item := range req.LineItems {
+	for i, item := range req.LineItems {
 		itemID, _ := gonanoid.New()
 		_, err = tx.Exec(`
-			INSERT INTO invoiceLineItems (id, invoiceId, description, quantity, unitPrice, taxRate)
-			VALUES (?, ?, ?, ?, ?, ?)`,
-			itemID, req.ID, item.Description, item.Quantity, item.UnitPrice, item.TaxRate,
+			INSERT INTO invoiceLineItems (id, invoiceId, description, quantity, unitPrice, taxRate, position)
+			VALUES (?, ?, ?, ?, ?, ?, ?)`,
+			itemID, req.ID, item.Description, item.Quantity, item.UnitPrice, item.TaxRate, i,
 		)
 		if err != nil {
 			return nil, fmt.Errorf("create_invoice line_item: %w", err)
@@ -206,12 +207,12 @@ func (d *Database) UpdateInvoice(invoiceID string, updates UpdateInvoiceRequest)
 		if _, err = tx.Exec(`DELETE FROM invoiceLineItems WHERE invoiceId = ?`, invoiceID); err != nil {
 			return nil, fmt.Errorf("update_invoice delete_items: %w", err)
 		}
-		for _, item := range *updates.LineItems {
+		for i, item := range *updates.LineItems {
 			itemID, _ := gonanoid.New()
 			_, err = tx.Exec(`
-				INSERT INTO invoiceLineItems (id, invoiceId, description, quantity, unitPrice, taxRate)
-				VALUES (?, ?, ?, ?, ?, ?)`,
-				itemID, invoiceID, item.Description, item.Quantity, item.UnitPrice, item.TaxRate,
+				INSERT INTO invoiceLineItems (id, invoiceId, description, quantity, unitPrice, taxRate, position)
+				VALUES (?, ?, ?, ?, ?, ?, ?)`,
+				itemID, invoiceID, item.Description, item.Quantity, item.UnitPrice, item.TaxRate, i,
 			)
 			if err != nil {
 				return nil, fmt.Errorf("update_invoice line_item: %w", err)

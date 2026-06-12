@@ -1,0 +1,1 @@
+ALTER TABLE invoiceLineItems ADD COLUMN position INTEGER NOT NULL DEFAULT 0;
