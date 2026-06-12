@@ -22,6 +22,15 @@ import {
 import { centsToUnits, unitsToCents, multiplyDecimal } from "src/utils/currency";
 import { organizationIdAtom, nextInvoiceNumberAtom } from "./organization";
 
+function invoiceToDisplay(invoice: any) {
+  return {
+    ...invoice,
+    total: centsToUnits(invoice.total),
+    taxTotal: centsToUnits(invoice.taxTotal),
+    subTotal: centsToUnits(invoice.subTotal),
+  };
+}
+
 // Invoices
 export const invoicesAtom = atom<any[]>([]);
 export const setInvoicesAtom = atom(null, async (get, set) => {
@@ -29,13 +38,7 @@ export const setInvoicesAtom = atom(null, async (get, set) => {
   try {
     const response = await GetInvoices(organizationId!);
     // Convert cents to units for display
-    const invoicesWithUnits = response.map((invoice) => ({
-      ...invoice,
-      total: centsToUnits(invoice.total),
-      taxTotal: centsToUnits(invoice.taxTotal),
-      subTotal: centsToUnits(invoice.subTotal),
-    }));
-    set(invoicesAtom, invoicesWithUnits);
+    set(invoicesAtom, response.map(invoiceToDisplay));
   } catch (error) {
     console.error("Failed to fetch invoices:", error);
     message.error(t`Failed to fetch invoices`);
@@ -112,7 +115,7 @@ export const invoiceAtom = atom(
 
         // Update the invoices list
         const invoices: any = get(invoicesAtom);
-        set(invoicesAtom, [createdInvoice, ...invoices]);
+        set(invoicesAtom, [invoiceToDisplay(createdInvoice), ...invoices]);
 
         // Force refresh organization data to get updated invoice counter
         const currentOrgId = get(organizationIdAtom);
@@ -128,9 +131,9 @@ export const invoiceAtom = atom(
           date: invoice.date?.valueOf ? invoice.date.valueOf() : invoice.date,
           dueDate: invoice.dueDate?.valueOf ? invoice.dueDate.valueOf() : invoice.dueDate,
           // Convert currency units to cents for storage
-          total: invoice.total ? unitsToCents(invoice.total) : undefined,
-          taxTotal: invoice.taxTotal ? unitsToCents(invoice.taxTotal) : undefined,
-          subTotal: invoice.subTotal ? unitsToCents(invoice.subTotal) : undefined,
+          total: invoice.total != null ? unitsToCents(invoice.total) : undefined,
+          taxTotal: invoice.taxTotal != null ? unitsToCents(invoice.taxTotal) : undefined,
+          subTotal: invoice.subTotal != null ? unitsToCents(invoice.subTotal) : undefined,
           overdueCharge: invoice.overdueCharge,
           lineItems: lineItems
             ? lineItems.map((item: any) => ({
@@ -146,7 +149,7 @@ export const invoiceAtom = atom(
 
         // Update the invoices list
         const invoices: any = get(invoicesAtom);
-        const mergedInvoices: any = keyBy([...invoices, updatedInvoice], "id");
+        const mergedInvoices: any = keyBy([...invoices, invoiceToDisplay(updatedInvoice)], "id");
         set(invoicesAtom, orderBy(map(mergedInvoices), "date", "desc"));
       }
     } catch (error) {
@@ -190,13 +193,7 @@ export const updateInvoiceStateAtom = atom(
 
       // Update the invoices list
       const invoices: any = get(invoicesAtom);
-      const invoiceWithUnits = {
-        ...updatedInvoice,
-        total: centsToUnits(updatedInvoice.total),
-        taxTotal: centsToUnits(updatedInvoice.taxTotal),
-        subTotal: centsToUnits(updatedInvoice.subTotal),
-      };
-      const mergedInvoices: any = keyBy([...invoices, invoiceWithUnits], "id");
+      const mergedInvoices: any = keyBy([...invoices, invoiceToDisplay(updatedInvoice)], "id");
       set(invoicesAtom, orderBy(map(mergedInvoices), "date", "desc"));
     } catch (error) {
       console.error("Failed to update invoice state:", error);
@@ -259,13 +256,7 @@ export const duplicateInvoiceAtom = atom(null, async (get, set, invoiceId: strin
 
     // Update the invoices list
     const invoices: any = get(invoicesAtom);
-    const invoiceWithUnits = {
-      ...createdInvoice,
-      total: centsToUnits(createdInvoice.total),
-      taxTotal: centsToUnits(createdInvoice.taxTotal),
-      subTotal: centsToUnits(createdInvoice.subTotal),
-    };
-    set(invoicesAtom, [invoiceWithUnits, ...invoices]);
+    set(invoicesAtom, [invoiceToDisplay(createdInvoice), ...invoices]);
 
     // Force refresh organization data to get updated invoice counter
     const currentOrgId = get(organizationIdAtom);
