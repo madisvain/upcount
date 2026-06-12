@@ -176,19 +176,21 @@ func (d *Database) UpdateInvoice(invoiceID string, updates UpdateInvoiceRequest)
 	}
 	defer tx.Rollback() //nolint:errcheck
 
+	// Required fields use COALESCE (kept when nil); nullable fields are set
+	// directly so users can clear them by passing null.
 	_, err = tx.Exec(`
 		UPDATE invoices
-		SET number         = COALESCE(?, number),
-		    state          = COALESCE(?, state),
-		    clientId       = COALESCE(?, clientId),
-		    date           = COALESCE(?, date),
-		    dueDate        = COALESCE(?, dueDate),
-		    currency       = COALESCE(?, currency),
-		    customerNotes  = COALESCE(?, customerNotes),
-		    overdueCharge  = COALESCE(?, overdueCharge),
-		    total          = COALESCE(?, total),
-		    taxTotal       = COALESCE(?, taxTotal),
-		    subTotal       = COALESCE(?, subTotal)
+		SET number        = COALESCE(?, number),
+		    state         = COALESCE(?, state),
+		    clientId      = COALESCE(?, clientId),
+		    date          = COALESCE(?, date),
+		    dueDate       = ?,
+		    currency      = COALESCE(?, currency),
+		    customerNotes = ?,
+		    overdueCharge = ?,
+		    total         = COALESCE(?, total),
+		    taxTotal      = COALESCE(?, taxTotal),
+		    subTotal      = COALESCE(?, subTotal)
 		WHERE id = ?`,
 		updates.Number, updates.State, updates.ClientID,
 		updates.Date, updates.DueDate, updates.Currency,
