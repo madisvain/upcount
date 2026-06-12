@@ -45,6 +45,12 @@ func (a *App) startup(ctx context.Context) {
 	database, err := db.NewDatabase(a.dbPath)
 	if err != nil {
 		fmt.Printf("Failed to initialize database: %v\n", err)
+		runtime.MessageDialog(ctx, runtime.MessageDialogOptions{
+			Type:    runtime.ErrorDialog,
+			Title:   "Database Error",
+			Message: fmt.Sprintf("Failed to initialize database at:\n%s\n\n%v\n\nPlease check file permissions and restart.", a.dbPath, err),
+		})
+		runtime.Quit(ctx)
 		return
 	}
 	a.db = database
