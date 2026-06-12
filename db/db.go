@@ -24,7 +24,10 @@ type Database struct {
 // NewDatabase opens (or creates) the SQLite database at dbPath, runs all
 // pending migrations and returns a ready-to-use Database.
 func NewDatabase(dbPath string) (*Database, error) {
-	db, err := sqlx.Open("sqlite", dbPath)
+	// Embed pragmas in the DSN so every connection gets them automatically,
+	// regardless of pool size. busy_timeout avoids SQLITE_BUSY under load.
+	dsn := dbPath + "?_pragma=foreign_keys(1)&_pragma=journal_mode(WAL)&_pragma=busy_timeout(5000)"
+	db, err := sqlx.Open("sqlite", dsn)
 	if err != nil {
 		return nil, fmt.Errorf("open database: %w", err)
 	}
@@ -34,11 +37,6 @@ func NewDatabase(dbPath string) (*Database, error) {
 
 	if err := db.Ping(); err != nil {
 		return nil, fmt.Errorf("ping database: %w", err)
-	}
-
-	// Enable WAL mode and foreign keys.
-	if _, err := db.Exec(`PRAGMA journal_mode=WAL; PRAGMA foreign_keys=ON;`); err != nil {
-		return nil, fmt.Errorf("set pragmas: %w", err)
 	}
 
 	d := &Database{DB: db, DBPath: dbPath}
