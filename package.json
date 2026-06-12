@@ -24,7 +24,6 @@
     "@react-pdf/renderer": "4.3.2",
     "@sentry/react": "^10.54.0",
     "antd": "5.26.1",
-    "axios": "1.13.4",
     "dayjs": "^1.11.21",
     "decimal.js": "^10.5.0",
     "jotai": "2.20.0",
