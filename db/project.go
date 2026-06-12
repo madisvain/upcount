@@ -81,6 +81,31 @@ func (d *Database) CreateProject(req CreateProjectRequest) (*Project, error) {
 	return d.GetProject(req.ID)
 }
 
+func (d *Database) DeleteProject(projectID string) (bool, error) {
+	tx, err := d.DB.Beginx()
+	if err != nil {
+		return false, fmt.Errorf("delete_project begin: %w", err)
+	}
+	defer tx.Rollback() //nolint:errcheck
+
+	// projectId has no DB-level FK on timeEntries (migration 0015); null it out manually.
+	if _, err = tx.Exec(`UPDATE timeEntries SET projectId = NULL WHERE projectId = ?`, projectID); err != nil {
+		return false, fmt.Errorf("delete_project nullify_entries: %w", err)
+	}
+
+	res, err := tx.Exec(`DELETE FROM projects WHERE id = ?`, projectID)
+	if err != nil {
+		return false, fmt.Errorf("delete_project: %w", err)
+	}
+
+	if err := tx.Commit(); err != nil {
+		return false, fmt.Errorf("delete_project commit: %w", err)
+	}
+
+	n, _ := res.RowsAffected()
+	return n > 0, nil
+}
+
 func (d *Database) UpdateProject(projectID string, updates UpdateProjectRequest) (*Project, error) {
 	if updates.Name != nil {
 		if _, err := d.DB.Exec(`UPDATE projects SET name = ? WHERE id = ?`, updates.Name, projectID); err != nil {

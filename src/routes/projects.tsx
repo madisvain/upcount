@@ -1,7 +1,8 @@
 import { useEffect } from "react";
 import { Link, Outlet, useLocation, useNavigate } from "react-router";
-import { Button, Col, Input, Space, Table, Typography, Row, Checkbox } from "antd";
+import { Button, Col, Input, Space, Table, Typography, Row, Checkbox, Popconfirm } from "antd";
 import { atom, useAtom, useAtomValue, useSetAtom } from "jotai";
+import { DeleteOutlined } from "@ant-design/icons";
 import { Trans } from "@lingui/react/macro";
 import { t } from "@lingui/core/macro";
 import { useLingui } from "@lingui/react";
@@ -13,7 +14,7 @@ import some from "lodash/some";
 import toString from "lodash/toString";
 import dayjs from "dayjs";
 
-import { projectsAtom, setProjectsAtom } from "src/atoms/project";
+import { projectsAtom, setProjectsAtom, deleteProjectAtom } from "src/atoms/project";
 import { useDateFormatter } from "src/utils/date";
 import ProjectForm from "src/components/projects/form";
 
@@ -29,6 +30,7 @@ const Projects = () => {
   const projects = useAtomValue(projectsAtom);
   const setProjects = useSetAtom(setProjectsAtom);
   const [search, setSearch] = useAtom(searchAtom);
+  const deleteProject = useSetAtom(deleteProjectAtom);
 
   useEffect(() => {
     if (location.pathname === "/projects") {
@@ -126,6 +128,23 @@ const Projects = () => {
         }
         return false;
       },
+    },
+    {
+      key: "actions",
+      width: 50,
+      align: "center" as const,
+      render: (record: any) => (
+        <Popconfirm
+          title={t`Delete project`}
+          description={t`This will also remove the project from any linked time entries. Continue?`}
+          okText={t`Delete`}
+          okType="danger"
+          cancelText={t`Cancel`}
+          onConfirm={() => deleteProject(record.id)}
+        >
+          <Button type="text" danger icon={<DeleteOutlined />} size="small" />
+        </Popconfirm>
+      ),
     },
   ];
 

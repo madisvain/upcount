@@ -70,3 +70,4 @@ export function GetProjects($0) { return call('GetProjects', $0); }
 export function GetProject($0) { return call('GetProject', $0); }
 export function CreateProject($0) { return call('CreateProject', $0); }
 export function UpdateProject($0, $1) { return call('UpdateProject', $0, $1); }
+export function DeleteProject($0) { return call('DeleteProject', $0); }

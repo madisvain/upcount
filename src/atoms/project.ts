@@ -4,10 +4,12 @@ import { nanoid } from "nanoid";
 import { t } from "@lingui/core/macro";
 import keyBy from "lodash/keyBy";
 import map from "lodash/map";
+import reject from "lodash/reject";
 import {
   GetProjects,
   CreateProject,
   UpdateProject,
+  DeleteProject,
 } from "wailsjs/go/main/App";
 
 import { organizationIdAtom } from "./organization";
@@ -120,6 +122,23 @@ export const archiveProjectAtom = atom(null, async (get, set, projectId: string)
   }
 });
 archiveProjectAtom.debugLabel = "archiveProjectAtom";
+
+// Delete project
+export const deleteProjectAtom = atom(null, async (get, set, projectId: string) => {
+  try {
+    const success = await DeleteProject(projectId);
+    if (success) {
+      set(projectsAtom, reject(get(projectsAtom), (p) => p.id === projectId));
+      message.success(t`Project deleted`);
+    } else {
+      message.error(t`Project deletion failed`);
+    }
+  } catch (error) {
+    console.error("Failed to delete project:", error);
+    message.error(t`Project deletion failed`);
+  }
+});
+deleteProjectAtom.debugLabel = "deleteProjectAtom";
 
 // Unarchive project
 export const unarchiveProjectAtom = atom(null, async (get, set, projectId: string) => {

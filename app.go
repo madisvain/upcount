@@ -339,3 +339,7 @@ func (a *App) CreateProject(req db.CreateProjectRequest) (*db.Project, error) {
 func (a *App) UpdateProject(projectID string, updates db.UpdateProjectRequest) (*db.Project, error) {
 	return a.db.UpdateProject(projectID, updates)
 }
+
+func (a *App) DeleteProject(projectID string) (bool, error) {
+	return a.db.DeleteProject(projectID)
+}

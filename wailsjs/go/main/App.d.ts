@@ -57,3 +57,4 @@ export function GetProjects(organizationId: string): Promise<any[]>;
 export function GetProject(projectId: string): Promise<any>;
 export function CreateProject(req: any): Promise<any>;
 export function UpdateProject(projectId: string, updates: any): Promise<any>;
+export function DeleteProject(projectId: string): Promise<boolean>;
