@@ -59,7 +59,9 @@ jobs:
           SENTRY_AUTH_TOKEN: ${{ secrets.SENTRY_AUTH_TOKEN }}
           GITHUB_SHA: ${{ github.sha }}
           NODE_OPTIONS: "--max-old-space-size=4096"
-        run: wails build ${{ matrix.settings.args }}
+        run: |
+          VERSION="${{ github.ref_name }}"
+          wails build ${{ matrix.settings.args }} -ldflags "-X main.version=${VERSION}"
 
       - name: Upload macOS artifact
         if: matrix.settings.platform == 'macos-latest'

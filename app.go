@@ -61,7 +61,7 @@ func (a *App) startup(ctx context.Context) {
 
 // GetVersion returns the application version (used by Sentry on the frontend).
 func (a *App) GetVersion() string {
-	return "2.0.0-beta.24"
+	return version
 }
 
 // OpenURL opens a URL in the system's default browser.
