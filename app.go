@@ -87,7 +87,7 @@ func (a *App) SaveFile(defaultName string, contents []byte) error {
 	return os.WriteFile(path, contents, 0644)
 }
 
-// BackupDatabase shows a save-file dialog and copies the SQLite database there.
+// BackupDatabase shows a save-file dialog and writes a consistent snapshot via VACUUM INTO.
 func (a *App) BackupDatabase() (string, error) {
 	defaultName := fmt.Sprintf("fatura-backup-%s.db", time.Now().Format("2006-01-02"))
 	path, err := runtime.SaveFileDialog(a.ctx, runtime.SaveDialogOptions{
@@ -102,13 +102,16 @@ func (a *App) BackupDatabase() (string, error) {
 	if path == "" {
 		return "", nil
 	}
-	if err := copyFile(a.dbPath, path); err != nil {
-		return "", fmt.Errorf("backup copy: %w", err)
+	if err := a.db.Backup(path); err != nil {
+		return "", fmt.Errorf("backup: %w", err)
 	}
 	return path, nil
 }
 
-// RestoreDatabase shows an open-file dialog and replaces the SQLite database.
+// RestoreDatabase shows an open-file dialog and replaces the live database.
+// The connection is closed before the file is swapped and reopened afterward,
+// so the app keeps working without a restart (though UI state is stale — the
+// frontend still recommends restarting to reload all atoms).
 func (a *App) RestoreDatabase() (string, error) {
 	path, err := runtime.OpenFileDialog(a.ctx, runtime.OpenDialogOptions{
 		Title: "Select Database Backup to Restore",
@@ -123,24 +126,40 @@ func (a *App) RestoreDatabase() (string, error) {
 		return "", nil
 	}
 
-	// Safety backup of current database
-	backupPath := a.dbPath + ".backup"
+	// Safety backup of current database using VACUUM INTO (consistent snapshot).
+	safetyPath := a.dbPath + ".safety"
 	if _, statErr := os.Stat(a.dbPath); statErr == nil {
-		if cpErr := copyFile(a.dbPath, backupPath); cpErr != nil {
-			return "", fmt.Errorf("safety backup: %w", cpErr)
+		if err := a.db.Backup(safetyPath); err != nil {
+			return "", fmt.Errorf("safety backup: %w", err)
 		}
 	}
 
+	// Close the connection before swapping files.
+	if err := a.db.Close(); err != nil {
+		return "", fmt.Errorf("close database: %w", err)
+	}
+	a.db = nil
+
+	// Remove WAL/SHM so the restored file opens cleanly.
+	_ = os.Remove(a.dbPath + "-wal")
+	_ = os.Remove(a.dbPath + "-shm")
+
 	if err := copyFile(path, a.dbPath); err != nil {
-		// Try to restore the safety backup
-		if _, statErr := os.Stat(backupPath); statErr == nil {
-			_ = copyFile(backupPath, a.dbPath)
-		}
+		// Attempt to roll back to the safety copy.
+		_ = copyFile(safetyPath, a.dbPath)
+		database, _ := db.NewDatabase(a.dbPath)
+		a.db = database
+		_ = os.Remove(safetyPath)
 		return "", fmt.Errorf("restore copy: %w", err)
 	}
 
-	// Remove safety backup on success
-	_ = os.Remove(backupPath)
+	// Reopen — this also applies any pending migrations.
+	database, err := db.NewDatabase(a.dbPath)
+	if err != nil {
+		return "", fmt.Errorf("reopen database: %w", err)
+	}
+	a.db = database
+	_ = os.Remove(safetyPath)
 	return "Database restored successfully", nil
 }
 

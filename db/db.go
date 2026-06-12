@@ -3,6 +3,7 @@ package db
 import (
 	"embed"
 	"fmt"
+	"os"
 
 	"github.com/golang-migrate/migrate/v4"
 	"github.com/golang-migrate/migrate/v4/database/sqlite"
@@ -46,6 +47,21 @@ func NewDatabase(dbPath string) (*Database, error) {
 	}
 
 	return d, nil
+}
+
+// Backup creates a consistent single-file snapshot via VACUUM INTO,
+// safe to call while the database is open in WAL mode.
+func (d *Database) Backup(destPath string) error {
+	_ = os.Remove(destPath) // VACUUM INTO fails if the destination already exists
+	if _, err := d.DB.Exec("VACUUM INTO ?", destPath); err != nil {
+		return fmt.Errorf("backup: %w", err)
+	}
+	return nil
+}
+
+// Close shuts down the connection pool.
+func (d *Database) Close() error {
+	return d.DB.Close()
 }
 
 func (d *Database) runMigrations() error {
