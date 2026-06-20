@@ -1,0 +1,20 @@
+{
+  "//": "TEMPLATE — copy the mcpServers.upcount block into your assistant's MCP config and replace the /ABSOLUTE/PATH placeholders. For Claude Desktop on macOS that file is ~/Library/Application Support/Claude/claude_desktop_config.json. See kriya-mcp/README.md.",
+  "mcpServers": {
+    "upcount": {
+      "command": "kriya-mcp",
+      "args": [
+        "--persistent",
+        "--name", "upcount",
+        "--exec", "/ABSOLUTE/PATH/TO/upcount/src-tauri/target/release/kriya_exec",
+        "--tools", "/ABSOLUTE/PATH/TO/upcount/kriya-mcp/tools.json",
+        "--policy", "/ABSOLUTE/PATH/TO/upcount/kriya-mcp/agent-policy.yaml",
+        "--approval", "gui",
+        "--actor", "claude-desktop"
+      ],
+      "env": {
+        "UPCOUNT_DB": "/ABSOLUTE/PATH/TO/Library/Application Support/com.upcount.dev/sqlite.db"
+      }
+    }
+  }
+}

@@ -15,6 +15,12 @@ rust-version = "1.75"
 name = "upcount_lib"
 crate-type = ["staticlib", "cdylib", "rlib"]
 
+# Optional governed-MCP executor (off by default; see kriya-mcp/). Reuses the `db` module the
+# app already uses; `default-run = "upcount"` keeps `cargo run`/`tauri` pointed at the app.
+[[bin]]
+name = "kriya_exec"
+path = "src/kriya_exec.rs"
+
 [build-dependencies]
 tauri-build = { version = "2.5.5", features = [] }
 

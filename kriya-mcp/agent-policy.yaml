@@ -1,0 +1,41 @@
+# Governance policy for Upcount's optional governed-MCP access. kriya-mcp enforces this on every
+# tools/call from the external agent — the agent can only *propose*; this policy decides.
+#
+# Posture: reads flow freely; financial documents (invoices) and anything destructive pause for
+# on-device human approval; routine record-keeping is allowed but audited; everything else is
+# denied by default; and a per-minute cap stops a runaway agent. First matching rule wins.
+rules:
+  # Reads — safe to run unattended.
+  - action: "get_*"
+    allow: true
+
+  # Money / financial documents — pause for a human's go-ahead, every time.
+  - action: "create_invoice"
+    allow: true
+    require_approval: true
+  - action: "update_invoice"
+    allow: true
+    require_approval: true
+  - action: "update_invoice_state"   # issuing / marking sent|paid|void is a financial-state change
+    allow: true
+    require_approval: true
+
+  # Anything destructive — pause for approval.
+  - action: "delete_*"
+    allow: true
+    require_approval: true
+
+  # Routine record-keeping (clients, organizations, tax rates, tags, time entries, projects) —
+  # allowed, and every one is recorded in the signed audit log.
+  - action: "create_*"
+    allow: true
+  - action: "update_*"
+    allow: true
+
+  # Everything else: denied (deny-by-default). An agent cannot invoke anything not listed above.
+  - action: "*"
+    allow: false
+
+budget:
+  # A looping agent can't hammer your books: at most 30 actions per rolling minute.
+  max_actions_per_minute: 30

@@ -1,0 +1,142 @@
+[
+  { "name": "get_organizations", "version": 1, "description": "List all organizations.", "permissions": [],
+    "inputSchema": { "type": "object", "properties": {}, "required": [] } },
+  { "name": "get_organization", "version": 1, "description": "Get one organization by id.", "permissions": [],
+    "inputSchema": { "type": "object", "properties": { "id": { "type": "string" } }, "required": ["id"] } },
+  { "name": "create_organization", "version": 1, "description": "Create an organization (the billing entity). id is auto-generated if omitted.", "permissions": ["write:organizations"],
+    "inputSchema": { "type": "object", "properties": {
+      "id": { "type": "string" }, "name": { "type": "string" }, "country": { "type": "string" }, "address": { "type": "string" },
+      "email": { "type": "string" }, "phone": { "type": "string" }, "website": { "type": "string" },
+      "registration_number": { "type": "string" }, "vatin": { "type": "string" }, "bank_name": { "type": "string" }, "iban": { "type": "string" },
+      "currency": { "type": "string" }, "minimum_fraction_digits": { "type": "integer" }, "due_days": { "type": "integer" },
+      "overdueCharge": { "type": "number" }, "customerNotes": { "type": "string" }, "invoiceNumberFormat": { "type": "string" }, "date_format": { "type": "string" }
+    }, "required": [] } },
+  { "name": "update_organization", "version": 1, "description": "Update an organization.", "permissions": ["write:organizations"],
+    "inputSchema": { "type": "object", "properties": {
+      "id": { "type": "string" }, "name": { "type": "string" }, "country": { "type": "string" }, "address": { "type": "string" },
+      "email": { "type": "string" }, "phone": { "type": "string" }, "website": { "type": "string" },
+      "registration_number": { "type": "string" }, "vatin": { "type": "string" }, "bank_name": { "type": "string" }, "iban": { "type": "string" },
+      "currency": { "type": "string" }, "minimum_fraction_digits": { "type": "integer" }, "due_days": { "type": "integer" },
+      "overdueCharge": { "type": "number" }, "customerNotes": { "type": "string" }, "invoiceNumberFormat": { "type": "string" },
+      "invoiceNumberCounter": { "type": "integer" }, "date_format": { "type": "string" }
+    }, "required": ["id"] } },
+  { "name": "delete_organization", "version": 1, "description": "Delete an organization (cascades its data). Requires human approval.", "permissions": ["delete:organizations"],
+    "inputSchema": { "type": "object", "properties": { "id": { "type": "string" } }, "required": ["id"] } },
+
+  { "name": "get_clients", "version": 1, "description": "List clients for an organization.", "permissions": [],
+    "inputSchema": { "type": "object", "properties": { "organizationId": { "type": "string" } }, "required": ["organizationId"] } },
+  { "name": "get_client", "version": 1, "description": "Get one client by id.", "permissions": [],
+    "inputSchema": { "type": "object", "properties": { "id": { "type": "string" } }, "required": ["id"] } },
+  { "name": "get_client_invoice_count", "version": 1, "description": "Count invoices belonging to a client.", "permissions": [],
+    "inputSchema": { "type": "object", "properties": { "id": { "type": "string" } }, "required": ["id"] } },
+  { "name": "create_client", "version": 1, "description": "Create a client. id is auto-generated if omitted.", "permissions": ["write:clients"],
+    "inputSchema": { "type": "object", "properties": {
+      "id": { "type": "string" }, "organizationId": { "type": "string" }, "name": { "type": "string" }, "code": { "type": "string" },
+      "address": { "type": "string" }, "emails": { "type": "string" }, "phone": { "type": "string" }, "website": { "type": "string" },
+      "registration_number": { "type": "string" }, "vatin": { "type": "string" }
+    }, "required": ["organizationId"] } },
+  { "name": "update_client", "version": 1, "description": "Update a client.", "permissions": ["write:clients"],
+    "inputSchema": { "type": "object", "properties": {
+      "id": { "type": "string" }, "name": { "type": "string" }, "code": { "type": "string" }, "address": { "type": "string" },
+      "emails": { "type": "string" }, "phone": { "type": "string" }, "website": { "type": "string" },
+      "registration_number": { "type": "string" }, "vatin": { "type": "string" }
+    }, "required": ["id"] } },
+  { "name": "delete_client", "version": 1, "description": "Delete a client. Requires human approval.", "permissions": ["delete:clients"],
+    "inputSchema": { "type": "object", "properties": { "id": { "type": "string" } }, "required": ["id"] } },
+
+  { "name": "get_invoices", "version": 1, "description": "List invoices for an organization.", "permissions": [],
+    "inputSchema": { "type": "object", "properties": { "organizationId": { "type": "string" } }, "required": ["organizationId"] } },
+  { "name": "get_invoice", "version": 1, "description": "Get one invoice by id.", "permissions": [],
+    "inputSchema": { "type": "object", "properties": { "id": { "type": "string" } }, "required": ["id"] } },
+  { "name": "get_invoice_line_items", "version": 1, "description": "List line items for an invoice id.", "permissions": [],
+    "inputSchema": { "type": "object", "properties": { "id": { "type": "string" } }, "required": ["id"] } },
+  { "name": "create_invoice", "version": 1, "description": "Create an invoice. Money fields are integer cents. number is caller-supplied (Upcount numbering lives in the UI). id auto-generated if omitted. Requires human approval.", "permissions": ["write:invoices", "money"],
+    "inputSchema": { "type": "object", "properties": {
+      "id": { "type": "string" }, "organizationId": { "type": "string" }, "number": { "type": "string" }, "state": { "type": "string" },
+      "clientId": { "type": "string" }, "date": { "type": "integer" }, "dueDate": { "type": "integer" }, "currency": { "type": "string" },
+      "customerNotes": { "type": "string" }, "overdueCharge": { "type": "number" },
+      "total": { "type": "integer" }, "taxTotal": { "type": "integer" }, "subTotal": { "type": "integer" },
+      "lineItems": { "type": "array", "items": { "type": "object", "properties": {
+        "description": { "type": "string" }, "quantity": { "type": "number" }, "unitPrice": { "type": "integer" }, "taxRate": { "type": "string" }
+      }, "required": ["quantity", "unitPrice"] } }
+    }, "required": ["organizationId", "number", "state", "clientId", "date", "currency", "total", "taxTotal", "subTotal", "lineItems"] } },
+  { "name": "update_invoice", "version": 1, "description": "Update an invoice (lineItems, if given, fully replace existing). Money fields are integer cents. Requires human approval.", "permissions": ["write:invoices", "money"],
+    "inputSchema": { "type": "object", "properties": {
+      "id": { "type": "string" }, "number": { "type": "string" }, "state": { "type": "string" }, "clientId": { "type": "string" },
+      "date": { "type": "integer" }, "dueDate": { "type": "integer" }, "currency": { "type": "string" }, "customerNotes": { "type": "string" },
+      "overdueCharge": { "type": "number" }, "total": { "type": "integer" }, "taxTotal": { "type": "integer" }, "subTotal": { "type": "integer" },
+      "lineItems": { "type": "array", "items": { "type": "object", "properties": {
+        "description": { "type": "string" }, "quantity": { "type": "number" }, "unitPrice": { "type": "integer" }, "taxRate": { "type": "string" }
+      }, "required": ["quantity", "unitPrice"] } }
+    }, "required": ["id"] } },
+  { "name": "update_invoice_state", "version": 1, "description": "Change an invoice's state (e.g. draft, sent, paid, void). This is how invoices are issued. Requires human approval.", "permissions": ["write:invoices", "money"],
+    "inputSchema": { "type": "object", "properties": { "id": { "type": "string" }, "state": { "type": "string" } }, "required": ["id", "state"] } },
+  { "name": "delete_invoice", "version": 1, "description": "Delete an invoice. Requires human approval.", "permissions": ["delete:invoices"],
+    "inputSchema": { "type": "object", "properties": { "id": { "type": "string" } }, "required": ["id"] } },
+
+  { "name": "get_tax_rates", "version": 1, "description": "List tax rates for an organization.", "permissions": [],
+    "inputSchema": { "type": "object", "properties": { "organizationId": { "type": "string" } }, "required": ["organizationId"] } },
+  { "name": "get_tax_rate", "version": 1, "description": "Get one tax rate by id.", "permissions": [],
+    "inputSchema": { "type": "object", "properties": { "id": { "type": "string" } }, "required": ["id"] } },
+  { "name": "create_tax_rate", "version": 1, "description": "Create a tax rate. id auto-generated if omitted.", "permissions": ["write:tax_rates"],
+    "inputSchema": { "type": "object", "properties": {
+      "id": { "type": "string" }, "organizationId": { "type": "string" }, "name": { "type": "string" },
+      "description": { "type": "string" }, "percentage": { "type": "number" }, "isDefault": { "type": "integer" }
+    }, "required": ["organizationId", "name", "percentage"] } },
+  { "name": "update_tax_rate", "version": 1, "description": "Update a tax rate.", "permissions": ["write:tax_rates"],
+    "inputSchema": { "type": "object", "properties": {
+      "id": { "type": "string" }, "name": { "type": "string" }, "description": { "type": "string" },
+      "percentage": { "type": "number" }, "isDefault": { "type": "integer" }
+    }, "required": ["id"] } },
+  { "name": "delete_tax_rate", "version": 1, "description": "Delete a tax rate. Requires human approval.", "permissions": ["delete:tax_rates"],
+    "inputSchema": { "type": "object", "properties": { "id": { "type": "string" } }, "required": ["id"] } },
+
+  { "name": "get_tags", "version": 1, "description": "List time-tracking tags for an organization.", "permissions": [],
+    "inputSchema": { "type": "object", "properties": { "organizationId": { "type": "string" } }, "required": ["organizationId"] } },
+  { "name": "get_tag", "version": 1, "description": "Get one tag by id.", "permissions": [],
+    "inputSchema": { "type": "object", "properties": { "id": { "type": "string" } }, "required": ["id"] } },
+  { "name": "create_tag", "version": 1, "description": "Create a tag. id auto-generated if omitted.", "permissions": ["write:tags"],
+    "inputSchema": { "type": "object", "properties": {
+      "id": { "type": "string" }, "organizationId": { "type": "string" }, "name": { "type": "string" }, "color": { "type": "string" }
+    }, "required": ["organizationId", "name", "color"] } },
+  { "name": "update_tag", "version": 1, "description": "Update a tag.", "permissions": ["write:tags"],
+    "inputSchema": { "type": "object", "properties": {
+      "id": { "type": "string" }, "name": { "type": "string" }, "color": { "type": "string" }
+    }, "required": ["id"] } },
+  { "name": "delete_tag", "version": 1, "description": "Delete a tag. Requires human approval.", "permissions": ["delete:tags"],
+    "inputSchema": { "type": "object", "properties": { "id": { "type": "string" } }, "required": ["id"] } },
+
+  { "name": "get_time_entries", "version": 1, "description": "List time entries for an organization.", "permissions": [],
+    "inputSchema": { "type": "object", "properties": { "organizationId": { "type": "string" } }, "required": ["organizationId"] } },
+  { "name": "get_time_entry", "version": 1, "description": "Get one time entry by id.", "permissions": [],
+    "inputSchema": { "type": "object", "properties": { "id": { "type": "string" } }, "required": ["id"] } },
+  { "name": "create_time_entry", "version": 1, "description": "Create a time entry. Times are unix ms/seconds per app convention; isBillable is 0/1. id auto-generated if omitted.", "permissions": ["write:time_entries"],
+    "inputSchema": { "type": "object", "properties": {
+      "id": { "type": "string" }, "organizationId": { "type": "string" }, "clientId": { "type": "string" }, "description": { "type": "string" },
+      "startTime": { "type": "integer" }, "endTime": { "type": "integer" }, "duration": { "type": "integer" },
+      "tags": { "type": "string" }, "isBillable": { "type": "integer" }, "hourlyRate": { "type": "number" }
+    }, "required": ["organizationId", "startTime", "duration", "isBillable"] } },
+  { "name": "update_time_entry", "version": 1, "description": "Update a time entry.", "permissions": ["write:time_entries"],
+    "inputSchema": { "type": "object", "properties": {
+      "id": { "type": "string" }, "clientId": { "type": "string" }, "description": { "type": "string" },
+      "startTime": { "type": "integer" }, "endTime": { "type": "integer" }, "duration": { "type": "integer" },
+      "tags": { "type": "string" }, "isBillable": { "type": "integer" }, "hourlyRate": { "type": "number" }
+    }, "required": ["id"] } },
+  { "name": "delete_time_entry", "version": 1, "description": "Delete a time entry. Requires human approval.", "permissions": ["delete:time_entries"],
+    "inputSchema": { "type": "object", "properties": { "id": { "type": "string" } }, "required": ["id"] } },
+
+  { "name": "get_projects", "version": 1, "description": "List projects for an organization.", "permissions": [],
+    "inputSchema": { "type": "object", "properties": { "organizationId": { "type": "string" } }, "required": ["organizationId"] } },
+  { "name": "get_project", "version": 1, "description": "Get one project by id.", "permissions": [],
+    "inputSchema": { "type": "object", "properties": { "id": { "type": "string" } }, "required": ["id"] } },
+  { "name": "create_project", "version": 1, "description": "Create a project. id auto-generated if omitted.", "permissions": ["write:projects"],
+    "inputSchema": { "type": "object", "properties": {
+      "id": { "type": "string" }, "organizationId": { "type": "string" }, "name": { "type": "string" }, "clientId": { "type": "string" },
+      "startDate": { "type": "integer" }, "endDate": { "type": "integer" }, "archivedAt": { "type": "integer" }
+    }, "required": ["organizationId", "name"] } },
+  { "name": "update_project", "version": 1, "description": "Update a project (archive by setting archivedAt; there is no project delete).", "permissions": ["write:projects"],
+    "inputSchema": { "type": "object", "properties": {
+      "id": { "type": "string" }, "name": { "type": "string" }, "clientId": { "type": "string" },
+      "startDate": { "type": "integer" }, "endDate": { "type": "integer" }, "archivedAt": { "type": "integer" }
+    }, "required": ["id"] } }
+]
