@@ -32,6 +32,23 @@ jobs:
           sudo apt-get install -y libwebkit2gtk-4.1-dev libappindicator3-dev librsvg2-dev patchelf
         # webkitgtk 4.1 is for Tauri v2.
 
+      # Tauri's pinned 2024 linuxdeploy has an excludelist predating libwayland-client.so.0,
+      # so it bundles the runner's copy and breaks EGL on Mesa 25+ (#180, tauri-apps/tauri#15665).
+      # Tauri only downloads tools it cannot find, so seeding the cache overrides it.
+      - name: use newer linuxdeploy for AppImage bundling (ubuntu only)
+        if: matrix.settings.platform == 'ubuntu-24.04'
+        env:
+          LINUXDEPLOY_RELEASE: "1-alpha-20251107-1"
+          LINUXDEPLOY_SHA256: "c20cd71e3a4e3b80c3483cef793cda3f4e990aca14014d23c544ca3ce1270b4d"
+        run: |
+          set -euo pipefail
+          appimage="$HOME/.cache/tauri/linuxdeploy-x86_64.AppImage"
+          mkdir -p "$(dirname "$appimage")"
+          curl -fsSL --retry 3 -o "$appimage" \
+            "https://github.com/linuxdeploy/linuxdeploy/releases/download/$LINUXDEPLOY_RELEASE/linuxdeploy-x86_64.AppImage"
+          echo "$LINUXDEPLOY_SHA256  $appimage" | sha256sum -c -
+          chmod +x "$appimage"
+
       - name: Setup pnpm
         uses: pnpm/action-setup@v6
         with:
