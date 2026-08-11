@@ -7,6 +7,7 @@ use crate::db::{
     TimeEntry, CreateTimeEntryRequest, UpdateTimeEntryRequest,
     Project, CreateProjectRequest, UpdateProjectRequest
 };
+use crate::pdf;
 use tauri::{AppHandle, Manager, State};
 use chrono::{DateTime, Utc};
 use std::fs;
@@ -457,4 +458,12 @@ pub async fn update_project(
     db.update_project(&project_id, updates)
         .await
         .map_err(|e| handle_db_error(e, "update_project"))
+}
+
+#[tauri::command]
+pub async fn generate_pdf(
+    request: pdf::PdfRequest,
+    logo_data: Option<String>,
+) -> Result<Vec<u8>, String> {
+    pdf::generate_invoice_pdf(&request, logo_data.as_deref())
 }

@@ -21,7 +21,6 @@
     "@lingui/core": "^5.9.0",
     "@lingui/macro": "^5.9.0",
     "@lingui/react": "^5.9.0",
-    "@react-pdf/renderer": "4.3.2",
     "@sentry/react": "^10.38.0",
     "@tauri-apps/api": "^2.10.1",
     "@tauri-apps/plugin-dialog": "^2.6.0",

@@ -3,6 +3,7 @@
 
 mod commands;
 mod db;
+mod pdf;
 
 use tauri::Manager;
 
@@ -86,6 +87,7 @@ pub fn run() {
       commands::get_project,
       commands::create_project,
       commands::update_project,
+      commands::generate_pdf,
     ])
     .run(tauri::generate_context!())
     .map_err(|e| {

@@ -53,7 +53,7 @@ import {
 import { CSS } from "@dnd-kit/utilities";
 import { save } from "@tauri-apps/plugin-dialog";
 import { writeFile } from "@tauri-apps/plugin-fs";
-import { pdf } from "@react-pdf/renderer";
+import { invoke } from "@tauri-apps/api/core";
 import { Document, Page } from "react-pdf";
 import dayjs from "dayjs";
 
@@ -80,7 +80,7 @@ import isNumber from "lodash/isNumber";
 import toNumber from "lodash/toNumber";
 
 import { clientsAtom, setClientsAtom } from "src/atoms/client";
-import { useDatePickerFormat } from "src/utils/date";
+import { useDatePickerFormat, formatDate } from "src/utils/date";
 import {
   invoiceIdAtom,
   invoiceAtom,
@@ -91,8 +91,7 @@ import { organizationAtom, nextInvoiceNumberAtom } from "src/atoms/organization"
 import { taxRatesAtom, setTaxRatesAtom } from "src/atoms/tax-rate";
 import { siderAtom } from "src/atoms/generic";
 import ClientForm from "src/components/clients/form.tsx";
-import InvoicePDF from "src/components/invoices/pdf";
-import { currencies } from "src/utils/currencies";
+import { currencies, getFormattedNumber } from "src/utils/currencies";
 import { generateInvoiceNumber } from "src/utils/invoice";
 import { multiplyDecimal, divideDecimal, calculateTax, addDecimal } from "src/utils/currency";
 
@@ -145,80 +144,40 @@ const SortableRow: React.FC<{
   );
 };
 
-// PDF Preview component that generates blob manually (like PDF download)
-const PDFPreview: React.FC<{ createPDFDocument: () => React.ReactElement | null }> = ({
-  createPDFDocument,
-}) => {
+const PDFPreview: React.FC<{
+  buildPdfRequest: () => { request: any; logoData: string | null } | null;
+}> = ({ buildPdfRequest }) => {
   const [pdfUrl, setPdfUrl] = useState<string | null>(null);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
   const [containerWidth, setContainerWidth] = useState(0);
   const siderCollapsed = useAtomValue(siderAtom);
 
-  // Callback ref that measures width when div is actually rendered
   const containerRef = useCallback((node: HTMLDivElement | null) => {
     if (node) {
       const measureWidth = () => {
-        const width = node.offsetWidth;
-        setContainerWidth(width - 40); // subtract some padding
+        setContainerWidth(node.offsetWidth - 40);
       };
-
-      // Initial measurement
       measureWidth();
-
-      // Re-measure on resize
       const handleResize = () => measureWidth();
       window.addEventListener("resize", handleResize);
-
-      // Store cleanup function for later use instead of returning it
-      const cleanup = () => {
-        window.removeEventListener("resize", handleResize);
-      };
-
-      // Store cleanup function on the node for later access
-      (node as any)._cleanup = cleanup;
+      (node as any)._cleanup = () => window.removeEventListener("resize", handleResize);
     } else {
-      // Node is being unmounted, run cleanup if it exists
       const prevNode = containerRef as any;
-      if (prevNode._cleanup) {
-        prevNode._cleanup();
-      }
+      if (prevNode._cleanup) prevNode._cleanup();
     }
-    // Don't return anything to avoid the warning
   }, []);
 
-  // Effect to re-measure when sidebar changes
   useEffect(() => {
-    // Trigger re-measurement when sidebar state changes
-    console.log("Sidebar state changed:", siderCollapsed);
     const timer = setTimeout(() => {
-      // Force a complete layout recalculation by triggering resize event
       window.dispatchEvent(new Event("resize"));
-
-      // Wait a bit more for the resize event to be processed
       setTimeout(() => {
         const container = document.querySelector("[data-pdf-container]") as HTMLDivElement;
-        if (container && container.parentElement) {
-          // Use the parent element's width instead of the container's width
-          const parentWidth = container.parentElement.offsetWidth;
-          const containerWidth = container.offsetWidth;
-          const windowWidth = window.innerWidth;
-
-          console.log("Sidebar change measurements:", {
-            containerWidth,
-            parentWidth,
-            windowWidth,
-            siderCollapsed,
-            usingParentWidth: true,
-            finalWidth: parentWidth - 40,
-          });
-
-          // Use parent width instead of container width
-          setContainerWidth(parentWidth - 40);
+        if (container?.parentElement) {
+          setContainerWidth(container.parentElement.offsetWidth - 40);
         }
       }, 100);
     }, 500);
-
     return () => clearTimeout(timer);
   }, [siderCollapsed]);
 
@@ -228,14 +187,18 @@ const PDFPreview: React.FC<{ createPDFDocument: () => React.ReactElement | null 
       setError(null);
 
       try {
-        const document = createPDFDocument();
-        if (!document) {
+        const result = buildPdfRequest();
+        if (!result) {
           setError("Please select a client to view PDF preview.");
           setLoading(false);
           return;
         }
 
-        const blob = await pdf(document!).toBlob();
+        const pdfBytes: number[] = await invoke("generate_pdf", {
+          request: result.request,
+          logoData: result.logoData,
+        });
+        const blob = new Blob([new Uint8Array(pdfBytes)], { type: "application/pdf" });
         const url = URL.createObjectURL(blob);
         setPdfUrl(url);
       } catch (err) {
@@ -248,13 +211,12 @@ const PDFPreview: React.FC<{ createPDFDocument: () => React.ReactElement | null 
 
     generatePDF();
 
-    // Cleanup URL when component unmounts
     return () => {
       if (pdfUrl) {
         URL.revokeObjectURL(pdfUrl);
       }
     };
-  }, []); // eslint-disable-line react-hooks/exhaustive-deps -- Intentionally omitting createPDFDocument to prevent re-generation on width changes
+  }, []); // eslint-disable-line react-hooks/exhaustive-deps
 
   if (loading) {
     return (
@@ -461,39 +423,84 @@ const InvoiceDetails: React.FC = () => {
   const taxTotal = sum(map(taxGroups, "tax"));
   const total = addDecimal(subTotal, taxTotal);
 
-  // Helper function to create PDF document with current form data
-  const createPDFDocument = () => {
-    // Get current form values to include unsaved changes
+  const buildPdfRequest = () => {
     const formValues = form.getFieldsValue();
-    const clientId = formValues.clientId;
-    const clientData = find(clients, { id: clientId });
+    const clientData = find(clients, { id: formValues.clientId });
+    if (!clientData) return null;
 
-    // Return null if no client data found
-    if (!clientData) {
-      return null;
+    const dateFormat = organization?.date_format;
+    const currency = formValues.currency || organization.currency;
+    const fmt = (n: number) => getFormattedNumber(n, currency, i18n.locale, organization);
+
+    let clientEmail = "";
+    try {
+      const emails =
+        typeof clientData.emails === "string" ? JSON.parse(clientData.emails) : clientData.emails;
+      clientEmail = emails?.[0] || "";
+    } catch {
+      clientEmail = "";
     }
 
-    // Create merged invoice data with form values and computed totals
-    const invoiceForPDF = {
-      ...invoice, // Start with database data
-      ...formValues, // Override with current form values
-      // Use computed totals from the current component state
-      subTotal,
-      taxTotal,
-      total,
-      // Ensure line items have the correct totals
-      lineItems: formValues.lineItems || [],
+    const items = (formValues.lineItems || []).filter((item: any) => isNumber(get(item, "total")));
+
+    const request = {
+      invoice: {
+        number: formValues.number || "",
+        date: formatDate(formValues.date, dateFormat),
+        dueDate: formatDate(formValues.dueDate, dateFormat),
+        overdueCharge: formValues.overdueCharge ? `${formValues.overdueCharge}%` : null,
+        customerNotes: formValues.customerNotes || null,
+      },
+      client: {
+        name: clientData.name || "",
+        address: clientData.address || null,
+        email: clientEmail || null,
+        website: clientData.website || null,
+      },
+      organization: {
+        name: organization.name || "",
+        address: organization.address || null,
+        email: organization.email || null,
+        website: organization.website || null,
+        bankName: organization.bank_name || null,
+        iban: organization.iban || null,
+        registrationNumber: organization.registration_number || null,
+        vatin: organization.vatin || null,
+      },
+      lineItems: items.map((item: any) => {
+        const taxRate = find(taxRates, { id: item.taxRate });
+        return {
+          description: item.description || "",
+          quantity: String(item.quantity ?? ""),
+          unitPrice: fmt(item.unitPrice),
+          taxPct: taxRate ? `${taxRate.percentage}%` : "",
+          total: fmt(item.total),
+        };
+      }),
+      subtotal: fmt(subTotal),
+      taxGroups: taxGroups.map((group: any) => ({
+        name: group.taxRate
+          ? `${group.taxRate.name} ${group.taxRate.percentage}%`
+          : i18n._("Tax 0%"),
+        amount: fmt(group.tax),
+      })),
+      total: fmt(total),
+      labels: {
+        invoice: i18n._("Invoice"),
+        date: i18n._("Date"),
+        dueDate: i18n._("Due date"),
+        overdueCharge: i18n._("Overdue charge"),
+        description: i18n._("Description"),
+        qty: i18n._("Qty."),
+        price: i18n._("Price"),
+        tax: i18n._("Tax %"),
+        total: i18n._("Total"),
+        subtotal: i18n._("Subtotal"),
+      },
+      hasLogo: !!organization.logo,
     };
 
-    return (
-      <InvoicePDF
-        invoice={invoiceForPDF}
-        client={clientData}
-        organization={organization}
-        taxRates={taxRates}
-        i18n={i18n}
-      />
-    );
+    return { request, logoData: organization.logo || null };
   };
 
   if (!organization) return null;
@@ -1027,11 +1034,13 @@ const InvoiceDetails: React.FC = () => {
                               });
                               if (!filePath) return;
 
-                              const document = createPDFDocument();
-                              if (!document) return;
-                              const blob = await pdf(document).toBlob();
-                              const contents = new Uint8Array(await blob.arrayBuffer());
-                              await writeFile(filePath, contents);
+                              const result = buildPdfRequest();
+                              if (!result) return;
+                              const pdfBytes: number[] = await invoke("generate_pdf", {
+                                request: result.request,
+                                logoData: result.logoData,
+                              });
+                              await writeFile(filePath, new Uint8Array(pdfBytes));
                             }}
                           >
                             <FilePdfOutlined /> PDF
@@ -1055,7 +1064,7 @@ const InvoiceDetails: React.FC = () => {
           </Form>
           {previewMode && (
             // PDF Preview Mode
-            <PDFPreview createPDFDocument={createPDFDocument} />
+            <PDFPreview buildPdfRequest={buildPdfRequest} />
           )}
         </Col>
       </Row>

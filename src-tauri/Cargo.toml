@@ -33,6 +33,10 @@ tokio = { version = "1.49.0", features = ["full"] }
 nanoid = "0.4"
 chrono = { version = "0.4.43", features = ["serde"] }
 sentry = { version = "0.46", features = ["backtrace", "contexts", "panic", "anyhow"] }
+typst-as-lib = "0.15"
+typst-library = "0.14"
+typst-pdf = "0.14"
+base64 = "0.22"
 
 [features]
 # this feature is used for production builds or when `devPath` points to the filesystem and the built-in dev server is disabled.
