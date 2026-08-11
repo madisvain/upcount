@@ -14,6 +14,22 @@ Built with [Tauri](https://tauri.app/), [SQLite](https://www.sqlite.org/index.ht
 [Invoice editing](https://www.upcount.app/screenshots/invoice-edit.png)
 [Invoice settings](https://www.upcount.app/screenshots/settings.png)
 
+## Governed AI access (optional)
+
+Upcount is local-first with no API, so the only ways an AI assistant could *operate* it today are
+screen-scraping or raw SQLite access — both ungoverned. The optional [`kriya-mcp/`](kriya-mcp/)
+integration instead exposes Upcount's existing actions to an assistant (e.g. Claude Desktop) as a
+**governed MCP server**:
+
+- **Reads** (clients, invoices, time entries) run freely.
+- **Routine writes** (create/update clients, tax rates, tags, projects, time entries) are recorded in a signed audit log.
+- **Money & destructive** actions (create/update/issue an invoice, and any `delete_*`) pause for **human approval**.
+- A per-minute **budget** caps a runaway agent; anything not allow-listed is **denied by default**.
+
+It's **off by default** and changes nothing in the app: the `kriya_exec` helper binary reuses the
+exact async `Database` methods the UI already calls, and all governance lives in the external
+`kriya-mcp` process. See [`kriya-mcp/README.md`](kriya-mcp/README.md) to enable it.
+
 ## Download
 
 Upcount is available for Mac, Linux & Windows and can be downloaded from Github releases.
