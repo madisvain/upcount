@@ -29,7 +29,8 @@
         "updater-capability",
         "process-capability",
         "opener-capability",
-        "http-capability"
+        "http-capability",
+        "shell-capability"
       ]
     }
   },
@@ -41,9 +42,9 @@
     "category": "DeveloperTool",
     "shortDescription": "",
     "longDescription": "",
-    "resources": [],
+    "resources": ["resources/**/*"],
     "copyright": "",
-    "externalBin": [],
+    "externalBin": ["binaries/typst"],
     "linux": {
       "deb": {
         "depends": []

@@ -15,6 +15,7 @@ pub fn run() {
     .plugin(tauri_plugin_fs::init())
     .plugin(tauri_plugin_opener::init())
     .plugin(tauri_plugin_http::init())
+    .plugin(tauri_plugin_shell::init())
     .setup(|app| {
       // Get the app data directory for the database with fallback options
       let app_dir = app.path().app_data_dir()
@@ -86,6 +87,7 @@ pub fn run() {
       commands::get_project,
       commands::create_project,
       commands::update_project,
+      commands::generate_time_report_pdf,
     ])
     .run(tauri::generate_context!())
     .map_err(|e| {

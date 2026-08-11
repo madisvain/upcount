@@ -8,6 +8,7 @@ use crate::db::{
     Project, CreateProjectRequest, UpdateProjectRequest
 };
 use tauri::{AppHandle, Manager, State};
+use tauri_plugin_shell::ShellExt;
 use chrono::{DateTime, Utc};
 use std::fs;
 
@@ -457,4 +458,96 @@ pub async fn update_project(
     db.update_project(&project_id, updates)
         .await
         .map_err(|e| handle_db_error(e, "update_project"))
+}
+
+// PDF Generation Commands
+
+#[derive(serde::Deserialize)]
+pub struct TimeReportRow {
+    pub name: String,
+    pub entries: u32,
+    #[serde(rename = "formattedDuration")]
+    pub formatted_duration: String,
+}
+
+#[derive(serde::Deserialize)]
+pub struct TimeReportData {
+    #[serde(rename = "dateRange")]
+    pub date_range: String,
+    pub client: Option<String>,
+    pub rows: Vec<TimeReportRow>,
+}
+
+#[derive(serde::Serialize)]
+struct TimeReportJson {
+    #[serde(rename = "dateRange")]
+    date_range: String,
+    client: Option<String>,
+    rows: Vec<TimeReportRowJson>,
+}
+
+#[derive(serde::Serialize)]
+struct TimeReportRowJson {
+    name: String,
+    entries: u32,
+    #[serde(rename = "formattedDuration")]
+    formatted_duration: String,
+}
+
+#[tauri::command]
+pub async fn generate_time_report_pdf(
+    app: AppHandle,
+    data: TimeReportData,
+    output_path: String,
+) -> Result<(), String> {
+    let resource_dir = app.path().resource_dir()
+        .map_err(|e| format!("Failed to get resource directory: {}", e))?;
+
+    let template_path = resource_dir.join("resources").join("templates").join("time-report.typ");
+    let fonts_path = resource_dir.join("resources").join("fonts");
+
+    // Write data as JSON to a temp file
+    let json_data = TimeReportJson {
+        date_range: data.date_range,
+        client: data.client,
+        rows: data.rows.into_iter().map(|r| TimeReportRowJson {
+            name: r.name,
+            entries: r.entries,
+            formatted_duration: r.formatted_duration,
+        }).collect(),
+    };
+
+    let temp_dir = std::env::temp_dir();
+    let json_path = temp_dir.join(format!("upcount-report-{}.json", nanoid::nanoid!()));
+    fs::write(&json_path, serde_json::to_string(&json_data)
+        .map_err(|e| format!("Failed to serialize report data: {}", e))?)
+        .map_err(|e| format!("Failed to write temp data file: {}", e))?;
+
+    let output = app.shell()
+        .sidecar("typst")
+        .map_err(|e| format!("Failed to create typst sidecar: {}", e))?
+        .args([
+            "compile",
+            "--root",
+            "/",
+            "--font-path",
+            &fonts_path.to_string_lossy(),
+            "--input",
+            &format!("data={}", json_path.to_string_lossy()),
+            &template_path.to_string_lossy(),
+            &output_path,
+        ])
+        .output()
+        .await
+        .map_err(|e| format!("Failed to run typst: {}", e))?;
+
+    // Clean up temp file
+    let _ = fs::remove_file(&json_path);
+
+    if output.status.success() {
+        Ok(())
+    } else {
+        let stderr = String::from_utf8_lossy(&output.stderr);
+        Err(format!("Typst compilation failed: {}", stderr))
+    }
 }

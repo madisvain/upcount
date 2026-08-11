@@ -23,6 +23,8 @@ import groupBy from "lodash/groupBy";
 import sumBy from "lodash/sumBy";
 import sortBy from "lodash/sortBy";
 import filter from "lodash/filter";
+import { save } from "@tauri-apps/plugin-dialog";
+import { invoke } from "@tauri-apps/api/core";
 
 import { timeEntriesAtom } from "src/atoms/time-tracking";
 import { clientsAtom } from "src/atoms/client";
@@ -171,7 +173,34 @@ export default function TimeTrackingReports() {
         </Col>
         <Col span={12} style={{ display: "flex", justifyContent: "flex-end" }}>
           <Space style={{ alignItems: "start" }}>
-            <Button type="default" style={{ marginBottom: 10 }} disabled>
+            <Button
+              type="default"
+              style={{ marginBottom: 10 }}
+              onClick={async () => {
+                const filePath = await save({
+                  defaultPath: `time-report-${dateRange[0].format("YYYY-MM-DD")}-to-${dateRange[1].format("YYYY-MM-DD")}.pdf`,
+                });
+                if (!filePath) return;
+
+                const client =
+                  selectedClient !== "all"
+                    ? clients.find((c) => c.id === selectedClient)
+                    : undefined;
+
+                try {
+                  await invoke("generate_time_report_pdf", {
+                    data: {
+                      dateRange: `${dateRange[0].format("MMM D, YYYY")} - ${dateRange[1].format("MMM D, YYYY")}`,
+                      client: client?.name ?? null,
+                      rows: tableData,
+                    },
+                    outputPath: filePath,
+                  });
+                } catch (e) {
+                  console.error("Failed to generate PDF:", e);
+                }
+              }}
+            >
               <Trans>Export</Trans>
             </Button>
           </Space>

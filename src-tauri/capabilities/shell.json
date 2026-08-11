@@ -1,0 +1,18 @@
+{
+  "$schema": "../gen/schemas/desktop-schema.json",
+  "identifier": "shell-capability",
+  "description": "Shell capabilities for sidecar binaries",
+  "windows": ["main"],
+  "permissions": [
+    {
+      "identifier": "shell:allow-execute",
+      "allow": [
+        {
+          "name": "binaries/typst",
+          "sidecar": true,
+          "args": true
+        }
+      ]
+    }
+  ]
+}
